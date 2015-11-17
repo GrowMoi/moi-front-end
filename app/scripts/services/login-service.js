@@ -3,30 +3,25 @@
 
   angular.module('starter.services')
   .factory('LoginService', function($q, $http, ENV) {
-    var email, passwd;
+    var makeRequest = function (email, passwd) {
+      $http.defaults.headers.common['Content-Type'] = "application/json";
 
-    var makeRequest = function () {
-      var url = ENV.apiEndpoint + 'users/sign_in.json';
+      var url = ENV.apiEndpoint + 'auth/user/sign_in';
       var data = {
-        user: {
-          email: email,
-          password: passwd
-        }
+        email: email,
+        password: passwd
       };
       return $http.post(url, data);
     }
 
     var loginUser = function(email, passwd) {
-      email = email;
-      passwd = passwd;
-
       var deferred = $q.defer();
       var promise = deferred.promise;
 
-      makeRequest().then(function (resp) {
+      makeRequest(email, passwd).then(function (resp) {
         deferred.resolve('Welcome ' + email + '!');
       }, function (err) {
-        deferred.reject('Wrong credentials.');
+        deferred.reject(err);
       });
 
       promise.success = function(fn) {

@@ -13,11 +13,11 @@
         $state.go('tab.dash');
       }).error(function(data) {
         var alertPopup = $ionicPopup.alert({
-          title: 'Login failed!',
-          template: 'Please check your credentials!'
+          title: 'Ups!',
+          template: data.data.error
         });
       });
     };
   });
-  
+
 })();
