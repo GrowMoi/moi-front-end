@@ -7,7 +7,12 @@
 // 'starter.controllers' is found in controllers.js
 (function(){
   'use strict';
-  angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+  angular.module('starter', [
+    'ionic',
+    'starter.controllers',
+    'starter.services',
+    'ng-token-auth'
+  ])
 
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {

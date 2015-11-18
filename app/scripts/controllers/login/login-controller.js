@@ -2,21 +2,21 @@
   'use strict';
 
   angular.module('starter.controllers')
-  .controller("LoginCtrl", function ($scope, LoginService, $ionicPopup, $state) {
-    $scope.data = {};
+  .controller('LoginCtrl', function ($scope, $ionicPopup, $state, $auth) {
+    $scope.loginForm = {};
 
     $scope.login = function() {
-      LoginService.loginUser(
-        $scope.data.username,
-        $scope.data.password
-      ).success(function(data) {
-        $state.go('tab.dash');
-      }).error(function(data) {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Ups!',
-          template: data.data.error
+      $auth.submitLogin($scope.loginForm)
+        .then(function (resp) {
+          console.log(resp);
+          $state.go('tab.dash');
+        })
+        .catch(function (resp) {
+          $ionicPopup.alert({
+            title: 'Ups!',
+            template: resp.errors.join(', ')
+          });
         });
-      });
     };
   });
 
