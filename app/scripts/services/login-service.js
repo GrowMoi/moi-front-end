@@ -6,7 +6,7 @@
     var makeRequest = function (email, passwd) {
       $http.defaults.headers.common['Content-Type'] = "application/json";
 
-      var url = ENV.apiEndpoint + 'auth/user/sign_in';
+      var url = ENV.apiEndpoint + 'api/auth/user/sign_in';
       var data = {
         email: email,
         password: passwd
