@@ -47,6 +47,14 @@ module.exports = function (grunt) {
           }
         }
       },
+      staging: {
+        constants: {
+          ENV: {
+            name: 'staging',
+            apiHost: 'http://moi-staging.herokuapp.com'
+          }
+        }
+      },
       production: {
         constants: {
           ENV: {
