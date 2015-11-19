@@ -2,13 +2,16 @@
   'use strict';
 
   angular.module('starter.controllers')
-  .controller('LoginCtrl', function ($scope, $ionicPopup, $state, $auth) {
+  .controller('LoginCtrl', function ($rootScope, $scope, $ionicPopup, $state, $auth) {
     $scope.loginForm = {};
+
+    $rootScope.$on('auth:validation-success', function () {
+      $state.go('tab.dash');
+    });
 
     $scope.login = function() {
       $auth.submitLogin($scope.loginForm)
-        .then(function (resp) {
-          console.log(resp);
+        .then(function () {
           $state.go('tab.dash');
         })
         .catch(function (resp) {

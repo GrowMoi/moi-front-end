@@ -60,6 +60,11 @@
           templateUrl: 'templates/tab-dash.html',
           controller: 'DashCtrl'
         }
+      },
+      resolve: {
+        auth: function ($auth) {
+          return $auth.validateUser();
+        }
       }
     })
 
