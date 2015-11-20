@@ -27,7 +27,7 @@
           constants: {
             ENV: {
               name: 'staging',
-              apiHost: 'http://moi-staging.herokuapp.com'
+              apiHost: '//moi-staging.herokuapp.com'
             }
           }
         }
