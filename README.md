@@ -5,3 +5,7 @@ ionic example app (created with https://github.com/diegonetto/generator-ionic)
 - gem install compass
 - npm install && bower install
 - grunt serve
+
+## for ios emulate install
+
+- npm install -g ios-sim
