@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  angular.module('starter.controllers')
+  angular.module('moi.controllers')
   .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
     $scope.chat = Chats.get($stateParams.chatId);
   });

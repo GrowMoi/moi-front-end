@@ -10,7 +10,7 @@
         stateMock,
         ionicPopupMock;
 
-    beforeEach(module('starter.controllers'));
+    beforeEach(module('moi.controllers'));
 
     beforeEach(inject(
       function ($q,

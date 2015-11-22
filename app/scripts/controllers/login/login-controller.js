@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('starter.controllers')
+  angular.module('moi.controllers')
   .controller('LoginController',
     function ($rootScope,
               $scope,
