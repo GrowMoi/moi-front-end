@@ -19,11 +19,11 @@
 
       deferredLogin  = $q.defer();
       $scope         = $rootScope.$new();
-      ionicPopupMock = jasmine.createSpyObj('$ionicPopup spy', ['alert']);
-      stateMock      = jasmine.createSpyObj('$state spy', ['go']);
+      ionicPopupMock = { alert: sinon.stub() };
+      stateMock      = { go: sinon.stub() };
       authMock       = {
-        submitLogin: jasmine.createSpy('$auth spy', ['go'])
-                            .and.returnValue(deferredLogin.promise)
+        submitLogin: sinon.stub()
+                          .returns(deferredLogin.promise)
       };
 
       controller = $controller('LoginController', {
@@ -44,9 +44,7 @@
       }));
 
       it('should call submitLogin on authService', function() {
-        expect(
-          authMock.submitLogin
-        ).toHaveBeenCalledWith({
+        sinon.assert.alwaysCalledWithExactly(authMock.submitLogin, {
           email: 'test1',
           password: 'password1'
         });
@@ -59,20 +57,20 @@
           deferredLogin.resolve();
           $rootScope.$digest();
 
-          expect(stateMock.go).toHaveBeenCalledWith(successState);
+          sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
         });
 
         it('if unsuccessful, should show a popup', function() {
           deferredLogin.reject({ errors: [] });
           $rootScope.$digest();
 
-          expect(ionicPopupMock.alert).toHaveBeenCalled();
+          sinon.assert.calledOnce(ionicPopupMock.alert);
         });
 
         it('if already authenticated, change state', function () {
           $rootScope.$emit('auth:validation-success');
 
-          expect(stateMock.go).toHaveBeenCalledWith(successState);
+          sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
         });
       });
     });

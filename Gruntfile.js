@@ -359,7 +359,7 @@ module.exports = function (grunt) {
     karma: {
       options: {
         basePath: '',
-        frameworks: ['mocha', 'chai'],
+        frameworks: ['mocha', 'chai', 'sinon'],
         files: [
           '<%= yeoman.app %>/bower_components/angular/angular.js',
           '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
@@ -368,14 +368,16 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/bower_components/angular-ui-router/release/angular-ui-router.js',
           '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
           '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
+          '<%= yeoman.app %>/node_modules/karma-sinon/index.js',
+          '<%= yeoman.app %>/node_modules/chai/index.js',
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
-          '<%= yeoman.test %>/mock/**/*.js',
-          '<%= yeoman.test %>/spec/**/*.js'
+          '<%= yeoman.test %>/unit/**/*.js'
         ],
         autoWatch: false,
         reporters: ['dots', 'coverage'],
         port: 8080,
         singleRun: false,
+        colors: true,
         preprocessors: {
           // Update this if you change the yeoman config path
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js': ['coverage']
@@ -474,7 +476,7 @@ module.exports = function (grunt) {
   // we don't have to run the karma test server as part of `grunt serve`
   grunt.registerTask('watch:karma', function () {
     var karma = {
-      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/spec/**/*.js'],
+      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/**/*.js'],
       tasks: ['newer:jshint:test', 'karma:unit:run']
     };
     grunt.config.set('watch', karma);
