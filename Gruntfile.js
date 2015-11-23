@@ -187,6 +187,7 @@ module.exports = function (grunt) {
       },
       server: {
         options: {
+          bundleExec: true,
           debugInfo: true
         }
       }
