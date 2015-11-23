@@ -360,6 +360,7 @@ module.exports = function (grunt) {
     // These will override any config options in karma.conf.js if you create it.
     karma: {
       options: {
+        browsers: ['PhantomJS'],
         basePath: '',
         frameworks: ['mocha', 'chai', 'sinon'],
         files: [
@@ -380,6 +381,9 @@ module.exports = function (grunt) {
         port: 8080,
         singleRun: false,
         colors: true,
+        phantomjsLauncher: {
+          exitOnResourceError: true
+        },
         preprocessors: {
           // Update this if you change the yeoman config path
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js': ['coverage']
@@ -399,7 +403,7 @@ module.exports = function (grunt) {
       },
       continuous: {
         browsers: ['PhantomJS'],
-        singleRun: true,
+        singleRun: true
       }
     },
 
@@ -504,6 +508,16 @@ module.exports = function (grunt) {
     'autoprefixer',
     'karma:unit:start',
     'watch:karma'
+  ]);
+
+  grunt.registerTask('test:ci', [
+    'jshint:all',
+    'wiredep',
+    'clean',
+    'concurrent:test',
+    'ngconstant:production',
+    'autoprefixer',
+    'karma:continuous'
   ]);
 
   grunt.registerTask('serve', function (target) {
