@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  angular.module('starter.controllers', ['config'])
+  angular.module('moi.controllers', ['config'])
   .controller('DashCtrl', function($scope, $auth) {
     $scope.name = $auth.user.name;
   });

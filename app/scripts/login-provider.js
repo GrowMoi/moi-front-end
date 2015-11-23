@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('starter')
+  angular.module('moi')
   .config(function ($authProvider, ENV) {
     $authProvider.configure({
       apiUrl: ENV.apiHost + '/api',

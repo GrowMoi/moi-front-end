@@ -1,16 +1,10 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
 (function(){
   'use strict';
-  angular.module('starter', [
+
+  angular.module('moi', [
     'ionic',
-    'starter.controllers',
-    'starter.services',
+    'moi.controllers',
+    'moi.services',
     'ng-token-auth'
   ])
 
@@ -41,7 +35,7 @@
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginController'
     })
 
     // setup an abstract state for the tabs directive
