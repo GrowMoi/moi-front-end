@@ -1,11 +1,20 @@
-# moi-ionic
-ionic example app (created with https://github.com/diegonetto/generator-ionic)
-- clone the repo
-- npm install -g cordova
-- gem install compass
-- npm install && bower install
-- grunt serve
+# moi-front-end
 
-## for ios emulate install
+## development
+
+### development requirements
+
+- ruby & bundler
+- nodejs
+
+### booting up
+
+1. `git clone git@github.com:GrowMoi/moi-front-end.git`
+2. `bundle`
+3. `npm install -g cordova`
+4. `npm install && bower install`
+5. `grunt serve`
+
+### for ios emulate install
 
 - npm install -g ios-sim
