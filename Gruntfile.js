@@ -181,6 +181,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
+          bundleExec: true,
           generatedImagesDir: '<%= yeoman.dist %>/<%= yeoman.images %>/generated'
         }
       },
