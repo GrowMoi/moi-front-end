@@ -1,6 +1,7 @@
 # moi-front-end
 
 ## development
+[![Circle CI](https://circleci.com/gh/GrowMoi/moi-front-end.svg?style=svg)](https://circleci.com/gh/GrowMoi/moi-front-end)
 
 ### development requirements
 
