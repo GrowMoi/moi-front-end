@@ -8,5 +8,6 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
+    <preference name="orientation" value="landscape"/>
     <access origin="*" />
 </widget>
