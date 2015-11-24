@@ -4,7 +4,8 @@
   "dependencies": {
     "ionic": "~1.1.1",
     "ngCordova": "v0.1.23-alpha",
-    "ng-token-auth": "~0.0.27"
+    "ng-token-auth": "~0.0.27",
+    "angular-translate": "~2.8.1"
   },
   "devDependencies": {
     "angular-mocks": "1.4.3",

@@ -5,7 +5,8 @@
     'ionic',
     'moi.controllers',
     'moi.services',
-    'ng-token-auth'
+    'ng-token-auth',
+    'pascalprecht.translate'
   ])
 
   .run(function($ionicPlatform) {
