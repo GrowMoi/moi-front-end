@@ -40,7 +40,6 @@
       controllerAs: 'vm',
       templateUrl: 'templates/login/login.html'
     })
-
     .state('neuron', {
       url: '/neuron/{neuronId:int}',
       controller: 'NeuronController',
@@ -54,6 +53,11 @@
           });
         }
       }
+    .state('content', {
+      url: '/content',
+      controller: 'ContentController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/content/content.html'
     })
 
     // setup an abstract state for the tabs directive
