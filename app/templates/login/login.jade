@@ -1,0 +1,11 @@
+ion-view(view-title='Login')
+  ion-content.padding
+    .row.responsive-sm.row-center.padding-top
+      .col-center.col-50.col-offset-25
+        .list.list-inset
+          label.item.item-input
+            input(type='text', placeholder='Username', ng-model='loginForm.email')
+          label.item.item-input
+            input(type='password', placeholder='Password', ng-model='loginForm.password')
+        .list
+          button.button.button-block.button-calm(ng-click='login()') Login

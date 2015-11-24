@@ -34,15 +34,15 @@
 
     .state('login', {
       url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'LoginController'
+      controller: 'LoginController',
+      templateUrl: 'templates/login/login.html',
     })
 
     // setup an abstract state for the tabs directive
     .state('menu', {
       url: '/menu',
       abstract: true,
-      templateUrl: 'templates/menu.html'
+      templateUrl: 'templates/common/menu.html'
     })
 
     // Each tab has its own nav history stack:
@@ -51,7 +51,7 @@
       url: '/dash',
       views: {
         'menuContent': {
-          templateUrl: 'templates/tab-dash.html',
+          templateUrl: 'templates/dashboard/tab-dash.html',
           controller: 'DashCtrl'
         }
       },
@@ -61,31 +61,11 @@
         }
       }
     })
-
-    .state('menu.chats', {
-      url: '/chats',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('menu.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
     .state('tab.account', {
       url: '/account',
       views: {
         'tab-account': {
-          templateUrl: 'templates/tab-account.html',
+          templateUrl: 'templates/dashboard/tab-dash.html',
           controller: 'AccountCtrl'
         }
       }

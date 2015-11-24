@@ -67,6 +67,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/**/*.html'],
         tasks: ['newer:copy:app']
       },
+      jade: {
+        files: ['<%= yeoman.app %>/**/*.jade'],
+        tasks: ['jade']
+      },
       js: {
         files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'],
         tasks: ['newer:copy:app', 'newer:jshint:all']
@@ -230,6 +234,22 @@ module.exports = function (grunt) {
         noRebase: true
       }
     },
+    jade: {
+      compile: {
+        options: {
+          data: {
+            debug: false
+          }
+        },
+        files: [ {
+          expand: true,
+          src: 'templates/**/*.jade',
+          dest: '<%= yeoman.dist %>',
+          cwd: '<%= yeoman.app %>',
+          ext: '.html'
+        } ]
+      }
+    },
     htmlmin: {
       dist: {
         options: {
@@ -292,7 +312,8 @@ module.exports = function (grunt) {
         dest: '<%= yeoman.dist %>/',
         src: [
           '**/*',
-          '!**/*.(scss,sass,css)',
+          '!**/*.jade',
+          '!**/*.(scss,sass,css)'
         ]
       },
       tmp: {
@@ -544,6 +565,7 @@ module.exports = function (grunt) {
     'wiredep',
     'concurrent:server',
     'autoprefixer',
+    'jade',
     'newer:copy:app',
     'newer:copy:tmp'
   ]);
