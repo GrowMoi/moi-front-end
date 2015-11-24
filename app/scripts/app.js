@@ -5,6 +5,7 @@
     'ionic',
     'moi.controllers',
     'moi.services',
+    'moi.directives',
     'ng-token-auth',
     'pascalprecht.translate'
   ])
@@ -38,6 +39,21 @@
       controller: 'LoginController',
       controllerAs: 'vm',
       templateUrl: 'templates/login/login.html'
+    })
+
+    .state('neuron', {
+      url: '/neuron/{neuronId:int}',
+      controller: 'NeuronController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/neuron/neuron.html',
+      resolve: {
+        data: function(NeuronService, $stateParams){
+          var id = $stateParams.neuronId;
+          return NeuronService.getNeuron(id).then(function(data) {
+            return data.neuron;
+          });
+        }
+      }
     })
 
     // setup an abstract state for the tabs directive
