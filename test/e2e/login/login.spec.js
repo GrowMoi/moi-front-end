@@ -5,7 +5,7 @@
       chai     = require('chai'),
       promised = require('chai-as-promised');
 
-  chai.use(promised)
+  chai.use(promised);
 
   var HttpBackend = require('http-backend-proxy'),
       proxy = new HttpBackend(browser);

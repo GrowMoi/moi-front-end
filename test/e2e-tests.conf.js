@@ -4,7 +4,7 @@ exports.config = {
     'browserName': 'phantomjs',
     'phantomjs.binary.path': require('phantomjs').path
   },
-  baseUrl: 'http://localhost:8100',
+  baseUrl: 'http://localhost:5001',
   specs: [
     'e2e/**/*.spec.js'
   ],

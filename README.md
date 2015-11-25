@@ -40,6 +40,10 @@ aka protractor
 
 please take a look at [chai-as-promised](http://chaijs.com/plugins/chai-as-promised)
 
+```
+grunt protractor:ci
+```
+
 ### for ios emulate install
 
 - npm install -g ios-sim

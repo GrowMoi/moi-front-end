@@ -14,6 +14,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-protractor-runner');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -416,6 +418,14 @@ module.exports = function (grunt) {
           dest: '.temp/concat/<%= yeoman.scripts %>'
         }]
       }
+    },
+
+    // grunt-protractor-runner
+    protractor: {
+      options: {
+        configFile: "<%= yeoman.test %>/e2e-tests.conf.js"
+      },
+      all: {}
     }
 
   });
@@ -476,14 +486,44 @@ module.exports = function (grunt) {
     return grunt.task.run(['watch']);
   });
 
-  // Dynamically configure `karma` target of `watch` task so that
-  // we don't have to run the karma test server as part of `grunt serve`
-  grunt.registerTask('watch:karma', function () {
+  grunt.registerTask('protractor:ci', function () {
+    var done = this.async(),
+        gruntLog = function (data) { grunt.log.writeln(data); },
+        gruntErr = function (data) { grunt.log.error(data); };
+
+    var express = spawn(
+      "node",
+      ['server.js']
+    );
+    express.stdout.on('data', gruntLog);
+    express.stderr.on('data', gruntErr);
+
+    var protractor = spawn(
+      path.resolve('./node_modules/protractor/bin/', 'protractor'),
+      ['test/e2e-tests.conf.js']
+    );
+    protractor.stdout.on('data', gruntLog);
+    protractor.stderr.on('data', gruntErr);
+    protractor.on('close', function (code) {
+      express.kill();
+      code = code ? false : true;
+      done(code);
+    });
+  });
+
+  grunt.registerTask('watch:specs', function () {
     var karma = {
-      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/**/*.js'],
+      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/unit/**/*.js'],
       tasks: ['newer:jshint:test', 'karma:unit:run']
     };
     grunt.config.set('watch', karma);
+
+    var protractor = {
+      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/e2e/**/*.js'],
+      tasks: ['newer:jshint:test', 'protractor:ci']
+    };
+    grunt.config.set('watch', protractor);
+
     return grunt.task.run(['watch']);
   });
 
@@ -505,7 +545,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'karma:unit:start',
-    'watch:karma'
+    'watch:specs'
   ]);
 
   grunt.registerTask('test:ci', [
@@ -515,7 +555,8 @@ module.exports = function (grunt) {
     'concurrent:test',
     'ngconstant:production',
     'autoprefixer',
-    'karma:continuous'
+    'karma:continuous',
+    'protractor:ci'
   ]);
 
   grunt.registerTask('serve', function (target) {
