@@ -30,6 +30,10 @@ grunt test
 
 aka karma
 
+```
+grunt karma:continuous
+```
+
 #### e2e specs
 
 aka protractor
