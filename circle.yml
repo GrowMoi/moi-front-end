@@ -3,4 +3,5 @@ machine:
     version: 2.1.4
 dependencies:
   pre:
+    - ./node_modules/protractor/bin/webdriver-manager update
     - wget moi-integration.herokuapp.com -o /dev/null
