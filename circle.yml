@@ -1,3 +1,7 @@
 machine:
   ruby:
     version: 2.1.4
+dependencies:
+  pre:
+    - npm install -g protractor
+    - wget moi-integration.herokuapp.com
