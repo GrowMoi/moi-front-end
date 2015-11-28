@@ -5,6 +5,7 @@
     require('time-grunt')(grunt);
 
     grunt.loadNpmTasks('grunt-ng-constant');
+    grunt.loadNpmTasks('grunt-contrib-jade');
 
     grunt.initConfig({
       yeoman: {
@@ -32,10 +33,28 @@
           }
         }
       },
+
+      jade: {
+        compile: {
+          options: {
+            data: {
+              debug: false
+            }
+          },
+          files: [ {
+            expand: true,
+            src: 'templates/**/*.jade',
+            dest: '<%= yeoman.app %>',
+            cwd: '<%= yeoman.app %>',
+            ext: '.html'
+          } ]
+        }
+      }
     });
 
     grunt.registerTask('build', [
-      'ngconstant:staging'
+      'ngconstant:staging',
+      'jade'
     ]);
   };
 })();
