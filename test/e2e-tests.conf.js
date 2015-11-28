@@ -10,7 +10,7 @@ exports.config = {
   ],
   mochaOpts: {
     reporter: "spec",
-    timeout: 4000,
+    timeout: 6000,
     slow: 3000
   }
 };

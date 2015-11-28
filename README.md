@@ -40,6 +40,10 @@ aka protractor
 
 please take a look at [chai-as-promised](http://chaijs.com/plugins/chai-as-promised)
 
+##### protractor:ci task
+
+This task builds assets with `test` environment and runs a simple express server which will serve protractor's tests
+
 ```
 grunt protractor:ci
 ```

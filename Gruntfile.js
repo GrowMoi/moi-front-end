@@ -56,6 +56,14 @@ module.exports = function (grunt) {
             apiHost: 'http://api.yoursite.com'
           }
         }
+      },
+      test: {
+        constants: {
+          ENV: {
+            name: 'test',
+            apiHost: 'http://moi-integration.herokuapp.com'
+          }
+        }
       }
     },
 
@@ -423,7 +431,7 @@ module.exports = function (grunt) {
     // grunt-protractor-runner
     protractor: {
       options: {
-        configFile: "<%= yeoman.test %>/e2e-tests.conf.js"
+        configFile: '<%= yeoman.test %>/e2e-tests.conf.js'
       },
       all: {}
     }
@@ -492,7 +500,7 @@ module.exports = function (grunt) {
         gruntErr = function (data) { grunt.log.error(data); };
 
     var express = spawn(
-      "node",
+      'node',
       ['server.js']
     );
     express.stdout.on('data', gruntLog);
@@ -553,7 +561,7 @@ module.exports = function (grunt) {
     'wiredep',
     'clean',
     'concurrent:test',
-    'ngconstant:production',
+    'ngconstant:test',
     'autoprefixer',
     'karma:continuous',
     'protractor:ci'
