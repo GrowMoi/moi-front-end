@@ -36,9 +36,9 @@ grunt karma:continuous
 
 #### e2e specs
 
-aka protractor
+aka protractor. End-to-end specs are run against integration's backend server. Take a look at backend environments at https://github.com/GrowMoi/moi/wiki/Environment
 
-please take a look at [chai-as-promised](http://chaijs.com/plugins/chai-as-promised)
+we are using [chai-as-promised](http://chaijs.com/plugins/chai-as-promised) to resolve our promises on expectations
 
 ##### protractor:ci task
 
