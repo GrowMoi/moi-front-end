@@ -256,6 +256,20 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           ext: '.html'
         } ]
+      },
+      ci: {
+        options: {
+          data: {
+            debug: false
+          }
+        },
+        files: [ {
+          expand: true,
+          src: 'templates/**/*.jade',
+          dest: '<%= yeoman.app %>',
+          cwd: '<%= yeoman.app %>',
+          ext: '.html'
+        } ]
       }
     },
     htmlmin: {
@@ -583,6 +597,7 @@ module.exports = function (grunt) {
     'ngconstant:test',
     'autoprefixer',
     'karma:continuous',
+    'jade:ci',
     'protractor:ci'
   ]);
 
