@@ -21,7 +21,7 @@
       inputs = {
         username: element(by.model('loginForm.email')),
         password: element(by.model('loginForm.password')),
-        loginBtn: element(by.buttonText('Login'))
+        loginBtn: element(by.css('form input[type=submit]'))
       };
     });
 

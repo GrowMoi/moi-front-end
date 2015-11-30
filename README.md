@@ -36,13 +36,21 @@ grunt karma:continuous
 
 #### e2e specs
 
-aka protractor. End-to-end specs are run against integration's backend server. Take a look at backend environments at https://github.com/GrowMoi/moi/wiki/Environment
+aka protractor.
+
+End-to-end specs are run against integration's backend server. Take a look at backend environments at https://github.com/GrowMoi/moi/wiki/Environment
 
 we are using [chai-as-promised](http://chaijs.com/plugins/chai-as-promised) to resolve our promises on expectations
 
 ##### protractor:ci task
 
-This task builds assets with `test` environment and runs a simple express server which will serve protractor's tests
+This task  and runs a simple express server which will serve protractor's tests
+
+This task will:
+
+1. build assets with `test` environment
+2. build html templates with jade and store them inside /templates
+3. run a simple _express_ server to serve the application
 
 ```
 grunt protractor:ci
