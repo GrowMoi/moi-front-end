@@ -246,13 +246,27 @@ module.exports = function (grunt) {
       compile: {
         options: {
           data: {
-            debug: false
+            debug: true
           }
         },
         files: [ {
           expand: true,
           src: 'templates/**/*.jade',
           dest: '<%= yeoman.dist %>',
+          cwd: '<%= yeoman.app %>',
+          ext: '.html'
+        } ]
+      },
+      ci: {
+        options: {
+          data: {
+            debug: false
+          }
+        },
+        files: [ {
+          expand: true,
+          src: 'templates/**/*.jade',
+          dest: '<%= yeoman.app %>',
           cwd: '<%= yeoman.app %>',
           ext: '.html'
         } ]
@@ -583,6 +597,7 @@ module.exports = function (grunt) {
     'ngconstant:test',
     'autoprefixer',
     'karma:continuous',
+    'jade:ci',
     'protractor:ci'
   ]);
 
