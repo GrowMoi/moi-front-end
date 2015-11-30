@@ -1,11 +1,22 @@
 ion-view(view-title="{{ 'login' | translate }}")
   ion-content.padding
     .row.responsive-sm.row-center.padding-top
-      .col-center.col-50.col-offset-25
+      form(ng-submit='login()').col-center.col-50.col-offset-25
         .list.list-inset
           label.item.item-input
-            input(type='text', placeholder="{{ 'login.username' | translate }}", ng-model='loginForm.email')
+            input(
+              type='email',
+              ng-model='loginForm.email',
+              required='required',
+              placeholder="{{ 'login.email' | translate }}"
+            )
           label.item.item-input
-            input(type='password', placeholder="{{ 'login.password' | translate }}", ng-model='loginForm.password')
+            input(
+              type='password',
+              ng-model='loginForm.password',
+              required='required',
+              placeholder="{{ 'login.password' | translate }}"
+            )
         .list
-          button.button.button-block.button-calm(ng-click='login()') {{ 'login' | translate }}
+          button.button.button-block.button-calm
+            | {{ 'login' | translate }}
