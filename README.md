@@ -2,6 +2,7 @@
 
 ## development
 [![Circle CI](https://circleci.com/gh/GrowMoi/moi-front-end.svg?style=svg)](https://circleci.com/gh/GrowMoi/moi-front-end)
+[![Code Climate](https://codeclimate.com/github/GrowMoi/moi-front-end/badges/gpa.svg)](https://codeclimate.com/github/GrowMoi/moi-front-end)
 
 ### development requirements
 
