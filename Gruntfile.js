@@ -527,7 +527,12 @@ module.exports = function (grunt) {
     return grunt.task.run(['watch']);
   });
 
-  grunt.registerTask('protractor:ci', function () {
+  grunt.registerTask('protractor:ci', [
+    'jade:ci',
+    'protractor:ci:standalone'
+  ]);
+
+  grunt.registerTask('protractor:ci:standalone', function (){
     var done = this.async(),
         gruntLog = function (data) { grunt.log.writeln(data); },
         gruntErr = function (data) { grunt.log.error(data); };
@@ -597,7 +602,6 @@ module.exports = function (grunt) {
     'ngconstant:test',
     'autoprefixer',
     'karma:continuous',
-    'jade:ci',
     'protractor:ci'
   ]);
 
