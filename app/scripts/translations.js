@@ -31,7 +31,7 @@
       },
       login: {
         'login': 'Inicia Sesión',
-        'username': 'Nombre de usuario',
+        'email': 'Email',
         'password': 'Contraseña'
       }
     });
