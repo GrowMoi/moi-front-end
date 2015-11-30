@@ -3,14 +3,14 @@ ion-side-menus
     ion-nav-bar.bar-stable
       ion-nav-back-button.button-clear
         i.icon.ion-chevron-left
-        |  Back
     ion-nav-view(name='menuContent', animation='slide-left-right')
+
   ion-side-menu(side='left')
     header.bar.bar-header.bar-stable
-      h1.title Menú
+      h1.title {{ 'menu' | translate }}
     ion-content.has-header
       ion-list
         ion-item(nav-clear='', menu-close='', href='#/menu/dash')
-          | Neuronas
+          | {{ 'menu.neurons' | translate }}
         ion-item(nav-clear='', menu-close='', href='#/menu/account')
-          | Account
+          | {{ 'menu.account' | translate }}

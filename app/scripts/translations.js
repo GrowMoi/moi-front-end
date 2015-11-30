@@ -2,21 +2,40 @@
   'use strict';
   angular.module('moi')
   .config(function ($translateProvider) {
-      $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translateProvider.useSanitizeValueStrategy('escapeParameters');
 
-      //English translations
-      $translateProvider.translations('en', {
+    $translateProvider.translations('en', {
+      menu: {
+        menu: 'Menu',
+        neurons: 'Neurons',
+        account: 'Account'
+      },
+      dashboard: {
+        welcome: 'Welcome'
+      },
+      login: {
         'login': 'Login',
         'username': 'Username',
         'password': 'Password'
-      });
+      }
+    });
 
-      //Spanish translations
-      $translateProvider.translations('es', {
+    $translateProvider.translations('es', {
+      menu: {
+        menu: 'Menú',
+        neurons: 'Neuronas',
+        account: 'Cuenta'
+      },
+      dashboard: {
+        welcome: 'Bienvenido'
+      },
+      login: {
         'login': 'Inicia Sesión',
         'username': 'Nombre de usuario',
         'password': 'Contraseña'
-      });
-      $translateProvider.preferredLanguage('es');
+      }
+    });
+
+    $translateProvider.preferredLanguage('es');
   });
 })();

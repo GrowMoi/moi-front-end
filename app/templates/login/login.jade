@@ -4,8 +4,8 @@ ion-view(view-title="{{ 'login' | translate }}")
       .col-center.col-50.col-offset-25
         .list.list-inset
           label.item.item-input
-            input(type='text', placeholder="{{ 'username' | translate }}", ng-model='loginForm.email')
+            input(type='text', placeholder="{{ 'login.username' | translate }}", ng-model='loginForm.email')
           label.item.item-input
-            input(type='password', placeholder="{{ 'password' | translate }}", ng-model='loginForm.password')
+            input(type='password', placeholder="{{ 'login.password' | translate }}", ng-model='loginForm.password')
         .list
           button.button.button-block.button-calm(ng-click='login()') {{ 'login' | translate }}
