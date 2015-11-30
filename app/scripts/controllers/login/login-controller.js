@@ -8,7 +8,9 @@
               $ionicPopup,
               $state,
               $auth) {
-    $scope.loginForm = {};
+    var vm = this;
+
+    vm.loginForm = {};
 
     var successState = 'menu.dash';
 
@@ -16,8 +18,8 @@
       $state.go(successState);
     });
 
-    $scope.login = function() {
-      $auth.submitLogin($scope.loginForm)
+    vm.login = function() {
+      $auth.submitLogin(vm.loginForm)
         .then(function () {
           $state.go(successState);
         })
