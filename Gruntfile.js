@@ -72,7 +72,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep', 'newer:copy:app']
       },
       html: {
-        files: ['<%= yeoman.app %>/**/*.html'],
+        files: ['<%= yeoman.app %>/*.html'],
         tasks: ['newer:copy:app']
       },
       jade: {
@@ -562,13 +562,12 @@ module.exports = function (grunt) {
       files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/unit/**/*.js'],
       tasks: ['newer:jshint:test', 'karma:unit:run']
     };
-    grunt.config.set('watch', karma);
-
     var protractor = {
       files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/e2e/**/*.js'],
       tasks: ['newer:jshint:test', 'protractor:ci']
     };
-    grunt.config.set('watch', protractor);
+
+    grunt.config.set('watch', [karma, protractor]);
 
     return grunt.task.run(['watch']);
   });

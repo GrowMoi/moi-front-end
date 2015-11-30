@@ -38,9 +38,9 @@
 
       beforeEach(inject(function(_$rootScope_) {
         $rootScope = _$rootScope_;
-        $scope.loginForm.email = 'test1';
-        $scope.loginForm.password = 'password1';
-        $scope.login();
+        controller.loginForm.email = 'test1';
+        controller.loginForm.password = 'password1';
+        controller.login();
       }));
 
       it('should call submitLogin on authService', function() {
