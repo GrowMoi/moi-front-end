@@ -56,6 +56,8 @@ This task will:
 grunt protractor:ci
 ```
 
+if you're running protractor locally, make sure you are also running the [backend](github.com/GrowMoi/moi) to answer requests. Will be looked for by default on `development` environment at [localhost:5000](https://github.com/GrowMoi/moi-front-end/blob/master/Gruntfile.js#L46)
+
 ### for ios emulate install
 
 - npm install -g ios-sim
