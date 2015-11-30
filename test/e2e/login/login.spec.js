@@ -19,9 +19,9 @@
     beforeEach(function() {
       browser.get('/');
       inputs = {
-        username: element(by.model('loginForm.email')),
-        password: element(by.model('loginForm.password')),
-        loginBtn: element(by.buttonText('Login'))
+        username: element(by.model('vm.loginForm.email')),
+        password: element(by.model('vm.loginForm.password')),
+        loginBtn: element(by.css('form input[type=submit]'))
       };
     });
 

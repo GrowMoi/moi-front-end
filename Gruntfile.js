@@ -72,7 +72,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep', 'newer:copy:app']
       },
       html: {
-        files: ['<%= yeoman.app %>/**/*.html'],
+        files: ['<%= yeoman.app %>/*.html'],
         tasks: ['newer:copy:app']
       },
       jade: {
@@ -527,7 +527,12 @@ module.exports = function (grunt) {
     return grunt.task.run(['watch']);
   });
 
-  grunt.registerTask('protractor:ci', function () {
+  grunt.registerTask('protractor:ci', [
+    'jade:ci',
+    'protractor:ci:standalone'
+  ]);
+
+  grunt.registerTask('protractor:ci:standalone', function (){
     var done = this.async(),
         gruntLog = function (data) { grunt.log.writeln(data); },
         gruntErr = function (data) { grunt.log.error(data); };
@@ -557,13 +562,12 @@ module.exports = function (grunt) {
       files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/unit/**/*.js'],
       tasks: ['newer:jshint:test', 'karma:unit:run']
     };
-    grunt.config.set('watch', karma);
-
     var protractor = {
       files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/e2e/**/*.js'],
       tasks: ['newer:jshint:test', 'protractor:ci']
     };
-    grunt.config.set('watch', protractor);
+
+    grunt.config.set('watch', [karma, protractor]);
 
     return grunt.task.run(['watch']);
   });
@@ -597,7 +601,6 @@ module.exports = function (grunt) {
     'ngconstant:test',
     'autoprefixer',
     'karma:continuous',
-    'jade:ci',
     'protractor:ci'
   ]);
 
