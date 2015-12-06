@@ -62,6 +62,12 @@
           return $auth.validateUser();
         }
       }
+    })
+    .state('tree', {
+      url: '/tree',
+      controller: 'TreeController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/tree/tree.html'
     });
 
     // if none of the above states are matched, use this as the fallback

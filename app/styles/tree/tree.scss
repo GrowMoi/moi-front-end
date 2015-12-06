@@ -1,0 +1,29 @@
+/* Empty. Add your own CSS if you like */
+.content-tree {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  margin-top: -1px;
+  padding-top: 1px;
+  margin-bottom: -1px;
+  width: auto;
+  height: auto;
+  background-image: url(../images/background_tree.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.img-tree {
+  position: fixed;
+  bottom: 11%;
+  left: 42%;
+}
+.img-neuron {
+  position: fixed;
+  bottom: 20%;
+  left: 45%;
+  width: 4%;
+  z-index: 1;
+}
