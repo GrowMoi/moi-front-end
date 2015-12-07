@@ -62,3 +62,8 @@ if you're running protractor locally, make sure you are also running the [backen
 ### for ios emulate install
 
 - npm install -g ios-sim
+
+### resources
+
+- [guidelines](https://github.com/GrowMoi/moi-front-end/blob/master/guidelines.md)
+- [moi-backend](https://github.com/GrowMoi/moi)
