@@ -1,0 +1,13 @@
+@import "../bower_components/ionic/scss/_variables";
+@import "../bower_components/ionic/scss/_mixins";
+
+.login-view {
+  @include background-size(cover);
+
+  background-image: url(/images/landscape_s.png);
+  background-position: center;
+
+  @media only screen and (min-width: $grid-responsive-sm-break) {
+    background-image: url(/images/landscape_b.png);
+  }
+}

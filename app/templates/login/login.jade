@@ -1,4 +1,8 @@
-ion-view(view-title="{{ 'login' | translate }}")
+ion-view(
+  view-title="{{ 'login' | translate }}",
+  hide-nav-bar="true",
+  class="login-view"
+)
   ion-content.padding
     .row.responsive-sm.row-center.padding-top
       form(ng-submit='vm.login()').col-center.col-50.col-offset-25
