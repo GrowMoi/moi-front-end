@@ -1,5 +1,5 @@
-@import "../bower_components/ionic/scss/_variables";
-@import "../bower_components/ionic/scss/_mixins";
+@import "ionic/scss/_variables";
+@import "ionic/scss/_mixins";
 
 .login-view {
   @include background-size(cover);

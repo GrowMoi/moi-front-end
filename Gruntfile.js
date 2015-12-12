@@ -18,52 +18,13 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     // Project settings
-    yeoman: {
-      // configurable paths
-      app: 'app',
-      scripts: 'scripts',
-      styles: 'styles',
-      images: 'images',
-      test: 'test',
-      dist: 'www'
-    },
+    yeoman: require('./config/yeoman-config'),
 
     // Environment Variables for Angular App
     // This creates an Angular Module that can be injected via ENV
     // Add any desired constants to the ENV objects below.
     // https://github.com/diegonetto/generator-ionic/blob/master/docs/FAQ.md#how-do-i-add-constants
-    ngconstant: {
-      options: {
-        space: '  ',
-        wrap: '"use strict";\n\n {%= __ngModule %}',
-        name: 'config',
-        dest: '<%= yeoman.app %>/<%= yeoman.scripts %>/configuration.js'
-      },
-      development: {
-        constants: {
-          ENV: {
-            name: 'development',
-            apiHost: 'http://localhost:5000'
-          }
-        }
-      },
-      production: {
-        constants: {
-          ENV: {
-            name: 'production',
-            apiHost: 'http://api.yoursite.com'
-          }
-        }
-      },
-      test: {
-        constants: {
-          ENV: {
-            name: 'test',
-            apiHost: 'http://moi-integration.herokuapp.com'
-          }
-        }
-      }
-    },
+    ngconstant: require('./config/ngconstant-config'),
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -173,38 +134,8 @@ module.exports = function (grunt) {
       }
     },
 
-
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/<%= yeoman.styles %>',
-        cssDir: '.temp/<%= yeoman.styles %>',
-        generatedImagesDir: '.temp/<%= yeoman.images %>/generated',
-        imagesDir: '<%= yeoman.app %>/<%= yeoman.images %>',
-        javascriptsDir: '<%= yeoman.app %>/<%= yeoman.scripts %>',
-        fontsDir: '<%= yeoman.app %>/<%= yeoman.styles %>/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
-        httpImagesPath: '/<%= yeoman.images %>',
-        httpGeneratedImagesPath: '/<%= yeoman.images %>/generated',
-        httpFontsPath: '/<%= yeoman.styles %>/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
-      dist: {
-        options: {
-          bundleExec: true,
-          generatedImagesDir: '<%= yeoman.dist %>/<%= yeoman.images %>/generated'
-        }
-      },
-      server: {
-        options: {
-          bundleExec: true,
-          debugInfo: true
-        }
-      }
-    },
-
+    compass: require('./config/compass-config'),
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
@@ -236,40 +167,11 @@ module.exports = function (grunt) {
     },
 
     // The following *-min tasks produce minified files in the dist folder
+    jade: require('./config/jade-config'),
     cssmin: {
       options: {
         //root: '<%= yeoman.app %>',
         noRebase: true
-      }
-    },
-    jade: {
-      compile: {
-        options: {
-          data: {
-            debug: true
-          }
-        },
-        files: [ {
-          expand: true,
-          src: 'templates/**/*.jade',
-          dest: '<%= yeoman.dist %>',
-          cwd: '<%= yeoman.app %>',
-          ext: '.html'
-        } ]
-      },
-      ci: {
-        options: {
-          data: {
-            debug: false
-          }
-        },
-        files: [ {
-          expand: true,
-          src: 'templates/**/*.jade',
-          dest: '<%= yeoman.app %>',
-          cwd: '<%= yeoman.app %>',
-          ext: '.html'
-        } ]
       }
     },
     htmlmin: {
@@ -290,88 +192,9 @@ module.exports = function (grunt) {
     },
 
     // Copies remaining files to places other tasks can use
-    copy: {
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
-          src: [
-            '<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
-            '*.html',
-            'templates/**/*.html',
-            'fonts/*'
-          ]
-        }, {
-          expand: true,
-          cwd: '.temp/<%= yeoman.images %>',
-          dest: '<%= yeoman.dist %>/<%= yeoman.images %>',
-          src: ['generated/*']
-        }]
-      },
-      styles: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/<%= yeoman.styles %>',
-        dest: '.temp/<%= yeoman.styles %>/',
-        src: '{,*/}*.css'
-      },
-      fonts: {
-        expand: true,
-        cwd: 'app/bower_components/ionic/release/fonts/',
-        dest: '<%= yeoman.app %>/fonts/',
-        src: '*'
-      },
-      vendor: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/vendor',
-        dest: '.temp/<%= yeoman.styles %>/',
-        src: '{,*/}*.css'
-      },
-      app: {
-        expand: true,
-        cwd: '<%= yeoman.app %>',
-        dest: '<%= yeoman.dist %>/',
-        src: [
-          '**/*',
-          '!**/*.jade',
-          '!**/*.(scss,sass,css)'
-        ]
-      },
-      tmp: {
-        expand: true,
-        cwd: '.temp',
-        dest: '<%= yeoman.dist %>/',
-        src: '**/*'
-      }
-    },
+    copy: require('./config/copy-config'),
 
-    concurrent: {
-      ionic: {
-        tasks: [],
-        options: {
-          logConcurrentOutput: true
-        }
-      },
-      server: [
-        'compass:server',
-        'copy:styles',
-        'copy:vendor',
-        'copy:fonts'
-      ],
-      test: [
-        'compass',
-        'copy:styles',
-        'copy:vendor',
-        'copy:fonts'
-      ],
-      dist: [
-        'compass:dist',
-        'copy:styles',
-        'copy:vendor',
-        'copy:fonts'
-      ]
-    },
+    concurrent: require('./config/concurrent-config'),
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
@@ -528,7 +351,6 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('protractor:ci', [
-    'jade:ci',
     'protractor:ci:standalone'
   ]);
 
@@ -630,7 +452,6 @@ module.exports = function (grunt) {
     'wiredep',
     'concurrent:server',
     'autoprefixer',
-    'jade',
     'newer:copy:app',
     'newer:copy:tmp'
   ]);
