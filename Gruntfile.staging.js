@@ -22,7 +22,7 @@
     grunt.registerTask('build', [
       'ngconstant:staging',
       'concurrent:staging',
-      'copy:tmp'
+      'copy:staging'
     ]);
   };
 })();
