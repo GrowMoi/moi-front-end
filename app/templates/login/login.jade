@@ -3,8 +3,9 @@ ion-view(
   hide-nav-bar="true",
   class="login-view"
 )
-  ion-content.padding
-    .row.responsive-sm.row-center.padding-top
+  ion-content(scroll="false")
+    .row.responsive-md.row-center
+      .col-offset-10
       form(ng-submit='vm.login()').col-center.col-50.col-offset-25
         .list.list-inset
           label.item.item-input
@@ -21,8 +22,12 @@ ion-view(
               required='required',
               placeholder="{{ 'login.password' | translate }}"
             )
-        .list
-          input(
-            type='submit',
-            value="{{ 'login' | translate }}"
-          ).button.button-block.button-calm
+        .row.responsive-sm.button-actions
+          .col
+            .button.button-block.button-calm
+              | {{ 'signup' | translate }}
+          .col
+            input(
+              type='submit',
+              value="{{ 'login' | translate }}"
+            ).button.button-block.button-positive

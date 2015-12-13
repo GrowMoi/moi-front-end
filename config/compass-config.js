@@ -15,7 +15,8 @@
       httpFontsPath: '/<%= yeoman.styles %>/fonts',
       relativeAssets: false,
       assetCacheBuster: false,
-      raw: 'Sass::Script::Number.precision = 10\n'
+      raw: 'Sass::Script::Number.precision = 10\n',
+      specify: '<%= yeoman.app %>/<%= yeoman.styles %>/main.scss'
     },
     dist: {
       options: {

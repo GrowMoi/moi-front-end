@@ -1,2 +1,5 @@
-// Your application styles go here
+@import "ionic/scss/_variables";
+@import "ionic/scss/_mixins";
+
+@import "layout/application";
 @import "login/login";

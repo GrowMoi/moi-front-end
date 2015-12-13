@@ -33,6 +33,9 @@
         'login': 'Inicia Sesión',
         'email': 'Email',
         'password': 'Contraseña'
+      },
+      signup: {
+        'signup': 'Registrarse'
       }
     });
 

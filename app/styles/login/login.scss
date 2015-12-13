@@ -1,13 +1,52 @@
-@import "ionic/scss/_variables";
-@import "ionic/scss/_mixins";
-
 .login-view {
-  @include background-size(cover);
+  background-color: transparent; // move to main.scss if needed in other views
 
-  background-image: url(/images/landscape_s.png);
-  background-position: center;
+  form {
+    @include background-size(contain);
 
-  @media only screen and (min-width: $grid-responsive-sm-break) {
-    background-image: url(/images/landscape_b.png);
+    padding-bottom: 4em;
+    padding-top: 4em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(/images/login/tree_s.png);
+
+    .button-actions {
+      .col {
+        margin-bottom: 0;
+      }
+    }
+
+    // mobile
+    @media only screen and (max-width: $grid-responsive-md-break) {
+      padding-left: 1em;
+      padding-right: 1em;
+      padding-bottom: 10em;
+      max-width: 500px !important;
+      background-position-y: top;
+
+      .list {
+        margin-bottom: 0;
+      }
+
+      @media (orientation: landscape) {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+    }
+
+    // tablet
+    @media only screen and (min-width: $grid-responsive-md-break) {
+      margin-top: 2em;
+
+      padding-left: 2em;
+      padding-right: 2em;
+
+      background-image: url(/images/login/tree_b.png);
+
+      @media (orientation: landscape) {
+        padding-left: 4em;
+        padding-right: 4em;
+      }
+    }
   }
 }
