@@ -1,19 +1,50 @@
+@import "shared/colors";
+
 .login-view {
   background-color: transparent; // move to main.scss if needed in other views
 
   form {
     @include background-size(contain);
 
-    padding-bottom: 4em;
     padding-top: 4em;
+    padding-bottom: 4em;
+    max-width: 480px !important;
     background-position: center;
     background-repeat: no-repeat;
     background-image: url(/images/login/tree_s.png);
 
+    .login-title {
+      @include background-size(contain);
+
+      background-image: url(/images/login/title.png);
+      background-repeat: no-repeat;
+      color: $darkBrown;
+      font-weight: bold;
+      height: 50px;
+      padding: 15px 5px 0 20px;
+      font-size: 17px;
+      width: 130px;
+      text-align: center;
+      text-shadow: 0 1px rgba(255,255,255,.3);
+    }
+
     .button-actions {
+      padding-top: 0;
+
       .col {
+        padding-top: 0;
         margin-bottom: 0;
       }
+    }
+
+    .list {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .list, label {
+      background-color: transparent;
+      border: 0;
     }
 
     // mobile
@@ -21,12 +52,7 @@
       padding-left: 1em;
       padding-right: 1em;
       padding-bottom: 10em;
-      max-width: 500px !important;
       background-position-y: top;
-
-      .list {
-        margin-bottom: 0;
-      }
 
       @media (orientation: landscape) {
         padding-left: 50px;
@@ -37,7 +63,6 @@
     // tablet
     @media only screen and (min-width: $grid-responsive-md-break) {
       margin-top: 2em;
-
       padding-left: 2em;
       padding-right: 2em;
 

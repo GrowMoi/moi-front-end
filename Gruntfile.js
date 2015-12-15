@@ -51,6 +51,10 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js'],
         tasks: ['ngconstant:development', 'newer:copy:app']
+      },
+      images: {
+        files: ['<%= yeoman.app %>/<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}'],
+        tasks: ['newer:copy:images']
       }
     },
 

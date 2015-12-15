@@ -60,6 +60,12 @@
       cwd: '.temp',
       dest: '<%= yeoman.app %>/',
       src: '**/*'
+    },
+    images: {
+      expand: true,
+      cwd: '<%= yeoman.app %>/<%= yeoman.images %>',
+      dest: '<%= yeoman.dist %>/<%= yeoman.images %>',
+      src: '**/*.{png,jpg,jpeg,gif,webp,svg}'
     }
   };
 
