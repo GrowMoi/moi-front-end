@@ -53,8 +53,9 @@
           });
         }
       }
+    })
     .state('content', {
-      url: '/content',
+      url: '/content/{contentId:int}',
       controller: 'ContentController',
       controllerAs: 'vm',
       templateUrl: 'templates/content/content.html'

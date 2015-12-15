@@ -22,10 +22,15 @@
 
   function gridController($scope,
                           $http,
+                          $state,
                           ContentService){
 
     var vm = this;
     vm.selectContent = selectContent;
+
+    vm.sendContent = function(contentId){
+      $state.go('content', {contentId: contentId});
+    };
 
     init();
 

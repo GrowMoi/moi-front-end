@@ -1,5 +1,52 @@
 ion-view(view-title='Content')
-  ion-nav-buttons(side='left')
-    button.button.button-icon.icon.ion-navicon(menu-toggle='left')
-  ion-content.padding
-    h2 Content {{vm.titleNeuron}}
+  .content-frame
+    .row.content-max
+      .col
+        .row.content
+          h2 {{vm.content.title}}
+        .row.content
+          h2 {{vm.content.description}}
+      .col
+        .row.content
+          .col
+            img.format-image(src='{{vm.content.media_url}}', alt='')
+        .row.content
+          .col
+            .row
+              h4 History
+            .row
+              a(href='#') Link1
+      .col
+        .row.content
+          .col
+            .row
+              h4 Media
+            .row
+              .col
+                img.format-image(src='images/asteroide_contra_tierra.jpg', alt='')
+              .col
+                img.format-image(src='images/leon.jpg', alt='')
+              .col
+                img.format-image(src='images/lluvia_meteoros.jpg', alt='')
+              .col
+                img.format-image(src='images/neurona_en_crecimiento.jpg', alt='')
+        .row.content
+          .col
+            .row
+              h4 Recommended 
+            .row
+              .col
+                img.format-image(src='images/asteroide_contra_tierra.jpg', alt='')
+              .col
+                img.format-image(src='images/leon.jpg', alt='')
+            .row
+              .col
+                img.format-image(src='images/lluvia_meteoros.jpg', alt='')
+              .col
+                img.format-image(src='images/neurona_en_crecimiento.jpg', alt='')
+        .row.content
+          .col
+            .row
+              h4 Links 
+            .row
+              {{vm.content.source}}
