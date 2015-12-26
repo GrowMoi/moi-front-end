@@ -4,57 +4,25 @@
   return module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-ng-constant');
     grunt.loadNpmTasks('grunt-contrib-jade');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-compass');
 
     grunt.initConfig({
-      yeoman: {
-        app: 'app',
-        scripts: 'scripts',
-        styles: 'styles',
-        images: 'images',
-        test: 'test',
-        dist: 'www'
-      },
-
-      ngconstant: {
-        options: {
-          space: '  ',
-          wrap: '"use strict";\n\n {%= __ngModule %}',
-          name: 'config',
-          dest: '<%= yeoman.app %>/<%= yeoman.scripts %>/configuration.js'
-        },
-        staging: {
-          constants: {
-            ENV: {
-              name: 'staging',
-              apiHost: '//moi-staging.herokuapp.com'
-            }
-          }
-        }
-      },
-
-      jade: {
-        compile: {
-          options: {
-            data: {
-              debug: false
-            }
-          },
-          files: [ {
-            expand: true,
-            src: 'templates/**/*.jade',
-            dest: '<%= yeoman.app %>',
-            cwd: '<%= yeoman.app %>',
-            ext: '.html'
-          } ]
-        }
-      }
+      copy: require('./config/copy-config'),
+      jade: require('./config/jade-config'),
+      yeoman: require('./config/yeoman-config'),
+      compass: require('./config/compass-config'),
+      ngconstant: require('./config/ngconstant-config'),
+      concurrent: require('./config/concurrent-config')
     });
 
     grunt.registerTask('build', [
       'ngconstant:staging',
-      'jade'
+      'concurrent:staging',
+      'copy:staging'
     ]);
   };
 })();

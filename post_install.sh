@@ -1,4 +1,5 @@
 #!/bin/bash
+bundle install
 ./node_modules/bower/bin/bower install
 
 # build if there's a Gruntfile for

@@ -1,0 +1,56 @@
+@import "shared/colors";
+
+form {
+  label.item-input {
+    background-image: url(/images/input.png);
+    @include background-size(contain);
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 55px;
+    padding-left: 25px;
+    line-height: 20px;
+  }
+
+  input[type=email], input[type=password] {
+    color: $darkBrown;
+    font-size: 18px;
+    font-weight: bold;
+    @include placeholder($lightBrown);
+
+    &::-moz-placeholder {
+      text-transform: uppercase;
+    }
+    &:-ms-input-placeholder {
+      text-transform: uppercase;
+    }
+    &::-webkit-input-placeholder {
+      text-transform: uppercase;
+    }
+  }
+
+  .button {
+    background-image: url(/images/btn.png);
+    @include background-size(contain);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+    background-color: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 70px;
+    color: $buttonColor;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+
+    &:active {
+      text-shadow: 0 1px 5px rgba(0,0,0,.5);
+    }
+
+    &.active,
+    &.activated {
+      box-shadow: none;
+      background-color: transparent;
+    }
+  }
+}
