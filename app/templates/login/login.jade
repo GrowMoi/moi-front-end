@@ -4,13 +4,10 @@ ion-view(
   class="login-view"
 )
   ion-content(scroll="false")
-    .row.responsive-md.row-center
-      .col-offset-10
-      form(ng-submit='vm.login()').col-center.col-50.col-offset-25
-
+    .row.form-container
+      form(ng-submit='vm.login()')
         .login-title
           | {{ 'login' | translate }}
-
         .list.list-inset
           label.item.item-input
             input(
@@ -27,12 +24,12 @@ ion-view(
               placeholder="{{ 'login.password' | translate }}"
             )
 
-        .row.responsive-sm.button-actions
+        .row.button-actions
           .col
-            .button.button-block
+            .button
               | {{ 'signup' | translate }}
           .col
             input(
               type='submit',
               value="{{ 'login' | translate }}"
-            ).button.button-block
+            ).button

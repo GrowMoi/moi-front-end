@@ -1,16 +1,22 @@
 @import "shared/colors";
 
 .login-view {
-  @include background-size(contain);
+  @include background-size(100%);
   background-image: url(/images/login/bg.png);
   background-color: transparent; // move to main.scss if needed in other views
+  background-repeat: no-repeat;
+  background-position: bottom right;
+
+  .form-container {
+    position: relative;
+    height: 100%;
+  }
 
   form {
-    padding-top: 4em;
-    padding-bottom: 4em;
-    max-width: 480px !important;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: absolute;
+    right: 200px;
+    bottom: 380px;
+    width: 440px;
 
     .login-title {
       @include background-size(contain);
@@ -21,9 +27,11 @@
       height: 50px;
       padding: 15px 5px 0 20px;
       font-size: 17px;
-      width: 130px;
+      width: 145px;
       text-align: center;
       text-shadow: 0 1px rgba(255,255,255,.3);
+      margin-left: 10px;
+      margin-bottom: 5px;
     }
 
     .button-actions {
@@ -32,6 +40,7 @@
       .col {
         padding-top: 0;
         margin-bottom: 0;
+        text-align: center;
       }
     }
 

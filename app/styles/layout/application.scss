@@ -3,4 +3,10 @@ body > .application {
 
   background-image: url(/images/landscape_b.png);
   background-position: center;
+  background-repeat: no-repeat;
+
+  & > ion-view {
+    width: 1280px;
+    margin: auto;
+  }
 }

@@ -6,12 +6,13 @@ form {
     @include background-size(contain);
     background-position: left center;
     background-repeat: no-repeat;
-    height: 55px;
+    height: 60px;
     padding-left: 25px;
     line-height: 20px;
+    margin-bottom: 10px;
   }
 
-  input[type=email], input[type=password] {
+  input[type='email'], input[type='password'] {
     color: $darkBrown;
     font-size: 18px;
     font-weight: bold;
@@ -37,11 +38,11 @@ form {
     background-color: transparent;
     margin-top: 0;
     margin-bottom: 0;
-    line-height: 70px;
+    line-height: 47px;
     color: $buttonColor;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
 
     &:active {
       text-shadow: 0 1px 5px rgba(0,0,0,.5);
