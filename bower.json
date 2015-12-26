@@ -2,7 +2,7 @@
   "name": "MoiIonic",
   "version": "0.0.0",
   "dependencies": {
-    "ionic": "~1.1.1",
+    "ionic": "git://github.com/GrowMoi/ionic.git#v1.2.1-moi",
     "ngCordova": "v0.1.23-alpha",
     "ng-token-auth": "~0.0.27",
     "angular-translate": "~2.8.1"
