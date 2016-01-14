@@ -43,6 +43,7 @@
     <!-- controllers -->
     <script src="scripts/controllers.js"></script>
     <script src="scripts/controllers/dashboard/dashboard-controller.js"></script>
+    <script src="scripts/controllers/site/site-controller.js"></script>
     <script src="scripts/controllers/login/login-controller.js"></script>
     <script src="scripts/controllers/chats/chats-controller.js"></script>
     <script src="scripts/controllers/chats/chat-detail-controller.js"></script>
@@ -52,7 +53,7 @@
     <script src="scripts/configuration.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="moi">
+  <body ng-app="moi" ng-controller="SiteController as site">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
