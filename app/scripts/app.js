@@ -62,15 +62,6 @@
           return $auth.validateUser();
         }
       }
-    })
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/dashboard/tab-dash.html',
-          controller: 'AccountCtrl'
-        }
-      }
     });
 
     // if none of the above states are matched, use this as the fallback
