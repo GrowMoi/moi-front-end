@@ -8,9 +8,8 @@
   function SiteController($rootScope,
                           $ionicLoading) {
 
-    var site = this;
-    // just for prevent jshint.
-    console.log(site);
+    // model... let's comment until we need it
+    // var site = this;
 
     //This must be the only place where we need to listen stateChanges
     $rootScope.$on('$stateChangeStart', function(){
