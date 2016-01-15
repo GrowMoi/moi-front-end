@@ -8,7 +8,8 @@
         deferredLogin,
         authMock,
         stateMock,
-        ionicPopupMock;
+        ionicPopupMock,
+        ionicLoadingMock;
 
     beforeEach(module('moi.controllers'));
 
@@ -17,17 +18,19 @@
                 $rootScope,
                 $controller) {
 
-      deferredLogin  = $q.defer();
-      $scope         = $rootScope.$new();
-      ionicPopupMock = { alert: sinon.stub() };
-      stateMock      = { go: sinon.stub() };
-      authMock       = {
+      deferredLogin     = $q.defer();
+      $scope            = $rootScope.$new();
+      ionicPopupMock    = { alert: sinon.stub() };
+      ionicLoadingMock  = { show: sinon.stub(), hide: sinon.stub()};
+      stateMock         = { go: sinon.stub() };
+      authMock          = {
         submitLogin: sinon.stub()
                           .returns(deferredLogin.promise)
       };
 
       controller = $controller('LoginController', {
         '$ionicPopup': ionicPopupMock,
+        '$ionicLoading': ionicLoadingMock,
         '$state': stateMock,
         '$auth': authMock,
         '$scope': $scope

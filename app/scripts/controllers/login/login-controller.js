@@ -6,6 +6,7 @@
     function ($rootScope,
               $scope,
               $ionicPopup,
+              $ionicLoading,
               $state,
               $auth) {
     var vm = this;
@@ -19,6 +20,9 @@
     });
 
     vm.login = function() {
+      $ionicLoading.show({
+        template: 'cargando...'
+      });
       $auth.submitLogin(vm.loginForm)
         .then(function () {
           $state.go(successState);
@@ -28,6 +32,9 @@
             title: 'Ups!',
             template: resp.errors.join(', ')
           });
+        })
+        .finally(function(){
+          $ionicLoading.hide();
         });
     };
   });
