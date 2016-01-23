@@ -9,8 +9,7 @@
     vm.nodePath = 'images/bola_amarilla.gif';
 
     function contents(){
-      debugger
-      // $state.go('neuron');
+      $state.go('neuron');
     }
 
   });

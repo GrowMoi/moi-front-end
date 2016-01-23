@@ -38,7 +38,7 @@
       return inputs.loginBtn.click().then(function () {
         return expect(
             browser.getLocationAbsUrl()
-          ).to.eventually.match(/menu.dash/);
+          ).to.eventually.match(/tree/);
       });
     })
 
