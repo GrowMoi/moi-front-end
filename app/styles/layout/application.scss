@@ -1,12 +1,19 @@
-body > .application {
-  @include background-size(cover);
+body {
+  & > .application {
+    @include background-size(cover);
 
-  background-image: url(../images/landscape_b.png);
-  background-position: center;
-  background-repeat: no-repeat;
+    background-image: url(../images/landscape_b.png);
+    background-position: center;
+    background-repeat: no-repeat;
 
-  & > ion-view {
-    width: 1280px;
-    margin: auto;
+    & > ion-view {
+      width: 1280px;
+      margin: auto;
+    }
   }
+
+  .bar-header{
+    display: none;
+  }
+
 }

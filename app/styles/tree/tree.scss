@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .content-tree {
-  position: absolute;
-  top: 44px;
+  position: relative;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
@@ -9,11 +9,21 @@
   margin-top: -1px;
   padding-top: 1px;
   margin-bottom: -1px;
-  width: auto;
-  height: auto;
-  background-image: url(../images/background_tree.png);
+  width: 100%;
+  height: 100vh;
+  background-image: url(../images/landscape_b.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100vh;
+  &::before{
+    content: "";
+    position: absolute;
+    background-image: url(../images/marco.png);
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+  }
 }
 .img-tree {
   position: fixed;
