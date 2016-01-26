@@ -31,6 +31,7 @@
       loop_mode: false,
       auto_play: true,
       rubbable: false,
+      max_width: 150,
       draw_while_loading: false
     }).load_url(vm.path);
   }

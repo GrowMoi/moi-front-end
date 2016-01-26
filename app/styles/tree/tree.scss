@@ -51,9 +51,12 @@
     }
     .tree-neuron{
       position: absolute;
-      bottom: 0;
+      bottom: -10px;
       left: 0;
       right: 0;
+      canvas{
+        width: 80px;
+      }
     }
   }
 }
