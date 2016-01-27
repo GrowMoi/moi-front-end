@@ -51,9 +51,8 @@
     }
 
     function buildGrid(contents){
-      var cloneArray = contents.slice();
-      vm.firstRow = cloneArray.splice(0,2);
-      vm.secondRow = cloneArray.splice(0,3);
+      vm.firstRow = contents.slice(0,2);
+      vm.secondRow = contents.slice(2,5);
 
       if (vm.firstRow.length > 0) {
         selectContent(vm.firstRow[0]);
