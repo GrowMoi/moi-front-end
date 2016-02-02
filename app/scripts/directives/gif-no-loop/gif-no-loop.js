@@ -3,37 +3,62 @@
 
   angular
     .module('moi')
-    .directive('gifNoLoop', gifNoLoopContents);
+    .directive('gifNoLoop', gifNoLoopDirective);
 
-  function gifNoLoopContents() {
+  function gifNoLoopDirective() {
     var directive = {
       restrict: 'EA',
+      require: ['gifNoLoop', '^gifQueue'],
       templateUrl: 'templates/directives/gif-no-loop/gif-no-loop.html',
       scope: {
-        path: '=',
+        order: '=',
+        src: '@',
         clickeable: '&'
       },
       controller: gifNoLoopController,
       controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
+      transclude: true,
+      link: function(scope, element, attrs, controllers) {
+        var gifController = controllers[0],
+            gifQueue = controllers[1];
+
+        gifQueue.enqueue(gifController);
+      }
     };
 
     return directive;
   }
 
-  function gifNoLoopController($element){
+  function gifNoLoopController($element, $q){
     var vm = this;
     var contentGif = $element.children(0)[0];
+    var playbackDeferred = $q.defer();
 
     /* jshint camelcase: false */
-    new SuperGif({
+    var gif = new SuperGif({
       gif: contentGif,
       loop_mode: false,
-      auto_play: true,
+      auto_play: false,
       rubbable: false,
       max_width: 150,
-      draw_while_loading: false
-    }).load_url(vm.path);
+      draw_while_loading: false,
+      on_end: playbackDeferred.resolve
+    });
+
+    vm.loadGif = function () {
+      var deferred = $q.defer();
+      /* jshint camelcase: false */
+      gif.load_url(vm.src, function () {
+        deferred.resolve(vm);
+      });
+      return deferred.promise;
+    };
+
+    vm.play = function () {
+      gif.play();
+      return playbackDeferred.promise;
+    };
   }
 
 })();
