@@ -7,9 +7,10 @@
 
   function gifQueueDirective() {
     return {
-      restrict: 'E',
-      scope: {},
-      controller: gifQueueController
+      restrict: 'EA',
+      controller: gifQueueController,
+      controllerAs: 'vm',
+      bindToController: true
     };
   }
 
@@ -20,39 +21,41 @@
         currentIndex,
         queueSize = $element.children().length;
 
-    var playbackFinished = function () {
-      console.log('all gifs finished!');
-    };
+    vm.enqueue = enqueue;
 
-    var gifStep = function () {
+    function playbackFinished(){
+      console.log('all gifs finished!');
+    }
+
+    function gifStep () {
       var nextIndex = currentIndex + 1;
       if (sortedGifs.length > nextIndex) {
         playGif(nextIndex);
       } else {
         playbackFinished();
       }
-    };
+    }
 
-    var playGif = function (index) {
+    function playGif(index) {
       currentIndex = index;
       sortedGifs[index].play().then(gifStep);
-    };
+    }
 
-    var playAllGifs = function () {
+    function playAllGifs() {
       sortedGifs = $filter('orderBy')(gifs, 'order');
       playGif(0);
-    };
+    }
 
-    var gifLoaded = function (gifController) {
+    function gifLoaded(gifController) {
       gifs.push(gifController);
 
       if (gifs.length === queueSize) {
         playAllGifs();
       }
-    };
+    }
 
-    vm.enqueue = function (gifController) {
+    function enqueue(gifController) {
       gifController.loadGif().then(gifLoaded);
-    };
+    }
   }
 })();

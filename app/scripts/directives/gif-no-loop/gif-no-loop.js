@@ -15,19 +15,21 @@
         src: '@',
         clickeable: '&'
       },
+      link: gifNoLoopLink,
       controller: gifNoLoopController,
       controllerAs: 'vm',
       bindToController: true,
-      transclude: true,
-      link: function(scope, element, attrs, controllers) {
-        var gifController = controllers[0],
-            gifQueue = controllers[1];
-
-        gifQueue.enqueue(gifController);
-      }
+      transclude: true
     };
 
     return directive;
+  }
+
+  function gifNoLoopLink(scope, element, attrs, controllers){
+    var gifController = controllers[0],
+        gifQueue = controllers[1];
+
+    gifQueue.enqueue(gifController);
   }
 
   function gifNoLoopController($element, $q){
@@ -46,19 +48,22 @@
       on_end: playbackDeferred.resolve
     });
 
-    vm.loadGif = function () {
+    vm.loadGif = loadGif;
+    vm.play = play;
+
+    function loadGif() {
       var deferred = $q.defer();
       /* jshint camelcase: false */
       gif.load_url(vm.src, function () {
         deferred.resolve(vm);
       });
       return deferred.promise;
-    };
+    }
 
-    vm.play = function () {
+    function play() {
       gif.play();
       return playbackDeferred.promise;
-    };
+    }
   }
 
 })();
