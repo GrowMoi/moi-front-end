@@ -2,13 +2,14 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('TreeController', function ($state) {
-    var vm = this;
+  .controller('TreeController', function () {
+    var treeModel = this;
+    treeModel.transitionToContent = transitionToContent;
 
-    vm.transitionToContent = function () {
+    function transitionToContent() {
       console.log('transitionToContent');
-      $state.go('neuron');
-    };
+      // $state.go('neuron');
+    }
   });
 
 })();

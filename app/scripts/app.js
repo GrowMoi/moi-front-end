@@ -82,7 +82,7 @@
     .state('tree', {
       url: '/tree',
       controller: 'TreeController',
-      controllerAs: 'vm',
+      controllerAs: 'treeModel',
       templateUrl: 'templates/tree/tree.html'
     });
 
