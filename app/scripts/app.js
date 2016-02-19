@@ -83,7 +83,14 @@
       url: '/tree',
       controller: 'TreeController',
       controllerAs: 'treeModel',
-      templateUrl: 'templates/tree/tree.html'
+      templateUrl: 'templates/tree/tree.html',
+      resolve: {
+        data: function(TreeService){
+          return TreeService.getNeuronsUser().then(function(data) {
+            return data;
+          });
+        }
+      }
     });
 
     // if none of the above states are matched, use this as the fallback
