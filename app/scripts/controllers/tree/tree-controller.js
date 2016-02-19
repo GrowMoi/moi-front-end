@@ -10,10 +10,10 @@
       $state.go('neuron');
     };
 
-    var vid = $document[0].getElementById('music-moi');
+    var contentMusic = $document[0].getElementById('music-moi');
 
     function playVid() {
-        vid.play();
+        contentMusic.play();
     }
 
     playVid();

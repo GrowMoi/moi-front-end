@@ -13,6 +13,7 @@
       scope: {
         order: '=',
         src: '@',
+        sound: '@',
         clickeable: '&'
       },
       link: gifNoLoopLink,
@@ -35,7 +36,11 @@
   function gifNoLoopController($element, $q){
     var vm = this;
     var contentGif = $element.children(0)[0];
+    var contentSound = $element.children(0)[1];
     var playbackDeferred = $q.defer();
+
+    var urlSound = vm.sound;
+    vm.soundType = 'audio/'.concat(urlSound.split('.')[urlSound.split('.').length-1]);
 
     /* jshint camelcase: false */
     var gif = new SuperGif({
@@ -61,6 +66,7 @@
     }
 
     function play() {
+      contentSound.play();
       gif.play();
       return playbackDeferred.promise;
     }
