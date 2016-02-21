@@ -24,8 +24,7 @@
 
     var contentSound = $element.children(0)[0];
 
-    var urlSound = vmSound.sound;
-    vmSound.soundType = 'audio/'.concat(urlSound.split('.')[urlSound.split('.').length-1]);
+    vmSound.soundType = 'audio/'.concat(vmSound.sound.split('.')[vmSound.sound.split('.').length-1]);
 
     if(vmSound.autoPlay){
       contentSound.play();
