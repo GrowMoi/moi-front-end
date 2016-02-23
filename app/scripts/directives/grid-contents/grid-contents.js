@@ -22,8 +22,7 @@
 
   function gridController($scope,
                           $http,
-                          $ionicPopup,
-                          ENV){
+                          ContentService){
 
     var vm = this;
     vm.selectContent = selectContent;
@@ -73,30 +72,18 @@
       };
     }
 
-    function learnContent(neuronId, contentId) {
-      return $http({
-        method: 'POST',
-        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents' + contentId + '/learn'
-      }).then(function success(res) {
+    // listeners
+
+    /*if a content was learning by a user should be remove of grid*/
+    $scope.$on('neuron:remove-content', function(){
+      /* jshint camelcase: false */
+      ContentService.learnContent(vm.contentSelected.id, vm.contentSelected.neuron_id).then(function(res){
         if (res.status === 200) {
           var index = vm.contentsFilter.indexOf(vm.contentSelected);
           vm.contentsFilter.splice(index, 1);
           buildGrid(vm.contentsFilter);
         }
-      }, function error(err) {
-        $ionicPopup.alert({
-          title: 'Ups!',
-          content: 'Ha ocurrido un error'
-        });
-        console.error('ERR', err);
       });
-    }
-
-    // listeners
-    /*if a content was learning by a user should be remove of grid*/
-    $scope.$on('neuron:remove-content', function(){
-      /* jshint camelcase: false */
-      learnContent(vm.contentSelected.id, vm.contentSelected.neuron_id);
     });
 
   }
