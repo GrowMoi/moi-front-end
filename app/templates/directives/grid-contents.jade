@@ -2,6 +2,6 @@
   .col(ng-class="value.class", ng-repeat="content in value.items")
     .content-kind(
           ng-click="vm.selectContent(content)",
-          ng-class="{'content-selected': content.isSelected}")
+          ng-class="content.isSelected ? 'content-selected' : 'content-unselected'")
       img(ng-src='{{content.media_url}}')
       h2 {{content.title}}
