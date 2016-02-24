@@ -14,10 +14,13 @@
 
     return service;
 
-    function learnContent(neuronId, contentId) {
+    function learnContent(content) {
+      var contentId = content.id,
+          neuronId = content.neuron_id;
+
       return $http({
         method: 'POST',
-        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents' + contentId + '/learn'
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/learn'
       }).then(function success(res) {
         return res;
       }, function error(err) {

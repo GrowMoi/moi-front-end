@@ -77,7 +77,7 @@
     /*if a content was learning by a user should be remove of grid*/
     $scope.$on('neuron:remove-content', function(){
       /* jshint camelcase: false */
-      ContentService.learnContent(vm.contentSelected.id, vm.contentSelected.neuron_id).then(function(res){
+      ContentService.learnContent(vm.contentSelected).then(function(res){
         if (res.status === 200) {
           var index = vm.contentsFilter.indexOf(vm.contentSelected);
           vm.contentsFilter.splice(index, 1);
