@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('moi')
+    .module('moi.directives')
     .directive('moiSound', moiSoundDirective);
 
   function moiSoundDirective() {
@@ -21,13 +21,18 @@
 
   function moiSoundController($element) {
     var vmSound = this;
+    vmSound.getAudioType = getAudioType;
+    vmSound.soundType = vmSound.getAudioType(vmSound.sound);
 
     var contentSound = $element.children(0)[0];
 
-    vmSound.soundType = 'audio/'.concat(vmSound.sound.split('.')[vmSound.sound.split('.').length-1]);
 
     if(vmSound.autoPlay){
       contentSound.play();
+    }
+
+    function getAudioType(soundUrl){
+      return 'audio/'.concat(soundUrl.split('.')[soundUrl.split('.').length-1]);
     }
 
   }

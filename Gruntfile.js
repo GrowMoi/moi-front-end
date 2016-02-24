@@ -242,6 +242,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
           '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
+          '<%= yeoman.app %>/templates/**/*.html',
           '<%= yeoman.test %>/unit/**/*.js'
         ],
         autoWatch: false,
@@ -254,13 +255,18 @@ module.exports = function (grunt) {
         },
         preprocessors: {
           // Update this if you change the yeoman config path
-          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js': ['coverage']
+          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js': ['coverage'],
+          '<%= yeoman.app %>/templates/**/*.html': ['ng-html2js']
         },
         coverageReporter: {
           reporters: [
             { type: 'html', dir: 'coverage/' },
             { type: 'text-summary' }
           ]
+        },
+        ngHtml2JsPreprocessor: {
+           moduleName: 'moi.templates',
+           stripPrefix: '<%= yeoman.app %>/'
         }
       },
       unit: {
