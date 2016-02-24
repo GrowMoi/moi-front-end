@@ -5,9 +5,7 @@
     .module('moi.services')
     .factory('ContentService', ContentService);
 
-  function ContentService($http,
-                          $ionicPopup,
-                          ENV) {
+  function ContentService($http, $ionicPopup, ENV) {
     var service = {
       learnContent: learnContent
     };
@@ -15,6 +13,7 @@
     return service;
 
     function learnContent(content) {
+      /*jshint camelcase: false */
       var contentId = content.id,
           neuronId = content.neuron_id;
 
