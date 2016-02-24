@@ -5,6 +5,7 @@
     'ionic',
     'moi.controllers',
     'moi.services',
+    'moi.directives',
     'ng-token-auth',
     'pascalprecht.translate'
   ])
@@ -40,6 +41,21 @@
       templateUrl: 'templates/login/login.html'
     })
 
+    .state('neuron', {
+      url: '/neuron/{neuronId:int}',
+      controller: 'NeuronController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/neuron/neuron.html',
+      resolve: {
+        data: function(NeuronService, $stateParams){
+          var id = $stateParams.neuronId;
+          return NeuronService.getNeuron(id).then(function(data) {
+            return data.neuron;
+          });
+        }
+      }
+    })
+
     // setup an abstract state for the tabs directive
     .state('menu', {
       url: '/menu',
@@ -66,8 +82,15 @@
     .state('tree', {
       url: '/tree',
       controller: 'TreeController',
-      controllerAs: 'vm',
-      templateUrl: 'templates/tree/tree.html'
+      controllerAs: 'treeModel',
+      templateUrl: 'templates/tree/tree.html',
+      resolve: {
+        data: function(TreeService){
+          return TreeService.getNeuronsUser().then(function(data) {
+            return data;
+          });
+        }
+      }
     });
 
     // if none of the above states are matched, use this as the fallback
