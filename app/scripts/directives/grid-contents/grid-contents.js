@@ -8,7 +8,7 @@
   function gridContents() {
     var directive = {
       restrict: 'EA',
-      templateUrl: 'templates/directives/grid-contents.html',
+      templateUrl: 'templates/directives/grid-contents/grid-contents.html',
       scope: {
         contents: '='
       },
