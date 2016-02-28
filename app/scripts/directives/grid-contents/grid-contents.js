@@ -78,11 +78,9 @@
     $scope.$on('neuron:remove-content', function(){
       /* jshint camelcase: false */
       ContentService.learnContent(vm.contentSelected).then(function(res){
-        if (res.status === 200) {
-          var index = vm.contentsFilter.indexOf(vm.contentSelected);
-          vm.contentsFilter.splice(index, 1);
-          buildGrid(vm.contentsFilter);
-        }
+        var index = vm.contentsFilter.indexOf(vm.contentSelected);
+        vm.contentsFilter.splice(index, 1);
+        buildGrid(vm.contentsFilter);
       });
     });
 
