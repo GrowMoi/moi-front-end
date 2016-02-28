@@ -19,21 +19,47 @@
     };
   }
 
-  function moiSoundController($element) {
-    var vmSound = this;
+  function moiSoundController($element, $q, $scope, $rootScope) {
+    var vmSound = this,
+        $audio = $element.find('audio');
+
+    vmSound.play = play;
     vmSound.getAudioType = getAudioType;
     vmSound.soundType = vmSound.getAudioType(vmSound.sound);
 
-    var contentSound = $element.children(0)[0];
+    loadAudio();
+    autoPlay();
+    listenStateChange();
 
+    function loadAudio() {
+      $audio.on('canplaythrough', function () {
+        $scope.$emit('audioLoaded', vmSound);
+      });
+    }
 
-    if(vmSound.autoPlay){
-      contentSound.play();
+    function autoPlay() {
+      if (vmSound.autoPlay) {
+        play();
+      }
     }
 
     function getAudioType(soundUrl){
-      return 'audio/'.concat(soundUrl.split('.')[soundUrl.split('.').length-1]);
+      var splittedSound = soundUrl.split('.'),
+          extension = splittedSound[splittedSound.length-1];
+
+      return 'audio/' + extension;
     }
 
+    function play() {
+      $audio[0].play();
+    }
+
+    function listenStateChange() {
+      $rootScope.$on('$stateChangeStart', stop);
+    }
+
+    function stop() {
+      $audio[0].pause();
+    }
   }
 })();
