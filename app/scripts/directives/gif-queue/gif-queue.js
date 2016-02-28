@@ -24,7 +24,6 @@
     vm.enqueue = enqueue;
 
     function playbackFinished(){
-      console.log('all gifs finished!');
     }
 
     function gifStep () {
@@ -55,7 +54,7 @@
     }
 
     function enqueue(gifController) {
-      gifController.loadGif().then(gifLoaded);
+      gifController.load().then(gifLoaded);
     }
   }
 })();

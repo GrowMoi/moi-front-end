@@ -33,15 +33,16 @@
     gifQueue.enqueue(gifController);
   }
 
-  function gifNoLoopController($element, $q){
-    var vm = this;
-    var contentGif = $element.children(0)[0];
-
-    var playbackDeferred = $q.defer();
+  function gifNoLoopController($element, $q, $scope){
+    var vm = this,
+        moiSound,
+        $img = $element.find('img'),
+        audioLoadDefer = $q.defer(),
+        playbackDeferred = $q.defer();
 
     /* jshint camelcase: false */
     var gif = new SuperGif({
-      gif: contentGif,
+      gif: $img[0],
       loop_mode: false,
       auto_play: false,
       rubbable: false,
@@ -50,20 +51,39 @@
       on_end: playbackDeferred.resolve
     });
 
-    vm.loadGif = loadGif;
+    vm.load = load;
     vm.play = play;
 
-    function loadGif() {
+    $scope.$on('audioLoaded', function (e, moiSoundInstance) {
+      moiSound = moiSoundInstance;
+      audioLoadDefer.resolve();
+    });
+
+    function load() {
+      var loadPromises = [ loadGif() ];
+      if (!!vm.sound) {
+        loadPromises.push(audioLoadDefer.promise);
+      }
+
       var deferred = $q.defer();
-      /* jshint camelcase: false */
-      gif.load_url(vm.src, function () {
+      $q.all(loadPromises).then(function () {
         deferred.resolve(vm);
       });
       return deferred.promise;
     }
 
+    function loadGif() {
+      var deferred = $q.defer();
+      /* jshint camelcase: false */
+      gif.load_url(vm.src, deferred.resolve);
+      return deferred.promise;
+    }
+
     function play() {
       gif.play();
+      if (moiSound) {
+        moiSound.play();
+      }
       return playbackDeferred.promise;
     }
   }
