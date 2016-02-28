@@ -19,7 +19,8 @@
 
       return $http({
         method: 'POST',
-        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/learn'
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/learn',
+        data: {}
       }).then(function success(res) {
         return res;
       }, function error(err) {
