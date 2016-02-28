@@ -436,6 +436,16 @@ module.exports = function (grunt) {
     'protractor:ci'
   ]);
 
+  grunt.registerTask('test:precommit', [
+    'jshint:all',
+    'wiredep',
+    'clean',
+    'concurrent:test',
+    'ngconstant:test',
+    'autoprefixer',
+    'karma:continuous'
+  ]);
+
   grunt.registerTask('serve', function (target) {
     if (target === 'compress') {
       return grunt.task.run(['compress', 'ionic:serve']);
