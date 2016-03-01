@@ -1,9 +1,10 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('ContentController', function($stateParams) {
+  .controller('ContentController', function(content) {
     var vm = this;
-    vm.content = $stateParams.content;
+
+    vm.content = content;
 
   });
 })();

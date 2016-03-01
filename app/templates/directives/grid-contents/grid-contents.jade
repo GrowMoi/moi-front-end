@@ -2,7 +2,7 @@
   .col(ng-class="value.class", ng-repeat="content in value.items")
     .content-kind(
           ng-click="vm.selectContent(content)",
-          ng-dblclick="vm.sendContent(content.id)",
+          ng-dblclick="vm.sendContent(content.neuron_id, content.id)",
           ng-class="content.isSelected ? 'content-selected' : 'content-unselected'")
      img.img-content-1(ng-src='{{content.media[0]}}')
      .leyend-bottom

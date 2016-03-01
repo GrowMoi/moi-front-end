@@ -28,8 +28,8 @@
     var vm = this;
     vm.selectContent = selectContent;
 
-    vm.sendContent = function(contentId){
-      $state.go('content', {contentId: contentId});
+    vm.sendContent = function(neuronId, contentId){
+      $state.go('content', {neuronId: neuronId,contentId: contentId});
     };
 
     init();

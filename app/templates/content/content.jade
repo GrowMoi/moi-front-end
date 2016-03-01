@@ -49,4 +49,4 @@ ion-view(view-title='Content')
             .row
               h4 Links 
             .row
-              {{vm.content.source}}
+              a(ng-href='http://{{vm.content.source}}' target='_blank') {{vm.content.source}}

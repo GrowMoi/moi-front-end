@@ -55,10 +55,22 @@
       }
     })
     .state('content', {
-      url: '/content/{contentId:int}',
+      url: '/neuron/{neuronId:int}/content/{contentId:int}',
       controller: 'ContentController',
       controllerAs: 'vm',
-      templateUrl: 'templates/content/content.html'
+      templateUrl: 'templates/content/content.html',
+      resolve: {
+        content: function(NeuronService, $stateParams){
+          var contentSelected = {};
+          return NeuronService.getNeuron($stateParams.neuronId).then(function(data) {
+             angular.forEach(data.neuron.contents, function(content) {
+              if (content.id === $stateParams.contentId){
+                contentSelected = content;
+              }
+            });
+            return contentSelected;
+        }
+      }
     })
 
     // setup an abstract state for the tabs directive
