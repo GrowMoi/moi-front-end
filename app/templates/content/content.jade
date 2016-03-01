@@ -13,9 +13,9 @@ ion-view(view-title='Content')
         .row.content
           .col
             .row
-              h4 History
+              h4 Coments
             .row
-              a(href='#') Link1
+              textarea.content-comments(ng-model='vm.content.user_notes', ng-blur='vm.sendNotes()')
       .col
         .row.content
           .col
@@ -23,7 +23,7 @@ ion-view(view-title='Content')
               h4 Media
             .row
               .col
-                img.format-image(src='images/asteroide_contra_tierra.jpg', alt='')
+                img.format-image(src='images/asteroide_contra_tierra.jpg', alt='', ng-click='vm.showImage()')
               .col
                 img.format-image(src='images/leon.jpg', alt='')
               .col
