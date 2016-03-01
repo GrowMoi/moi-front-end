@@ -51,6 +51,7 @@
     }
 
     function play() {
+      console.log($audio[0].play);
       $audio[0].play();
     }
 
