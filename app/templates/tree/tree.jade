@@ -1,0 +1,20 @@
+ion-view(view-title='TreeMoi')
+  ion-nav-buttons(side='left')
+    button.button.button-icon.icon.ion-navicon(menu-toggle='left')
+  moi-sound(sound="../sounds/fondo.mp3" auto-play="true")
+  .app-content
+    a.arrow.back-arrow(href="/#/login")
+      img(src="../images/back-arrow.png")
+    .clouds-container
+      .cloud.animated.slideInLeft
+        img(src="../images/nube1L.png")
+      .cloud.animated.slideInRight
+        img(src="../images/nube2L.png")
+      .cloud.animated.slideInLeft
+        img(src="../images/nube3L.png")
+    .tree-content
+      figure.flowerpot
+        img.flowerpot-img(src="../images/macetaH.png", alt="maceta - tree moi")
+      gif-queue.tree
+        gif-no-loop.tree-img(src="../images/arbol.gif" sound="../../sounds/ramas.mp3" order="0")
+        gif-no-loop.tree-neuron(src="../images/bola_amarilla.gif" order="1" sound="../../sounds/nodo.mp3" ng-click="treeModel.transitionToContent(treeModel.rootId)")

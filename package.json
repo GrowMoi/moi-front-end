@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "postinstall": "bash ./post_install.sh",
-    "test": "grunt test:ci"
+    "test": "grunt test:ci",
+    "test-precommit": "grunt test:precommit"
   },
   "dependencies": {
     "bower": "^1.6.5",
@@ -47,6 +48,7 @@
     "karma-chrome-launcher": "~0.1.7",
     "karma-coverage": "~0.2.7",
     "karma-mocha": "~0.1.10",
+    "karma-ng-html2js-preprocessor": "^0.2.1",
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-sinon": "^1.0.4",
     "load-grunt-tasks": "~3.1.0",
@@ -57,6 +59,7 @@
     "orchestrator": "~0.3.7",
     "phantomjs": "^1.9.19",
     "plist": "1.1.0",
+    "pre-commit": "^1.1.2",
     "protractor": "2.5.1",
     "ripple-emulator": "~0.9.24",
     "sinon": "^1.17.2",
@@ -65,6 +68,7 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "precommit": "test-precommit",
   "cordovaPlugins": [
     "org.apache.cordova.device",
     "org.apache.cordova.console",

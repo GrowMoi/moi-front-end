@@ -13,7 +13,7 @@
 
     vm.loginForm = {};
 
-    var successState = 'menu.dash';
+    var successState = 'tree';
 
     $rootScope.$on('auth:validation-success', function () {
       $state.go(successState);

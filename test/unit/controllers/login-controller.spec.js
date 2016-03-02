@@ -54,7 +54,7 @@
       });
 
       describe('when the login is executed,', function() {
-        var successState = 'menu.dash';
+        var successState = 'tree';
 
         it('if successful, should change state', function() {
           deferredLogin.resolve();

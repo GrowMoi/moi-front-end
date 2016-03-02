@@ -22,6 +22,7 @@
   "globals": {
     "angular": false,
     "cordova": false,
-    "StatusBar": false
+    "StatusBar": false,
+    "SuperGif": false
   }
 }
