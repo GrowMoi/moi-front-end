@@ -19,7 +19,7 @@
     };
   }
 
-  function moiSoundController($element, $scope) {
+  function moiSoundController($element) {
     var vmSound = this;
 
     var contentSound = $element.children(0)[0];
@@ -29,10 +29,6 @@
     if(vmSound.autoPlay){
       contentSound.play();
     }
-
-    $scope.$on('moi-sound:stop', function(){
-      contentSound.pause();
-    });
 
   }
 })();
