@@ -47,7 +47,7 @@
 
     function filterContents(contents){
       var newContents = contents.filter(function(content){
-        return content.kind !== 'enlaces' && content.kind !== 'videos';
+        return content.kind !== 'enlaces' && content.kind !== 'videos' &&  content.learnt === false;
       });
       return newContents;
     }
