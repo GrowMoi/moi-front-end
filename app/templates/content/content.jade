@@ -5,11 +5,11 @@ ion-view(view-title='Content')
         .row.content
           h2 {{vm.content.title}}
         .row.content
-          h2 {{vm.content.description}}
+          h4 {{vm.content.description}}
       .col
         .row.content
           .col
-            img.format-image(src='{{vm.content.media_url}}', alt='')
+            img.format-image(src='{{vm.content.media[0]}}', ng-click='vm.showImage(vm.content.media[0])')
         .row.content
           .col
             .row
@@ -22,14 +22,8 @@ ion-view(view-title='Content')
             .row
               h4 Media
             .row
-              .col
-                img.format-image(src='images/asteroide_contra_tierra.jpg', alt='', ng-click='vm.showImage()')
-              .col
-                img.format-image(src='images/leon.jpg', alt='')
-              .col
-                img.format-image(src='images/lluvia_meteoros.jpg', alt='')
-              .col
-                img.format-image(src='images/neurona_en_crecimiento.jpg', alt='')
+              .col(ng-repeat="image in vm.content.media")
+                img.format-image(src='{{image}}', ng-click='vm.showImage(image)')
         .row.content
           .col
             .row
@@ -47,6 +41,6 @@ ion-view(view-title='Content')
         .row.content
           .col
             .row
-              h4 Links 
-            .row
-              a(ng-href='http://{{vm.content.source}}' target='_blank') {{vm.content.source}}
+              h4 Links
+            .row(ng-repeat="link in vm.content.links")
+              a(href='{{link}}' target='_blank') {{link}}

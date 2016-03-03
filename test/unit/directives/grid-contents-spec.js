@@ -6,6 +6,20 @@
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.provider('$state', function () {
+        return {
+          $get: function () {
+            return {
+              go: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+
+    }));
     beforeEach(module('moi.services', function($provide){
       $provide.factory('ContentService', function(){
         return {
