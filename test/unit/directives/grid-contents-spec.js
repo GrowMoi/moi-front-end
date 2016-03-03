@@ -77,12 +77,32 @@
           'user_notes':null
         }
       ];
+
+      $scope.settings = [
+        {
+          kind: "que-es",
+          level:3
+        },
+        {
+          kind: "como-funciona",
+          level:2
+        },
+        {
+          kind: "por-que-es",
+          level:2
+        },
+        {
+          kind: "quien-cuando-donde",
+          level:1
+        }
+      ];
+
     });
 
 
     describe('#gridContents init', function(){
       it('should have the same params you set', function(){
-        template = $compile('<grid-contents contents="contents"></grid-contents>')($scope);
+        template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
 
         $scope.$digest();
 
@@ -97,7 +117,7 @@
       it('should call broadcast neuron:remove-content', function(){
         var spy = sinon.spy(ContentService, 'learnContent');
 
-        template = $compile('<grid-contents contents="contents"></grid-contents>')($scope);
+        template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
 
         $scope.$digest();
 
@@ -110,7 +130,7 @@
       });
 
       it('should call selectContent when you select some content', function(){
-        var template = $compile('<grid-contents contents="contents"></grid-contents>')($scope);
+        var template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
 
         $scope.$digest();
 
