@@ -3,5 +3,5 @@
     .content-kind(
           ng-click="vm.selectContent(content)",
           ng-class="content.isSelected ? 'content-selected' : 'content-unselected'")
-      img(ng-src='{{content.media_url}}')
+      img(ng-src='{{content.media[0]}}')
       h2 {{content.title}}
