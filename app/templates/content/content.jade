@@ -22,8 +22,7 @@ ion-view(view-title='Content')
             .row
               h4 Media
             .row
-              .col(ng-repeat="image in vm.content.media")
-                img.format-image(src='{{image}}', ng-click='vm.showImage(image)')
+              slide-gallery(images='vm.content.media', item-per-slide='4')
         .row.content
           .col
             .row
@@ -43,4 +42,4 @@ ion-view(view-title='Content')
             .row
               h4 Links
             .row(ng-repeat="link in vm.content.links")
-              a(href='{{link}}' target='_blank') {{link}}
+              a(href='link' target='_blank') {{link}}

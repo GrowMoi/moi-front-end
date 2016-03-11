@@ -1,0 +1,5 @@
+ion-slide-box.slide-gallery(on-slide-changed='slideHasChanged($index)')  
+  ion-slide(ng-repeat='slide in vmSlide.slideImages')
+    .row
+      .col(ng-repeat='image in slide')
+        img.format-image(src='{{image}}', ng-click='vmSlide.showImage(image)')

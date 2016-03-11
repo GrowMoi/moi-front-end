@@ -8,7 +8,7 @@
     vm.content = content;
     vm.sendNotes = sendNotes;
 
-    var modelDate = {};
+    var modelData = {};
 
     activate();
 
@@ -18,11 +18,11 @@
     }
 
     function showImage(urlImage) {
-      modelDate.imageSrc = urlImage;
+      modelData.imageSrc = urlImage;
       ModalService.showModel({
                 parentScope: $scope,
                 templateUrl: 'templates/partials/modal-image.html',
-                model: modelDate});
+                model: modelData});
     }
 
     function sendNotes() {
