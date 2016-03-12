@@ -2,8 +2,7 @@
   'use strict';
 
   describe('gridDirective', function () {
-    var $compile, $scope, $rootScope, ContentService;
-    var learnContent = sinon.stub();
+    var $compile, $scope, $rootScope, ContentService, template, controller;
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
@@ -15,9 +14,9 @@
               then: function(){
                 return null;
               }
-            }
+            };
           }
-        }
+        };
       });
     }));
 
@@ -69,11 +68,11 @@
 
     describe('#gridContents init', function(){
       it('should have the same params you set', function(){
-        var template = $compile('<grid-contents contents="contents"></grid-contents>')($scope);
+        template = $compile('<grid-contents contents="contents"></grid-contents>')($scope);
 
         $scope.$digest();
 
-        var controller = template.controller('gridContents');
+        controller = template.controller('gridContents');
 
         chai.expect($scope.contents).to.deep.equals(controller.contents);
       });
@@ -84,7 +83,7 @@
       it('should call broadcast neuron:remove-content', function(){
         var spy = sinon.spy(ContentService, 'learnContent');
 
-        var template = $compile('<grid-contents contents="contents"></grid-contents>')($scope);
+        template = $compile('<grid-contents contents="contents"></grid-contents>')($scope);
 
         $scope.$digest();
 
