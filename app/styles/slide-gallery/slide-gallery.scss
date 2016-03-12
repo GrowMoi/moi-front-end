@@ -1,0 +1,34 @@
+.btns-slide{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+
+  .btn-next-slide {
+    position: absolute;
+    right: -5px;
+    bottom: 55%;
+  }
+
+  .btn-previous-slide {
+    position: absolute;
+    left: -16px;
+    bottom: 55%;
+  }
+}
+
+.slide-gallery{
+  width: 360px;
+
+  .slider {
+    height: 20%;
+  }
+  .item-side{
+    width: 33%;
+    border-bottom: 3px solid #088A08;
+    border-left: 3px solid #088A08;
+  }
+  .slider-pager-page{
+    color: #FFFFFF;
+  }
+}

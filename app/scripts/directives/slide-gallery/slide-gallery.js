@@ -19,13 +19,15 @@
     };
   }
 
-  function slideGalleryController($element, $scope, ModalService) {
+  function slideGalleryController($element, $scope, $ionicSlideBoxDelegate, ModalService) {
     var vmSlide = this;
     var modelData = {};
 
     vmSlide.showImage = showImage;
     vmSlide.slideChanged = slideChanged;
     vmSlide.slideImages = createGroupedArray(vmSlide.images, parseInt(vmSlide.itemPerSlide));
+    vmSlide.next = next;
+    vmSlide.previous = previous;
 
     function createGroupedArray(arr, chunkSize) {
       var groups = [], i;
@@ -33,6 +35,14 @@
           groups.push(arr.slice(i, i + chunkSize));
       }
       return groups;
+    }
+
+    function next() {
+      $ionicSlideBoxDelegate.next();
+    }
+
+    function previous() {
+      $ionicSlideBoxDelegate.previous();
     }
 
     function showImage(urlImage) {
