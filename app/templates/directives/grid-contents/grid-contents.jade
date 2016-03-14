@@ -3,5 +3,6 @@
     .content-kind(
           ng-click="vm.selectContent(content)",
           ng-class="content.isSelected ? 'content-selected' : 'content-unselected'")
-     img(src="../../../images/nebula.jpg").img-content-1()     	
-     .leyend-bottom(){{content.title}}
+     img.img-content-1(ng-src='{{content.media[0]}}')
+     .leyend-bottom
+        {{content.title}}
