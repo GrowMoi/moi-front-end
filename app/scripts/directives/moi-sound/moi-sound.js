@@ -20,10 +20,12 @@
   }
 
   function moiSoundController($element, $q, $scope, $rootScope) {
-    var vmSound = this,
-        $audio = $element.find('audio');
+    var vmSound = this;
 
+
+    vmSound.$audio = $element.find('audio');
     vmSound.play = play;
+    vmSound.stop = stop;
     vmSound.getAudioType = getAudioType;
     vmSound.soundType = vmSound.getAudioType(vmSound.sound);
 
@@ -32,7 +34,7 @@
     listenStateChange();
 
     function loadAudio() {
-      $audio.on('canplaythrough', function () {
+      vmSound.$audio.on('canplaythrough', function () {
         $scope.$emit('audioLoaded', vmSound);
       });
     }
@@ -51,7 +53,7 @@
     }
 
     function play() {
-      $audio[0].play();
+      vmSound.$audio[0].play();
     }
 
     function listenStateChange() {
@@ -59,7 +61,7 @@
     }
 
     function stop() {
-      $audio[0].pause();
+      vmSound.$audio[0].pause();
     }
   }
 })();
