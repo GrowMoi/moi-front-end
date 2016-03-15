@@ -1,43 +1,43 @@
 .content-kind {
   &:hover {
     -webkit-box-shadow: 0px 0px 3px 2px rgba(0,0,0,1);
--moz-box-shadow: 0px 0px 3px 2px rgba(0,0,0,1);
-box-shadow: 1px 1px 3px 1px rgba(204,204,204,1);
+    -moz-box-shadow: 0px 0px 3px 2px rgba(0,0,0,1);
+    box-shadow: 1px 1px 3px 1px rgba(204,204,204,1);
     cursor: pointer;
   }
   img {
     width: 100%;
-   /* height: auto;*/
+    /* height: auto;*/
   }
 }
 
 .img-content-1{
-	height: 270px;
-	vertical-align: middle;	
+  height: 270px;
+  vertical-align: middle;
 }
 
 .leyend-bottom{
-	background-color: rgba(0, 0, 0, 0.55);
-	color: white;
-	padding: 6px 25px;
-	transition: all 0.2s ease 0s;
-    vertical-align: middle;
-	margin-top: -50px;
-	height: 50px;
-	position: relative;
-	font-size: 18px;
-    font-weight: 200;
-    font-family: fantasy;
+  background-color: rgba(0, 0, 0, 0.55);
+  color: white;
+  padding: 6px 25px;
+  transition: all 0.2s ease 0s;
+  vertical-align: middle;
+  margin-top: -50px;
+  height: 50px;
+  position: relative;
+  font-size: 18px;
+  font-weight: 200;
+  font-family: fantasy;
 }
 
 .content-selected {
   -webkit-box-shadow: 1px 1px 5px 2px rgba(204,204,204,1);
--moz-box-shadow: 1px 1px 5px 2px rgba(204,204,204,1);
-box-shadow: 1px 1px 5px 2px rgba(244,252,184,1);
+  -moz-box-shadow: 1px 1px 5px 2px rgba(204,204,204,1);
+  box-shadow: 1px 1px 5px 2px rgba(244,252,184,1);
 }
 
 .content-unselected {
- opacity: 0.8;
+  opacity: 0.8;
 }
 
 .main-contents {
@@ -55,7 +55,7 @@ box-shadow: 1px 1px 5px 2px rgba(244,252,184,1);
   width: 94%;
   height: 94%;
   overflow: auto;
-  margin: 2% 4% 2% 4%; 
+  margin: 2% 4% 2% 4%;
 }
 
 .btn-learn {
