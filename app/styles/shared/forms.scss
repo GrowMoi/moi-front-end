@@ -2,7 +2,7 @@
 
 form {
   label.item-input {
-    background-image: url(/images/input.png);
+    background-image: url(../images/input.png);
     @include background-size(contain);
     background-position: left center;
     background-repeat: no-repeat;
@@ -30,7 +30,7 @@ form {
   }
 
   .button {
-    background-image: url(/images/btn.png);
+    background-image: url(../images/btn.png);
     @include background-size(contain);
     background-position: center;
     background-repeat: no-repeat;
