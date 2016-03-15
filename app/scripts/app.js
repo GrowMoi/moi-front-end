@@ -7,7 +7,9 @@
     'moi.services',
     'moi.directives',
     'ng-token-auth',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'videosharing-embed',
+    'config'
   ])
 
   .run(function($ionicPlatform) {
@@ -63,9 +65,10 @@
         content: function(NeuronService, $stateParams){
           var contentSelected = {};
           return NeuronService.getNeuron($stateParams.neuronId).then(function(data) {
-             angular.forEach(data.neuron.contents, function(content) {
+            data.neuron.contents.some(function(content) {
               if (content.id === $stateParams.contentId){
                 contentSelected = content;
+                return true;
               }
             });
             return contentSelected;

@@ -21,13 +21,14 @@
 
   function slideGalleryController($element, $scope, $ionicSlideBoxDelegate, ModalService) {
     var vmSlide = this;
-    var modelData = {};
 
-    vmSlide.showImage = showImage;
+    vmSlide.showMedia = showMedia;
     vmSlide.slideChanged = slideChanged;
     vmSlide.slideImages = createGroupedArray(vmSlide.images, parseInt(vmSlide.itemPerSlide));
     vmSlide.next = next;
     vmSlide.previous = previous;
+    vmSlide.isImage = isImage;
+    vmSlide.setImageForVideo = setImageForVideo;
 
     function createGroupedArray(arr, chunkSize) {
       var groups = [], i;
@@ -45,8 +46,10 @@
       $ionicSlideBoxDelegate.previous();
     }
 
-    function showImage(urlImage) {
-      modelData.imageSrc = urlImage;
+    function showMedia(url) {
+      var modelData = {};
+      modelData.contentSrc = url;
+      modelData.isImage = isImage(url);
       ModalService.showModel({
                 parentScope: $scope,
                 templateUrl: 'templates/partials/modal-image.html',
@@ -58,5 +61,12 @@
       vmSlide.slideIndex = index;
     }
 
+    function isImage(params) {
+      return typeof params === 'string';
+    }
+
+    function setImageForVideo(params) {
+      return params.thumbnail === null ? 'images/video_placeholder.png' : params.thumbnail;
+    }
   }
 })();

@@ -17,6 +17,12 @@
         'login': 'Login',
         'username': 'Username',
         'password': 'Password'
+      },
+      content: {
+        'coments': 'Coments',
+        'media': 'Media',
+        'recommended': 'Recommended',
+        'links': 'Links'
       }
     });
 
@@ -36,6 +42,12 @@
       },
       signup: {
         'signup': 'Registrarse'
+      },
+      content: {
+        'coments': 'Comentarios',
+        'media': 'Galeria',
+        'recommended': 'Recomendaciones',
+        'links': 'Enlaces'
       }
     });
 

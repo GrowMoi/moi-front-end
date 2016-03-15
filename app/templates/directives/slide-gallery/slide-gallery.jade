@@ -4,5 +4,6 @@
 ion-slide-box.slide-gallery(on-slide-changed='vmSlide.slideChanged($index)')
   ion-slide(ng-repeat='slide in vmSlide.slideImages')
     .row
-      .col(ng-repeat='image in slide')
-        img.format-image(src='{{image}}', ng-click='vmSlide.showImage(image)')
+      .col(ng-repeat='content in slide')
+        img.format-image(ng-if='vmSlide.isImage(content)', ng-src='{{content}}', ng-click='vmSlide.showMedia(content)')
+        img.format-image(ng-if='!vmSlide.isImage(content)', ng-src='{{vmSlide.setImageForVideo(content)}}', ng-click='vmSlide.showMedia(content)')

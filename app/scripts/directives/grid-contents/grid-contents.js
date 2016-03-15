@@ -28,9 +28,7 @@
     var vm = this;
     vm.selectContent = selectContent;
 
-    vm.sendContent = function(neuronId, contentId){
-      $state.go('content', {neuronId: neuronId,contentId: contentId});
-    };
+    vm.sendContent = sendContent;
 
     init();
 
@@ -77,6 +75,9 @@
       };
     }
 
+    function sendContent(neuronId, contentId){
+      $state.go('content', {neuronId: neuronId,contentId: contentId});
+    }
     // listeners
 
     /*if a content was learning by a user should be remove of grid*/

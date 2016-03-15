@@ -37,15 +37,20 @@
       modalMoi.scope.model = options.model;
       $ionicModal.fromTemplateUrl(myOptions.templateUrl, {
         scope: modalMoi.scope,
-        animation: myOptions.animation
+        animation: myOptions.animation,
+        backdropClickToClose: false
       }).then(function(modal) {
         modalMoi.scope.modal = modal;
         modalMoi.scope.modal.show();
       });
 
       modalMoi.scope.model.closeModal = function () {
-        modalMoi.scope.modal.hide();
+        modalMoi.scope.modal.remove()
+        .then(function() {
+          modalMoi.scope.modal = null;
+        });
       };
+
     }
 
   }

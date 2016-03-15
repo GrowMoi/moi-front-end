@@ -7,8 +7,7 @@
 
     vm.content = content;
     vm.sendNotes = sendNotes;
-
-    var modelData = {};
+    vm.media = content.videos.concat(content.media);
 
     activate();
 
@@ -18,7 +17,9 @@
     }
 
     function showImage(urlImage) {
-      modelData.imageSrc = urlImage;
+      var modelData = {};
+      modelData.contentSrc = urlImage;
+      modelData.isImage = true;
       ModalService.showModel({
                 parentScope: $scope,
                 templateUrl: 'templates/partials/modal-image.html',

@@ -1,6 +1,7 @@
 .modal.transparent
       ion-pane.transparent
         .modal-image
-          .btn-close-modal(ng-click="model.closeModal()")
-          img.content-image(ng-src='{{model.imageSrc}}')
+          .btn-close-modal(ng-click="::model.closeModal()")
+          img.content-image(ng-if='::model.isImage', ng-src='{{::model.contentSrc}}')
+          embed-video(ng-if='::!model.isImage', data-ng-href='{{::model.contentSrc}}', controls='0', width=500, height=400)
         

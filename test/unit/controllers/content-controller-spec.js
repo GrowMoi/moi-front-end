@@ -35,7 +35,9 @@
           content: {
             id: 1,
             level: 1,
-            neuron_id: 1
+            neuron_id: 1,
+            media: [],
+            videos: []
           },
           $scope: $scope
         };
