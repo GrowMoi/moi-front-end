@@ -3,6 +3,7 @@
 
   angular.module('moi', [
     'ionic',
+    'config',
     'moi.controllers',
     'moi.services',
     'moi.directives',
@@ -41,11 +42,21 @@
       templateUrl: 'templates/login/login.html'
     })
 
-    .state('neuron', {
+    // setup an abstract state for the tabs directive
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/common/menu.html'
+    })
+    .state('app.neuron', {
       url: '/neuron/{neuronId:int}',
-      controller: 'NeuronController',
-      controllerAs: 'vm',
-      templateUrl: 'templates/neuron/neuron.html',
+      views: {
+        'menuContent': {
+          controller: 'NeuronController',
+          controllerAs: 'vm',
+          templateUrl: 'templates/neuron/neuron.html'
+        }
+      },
       resolve: {
         data: function(NeuronService, $stateParams){
           var id = $stateParams.neuronId;
@@ -55,35 +66,15 @@
         }
       }
     })
-
-    // setup an abstract state for the tabs directive
-    .state('menu', {
-      url: '/menu',
-      abstract: true,
-      templateUrl: 'templates/common/menu.html'
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('menu.dash', {
-      url: '/dash',
+    .state('app.tree', {
+      url: '/tree',
       views: {
         'menuContent': {
-          templateUrl: 'templates/dashboard/tab-dash.html',
-          controller: 'DashCtrl'
+          controller: 'TreeController',
+          controllerAs: 'treeModel',
+          templateUrl: 'templates/tree/tree.html'
         }
       },
-      resolve: {
-        auth: function ($auth) {
-          return $auth.validateUser();
-        }
-      }
-    })
-    .state('tree', {
-      url: '/tree',
-      controller: 'TreeController',
-      controllerAs: 'treeModel',
-      templateUrl: 'templates/tree/tree.html',
       resolve: {
         data: function(TreeService){
           return TreeService.getNeuronsUser().then(function(data) {

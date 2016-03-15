@@ -9,7 +9,7 @@
     treeModel.rootId = data.meta.root_id;
 
     function transitionToContent(id) {
-      $state.go('neuron', {neuronId: id});
+      $state.go('app.neuron', {neuronId: id});
     }
   });
 

@@ -17,3 +17,22 @@ body {
   }
 
 }
+
+.sidebar-menu {
+  background-image: url(../images/deslizah.png);
+  background-size: cover;
+
+  .settings-menu{
+    height: 400px;
+    background: none;
+  }
+
+  .tree-menu{
+    height: 400px;
+    background: none;
+  }
+
+  .settings-menu > a, .tree-menu > a {
+    background: none;
+  }
+}
