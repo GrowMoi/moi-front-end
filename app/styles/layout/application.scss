@@ -17,3 +17,87 @@ body {
   }
 
 }
+
+.flecha-sidebar {
+  left: 2px;
+  cursor: pointer;
+  position: absolute;
+  top: 44%;
+  z-index: 1;
+  height: 50px;
+  img {
+    height: 100%;
+  }
+}
+
+.sidebar-menu {
+
+  .settings-amigos {
+    top: 80px;
+    left: 17px;
+    position: absolute;
+    width: 160px;
+    cursor: pointer;
+    img{
+      width: 100%;
+    }
+  }
+
+  .settings-rueda {
+    position: absolute;
+    top: 125px;
+    width: 80px;
+    left: 45px;
+    cursor: pointer;
+    img{
+      width: 100%;
+    }
+  }
+
+  .settings-tutor {
+    position: absolute;
+    width: 90px;
+    top: 140px;
+    left: 90px;
+    cursor: pointer;
+    img {
+      width: 100%;
+    }
+  }
+
+  .settings-inventario {
+    position: absolute;
+    width: 110px;
+    top: 195px;
+    left: 30px;
+    img {
+      width: 100%;
+    }
+  }
+
+  .flecha-sidebar {
+    left:230px;
+  }
+
+  background-image: url(../images/deslizah.png);
+  background-size: cover;
+  height: 100%;
+
+  .settings-menu{
+    height: 400px;
+    background: none;
+  }
+
+  .tree-menu{
+    height: 400px;
+    background: none;
+  }
+
+  .settings-menu > a, .tree-menu > a {
+    background: none;
+  }
+}
+//override custom drawer
+drawer {
+  width: 275px !important;
+}
