@@ -1,0 +1,34 @@
+.neuron-view{
+  background-color: transparent;
+}
+
+.main-view {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  background-image: url(../images/frame-content.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.content-view {
+  width: 95%;
+  height: 88%;
+  overflow: auto;
+  margin-top: 2%;
+  margin-left: 3%;
+  margin-right: 2%;
+}
+
+.btn-learn {
+  position: fixed;
+  bottom: 0;
+  right: 4px;
+  min-width: 10%;
+  min-height: 14%;
+  background-image: url(../images/btn-learn.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}

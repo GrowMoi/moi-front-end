@@ -1,4 +1,4 @@
-.row(ng-repeat="(key, value) in vm.rowsGrid")
+.row.content-in-grid(ng-repeat="(key, value) in vm.rowsGrid")
   .col(ng-class="value.class", ng-repeat="content in value.items")
     .content-kind(
           ng-click="vm.selectContent(content)",
