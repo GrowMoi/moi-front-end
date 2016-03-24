@@ -21,6 +21,13 @@ body {
 .sidebar-menu {
   background-image: url(../images/deslizah.png);
   background-size: cover;
+  z-index: 1;
+  left: -275px; //current width
+  @include transition(all 0.4s ease-out);
+
+  &.open {
+    left: 0;
+  }
 
   .settings-menu{
     height: 400px;
