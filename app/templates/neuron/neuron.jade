@@ -1,8 +1,8 @@
-ion-view(view-title='{{vm.neuron.title}}')
+ion-view.neuron-view(view-title='{{vm.neuron.title}}')
  ion-nav-buttons(side='left')
    button.button.button-icon.icon.ion-navicon(menu-toggle='left')
-  .main-contents
-    .contents
+  .main-view
+    .content-view
       grid-contents(contents="vm.neuron.contents")
     .btns-options
       .btn-learn(ng-click="vm.learn()")
