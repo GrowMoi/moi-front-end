@@ -32,70 +32,46 @@ body {
 
 .sidebar-menu {
 
-  .settings-amigos {
-    top: 80px;
-    left: 17px;
-    position: absolute;
-    width: 160px;
+  & > div {
     cursor: pointer;
-    img{
+    position: absolute;
+    & > img {
       width: 100%;
     }
+  }
+
+  .settings-amigos {
+    top: 75px;
+    left: 25px;
+    width: 140px;
   }
 
   .settings-rueda {
-    position: absolute;
-    top: 125px;
-    width: 80px;
-    left: 45px;
-    cursor: pointer;
-    img{
-      width: 100%;
-    }
+    top: 120px;
+    width: 70px;
+    left: 47px;
   }
 
   .settings-tutor {
-    position: absolute;
-    width: 90px;
-    top: 140px;
-    left: 90px;
-    cursor: pointer;
-    img {
-      width: 100%;
-    }
+    width: 85px;
+    top: 130px;
+    left: 82px;
   }
 
   .settings-inventario {
-    position: absolute;
-    width: 110px;
-    top: 195px;
+    width: 100px;
+    top: 185px;
     left: 30px;
-    img {
-      width: 100%;
-    }
   }
 
   .flecha-sidebar {
-    left:230px;
+    left: 210px;
+    top: 46%;
   }
 
   background-image: url(../images/deslizah.png);
   background-size: cover;
   height: 100%;
-
-  .settings-menu{
-    height: 400px;
-    background: none;
-  }
-
-  .tree-menu{
-    height: 400px;
-    background: none;
-  }
-
-  .settings-menu > a, .tree-menu > a {
-    background: none;
-  }
 }
 //override custom drawer
 drawer {
