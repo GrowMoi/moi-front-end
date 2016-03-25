@@ -1,0 +1,45 @@
+ion-view(view-title='Content')
+  .content-frame
+    .row.content-max
+      .col
+        .row.content
+          h2 {{vm.content.title}}
+        .row.content
+          h4 {{vm.content.description}}
+      .col
+        .row.content
+          .col
+            img.format-image(src='{{vm.content.media[0]}}', ng-click='vm.showImage(vm.content.media[0])')
+        .row.content
+          .col
+            .row
+              h4 {{ 'content.coments' | translate }}
+            .row
+              textarea.content-comments(ng-model='vm.content.user_notes', ng-blur='vm.sendNotes()')
+      .col
+        .row.content
+          .col
+            .row
+              h4 {{ 'content.media' | translate }}
+            .row
+              slide-gallery(images='vm.media', item-per-slide='4')
+        .row.content
+          .col
+            .row
+              h4 {{ 'content.recommended ' | translate }}
+            .row
+              .col
+                img.format-image(src='images/asteroide_contra_tierra.jpg', alt='')
+              .col
+                img.format-image(src='images/leon.jpg', alt='')
+            .row
+              .col
+                img.format-image(src='images/lluvia_meteoros.jpg', alt='')
+              .col
+                img.format-image(src='images/neurona_en_crecimiento.jpg', alt='')
+        .row.content
+          .col
+            .row
+              h4 {{ 'content.links ' | translate }}
+            .row(ng-repeat="link in vm.content.links")
+              a(href='link' target='_blank') {{link}}

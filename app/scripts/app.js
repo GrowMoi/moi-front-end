@@ -7,7 +7,9 @@
     'moi.services',
     'moi.directives',
     'ng-token-auth',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'videosharing-embed',
+    'config'
   ])
 
   .run(function($ionicPlatform) {
@@ -40,7 +42,6 @@
       controllerAs: 'vm',
       templateUrl: 'templates/login/login.html'
     })
-
     .state('neuron', {
       url: '/neuron/{neuronId:int}',
       controller: 'NeuronController',
@@ -51,6 +52,26 @@
           var id = $stateParams.neuronId;
           return NeuronService.getNeuron(id).then(function(data) {
             return data.neuron;
+          });
+        }
+      }
+    })
+    .state('content', {
+      url: '/neuron/{neuronId:int}/content/{contentId:int}',
+      controller: 'ContentController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/content/content.html',
+      resolve: {
+        content: function(NeuronService, $stateParams){
+          var contentSelected = {};
+          return NeuronService.getNeuron($stateParams.neuronId).then(function(data) {
+            data.neuron.contents.some(function(content) {
+              if (content.id === $stateParams.contentId){
+                contentSelected = content;
+                return true;
+              }
+            });
+            return contentSelected;
           });
         }
       }
