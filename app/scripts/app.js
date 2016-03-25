@@ -3,13 +3,14 @@
 
   angular.module('moi', [
     'ionic',
+    'config',
     'moi.controllers',
     'moi.services',
     'moi.directives',
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
-    'config'
+    'ionic.contrib.drawer'
   ])
 
   .run(function($ionicPlatform) {
@@ -73,30 +74,6 @@
             });
             return contentSelected;
           });
-        }
-      }
-    })
-
-    // setup an abstract state for the tabs directive
-    .state('menu', {
-      url: '/menu',
-      abstract: true,
-      templateUrl: 'templates/common/menu.html'
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('menu.dash', {
-      url: '/dash',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/dashboard/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      },
-      resolve: {
-        auth: function ($auth) {
-          return $auth.validateUser();
         }
       }
     })

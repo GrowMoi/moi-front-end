@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
+    <link rel="stylesheet" href="bower_components/ionic-ion-drawer/ionic.contrib.drawer.css"></script>
     <link href="styles/main.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -30,6 +31,7 @@
     <script src="bower_components/angular-cookie/angular-cookie.js"></script>
     <script src="bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/ionic-ion-drawer/ionic.contrib.drawer.js"></script>
     <!-- endbower -->
     <script src="bower_components/libgif-js/libgif.js"></script>
     <script src="bower_components/ng-videosharing-embed/build/ng-videosharing-embed.min.js"></script>
@@ -46,7 +48,6 @@
     <script src="scripts/translations.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers.js"></script>
-    <script src="scripts/controllers/dashboard/dashboard-controller.js"></script>
     <script src="scripts/controllers/site/site-controller.js"></script>
     <script src="scripts/controllers/login/login-controller.js"></script>
     <script src="scripts/controllers/tree/tree-controller.js"></script>
@@ -66,21 +67,10 @@
     <script src="scripts/directives/moi-sound/moi-sound.js"></script>
     <script src="scripts/directives/back-button/back-button.js"></script>
     <script src="scripts/directives/slide-gallery/slide-gallery.js"></script>
+    <script src="scripts/directives/moi-sidebar/moi-sidebar.js"></script>
     <!-- endbuild -->
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-    <ion-nav-bar class="bar-light">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
     <ion-nav-view class="application"></ion-nav-view>
   </body>
 </html>
