@@ -23,9 +23,17 @@
   margin-bottom: -1px;
   width: auto;
   height: auto;
-  background-image: url(../images/content_maximizado.png);
+  background-image: url(../images/frame-content.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+
+  .flecha-sidebar {
+    top: 42%;
+  }
+
+  .btn-learn {
+    bottom: 10px;
+  }
 }
 .content-max{
   width: 100%;
