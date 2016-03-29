@@ -1,19 +1,22 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('ContentController', function($scope, content, ContentService, ModalService) {
+  .controller('ContentController', function($scope,
+                                            content,
+                                            ContentService,
+                                            ModalService,
+                                            $ionicPopup)
+  {
     var vm = this;
     vm.showImage = showImage;
-
-    vm.content = content;
     vm.sendNotes = sendNotes;
-    vm.media = content.videos.concat(content.media);
+    vm.learn = learn;
 
     activate();
 
     function activate() {
       vm.content = content;
-      vm.sendNotes = sendNotes;
+      vm.media = content.videos.concat(content.media);
     }
 
     function showImage(urlImage) {
@@ -28,6 +31,14 @@
 
     function sendNotes() {
       ContentService.addNotesToContent(vm.content);
+    }
+
+    function learn() {
+      ContentService.learnContent(vm.content).then(function(){
+        $ionicPopup.alert({
+          title: 'Contenido Aprendido!'
+        });
+      });
     }
   });
 })();
