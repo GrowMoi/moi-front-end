@@ -25,6 +25,7 @@ drawer {
     position: absolute;
     & > img {
       width: 100%;
+      height: 100%;
     }
   }
 
@@ -55,5 +56,12 @@ drawer {
   .flecha-sidebar {
     left: 210px;
     top: 46%;
+  }
+
+  .settings-arbol {
+    top: 399px;
+    width: 210px;
+    height: 280px;
+    left: 15px;
   }
 }
