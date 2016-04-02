@@ -1,3 +1,4 @@
+/*jshint camelcase: false */
 (function () {
   'use strict';
 
@@ -25,7 +26,6 @@
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         $state = _$state_;
-
         dependencies = {
           $scope: $scope,
           data: {meta: {root_id: 1}}

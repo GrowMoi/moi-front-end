@@ -80,19 +80,19 @@
 
       $scope.settings = [
         {
-          kind: "que-es",
+          kind: 'que-es',
           level:3
         },
         {
-          kind: "como-funciona",
+          kind: 'como-funciona',
           level:2
         },
         {
-          kind: "por-que-es",
+          kind: 'por-que-es',
           level:2
         },
         {
-          kind: "quien-cuando-donde",
+          kind: 'quien-cuando-donde',
           level:1
         }
       ];
