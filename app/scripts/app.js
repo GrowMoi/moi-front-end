@@ -47,6 +47,7 @@
       url: '/neuron/{neuronId:int}',
       controller: 'NeuronController',
       controllerAs: 'vm',
+      cache: false,
       templateUrl: 'templates/neuron/neuron.html',
       resolve: {
         data: function(NeuronService, $stateParams){
@@ -54,6 +55,21 @@
           return NeuronService.getNeuron(id).then(function(data) {
             return data.neuron;
           });
+        },
+        user: function ($auth) {
+          return $auth.validateUser();
+        }
+      }
+    })
+
+    .state('settings', {
+      url: '/settings',
+      controller: 'SettingsController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/settings/settings.html',
+      resolve: {
+        user: function ($auth) {
+          return $auth.validateUser();
         }
       }
     })

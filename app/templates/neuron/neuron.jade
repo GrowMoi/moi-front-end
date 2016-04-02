@@ -4,7 +4,8 @@ ion-view.neuron-view(view-title='{{vm.neuron.title}}')
       img(src="images/flecha_1.png")
     .main-view
       .content-view
-        grid-contents(contents="vm.neuron.contents")
+        grid-contents(contents="vm.neuron.contents"
+                      settings="vm.contentsPreferences")
       .btns-options
-        .btn-learn(ng-click="vm.learnContent()")
+        .btn-learn(ng-click="vm.learn()")
   moi-sidebar

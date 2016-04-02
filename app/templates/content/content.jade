@@ -15,20 +15,20 @@ ion-view(view-title='Content')
         .row.content
           .col
             .row
-              h4 {{ 'content.coments' | translate }}
+              h4 {{ ::'content.max.coments' | translate }}
             .row
               textarea.content-comments(ng-model='vm.content.user_notes', ng-blur='vm.sendNotes()')
       .col
         .row.content
           .col
             .row
-              h4 {{ 'content.media' | translate }}
+              h4 {{ ::'content.max.media' | translate }}
             .row
               slide-gallery(images='vm.media', item-per-slide='4')
         .row.content
           .col
             .row
-              h4 {{ 'content.recommended ' | translate }}
+              h4 {{ ::'content.max.recommended ' | translate }}
             .row
               .col
                 img.format-image(src='images/asteroide_contra_tierra.jpg', alt='')
@@ -42,7 +42,7 @@ ion-view(view-title='Content')
         .row.content
           .col
             .row
-              h4 {{ 'content.links ' | translate }}
+              h4 {{ ::'content.max.links ' | translate }}
             .row(ng-repeat="link in vm.content.links")
               a(href='link' target='_blank') {{link}}
     .btn-learn(ng-click="vm.learn()")
