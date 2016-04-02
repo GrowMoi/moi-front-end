@@ -438,6 +438,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:precommit', [
     'jshint:all',
+    'jshint:test',
     'wiredep',
     'clean',
     'concurrent:test',

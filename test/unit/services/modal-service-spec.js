@@ -13,11 +13,11 @@
                 then: function(){
                   return null;
                 }
-              }
+              };
             }
           }
         );
-      })
+      });
     });
     beforeEach(inject(
       function (_$ionicModal_, _ModalService_, _$rootScope_) {

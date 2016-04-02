@@ -26,12 +26,12 @@
                 _SettingsService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
-        $scope = $rootScope.$new(),
+        $scope = $rootScope.$new();
         SettingsService = _SettingsService_;
 
         dependencies = {
           SettingsService: SettingsService,
-          user: {id: 1, email: "admin@example.com", name: "admin", role: "admin"}
+          user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
         };
 
         ctrl = $controller('SettingsController', dependencies);
@@ -51,7 +51,6 @@
           interest:'Animals',
           src:'../images/any-image.png'
         };
-        var spy = sinon.spy(ctrl, 'selectInterest');
         ctrl.selectInterest(interests);
         chai.expect(interests.selected).to.be.equal(true);
       });
