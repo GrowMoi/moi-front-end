@@ -118,6 +118,48 @@
 
         $httpBackend.flush();
       });
+
+      it('should respond with 200 when get recommended contents into max content.', function() {
+        var neuronId = 1;
+        var kind = 'Que es';
+
+        /*jshint camelcase: false */
+        var expectedUrl = ENV.apiHost + '/api/neurons/' + neuronId + '/recommended_contents/' + kind;
+        var objectToRespond = {contents:[]};
+        var content = {
+                        id: 1,
+                        neuron_id: 1,
+                        kind: 'Que es'
+                      };
+
+        $httpBackend.expectGET(expectedUrl).respond(objectToRespond);
+
+        service.recommendedContents(content);
+
+        $httpBackend.flush();
+      });
+
+      it('should respond with 500 when cant get recommended contents into max content.', function() {
+        var neuronId = 1;
+        var kind = 'Que es';
+
+        /*jshint camelcase: false */
+        var expectedUrl = ENV.apiHost + '/api/neurons/' + neuronId + '/recommended_contents/' + kind;
+        var content = {
+                        id: 1,
+                        neuron_id: 1,
+                        kind: 'Que es'
+                      };
+
+        $httpBackend.expectGET(expectedUrl).respond(500);
+
+        service.recommendedContents(content).then(function(response){
+          sinon.assert.calledOnce($ionicPopup.alert);
+          chai.expect(response.status).to.deep.equals(500);
+        });
+
+        $httpBackend.flush();
+      });
     });
 
   });

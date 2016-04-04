@@ -17,6 +17,7 @@
     function activate() {
       vm.content = content;
       vm.media = content.videos.concat(content.media);
+      vm.recommendedContents = createGroupedArray(content.recommended, 2);
     }
 
     function showImage(urlImage) {
@@ -30,7 +31,10 @@
     }
 
     function sendNotes() {
-      ContentService.addNotesToContent(vm.content);
+      /*jshint camelcase: false */
+      if(vm.content.user_notes !== '' && vm.content.user_notes !== undefined){
+        ContentService.addNotesToContent(vm.content);
+      }
     }
 
     function learn() {
@@ -40,5 +44,14 @@
         });
       });
     }
+
+    function createGroupedArray(arr, chunkSize) {
+      var groups = [], i;
+      for (i = 0; i < arr.length; i += chunkSize) {
+          groups.push(arr.slice(i, i + chunkSize));
+      }
+      return groups;
+    }
+
   });
 })();

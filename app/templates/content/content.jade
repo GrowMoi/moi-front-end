@@ -29,16 +29,12 @@ ion-view(view-title='Content')
           .col
             .row
               h4 {{ ::'content.max.recommended ' | translate }}
-            .row
-              .col
-                img.format-image(src='images/asteroide_contra_tierra.jpg', alt='')
-              .col
-                img.format-image(src='images/leon.jpg', alt='')
-            .row
-              .col
-                img.format-image(src='images/lluvia_meteoros.jpg', alt='')
-              .col
-                img.format-image(src='images/neurona_en_crecimiento.jpg', alt='')
+            .row(ng-repeat='row in vm.recommendedContents')
+              .col(ng-repeat='content in row')
+                .content-kind(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
+                 img.img-content-1(ng-src='{{content.media[0]}}')
+                 .leyend-bottom
+                    {{content.title}}
         .row.content
           .col
             .row
