@@ -57,7 +57,8 @@
             level: 1,
             neuron_id: 1,
             media: [],
-            videos: []
+            videos: [],
+            recommended: []
           },
           $scope: $scope,
           $ionicPopup: $ionicPopup,
@@ -85,8 +86,15 @@
 
       it('sendNotes should call ContentService.addNotesToContent', function(){
         var spy = sinon.spy(ContentService, 'addNotesToContent');
+        ctrl.content.user_notes = 'notes';
         ctrl.sendNotes();
         chai.expect(spy.called).to.be.equal(true);
+      });
+
+      it('sendNotes should not call ContentService.addNotesToContent when notes is empty', function(){
+        var spy = sinon.spy(ContentService, 'addNotesToContent');
+        ctrl.sendNotes();
+        chai.expect(spy.called).to.be.equal(false);
       });
 
       it('learnContent should call ContentService.learnContent', function(){
@@ -94,6 +102,7 @@
         ctrl.learn();
         chai.expect(spy.called).to.be.equal(true);
       });
+
     });
 
   });

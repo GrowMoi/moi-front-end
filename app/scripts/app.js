@@ -79,7 +79,7 @@
       controllerAs: 'vm',
       templateUrl: 'templates/content/content.html',
       resolve: {
-        content: function(NeuronService, $stateParams){
+        content: function(NeuronService, $stateParams, ContentService){
           var contentSelected = {};
           return NeuronService.getNeuron($stateParams.neuronId).then(function(data) {
             data.neuron.contents.some(function(content) {
@@ -88,7 +88,10 @@
                 return true;
               }
             });
-            return contentSelected;
+            return ContentService.recommendedContents(contentSelected).then(function(data){
+                  contentSelected.recommended = data.contents;
+                  return contentSelected;
+            });
           });
         }
       }
