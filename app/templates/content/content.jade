@@ -41,5 +41,5 @@ ion-view(view-title='Content')
               h4 {{ ::'content.max.links ' | translate }}
             .row(ng-repeat="link in vm.content.links")
               a(href='{{::link}}' target='_blank') {{::link}}
-    .btn-learn(ng-click="vm.learn()")
+    .btn-learn(ng-click="vm.learn()", ng-if="!vm.content.learnt")
   moi-sidebar
