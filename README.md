@@ -19,7 +19,7 @@
 
 ### testing
 
-we'll be using [mocha](http://mochajs.org/) + [chai](http://chaijs.com/) + [sinon](sinonjs.org)
+we'll be using [mocha](http://mochajs.org/) + [chai](http://chaijs.com/) + [sinon](http://sinonjs.org)
 
 run test suite with
 

@@ -13,7 +13,8 @@
 
         dependencies = {
           $scope: $scope,
-          data: {neuron: {id: 1}}
+          data: {neuron: {id: 1}},
+          user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
         };
 
         ctrl = $controller('NeuronController', dependencies);

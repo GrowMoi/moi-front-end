@@ -3,11 +3,14 @@
 
   angular.module('moi', [
     'ionic',
+    'config',
     'moi.controllers',
     'moi.services',
     'moi.directives',
     'ng-token-auth',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'videosharing-embed',
+    'ionic.contrib.drawer'
   ])
 
   .run(function($ionicPlatform) {
@@ -40,11 +43,11 @@
       controllerAs: 'vm',
       templateUrl: 'templates/login/login.html'
     })
-
     .state('neuron', {
       url: '/neuron/{neuronId:int}',
       controller: 'NeuronController',
       controllerAs: 'vm',
+      cache: false,
       templateUrl: 'templates/neuron/neuron.html',
       resolve: {
         data: function(NeuronService, $stateParams){
@@ -52,30 +55,44 @@
           return NeuronService.getNeuron(id).then(function(data) {
             return data.neuron;
           });
+        },
+        user: function ($auth) {
+          return $auth.validateUser();
         }
       }
     })
 
-    // setup an abstract state for the tabs directive
-    .state('menu', {
-      url: '/menu',
-      abstract: true,
-      templateUrl: 'templates/common/menu.html'
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('menu.dash', {
-      url: '/dash',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/dashboard/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      },
+    .state('settings', {
+      url: '/settings',
+      controller: 'SettingsController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/settings/settings.html',
       resolve: {
-        auth: function ($auth) {
+        user: function ($auth) {
           return $auth.validateUser();
+        }
+      }
+    })
+    .state('content', {
+      url: '/neuron/{neuronId:int}/content/{contentId:int}',
+      controller: 'ContentController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/content/content.html',
+      resolve: {
+        content: function(NeuronService, $stateParams, ContentService){
+          var contentSelected = {};
+          return NeuronService.getNeuron($stateParams.neuronId).then(function(data) {
+            data.neuron.contents.some(function(content) {
+              if (content.id === $stateParams.contentId){
+                contentSelected = content;
+                return true;
+              }
+            });
+            return ContentService.recommendedContents(contentSelected).then(function(data){
+                  contentSelected.recommended = data.contents;
+                  return contentSelected;
+            });
+          });
         }
       }
     })

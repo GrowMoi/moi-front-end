@@ -10,7 +10,8 @@
       restrict: 'EA',
       templateUrl: 'templates/directives/grid-contents/grid-contents.html',
       scope: {
-        contents: '='
+        contents: '=',
+        settings: '='
       },
       controller: gridController,
       controllerAs: 'vm',
@@ -22,10 +23,13 @@
 
   function gridController($scope,
                           $http,
+                          $state,
+                          $filter,
                           ContentService){
 
     var vm = this;
     vm.selectContent = selectContent;
+    vm.sendContent = sendContent;
 
     init();
 
@@ -47,9 +51,27 @@
 
     function filterContents(contents){
       var newContents = contents.filter(function(content){
-        return content.kind !== 'enlaces' && content.kind !== 'videos' &&  content.learnt === false;
+        return content.learnt === false;
       });
+      newContents = orderContents(newContents);
       return newContents;
+    }
+
+    /* add content indexes based on settings user
+      and then filter by index */
+
+    function orderContents(contents){
+      var kinds = ['que-es', 'como-funciona', 'por-que-es', 'quien-cuando-donde'];
+      angular.forEach(contents, function(content){
+        var position = kinds.indexOf(content.kind);
+        if (vm.settings[position].level === content.level){
+          content.index = position;
+        }else{
+          content.index = parseInt('' + (position + 1) + content.level);
+        }
+      });
+      contents = $filter('orderBy')(contents, 'index');
+      return contents;
     }
 
     function buildGrid(contents){
@@ -72,6 +94,9 @@
       };
     }
 
+    function sendContent(neuronId, contentId){
+      $state.go('content', {neuronId: neuronId,contentId: contentId});
+    }
     // listeners
 
     /*if a content was learning by a user should be remove of grid*/

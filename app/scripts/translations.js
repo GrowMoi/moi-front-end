@@ -17,6 +17,26 @@
         'login': 'Login',
         'username': 'Username',
         'password': 'Password'
+      },
+      setting: {
+        'settings': 'Settings',
+        'interests': 'Interest',
+        'level': 'Level',
+        'choose-interest': 'Choose as many as you want'
+      },
+      content: {
+        kind: {
+          'que-es': 'What?',
+          'por-que-es': 'Why?',
+          'como-funciona': 'How?',
+          'quien-cuando-donde': 'Who/When/Where?'
+        },
+        max: {
+          'coments': 'Coments',
+          'media': 'Media',
+          'recommended': 'Recommended',
+          'links': 'Links'
+        }
       }
     });
 
@@ -36,7 +56,28 @@
       },
       signup: {
         'signup': 'Registrarse'
+      },
+      setting: {
+        'settings': 'Configuraciones',
+        'interests': 'Intereses',
+        'level': 'Nivel',
+        'choose-interest': 'Seleciona uno o cuantos quieras'
+      },
+      content: {
+        kind: {
+          'que-es': 'Qué es?',
+          'por-que-es': 'Por qué es?',
+          'como-funciona': 'Cómo funciona?',
+          'quien-cuando-donde': 'Quién/Cuándo/Dónde?'
+        },
+        max: {
+          'coments': 'Comentarios',
+          'media': 'Galeria',
+          'recommended': 'Recomendaciones',
+          'links': 'Enlaces'
+        }
       }
+
     });
 
     $translateProvider.preferredLanguage('es');
