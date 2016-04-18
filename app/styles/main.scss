@@ -1,3 +1,4 @@
+@import "fonts/fonts";
 @import "ionic/scss/_variables";
 @import "ionic/scss/_mixins";
 
@@ -6,11 +7,15 @@
 @import "layout/moi-drawer";
 @import "layout/arrow";
 @import "shared/forms";
+@import "shared/buttons";
 @import "login/login";
 @import "tree/tree";
 @import "neuron/contents";
 @import "neuron/views";
 @import "content/content";
+@import "content/views";
 @import "partials/modal-image";
 @import "slide-gallery/slide-gallery";
+@import "settings/views";
 @import "settings/settings";
+@import "settings/slide-settings";

@@ -1,0 +1,58 @@
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 44%; /* Specific width is required for Firefox. */
+}
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 30px;
+  width: 40px;
+  background: url(../images/bar_buttonH.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+  margin-top: -8px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  height: 30px;
+  width: 40px;
+  background: url(../images/bar_buttonH.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  height: 30px;
+  width: 40px;
+  background: url(../images/bar_buttonH.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: #4a5924;
+  border: 4px solid #3f501f;
+  height: 20px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #4a5924;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: #4a5924;
+  border: 4px solid #3f501f;
+  height: 20px;
+}
