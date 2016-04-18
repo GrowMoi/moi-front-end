@@ -5,7 +5,7 @@
                                             content,
                                             ContentService,
                                             ModalService,
-                                            $ionicPopup)
+                                            $state)
   {
     var vm = this;
     vm.showImage = showImage;
@@ -38,10 +38,9 @@
     }
 
     function learn() {
-      ContentService.learnContent(vm.content).then(function(){
-        $ionicPopup.alert({
-          title: 'Contenido Aprendido!'
-        });
+      ContentService.learnContent(vm.content).then(function() {
+        /*jshint camelcase: false */
+        $state.go('neuron', { neuronId: vm.content.neuron_id });
       });
     }
 

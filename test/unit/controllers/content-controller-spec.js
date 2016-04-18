@@ -7,10 +7,23 @@
         $scope,
         dependencies,
         $rootScope,
-        $ionicPopup,
+        $state,
         ModalService,
         ContentService;
     beforeEach(module('moi.controllers'));
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.provider('$state', function () {
+        return {
+          $get: function () {
+            return {
+              go: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+    }));
     beforeEach(module('moi.services', function($provide){
       $provide.factory('ContentService', function(){
         return {
@@ -43,11 +56,12 @@
       function (_$controller_,
                 _$rootScope_,
                 _ModalService_,
-                _ContentService_) {
+                _ContentService_,
+                _$state_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
-        $ionicPopup = { alert: sinon.stub() };
+        $state = _$state_;
         ModalService = _ModalService_;
         ContentService = _ContentService_;
 
@@ -61,7 +75,7 @@
             recommended: []
           },
           $scope: $scope,
-          $ionicPopup: $ionicPopup,
+          $state: $state,
           ModalService: ModalService,
           ContentService: ContentService
         };
