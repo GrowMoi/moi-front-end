@@ -1,45 +1,54 @@
-ion-view(view-title='Content')
-  ion-content.content-frame
+ion-view.content-view-max(view-title='Content')
+  ion-content
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
-    .row.content-max
-      .col
-        .row.content
-          h2 {{vm.content.title}}
-        .row.content
-          h4 {{vm.content.description}}
-      .col
-        .row.content
-          .col
-            img.format-image(src='{{vm.content.media[0]}}', ng-click='vm.showImage(vm.content.media[0])')
-        .row.content
-          .col
-            .row
-              h4 {{ ::'content.max.coments' | translate }}
-            .row
-              textarea.content-comments(ng-model='vm.content.user_notes', ng-blur='vm.sendNotes()')
-      .col
-        .row.content
-          .col
-            .row
-              h4 {{ ::'content.max.media' | translate }}
-            .row
-              slide-gallery(images='vm.media', item-per-slide='4')
-        .row.content
-          .col
-            .row
-              h4 {{ ::'content.max.recommended ' | translate }}
-            .row(ng-repeat='row in vm.recommendedContents')
-              .col(ng-repeat='content in row')
-                .content-kind(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
-                 img.img-content-1(ng-src='{{content.media[0]}}')
-                 .leyend-bottom
-                    {{content.title}}
-        .row.content
-          .col
-            .row
-              h4 {{ ::'content.max.links ' | translate }}
-            .row(ng-repeat="link in vm.content.links")
-              a(href='{{::link}}' target='_blank') {{::link}}
-    .btn-learn(ng-click="vm.learn()", ng-if="!vm.content.learnt")
+    .main-content-view
+      .row.content-max-view
+        .col.content-scroll
+          .row.border-bottom
+            .content-title {{vm.content.title}}
+            .corner.title-TR
+          .row
+            .corner.description-TL
+            .content-text {{vm.content.description}}
+            .corner.description-TR
+        .col.border-right.border-left
+          .row.border-bottom
+            .col.image-center
+              img.format-image(src='{{vm.content.media[0]}}', ng-click='vm.showImage(vm.content.media[0])')
+            .corner.image-TR
+          .row
+            .col
+              .row.text-notes
+                .content-subtitle {{ ::'content.max.coments' | translate }}
+              .row
+                textarea.content-comments(ng-model='vm.content.user_notes', ng-blur='vm.sendNotes()')
+        .col
+          .row
+            .col
+              .row.border-bottom
+                .content-subtitle-gallery {{ ::'content.max.media' | translate }}
+              .row
+                slide-gallery(images='vm.media', item-per-slide='4')
+            .corner.gallery-TR
+          .row
+            .col
+              .row.border-bottom
+                .content-subtitle {{ ::'content.max.recommended ' | translate }}
+              .row(ng-repeat='row in vm.recommendedContents')
+                .col(ng-repeat='content in row')
+                  .content-kind(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
+                   img.img-content-1(ng-src='{{content.media[0]}}')
+                   .leyend-bottom
+                      {{content.title}}
+            .corner.recomended-TR
+          .row
+            .col
+              .row.border-bottom
+                .content-subtitle {{ ::'content.max.links ' | translate }}
+              .row(ng-repeat="link in vm.content.links")
+                a(href='link' target='_blank') {{link}}
+            .corner.recomended-TR
+      .btns-options
+        .btn-learn(ng-click="vm.learn()")
   moi-sidebar

@@ -1,52 +1,89 @@
-.content{
-  border: 1px solid #e7e7e7 ;
-  color: #088A08;
+@font-face {
+  font-family: FontMoi-Title;
+  src: URL("../fonts/museo.woff");
 }
-.content > h2, h4, a{
-  color: #088A08;
+
+@font-face {
+  font-family: FontMoi-Content;
+  src: URL("../fonts/futura-normal.ttf");
 }
+
+.content-title{
+  color: #7ECE56;
+  font-size: 50px;
+  font-weight: bold;;
+  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-family: FontMoi-Title;
+  width: 100%;
+  line-height: 50px;
+}
+
+.content-subtitle{
+  color: #7ECE56;
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-family: FontMoi-Title;
+  width: 100%;
+}
+
+.content-subtitle-gallery{
+  color: #7ECE56;
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  font-family: FontMoi-Title;
+  width: 100%;
+}
+
+.content-text{
+  color: #7ECE56;
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  font-family: FontMoi-Content;
+  line-height: 30px;
+  width: 100%;
+}
+
+.content-comments {
+  color: #7ECE56;
+  font-family: FontMoi-Content;
+  font-weight: 700;
+  height: 15em;
+  width: 100%;
+  padding: 5px 0px;
+  resize: vertical;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-appearance: none;
+  border-radius: 0;
+  background: url(../images/notebook.png);
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.text-notes{
+  margin-bottom: 15px;
+}
+
 .format-image{
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid #088A08;
-  border-left: 3px solid #088A08;
+  box-shadow: 2px 1px 2px 1px #7ECE56;
 }
-.content-frame {
-  position: absolute;
-  top: 0px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  margin-top: -1px;
-  padding-top: 1px;
-  margin-bottom: -1px;
-  width: auto;
-  height: auto;
-  background-image: url(../images/frame-content.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 
-  .flecha-sidebar {
-    top: 42%;
-  }
-
-  .btn-learn {
-    bottom: 10px;
-  }
-}
-.content-max{
+.format-image-gallery{
+  height: 60px;
   width: 100%;
-  height: 85%;
-  overflow: scroll;
-  padding: 25px;
-  margin-top: 1%;
+  box-shadow: 2px 1px 2px 1px #7ECE56;
+  object-fit: cover;
 }
 
-.content-comments{
-  padding: 5px;
-  width: 100%;
-  min-height: 100px;
-  color: #088A08;
-  background-color: darkgrey;
+.content-scroll{
+  overflow: auto;
 }

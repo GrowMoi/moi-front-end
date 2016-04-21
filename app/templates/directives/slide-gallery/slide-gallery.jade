@@ -1,9 +1,9 @@
-.btns-slide
-  a.button.icon-left.ion-chevron-left.button-clear.button-white.btn-previous-slide(ng-click='vmSlide.previous()', ng-show='vmSlide.slideIndex > 0')
-  a.button.icon-left.ion-chevron-right.button-clear.button-white.btn-next-slide(ng-click='vmSlide.next()', ng-hide='vmSlide.slideIndex === vmSlide.slideImages.length-1')
 ion-slide-box.slide-gallery(on-slide-changed='vmSlide.slideChanged($index)')
   ion-slide(ng-repeat='slide in vmSlide.slideImages')
     .row
       .col(ng-repeat='content in slide')
-        img.format-image(ng-if='vmSlide.isImage(content)', ng-src='{{content}}', ng-click='vmSlide.showMedia(content)')
-        img.format-image(ng-if='!vmSlide.isImage(content)', ng-src='{{vmSlide.setImageForVideo(content)}}', ng-click='vmSlide.showMedia(content)')
+        img.format-image-gallery(ng-if='vmSlide.isImage(content)', ng-src='{{content}}', ng-click='vmSlide.showMedia(content)')
+        img.format-image-gallery(ng-if='!vmSlide.isImage(content)', ng-src='{{vmSlide.setImageForVideo(content)}}', ng-click='vmSlide.showMedia(content)')
+.btns-slide
+  a.button.icon-left.ion-chevron-left.button-clear.button-white.btn-previous-slide(ng-click='vmSlide.previous()', ng-show='vmSlide.slideIndex > 0')
+  a.button.icon-left.ion-chevron-right.button-clear.button-white.btn-next-slide(ng-click='vmSlide.next()', ng-hide='vmSlide.slideIndex === vmSlide.slideImages.length-1')
