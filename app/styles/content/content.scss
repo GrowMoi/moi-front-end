@@ -1,52 +1,107 @@
-.content{
-  border: 1px solid #e7e7e7 ;
-  color: #088A08;
-}
-.content > h2, h4, a{
-  color: #088A08;
-}
-.format-image{
-  height: 100%;
-  width: 100%;
-  border-bottom: 3px solid #088A08;
-  border-left: 3px solid #088A08;
-}
-.content-frame {
-  position: absolute;
-  top: 0px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  margin-top: -1px;
-  padding-top: 1px;
-  margin-bottom: -1px;
-  width: auto;
-  height: auto;
-  background-image: url(../images/frame-content.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-
-  .flecha-sidebar {
-    top: 42%;
+.content-view-max {
+  a {
+    color: $titlesColor;
+    text-decoration: none;
   }
 
-  .btn-learn {
-    bottom: 10px;
-  }
-}
-.content-max{
-  width: 100%;
-  height: 85%;
-  overflow: scroll;
-  padding: 25px;
-  margin-top: 1%;
-}
+  .row-content-title {
+    height: 150px;
 
-.content-comments{
-  padding: 5px;
-  width: 100%;
-  min-height: 100px;
-  color: #088A08;
-  background-color: darkgrey;
+    .content-title {
+      color: $titlesColor;
+      font-size: 50px;
+      font-weight: bold;;
+      margin-bottom: 30px;
+      margin-top: 15px;
+      margin-left: 20px;
+      font-family: FontMoi-Title;
+      width: 100%;
+      line-height: 50px;
+      overflow: auto;
+      word-break: break-word;
+    }
+  }
+
+  .content-subtitle {
+    color: $titlesColor;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: FontMoi-Title;
+    width: 100%;
+  }
+
+  .content-subtitle-gallery {
+    color: $titlesColor;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    font-family: FontMoi-Title;
+    width: 100%;
+  }
+
+  .row-content-text {
+    max-height: 400px;
+
+    .content-text {
+      color: $titlesColor;
+      font-size: 25px;
+      font-weight: 400;
+      margin-bottom: 5px;
+      font-family: FontMoi-Content;
+      line-height: 30px;
+      overflow: auto;
+      width: 100%;
+      word-break: break-word;
+      text-align: justify;
+    }
+  }
+
+  .content-comments {
+    color: $titlesColor;
+    font-family: FontMoi-Content;
+    font-weight: 700;
+    height: 12em;
+    width: 100%;
+    padding: 5px 0px;
+    resize: vertical;
+    font-size: 16px;
+    line-height: 20px;
+    -webkit-appearance: none;
+    border-radius: 0;
+    background: url(../images/notebook.png);
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .text-notes {
+    margin-bottom: 15px;
+  }
+
+  .format-image {
+    height: 240px;
+    width: 100%;
+    box-shadow: 2px 5px 2px 1px $titlesColor;
+  }
+
+  .format-image-gallery {
+    height: 60px;
+    width: 100%;
+    box-shadow: 2px 1px 2px 1px $titlesColor;
+    object-fit: cover;
+  }
+
+  .content-scroll {
+    overflow: auto;
+  }
+
+  .content-kind-contents {
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 90px;
+    }
+  }
 }

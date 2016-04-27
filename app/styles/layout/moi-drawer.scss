@@ -3,6 +3,13 @@ drawer {
   width: 275px !important;
 }
 
+drawer.left {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .flecha-sidebar {
   left: 2px;
   cursor: pointer;

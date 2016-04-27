@@ -1,0 +1,35 @@
+.content-title-settings{
+  color: $moiDarkGreen;
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-family: FontMoi-Title;
+  width: 100%;
+  line-height: 50px;
+}
+
+.content-subtitle-settings{
+  color: #d2d583;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: FontMoi-Title;
+  margin-left: -8px;
+}
+
+.border-bottom-settings{
+  border-bottom: 4px solid $moiDarkGreen;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  padding-bottom: 20px;
+  width: 95%;
+}
+
+.panel-left-margin-right{
+  padding-right: 8%;
+}
+
+.panel-right-margin-right{
+  margin-left: -6%;
+}
