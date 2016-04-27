@@ -41,7 +41,7 @@
 
       return inputs.loginBtn.click();
 
-      browser.wait(function(){
+      return browser.wait(function(){
         return expect(
             browser.getLocationAbsUrl()
           ).to.eventually.match(/tree/);
