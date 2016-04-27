@@ -1,26 +1,29 @@
-.content-view-max{
+.content-view-max {
   a {
-      color: $tiltesColor;
-      text-decoration: none;
+    color: $titlesColor;
+    text-decoration: none;
   }
-  .row-content-title{
-      height: 150px;
-      .content-title{
-        color: $tiltesColor;
-        font-size: 50px;
-        font-weight: bold;;
-        margin-bottom: 30px;
-        margin-top: 15px;
-        margin-left: 20px;
-        font-family: FontMoi-Title;
-        width: 100%;
-        line-height: 50px;
-        overflow: auto;
-        word-break: break-word;
-      }
+
+  .row-content-title {
+    height: 150px;
+
+    .content-title {
+      color: $titlesColor;
+      font-size: 50px;
+      font-weight: bold;;
+      margin-bottom: 30px;
+      margin-top: 15px;
+      margin-left: 20px;
+      font-family: FontMoi-Title;
+      width: 100%;
+      line-height: 50px;
+      overflow: auto;
+      word-break: break-word;
+    }
   }
-  .content-subtitle{
-    color: $tiltesColor;
+
+  .content-subtitle {
+    color: $titlesColor;
     font-size: 35px;
     font-weight: bold;
     margin-top: 10px;
@@ -28,8 +31,9 @@
     font-family: FontMoi-Title;
     width: 100%;
   }
-  .content-subtitle-gallery{
-    color: $tiltesColor;
+
+  .content-subtitle-gallery {
+    color: $titlesColor;
     font-size: 35px;
     font-weight: bold;
     margin-top: -10px;
@@ -37,23 +41,26 @@
     font-family: FontMoi-Title;
     width: 100%;
   }
-  .row-content-text{
-      max-height: 400px;
-      .content-text{
-        color: $tiltesColor;
-        font-size: 25px;
-        font-weight: 400;
-        margin-bottom: 5px;
-        font-family: FontMoi-Content;
-        line-height: 30px;
-        overflow: auto;
-        width: 100%;
-        word-break: break-word;
-        text-align: justify;
-      }
+
+  .row-content-text {
+    max-height: 400px;
+
+    .content-text {
+      color: $titlesColor;
+      font-size: 25px;
+      font-weight: 400;
+      margin-bottom: 5px;
+      font-family: FontMoi-Content;
+      line-height: 30px;
+      overflow: auto;
+      width: 100%;
+      word-break: break-word;
+      text-align: justify;
+    }
   }
+
   .content-comments {
-    color: $tiltesColor;
+    color: $titlesColor;
     font-family: FontMoi-Content;
     font-weight: 700;
     height: 12em;
@@ -68,24 +75,29 @@
     margin-left: 12px;
     margin-right: 12px;
   }
-  .text-notes{
+
+  .text-notes {
     margin-bottom: 15px;
   }
-  .format-image{
+
+  .format-image {
     height: 240px;
     width: 100%;
-    box-shadow: 2px 5px 2px 1px $tiltesColor;
+    box-shadow: 2px 5px 2px 1px $titlesColor;
   }
-  .format-image-gallery{
+
+  .format-image-gallery {
     height: 60px;
     width: 100%;
-    box-shadow: 2px 1px 2px 1px $tiltesColor;
+    box-shadow: 2px 1px 2px 1px $titlesColor;
     object-fit: cover;
   }
-  .content-scroll{
+
+  .content-scroll {
     overflow: auto;
   }
-  .content-kind-contents{
+
+  .content-kind-contents {
     img {
       object-fit: cover;
       width: 100%;

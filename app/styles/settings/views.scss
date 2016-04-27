@@ -1,5 +1,5 @@
 .content-title-settings{
-  color: #4A4B21;
+  color: $moiDarkGreen;
   font-size: 50px;
   font-weight: bold;
   margin-bottom: 30px;
@@ -19,7 +19,7 @@
 }
 
 .border-bottom-settings{
-  border-bottom: 4px solid #4A4B21;
+  border-bottom: 4px solid $moiDarkGreen;
   margin-bottom: 20px;
   margin-left: 10px;
   padding-bottom: 20px;

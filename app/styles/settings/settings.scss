@@ -63,7 +63,7 @@
     }
     .title-label{
       background-color: rgba(120, 141, 90, 0.68);
-      color: #4A4B21;
+      color: $moiDarkGreen;
       font-size: 16px;
       font-weight: bold;
       border-radius: 5px;
@@ -75,7 +75,7 @@
     }
     .title-label-1{
       background-color: rgba(120, 141, 90, 0.68);
-      color: #4A4B21;
+      color: $moiDarkGreen;
       font-size: 16px;
       font-weight: bold;
       border-radius: 5px;
@@ -102,7 +102,7 @@
   .panel-right{
     .label{
       background-color: rgba(120, 141, 90, 0.68);
-      color: #4A4B21;
+      color: $moiDarkGreen;
       font-size: 16px;
       font-weight: bold;
       width: 55%;
