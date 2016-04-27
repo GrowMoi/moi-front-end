@@ -38,13 +38,15 @@
     it('should authenticate and display the dashboard view', function() {
       inputs.username.sendKeys('protractor@test.com');
       inputs.password.sendKeys('protractortest');
-
+      
       return inputs.loginBtn.click().then(function () {
-        return browser.driver.getCurrentUrl().then(function(url) {
+        return browser.driver.wait(function() {
+          return browser.driver.getCurrentUrl().then(function(url) {
             return /tree/.test(url);
-        });
+          });
+        }, 5000);
       });
-    })
+    });
 
     it('should display a popup for an unsuccessful login', function() {
       inputs.username.sendKeys('error@bad.com');
