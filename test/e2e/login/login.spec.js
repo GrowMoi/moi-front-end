@@ -40,11 +40,9 @@
       inputs.password.sendKeys('protractortest');
 
       return inputs.loginBtn.click().then(function () {
-        return browser.wait(function(){
-          return expect(
-              browser.getLocationAbsUrl()
-            ).to.eventually.match(/tree/);
-        }, 5000);
+        return browser.driver.getCurrentUrl().then(function(url) {
+            return /tree/.test(url);
+        });
       });
     })
 
