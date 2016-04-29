@@ -3,7 +3,13 @@
     color: $titlesColor;
     text-decoration: none;
   }
-
+  .arrow{
+    top: 3%;
+    left: 35px;
+  }
+  .main-content-view {
+    background-image: url(../images/marco-max-content.png) !important;
+  }
   .row-content-title {
     height: 150px;
 
@@ -19,6 +25,7 @@
       line-height: 50px;
       overflow: auto;
       word-break: break-word;
+      text-indent: 60px;
     }
   }
 
@@ -54,7 +61,7 @@
       line-height: 30px;
       overflow: auto;
       width: 100%;
-      word-break: break-word;
+      word-break: break-all;
       text-align: justify;
     }
   }
