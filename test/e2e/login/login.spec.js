@@ -17,6 +17,8 @@
         name;
 
     beforeEach(function() {
+      // https://github.com/ariya/phantomjs/issues/11637#issuecomment-28078551
+      browser.driver.manage().window().setSize(1280, 720);
       browser.get('/');
       inputs = {
         username: element(by.model('vm.loginForm.email')),
@@ -38,7 +40,7 @@
     it('should authenticate and display the dashboard view', function() {
       inputs.username.sendKeys('protractor@test.com');
       inputs.password.sendKeys('protractortest');
-      
+
       return inputs.loginBtn.click().then(function () {
         return browser.driver.wait(function() {
           return browser.driver.getCurrentUrl().then(function(url) {
