@@ -20,15 +20,18 @@
   }
 }
 
-.content-settings{
+.content-settings, .content-searches{
   position: relative;
   background-repeat: no-repeat;
   margin-top: 4%;
   margin-left: 4%;
-  background-size: 100% 92%;
   width: 92%;
   height: 100%;
   background-image: url(../images/caja_L.png);
+}
+
+.content-settings {
+  background-size: 100% 92%;
 }
 
 .settings{

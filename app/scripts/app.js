@@ -122,6 +122,12 @@
           });
         }
       }
+    })
+    .state('searches', {
+      url: '/searches',
+      controller: 'SearchesController',
+      controllerAs: 'searchesModel',
+      templateUrl: 'templates/searches/searches.html'
     });
 
     // if none of the above states are matched, use this as the fallback
