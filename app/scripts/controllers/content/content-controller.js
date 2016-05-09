@@ -35,9 +35,13 @@
     }
 
     function read() {
-      ContentService.readContent(vm.content).then(function() {
+      ContentService.readContent(vm.content).then(function(response) {
         /*jshint camelcase: false */
-        $state.go('neuron', { neuronId: vm.content.neuron_id });
+        if (response.data.perform_test) {
+          $state.go('test', { testId: 1, testData: {test: response.data.test_contents} });
+        }else{
+          $state.go('neuron', { neuronId: vm.content.neuron_id });
+        }
       });
     }
 

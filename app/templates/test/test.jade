@@ -1,0 +1,30 @@
+ion-view.neuron-view(view-title='{{vm.neuron.title}}')
+  ion-content
+    .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+    .flecha-sidebar(ng-click="toggleDrawer()")
+      img(src="images/flecha_1.png")
+    .main-view
+      .content-view
+        .widgets
+          .progress-bar
+            .internal-bar(style="width: {{vmTest.percentage}}%")
+            span {{vmTest.percentage}}%
+        .test-container.row
+          .main-image.col
+            img(src="images/img-test.png")
+          .question.col-50
+            .test(ng-repeat="question in vmTest.questions",
+                  ng-show="question.showQuestion",
+                  ng-init="question.index = $index")
+              h1 {{question.title}}
+              .answer(ng-repeat="answer in question.possible_answers",
+                      ng-class="{'answer-selected': answer.selected }",
+                      ng-click="vmTest.selectAnswer(question.possible_answers[$index], question.index)") 
+                h4 {{answer.text}}
+          .pista.col
+            span
+        .controls
+          img(src="images/next-test.png", 
+              ng-click="vmTest.next()")
+  moi-sidebar
+  

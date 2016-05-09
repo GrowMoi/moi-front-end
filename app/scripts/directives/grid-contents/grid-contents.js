@@ -101,10 +101,16 @@
 
     /*if a content was reading by a user should be remove of grid*/
     $scope.$on('neuron:remove-content', function(){
-      ContentService.readContent(vm.contentSelected).then(function(){
-        var index = vm.contentsFilter.indexOf(vm.contentSelected);
-        vm.contentsFilter.splice(index, 1);
-        buildGrid(vm.contentsFilter);
+      ContentService.readContent(vm.contentSelected).then(function(response){
+        /*jshint camelcase: false */
+        if (response.data.perform_test) {
+          console.log(response.data);
+          $state.go('test', { testId: 1, testData: {test: response.data.test_contents} });
+        }else{
+          var index = vm.contentsFilter.indexOf(vm.contentSelected);
+          vm.contentsFilter.splice(index, 1);
+          buildGrid(vm.contentsFilter);
+        }
       });
     });
 
