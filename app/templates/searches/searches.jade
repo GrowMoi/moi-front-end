@@ -5,6 +5,19 @@ ion-view.content-view-max(view-title='Content')
       img(src="images/flecha_1.png")
     .main-content-view
       .content-searches
+        form(ng-submit='searchesmodel.search()')
+          label.item.item-input
+            input(type='text', placeholder="{{ ::'searches.search' | translate }}")
+          .input(
+              type='submit'
+            ).button
+        .result-searches
+          .row(ng-repeat='row in searchesmodel.results')
+            .col(ng-repeat='content in row')
+              .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
+               img.format-image(ng-src='{{content.media[0]}}')
+               .leyend-bottom
+                  {{content.title}}
       .btns-options
         .btn-learn(ng-click="vm.learn()")
   moi-sidebar

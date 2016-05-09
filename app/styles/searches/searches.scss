@@ -4,4 +4,46 @@
 
 .content-searches {
   background-size: 100% 83%;
+  form {
+    position: absolute;
+    right: 70px;
+    top: 35px;
+    width: 400px;
+
+    label.item-input {
+      background-image: url(../images/busqueda_bar.png);
+      @include background-size(contain);
+      background-position: left center;
+      background-repeat: no-repeat;
+      height: 60px;
+      padding-left: 25px;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .list {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .list, label {
+    background-color: transparent;
+    border: 0;
+  }
+
+  .button {
+    background-image: url(../images/telescopio.png);
+    position: absolute;
+    top: 5px;
+    z-index: 2;
+    right: 15px;
+  }
+  
+  .result-searches {
+    position: absolute;
+    width: 92%;
+    top: 100px;
+    left: 35px;
+  }
 }

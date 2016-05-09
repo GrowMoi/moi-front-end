@@ -37,6 +37,9 @@
           'recommended': 'Recommended',
           'links': 'Links'
         }
+      },
+      searches: {
+        'search': 'Search'
       }
     });
 
@@ -76,6 +79,9 @@
           'recommended': 'Recomendaciones',
           'links': 'Enlaces'
         }
+      },
+      searches: {
+        'search': 'Buscar' 
       }
 
     });
