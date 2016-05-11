@@ -19,7 +19,7 @@
     beforeEach(function() {
       // https://github.com/ariya/phantomjs/issues/11637#issuecomment-28078551
       browser.driver.manage().window().setSize(1280, 720);
-      browser.driver.ignoreSynchronization = true;
+      browser.ignoreSynchronization = true;
       browser.get('/');
       inputs = {
         username: element(by.model('vm.loginForm.email')),
