@@ -24,6 +24,7 @@
                               $element,
                               $rootScope,
                               $ionicPlatform,
+                              $window,
                               $cordovaNativeAudio) {
     var vmSound = this,
         isNativeImplementation;
@@ -36,7 +37,7 @@
 
     // we'll do it once the device is ready
     $ionicPlatform.ready(function () {
-      isNativeImplementation = !!window.cordova;
+      isNativeImplementation = !!$window.cordova;
       preloadAudio().then(function () {
         audioHasLoaded();
         autoPlay();
