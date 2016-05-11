@@ -25,6 +25,10 @@
       };
     });
 
+    afterEach(function() {
+      return browser.executeScript('window.localStorage.clear();');
+    });
+
     it('should require authentication', function () {
       return expect(
         browser.getLocationAbsUrl()
@@ -36,15 +40,15 @@
       inputs.password.sendKeys('protractortest');
 
       return inputs.loginBtn.click().then(function () {
-        return expect(
-            browser.getLocationAbsUrl()
-          ).to.eventually.match(/tree/);
+        return browser.driver.getCurrentUrl().then(function(url) {
+            return /tree/.test(url);
+        });
       });
     })
 
     it('should display a popup for an unsuccessful login', function() {
-      inputs.username.sendKeys('incorrect');
-      inputs.password.sendKeys('incorrect');
+      inputs.username.sendKeys('error@bad.com');
+      inputs.password.sendKeys('fakepassword');
 
       return inputs.loginBtn.click().then(function () {
         var popup = element(
