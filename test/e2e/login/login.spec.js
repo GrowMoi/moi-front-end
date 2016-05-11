@@ -46,7 +46,7 @@
           return browser.driver.getCurrentUrl().then(function(url) {
             return /tree/.test(url);
           });
-        }, 5000);
+        }, 3000);
       });
     });
 
