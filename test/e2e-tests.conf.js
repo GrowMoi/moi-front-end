@@ -8,7 +8,6 @@ exports.config = {
   specs: [
     'e2e/**/*.spec.js'
   ],
-  allScriptsTimeout: 5000,
   mochaOpts: {
     reporter: "spec",
     timeout: 6000,
