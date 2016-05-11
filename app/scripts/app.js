@@ -29,7 +29,19 @@
     });
   })
 
-  .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+    // on 401 redirect to login
+    $httpProvider.interceptors.push(function($injector, $q){
+      return {
+        'responseError': function(rejection) {
+            if (rejection.status === 401) {
+              $injector.get('$state').go('login');
+              $injector.get('$ionicLoading').hide();
+            }
+            return $q.reject(rejection);
+          }
+      };
+    });
 
     $ionicConfigProvider.views.transition('none');
     // Ionic uses AngularUI Router which uses the concept of states
