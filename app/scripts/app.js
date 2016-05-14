@@ -4,6 +4,7 @@
   angular.module('moi', [
     'ionic',
     'config',
+    'ngCordova',
     'moi.controllers',
     'moi.services',
     'moi.directives',
