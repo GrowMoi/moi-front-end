@@ -18,8 +18,7 @@
     var vm = this,
         gifs = [],
         sortedGifs,
-        currentIndex,
-        queueSize = $element.children().length;
+        currentIndex;
 
     vm.enqueue = enqueue;
 
@@ -47,6 +46,7 @@
     function gifLoaded(gifController) {
       vm.loadedGif();
       gifs.push(gifController);
+      var queueSize = $element.find('gif-no-loop').length;
       if (gifs.length === queueSize) {
         playAllGifs();
       }

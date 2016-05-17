@@ -4,8 +4,8 @@
   angular.module('moi.controllers')
   .controller('TreeController', function (data) {
     var treeModel = this;
-    /* jshint camelcase: false */
-    treeModel.rootId = data.meta.root_id;
+    treeModel.neurons = data.tree;
+    treeModel.meta = data.meta;
   });
 
 })();

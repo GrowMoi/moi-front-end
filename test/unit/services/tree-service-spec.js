@@ -28,8 +28,8 @@
     });
 
     describe('#service', function(){
-      it('should do a request to /api/neurons', function(){
-        var expectedUrl = ENV.apiHost + '/api/neurons';
+      it('should do a request to /api/tree', function(){
+        var expectedUrl = ENV.apiHost + '/api/tree';
         var objectToRespond = {'neurons':[]};
 
         $httpBackend.expectGET(expectedUrl)
