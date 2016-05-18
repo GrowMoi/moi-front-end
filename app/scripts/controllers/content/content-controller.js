@@ -17,7 +17,6 @@
     function activate() {
       vm.content = content;
       vm.media = content.videos.concat(content.media);
-      vm.recommendedContents = createGroupedArray(content.recommended, 2);
     }
 
     function showImage(urlImage) {
@@ -40,14 +39,6 @@
         /*jshint camelcase: false */
         $state.go('neuron', { neuronId: vm.content.neuron_id });
       });
-    }
-
-    function createGroupedArray(arr, chunkSize) {
-      var groups = [], i;
-      for (i = 0; i < arr.length; i += chunkSize) {
-          groups.push(arr.slice(i, i + chunkSize));
-      }
-      return groups;
     }
 
   });
