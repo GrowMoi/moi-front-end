@@ -127,15 +127,7 @@
       url: '/searches',
       controller: 'SearchesController',
       controllerAs: 'searchesmodel',
-      templateUrl: 'templates/searches/searches.html',
-      resolve: {
-        data: function(NeuronService, $stateParams){
-          var id = 1;
-          return NeuronService.getNeuron(id).then(function(data) {
-            return data.neuron;
-          });
-        }
-      }
+      templateUrl: 'templates/searches/searches.html'
     });
 
     // if none of the above states are matched, use this as the fallback
