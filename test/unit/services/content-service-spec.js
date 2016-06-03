@@ -36,7 +36,7 @@
         var neuronId = 1;
         var contentId = 1;
         /*jshint camelcase: false */
-        var expectedUrl = ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/learn';
+        var expectedUrl = ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/read';
 
         $httpBackend.expectPOST(expectedUrl).respond(200);
 
@@ -45,7 +45,7 @@
                         neuron_id: 1
                       };
 
-        service.learnContent(content).then(function(response){
+        service.readContent(content).then(function(response){
           chai.expect(response.status).to.deep.equals(200);
         });
 
@@ -56,7 +56,7 @@
         var neuronId = 1;
         var contentId = 1;
         /*jshint camelcase: false */
-        var expectedUrl = ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/learn';
+        var expectedUrl = ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/read';
 
         $httpBackend.expectPOST(expectedUrl).respond(500);
 
@@ -65,7 +65,7 @@
                         neuron_id: 1
                       };
 
-        service.learnContent(content).then(function(response){
+        service.readContent(content).then(function(response){
           sinon.assert.calledOnce($ionicPopup.alert);
           chai.expect(response.status).to.deep.equals(500);
         });

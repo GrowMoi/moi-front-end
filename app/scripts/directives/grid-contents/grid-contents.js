@@ -51,7 +51,7 @@
 
     function filterContents(contents){
       var newContents = contents.filter(function(content){
-        return content.learnt === false;
+        return content.read === false;
       });
       newContents = orderContents(newContents);
       return newContents;
@@ -99,9 +99,9 @@
     }
     // listeners
 
-    /*if a content was learning by a user should be remove of grid*/
+    /*if a content was reading by a user should be remove of grid*/
     $scope.$on('neuron:remove-content', function(){
-      ContentService.learnContent(vm.contentSelected).then(function(){
+      ContentService.readContent(vm.contentSelected).then(function(){
         var index = vm.contentsFilter.indexOf(vm.contentSelected);
         vm.contentsFilter.splice(index, 1);
         buildGrid(vm.contentsFilter);

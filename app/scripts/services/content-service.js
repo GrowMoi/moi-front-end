@@ -7,21 +7,21 @@
 
   function ContentService($http, $ionicPopup, ENV) {
     var service = {
-      learnContent: learnContent,
+      readContent: readContent,
       addNotesToContent: addNotesToContent,
       recommendedContents: recommendedContents
     };
 
     return service;
 
-    function learnContent(content) {
+    function readContent(content) {
       /*jshint camelcase: false */
       var contentId = content.id,
           neuronId = content.neuron_id;
 
       return $http({
         method: 'POST',
-        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/learn',
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/read',
         data: {}
       }).then(function success(res) {
         return res;

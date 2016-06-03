@@ -29,9 +29,9 @@
     });
 
     describe('learn', function(){
-      it('should $broadcast neuron:remove-content on learn', function(){
+      it('should $broadcast neuron:remove-content on read', function(){
         var spy = sinon.spy($scope, '$broadcast');
-        ctrl.learn();
+        ctrl.read();
         $scope.$digest();
         chai.expect(spy.called).to.be.equal(true);
       });
