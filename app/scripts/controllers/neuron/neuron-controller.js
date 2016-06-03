@@ -8,7 +8,7 @@
               data) {
 
     var vm = this;
-    vm.learn = learn;
+    vm.read = read;
     /*jshint camelcase: false */
     vm.contentsPreferences = user.content_preferences;
 
@@ -18,7 +18,7 @@
 
     init();
 
-    function learn(){
+    function read(){
       $scope.$broadcast('neuron:remove-content');
     }
 

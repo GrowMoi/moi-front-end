@@ -34,7 +34,7 @@
               }
             };
           },
-          learnContent: function(){
+          readContent: function(){
             return {
               then: function(){
                 return null;
@@ -105,15 +105,9 @@
         chai.expect(spy.called).to.be.equal(true);
       });
 
-      it('sendNotes should not call ContentService.addNotesToContent when notes is empty', function(){
-        var spy = sinon.spy(ContentService, 'addNotesToContent');
-        ctrl.sendNotes();
-        chai.expect(spy.called).to.be.equal(false);
-      });
-
-      it('learnContent should call ContentService.learnContent', function(){
-        var spy = sinon.spy(ContentService, 'learnContent');
-        ctrl.learn();
+      it('readContent should call ContentService.readContent', function(){
+        var spy = sinon.spy(ContentService, 'readContent');
+        ctrl.read();
         chai.expect(spy.called).to.be.equal(true);
       });
 

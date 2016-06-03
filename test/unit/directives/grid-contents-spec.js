@@ -23,7 +23,7 @@
     beforeEach(module('moi.services', function($provide){
       $provide.factory('ContentService', function(){
         return {
-          learnContent: function(){
+          readContent: function(){
             return {
               then: function(){
                 return null;
@@ -115,7 +115,7 @@
 
     describe('#gridContents methods', function(){
       it('should call broadcast neuron:remove-content', function(){
-        var spy = sinon.spy(ContentService, 'learnContent');
+        var spy = sinon.spy(ContentService, 'readContent');
 
         template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
 

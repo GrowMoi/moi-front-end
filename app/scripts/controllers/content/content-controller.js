@@ -10,7 +10,7 @@
     var vm = this;
     vm.showImage = showImage;
     vm.sendNotes = sendNotes;
-    vm.learn = learn;
+    vm.read = read;
 
     activate();
 
@@ -32,13 +32,11 @@
 
     function sendNotes() {
       /*jshint camelcase: false */
-      if(vm.content.user_notes !== '' && vm.content.user_notes !== undefined){
-        ContentService.addNotesToContent(vm.content);
-      }
+      ContentService.addNotesToContent(vm.content);
     }
 
-    function learn() {
-      ContentService.learnContent(vm.content).then(function() {
+    function read() {
+      ContentService.readContent(vm.content).then(function() {
         /*jshint camelcase: false */
         $state.go('neuron', { neuronId: vm.content.neuron_id });
       });
