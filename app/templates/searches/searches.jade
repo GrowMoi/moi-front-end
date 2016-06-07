@@ -11,9 +11,8 @@ ion-view.search-view-max(view-title='Content')
                   required='required',
                   ng-model='searchesmodel.query',
                   placeholder="{{ ::'searches.search' | translate }}")
-          input(
-              type='submit',
-              value=""
+          .input(
+              type='submit'
             ).button
         .result-searches
           .row.result-contents
@@ -21,13 +20,5 @@ ion-view.search-view-max(view-title='Content')
               .content-kind-contents(ui-sref="neuron({neuronId: neuron.id})")
                img.format-image(ng-src='{{neuron.contents[0].media[0]}}')
                .leyend-bottom
-                  {{neuron.title}}     
-        uib-pagination.pagination-sm.pagination-moi(
-          ng-if='searchesmodel.totalItems',
-          boundary-link-numbers='true',
-          force-ellipses='true',
-          max-size='searchesmodel.maxSize',
-          total-items='searchesmodel.totalItems',
-          ng-model='searchesmodel.currentPage',
-          ng-change='searchesmodel.search()')
+                  {{neuron.title}}
   moi-sidebar

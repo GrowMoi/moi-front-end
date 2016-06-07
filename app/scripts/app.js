@@ -11,9 +11,7 @@
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
-    'ionic.contrib.drawer',
-    'ui.bootstrap',
-    'ngAnimate'
+    'ionic.contrib.drawer'
   ])
 
   .run(function($ionicPlatform) {
