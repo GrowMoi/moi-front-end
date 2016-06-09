@@ -15,7 +15,7 @@ ion-view.search-view-max(view-title='Content')
               type='submit'
             ).button
         ion-content.result-searches
-          .col.col-25(ng-repeat='neuron in searchesmodel.neurons')
+          .col.col-25.neuron(ng-repeat='neuron in searchesmodel.neurons')
             .content-kind-contents(ui-sref="neuron({neuronId: neuron.id})")
              img.format-image(ng-src='{{neuron.contents[0].media[0]}}')
              .leyend-bottom

@@ -7,6 +7,7 @@
     searchesmodel.query = '';
     searchesmodel.search = search;
     searchesmodel.currentPage = 1;
+    searchesmodel.noMoreItemsAvailable = true;
 
     function search() {
       // Setup the loader
@@ -21,25 +22,25 @@
         searchesmodel.neurons = resp.search;
         /*jshint camelcase: false */
         searchesmodel.totalItems = resp.meta.total_items;
+        if(searchesmodel.totalItems > 8){
+          searchesmodel.noMoreItemsAvailable = false;
+          searchesmodel.loadMore = loadMore;
+        }
       }).finally(function(){
         $ionicLoading.hide();
       });
     }
 
-    searchesmodel.noMoreItemsAvailable = false;
-
-    searchesmodel.loadMore = function() {
+    function loadMore() {
       NeuronService.searchNeurons(searchesmodel.query, searchesmodel.currentPage).then(function(resp) {
         searchesmodel.neurons = searchesmodel.neurons.concat(resp.search);
-        /*jshint camelcase: false */
-        searchesmodel.totalItems = resp.meta.total_items;
         searchesmodel.currentPage += 1;
         if ( searchesmodel.neurons.length === searchesmodel.totalItems ) {
           searchesmodel.noMoreItemsAvailable = true;
         }
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });
-    };
+    }
 
     searchesmodel.neurons = [];
   });
