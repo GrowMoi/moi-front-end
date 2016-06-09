@@ -89,8 +89,11 @@
     width: 92%;
     top: 100px;
     left: 35px;
-  }
-  .result-contents{
-    flex-wrap: wrap;
+    bottom: 130px;
+    height: 215px;
+    .scroll{
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }
