@@ -1,0 +1,25 @@
+ion-view.search-view-max(view-title='Content')
+  ion-content
+    .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+    .flecha-sidebar(ng-click="toggleDrawer()")
+      img(src="images/flecha_1.png")
+    .main-search-view
+      .content-searches
+        form(ng-submit='searchesmodel.reloadSearch()')
+          label.item.item-input
+            input(type='text',
+                  required='required',
+                  ng-model='searchesmodel.query',
+                  placeholder="{{ ::'searches.search' | translate }}")
+          input(
+              type='submit',
+              value=''
+            ).button
+        ion-content.result-searches
+          .col.col-25.neuron(ng-repeat='neuron in searchesmodel.neurons')
+            .content-kind-contents(ui-sref="neuron({neuronId: neuron.id})")
+             img.format-image(ng-src='{{neuron.contents[0].media[0]}}')
+             .leyend-bottom
+                {{neuron.title}}
+          ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='10%')
+  moi-sidebar

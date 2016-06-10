@@ -79,6 +79,9 @@
   }
   .recomended-margin-top{
     margin-top: -25px;
+    .recommended-contents{
+      flex-wrap: wrap;
+    }
   }
   //links
   .links-TR {

@@ -36,8 +36,8 @@ ion-view.content-view-max(view-title='Content')
             .col.recomended-margin-top
               .row.border-bottom
                 .content-subtitle {{ ::'content.max.recommended ' | translate }}
-              .row(ng-repeat='row in vm.recommendedContents')
-                .col(ng-repeat='content in row')
+              .row.recommended-contents
+                .col.col-50(ng-repeat='content in vm.content.recommended')
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
                    img.format-image(ng-src='{{content.media[0]}}')
                    .leyend-bottom {{content.title}}
@@ -51,4 +51,5 @@ ion-view.content-view-max(view-title='Content')
             .corner.links-TR
       .btns-options
         .btn-learn(ng-click="vm.read()")
+        .btn-search(ui-sref="searches")
   moi-sidebar
