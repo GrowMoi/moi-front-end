@@ -1,13 +1,26 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('SearchesController', function($scope, $ionicLoading, NeuronService)
+  .controller('SearchesController', function($scope,
+                                            $ionicLoading,
+                                            $state,
+                                            $stateParams,
+                                            NeuronService,
+                                            query)
   {
     var searchesmodel = this;
-    searchesmodel.query = '';
-    searchesmodel.search = search;
-    searchesmodel.currentPage = 1;
+    searchesmodel.query = query;
+    searchesmodel.reloadSearch = reloadSearch;
     searchesmodel.noMoreItemsAvailable = true;
+    searchesmodel.neurons = [];
+    
+    if(searchesmodel.query !== ''){
+      search();
+    }
+
+    function reloadSearch() {
+      $state.go('searches', { query: searchesmodel.query });
+    }
 
     function search() {
       // Setup the loader
@@ -17,6 +30,7 @@
          showBackdrop: true,
          showDelay: 0
        });
+      searchesmodel.currentPage = 1;
       NeuronService.searchNeurons(searchesmodel.query, searchesmodel.currentPage).then(function(resp) {
         searchesmodel.currentPage += 1;
         searchesmodel.neurons = resp.search;
@@ -42,6 +56,5 @@
       });
     }
 
-    searchesmodel.neurons = [];
   });
 })();

@@ -5,14 +5,15 @@ ion-view.search-view-max(view-title='Content')
       img(src="images/flecha_1.png")
     .main-search-view
       .content-searches
-        form(ng-submit='searchesmodel.search()')
+        form(ng-submit='searchesmodel.reloadSearch()')
           label.item.item-input
             input(type='text',
                   required='required',
                   ng-model='searchesmodel.query',
                   placeholder="{{ ::'searches.search' | translate }}")
-          .input(
-              type='submit'
+          input(
+              type='submit',
+              value=''
             ).button
         ion-content.result-searches
           .col.col-25.neuron(ng-repeat='neuron in searchesmodel.neurons')
