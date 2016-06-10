@@ -4,7 +4,6 @@
   .controller('SearchesController', function($scope,
                                             $ionicLoading,
                                             $state,
-                                            $stateParams,
                                             NeuronService,
                                             query)
   {
@@ -13,7 +12,7 @@
     searchesmodel.reloadSearch = reloadSearch;
     searchesmodel.noMoreItemsAvailable = true;
     searchesmodel.neurons = [];
-    
+
     if(searchesmodel.query !== ''){
       search();
     }
