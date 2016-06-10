@@ -25,7 +25,8 @@
                           $http,
                           $state,
                           $filter,
-                          ContentService){
+                          ContentService,
+                          TestService){
 
     var vm = this;
     vm.selectContent = selectContent;
@@ -97,19 +98,18 @@
     function sendContent(neuronId, contentId){
       $state.go('content', {neuronId: neuronId,contentId: contentId});
     }
+
     // listeners
 
     /*if a content was reading by a user should be remove of grid*/
     $scope.$on('neuron:remove-content', function(){
       ContentService.readContent(vm.contentSelected).then(function(response){
         /*jshint camelcase: false */
+        var index = vm.contentsFilter.indexOf(vm.contentSelected);
+        vm.contentsFilter.splice(index, 1);
+        buildGrid(vm.contentsFilter);
         if (response.data.perform_test) {
-          console.log(response.data);
-          $state.go('test', { testId: 1, testData: {test: response.data.test_contents} });
-        }else{
-          var index = vm.contentsFilter.indexOf(vm.contentSelected);
-          vm.contentsFilter.splice(index, 1);
-          buildGrid(vm.contentsFilter);
+          TestService.goTest($scope, response.data.test);
         }
       });
     });

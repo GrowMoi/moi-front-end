@@ -9,7 +9,8 @@
         $rootScope,
         $state,
         ModalService,
-        ContentService;
+        ContentService,
+        TestService;
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
       $provide.provider('$state', function () {
@@ -51,12 +52,26 @@
         };
       });
     }));
+    beforeEach(module('moi.services', function($provide){
+      $provide.factory('TestService', function(){
+        return {
+          goTest: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+    }));
     /*jshint camelcase: false */
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
                 _ModalService_,
                 _ContentService_,
+                _TestService_,
                 _$state_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
@@ -64,6 +79,7 @@
         $state = _$state_;
         ModalService = _ModalService_;
         ContentService = _ContentService_;
+        TestService = _TestService_;
 
         dependencies = {
           content: {

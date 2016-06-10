@@ -3,7 +3,9 @@
 
   angular.module('moi.controllers')
   .controller('TestController',
-    function ($stateParams) {
+    function ($stateParams,
+              TestService,
+              $scope) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -15,44 +17,66 @@
       vmTest.answers = [];
       vmTest.indexShow = 0;
       vmTest.percentage = 0;
-      vmTest.questions = $stateParams.testData.test;
+      vmTest.questions = $stateParams.testData.testQuestions;
+      vmTest.testId = $stateParams.testData.testId;
       vmTest.questions[0].showQuestion = true;
+      vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
+      vmTest.hideTest = false;
+      vmTest.selectedAnswer = {};
+      vmTest.answerBackend = {};
     }
 
-    function selectAnswer(answer, index) {
-      var current = 'question-' + index;
-      if (vmTest.hasOwnProperty(current)) {
-        vmTest[current].selected = false;
-      }
-      vmTest[current] = answer;
-      answer.selected = true;
-      answers(answer, index);
+    function selectAnswer(contentId, answer) {
+      vmTest.answerBackend = {
+        'content_id' : contentId,
+        'answer_id' : answer.id
+      };
+      vmTest.selectedAnswer.selected = false;
+      vmTest.selectedAnswer = answer;
+      vmTest.selectedAnswer.selected = true;
       vmTest.nextQuestion = true;
-      percentage();
     }
 
     function next() {
       if (!vmTest.nextQuestion) {
         return;
       }
-      var condition = vmTest.questions.length - 1;
-      var newVal = vmTest.indexShow + 1;
-      if (vmTest.indexShow !== condition) {
+      vmTest.answers.push(vmTest.answerBackend);
+      percentage();
+      if (vmTest.answers.length === vmTest.totalQuestions) {
+        scoreTest();
+      }else{
         vmTest.questions[vmTest.indexShow].showQuestion = false;
-        vmTest.indexShow = newVal;
+        vmTest.indexShow += 1;
         vmTest.questions[vmTest.indexShow].showQuestion = true;
         vmTest.nextQuestion = false;
       }
     }
 
-    /*user answers to backend check*/
-    function answers(answer, index){
-      vmTest.answers[index] = answer;
+    function percentage() {
+      vmTest.percentage = Math.round((vmTest.answers.length/vmTest.totalQuestions) * 100);
     }
 
-    function percentage() {
-      vmTest.percentage = Math.round((vmTest.answers.length/vmTest.questions.length) * 100);
+    function scoreTest() {
+      vmTest.hideTest = true;
+      TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
+        var data = {
+          totalQuestions: vmTest.totalQuestions,
+          successAnswers: rigthAnswers(res.data.result)
+        };
+        TestService.scoreTest($scope, data);
+      });
+    }
+
+    function rigthAnswers(results) {
+      var count = 0;
+      angular.forEach(results, function(result){
+        if (result.correct) {
+          count += 1;
+        }
+      });
+      return count;
     }
 
   });
