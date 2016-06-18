@@ -6,9 +6,9 @@
     .factory('TestService', TestService);
 
   function TestService(ModalService,
-                            $http,
-                            $ionicPopup,
-                            ENV) {
+                      $http,
+                      $ionicPopup,
+                      ENV){
 
     var service = {
       goTest: goTest,
@@ -23,20 +23,26 @@
       modelData.testId = test.id;
       modelData.testQuestions = test.questions;
       modelData.contentsLearnt = modelData.testQuestions.length;
-      ModalService.showModel({
-                parentScope: scope,
-                templateUrl: 'templates/partials/modal-launch-test.html',
-                model: modelData});
+      ModalService.showModel(
+        {
+          parentScope: scope,
+          templateUrl: 'templates/partials/modal-launch-test.html',
+          model: modelData
+        }
+      );
     }
 
     function scoreTest(scope, data) {
       var modelData = {};
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
-      ModalService.showModel({
-                parentScope: scope,
-                templateUrl: 'templates/partials/modal-score-test.html',
-                model: modelData});
+      ModalService.showModel(
+        {
+          parentScope: scope,
+          templateUrl: 'templates/partials/modal-score-test.html',
+          model: modelData
+        }
+      );
     }
 
     function evaluateTest(id, answers) {
