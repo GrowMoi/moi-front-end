@@ -1,0 +1,13 @@
+.modal.transparent
+  ion-pane.transparent
+    .score-container.row
+      .main-image.col
+        img(src="images/user.png")
+      .col-50
+        h1#title Resultado
+        .points
+          p#content Respondiste {{model.successAnswers}} de {{model.totalQuestions}} preguntas correctamente
+      .col
+    .controls-score
+      span.btn-score.button(ng-click="::model.closeModal()"
+                            ui-sref="tree") Continuar

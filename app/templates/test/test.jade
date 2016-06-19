@@ -1,0 +1,11 @@
+ion-view.neuron-view(view-title='{{vm.neuron.title}}')
+  ion-content
+    .main-view#test-frame
+      .content-view
+        div(ng-if="!vmTest.hideTest")
+          .widgets
+            .progress-bar
+              .internal-bar(style="width: {{vmTest.percentage}}%")
+              span {{vmTest.percentage}}%
+          div(ng-include="'templates/test/form.html'")
+  

@@ -75,18 +75,6 @@
         }
       }
     })
-
-    .state('settings', {
-      url: '/settings',
-      controller: 'SettingsController',
-      controllerAs: 'vm',
-      templateUrl: 'templates/settings/settings.html',
-      resolve: {
-        user: function ($auth) {
-          return $auth.validateUser();
-        }
-      }
-    })
     .state('content', {
       url: '/neuron/{neuronId:int}/content/{contentId:int}',
       controller: 'ContentController',
@@ -109,6 +97,24 @@
           });
         }
       }
+    })
+    .state('settings', {
+      url: '/settings',
+      controller: 'SettingsController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/settings/settings.html',
+      resolve: {
+        user: function ($auth) {
+          return $auth.validateUser();
+        }
+      }
+    })
+    .state('test', {
+      url: '/test/{testId:int}',
+      controller: 'TestController',
+      controllerAs: 'vmTest',
+      templateUrl: 'templates/test/test.html',
+      params: {testData: null}
     })
     .state('tree', {
       url: '/tree',

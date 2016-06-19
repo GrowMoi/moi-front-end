@@ -7,7 +7,6 @@
         $scope,
         $ionicLoading,
         $rootScope,
-        $state,
         $q,
         NeuronService,
         dependencies,
@@ -54,6 +53,7 @@
       })
     );
 
+    /*jshint camelcase: false */
     describe('on search', function(){
       it('should controller.searches not add infinite scroll when total_items < 8', function(){
         var dataBackend = {search: ['neurons'], meta: {total_items: 1}};
@@ -97,13 +97,6 @@
         ctrl.loadMore();
         deferred.resolve({search: ['neuron9'], meta: {total_items: 9}});
         $scope.$digest();
-        var totalNeurons = [
-            'neurons1', 'neurons2',
-            'neurons3', 'neurons4',
-            'neurons5', 'neurons6',
-            'neurons7', 'neurons8',
-            'neurons9'
-        ];
         chai.expect(ctrl.noMoreItemsAvailable).to.be.equal(true);
       });
 

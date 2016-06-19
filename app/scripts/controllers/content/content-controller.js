@@ -5,6 +5,7 @@
                                             content,
                                             ContentService,
                                             ModalService,
+                                            TestService,
                                             $state)
   {
     var vm = this;
@@ -35,9 +36,13 @@
     }
 
     function read() {
-      ContentService.readContent(vm.content).then(function() {
+      ContentService.readContent(vm.content).then(function(response) {
         /*jshint camelcase: false */
-        $state.go('neuron', { neuronId: vm.content.neuron_id });
+        if (response.data.perform_test) {
+          TestService.goTest($scope, response.data.test);
+        }else{
+          $state.go('neuron', { neuronId: vm.content.neuron_id });
+        }
       });
     }
 

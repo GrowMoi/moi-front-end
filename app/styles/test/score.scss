@@ -1,0 +1,70 @@
+.score-container{
+  background-image: url(../images/caja-score.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-top: 15%;
+  height: 300px;
+  .main-image{
+    img{
+      width: 175px;
+      padding-left: 5%;
+      padding-top: 20%;
+    }
+  }
+  #title{
+    color: #EF2874;
+    text-align: center;
+  }
+  .points{
+    background: #E0E838;
+    margin: 20px;
+    padding-top: 20px;
+    text-align: center;
+    #content{
+      color: #EF2874;
+      padding: 10px;
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+  }
+  .questions-learnt{
+    padding: 20px;
+    background: #E0E838;
+    margin: 20px;
+    margin-top: 40px;
+    #title{
+      font-size: 30px;
+      color: #EF2874;
+      font-weight: bold;
+    }
+    #content{
+      font-size: 27px;
+      color: #EF2874;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+  }
+}
+
+.controls-score{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.btn-score{
+  background-image: url(../images/btn.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  background-color: transparent;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 47px;
+  color: #FDF9BF;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px
+}

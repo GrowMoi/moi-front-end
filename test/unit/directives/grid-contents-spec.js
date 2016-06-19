@@ -2,7 +2,13 @@
   'use strict';
 
   describe('gridDirective', function () {
-    var $compile, $scope, $rootScope, ContentService, template, controller;
+    var $compile,
+        $scope,
+        $rootScope,
+        ContentService,
+        TestService,
+        template,
+        controller;
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
@@ -33,14 +39,29 @@
         };
       });
     }));
-
-
+    beforeEach(module('moi.services', function($provide){
+      $provide.factory('TestService', function(){
+        return {
+          goTest: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+    }));
     beforeEach(inject(
-      function (_$compile_, _$rootScope_, _ContentService_) {
+      function (_$compile_,
+                _$rootScope_,
+                _ContentService_,
+                _TestService_) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         ContentService = _ContentService_;
+        TestService = _TestService_;
       })
     );
 
@@ -103,11 +124,8 @@
     describe('#gridContents init', function(){
       it('should have the same params you set', function(){
         template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
-
         $scope.$digest();
-
         controller = template.controller('gridContents');
-
         chai.expect($scope.contents).to.deep.equals(controller.contents);
       });
 
@@ -116,32 +134,20 @@
     describe('#gridContents methods', function(){
       it('should call broadcast neuron:remove-content', function(){
         var spy = sinon.spy(ContentService, 'readContent');
-
         template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
-
         $scope.$digest();
-
         $rootScope.$broadcast('neuron:remove-content');
-
         $scope.$digest();
-
         chai.expect(spy.called).to.be.equal(true);
-
       });
 
       it('should call selectContent when you select some content', function(){
         var template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
-
         $scope.$digest();
-
         var controller = template.controller('gridContents');
-
         var spy = sinon.spy(controller, 'selectContent');
-
         controller.selectContent($scope.contents[0]);
-
         chai.expect(spy.called).to.be.equal(true);
-
       });
 
     });
