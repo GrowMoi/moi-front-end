@@ -1,5 +1,6 @@
 ion-view.content-view-max(view-title='Content')
   ion-content
+    moi-sound(sound="sounds/read_content.mp3" auto-play="true")
     .arrow.back-arrow(back-button image-url="images/back-arrow.png")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
@@ -7,37 +8,37 @@ ion-view.content-view-max(view-title='Content')
       .row.content-max-view
         .col
           .row.border-bottom.row-content-title
-            .content-title {{vm.content.title}}
+            .content-title {{vmContent.content.title}}
             .corner.title-TR
           .row.row-content-text
             .corner.description-TL
-            .content-text {{vm.content.description}}
+            .content-text {{vmContent.content.description}}
             .corner.description-TR
         .col.border-right.border-left.middle-column-margin-bottom
           .row.border-bottom
             .col.image-center
-              img.format-image(src='{{vm.content.media[0]}}', ng-click='vm.showImage(vm.content.media[0])')
+              img.format-image(src='{{vmContent.content.media[0]}}', ng-click='vmContent.showImage(vmContent.content.media[0])')
             .corner.image-TR
           .row
             .col
               .row.text-notes
                 .content-subtitle {{ ::'content.max.coments' | translate }}
               .row
-                textarea.content-comments(ng-model='vm.content.user_notes', ng-blur='vm.sendNotes()')
+                textarea.content-comments(ng-model='vmContent.content.user_notes', ng-blur='vmContent.sendNotes()')
         .col
           .row
             .col
               .row.border-bottom
                 .content-subtitle-gallery {{ ::'content.max.media' | translate }}
               .row
-                slide-gallery(images='vm.media', item-per-slide='4')
+                slide-gallery(images='vmContent.media', item-per-slide='4')
             .corner.gallery-TR
           .row
             .col.recomended-margin-top
               .row.border-bottom
                 .content-subtitle {{ ::'content.max.recommended ' | translate }}
               .row.recommended-contents
-                .col.col-50(ng-repeat='content in vm.content.recommended')
+                .col.col-50(ng-repeat='content in vmContent.content.recommended')
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
                    img.format-image(ng-src='{{content.media[0]}}')
                    .leyend-bottom {{content.title}}
@@ -46,10 +47,20 @@ ion-view.content-view-max(view-title='Content')
             .col.links-margin-top
               .row.border-bottom
                 .content-subtitle {{ ::'content.max.links ' | translate }}
-              .row(ng-repeat="link in vm.content.links")
+              .row(ng-repeat="link in vmContent.content.links")
                 a(href='link' target='_blank') {{link}}
             .corner.links-TR
       .btns-options
-        .btn-learn(ng-click="vm.read()")
-        .btn-search(ui-sref="searches")
+        .btn-learn(ng-if="!vmContent.showGifRead" ng-click="vmContent.initAnimationRead()")
+        gif-queue(ng-if="vmContent.showGifRead")
+          gif-no-loop.btn-learn-gif(src="images/btn_learn.gif"
+                                    sound="sounds/btn_read.mp3"
+                                    order="0"
+                                    callback="vmContent.finishedAnimationRead()")
+        .btn-search(ng-click="vmContent.initAnimationSearch()")
+          gif-queue(ng-if="vmContent.showGifSearch")
+            gif-no-loop.btn-search-gif(src="images/btn_search.gif"
+                                      sound="sounds/btn_search.mp3"
+                                      order="0"
+                                      callback="vmContent.finishedAnimationSearch()")
   moi-sidebar

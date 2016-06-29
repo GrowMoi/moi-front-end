@@ -3,17 +3,30 @@
 
   describe('moiSidebar', function () {
     var $compile,
+        $controller,
         $scope,
         element,
-        controller;
+        controller,
+        stateMock,
+        dependencies,
+        ctrl;
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
 
     beforeEach(inject(
-      function (_$compile_, _$rootScope_) {
+      function (_$compile_,
+                _$rootScope_) {
         $compile = _$compile_;
         $scope = _$rootScope_.$new();
+        stateMock = { go: sinon.stub() };
+
+        dependencies = {
+          $state: stateMock,
+        };
+
+        ctrl = $controller('sidebarController', dependencies);
+
       })
     );
 
@@ -27,9 +40,7 @@
     });
 
     describe('#init', function(){
-      it('should not have controller', function(){
-        chai.expect(controller).to.deep.equals(undefined);
-      });
     });
+
   });
 })();
