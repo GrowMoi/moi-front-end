@@ -1,12 +1,23 @@
-ion-view.neuron-view(view-title='{{vm.neuron.title}}')
+ion-view.neuron-view(view-title='{{vmNeuron.neuron.title}}')
   ion-content
+    moi-sound(sound="sounds/read_content.mp3" auto-play="true")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
     .main-view
       .content-view
-        grid-contents(contents="vm.neuron.contents"
-                      settings="vm.contentsPreferences")
+        grid-contents(contents="vmNeuron.neuron.contents"
+                      settings="vmNeuron.contentsPreferences")
       .btns-options
-        .btn-learn(ng-click="vm.read()")
-        .btn-search(ui-sref="searches")
+        .btn-learn(ng-if="!vmNeuron.showGifRead" ng-click="vmNeuron.initAnimationRead()")
+        gif-queue(ng-if="vmNeuron.showGifRead")
+          gif-no-loop.btn-learn-gif(src="images/btn_learn.gif"
+                                    sound="sounds/btn_read.mp3"
+                                    order="0"
+                                    callback="vmNeuron.finishedAnimationRead()")
+        .btn-search(ng-click="vmNeuron.initAnimationSearch()")
+          gif-queue(ng-if="vmNeuron.showGifSearch")
+            gif-no-loop.btn-search-gif(src="images/btn_search.gif"
+                                      sound="sounds/btn_search.mp3"
+                                      order="0"
+                                      callback="vmNeuron.finishedAnimationSearch()")
   moi-sidebar

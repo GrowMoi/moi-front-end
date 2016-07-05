@@ -2,7 +2,12 @@
   'use strict';
 
   describe('NeuronController', function () {
-    var ctrl, $controller, $scope, dependencies, $rootScope;
+    var ctrl,
+        $controller,
+        $scope,
+        dependencies,
+        $rootScope,
+        stateMock;
     beforeEach(module('moi.controllers'));
     beforeEach(inject(
       function (_$controller_,
@@ -10,9 +15,11 @@
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        stateMock = { go: sinon.stub() };
 
         dependencies = {
           $scope: $scope,
+          $state: stateMock,
           data: {neuron: {id: 1}},
           user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
         };
@@ -31,7 +38,7 @@
     describe('learn', function(){
       it('should $broadcast neuron:remove-content on read', function(){
         var spy = sinon.spy($scope, '$broadcast');
-        ctrl.read();
+        ctrl.finishedAnimationRead();
         $scope.$digest();
         chai.expect(spy.called).to.be.equal(true);
       });

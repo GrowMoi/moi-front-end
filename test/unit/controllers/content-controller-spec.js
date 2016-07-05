@@ -123,7 +123,7 @@
 
       it('readContent should call ContentService.readContent', function(){
         var spy = sinon.spy(ContentService, 'readContent');
-        ctrl.read();
+        ctrl.finishedAnimationRead();
         chai.expect(spy.called).to.be.equal(true);
       });
 

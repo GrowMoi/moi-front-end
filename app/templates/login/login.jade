@@ -4,6 +4,7 @@ ion-view(
   class="login-view"
 )
   ion-content(scroll="false")
+    moi-sound(sound="sounds/intro.mp3" auto-play="true")
     .row.form-container
       form(ng-submit='vm.login()')
         .login-title

@@ -60,7 +60,7 @@
     .state('neuron', {
       url: '/neuron/{neuronId:int}',
       controller: 'NeuronController',
-      controllerAs: 'vm',
+      controllerAs: 'vmNeuron',
       cache: false,
       templateUrl: 'templates/neuron/neuron.html',
       resolve: {
@@ -78,7 +78,7 @@
     .state('content', {
       url: '/neuron/{neuronId:int}/content/{contentId:int}',
       controller: 'ContentController',
-      controllerAs: 'vm',
+      controllerAs: 'vmContent',
       templateUrl: 'templates/content/content.html',
       resolve: {
         content: function(NeuronService, $stateParams, ContentService){

@@ -4,24 +4,43 @@
   angular.module('moi.controllers')
   .controller('NeuronController',
     function ($scope,
+              $state,
               user,
               data) {
 
-    var vm = this;
-    vm.read = read;
+    var vmNeuron = this;
+    vmNeuron.showGifSearch = false;
+    vmNeuron.showGifRead = false;
+    vmNeuron.finishedAnimationSearch = finishedAnimationSearch;
+    vmNeuron.finishedAnimationRead = finishedAnimationRead;
+    vmNeuron.initAnimationRead = initAnimationRead;
+    vmNeuron.initAnimationSearch = initAnimationSearch;
+
     /*jshint camelcase: false */
-    vm.contentsPreferences = user.content_preferences;
+    vmNeuron.contentsPreferences = user.content_preferences;
 
     function init(){
-      vm.neuron = data;
+      vmNeuron.neuron = data;
     }
 
     init();
 
-    function read(){
-      $scope.$broadcast('neuron:remove-content');
+    function initAnimationSearch() {
+      vmNeuron.showGifSearch = true;
     }
 
+    function initAnimationRead() {
+      vmNeuron.showGifRead = true;
+    }
+
+    function finishedAnimationSearch() {
+      $state.go('searches');
+    }
+
+    function finishedAnimationRead() {
+      $scope.$broadcast('neuron:remove-content');
+      vmNeuron.showGifRead = false;
+    }
   });
 
 })();

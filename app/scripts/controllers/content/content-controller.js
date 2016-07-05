@@ -8,16 +8,21 @@
                                             TestService,
                                             $state)
   {
-    var vm = this;
-    vm.showImage = showImage;
-    vm.sendNotes = sendNotes;
-    vm.read = read;
+    var vmContent = this;
+    vmContent.showImage = showImage;
+    vmContent.sendNotes = sendNotes;
+    vmContent.showGifSearch = false;
+    vmContent.showGifRead = false;
+    vmContent.finishedAnimationSearch = finishedAnimationSearch;
+    vmContent.finishedAnimationRead = finishedAnimationRead;
+    vmContent.initAnimationRead = initAnimationRead;
+    vmContent.initAnimationSearch = initAnimationSearch;
 
     activate();
 
     function activate() {
-      vm.content = content;
-      vm.media = content.videos.concat(content.media);
+      vmContent.content = content;
+      vmContent.media = content.videos.concat(content.media);
     }
 
     function showImage(urlImage) {
@@ -32,18 +37,31 @@
 
     function sendNotes() {
       /*jshint camelcase: false */
-      ContentService.addNotesToContent(vm.content);
+      ContentService.addNotesToContent(vmContent.content);
     }
 
-    function read() {
-      ContentService.readContent(vm.content).then(function(response) {
+    function initAnimationSearch() {
+      vmContent.showGifSearch = true;
+    }
+
+    function initAnimationRead() {
+      vmContent.showGifRead = true;
+    }
+
+    function finishedAnimationSearch() {
+      $state.go('searches');
+    }
+
+    function finishedAnimationRead() {
+      ContentService.readContent(vmContent.content).then(function(response) {
         /*jshint camelcase: false */
         if (response.data.perform_test) {
           TestService.goTest($scope, response.data.test);
         }else{
-          $state.go('neuron', { neuronId: vm.content.neuron_id });
+          $state.go('neuron', { neuronId: vmContent.content.neuron_id });
         }
       });
+      vmContent.showGifRead = false;
     }
 
   });

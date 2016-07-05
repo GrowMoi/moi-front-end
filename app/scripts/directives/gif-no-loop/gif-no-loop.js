@@ -14,7 +14,8 @@
         order: '=',
         src: '@',
         sound: '@',
-        clickeable: '&'
+        clickeable: '&',
+        callback: '&'
       },
       link: gifNoLoopLink,
       controller: gifNoLoopController,

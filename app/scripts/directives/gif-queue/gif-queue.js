@@ -31,6 +31,7 @@
       if (sortedGifs.length > nextIndex) {
         playGif(nextIndex);
       } else {
+        vm.playbackFinished();
         playbackFinished();
       }
     }
@@ -54,6 +55,7 @@
     }
 
     function enqueue(gifController) {
+      vm.playbackFinished = gifController.callback;
       gifController.load().then(gifLoaded);
     }
   }
