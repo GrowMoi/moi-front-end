@@ -10,8 +10,10 @@
               $state,
               $auth) {
     var vm = this;
+    var moiSound;
 
     vm.loginForm = {};
+    vm.finishedSound = finishedSound;
 
     var successState = 'tree';
 
@@ -20,6 +22,16 @@
     });
 
     vm.login = function() {
+      moiSound.play();
+    };
+
+    $scope.$on('audioLoaded', function (e, moiSoundInstance) {
+      if(moiSoundInstance.autoPlay === false){
+        moiSound = moiSoundInstance;
+      }
+    });
+
+    function finishedSound() {
       $ionicLoading.show({
         template: 'cargando...'
       });
@@ -36,6 +48,6 @@
         .finally(function(){
           $ionicLoading.hide();
         });
-    };
+    }
   });
 })();

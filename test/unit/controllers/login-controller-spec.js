@@ -43,7 +43,7 @@
         $rootScope = _$rootScope_;
         controller.loginForm.email = 'test1';
         controller.loginForm.password = 'password1';
-        controller.login();
+        controller.finishedSound();
       }));
 
       it('should call submitLogin on authService', function() {
