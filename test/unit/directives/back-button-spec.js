@@ -7,6 +7,35 @@
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
 
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.provider('$ionicPlatform', function () {
+        return {
+          $get: function () {
+            return {
+              ready: function () {
+                return true;
+              }
+            };
+          }
+        };
+      });
+
+      $provide.provider('$cordovaNativeAudio', function () {
+        return {
+          $get: function () {
+            return {
+              preloadComplex: function(){
+                return {finally: function(){return null;}};
+              },
+              play: sinon.spy(),
+              stop: sinon.spy(),
+              unload: sinon.spy()
+            };
+          }
+        };
+      });
+    }));
+
     beforeEach(inject(
       function (_$compile_, _$rootScope_, _$window_) {
         $compile = _$compile_;
@@ -38,7 +67,7 @@
         $scope.$digest();
 
         var controller = template.controller('backButton');
-        controller.goBack();
+        controller.finishedSound();
         chai.expect(spy.called).to.be.equal(true);
       });
 

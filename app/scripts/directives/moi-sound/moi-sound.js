@@ -11,7 +11,8 @@
       templateUrl: 'templates/directives/moi-sound/moi-sound.html',
       scope: {
         sound: '@',
-        autoPlay: '@'
+        autoPlay: '=',
+        callback: '&'
       },
       controller: moiSoundController,
       controllerAs: 'vmSound',
@@ -90,9 +91,10 @@
     function play() {
       if (isNativeImplementation) {
         // TODO support loops
-        $cordovaNativeAudio.play(vmSound.sound);
+        $cordovaNativeAudio.play(vmSound.sound, vmSound.callback);
       } else {
         vmSound.$audio[0].play();
+        vmSound.$audio[0].onended = vmSound.callback;
       }
     }
 
