@@ -20,11 +20,21 @@
     return directive;
   }
 
-  function BackButtonController($window){
+  function BackButtonController($window, $scope){
     var bbVm = this;
+    var moiSound;
     bbVm.goBack = goBack;
+    bbVm.finishedSound = finishedSound;
 
     function goBack(){
+      moiSound.play();
+    }
+
+    $scope.$on('audioLoaded', function (e, moiSoundInstance) {
+      moiSound = moiSoundInstance;
+    });
+
+    function finishedSound() {
       $window.history.back();
     }
   }

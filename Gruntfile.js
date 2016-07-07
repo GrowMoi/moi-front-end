@@ -432,8 +432,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'ngconstant:test',
     'autoprefixer',
-    'karma:continuous',
-    'protractor:ci'
+    'karma:continuous'
   ]);
 
   grunt.registerTask('test:precommit', [
