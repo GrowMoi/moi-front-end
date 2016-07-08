@@ -6,7 +6,8 @@
                                             ContentService,
                                             ModalService,
                                             TestService,
-                                            $state)
+                                            $state,
+                                            $window)
   {
     var vmContent = this;
     vmContent.showImage = showImage;
@@ -17,6 +18,7 @@
     vmContent.finishedAnimationRead = finishedAnimationRead;
     vmContent.initAnimationRead = initAnimationRead;
     vmContent.initAnimationSearch = initAnimationSearch;
+    vmContent.callbackBackButton = callbackBackButton;
 
     activate();
 
@@ -64,5 +66,8 @@
       vmContent.showGifRead = false;
     }
 
+    function callbackBackButton() {
+      $window.history.back();
+    }
   });
 })();

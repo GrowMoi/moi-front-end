@@ -1,7 +1,9 @@
 ion-view(view-title='{{vm.neuron.title}}')
   .frame-back-btn
     moi-sound(sound="sounds/read_content.mp3" auto-play="true")
-    .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+    .arrow.back-arrow(sound-button
+                      image-url="images/back-arrow.png"
+                      action-button="vm.callbackBackButton()")
     .content-settings
       .row.settings
         .panel-left.col-50.panel-left-margin-right

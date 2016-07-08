@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  describe('backButtonDirective', function () {
+  describe('soundButtonDirective', function () {
     var $compile, $scope, $window;
 
     beforeEach(module('moi.directives'));
@@ -44,31 +44,16 @@
       })
     );
 
-    describe('#backbutton init', function(){
+    describe('#soundbutton init', function(){
       it('should have the same params you set', function(){
         $scope.imageUrl='../images/foo.jpg';
-        var template = $compile('<back-button image-url="{{imageUrl}}"></back-button>')($scope);
+        var template = $compile('<sound-button image-url="{{imageUrl}}"></sound-button>')($scope);
 
         $scope.$digest();
 
-        var controller = template.controller('backButton');
+        var controller = template.controller('soundButton');
 
         chai.expect($scope.imageUrl).to.deep.equals(controller.imageUrl);
-      });
-
-    });
-
-    describe('#backbutton methods', function(){
-      it('should call $window.history when you goBack()', function(){
-        var spy = sinon.spy($window.history, 'back');
-        $scope.imageUrl='../images/foo.jpg';
-        var template = $compile('<back-button image-url="{{imageUrl}}"></back-button>')($scope);
-
-        $scope.$digest();
-
-        var controller = template.controller('backButton');
-        controller.finishedSound();
-        chai.expect(spy.called).to.be.equal(true);
       });
 
     });

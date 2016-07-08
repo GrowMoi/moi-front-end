@@ -1,7 +1,9 @@
 ion-view.search-view-max(view-title='Content')
   ion-content
     moi-sound(sound="sounds/read_content.mp3" auto-play="true")
-    .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+    .arrow.back-arrow(sound-button
+                      image-url="images/back-arrow.png"
+                      action-button="searchesmodel.callbackBackButton()")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
     .main-search-view

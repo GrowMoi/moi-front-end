@@ -2,7 +2,9 @@ ion-view(view-title='TreeMoi')
   ion-content
     moi-sound(sound="sounds/fondo.mp3" auto-play="true")
     .app-content
-      .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+      .arrow.back-arrow(sound-button
+                        image-url="images/back-arrow.png"
+                        action-button="treeModel.callbackBackButton()")
       .clouds-container
         .cloud.animated.slideInLeft
           img(src="images/nube1L.png")
