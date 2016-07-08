@@ -12,6 +12,6 @@
           h4 {{answer.text}}
     .pista.col
       span
-.controls
-  img(src="images/next-test.png", 
-      ng-click="vmTest.next()")
+.controls(sound-button
+          image-url="images/next-test.png"
+          action-button="vmTest.next()")
