@@ -4,7 +4,6 @@
   .controller('SearchesController', function($scope,
                                             $ionicLoading,
                                             $state,
-                                            $window,
                                             NeuronService,
                                             query)
   {
@@ -13,7 +12,6 @@
     searchesmodel.reloadSearch = reloadSearch;
     searchesmodel.noMoreItemsAvailable = true;
     searchesmodel.neurons = [];
-    searchesmodel.callbackBackButton = callbackBackButton;
 
     if(searchesmodel.query !== ''){
       search();
@@ -57,8 +55,5 @@
       });
     }
 
-    function callbackBackButton() {
-      $window.history.back();
-    }
   });
 })();

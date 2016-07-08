@@ -3,7 +3,7 @@
 
   angular.module('moi.controllers')
   .controller('SettingsController',
-    function ($window, SettingsService, user) {
+    function (SettingsService, user) {
 
     var vm = this;
     vm.selectInterest = selectInterest;
@@ -11,7 +11,6 @@
     vm.listSelected = [];
     /*jshint camelcase: false */
     vm.preferences = user.content_preferences;
-    vm.callbackBackButton = callbackBackButton;
 
 
     /* TODO
@@ -86,9 +85,6 @@
       SettingsService.saveContentSettings(config);
     }
 
-    function callbackBackButton() {
-      $window.history.back();
-    }
   });
 
 })();
