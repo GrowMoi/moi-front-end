@@ -15,8 +15,7 @@
     vmContent.showGifRead = false;
     vmContent.finishedAnimationSearch = finishedAnimationSearch;
     vmContent.finishedAnimationRead = finishedAnimationRead;
-    vmContent.initAnimationRead = initAnimationRead;
-    vmContent.initAnimationSearch = initAnimationSearch;
+    vmContent.loadedGif = loadedGif;
 
     activate();
 
@@ -40,14 +39,6 @@
       ContentService.addNotesToContent(vmContent.content);
     }
 
-    function initAnimationSearch() {
-      vmContent.showGifSearch = true;
-    }
-
-    function initAnimationRead() {
-      vmContent.showGifRead = true;
-    }
-
     function finishedAnimationSearch() {
       $state.go('searches');
     }
@@ -62,6 +53,10 @@
         }
       });
       vmContent.showGifRead = false;
+    }
+
+    function loadedGif(key) {
+      vmContent[key] = true;
     }
 
   });
