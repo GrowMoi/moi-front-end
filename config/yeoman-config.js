@@ -8,7 +8,7 @@
     styles: 'styles',
     images: 'images',
     test: 'test',
-    dist: 'app'
+    dist: 'www'
   };
 
   return module.exports = yeomanConfig;
