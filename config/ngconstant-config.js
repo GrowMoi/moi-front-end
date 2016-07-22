@@ -28,7 +28,7 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost: 'http://api.yoursite.com'
+          apiHost: 'http://moi-backend.shiriculapo.com'
         }
       }
     },
