@@ -1,4 +1,6 @@
 (function () {
+  require('dotenv').config({ silent: true });
+
   var express = require('express'),
       app = express();
 
