@@ -65,6 +65,7 @@
     "protractor": "2.5.1",
     "ripple-emulator": "~0.9.24",
     "sinon": "^1.17.2",
+    "slack-node": "^0.2.0",
     "win-spawn": "^2.0.0"
   },
   "engines": {
