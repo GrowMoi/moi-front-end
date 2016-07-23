@@ -12,7 +12,8 @@
           '<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
           '*.html',
           'templates/**/*.html',
-          'fonts/*'
+          'fonts/*',
+          'sounds/*'
         ]
       }, {
         expand: true,
