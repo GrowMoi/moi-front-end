@@ -152,7 +152,7 @@ module.exports = function (grunt) {
         flow: {
           html: {
             steps: {
-              js: ['concat'],
+              js: ['concat', 'uglifyjs'],
               css: ['cssmin']
             },
             post: {}
@@ -213,15 +213,18 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js': [
-    //         '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
+    uglify: {
+      options: {
+        mangle: false
+      }
+      // dist: {
+      //   files: {
+      //     '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js': [
+      //       '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js'
+      //     ]
+      //   }
+      // }
+    },
     // concat: {
     //   dist: {}
     // },
@@ -488,6 +491,7 @@ module.exports = function (grunt) {
     'ngAnnotate',
     'copy:dist',
     'cssmin',
+    'uglify',
     'usemin',
     'htmlmin'
   ]);
