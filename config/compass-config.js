@@ -27,14 +27,14 @@
         generatedImagesDir: '<%= yeoman.dist %>/<%= yeoman.images %>/generated'
       }
     },
-    // staging: {
-    //   options: {
-    //     bundleExec: true,
-    //     outputStyle: 'compressed',
-    //     force: true,
-    //     generatedImagesDir: '<%= yeoman.dist %>/<%= yeoman.images %>/generated'
-    //   }
-    // },
+    staging: {
+      options: {
+        bundleExec: true,
+        outputStyle: 'compressed',
+        force: true,
+        generatedImagesDir: '<%= yeoman.dist %>/<%= yeoman.images %>/generated'
+      }
+    },
     server: {
       options: {
         bundleExec: true,
