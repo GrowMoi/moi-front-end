@@ -65,7 +65,8 @@ if you're running protractor locally, make sure you are also running the [backen
 
 ### deploying
 
-- npm install -g pm2
+- `npm install -g pm2`
+- `./deploy.bash production`
 
 ### resources
 
