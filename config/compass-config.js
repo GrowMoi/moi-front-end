@@ -20,6 +20,7 @@
     },
     dist: {
       options: {
+        cssDir: 'www/<%= yeoman.styles %>',
         bundleExec: true,
         outputStyle: 'compressed',
         force: true,
