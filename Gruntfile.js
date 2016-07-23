@@ -119,9 +119,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'www/<%= yeoman.styles %>/',
+          cwd: '<%= yeoman.dist %>/<%= yeoman.styles %>/',
           src: '{,*/}*.css',
-          dest: 'www/<%= yeoman.styles %>/'
+          dest: '<%= yeoman.dist %>/<%= yeoman.styles %>/'
         }]
       }
     },
@@ -287,9 +287,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.www/concat/<%= yeoman.scripts %>',
+          cwd: '<%= yeoman.dist %>/concat/<%= yeoman.scripts %>',
           src: '*.js',
-          dest: 'www/concat/<%= yeoman.scripts %>'
+          dest: '<%= yeoman.dist %>/concat/<%= yeoman.scripts %>'
         }]
       }
     },

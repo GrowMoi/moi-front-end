@@ -25,6 +25,9 @@
       }
     },
     production: {
+      options: {
+        dest: '<%= yeoman.dist %>/<%= yeoman.scripts %>/configuration.js'
+      },
       constants: {
         ENV: {
           name: 'production',
