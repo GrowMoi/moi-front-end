@@ -25,7 +25,7 @@
     styles: {
       expand: true,
       cwd: '<%= yeoman.app %>/<%= yeoman.styles %>',
-      dest: '.temp/<%= yeoman.styles %>/',
+      dest: '<%= yeoman.dist %>/<%= yeoman.styles %>/',
       src: '{,*/}*.css'
     },
     fonts: {
