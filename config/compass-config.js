@@ -20,7 +20,15 @@
     },
     dist: {
       options: {
-        cssDir: 'www/<%= yeoman.styles %>',
+        cssDir: '<%= yeoman.dist %>/<%= yeoman.styles %>',
+        bundleExec: true,
+        outputStyle: 'compressed',
+        force: true,
+        generatedImagesDir: '<%= yeoman.dist %>/<%= yeoman.images %>/generated'
+      }
+    },
+    staging: {
+      options: {
         bundleExec: true,
         outputStyle: 'compressed',
         force: true,

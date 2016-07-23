@@ -30,7 +30,7 @@
       'jade:dist'
     ],
     staging: [
-      'compass:dist',
+      'compass:staging',
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
