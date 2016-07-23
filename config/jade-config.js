@@ -43,6 +43,20 @@
         cwd: '<%= yeoman.app %>',
         ext: '.html'
       } ]
+    },
+    dist: {
+      options: {
+        data: {
+          debug: false
+        }
+      },
+      files: [ {
+        expand: true,
+        src: 'templates/**/*.jade',
+        dest: '<%= yeoman.dist %>',
+        cwd: '<%= yeoman.app %>',
+        ext: '.html'
+      } ]
     }
   };
 

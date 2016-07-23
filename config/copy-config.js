@@ -12,7 +12,8 @@
           '<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
           '*.html',
           'templates/**/*.html',
-          'fonts/*'
+          'fonts/*',
+          'sounds/*'
         ]
       }, {
         expand: true,
@@ -24,7 +25,7 @@
     styles: {
       expand: true,
       cwd: '<%= yeoman.app %>/<%= yeoman.styles %>',
-      dest: '.temp/<%= yeoman.styles %>/',
+      dest: '<%= yeoman.app %>/<%= yeoman.styles %>/',
       src: '{,*/}*.css'
     },
     fonts: {

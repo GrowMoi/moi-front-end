@@ -24,13 +24,13 @@
     ],
     dist: [
       'compass:dist',
-      'copy:styles',
+      'copy:dist',
       'copy:vendor',
       'copy:fonts',
-      'jade'
+      'jade:dist'
     ],
     staging: [
-      'compass:dist',
+      'compass:staging',
       'copy:styles',
       'copy:vendor',
       'copy:fonts',

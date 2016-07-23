@@ -119,9 +119,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.temp/<%= yeoman.styles %>/',
+          cwd: '<%= yeoman.dist %>/<%= yeoman.styles %>/',
           src: '{,*/}*.css',
-          dest: '.temp/<%= yeoman.styles %>/'
+          dest: '<%= yeoman.dist %>/<%= yeoman.styles %>/'
         }]
       }
     },
@@ -213,15 +213,18 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js': [
-    //         '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
+    uglify: {
+      options: {
+        mangle: false
+      }
+      // dist: {
+      //   files: {
+      //     '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js': [
+      //       '<%= yeoman.dist %>/<%= yeoman.scripts %>/scripts.js'
+      //     ]
+      //   }
+      // }
+    },
     // concat: {
     //   dist: {}
     // },
@@ -287,9 +290,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.temp/concat/<%= yeoman.scripts %>',
+          cwd: '<%= yeoman.dist %>/concat/<%= yeoman.scripts %>',
           src: '*.js',
-          dest: '.temp/concat/<%= yeoman.scripts %>'
+          dest: '<%= yeoman.dist %>/concat/<%= yeoman.scripts %>'
         }]
       }
     },

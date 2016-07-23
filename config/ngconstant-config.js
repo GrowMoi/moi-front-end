@@ -25,10 +25,13 @@
       }
     },
     production: {
+      options: {
+        dest: '<%= yeoman.dist %>/<%= yeoman.scripts %>/configuration.js'
+      },
       constants: {
         ENV: {
           name: 'production',
-          apiHost: 'http://api.yoursite.com'
+          apiHost: 'http://moi-backend.shiriculapo.com'
         }
       }
     },
