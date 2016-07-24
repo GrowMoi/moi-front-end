@@ -13,7 +13,7 @@
         $scope = $rootScope.$new();
         dependencies = {
           $scope: $scope,
-          data: {meta: {root_id: 1}}
+          data: {tree: [{id:1}]}
         };
 
         ctrl = $controller('TreeController', dependencies);
@@ -23,7 +23,7 @@
 
     describe('on load', function(){
       it('should controller.tree be the same of data', function(){
-        chai.expect(ctrl.rootId).to.deep.equals(dependencies.data.meta.root_id);
+        chai.expect(ctrl.neurons).to.deep.equals(dependencies.data.tree);
       });
     });
 

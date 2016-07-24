@@ -17,7 +17,8 @@
         clickeable: '&',
         callback: '&',
         loaded: '&',
-        clickgif: '='
+        clickgif: '=',
+        width: '@'
       },
       link: gifNoLoopLink,
       controller: gifNoLoopController,
@@ -49,7 +50,7 @@
       loop_mode: false,
       auto_play: false,
       rubbable: false,
-      max_width: 150,
+      max_width: parseInt(vm.width) || 150,
       draw_while_loading: false,
       on_end: playbackDeferred.resolve
     });

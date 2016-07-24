@@ -15,7 +15,7 @@
     function getNeuronsUser() {
       return $http({
         method: 'GET',
-        url: ENV.apiHost + '/api/neurons'
+        url: ENV.apiHost + '/api/tree'
       }).then(function success(res) {
         return res.data;
       }, function error(err) {

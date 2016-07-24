@@ -1,0 +1,13 @@
+.tree.third-level
+  .tree-img
+    img(src="images/tree/arbol-tercero-gris.png")
+  .tree-neuron-root.neuron
+    a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
+      img(src="images/tree/nodo-gris.png")
+  .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index" class="second-level-{{$index}} neuron")
+    a(ui-sref="neuron({neuronId: child.id})")
+      img(src="images/tree/nodo-gris.png")
+    // TODO a better way to calculate classes
+    .tree-neuron-root(ng-repeat="child1 in child.children track by $index" class="third-level-{{$parent.$index*2 + $index}} neuron")
+      a(ui-sref="neuron({neuronId: child1.id})")
+        img(src="images/tree/nodo-gris.png")
