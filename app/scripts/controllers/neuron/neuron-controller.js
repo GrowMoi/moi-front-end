@@ -13,8 +13,7 @@
     vmNeuron.showGifRead = false;
     vmNeuron.finishedAnimationSearch = finishedAnimationSearch;
     vmNeuron.finishedAnimationRead = finishedAnimationRead;
-    vmNeuron.initAnimationRead = initAnimationRead;
-    vmNeuron.initAnimationSearch = initAnimationSearch;
+    vmNeuron.loadedGif = loadedGif;
 
     /*jshint camelcase: false */
     vmNeuron.contentsPreferences = user.content_preferences;
@@ -25,21 +24,16 @@
 
     init();
 
-    function initAnimationSearch() {
-      vmNeuron.showGifSearch = true;
-    }
-
-    function initAnimationRead() {
-      vmNeuron.showGifRead = true;
-    }
-
     function finishedAnimationSearch() {
       $state.go('searches');
     }
 
     function finishedAnimationRead() {
       $scope.$broadcast('neuron:remove-content');
-      vmNeuron.showGifRead = false;
+    }
+
+    function loadedGif(key) {
+      vmNeuron[key] = true;
     }
   });
 

@@ -51,16 +51,20 @@ ion-view.content-view-max(view-title='Content')
                 a(href='link' target='_blank') {{link}}
             .corner.links-TR
       .btns-options
-        .btn-learn(ng-if="!vmContent.showGifRead" ng-click="vmContent.initAnimationRead()")
-        gif-queue(ng-if="vmContent.showGifRead")
+        .btn-learn(ng-if="!vmContent.showGifRead")
+        gif-queue
           gif-no-loop.btn-learn-gif(src="images/btn_learn.gif"
                                     sound="sounds/btn_read.mp3"
                                     order="0"
-                                    callback="vmContent.finishedAnimationRead()")
-        .btn-search(ng-click="vmContent.initAnimationSearch()")
-          gif-queue(ng-if="vmContent.showGifSearch")
-            gif-no-loop.btn-search-gif(src="images/btn_search.gif"
-                                      sound="sounds/btn_search.mp3"
-                                      order="0"
-                                      callback="vmContent.finishedAnimationSearch()")
+                                    callback="vmContent.finishedAnimationRead()"
+                                    loaded="vmContent.loadedGif('showGifRead')"
+                                    clickgif="true")
+        .btn-search(ng-if="!vmContent.showGifSearch")
+        gif-queue
+          gif-no-loop.btn-search-gif(src="images/btn_search.gif"
+                                    sound="sounds/btn_search.mp3"
+                                    order="0"
+                                    callback="vmContent.finishedAnimationSearch()"
+                                    loaded="vmContent.loadedGif('showGifSearch')"
+                                    clickgif="true")
   moi-sidebar

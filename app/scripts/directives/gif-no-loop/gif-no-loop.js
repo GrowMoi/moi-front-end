@@ -15,7 +15,9 @@
         src: '@',
         sound: '@',
         clickeable: '&',
-        callback: '&'
+        callback: '&',
+        loaded: '&',
+        clickgif: '='
       },
       link: gifNoLoopLink,
       controller: gifNoLoopController,
@@ -54,6 +56,7 @@
 
     vm.load = load;
     vm.play = play;
+    vm.playGif = playGif;
 
     $scope.$on('audioLoaded', function (e, moiSoundInstance) {
       moiSound = moiSoundInstance;
@@ -81,12 +84,37 @@
     }
 
     function play() {
+      if (!!vm.clickgif) {
+        gif.move_to(0);
+      }else{
+        playAction();
+      }
+      return playbackDeferred.promise;
+    }
+
+    function playGif() {
+      if (gif.get_current_frame() === 0) {
+        playAndReset().then(function(){
+          gif.move_to(0);
+          vm.callback();
+        });
+      }
+    }
+
+    function playAndReset() {
+      playAction();
+      /*reset playbackDeferred promise*/
+      playbackDeferred.promise.$$state = {status: 0};
+      return playbackDeferred.promise;
+    }
+
+    function playAction() {
       gif.play();
       if (moiSound) {
         moiSound.play();
       }
-      return playbackDeferred.promise;
     }
+
   }
 
 })();

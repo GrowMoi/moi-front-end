@@ -18,15 +18,16 @@
 
     function sidebarController($state) {
       var vmSidebar = this;
-      vmSidebar.initAnimation = initAnimation;
       vmSidebar.finishedAnimation = finishedAnimation;
-
-      function initAnimation() {
-        vmSidebar.showGif = true;
-      }
+      vmSidebar.loadedGif = loadedGif;
+      vmSidebar.showGif = false;
 
       function finishedAnimation() {
         $state.go('settings');
+      }
+
+      function loadedGif() {
+        vmSidebar.showGif = true;
       }
     }
 

@@ -23,22 +23,20 @@
 
     vm.enqueue = enqueue;
 
-    function playbackFinished(){
-    }
-
     function gifStep () {
       var nextIndex = currentIndex + 1;
       if (sortedGifs.length > nextIndex) {
         playGif(nextIndex);
       } else {
         vm.playbackFinished();
-        playbackFinished();
       }
     }
 
     function playGif(index) {
-      currentIndex = index;
-      sortedGifs[index].play().then(gifStep);
+      if (!vm.clickgif) {
+        currentIndex = index;
+        sortedGifs[index].play().then(gifStep);
+      }
     }
 
     function playAllGifs() {
@@ -47,8 +45,8 @@
     }
 
     function gifLoaded(gifController) {
+      vm.loadedGif();
       gifs.push(gifController);
-
       if (gifs.length === queueSize) {
         playAllGifs();
       }
@@ -56,6 +54,8 @@
 
     function enqueue(gifController) {
       vm.playbackFinished = gifController.callback;
+      vm.loadedGif = gifController.loaded;
+      vm.clickgif = gifController.clickgif;
       gifController.load().then(gifLoaded);
     }
   }

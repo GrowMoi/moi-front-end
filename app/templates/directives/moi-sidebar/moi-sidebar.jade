@@ -4,12 +4,15 @@ drawer(side="left")
       img(src="images/flecha_2.png")
     .settings-amigos
       img(src="images/amigh.png")
-    .settings-rueda(ng-click="vmSidebar.initAnimation()")
-      gif-queue(ng-if="vmSidebar.showGif")
+    .settings-rueda
+      .rueda-img(ng-if="!vmSidebar.showGif")
+      gif-queue
         gif-no-loop.rueda(src="images/btn_settings.gif" 
                           sound="sounds/btn_settings.mp3" 
                           order="0" 
-                          callback="vmSidebar.finishedAnimation()")
+                          callback="vmSidebar.finishedAnimation()"
+                          loaded="vmSidebar.loadedGif()"
+                          clickgif="true")
     .settings-tutor
       img(src="images/tutorh.png")
     .settings-inventario

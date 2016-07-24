@@ -43,17 +43,27 @@ drawer.left {
   }
 
   .settings-rueda {
-    top: 120px;
-    width: 70px;
-    height: 60px;
-    left: 47px;
-    z-index: 10;
-    background-image: url(../images/seth.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    cursor: pointer;
-    .rueda canvas{
+    .rueda-img {
+      position: absolute;
+      top: 120px;
       width: 70px;
+      height: 60px;
+      left: 47px;
+      z-index: 10;
+      background-image: url(../images/seth.png);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+    }
+    .rueda {
+      position: absolute;
+      top: 114px;
+      left: 42px;
+      z-index: 10;
+      cursor: pointer;
+      canvas{
+        width: 80px;
+      }
     }
   }
 
