@@ -2,7 +2,7 @@ ion-view.neuron-view(view-title='{{vm.neuron.title}}')
   ion-content
     .main-view#test-frame
       .content-view
-        moi-sound(sound="sounds/test.mp3" auto-play="true")
+        moi-sound(sound="sounds/test.mp3" background-sound="true")
         div(ng-if="!vmTest.hideTest")
           .widgets
             .progress-bar
