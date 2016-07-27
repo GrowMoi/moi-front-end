@@ -22,51 +22,51 @@
     vm.interests = [
       {
         interest:'Animals',
-        src:'/images/animal-interest.png'
+        src:'images/animal-interest.png'
       },
       {
         interest:'Places',
-        src:'/images/places-interest.png'
+        src:'images/places-interest.png'
       },
       {
         interest:'Sports',
-        src:'/images/sports-interest.png'
+        src:'images/sports-interest.png'
       },
       {
         interest:'Comunication',
-        src:'/images/comunication-interest.png'
+        src:'images/comunication-interest.png'
       },
       {
         interest:'Stories',
-        src:'/images/stories-interest.png'
+        src:'images/stories-interest.png'
       },
       {
         interest:'Art',
-        src:'/images/art-interest.png'
+        src:'images/art-interest.png'
       },
       {
         interest:'Emotions',
-        src:'/images/emotions-interest.png'
+        src:'images/emotions-interest.png'
       },
       {
         interest:'Culture',
-        src:'/images/culture-interest.png'
+        src:'images/culture-interest.png'
       },
       {
         interest:'Space',
-        src:'/images/space-interest.png'
+        src:'images/space-interest.png'
       },
       {
         interest:'Numbers',
-        src:'/images/numbers-interest.png'
+        src:'images/numbers-interest.png'
       },
       {
         interest:'Brain',
-        src:'/images/brain-interest.png'
+        src:'images/brain-interest.png'
       },
       {
         interest:'Plants',
-        src:'/images/plants-interest.png'
+        src:'images/plants-interest.png'
       }
     ];
 
