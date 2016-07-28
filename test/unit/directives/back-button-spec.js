@@ -6,7 +6,15 @@
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
-
+    beforeEach(module('moi.services', function($provide){
+      $provide.factory('SoundService', function(){
+        return {
+          getSound: function() {
+            return {};
+          }
+        };
+      });
+    }));
     beforeEach(angular.mock.module(function ($provide) {
       $provide.provider('$ionicPlatform', function () {
         return {

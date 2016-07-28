@@ -12,7 +12,8 @@
       scope: {
         sound: '@',
         autoPlay: '=',
-        callback: '&'
+        callback: '&',
+        backgroundSound: '='
       },
       controller: moiSoundController,
       controllerAs: 'vmSound',
@@ -26,7 +27,8 @@
                               $rootScope,
                               $ionicPlatform,
                               $window,
-                              $cordovaNativeAudio) {
+                              $cordovaNativeAudio,
+                              SoundService) {
     var vmSound = this,
         isNativeImplementation;
 
@@ -42,7 +44,6 @@
       preloadAudio().then(function () {
         audioHasLoaded();
         autoPlay();
-        listenForStateChange();
       });
     });
 
@@ -89,17 +90,25 @@
     }
 
     function play() {
+      var replaySound = vmSound.backgroundSound ? play : vmSound.callback;
       if (isNativeImplementation) {
         // TODO support loops
-        $cordovaNativeAudio.play(vmSound.sound, vmSound.callback);
+        $cordovaNativeAudio.play(vmSound.sound, replaySound);
       } else {
         vmSound.$audio[0].play();
-        vmSound.$audio[0].onended = vmSound.callback;
+        vmSound.$audio[0].onended = replaySound;
       }
     }
 
-    function listenForStateChange() {
-      $rootScope.$on('$stateChangeStart', stop);
+    if(vmSound.backgroundSound){
+      var soundObj = SoundService.getSound();
+      if(soundObj.url !== vmSound.sound){
+        if(soundObj.url){
+          stopSoundService(soundObj.url, soundObj.instance);
+        }
+        saveSoundService();
+        play();
+      }
     }
 
     function stop() {
@@ -109,6 +118,23 @@
         $cordovaNativeAudio.unload(vmSound.sound);
       } else {
         vmSound.$audio[0].pause();
+      }
+    }
+
+    function stopSoundService(urlSound, instanceSound) {
+      if (isNativeImplementation) {
+        instanceSound.stop(urlSound);
+        instanceSound.unload(urlSound);
+      } else {
+        instanceSound.pause();
+      }
+    }
+
+    function saveSoundService() {
+      if (isNativeImplementation) {
+        SoundService.setSound(vmSound.sound, $cordovaNativeAudio);
+      } else {
+        SoundService.setSound(vmSound.sound, vmSound.$audio[0]);
       }
     }
   }

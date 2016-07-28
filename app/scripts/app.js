@@ -61,7 +61,6 @@
       url: '/neuron/{neuronId:int}',
       controller: 'NeuronController',
       controllerAs: 'vmNeuron',
-      cache: false,
       templateUrl: 'templates/neuron/neuron.html',
       resolve: {
         data: function(NeuronService, $stateParams){
