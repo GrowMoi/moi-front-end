@@ -57,6 +57,36 @@
           }
         }
       }
+      .branch-level-2{
+        position: absolute;
+        background-size: cover;
+        width: 390px;
+        height: 350px;
+        bottom: 3px;
+        left: 0px;
+      }
+      .second-level-branch {
+        &-0 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_izq.png);
+          }
+        }
+        &-1 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_centro_izq.png);
+          }
+        }
+        &-2 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_centro_dere.png);
+          }
+        }
+        &-3 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_dere.png);
+          }
+        }
+      }
     }
   }
 }
