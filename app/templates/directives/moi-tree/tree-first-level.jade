@@ -6,6 +6,5 @@
 .tree
   .tree-img
     img(src="images/tree/tronco-bebe.png")
-  .tree-neuron-root
+  .tree-neuron-root(class="{{treeVm.neurons.root.state}} neuron")
     a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
-      img(src="images/tree/nodo-gris.png")

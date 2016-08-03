@@ -9,9 +9,8 @@
 .tree.second-level
   .tree-img
     img(src="images/tree/arbol-segundo-gris.png")
-  .tree-neuron-root.neuron
+  .tree-neuron-root.neuron(class="{{treeVm.neurons.root.state}} neuron")
     a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
-      img(src="images/tree/nodo-gris.png")
-  .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index" class="second-level-{{$index}} neuron")
+  .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index"
+    class="second-level-{{$index}} neuron {{child.state}}")
     a(ui-sref="neuron({neuronId: child.id})")
-      img(src="images/tree/nodo-gris.png")
