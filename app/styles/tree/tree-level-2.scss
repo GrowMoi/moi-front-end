@@ -17,7 +17,7 @@
         position: relative;
         width: 80px;
         height: 80px;
-        left: 190px;
+        left: 185px;
         bottom: 340px;
         img{
           width: 80px;
@@ -30,7 +30,7 @@
       .second-level {
         &-0 {
           bottom: 520px;
-          left: 80px;
+          left: 70px;
           &.florecida{
             background-image: url(../images/tree/nodos/nodo-azul.png);
           }
@@ -44,14 +44,14 @@
         }
         &-2 {
           bottom: 760px;
-          left: 250px;
+          left: 255px;
           &.florecida{
             background-image: url(../images/tree/nodos/nodo-amarillo.png);
           }
         }
         &-3 {
           bottom: 760px;
-          left: 320px;
+          left: 325px;
           &.florecida{
             background-image: url(../images/tree/nodos/nodo-rojo.png);
           }
