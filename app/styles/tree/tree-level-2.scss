@@ -1,0 +1,92 @@
+.tree-content{
+  .tree{
+    &.second-level{
+
+      .neuron {
+        width: 80px;
+        height: 80px;
+        background-image: url(../images/tree/nodos/nodo-gris.png);
+        background-size: cover;
+        a {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .tree-neuron-root{
+        position: relative;
+        width: 80px;
+        height: 80px;
+        left: 185px;
+        bottom: 340px;
+        img{
+          width: 80px;
+        }
+        &.florecida{
+          background-image: url(../images/tree/nodos/nodo-amarillo.png);
+        }
+      }
+
+      .second-level {
+        &-0 {
+          bottom: 520px;
+          left: 70px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-azul.png);
+          }
+        }
+        &-1 {
+          bottom: 680px;
+          left: 140px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-2 {
+          bottom: 760px;
+          left: 255px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-amarillo.png);
+          }
+        }
+        &-3 {
+          bottom: 760px;
+          left: 325px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-rojo.png);
+          }
+        }
+      }
+      .branch-level-2{
+        position: absolute;
+        background-size: cover;
+        width: 390px;
+        height: 350px;
+        bottom: 3px;
+        left: 0px;
+      }
+      .second-level-branch {
+        &-0 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_izq.png);
+          }
+        }
+        &-1 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_centro_izq.png);
+          }
+        }
+        &-2 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_centro_dere.png);
+          }
+        }
+        &-3 {
+          &.florecida{
+            background-image: url(../images/tree/level-2/rama_dere.png);
+          }
+        }
+      }
+    }
+  }
+}

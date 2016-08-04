@@ -9,9 +9,12 @@
 .tree.second-level
   .tree-img
     img(src="images/tree/arbol-segundo-gris.png")
-  .tree-neuron-root.neuron
+    img.tronco-root(src="images/tree/level-1/tronco.png"
+      ng-if="treeVm.neurons.root.state === 'florecida'")
+    .tree-branch-root(ng-repeat="child in treeVm.neurons.root.children track by $index")
+      div.branch-level-2(class="second-level-branch-{{$index}} {{child.state}}")
+  .tree-neuron-root.neuron(class="{{treeVm.neurons.root.state}} neuron")
     a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
-      img(src="images/tree/nodo-gris.png")
-  .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index" class="second-level-{{$index}} neuron")
+  .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index"
+    class="second-level-{{$index}} neuron {{child.state}}")
     a(ui-sref="neuron({neuronId: child.id})")
-      img(src="images/tree/nodo-gris.png")
