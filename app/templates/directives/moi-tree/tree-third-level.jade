@@ -1,7 +1,7 @@
 .tree.third-level
   .tree-img
     img.tree-gray(src="images/tree/level-3/arbol-gris.png")
-    img.tree-root(src="images/tree/level-3/arbol-level-3.png")
+    img.tree-root(src="images/tree/level-3/tronco-level-3.png")
     .tree-branch(ng-repeat="child in treeVm.neurons.root.children track by $index"
                 class="branch-level-3 second-level-branch-{{$index}} {{child.state}}")
       .tree-branch(ng-repeat="child1 in child.children track by $index" 

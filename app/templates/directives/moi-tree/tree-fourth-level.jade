@@ -1,6 +1,13 @@
 .tree.fourth-level
   .tree-img
-    img(src="images/tree/arbol-cuarto-gris.png")
+    img(src="images/tree/level-4/arbol-gris-4.png")
+    img.tree-root(src="images/tree/level-4/tronco-level-4.png")
+    .tree-branch(ng-repeat="child in treeVm.neurons.root.children track by $index"
+                class="branch-level-2 second-level-branch-{{$index}} {{child.state}}")
+      .tree-branch(ng-repeat="child1 in child.children track by $index" 
+                    class="branch-level-3 third-level-branch-{{$parent.$index*2 + $index}} {{child1.state}}")
+        .tree-branch(ng-repeat="child2 in child1.children track by $index" 
+                      class="branch-level-4 fourth-level-branch-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child2.state}}")
   .tree-neuron-root.neuron(class="{{treeVm.neurons.root.state}} neuron")
     a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
   .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index" 
@@ -8,8 +15,8 @@
     a(ui-sref="neuron({neuronId: child.id})")
     // TODO a better way to calculate classes
     .tree-neuron-root(ng-repeat="child1 in child.children track by $index" 
-                      class="third-level-{{$parent.$index*2 + $index}} {{child.state}} neuron")
+                      class="third-level-{{$parent.$index*2 + $index}} {{child1.state}} neuron")
       a(ui-sref="neuron({neuronId: child1.id})")
       .tree-neuron-root(ng-repeat="child2 in child1.children track by $index" 
-                        class="fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child.state}} neuron")
+                        class="fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child2.state}} neuron")
         a(ui-sref="neuron({neuronId: child2.id})")
