@@ -1,0 +1,410 @@
+.tree-content{
+  .tree{
+    &.fourth-level{
+      bottom: 220px;
+
+      .neuron {
+        width: 50px;
+        height: 50px;
+        background-image: url(../images/tree/nodos/nodo-gris.png);
+        background-size: cover;
+        a {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .tree-img {
+        bottom: 321px;
+        right: 252px;
+        img {
+          height: 717px;
+          width: auto;
+        }
+        .tree-root{
+          position: absolute;
+          bottom: 7px;
+          left: 2px;
+        }
+      }
+
+      .tree-neuron-root{
+        position: relative;
+        left: 190px;
+        bottom: 525px;
+        &.florecida{
+          background-image: url(../images/tree/nodos/nodo-amarillo.png);
+        }
+      }
+
+      .second-level {
+        &-0 {
+          bottom: 670px;
+          left: 110px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-azul.png);
+          }
+        }
+        &-1 {
+          bottom: 720px;
+          left: 175px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-2 {
+          bottom: 770px;
+          left: 225px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-amarillo.png);
+          }
+        }
+        &-3 {
+          bottom: 810px;
+          left: 290px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+      }
+
+      .third-level {
+        &-0 {
+          bottom: 70px;
+          left: -60px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-azul.png);
+          }
+        }
+        &-2 {
+          bottom: 110px;
+          left: -60px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-3 {
+          bottom: 160px;
+          left: 0;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-4 {
+          bottom: 100px;
+          left: 20px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-amarillo.png);
+          }
+        }
+        &-6 {
+          bottom: 120px;
+          left: 50px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+        &-7 {
+          bottom: 110px;
+          left: 110px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+      }
+
+      .fourth-level {
+        &-0 {
+          bottom: 70px;
+          left: -50px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-azul.png);
+          }
+        }
+        &-1 {
+          bottom: 110px;
+          left: -110px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-azul.png);
+          }
+        }
+        &-2 {
+          bottom: 195px;
+          left: -150px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-azul.png);
+          }
+        }
+        &-4 {
+          bottom: 95px;
+          left: -50px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-5 {
+          bottom: 200px;
+          left: -20px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-10 {
+          bottom: 105px;
+          left: 40px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-11 {
+          bottom: 170px;
+          left: 90px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-8 {
+          bottom: 170px;
+          left: 60px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-amarillo.png);
+          }
+        }
+        &-9 {
+          bottom: 180px;
+          left: 90px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-amarillo.png);
+          }
+        }
+        &-12 {
+          bottom: 120px;
+          left: 60px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+        &-13 {
+          bottom: 120px;
+          left: 60px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+        &-18 {
+          bottom: 120px;
+          left: 60px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+        &-19 {
+          bottom: 120px;
+          left: 60px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+        &-20 {
+          bottom: 250px;
+          left: 120px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+        &-21 {
+          bottom: 220px;
+          left: 140px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+        &-22 {
+          bottom: 300px;
+          left: 190px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-fuccia.png);
+          }
+        }
+      }
+
+      .branch-level-2{
+        position: absolute;
+        background-size: cover;
+        width: 522px;
+        height: 500px;
+        bottom: 36px;
+        left: 142px;
+      }
+
+      .branch-level-3{
+        position: absolute;
+        background-size: cover;
+        width: 522px;
+        height: 500px;
+        bottom: 1px;
+        right: 1px;
+      }
+
+      .branch-level-4{
+        position: absolute;
+        background-size: cover;
+        width: 980px;
+        height: 711px;
+        bottom: -30px;
+        left: -136px;
+      }
+
+      .second-level-branch {
+        &-0 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama002.png);
+          }
+        }
+        &-1 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama001.png);
+          }
+        }
+        &-2 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama003.png);
+          }
+        }
+        &-3 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama079.png);
+          }
+        }
+      }
+
+      .third-level-branch {
+        &-0 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama004.png);
+          }
+        }
+        &-2 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama033.png);
+          }
+        }
+        &-3 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama032.png);
+            position: initial;
+          }
+        }
+        &-4 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama060.png);
+          }
+        }
+        &-6 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama080.png);
+          }
+        }
+        &-7 {
+          &.florecida{
+            background-image: url(../images/tree/level-3/rama081.png);
+          }
+        }
+      }
+
+      .fourth-level-branch {
+        &-0 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama007.png);
+          }
+        }
+        &-1 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama006.png);
+          }
+        }
+        &-2 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama005.png);
+          }
+        }
+        &-4 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama007.png);
+          }
+        }
+        &-5 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama034.png);
+          }
+        }
+        &-10 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama031.png);
+          }
+        }
+        &-11 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama061.png);
+          }
+        }
+        &-8 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama061.png);
+          }
+        }
+        &-9 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama082.png);
+          }
+        }
+        &-12 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama082.png);
+          }
+        }
+        &-13 {
+          left: -121px;
+          bottom: -21px;
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama083.png);
+          }
+        }
+        &-18 {
+          bottom: -52px;
+          height: 740px;
+          left: -171px;
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama084.png);
+          }
+        }
+        &-19 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama084.png);
+          }
+        }
+        &-20 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama086.png);
+          }
+        }
+        &-21 {
+          left: -210px;
+          bottom: -67px;
+          height: 770px;
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama085.png);
+          }
+        }
+        &-22 {
+          bottom: -32px;
+          left: -155px;
+          height: 725px;
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama087.png);
+          }
+        }
+      }
+    }
+  }
+}
