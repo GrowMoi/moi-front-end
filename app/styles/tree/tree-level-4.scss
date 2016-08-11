@@ -144,7 +144,14 @@
         }
         &-5 {
           bottom: 200px;
-          left: -20px;
+          left: -25px;
+          &.florecida{
+            background-image: url(../images/tree/nodos/nodo-verde.png);
+          }
+        }
+        &-6 {
+          bottom: 260px;
+          left: 30px;
           &.florecida{
             background-image: url(../images/tree/nodos/nodo-verde.png);
           }
@@ -240,10 +247,8 @@
       .branch-level-3{
         position: absolute;
         background-size: cover;
-        width: 522px;
+        width: 650px;
         height: 500px;
-        bottom: 1px;
-        right: 1px;
       }
 
       .branch-level-4{
@@ -334,6 +339,11 @@
           }
         }
         &-5 {
+          &.florecida{
+            background-image: url(../images/tree/level-4/rama034.png);
+          }
+        }
+        &-6 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama034.png);
           }
