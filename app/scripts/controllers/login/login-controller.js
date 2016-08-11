@@ -22,7 +22,11 @@
     });
 
     vm.login = function() {
-      moiSound.play();
+      if(moiSound){
+        moiSound.play();
+      }else{
+        vm.finishedSound();
+      }
     };
 
     $scope.$on('audioLoaded', function (e, moiSoundInstance) {
