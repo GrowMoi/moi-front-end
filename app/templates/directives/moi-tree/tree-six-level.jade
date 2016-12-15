@@ -3,11 +3,24 @@
     img(src="images/tree/level-6/arbol-gris-6.png")
     img.tree-root(src="images/tree/tronco.png")
     .tree-branch(ng-repeat="child in treeVm.neurons.root.children track by $index"
-                class="branch-level-2 second-level-branch-{{$index}} {{child.state}}")
+                ng-init="indexLevel2=$index"
+                class="branch second-level-{{indexLevel2}} {{child.state}}  {{child.title}}")
+                
       .tree-branch(ng-repeat="child1 in child.children track by $index" 
-                    class="branch-level-3 third-level-branch-{{$parent.$index*2 + $index}} {{child1.state}}")
+                    ng-init="indexLevel3=$index"
+                    class="branch third-level-{{indexLevel2*2 + indexLevel3}} {{child1.state}} {{child1.title}}")
+                    
         .tree-branch(ng-repeat="child2 in child1.children track by $index" 
-                      class="branch-level-4 fourth-level-branch-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child2.state}}")
+                      ng-init="indexLevel4=$index"
+                      class="branch fourth-level-{{indexLevel3*4 + $parent.$index*6 + indexLevel4}} {{child2.state}} {{child2.title}}")
+          
+          .tree-branch(ng-repeat="child3 in child2.children track by $index" 
+                      ng-init="indexLevel5=$index"
+                        class="branch fifth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}} {{child3.state}} {{child3.title}}")
+            
+            .tree-branch(ng-repeat="child4 in child3.children track by $index" 
+                        ng-init="indexLevel6=$index"
+                          class="branch fifth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child3.state}} {{child3.title}}")
   //- .tree-neuron-root.neuron(class="{{treeVm.neurons.root.state}} neuron")
   //-   a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
   //- .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index" 
