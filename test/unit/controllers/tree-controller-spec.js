@@ -13,7 +13,7 @@
         $scope = $rootScope.$new();
         dependencies = {
           $scope: $scope,
-          data: {tree: [{id:1}]}
+          data: {tree: [{id:1}], meta:{depth:4}}
         };
 
         ctrl = $controller('TreeController', dependencies);

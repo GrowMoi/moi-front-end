@@ -6,6 +6,7 @@
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
+    treeModel.isBasicLevel = data.meta.depth < 5;
   });
 
 })();
