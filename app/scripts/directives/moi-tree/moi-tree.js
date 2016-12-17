@@ -39,7 +39,7 @@
         case 5:
           return 'templates/directives/moi-tree/tree-fifth-level.html';
         case 6:
-          return 'templates/directives/moi-tree/tree-six-level.html';
+          return 'templates/directives/moi-tree/tree-sixth-level.html';
         default:
           return 'templates/directives/moi-tree/tree-first-level.html';
       }
