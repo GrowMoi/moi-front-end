@@ -1,7 +1,10 @@
-.tree.six-level
+.tree.fifth-level
   .tree-img
     img(src="images/tree/level-5/arbol-gris-5.png")
     img.tree-root(src="images/tree/tronco.png")
+    .tree-neuron-root
+      a.neuron-root(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
+
     .tree-branch(ng-repeat="child in treeVm.neurons.root.children track by $index"
                 ng-init="indexLevel2=$index"
                 class="branch second-level-{{indexLevel2}} {{child.state}}  {{child.title}}")
