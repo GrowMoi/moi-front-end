@@ -27,5 +27,5 @@
             
             .tree-branch(ng-repeat="child4 in child3.children track by $index" 
                         ng-init="indexLevel6=$index"
-                          class="branch sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child3.state}} {{child3.title}}")
+                          class="branch sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child4.state}} {{child4.title}}")
               a.neuron(ui-sref="neuron({neuronId: child4.id})" class="sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child.state}}")
