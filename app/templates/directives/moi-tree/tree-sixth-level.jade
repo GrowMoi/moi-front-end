@@ -17,8 +17,8 @@
                     
         .tree-branch(ng-repeat="child2 in child1.children track by $index" 
                       ng-init="indexLevel4=$index"
-                      class="branch fourth-level-{{indexLevel3*4 + $parent.$index*6 + indexLevel4}} {{child2.state}}")
-          a.neuron(ui-sref="neuron({neuronId: child2.id})" class="fourth-level-{{indexLevel3*4 + $parent.$index*6 + indexLevel4}} {{child.state}}")
+                      class="branch fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child2.state}}")
+          a.neuron(ui-sref="neuron({neuronId: child2.id})" class="fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child.state}}")
           
           .tree-branch(ng-repeat="child3 in child2.children track by $index" 
                       ng-init="indexLevel5=$index"
