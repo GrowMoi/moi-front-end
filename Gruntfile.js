@@ -5,6 +5,21 @@ var _ = require('lodash');
 var path = require('path');
 var cordovaCli = require('cordova');
 var spawn = process.platform === 'win32' ? require('win-spawn') : require('child_process').spawn;
+var promise = require('bluebird');
+var fs = promise.promisifyAll(require('fs'));
+var folderImgs = 'app/images/';
+
+//get paths files into a folder
+function readDir(dirName) {
+  return fs.readdirAsync(dirName).map(function (fileName) {
+    var route = path.join(dirName, fileName);
+    return fs.statAsync(route).then(function(stat) {
+      return stat.isDirectory() ? readDir(route) : route;
+    });
+  }).reduce(function (a, b) {
+    return a.concat(b);
+  }, []);
+}
 
 module.exports = function (grunt) {
 
@@ -419,6 +434,43 @@ module.exports = function (grunt) {
     });
   });
 
+  grunt.registerTask('imagespath:development', function(){
+    var done = this.async();
+    readDir(folderImgs).then(function(imgs){
+      grunt.config.set('ngconstant.development.constants.IMAGES.paths', imgs);
+      grunt.task.run(['ngconstant:development']);
+      done();
+    });
+  });
+
+  grunt.registerTask('imagespath:production', function(){
+    var done = this.async();
+    readDir(folderImgs).then(function(imgs){
+      grunt.config.set('ngconstant.production.constants.IMAGES.paths', imgs);
+      grunt.task.run(['ngconstant:production']);
+      done();
+    });
+  });
+
+  grunt.registerTask('imagespath:staging', function(){
+    var done = this.async();
+    readDir(folderImgs).then(function(imgs){
+      grunt.config.set('ngconstant.staging.constants.IMAGES.paths', imgs);
+      grunt.task.run(['ngconstant:staging']);
+      done();
+    });
+  });
+
+  grunt.registerTask('imagespath:test', function(){
+    var done = this.async();
+    readDir(folderImgs).then(function(imgs){
+      grunt.config.set('ngconstant.test.constants.IMAGES.paths', imgs);
+      grunt.task.run(['ngconstant:test']);
+      done();
+    });
+  });
+
+
   grunt.registerTask('test', [
     'wiredep',
     'clean',
@@ -434,6 +486,7 @@ module.exports = function (grunt) {
     'clean',
     'concurrent:test',
     'ngconstant:test',
+    'imagespath:test',
     'autoprefixer',
     'karma:continuous'
   ]);
@@ -445,6 +498,7 @@ module.exports = function (grunt) {
     'clean',
     'concurrent:test',
     'ngconstant:test',
+    'imagespath:test',
     'autoprefixer',
     'karma:continuous'
   ]);
@@ -472,6 +526,7 @@ module.exports = function (grunt) {
   grunt.registerTask('init', [
     'clean',
     'ngconstant:development',
+    'imagespath:development',
     'wiredep',
     'concurrent:server',
     'autoprefixer',
@@ -483,6 +538,7 @@ module.exports = function (grunt) {
   grunt.registerTask('compress', [
     'clean',
     'ngconstant:production',
+    'imagespath:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
