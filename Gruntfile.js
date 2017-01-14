@@ -8,6 +8,13 @@ var spawn = process.platform === 'win32' ? require('win-spawn') : require('child
 var promise = require('bluebird');
 var fs = promise.promisifyAll(require('fs'));
 var folderImgs = 'app/images/';
+var extImages = {
+  png: true,
+  jpg: true,
+  jpeg: true,
+  gif: true,
+  svg: false
+};
 
 //get paths files into a folder
 function readDir(dirName) {
@@ -16,8 +23,10 @@ function readDir(dirName) {
     return fs.statAsync(route).then(function(stat) {
       return stat.isDirectory() ? readDir(route) : route;
     });
-  }).reduce(function (a, b) {
-    return a.concat(b);
+  }).reduce(function (arrayFiles, currentFile) {
+    var ext = path.extname(currentFile).split('.').pop(),
+        matchExt = extImages[ext];
+    return matchExt ? arrayFiles.concat(currentFile) : arrayFiles;
   }, []);
 }
 
