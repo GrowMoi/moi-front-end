@@ -1,5 +1,5 @@
 body {
-  & > .application {
+  .application {
     @include background-size(cover);
 
     background-image: url(../images/landscape_b.png);

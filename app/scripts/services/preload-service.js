@@ -8,12 +8,12 @@
   function PreloadImage($q) {
 
     var service = {
-      Cache: Cache
+      cache: cache
     };
 
     return service;
 
-    function Cache(urls) {
+    function cache(urls) {
       if (!(urls instanceof Array)){
         return $q.reject('Input is not an array');
       }

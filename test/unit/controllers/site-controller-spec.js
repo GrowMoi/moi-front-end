@@ -2,17 +2,49 @@
   'use strict';
 
   describe('SiteController', function () {
-    var ctrl, $controller, dependencies, $rootScope, $ionicLoading, $auth;
+    var ctrl,
+        $controller,
+        dependencies,
+        $rootScope,
+        $ionicLoading,
+        $auth,
+        IMAGES,
+        PreloadImage;
 
     beforeEach(module('moi.controllers'));
 
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('IMAGES', {
+          paths: ['image/image1', 'image/image2']
+        });
+      });
+    });
+
+    beforeEach(module('moi.services', function($provide){
+      $provide.factory('PreloadImage', function(){
+        return {
+          cache: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+    }));
+
     beforeEach(inject(
       function (_$controller_,
-                _$rootScope_) {
+                _$rootScope_,
+                _PreloadImage_,
+                _IMAGES_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
-
+        PreloadImage = _PreloadImage_;
+        IMAGES = _IMAGES_;
       })
     );
 
@@ -26,6 +58,7 @@
         };
 
         ctrl = $controller('SiteController', dependencies);
+        ctrl.loadedImages = false;
       });
 
       it('should call $ionicLoading.show in stateChangeStart', function(){
@@ -41,6 +74,7 @@
       });
 
       it('should call $ionicLoading.hode in stateChangeSuccess', function(){
+        ctrl.loadedImages = true;
         $rootScope.$broadcast('$stateChangeSuccess');
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);

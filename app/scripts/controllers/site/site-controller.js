@@ -7,7 +7,24 @@
 
   function SiteController($rootScope,
                           $ionicLoading,
-                          $auth) {
+                          $auth,
+                          PreloadImage,
+                          IMAGES) {
+
+    var site = this,
+        images = IMAGES.paths;
+
+    site.loadedImages = false;
+
+    function preloadImages() {
+      images = images.map(function(img){
+        return img.substring(4); // remove 'app/' of path
+      });
+      PreloadImage.cache(images).then(function(){
+        site.loadedImages = true;
+        $ionicLoading.hide();
+      });
+    }
 
     //This must be the only place where we need to listen stateChanges
     $rootScope.$on('$stateChangeStart', function(event, toState){
@@ -21,12 +38,15 @@
     });
 
     $rootScope.$on('$stateChangeSuccess', function(){
-      $ionicLoading.hide();
+      if (site.loadedImages) {
+        $ionicLoading.hide();
+      }
     });
 
     $rootScope.$on('$stateChangeError', function(){
       $ionicLoading.hide();
     });
 
+    preloadImages();
   }
 })();
