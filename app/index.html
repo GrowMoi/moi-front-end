@@ -84,5 +84,10 @@
     <div ng-if="site.loadedImages">
       <ion-nav-view class="application"></ion-nav-view>
     </div>
+    <div class="loading-app" ng-if="!site.loadedImages">
+      <div class="content">
+        <div class="loader"></div>
+      </div>
+    </div>
   </body>
 </html>

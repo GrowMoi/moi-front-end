@@ -22,7 +22,6 @@
       });
       PreloadImage.cache(images).then(function(){
         site.loadedImages = true;
-        $ionicLoading.hide();
       });
     }
 
@@ -31,9 +30,11 @@
       if (toState.name === 'login' && $auth.user.id) {
         event.preventDefault();
       }else{
-        $ionicLoading.show({
-          template: 'cargando...'
-        });
+        if (site.loadedImages) {
+          $ionicLoading.show({
+            template: 'cargando...'
+          });
+        }
       }
     });
 

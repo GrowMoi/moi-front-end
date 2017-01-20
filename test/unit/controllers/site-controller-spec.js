@@ -62,6 +62,7 @@
       });
 
       it('should call $ionicLoading.show in stateChangeStart', function(){
+        ctrl.loadedImages = true;
         $rootScope.$broadcast('$stateChangeStart', {name: 'fakestate'});
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.show);
@@ -99,6 +100,7 @@
       });
 
       it('should call $ionicLoading.show in stateChangeStart to login and no user', function(){
+        ctrl.loadedImages = true;
         $rootScope.$broadcast('$stateChangeStart', {name: 'login'});
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.show);
