@@ -57,6 +57,7 @@
 
     grunt.registerTask('build', [
       'ngconstant:staging',
+      'imagespath:staging',
       'concurrent:staging',
       'copy:staging'
     ]);
