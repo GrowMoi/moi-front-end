@@ -24,8 +24,9 @@ function readDir(dirName) {
       return stat.isDirectory() ? readDir(route) : route;
     });
   }).reduce(function (arrayFiles, currentFile) {
-    var ext = path.extname(currentFile).split('.').pop(),
-        matchExt = extImages[ext];
+    var isString = typeof(currentFile) === 'string',
+        ext = isString ? path.extname(currentFile).split('.').pop() : null,
+        matchExt = isString ? extImages[ext] : true;
     return matchExt ? arrayFiles.concat(currentFile) : arrayFiles;
   }, []);
 }
@@ -457,15 +458,6 @@ module.exports = function (grunt) {
     readDir(folderImgs).then(function(imgs){
       grunt.config.set('ngconstant.production.constants.IMAGES.paths', imgs);
       grunt.task.run(['ngconstant:production']);
-      done();
-    });
-  });
-
-  grunt.registerTask('imagespath:staging', function(){
-    var done = this.async();
-    readDir(folderImgs).then(function(imgs){
-      grunt.config.set('ngconstant.staging.constants.IMAGES.paths', imgs);
-      grunt.task.run(['ngconstant:staging']);
       done();
     });
   });
