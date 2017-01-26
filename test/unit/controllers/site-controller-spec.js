@@ -58,24 +58,27 @@
         };
 
         ctrl = $controller('SiteController', dependencies);
-        ctrl.loadedImages = false;
+        ctrl.loadedImages = true;
+        ctrl.preloadCalled = true;
       });
 
       it('should call $ionicLoading.show in stateChangeStart', function(){
         ctrl.loadedImages = true;
-        $rootScope.$broadcast('$stateChangeStart', {name: 'fakestate'});
+        ctrl.preloadCalled = true;
+        $rootScope.$broadcast('$stateChangeStart', {name: 'fakestate'}, {}, {name: 'fromState'});
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.show);
       });
 
       it('should not call $ionicLoading.show in stateChangeStart to login and user', function(){
-        $rootScope.$broadcast('$stateChangeStart', {name: 'login'});
+        $rootScope.$broadcast('$stateChangeStart', {name: 'login'}, {}, {name: 'fromState'});
         $rootScope.$digest();
         sinon.assert.notCalled($ionicLoading.show);
       });
 
       it('should call $ionicLoading.hode in stateChangeSuccess', function(){
         ctrl.loadedImages = true;
+        ctrl.preloadCalled = true;
         $rootScope.$broadcast('$stateChangeSuccess');
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);
@@ -101,7 +104,8 @@
 
       it('should call $ionicLoading.show in stateChangeStart to login and no user', function(){
         ctrl.loadedImages = true;
-        $rootScope.$broadcast('$stateChangeStart', {name: 'login'});
+        ctrl.preloadCalled = true;
+        $rootScope.$broadcast('$stateChangeStart', {name: 'login'}, {}, {name: 'fromState'} );
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.show);
       });

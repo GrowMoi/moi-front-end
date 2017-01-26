@@ -81,10 +81,10 @@
     <!-- endbuild -->
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
-    <div ng-if="site.loadedImages">
+    <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application"></ion-nav-view>
     </div>
-    <div class="loading-app" ng-if="!site.loadedImages">
+    <div class="loading-app" ng-if="!site.loadedImages" ng-cloak>
       <div class="content">
         <div class="loader"></div>
       </div>

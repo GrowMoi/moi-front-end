@@ -14,19 +14,26 @@
     var site = this,
         images = IMAGES.paths;
 
-    site.loadedImages = false;
+    site.loadedImages = true; // we need to start as true in login page
+    site.preloadCalled = false;
 
     function preloadImages() {
+      site.loadedImages = false;
       images = images.map(function(img){
         return img.substring(4); // remove 'app/' of path
       });
       PreloadImage.cache(images).then(function(){
         site.loadedImages = true;
+        site.preloadCalled = true;
       });
     }
 
     //This must be the only place where we need to listen stateChanges
-    $rootScope.$on('$stateChangeStart', function(event, toState){
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState){
+      var initApp = (fromState.name === '' && toState.name === 'login');
+      if (!initApp && !site.preloadCalled) {
+        preloadImages();
+      }
       if (toState.name === 'login' && $auth.user.id) {
         event.preventDefault();
       }else{
@@ -48,6 +55,5 @@
       $ionicLoading.hide();
     });
 
-    preloadImages();
   }
 })();
