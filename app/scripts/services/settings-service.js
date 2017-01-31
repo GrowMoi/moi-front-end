@@ -5,11 +5,12 @@
     .module('moi.services')
     .factory('SettingsService', SettingsService);
 
-  function SettingsService($http, $ionicPopup, ENV) {
+  function SettingsService($http, $ionicPopup, ENV, PopupService) {
 
     var service = {
       saveContentSettings: saveContentSettings
     };
+    var popupOptions = { title: 'Error'};
 
     return service;
 
@@ -24,10 +25,10 @@
       }).then(function success(res) {
         return res;
       }, function error(err) {
-        $ionicPopup.alert({
-          title: 'Ups!',
-          content: 'Ha ocurrido un error'
-        });
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
         return err;
       });
     }

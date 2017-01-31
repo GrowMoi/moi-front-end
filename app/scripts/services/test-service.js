@@ -5,16 +5,18 @@
     .module('moi.services')
     .factory('TestService', TestService);
 
-  function TestService(ModalService,
-                      $http,
+  function TestService($http,
                       $ionicPopup,
-                      ENV){
+                      ENV,
+                      ModalService,
+                      PopupService){
 
     var service = {
       goTest: goTest,
       scoreTest: scoreTest,
       evaluateTest: evaluateTest
     };
+    var popupOptions = { title: 'Error'};
 
     return service;
 
@@ -57,10 +59,10 @@
       }).then(function success(res) {
         return res;
       }, function error(err) {
-        $ionicPopup.alert({
-          title: 'Ups!',
-          content: 'Ha ocurrido un error'
-        });
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
         return err;
       });
     }

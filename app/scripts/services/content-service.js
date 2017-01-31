@@ -5,12 +5,13 @@
     .module('moi.services')
     .factory('ContentService', ContentService);
 
-  function ContentService($http, $ionicPopup, ENV) {
+  function ContentService($http, $ionicPopup, $state, ENV, PopupService) {
     var service = {
       readContent: readContent,
       addNotesToContent: addNotesToContent,
       recommendedContents: recommendedContents
     };
+    var popupOptions = { title: 'Error'};
 
     return service;
 
@@ -26,10 +27,14 @@
       }).then(function success(res) {
         return res;
       }, function error(err) {
-        $ionicPopup.alert({
-          title: 'Ups!',
-          content: 'Ha ocurrido un error'
-        });
+        popupOptions.content = err.statusText;
+        if(err.status === 422){
+          PopupService.showModel('alert', popupOptions, function() {
+            $state.go('tree');
+          });
+        }else if(err.status !== 404){
+          PopupService.showModel('alert', popupOptions);
+        }
         return err;
       });
     }
@@ -47,10 +52,10 @@
       }).then(function success(res) {
         return res;
       }, function error(err) {
-        $ionicPopup.alert({
-          title: 'Ups!',
-          content: 'Ha ocurrido un error'
-        });
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
         return err;
       });
     }
@@ -66,10 +71,10 @@
       }).then(function success(res) {
         return res.data;
       }, function error(err) {
-        $ionicPopup.alert({
-          title: 'Ups!',
-          content: 'Ha ocurrido un error'
-        });
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
         return err;
       });
     }

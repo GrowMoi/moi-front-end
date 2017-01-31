@@ -4,7 +4,7 @@
   describe('TestService', function () {
     var service,
         $httpBackend,
-        $ionicPopup,
+        PopupService,
         ModalService,
         ENV,
         testId,
@@ -12,8 +12,6 @@
         scope,
         test,
         data;
-
-    beforeEach(module('moi.services'));
 
     beforeEach(function(){
       /*jshint camelcase: false */
@@ -98,17 +96,24 @@
           }
         };
       });
+      $provide.factory('PopupService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
       function (_$httpBackend_,
                 _TestService_,
-                _$ionicPopup_,
+                _PopupService_,
                 _ModalService_,
                 _ENV_) {
         $httpBackend = _$httpBackend_;
         service = (_TestService_);
-        $ionicPopup = _$ionicPopup_;
+        PopupService = _PopupService_;
         ModalService = _ModalService_;
         ENV = _ENV_;
       })
@@ -141,7 +146,7 @@
       it('should call ionicPopup if it fails. Also should get 500', function(){
         /*jshint camelcase: false */
         var expectedUrl = ENV.apiHost + '/api/learn';
-
+        var spy = sinon.spy(PopupService, 'showModel');
         $httpBackend.expectPOST(expectedUrl,
                                   {
                                     test_id: testId,
@@ -150,7 +155,7 @@
                                 ).respond(500);
 
         service.evaluateTest(testId, answers).then(function(response){
-          sinon.assert.calledOnce($ionicPopup.alert);
+          chai.expect(spy.called).to.be.equal(true);
           chai.expect(response.status).to.deep.equals(500);
         });
 
