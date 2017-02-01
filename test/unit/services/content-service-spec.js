@@ -2,9 +2,17 @@
   'use strict';
 
   describe('ContentService', function () {
-    var service, $httpBackend, ENV, $ionicPopup;
+    var service, $httpBackend, ENV, PopupService, $state;
 
-    beforeEach(module('moi.services'));
+    beforeEach(module('moi.services', function($provide){
+      $provide.factory('PopupService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
+    }));
     beforeEach(function(){
       module('config', function ($provide) {
         $provide.constant('ENV', {
@@ -16,13 +24,27 @@
         });
       });
     });
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.provider('$state', function () {
+        return {
+          $get: function () {
+            return {
+              go: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+    }));
 
     beforeEach(inject(
-      function (_$httpBackend_, _ContentService_, _ENV_, _$ionicPopup_) {
+      function (_$httpBackend_, _$state_, _ContentService_, _ENV_, _PopupService_) {
         $httpBackend = _$httpBackend_;
+        $state = _$state_;
         service = (_ContentService_);
         ENV = _ENV_;
-        $ionicPopup = _$ionicPopup_;
+        PopupService = _PopupService_;
       })
     );
 
@@ -52,7 +74,7 @@
         $httpBackend.flush();
       });
 
-      it('should call ionicPopup if it fails. Also should get 500', function(){
+      it('should call PopupService if it fails. Also should get 500', function(){
         var neuronId = 1;
         var contentId = 1;
         /*jshint camelcase: false */
@@ -64,9 +86,10 @@
                         id: 1,
                         neuron_id: 1
                       };
+        var spy = sinon.spy(PopupService, 'showModel');
 
         service.readContent(content).then(function(response){
-          sinon.assert.calledOnce($ionicPopup.alert);
+          chai.expect(spy.called).to.be.equal(true);
           chai.expect(response.status).to.deep.equals(500);
         });
 
@@ -96,7 +119,7 @@
         $httpBackend.flush();
       });
 
-      it('should call ionicPopup when cant add a note. Also should get 500', function() {
+      it('should call PopupService when cant add a note. Also should get 500', function() {
         var neuronId = 1;
         var contentId = 1;
 
@@ -110,9 +133,10 @@
                         neuron_id: 1,
                         user_notes: 'note in content-max'
                       };
+        var spy = sinon.spy(PopupService, 'showModel');
 
         service.addNotesToContent(content).then(function(response){
-          sinon.assert.calledOnce($ionicPopup.alert);
+          chai.expect(spy.called).to.be.equal(true);
           chai.expect(response.status).to.deep.equals(500);
         });
 
@@ -150,11 +174,12 @@
                         neuron_id: 1,
                         kind: 'Que es'
                       };
+        var spy = sinon.spy(PopupService, 'showModel');
 
         $httpBackend.expectGET(expectedUrl).respond(500);
 
         service.recommendedContents(content).then(function(response){
-          sinon.assert.calledOnce($ionicPopup.alert);
+          chai.expect(spy.called).to.be.equal(true);
           chai.expect(response.status).to.deep.equals(500);
         });
 

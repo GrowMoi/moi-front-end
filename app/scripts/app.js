@@ -38,6 +38,15 @@
             if (rejection.status === 401) {
               $injector.get('$state').go('login');
               $injector.get('$ionicLoading').hide();
+            }else if(rejection.status === 404){
+              var popupOptions = {
+               title: 'Error',
+               content: rejection.statusText
+              };
+              var PopupService = $injector.get('PopupService');
+              PopupService.showModel('alert', popupOptions, function() {
+               $injector.get('$state').go('tree');
+              });
             }
             return $q.reject(rejection);
           }

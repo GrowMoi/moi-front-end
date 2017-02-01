@@ -5,11 +5,12 @@
     .module('moi.services')
     .factory('NeuronService', NeuronService);
 
-  function NeuronService($http, ENV) {
+  function NeuronService($http, ENV, PopupService) {
     var service = {
       getNeuron: getNeuron,
       searchNeurons: searchNeurons
     };
+    var popupOptions = { title: 'Error'};
 
     return service;
 
@@ -20,7 +21,10 @@
       }).then(function success(res) {
         return res.data;
       }, function error(err) {
-        console.error('ERR', err);
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
       });
     }
 
@@ -35,7 +39,10 @@
       }).then(function success(res) {
         return res.data;
       }, function error(err) {
-        console.error('ERR', err);
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
       });
     }
   }

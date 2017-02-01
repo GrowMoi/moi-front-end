@@ -11,6 +11,9 @@
           name:'development',
           apiHost:'http://localhost:5000'
         });
+        $provide.constant('$ionicPopup', {
+          alert: sinon.stub()
+        });
       });
     });
 
