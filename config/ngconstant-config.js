@@ -13,6 +13,9 @@
         ENV: {
           name: 'development',
           apiHost: 'http://localhost:5000'
+        },
+        IMAGES: {
+          paths: []
         }
       }
     },
@@ -21,6 +24,9 @@
         ENV: {
           name: 'staging',
           apiHost: '//moi-staging.herokuapp.com'
+        },
+        IMAGES: {
+          paths: []
         }
       }
     },
@@ -32,6 +38,9 @@
         ENV: {
           name: 'production',
           apiHost: 'http://moi-backend.shiriculapo.com'
+        },
+        IMAGES: {
+          paths: []
         }
       }
     },
@@ -40,6 +49,9 @@
         ENV: {
           name: 'test',
           apiHost: 'http://moi-integration.herokuapp.com'
+        },
+        IMAGES: {
+          paths: []
         }
       }
     }
