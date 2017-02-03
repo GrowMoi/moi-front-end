@@ -340,7 +340,7 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-0020{
+            &-0010{ //0020
               bottom: 285px;
               left: 385px;
               width: 30px;
@@ -349,7 +349,7 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-0021{
+            &-0011{ //0021
               bottom: 272px;
               left: 345px;
               width: 30px;
@@ -358,62 +358,8 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-1011{
-              bottom: 348px;
-              left: 556px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-verde.png);
-              }
-            }
-            &-1100{
-              bottom: 270px;
-              left: 590px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-verde.png);
-              }
-            }
-            &-1101{
-              bottom: 308px;
-              left: 525px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-verde.png);
-              }
-            }
-            &-1102{
-              bottom: 300px;
-              left: 645px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-verde.png);
-              }
-            }
-            &-1103{
-              bottom: 270px;
-              left: 630px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-verde.png);
-              }
-            }
-            &-1104{
-              bottom: 302px;
-              left: 600px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-verde.png);
-              }
-            }
-            &-1105{
-              bottom: 297px;
+            &-1000{ //1011
+              bottom: 327px;
               left: 555px;
               width: 30px;
               height: 30px;
@@ -421,7 +367,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-1110{
+            &-1100{
               bottom: 335px;
               left: 595px;
               width: 30px;
@@ -430,9 +376,63 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-1111{
+            &-1101{
               bottom: 343px;
               left: 625px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-1020{ //1102
+              bottom: 300px;
+              left: 645px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-1024{ //1103
+              bottom: 270px;
+              left: 630px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-1025{ //1104
+              bottom: 302px;
+              left: 600px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-1023{ //1105
+              bottom: 297px;
+              left: 555px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-1022{ //1110
+              bottom: 335px;
+              left: 595px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-1021{ // 1111
+              bottom: 308px;
+              left: 525px;
               width: 30px;
               height: 30px;
               &.florecida{
@@ -458,8 +458,8 @@
               }
             }
             &-2002{
-              bottom: 378px;
-              left: 695px;
+              bottom: 335px;
+              left: 707px;
               width: 30px;
               height: 30px;
               &.florecida{
@@ -467,8 +467,8 @@
               }
             }
             &-2003{
-              bottom: 335px;
-              left: 707px;
+              bottom: 378px;
+              left: 695px;
               width: 30px;
               height: 30px;
               &.florecida{
@@ -649,7 +649,7 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-00200{
+            &-00100{ //00200 suma
               bottom: 345px;
               left: 355px;
               width: 30px;
@@ -658,7 +658,7 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-00201{
+            &-00101{ //00201 resta
               bottom: 342px;
               left: 385px;
               width: 30px;
@@ -667,7 +667,7 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-00202{
+            &-00102{ // 00202 geometria
               bottom: 375px;
               left: 420px;
               width: 30px;
@@ -676,7 +676,7 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-00203{
+            &-00103{ //00203 simbolo
               bottom: 370px;
               left: 390px;
               width: 30px;
@@ -685,25 +685,7 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-00210{
-              bottom: 405px;
-              left: 355px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-azul.png);
-              }
-            }
-            &-00211{
-              bottom: 370px;
-              left: 340px;
-              width: 30px;
-              height: 30px;
-              &.florecida{
-                background-image: url(../images/tree/nodos/nodo-azul.png);
-              }
-            }
-            &-00212{
+            &-00112{// 00210 racionales
               bottom: 395px;
               left: 330px;
               width: 30px;
@@ -712,7 +694,25 @@
                 background-image: url(../images/tree/nodos/nodo-azul.png);
               }
             }
-            &-10110{
+            &-00111{//00211 fracciones
+              bottom: 370px;
+              left: 340px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00110{//00212 primos
+              bottom: 405px;
+              left: 355px;
+              width: 30px;
+              height: 30px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-10000{ //10110 gases
               bottom: 350px;
               left: 460px;
               width: 30px;
@@ -721,7 +721,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-10111{
+            &-10001{//10111 metales
               bottom: 335px;
               left: 485px;
               width: 30px;
@@ -748,7 +748,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11020{
+            &-10200{//11020 reciclaje
               bottom: 360px;
               left: 500px;
               width: 30px;
@@ -757,7 +757,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11030{
+            &-10240{//11030 h.carbonica
               bottom: 405px;
               left: 465px;
               width: 30px;
@@ -766,7 +766,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11040{
+            &-10250{ // 11040 atmosfera
               bottom: 402px;
               left: 437px;
               width: 30px;
@@ -775,7 +775,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11050{
+            &-10231{ // 11050 minerales
               bottom: 425px;
               left: 575px;
               width: 30px;
@@ -784,7 +784,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11051{
+            &-10230{ //11051 geologia
               bottom: 420px;
               left: 535px;
               width: 30px;
@@ -793,7 +793,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11100{
+            &-10220{ //11100 oceano
               bottom: 370px;
               left: 570px;
               width: 30px;
@@ -802,7 +802,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11101{
+            &-11011{ //11101 hongos
               bottom: 335px;
               left: 575px;
               width: 25px;
@@ -811,7 +811,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11110{
+            &-11001{ //11110 bacteria
               bottom: 355px;
               left: 530px;
               width: 30px;
@@ -820,7 +820,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11111{
+            &-10210{ //11111 combustion
               bottom: 387px;
               left: 540px;
               width: 30px;
@@ -829,7 +829,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11112{
+            &-11012{ //11112 plantas
               bottom: 330px;
               left: 535px;
               width: 30px;
@@ -838,7 +838,7 @@
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
-            &-11113{
+            &-11013{ //11113 animales
               bottom: 360px;
               left: 605px;
               width: 30px;
@@ -892,7 +892,7 @@
                 background-image: url(../images/tree/nodos/nodo-amarillo.png);
               }
             }
-            &-20022{
+            &-20012{ // 20022 ignorar
               bottom: 325px;
               left: 765px;
               width: 30px;
@@ -1000,18 +1000,18 @@
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
-            &-31000{
-              bottom: 205px;
-              left: 885px;
+            &-31000{//ficcion
+              bottom: 485px;
+              left: 850px;
               width: 30px;
               height: 30px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
-            &-31010{
-              bottom: 485px;
-              left: 850px;
+            &-31010{ //31411
+              bottom: 455px;
+              left: 875px;
               width: 30px;
               height: 30px;
               &.florecida{
@@ -1045,7 +1045,7 @@
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
-            &-31300{
+            &-31310{ //31300 pictogrma
               bottom: 390px;
               left: 860px;
               width: 30px;
@@ -1054,7 +1054,7 @@
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
-            &-31301{
+            &-31311{ // 31301 imprenta
               bottom: 455px;
               left: 795px;
               width: 30px;
@@ -1063,7 +1063,7 @@
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
-            &-31400{
+            &-31410{ //31400
               bottom: 460px;
               left: 925px;
               width: 30px;
@@ -1072,16 +1072,16 @@
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
-            &-31401{
+            &-31411{ // 31401
               bottom: 455px;
-              left: 875px;
+              left: 845px;
               width: 30px;
               height: 30px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
-            &-31402{
+            &-31412{ //31402
               bottom: 430px;
               left: 940px;
               width: 30px;
@@ -1254,17 +1254,17 @@
               background-image: url(../images/tree/branchs/level-5/rama013.png);
             }
           }
-          &-0020{
+          &-0010{ //0020
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama009-010.png);
             }
           }
-          &-0021{
+          &-0011{ //0021
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama011.png);
             }
           }
-          &-1011{
+          &-1000{ //1011
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama041.png);
             }
@@ -1279,32 +1279,32 @@
               background-image: url(../images/tree/branchs/level-5/rama037.png);
             }
           }
-          &-1102{
+          &-1020{ //1102
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama035.png);
             }
           }
-          &-1103{
+          &-1024{ //1103
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama035.png);
             }
           }
-          &-1104{
+          &-1025{ //1104
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama038.png);
             }
           }
-          &-1105{
+          &-1023{ //1105
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama037.png);
             }
           }
-          &-1110{
+          &-1022{ //1110
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama036.png);
             }
           }
-          &-1111{
+          &-1021{ //1111
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama040.png);
             }
@@ -1351,6 +1351,7 @@
           }
           &-3011{
             &.florecida{
+              z-index: 1;
               background-image: url(../images/tree/branchs/level-5/rama088.png);
             }
           }
@@ -1427,47 +1428,47 @@
               background-image: url(../images/tree/branchs/level-6/rama015.png);
             }
           }
-          &-00200{
+          &-00100{ //00200
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama017.png);
             }
           }
-          &-00201{
+          &-00101{ //00201
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama019.png);
             }
           }
-          &-00202{
+          &-00102{ // 00202
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama019.png);
             }
           }
-          &-00203{
+          &-00103{ //00203
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama019.png);
             }
           }
-          &-00210{
+          &-00112{// 00210
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama016.png);
             }
           }
-          &-00211{
+          &-00111{//00211
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama016.png);
             }
           }
-          &-00212{
+          &-00110{//00212
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama016.png);
             }
           }
-          &-10110{
+          &-10000{ //10110
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama044.png);
             }
           }
-          &-10111{
+          &-10001{//10111
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama044.png);
             }
@@ -1482,57 +1483,57 @@
               background-image: url(../images/tree/branchs/level-6/rama045.png);
             }
           }
-          &-11020{
+          &-10200{//11020
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama045.png);
             }
           }
-          &-11030{
+          &-10240{//11030
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama045.png);
             }
           }
-          &-11040{
+          &-10250{ // 11040
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama045.png);
             }
           }
-          &-11050{
+          &-10231{ // 11050
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama046.png);
             }
           }
-          &-11051{
+          &-10230{ //11051
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama046.png);
             }
           }
-          &-11100{
+          &-10220{ //11100
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama042.png);
             }
           }
-          &-11101{
+          &-11011{ //11101
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama039.png);
             }
           }
-          &-11110{
+          &-11001{ //11110
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama040.png);
             }
           }
-          &-11111{
+          &-10210{ //11111
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama040.png);
             }
           }
-          &-11112{
+          &-11012{ //11112
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama043.png);
             }
           }
-          &-11113{
+          &-11013{ //11113
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama042.png);
             }
@@ -1562,7 +1563,7 @@
               background-image: url(../images/tree/branchs/level-6/rama063.png);
             }
           }
-          &-20022{
+          &-20012{ // 20022
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama063.png);
             }
@@ -1647,27 +1648,27 @@
               background-image: url(../images/tree/branchs/level-6/rama099.png);
             }
           }
-          &-31300{
+          &-31310{ //31300
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama097.png);
             }
           }
-          &-31301{
+          &-31311{ // 31301
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama096.png);
             }
           }
-          &-31400{
+          &-31410{ //31400
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama100.png);
             }
           }
-          &-31401{
+          &-31411{ // 31401
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama100.png);
             }
           }
-          &-31402{
+          &-31412{ //31402
             &.florecida{
               background-image: url(../images/tree/branchs/level-6/rama098.png);
             }
