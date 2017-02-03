@@ -129,6 +129,7 @@
       controller: 'TreeController',
       controllerAs: 'treeModel',
       templateUrl: 'templates/tree/tree.html',
+      cache: false,
       resolve: {
         data: function(TreeService){
           return TreeService.getNeuronsUser().then(function(data) {
