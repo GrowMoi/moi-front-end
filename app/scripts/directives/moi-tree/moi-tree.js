@@ -41,7 +41,7 @@
         case 6:
           return 'templates/directives/moi-tree/tree-sixth-level.html';
         default:
-          return 'templates/directives/moi-tree/tree-first-level.html';
+          return 'templates/directives/moi-tree/tree-sixth-level.html';
       }
     }
   }
