@@ -48,7 +48,7 @@ ion-view.content-view-max(view-title='Content')
               .row.border-bottom
                 .content-subtitle {{ ::'content.max.links ' | translate }}
               .row(ng-repeat="link in vmContent.content.links")
-                a(href='link' target='_blank') {{link}}
+                a(href='{{::link}}' target='_blank') {{::link}}
             .corner.links-TR
       .btns-options
         .btn-learn(ng-if="!vmContent.showGifRead")
