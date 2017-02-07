@@ -9,10 +9,12 @@
                           $ionicLoading,
                           $auth,
                           PreloadImage,
-                          IMAGES) {
+                          IMAGES,
+                          SOUNDS) {
 
     var site = this,
-        images = IMAGES.paths;
+        images = IMAGES.paths,
+        sounds = SOUNDS.paths;
 
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
@@ -22,7 +24,10 @@
       images = images.map(function(img){
         return img.substring(4); // remove 'app/' of path
       });
-      PreloadImage.cache(images).then(function(){
+      sounds = sounds.map(function(snd){
+        return snd.substring(4); // remove 'app/' of path
+      });
+      PreloadImage.cache({'images': images, 'sounds': sounds}).then(function(){
         site.loadedImages = true;
         site.preloadCalled = true;
       });
