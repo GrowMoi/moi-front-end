@@ -1,4 +1,4 @@
-.tree.sixth-level
+.tree.seventh-level
   .tree-img
     img(src="images/tree/level-7/arbol-gris-7.png")
     img.tree-root(src="images/tree/tronco.png")
@@ -30,7 +30,7 @@
                           class="branch sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child4.state}}")
               a.neuron(ui-sref="neuron({neuronId: child4.id})" class="sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child4.state}}")
               
-              .tree-branch(ng-repeat="child5 in child5.children track by $index" 
+              .tree-branch(ng-repeat="child5 in child4.children track by $index" 
                           ng-init="indexLevel7=$index"
                             class="branch seventh-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}} {{child5.state}}")
-                a.neuron(ui-sref="neuron({neuronId: child4.id})" class="sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}} {{child5.state}}")
+                a.neuron(ui-sref="neuron({neuronId: child4.id})" class="seventh-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}} {{child5.state}}")
