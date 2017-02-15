@@ -16,6 +16,9 @@
         },
         IMAGES: {
           paths: []
+        },
+        SOUNDS: {
+          paths: []
         }
       }
     },
@@ -26,6 +29,9 @@
           apiHost: '//moi-staging.herokuapp.com'
         },
         IMAGES: {
+          paths: []
+        },
+        SOUNDS: {
           paths: []
         }
       }
@@ -41,6 +47,9 @@
         },
         IMAGES: {
           paths: []
+        },
+        SOUNDS: {
+          paths: []
         }
       }
     },
@@ -51,6 +60,9 @@
           apiHost: 'http://moi-integration.herokuapp.com'
         },
         IMAGES: {
+          paths: []
+        },
+        SOUNDS: {
           paths: []
         }
       }

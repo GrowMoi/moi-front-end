@@ -8,6 +8,7 @@ var spawn = process.platform === 'win32' ? require('win-spawn') : require('child
 var promise = require('bluebird');
 var fs = promise.promisifyAll(require('fs'));
 var folderImgs = 'app/images/';
+var folderSnds = 'app/sounds/';
 var extImages = {
   png: true,
   jpg: true,
@@ -15,9 +16,12 @@ var extImages = {
   gif: true,
   svg: false
 };
+var extSounds = {
+  mp3: true
+};
 
 //get paths files into a folder
-function readDir(dirName) {
+function readDir(dirName, extFile) {
   return fs.readdirAsync(dirName).map(function (fileName) {
     var route = path.join(dirName, fileName);
     return fs.statAsync(route).then(function(stat) {
@@ -26,7 +30,7 @@ function readDir(dirName) {
   }).reduce(function (arrayFiles, currentFile) {
     var isString = typeof(currentFile) === 'string',
         ext = isString ? path.extname(currentFile).split('.').pop() : null,
-        matchExt = isString ? extImages[ext] : true;
+        matchExt = isString && extFile ? extFile[ext] : true;
     return matchExt ? arrayFiles.concat(currentFile) : arrayFiles;
   }, []);
 }
@@ -444,33 +448,23 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('imagespath:development', function(){
+  grunt.registerTask('imagespath', function(environment){
     var done = this.async();
-    readDir(folderImgs).then(function(imgs){
-      grunt.config.set('ngconstant.development.constants.IMAGES.paths', imgs);
-      grunt.task.run(['ngconstant:development']);
+    readDir(folderImgs, extImages).then(function(imgs){
+      grunt.config.set('ngconstant.'+ environment + '.constants.IMAGES.paths', imgs);
+      grunt.task.run(['ngconstant:'+ environment]);
       done();
     });
   });
 
-  grunt.registerTask('imagespath:production', function(){
+  grunt.registerTask('soundspath', function(environment){
     var done = this.async();
-    readDir(folderImgs).then(function(imgs){
-      grunt.config.set('ngconstant.production.constants.IMAGES.paths', imgs);
-      grunt.task.run(['ngconstant:production']);
+    readDir(folderSnds, extSounds).then(function(snds){
+      grunt.config.set('ngconstant.'+ environment + '.constants.SOUNDS.paths', snds);
+      grunt.task.run(['ngconstant:'+ environment]);
       done();
     });
   });
-
-  grunt.registerTask('imagespath:test', function(){
-    var done = this.async();
-    readDir(folderImgs).then(function(imgs){
-      grunt.config.set('ngconstant.test.constants.IMAGES.paths', imgs);
-      grunt.task.run(['ngconstant:test']);
-      done();
-    });
-  });
-
 
   grunt.registerTask('test', [
     'wiredep',
@@ -488,6 +482,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'ngconstant:test',
     'imagespath:test',
+    'soundspath:test',
     'autoprefixer',
     'karma:continuous'
   ]);
@@ -500,6 +495,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'ngconstant:test',
     'imagespath:test',
+    'soundspath:test',
     'autoprefixer',
     'karma:continuous'
   ]);
@@ -528,6 +524,7 @@ module.exports = function (grunt) {
     'clean',
     'ngconstant:development',
     'imagespath:development',
+    'soundspath:development',
     'wiredep',
     'concurrent:server',
     'autoprefixer',
@@ -540,6 +537,7 @@ module.exports = function (grunt) {
     'clean',
     'ngconstant:production',
     'imagespath:production',
+    'soundspath:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
