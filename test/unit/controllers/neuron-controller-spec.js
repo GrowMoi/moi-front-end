@@ -33,6 +33,10 @@
       it('should controller.neuron be the same of data', function(){
         chai.expect(ctrl.neuron).to.deep.equals(dependencies.data);
       });
+
+      it('should load onSelect', function(){
+        chai.expect(ctrl.contentsPreferences.onSelect).to.be.an('function');
+      });
     });
 
     describe('learn', function(){
@@ -42,6 +46,13 @@
         $scope.$digest();
         chai.expect(spy.called).to.be.equal(true);
       });
+
+      it('should change the gif flag', function(){
+        chai.expect(ctrl.gifLearnActive).to.be.equal(true);
+        ctrl.contentsPreferences.onSelect({read: true});
+        chai.expect(ctrl.gifLearnActive).to.be.equal(false);
+      });
+
     });
 
   });
