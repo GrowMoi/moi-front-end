@@ -1,8 +1,11 @@
 .row.content-in-grid(ng-repeat="(key, value) in vm.rowsGrid")
   .col(ng-class="value.class", ng-repeat="content in value.items")
-    .content-kind(
+    .content-kind.relative(
           ng-click="vm.selectContent(content)",
           on-double-tap="vm.sendContent(content.neuron_id, content.id)",
           ng-class="content.isSelected ? 'content-selected' : 'content-unselected'")
-     img.img-content-1(ng-src='{{content.media[0]}}')
-     .leyend-bottom {{content.title}}
+      img.img-content-1(ng-src='{{content.media[0]}}')
+      .overlay-read(ng-if="content.read")
+        img.cover(ng-src="../images/cover-transparent.png")
+        img.approved(ng-src="../images/approved.png")
+      .leyend-bottom {{content.title}}
