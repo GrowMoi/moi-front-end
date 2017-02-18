@@ -15,7 +15,8 @@ ion-view.neuron-view(view-title='{{vmNeuron.neuron.title}}')
                                     order="0"
                                     callback="vmNeuron.finishedAnimationRead()"
                                     loaded="vmNeuron.loadedGif('showGifRead')"
-                                    clickgif="true")
+                                    clickgif="true"
+                                    ng-class="{disabled: !vmNeuron.gifLearnActive}")
         .btn-search(ng-if="!vmNeuron.showGifSearch")
         gif-queue
           gif-no-loop.btn-search-gif(src="images/btn_search.gif"

@@ -14,9 +14,11 @@
     vmNeuron.finishedAnimationSearch = finishedAnimationSearch;
     vmNeuron.finishedAnimationRead = finishedAnimationRead;
     vmNeuron.loadedGif = loadedGif;
+    vmNeuron.gifLearnActive = true;
 
     /*jshint camelcase: false */
-    vmNeuron.contentsPreferences = user.content_preferences;
+    vmNeuron.contentsPreferences = user.content_preferences || {};
+    vmNeuron.contentsPreferences.onSelect = onSelectItem;
 
     function init(){
       vmNeuron.neuron = data;
@@ -30,6 +32,10 @@
 
     function finishedAnimationRead() {
       $scope.$broadcast('neuron:remove-content');
+    }
+
+    function onSelectItem(content) {
+      vmNeuron.gifLearnActive = !content.read;
     }
 
     function loadedGif(key) {

@@ -48,6 +48,10 @@
       vm.contentSelected = content;
       /*add class new content selected*/
       content.isSelected = true;
+
+      if (vm.settings && angular.isFunction(vm.settings.onSelect)) {
+        vm.settings.onSelect(vm.contentSelected);
+      }
     }
 
     /* add content indexes based on settings user
