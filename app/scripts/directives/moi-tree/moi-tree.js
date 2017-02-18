@@ -42,8 +42,10 @@
           return 'templates/directives/moi-tree/tree-sixth-level.html';
         case 7:
           return 'templates/directives/moi-tree/tree-seventh-level.html';
+        case 8:
+          return 'templates/directives/moi-tree/tree-eighth-level.html';
         default:
-          return 'templates/directives/moi-tree/tree-seventh-level.html';
+          return 'templates/directives/moi-tree/tree-eighth-level.html';
       }
     }
   }
