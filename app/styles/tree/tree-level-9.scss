@@ -1424,6 +1424,66 @@
               }
             }
           }
+
+          &.nineth-level {
+            // azul
+            &-00010120 { //motor
+              bottom: 530px;
+              left: 335px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00010002 { //planetas
+              bottom: 545px;
+              left: 310px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00010140 { //programacion
+              bottom: 537px;
+              left: 363px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00010110 { //robot
+              bottom: 560px;
+              left: 340px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00010001 { //estrella
+              bottom: 564px;
+              left: 373px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00010000 { //espacio
+              bottom: 585px;
+              left: 353px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00010210 { //renovable
+              bottom: 590px;
+              left: 390px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            &-00010141 { //inteligencia artificial
+              bottom: 610px;
+              left: 370px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+          }
         }
 
         &.second-level {
