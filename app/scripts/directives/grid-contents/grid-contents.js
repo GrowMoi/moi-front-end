@@ -35,8 +35,8 @@
     init();
 
     function init(){
-      vm.contentsFilter = filterContents(vm.contents);
-      buildGrid(vm.contentsFilter);
+      vm.contents = orderContents(vm.contents);
+      buildGrid(vm.contents);
     }
 
     function selectContent(content) {
@@ -48,14 +48,10 @@
       vm.contentSelected = content;
       /*add class new content selected*/
       content.isSelected = true;
-    }
 
-    function filterContents(contents){
-      var newContents = contents.filter(function(content){
-        return content.read === false;
-      });
-      newContents = orderContents(newContents);
-      return newContents;
+      if (vm.settings && angular.isFunction(vm.settings.onSelect)) {
+        vm.settings.onSelect(vm.contentSelected);
+      }
     }
 
     /* add content indexes based on settings user
@@ -105,9 +101,9 @@
     $scope.$on('neuron:remove-content', function(){
       ContentService.readContent(vm.contentSelected).then(function(response){
         /*jshint camelcase: false */
-        var index = vm.contentsFilter.indexOf(vm.contentSelected);
-        vm.contentsFilter.splice(index, 1);
-        buildGrid(vm.contentsFilter);
+        var index = vm.contents.indexOf(vm.contentSelected);
+        vm.contents[index].read = true;
+        buildGrid(vm.contents);
         if (response.data.perform_test) {
           TestService.goTest($scope, response.data.test);
         }

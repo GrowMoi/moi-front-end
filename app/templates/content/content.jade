@@ -58,7 +58,8 @@ ion-view.content-view-max(view-title='Content')
                                     order="0"
                                     callback="vmContent.finishedAnimationRead()"
                                     loaded="vmContent.loadedGif('showGifRead')"
-                                    clickgif="true")
+                                    clickgif="true"
+                                    ng-class="{disabled: vmContent.content.read}")
         .btn-search(ng-if="!vmContent.showGifSearch")
         gif-queue
           gif-no-loop.btn-search-gif(src="images/btn_search.gif"

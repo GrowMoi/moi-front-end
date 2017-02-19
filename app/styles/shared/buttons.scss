@@ -7,7 +7,6 @@
   background-image: url(../images/btn-learn.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  cursor: pointer;
 }
 
 .btn-search {
@@ -29,6 +28,10 @@
   cursor: pointer;
   canvas{
     width: 146px;
+  }
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
   }
 }
 

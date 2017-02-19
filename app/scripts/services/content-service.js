@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('ContentService', ContentService);
 
-  function ContentService($http, $ionicPopup, $state, ENV, PopupService) {
+  function ContentService($http, $ionicPopup, $state, ENV, PopupService, $q) {
     var service = {
       readContent: readContent,
       addNotesToContent: addNotesToContent,
@@ -35,7 +35,7 @@
         }else if(err.status !== 404){
           PopupService.showModel('alert', popupOptions);
         }
-        return err;
+        return $q.reject(err);
       });
     }
 

@@ -71,6 +71,7 @@
       controller: 'NeuronController',
       controllerAs: 'vmNeuron',
       templateUrl: 'templates/neuron/neuron.html',
+      cache: false,
       resolve: {
         data: function(NeuronService, $stateParams){
           var id = $stateParams.neuronId;
