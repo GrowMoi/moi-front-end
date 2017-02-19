@@ -7,6 +7,9 @@
     top: 3%;
     left: 35px;
   }
+  .overflow-scroll{
+    overflow-y: visible;
+  }
   .row-content-title {
     height: 150px;
 
@@ -20,9 +23,15 @@
       font-family: FontMoi-Title;
       width: 100%;
       line-height: 50px;
-      overflow: auto;
+      overflow: visible;;
       word-break: break-word;
       text-indent: 60px;
+    }
+    .title-long{
+      font-size: 38px;
+    }
+    .title-verylong{
+      font-size: 25px;
     }
   }
 
