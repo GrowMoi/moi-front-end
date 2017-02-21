@@ -56,7 +56,8 @@
   }
 
   .row-content-text {
-    max-height: 400px;
+    height: 400px;
+
 
     .content-text {
       color: $titlesColor;
@@ -74,6 +75,19 @@
       text-decoration: underline;
       font-size: 14px;
       margin-top: 10px;
+    .content-text::-webkit-scrollbar-track {
+      border-radius: 10px;
+      border: 1px solid $linesColor;
+      width: 20px;
+    }
+    .content-text::-webkit-scrollbar {
+      width: 15px;
+      background-color: transparent;
+      border-radius: 10px;
+    }
+    .content-text::-webkit-scrollbar-thumb {
+      border-radius: 25px;
+      background-color: $linesColor;
     }
   }
 
