@@ -12,26 +12,16 @@
   }
   .row-content-title {
     height: 150px;
-
+    width: 380px;
     .content-title {
       color: $titlesColor;
       font-size: 50px;
       font-weight: bold;;
-      margin-bottom: 30px;
-      margin-top: 15px;
-      margin-left: 20px;
       font-family: FontMoi-Title;
-      width: 100%;
+      width: 365px;
+      height: 140px;
       line-height: 50px;
-      overflow: visible;
-      word-break: break-word;
       text-indent: 60px;
-    }
-    .title-long{
-      font-size: 38px;
-    }
-    .title-verylong{
-      font-size: 25px;
     }
   }
 
@@ -77,6 +67,7 @@
       text-decoration: underline;
       font-size: 14px;
       margin-top: 10px;
+    }
     .content-text::-webkit-scrollbar-track {
       border-radius: 10px;
       border: 1px solid $linesColor;

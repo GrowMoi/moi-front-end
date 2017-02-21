@@ -16,8 +16,6 @@
     vmContent.finishedAnimationSearch = finishedAnimationSearch;
     vmContent.finishedAnimationRead = finishedAnimationRead;
     vmContent.loadedGif = loadedGif;
-    vmContent.titleLong = 20;
-    vmContent.titleVeryLong = 35; 
 
     activate();
 
