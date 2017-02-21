@@ -61,12 +61,8 @@
       word-break: break-all;
       text-align: justify;
     }
-  }
-
-  .row-content-source{
     .content-source{
-      text-indent: 60px;
-      color: $sourceColor;
+      text-decoration: underline;
     }
   }
 
