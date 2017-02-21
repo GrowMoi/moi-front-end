@@ -993,8 +993,10 @@
               }
             }
             &-110103 { //organica
-              bottom: 495px;
-              left: 450px;
+              width: 25px;
+              height: 25px;
+              bottom: 480px;
+              left: 458px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
@@ -1263,22 +1265,28 @@
             }
             //verde
             &-1101011 { //n. celular
-              bottom: 540px;
+              width: 25px;
+              height: 25px;
+              bottom: 528px;
               left: 450px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
             &-1101010 { //aminoacido
-              bottom: 518px;
-              left: 470px;
+              width: 25px;
+              height: 25px;
+              bottom: 505px;
+              left: 462px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
             &-1101210 { //bosque
-              bottom: 485px;
-              left: 478px;
+              width: 25px;
+              height: 25px;
+              bottom: 490px;
+              left: 485px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-verde.png);
               }
@@ -1481,6 +1489,106 @@
               left: 370px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-azul.png);
+              }
+            }
+            // verdes
+            &-11013000 { //aves
+              bottom: 552px;
+              left: 448px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11013102 { //gusanos
+              bottom: 547px;
+              left: 473px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11012201 { //frutos
+              bottom: 525px;
+              left: 480px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11013030 { //corazon
+              bottom: 585px;
+              left: 440px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11010200 { //evolucion
+              bottom: 610px;
+              left: 420px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11010112 { //mitosis
+              bottom: 610px;
+              left: 445px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11010111 { //mitocondrio
+              bottom: 590px;
+              left: 465px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11010110 { //A.D.N
+              bottom: 605px;
+              left: 485px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11013031 { //cerebro
+              bottom: 600px;
+              left: 510px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11010100 { //proteina
+              bottom: 575px;
+              left: 500px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11010100 { //digestivo
+              bottom: 568px;
+              left: 477px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
               }
             }
           }
