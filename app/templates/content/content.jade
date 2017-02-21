@@ -12,7 +12,10 @@ ion-view.content-view-max(view-title='Content')
             .corner.title-TR
           .row.row-content-text
             .corner.description-TL
-            .content-text {{vmContent.content.description}}
+            .content-text
+              {{vmContent.content.description}}
+              .content-source
+                {{vmContent.content.source}}
             .corner.description-TR
         .col.border-right.border-left.middle-column-margin-bottom
           .row.border-bottom
