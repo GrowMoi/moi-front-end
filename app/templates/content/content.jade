@@ -14,6 +14,9 @@ ion-view.content-view-max(view-title='Content')
             .corner.description-TL
             .content-text {{vmContent.content.description}}
             .corner.description-TR
+          .row.row-content-source
+            a.content-source(href='{{vmContent.content.source}}') 
+              {{vmContent.content.source}}
         .col.border-right.border-left.middle-column-margin-bottom
           .row.border-bottom
             .col.image-center
