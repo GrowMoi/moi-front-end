@@ -23,7 +23,7 @@
       font-family: FontMoi-Title;
       width: 100%;
       line-height: 50px;
-      overflow: visible;;
+      overflow: visible;
       word-break: break-word;
       text-indent: 60px;
     }
@@ -67,6 +67,8 @@
       font-family: FontMoi-Content;
       line-height: 30px;
       overflow: auto;
+      margin-right: -18px;
+      padding-right: 20px;
       width: 100%;
       word-break: break-all;
       text-align: justify;
@@ -78,10 +80,10 @@
     .content-text::-webkit-scrollbar-track {
       border-radius: 10px;
       border: 1px solid $linesColor;
-      width: 20px;
+      width: 5px;
     }
     .content-text::-webkit-scrollbar {
-      width: 15px;
+      width: 5px;
       background-color: transparent;
       border-radius: 10px;
     }
