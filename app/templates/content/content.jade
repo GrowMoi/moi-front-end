@@ -8,7 +8,8 @@ ion-view.content-view-max(view-title='Content')
       .row.content-max-view
         .col
           .row.border-bottom.row-content-title
-            .content-title {{vmContent.content.title}}
+            .content-title(auto-font-size='')
+              {{:: vmContent.content.title}}
             .corner.title-TR
           .row.row-content-text
             .corner.description-TL

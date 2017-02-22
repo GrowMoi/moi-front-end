@@ -7,21 +7,20 @@
     top: 3%;
     left: 35px;
   }
+  .overflow-scroll{
+    overflow-y: visible;
+  }
   .row-content-title {
     height: 150px;
-
+    width: 380px;
     .content-title {
       color: $titlesColor;
       font-size: 50px;
       font-weight: bold;;
-      margin-bottom: 30px;
-      margin-top: 15px;
-      margin-left: 20px;
       font-family: FontMoi-Title;
-      width: 100%;
+      width: 365px;
+      height: 140px;
       line-height: 50px;
-      overflow: auto;
-      word-break: break-word;
       text-indent: 60px;
     }
   }
@@ -47,7 +46,8 @@
   }
 
   .row-content-text {
-    max-height: 400px;
+    height: 400px;
+
 
     .content-text {
       color: $titlesColor;
@@ -57,6 +57,8 @@
       font-family: FontMoi-Content;
       line-height: 30px;
       overflow: auto;
+      margin-right: -18px;
+      padding-right: 20px;
       width: 100%;
       word-break: break-all;
       text-align: justify;
@@ -65,6 +67,20 @@
       text-decoration: underline;
       font-size: 14px;
       margin-top: 10px;
+    }
+    .content-text::-webkit-scrollbar-track {
+      border-radius: 10px;
+      border: 1px solid $linesColor;
+      width: 5px;
+    }
+    .content-text::-webkit-scrollbar {
+      width: 5px;
+      background-color: transparent;
+      border-radius: 10px;
+    }
+    .content-text::-webkit-scrollbar-thumb {
+      border-radius: 25px;
+      background-color: $linesColor;
     }
   }
 
