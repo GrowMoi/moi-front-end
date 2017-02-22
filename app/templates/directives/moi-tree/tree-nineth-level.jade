@@ -1,0 +1,46 @@
+.tree.nineth-level
+  .tree-img
+    img(src="images/tree/level-9/arbol-gris-9.png")
+    img.tree-root(src="images/tree/tronco.png")
+    .tree-neuron-root
+      a.neuron-root(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
+      
+    .tree-branch(ng-repeat="child in treeVm.neurons.root.children track by $index"
+                ng-init="indexLevel2=$index"
+                class="branch second-level-{{indexLevel2}} {{child.state}}")
+      a.neuron(ui-sref="neuron({neuronId: child.id})" class="second-level-{{indexLevel2}} {{child.state}}")
+               
+      .tree-branch(ng-repeat="child1 in child.children track by $index" 
+                    ng-init="indexLevel3=$index"
+                    class="branch third-level-{{indexLevel2*2 + indexLevel3}} {{child1.state}}")
+        a.neuron(ui-sref="neuron({neuronId: child1.id})" class="third-level-{{indexLevel2*2 + indexLevel3}} {{child1.state}}")
+                    
+        .tree-branch(ng-repeat="child2 in child1.children track by $index" 
+                      ng-init="indexLevel4=$index"
+                      class="branch fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child2.state}}")
+          a.neuron(ui-sref="neuron({neuronId: child2.id})" class="fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child2.state}}")
+          
+          .tree-branch(ng-repeat="child3 in child2.children track by $index" 
+                      ng-init="indexLevel5=$index"
+                        class="branch fifth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}} {{child3.state}}")
+            a.neuron(ui-sref="neuron({neuronId: child3.id})" class="fifth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}} {{child3.state}}")
+            
+            .tree-branch(ng-repeat="child4 in child3.children track by $index" 
+                        ng-init="indexLevel6=$index"
+                          class="branch sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child4.state}}")
+              a.neuron(ui-sref="neuron({neuronId: child4.id})" class="sixth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}} {{child4.state}}")
+              
+              .tree-branch(ng-repeat="child5 in child4.children track by $index" 
+                          ng-init="indexLevel7=$index"
+                            class="branch seventh-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}} {{child5.state}}")
+                a.neuron(ui-sref="neuron({neuronId: child5.id})" class="seventh-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}} {{child5.state}}")
+
+                .tree-branch(ng-repeat="child6 in child5.children track by $index" 
+                            ng-init="indexLevel8=$index"
+                              class="branch eighth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}}{{indexLevel8}} {{child6.state}}")
+                  a.neuron(ui-sref="neuron({neuronId: child6.id})" class="eighth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}}{{indexLevel8}} {{child6.state}}")
+                  
+                  .tree-branch(ng-repeat="child7 in child6.children track by $index" 
+                              ng-init="indexLevel9=$index"
+                                class="branch nineth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}}{{indexLevel8}}{{indexLevel9}} {{child7.state}}")
+                    a.neuron(ui-sref="neuron({neuronId: child7.id})" class="nineth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}{{indexLevel5}}{{indexLevel6}}{{indexLevel7}}{{indexLevel8}}{{indexLevel9}} {{child7.state}}")
