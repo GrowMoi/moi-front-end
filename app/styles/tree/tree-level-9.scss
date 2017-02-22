@@ -1103,6 +1103,8 @@
             &-201010 { //idea
               bottom: 500px;
               left: 810px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-amarillo.png);
               }
@@ -1110,6 +1112,8 @@
             &-201000 { //experiencia
               bottom: 500px;
               left: 778px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-amarillo.png);
               }
@@ -1117,14 +1121,18 @@
             //node rose
             &-313100 { //comic
               bottom: 515px;
-              left: 840px;
+              left: 845px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
             &-313110 { //fotografia
               bottom: 515px;
-              left: 872px;
+              left: 880px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
@@ -1354,8 +1362,8 @@
             }
             //amarillas
             &-2000011 { //escribir
-              bottom: 545px;
-              left: 665px;
+              bottom: 530px;
+              left: 675px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-amarillo.png);
               }
@@ -1391,13 +1399,17 @@
             &-2000010 { //herramientas
               bottom: 519px;
               left: 760px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-amarillo.png);
               }
             }
             &-2000013 { //economia
               bottom: 555px;
-              left: 750px;
+              left: 758px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-amarillo.png);
               }
@@ -1412,7 +1424,9 @@
             //fuccia
             &-3110100 { //sinfonia
               bottom: 540px;
-              left: 885px;
+              left: 892px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
@@ -1425,8 +1439,10 @@
               }
             }
             &-3101000 { //magia
-              bottom: 580px;
-              left: 885px;
+              bottom: 587px;
+              left: 894px;
+              width: 25px;
+              height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
@@ -1670,6 +1686,212 @@
               height: 25px;
               &.florecida{
                 background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            &-11013011 { //cetaceos
+              bottom: 585px;
+              left: 560px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-verde.png);
+              }
+            }
+            //amarillos
+            &-20000102 { //internet
+              bottom: 585px;
+              left: 605px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000110 { //ensayo
+              bottom: 535px;
+              left: 630px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000120 { //idiomas
+              bottom: 500px;
+              left: 655px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000100 { //experto
+              bottom: 564px;
+              left: 645px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000140 { //guerra
+              bottom: 560px;
+              left: 675px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000152 { //politica
+              bottom: 568px;
+              left: 705px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000131 { //mercados
+              bottom: 590px;
+              left: 675px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000130 { //eficiencia
+              bottom: 605px;
+              left: 705px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000101 { //imitar
+              bottom: 560px;
+              left: 733px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000150 { //religiones
+              bottom: 590px;
+              left: 740px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000141 { //civilizacion
+              bottom: 610px;
+              left: 765px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000162 { //olimpiadas
+              bottom: 580px;
+              left: 770px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20100000 { //hacker
+              bottom: 580px;
+              left: 800px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000154 { //libertad
+              bottom: 605px;
+              left: 820px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000160 { //correr
+              bottom: 520px;
+              left: 793px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000161 { //futbol
+              bottom: 525px;
+              left: 817px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000153 { //verdad
+              bottom: 540px;
+              left: 845px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000151 { //psicologia
+              bottom: 550px;
+              left: 815px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            &-20000111 { //metafora
+              bottom: 575px;
+              left: 830px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-amarillo.png);
+              }
+            }
+            // fuccia
+            &-31101002 { //vinilo
+              bottom: 535px;
+              left: 868px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-fuccia.png);
+              }
+            }
+            &-31101000 { //jazz
+              bottom: 560px;
+              left: 860px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-fuccia.png);
+              }
+            }
+            &-31101001 { //hip hop
+              bottom: 565px;
+              left: 885px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-fuccia.png);
+              }
+            }
+            &-31010000 { //ciencia ficcion
+              bottom: 585px;
+              left: 860px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-fuccia.png);
+              }
+            }
+            &-31311001 { //perspectiva
+              bottom: 605px;
+              left: 875px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-fuccia.png);
+              }
+            }
+            &-31311000 { //realidad virtual
+              bottom: 610px;
+              left: 850px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
           }
