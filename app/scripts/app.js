@@ -11,8 +11,7 @@
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
-    'ionic.contrib.drawer',
-    'AutoFontSize'
+    'ionic.contrib.drawer'
   ])
 
   .run(function($ionicPlatform) {
