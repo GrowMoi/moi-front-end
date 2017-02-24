@@ -11,7 +11,6 @@
     overflow-y: visible;
   }
   .row-content-title {
-    height: 150px;
     width: 380px;
     .content-title {
       color: $titlesColor;
@@ -19,9 +18,10 @@
       font-weight: bold;;
       font-family: FontMoi-Title;
       width: 365px;
-      height: 140px;
+      margin-left: 35px;
       line-height: 50px;
       text-indent: 60px;
+      white-space: normal;
     }
   }
 
