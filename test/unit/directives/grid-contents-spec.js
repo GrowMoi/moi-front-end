@@ -80,6 +80,7 @@
           'source':'own',
           'title':'some title',
           'learnt':false,
+          'read': false,
           'user_notes':null
         },
         {
@@ -95,6 +96,7 @@
           'source':'own',
           'title':'some title 2',
           'learnt':false,
+          'read': false,
           'user_notes':null
         }
       ];
