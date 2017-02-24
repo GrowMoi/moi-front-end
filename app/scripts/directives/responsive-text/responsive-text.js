@@ -4,37 +4,33 @@
     angular
       .module('moi.directives')
       .directive('responsiveText', responsiveTextDirective);
-      function responsiveTextDirective($timeout) {
+      function responsiveTextDirective($timeout, $window) {
         var directive = {
           restrict: 'EA',
           scope: {
             height: '='
           },
           link: function(scope, element) {
-                    resize(scope, element, $timeout);
+                    resize(scope, element);
                 }
         };
-
-        return directive;
-      }
-        function resize(scope, element, $timeout) {
+        function resize(scope, element) {
           $timeout(function(){
             var heightDivInit = scope.height;
-            var fontSize = parseFloat(element.css('font-size'));
+            var divVal = $window.getComputedStyle(element[0], null);
+            var fontSize = parseInt(divVal.fontSize);
             var fontSizeCalc = fontSize;
-            var heightDiv = parseFloat(element.height());
+            var heightDiv = parseInt(divVal.height);
             var heightDivCalc = heightDiv;
 
             while (heightDivCalc >= heightDivInit) {
               fontSizeCalc = fontSizeCalc - 1;
               heightDivCalc = (fontSizeCalc * heightDiv)/fontSize;
             }
-            element.css(
-              {
-                fontSize: fontSizeCalc,
-                height: heightDivInit
-              }
-            );
+            element.css('fontSize', fontSizeCalc+'px');
+            element.css('height', heightDivInit+'px');
           });
         }
+        return directive;
+      }
   })();
