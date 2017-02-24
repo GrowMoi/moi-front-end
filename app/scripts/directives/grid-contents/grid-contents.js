@@ -35,8 +35,16 @@
     init();
 
     function init(){
-      vm.contents = orderContents(vm.contents);
+      vm.contents = filterContents(vm.contents);
       buildGrid(vm.contents);
+    }
+
+    function filterContents(contents) {
+      var newContents = contents.filter(function (content) {
+        return content.read === false || content.learnt === true;
+      });
+      newContents = orderContents(newContents);
+      return newContents;
     }
 
     function selectContent(content) {
@@ -102,7 +110,7 @@
       ContentService.readContent(vm.contentSelected).then(function(response){
         /*jshint camelcase: false */
         var index = vm.contents.indexOf(vm.contentSelected);
-        vm.contents[index].read = true;
+        vm.contents.splice(index, 1);
         buildGrid(vm.contents);
         if (response.data.perform_test) {
           TestService.goTest($scope, response.data.test);
