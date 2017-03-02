@@ -154,7 +154,9 @@
     })
     .state('register', {
       url: '/register',
-      templateUrl: 'templates/register/register.html'
+      templateUrl: 'templates/register/register.html',
+      controller: 'registerController',
+      controllerAs: 'registermodel'
     });
 
     // if none of the above states are matched, use this as the fallback
