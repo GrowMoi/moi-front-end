@@ -155,7 +155,7 @@
     .state('register', {
       url: '/register',
       templateUrl: 'templates/register/register.html',
-      controller: 'registerController',
+      controller: 'RegisterController',
       controllerAs: 'registermodel'
     });
 
