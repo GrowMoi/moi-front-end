@@ -57,6 +57,17 @@
         'email': 'Email',
         'password': 'Contraseña'
       },
+      register:{
+        'enter':  'Entrar',
+        'register': 'Register',
+        'user': 'user',
+        'age': 'age',
+        'password': 'password',
+        'city': 'city',
+        'confirm_password': 'confirm password',
+        'country':  'country',
+        'email': 'mail'
+      },
       signup: {
         'signup': 'Registrarse'
       },
@@ -81,7 +92,7 @@
         }
       },
       searches: {
-        'search': 'Buscar' 
+        'search': 'Buscar'
       }
 
     });

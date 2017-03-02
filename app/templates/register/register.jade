@@ -1,0 +1,66 @@
+ion-view(
+  view-title="{{ 'register' | translate }}",
+  hide-nav-bar="true",
+  class="register-view"
+)
+  ion-content(scroll="false")
+    .row.form-container.form-register
+      form(ng-submit='')
+        .login-title
+          | {{ ::'register' | translate }}
+        .list.list-inset
+          label.item.item-input
+            input(
+              type='text',
+              required='required',
+              placeholder="{{ ::'register.user' | translate }}"
+            )
+          label.item.item-input
+            input(
+              type='number',
+              required='required',
+              placeholder="{{ ::'register.age' | translate }}"
+            )
+            
+        .list.list-inset
+          label.item.item-input
+            input(
+              type='password',
+              required='required',
+              placeholder="{{ ::'register.password' | translate }}"
+            )
+          label.item.item-input
+            input(
+              type='text',
+              required='required',
+              placeholder="{{ ::'register.city' | translate }}"
+            )
+            
+        .list.list-inset
+          label.item.item-input
+            input(
+              type='password',
+              required='required',
+              placeholder="{{ ::'register.confirm_password' | translate }}"
+            )
+          label.item.item-input
+            input(
+              type='text',
+              required='required',
+              placeholder="{{ ::'register.country' | translate }}"
+            )
+            
+        .list.list-inset
+          label.item.item-input
+            input(
+              type='email',
+              required='required',
+              placeholder="{{ ::'register.email' | translate }}"
+            )
+
+        .row.button-actions
+          .col
+            input(
+              type='submit',
+              value="{{ ::'register.enter' | translate }}"
+            ).button

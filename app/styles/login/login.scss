@@ -1,8 +1,7 @@
 @import "shared/colors";
 
-.login-view {
+.login-view, .register-view {
   @include background-size(100%);
-  background-image: url(../images/login/bg.png);
   background-color: transparent; // move to main.scss if needed in other views
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -14,10 +13,6 @@
 
   form {
     position: absolute;
-    right: 200px;
-    bottom: 380px;
-    width: 440px;
-
     .login-title {
       @include background-size(contain);
       background-image: url(../images/login/title.png);
@@ -53,5 +48,13 @@
       background-color: transparent;
       border: 0;
     }
+  }
+}
+.login-view{
+  background-image: url(../images/login/bg.png);
+  form{
+    right: 200px;
+    bottom: 380px;
+    width: 440px;
   }
 }

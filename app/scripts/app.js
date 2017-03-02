@@ -151,6 +151,10 @@
           return query;
         }
       }
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register/register.html'
     });
 
     // if none of the above states are matched, use this as the fallback
