@@ -61,7 +61,7 @@
         'enter':  'Entrar',
         'register': 'Register',
         'user': 'user',
-        'age': 'age',
+        'birthday': 'birthday',
         'password': 'password',
         'city': 'city',
         'confirm_password': 'confirm password',

@@ -156,7 +156,8 @@
       url: '/register',
       templateUrl: 'templates/register/register.html',
       controller: 'RegisterController',
-      controllerAs: 'registermodel'
+      controllerAs: 'registermodel',
+      cache: false
     });
 
     // if none of the above states are matched, use this as the fallback
