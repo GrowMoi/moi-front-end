@@ -60,13 +60,20 @@
       register:{
         'enter':  'Entrar',
         'register': 'Register',
-        'user': 'user',
-        'birthday': 'birthday',
-        'password': 'password',
-        'city': 'city',
-        'confirm_password': 'confirm password',
-        'country':  'country',
-        'email': 'mail'
+        'user': 'nombre de usuario',
+        'birthday': 'fecha de nacimiento',
+        'password': 'contraseña',
+        'city': 'ciudad',
+        'confirm_password': 'confirme contraseña',
+        'country':  'pais',
+        'email': 'correo electrónico'
+      },
+      msgs:{
+        error:{
+          'required': 'Campo Vacio',
+          'email': 'Ingrese un correo válido',
+          'confirm-password':'Contraseñas no coinciden'
+        }
       },
       signup: {
         'signup': 'Registrarse'

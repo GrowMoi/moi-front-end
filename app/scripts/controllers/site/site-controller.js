@@ -36,7 +36,7 @@
     //This must be the only place where we need to listen stateChanges
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState){
       var initApp = (fromState.name === '' && toState.name === 'login');
-      if (!initApp && !site.preloadCalled) {
+      if (!initApp && !site.preloadCalled && toState.name !== 'register') {
         preloadImages();
       }
       if (toState.name === 'login' && $auth.user.id) {

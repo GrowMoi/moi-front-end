@@ -5,7 +5,7 @@ ion-view(
 )
   ion-content(scroll="false")
     .row.form-container.form-register
-      form(ng-submit='registermodel.register()')
+      form(ng-submit='registermodel.register(registerForm)', name='registerForm', novalidate)
         .login-title
           | {{ ::'register' | translate }}
         .list.list-inset
@@ -13,15 +13,20 @@ ion-view(
             input(
               type='text',
               ng-model='registermodel.registerForm.name',
+              name='user'
               required='required',
+              autocomplete='off',
               placeholder="{{ ::'register.user' | translate }}"
             )
+            span.error-msg(ng-if='registerForm.user.$error.required && registerForm.user.$touched')
+              | {{ :: 'msgs.error.required' | translate}}
           label.item.item-input
             input(
               type='text',
               onfocus="(this.type='date')",
               onblur="(this.type='text')",
               ng-model='registermodel.registerForm.birthday',
+              autocomplete='off',
               placeholder="{{ ::'register.birthday' | translate }}"
             )
             
@@ -31,12 +36,16 @@ ion-view(
               type='password',
               ng-model='registermodel.registerForm.password',
               required='required',
+              name='password',
               placeholder="{{ ::'register.password' | translate }}"
             )
+            span.error-msg(ng-if='registerForm.password.$error.required && registerForm.password.$touched')
+              | {{ :: 'msgs.error.required' | translate}}
           label.item.item-input
             input(
               type='text',
               ng-model='registermodel.registerForm.city',
+              autocomplete='off',
               placeholder="{{ ::'register.city' | translate }}"
             )
             
@@ -46,12 +55,19 @@ ion-view(
               type='password',
               ng-model='registermodel.registerForm.password_confirmation',
               required='required',
-              placeholder="{{ ::'register.confirm_password' | translate }}"
+              name='password_confirmation',
+              placeholder="{{ ::'register.confirm_password' | translate }}",
+              ng-pattern='registermodel.registerForm.password'
             )
+            span.error-msg(ng-if='registerForm.password_confirmation.$error.pattern')
+              | {{ :: 'msgs.error.confirm-password' | translate}}
+            span.error-msg(ng-if='registerForm.password_confirmation.$error.required && registerForm.password_confirmation.$touched')
+              | {{ :: 'msgs.error.required' | translate}}
           label.item.item-input
             input(
               type='text',
               ng-model='registermodel.registerForm.country',
+              autocomplete='off',
               placeholder="{{ ::'register.country' | translate }}"
             )
             
@@ -61,12 +77,19 @@ ion-view(
               type='email',
               ng-model='registermodel.registerForm.email',
               required='required',
+              name='email',
+              autocomplete='off',
               placeholder="{{ ::'register.email' | translate }}"
             )
+            span.error-msg(ng-if='registerForm.email.$error.email')
+              | {{ :: 'msgs.error.email' | translate}}
+            span.error-msg(ng-if='registerForm.email.$error.required && registerForm.email.$touched')
+              | {{ :: 'msgs.error.required' | translate}}
 
         .row.button-actions
           .col
             input(
+              ng-disabled="!registerForm.$valid",
               type='submit',
               value="{{ ::'register.enter' | translate }}"
             ).button

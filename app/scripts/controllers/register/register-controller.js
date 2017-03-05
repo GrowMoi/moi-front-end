@@ -29,7 +29,8 @@
         .catch(function (resp) {
           $ionicPopup.alert({
             title: 'Ups!',
-            template: resp.errors.join(', ')
+            /*jshint camelcase: false */
+            template: resp.data.errors.full_messages.join(', ')
           });
         })
         .finally(function(){

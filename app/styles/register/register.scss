@@ -1,10 +1,15 @@
 .register-view{
-  background-image: url(../images/login/login-bg.png);
-  width: 100vw !important;
-  height: 100vh !important;
+  background-image: url(../images/login/register-bg.png);
+  background-position: bottom center;
+  background-size: 110%;
+  height: 100% !important;
+  .form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   form{
-    right: 430px;
-    bottom: 350px;
+    padding-bottom: 7%;
     width: 600px;
     .list-inset{
       display: flex;
@@ -13,6 +18,18 @@
       .item-input{
         width: 50%;
         margin: 0;
+        height: 63px;
+        flex-direction: column;
+        display: block;
+        input{
+          margin-bottom: 7px;
+          padding-top: 15px
+        }
+        .error-msg{
+          font-size: 12px;
+          font-style: italic;
+          color: $errorMsg;
+        }
       }
     }
     .button{
