@@ -16,12 +16,16 @@
 
     function saveContentSettings(setting) {
       var kind = setting.kind,
-          level = setting.level;
+          level = setting.level,
+          order = setting.order;
 
       return $http({
         method: 'PUT',
         url: ENV.apiHost + '/api/content_preferences/' + kind,
-        data: {level: level}
+        data: {
+          level: level,
+          order: order
+        }
       }).then(function success(res) {
         return res;
       }, function error(err) {

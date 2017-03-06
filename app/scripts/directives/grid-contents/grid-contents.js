@@ -66,17 +66,28 @@
       and then filter by index */
 
     function orderContents(contents){
-      var kinds = ['que-es', 'como-funciona', 'por-que-es', 'quien-cuando-donde'];
+      var orderMap = orderSettings(angular.copy(vm.settings));
       angular.forEach(contents, function(content){
-        var position = kinds.indexOf(content.kind);
-        if (parseInt(vm.settings[position].level) === content.level){
-          content.index = position;
+        var setting = orderMap[content.kind];
+        if (setting.level === content.level){
+          content.index = setting.order;
         }else{
-          content.index = parseInt('' + (position + 1) + content.level);
+          content.index = parseInt('' + (setting.order + 1) + content.level);
         }
       });
       contents = $filter('orderBy')(contents, 'index');
       return contents;
+    }
+
+    function orderSettings(settings) {
+      var obj = {};
+      angular.forEach(settings, function(elm){
+        obj[elm.kind] = {
+          order: elm.order,
+          level: elm.level
+        };
+      });
+      return obj;
     }
 
     function buildGrid(contents){
