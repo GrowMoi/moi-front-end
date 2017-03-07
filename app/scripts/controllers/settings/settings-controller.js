@@ -2,8 +2,11 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('SettingsController',
-    function (SettingsService, user) {
+  .controller('SettingsController', function (SettingsService,
+                                              user,
+                                              dragularService,
+                                              $scope,
+                                              $filter) {
 
     var vm = this;
     vm.selectInterest = selectInterest;
@@ -11,7 +14,12 @@
     vm.listSelected = [];
     /*jshint camelcase: false */
     vm.preferences = user.content_preferences;
+    vm.preferences = $filter('orderBy')(vm.preferences, 'order');
 
+    dragularService('.drag-panel', {
+      containersModel: [vm.preferences],
+      scope: $scope
+    });
 
     /* TODO
       1. Save interest in the backend with name/kind and image
@@ -80,6 +88,18 @@
         vm.listSelected.splice(index, 1);
       }
     }
+
+    $scope.$on('dragulardrop', function(){
+      var initialPostion = arguments[5],
+          finalPosition = arguments[7],
+          settingInitial = vm.preferences[initialPostion],
+          settingFinal = vm.preferences[finalPosition];
+          
+          settingInitial.order = initialPostion;
+          settingFinal.order = finalPosition;
+      contentSettings(settingFinal);
+      contentSettings(settingInitial);
+    });
 
     function contentSettings(config){
       SettingsService.saveContentSettings(config);
