@@ -9,6 +9,7 @@ var promise = require('bluebird');
 var fs = promise.promisifyAll(require('fs'));
 var folderImgs = 'app/images/';
 var folderSnds = 'app/sounds/';
+var folderVds = 'app/videos/';
 var extImages = {
   png: true,
   jpg: true,
@@ -18,6 +19,9 @@ var extImages = {
 };
 var extSounds = {
   mp3: true
+};
+var extVideos = {
+  mp4: true
 };
 
 //get paths files into a folder
@@ -466,6 +470,15 @@ module.exports = function (grunt) {
     });
   });
 
+  grunt.registerTask('videospath', function(environment){
+    var done = this.async();
+    readDir(folderVds, extVideos).then(function(snds){
+      grunt.config.set('ngconstant.'+ environment + '.constants.VIDEOS.paths', snds);
+      grunt.task.run(['ngconstant:'+ environment]);
+      done();
+    });
+  });
+
   grunt.registerTask('test', [
     'wiredep',
     'clean',
@@ -483,6 +496,7 @@ module.exports = function (grunt) {
     'ngconstant:test',
     'imagespath:test',
     'soundspath:test',
+    'videospath:test',
     'autoprefixer',
     'karma:continuous'
   ]);
@@ -496,6 +510,7 @@ module.exports = function (grunt) {
     'ngconstant:test',
     'imagespath:test',
     'soundspath:test',
+    'videospath:test',
     'autoprefixer',
     'karma:continuous'
   ]);
@@ -525,6 +540,7 @@ module.exports = function (grunt) {
     'ngconstant:development',
     'imagespath:development',
     'soundspath:development',
+    'videospath:development',
     'wiredep',
     'concurrent:server',
     'autoprefixer',
@@ -538,6 +554,7 @@ module.exports = function (grunt) {
     'ngconstant:production',
     'imagespath:production',
     'soundspath:production',
+    'videospath:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

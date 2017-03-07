@@ -137,5 +137,13 @@
         SoundService.setSound(vmSound.sound, vmSound.$audio[0]);
       }
     }
+
+    $rootScope.$on('vineta:remove-sound', function() {
+      if (isNativeImplementation) {
+        stopSoundService(vmSound.sound, $cordovaNativeAudio);
+      } else {
+        stopSoundService(vmSound.sound, vmSound.$audio[0]);
+      }
+    });
   }
 })();

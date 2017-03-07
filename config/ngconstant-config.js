@@ -19,6 +19,9 @@
         },
         SOUNDS: {
           paths: []
+        },
+        VIDEOS: {
+          paths: []
         }
       }
     },
@@ -32,6 +35,9 @@
           paths: []
         },
         SOUNDS: {
+          paths: []
+        },
+        VIDEOS: {
           paths: []
         }
       }
@@ -50,6 +56,9 @@
         },
         SOUNDS: {
           paths: []
+        },
+        VIDEOS: {
+          paths: []
         }
       }
     },
@@ -63,6 +72,9 @@
           paths: []
         },
         SOUNDS: {
+          paths: []
+        },
+        VIDEOS: {
           paths: []
         }
       }

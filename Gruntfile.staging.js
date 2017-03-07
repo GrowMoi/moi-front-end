@@ -6,6 +6,7 @@
   var fs = promise.promisifyAll(require('fs'));
   var folderImgs = 'app/images/';
   var folderSnds = 'app/sounds/';
+  var folderVds = 'app/videos/';
   var extImages = {
     png: true,
     jpg: true,
@@ -15,6 +16,9 @@
   };
   var extSounds = {
     mp3: true
+  };
+  var extVideos = {
+    mp4: true
   };
 
   //get paths files into a folder
@@ -68,10 +72,20 @@
       });
     });
 
+    grunt.registerTask('videospath', function(environment){
+      var done = this.async();
+      readDir(folderVds, extVideos).then(function(snds){
+        grunt.config.set('ngconstant.staging.constants.VIDEOS.paths', snds);
+        grunt.task.run(['ngconstant:staging']);
+        done();
+      });
+    });
+
     grunt.registerTask('build', [
       'ngconstant:staging',
       'imagespath:staging',
       'soundspath:staging',
+      'videospath:staging',
       'concurrent:staging',
       'copy:staging'
     ]);
