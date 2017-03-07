@@ -19,12 +19,7 @@
       });
       $auth.submitRegistration(registermodel.registerForm)
         .then(function() {
-          $state.go('tree').then(function(){
-            $ionicPopup.alert({
-              title: 'Alerta',
-              template: 'Usuario creado satisfactoriamente'
-            });
-          });
+          $state.go('tree');
         })
         .catch(function (resp) {
           $ionicPopup.alert({

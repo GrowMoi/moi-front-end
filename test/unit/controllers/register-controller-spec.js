@@ -49,7 +49,7 @@
       it('ionicLoading.show should be called', function() {
         sinon.assert.calledOnce($ionicLoading.show);
       });
-      
+
       describe('when the register is executed,', function() {
         var successState = 'tree';
 
@@ -58,10 +58,6 @@
           $rootScope.$digest();
 
           sinon.assert.alwaysCalledWithExactly($state.go, successState);
-
-          deferredStateGo.resolve();
-          $rootScope.$digest();
-          sinon.assert.calledOnce($ionicPopup.alert);
         });
       });
     });
