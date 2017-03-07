@@ -10,11 +10,12 @@
   .overflow-scroll{
     overflow-y: visible;
   }
+  .col{
+    width: 33%;
+  }
   .row-content-title {
-    width: 380px;
     .content-title {
       color: $titlesColor;
-      font-size: 50px;
       font-weight: bold;;
       font-family: FontMoi-Title;
       width: 365px;
@@ -47,7 +48,6 @@
 
   .row-content-text {
     height: 430px;
-
     .content-text {
       color: $titlesColor;
       font-size: 25px;

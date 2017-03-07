@@ -90,5 +90,8 @@
   }
   .links-margin-top{
     margin-top: -10px;
+    a{
+      word-break: break-all;
+    }
   }
 }
