@@ -1,0 +1,52 @@
+@import "shared/colors";
+
+.login-view, .register-view {
+  @include background-size(100%);
+  background-color: transparent; // move to main.scss if needed in other views
+  background-repeat: no-repeat;
+  background-position: bottom right;
+
+  .form-container {
+    position: relative;
+    height: 100%;
+  }
+
+  form {
+    position: absolute;
+    .login-title {
+      @include background-size(contain);
+      background-image: url(../images/login/title.png);
+      background-repeat: no-repeat;
+      color: $darkBrown;
+      font-weight: bold;
+      height: 50px;
+      padding: 15px 5px 0 20px;
+      font-size: 17px;
+      width: 145px;
+      text-align: center;
+      text-shadow: 0 1px rgba(255,255,255,.3);
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
+
+    .button-actions {
+      padding-top: 0;
+
+      .col {
+        padding-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+      }
+    }
+
+    .list {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .list, label {
+      background-color: transparent;
+      border: 0;
+    }
+  }
+}

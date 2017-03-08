@@ -12,7 +12,7 @@ form {
     margin-bottom: 10px;
   }
 
-  input[type='email'], input[type='password'] {
+  input[type='email'], input[type='password'], input[type='text'], input[type='number'] {
     color: $darkBrown;
     font-size: 18px;
     font-weight: bold;

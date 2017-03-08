@@ -57,6 +57,24 @@
         'email': 'Email',
         'password': 'Contraseña'
       },
+      register:{
+        'enter':  'Entrar',
+        'register': 'Register',
+        'user': 'nombre de usuario',
+        'birthday': 'fecha de nacimiento',
+        'password': 'contraseña',
+        'city': 'ciudad',
+        'confirm_password': 'confirme contraseña',
+        'country':  'país',
+        'email': 'correo electrónico'
+      },
+      msgs:{
+        error:{
+          'required': 'Vacío',
+          'email': 'Ingrese un correo válido',
+          'confirm-password':'No coincide con la contraseña'
+        }
+      },
       signup: {
         'signup': 'Registrarse'
       },
@@ -81,7 +99,7 @@
         }
       },
       searches: {
-        'search': 'Buscar' 
+        'search': 'Buscar'
       }
 
     });
