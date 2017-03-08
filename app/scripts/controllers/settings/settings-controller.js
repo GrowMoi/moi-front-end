@@ -90,15 +90,14 @@
     }
 
     $scope.$on('dragulardrop', function(){
-      var initialPostion = arguments[5],
-          finalPosition = arguments[7],
-          settingInitial = vm.preferences[initialPostion],
-          settingFinal = vm.preferences[finalPosition];
-          
-          settingInitial.order = initialPostion;
-          settingFinal.order = finalPosition;
-      contentSettings(settingFinal);
-      contentSettings(settingInitial);
+      var inorder = [];
+      angular.forEach(vm.preferences, function(setting, index){
+        var obj = {};
+        obj.kind = setting.kind;
+        obj.order = index;
+        inorder.push(obj);
+      });
+      SettingsService.orderContentSettings(inorder);
     });
 
     function contentSettings(config){
