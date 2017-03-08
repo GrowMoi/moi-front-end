@@ -65,14 +65,14 @@
         'password': 'contraseña',
         'city': 'ciudad',
         'confirm_password': 'confirme contraseña',
-        'country':  'pais',
+        'country':  'país',
         'email': 'correo electrónico'
       },
       msgs:{
         error:{
-          'required': 'Campo Vacio',
+          'required': 'Vacío',
           'email': 'Ingrese un correo válido',
-          'confirm-password':'Contraseñas no coinciden'
+          'confirm-password':'No coincide con la contraseña'
         }
       },
       signup: {

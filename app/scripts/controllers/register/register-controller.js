@@ -9,15 +9,15 @@
                               $auth,
                               $ionicPopup,
                               $state) {
-    var registermodel = this;
-    registermodel.register = register;
-    registermodel.registerForm = {};
+    var registerModel = this;
+    registerModel.register = register;
+    registerModel.registerForm = {};
 
     function register() {
       $ionicLoading.show({
         template: 'cargando...'
       });
-      $auth.submitRegistration(registermodel.registerForm)
+      $auth.submitRegistration(registerModel.registerForm)
         .then(function() {
           $state.go('tree');
         })

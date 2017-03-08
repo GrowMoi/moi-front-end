@@ -156,7 +156,7 @@
       url: '/register',
       templateUrl: 'templates/register/register.html',
       controller: 'RegisterController',
-      controllerAs: 'registermodel',
+      controllerAs: 'registerModel',
       cache: false
     });
 
