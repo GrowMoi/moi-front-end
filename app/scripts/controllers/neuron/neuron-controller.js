@@ -17,11 +17,17 @@
     vmNeuron.gifLearnActive = true;
 
     /*jshint camelcase: false */
-    vmNeuron.contentsPreferences = user.content_preferences || {};
-    vmNeuron.contentsPreferences.onSelect = onSelectItem;
-
     function init(){
       vmNeuron.neuron = data;
+
+      vmNeuron.contentsOptions = {
+        contents: vmNeuron.neuron.contents,
+        settings: user.content_preferences,
+        maxLevel: 3,
+        minLevel: 1,
+        onSelect: onSelectItem
+      };
+
     }
 
     init();

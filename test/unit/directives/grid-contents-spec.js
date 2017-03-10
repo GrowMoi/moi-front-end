@@ -66,6 +66,10 @@
     );
 
     beforeEach(function(){
+      window.Number.isInteger = function(){
+        return true;
+      };
+
       $scope.contents = [
         {
           'id':1,
@@ -104,31 +108,44 @@
       $scope.settings = [
         {
           kind: 'que-es',
+          order: 0,
           level:3
         },
         {
           kind: 'como-funciona',
+          order: 1,
           level:2
         },
         {
           kind: 'por-que-es',
+          order: 2,
           level:2
         },
         {
           kind: 'quien-cuando-donde',
+          order: 3,
           level:1
         }
       ];
+
+      $scope.contentsOptions = {
+        contents: $scope.contents,
+        settings: $scope.settings,
+        maxLevel: 3,
+        minLevel: 1,
+        onSelect: function(){}
+      };
 
     });
 
 
     describe('#gridContents init', function(){
       it('should have the same params you set', function(){
-        template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
+        template = $compile('<grid-contents options="contentsOptions"></grid-contents>')($scope);
         $scope.$digest();
         controller = template.controller('gridContents');
-        chai.expect($scope.contents).to.deep.equals(controller.contents);
+        chai.expect($scope.contents.length).to.be.equal(controller.options.contents.length);
+        chai.expect(controller.options.contents[0]).to.be.an('object');
       });
 
     });
@@ -136,7 +153,7 @@
     describe('#gridContents methods', function(){
       it('should call broadcast neuron:remove-content', function(){
         var spy = sinon.spy(ContentService, 'readContent');
-        template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
+        template = $compile('<grid-contents options="contentsOptions"></grid-contents>')($scope);
         $scope.$digest();
         $rootScope.$broadcast('neuron:remove-content');
         $scope.$digest();
@@ -144,7 +161,7 @@
       });
 
       it('should call selectContent when you select some content', function(){
-        var template = $compile('<grid-contents contents="contents" settings="settings"></grid-contents>')($scope);
+        var template = $compile('<grid-contents options="contentsOptions"></grid-contents>')($scope);
         $scope.$digest();
         var controller = template.controller('gridContents');
         var spy = sinon.spy(controller, 'selectContent');

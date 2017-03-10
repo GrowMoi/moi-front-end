@@ -35,7 +35,7 @@
       });
 
       it('should load onSelect', function(){
-        chai.expect(ctrl.contentsPreferences.onSelect).to.be.an('function');
+        chai.expect(ctrl.contentsOptions.onSelect).to.be.an('function');
       });
     });
 
@@ -49,7 +49,7 @@
 
       it('should change the gif flag', function(){
         chai.expect(ctrl.gifLearnActive).to.be.equal(true);
-        ctrl.contentsPreferences.onSelect({read: true});
+        ctrl.contentsOptions.onSelect({read: true});
         chai.expect(ctrl.gifLearnActive).to.be.equal(false);
       });
 

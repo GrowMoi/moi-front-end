@@ -5,8 +5,7 @@ ion-view.neuron-view(view-title='{{vmNeuron.neuron.title}}')
       img(src="images/flecha_1.png")
     .main-view
       .content-view
-        grid-contents(contents="vmNeuron.neuron.contents"
-                      settings="vmNeuron.contentsPreferences")
+        grid-contents(options="vmNeuron.contentsOptions")
       .btns-options
         .btn-learn(ng-if="!vmNeuron.showGifRead")
         gif-queue
