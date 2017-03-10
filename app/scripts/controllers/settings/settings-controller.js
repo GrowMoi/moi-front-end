@@ -90,14 +90,19 @@
     }
 
     $scope.$on('dragulardrop', function(){
-      var inorder = [];
+      var inorder = [],
+          newPreferences = angular.copy(vm.preferences);
       angular.forEach(vm.preferences, function(setting, index){
         var obj = {};
         obj.kind = setting.kind;
         obj.order = index;
         inorder.push(obj);
+        //update setting object
+        newPreferences[index].order = index;
       });
-      SettingsService.orderContentSettings(inorder);
+      SettingsService.orderContentSettings(inorder).then(function(){
+        user.content_preferences = newPreferences;
+      });
     });
 
     function contentSettings(config){
