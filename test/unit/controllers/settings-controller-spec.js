@@ -2,7 +2,13 @@
   'use strict';
 
   describe('SettingsController', function () {
-    var ctrl, $controller, $scope, dependencies, SettingsService, $rootScope;
+    var ctrl,
+        $controller,
+        $scope,
+        dependencies,
+        SettingsService,
+        dragularService,
+        $rootScope;
 
     beforeEach(module('moi.controllers'));
 
@@ -20,17 +26,29 @@
       });
     }));
 
+    beforeEach(angular.mock.module(function($provide){
+      $provide.service('dragularService', function(){
+        return function () {
+          return {};
+        };
+      });
+    }));
+
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
-                _SettingsService_) {
+                _SettingsService_,
+                _dragularService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         SettingsService = _SettingsService_;
+        dragularService = _dragularService_;
 
         dependencies = {
           SettingsService: SettingsService,
+          $scope: $scope,
+          dragularService: dragularService,
           user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
         };
 

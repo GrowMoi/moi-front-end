@@ -10,8 +10,7 @@
       restrict: 'EA',
       templateUrl: 'templates/directives/grid-contents/grid-contents.html',
       scope: {
-        contents: '=',
-        settings: '='
+        options: '='
       },
       controller: gridController,
       controllerAs: 'vm',
@@ -35,15 +34,25 @@
     init();
 
     function init(){
-      vm.contents = filterContents(vm.contents);
-      buildGrid(vm.contents);
+      vm.options.contents = filterContents(vm.options.contents);
+      buildGrid(vm.options.contents);
     }
 
     function filterContents(contents) {
       var newContents = contents.filter(function (content) {
         return content.read === false || content.learnt === true;
       });
-      newContents = orderContents(newContents);
+      var settings = orderSettings(angular.copy(vm.options.settings));
+      var params = {
+        maxLevel: vm.options.maxLevel,
+        minLevel: vm.options.minLevel
+      };
+      var isValid = vadidateSettingsFormat(settings);
+
+      if (isValid) {
+        newContents = orderContents(newContents, settings, params);
+      }
+
       return newContents;
     }
 
@@ -57,26 +66,164 @@
       /*add class new content selected*/
       content.isSelected = true;
 
-      if (vm.settings && angular.isFunction(vm.settings.onSelect)) {
-        vm.settings.onSelect(vm.contentSelected);
+      if (angular.isFunction(vm.options.onSelect)) {
+        vm.options.onSelect(vm.contentSelected);
       }
     }
 
     /* add content indexes based on settings user
       and then filter by index */
 
-    function orderContents(contents){
-      var kinds = ['que-es', 'como-funciona', 'por-que-es', 'quien-cuando-donde'];
-      angular.forEach(contents, function(content){
-        var position = kinds.indexOf(content.kind);
-        if (parseInt(vm.settings[position].level) === content.level){
-          content.index = position;
-        }else{
-          content.index = parseInt('' + (position + 1) + content.level);
+    function orderContents(contents, settings, params) {
+      var settingsIndex = getMaxMinSettingsIndex(settings);
+      var contentLearnt = filterContentsLearnt(contents, true);
+      var contentNotLearnt = filterContentsLearnt(contents, false);
+
+      var orderOptions = {
+        minIndex: settingsIndex.min,
+        maxIndex: settingsIndex.max,
+        maxLevel: params && params.maxLevel ? params.maxLevel : 0,
+        minLevel: params && params.minLevel ? params.minLevel : 0,
+        startWithIndex: 0,
+        contents: contentNotLearnt,
+        settings: settings
+      };
+
+      var result = [];
+      contentNotLearnt = orderItems(orderOptions);
+
+      //Update options
+      orderOptions.contents = contentLearnt;
+      orderOptions.startWithIndex = contentNotLearnt.length;
+
+      contentLearnt = orderItems(orderOptions);
+
+      result = contentNotLearnt.concat(contentLearnt);
+
+      contents = $filter('orderBy')(result, 'index');
+
+      return contents;
+    }
+
+
+    function getMaxMinSettingsIndex(settings) {
+      var indexInfo = {
+        min: 0,
+        max: 0
+      };
+      if (angular.isObject(settings)) {
+        var settingsLength = Object.keys(settings).length;
+        if (settingsLength > 0) {
+          indexInfo.max = settingsLength - 1;
+        }
+      }
+      return indexInfo;
+    }
+
+    function vadidateSettingsFormat(settings) {
+      var isValidSettings = true;
+      angular.forEach(settings, function (value) {
+        if (!isInteger(value.level) || !isInteger(value.order)) {
+          isValidSettings = false;
         }
       });
-      contents = $filter('orderBy')(contents, 'index');
-      return contents;
+      return isValidSettings;
+    }
+
+    function isInteger(value) {
+      return Number.isInteger(value);
+    }
+
+    function filterContentsLearnt(contents, learnt) {
+      return contents.filter(function (content) {
+        return content.learnt === learnt;
+      });
+    }
+
+    function getSettingByOrder(settings, order) {
+      var setting = {};
+      angular.forEach(settings, function (val, key) {
+        if (val.order === order) {
+          setting[key] = val;
+        }
+      });
+      return setting;
+    }
+
+    function updateLevels(settings, min, max) {
+      var step = 1;
+      angular.forEach(settings, function (value) {
+        if (value.level === max) {
+          value.level = min;
+        } else {
+          value.level = value.level + step;
+        }
+      });
+    }
+
+    function cleanContents(contents, itemsToRemove) {
+      angular.forEach(itemsToRemove, function (item) {
+        var index = contents.indexOf(item);
+        contents.splice(index, 1);
+      });
+    }
+
+    function filterContentsByLevelAndKind(contents, setting) {
+      var items = contents.filter(function (content) {
+        if (setting[content.kind] && (content.level === setting[content.kind].level)) {
+          return true;
+        }
+      });
+
+      cleanContents(contents, items);
+
+      return items;
+    }
+
+    function addIndex(result, start) {
+      angular.forEach(result, function (elem) {
+        elem.index = start;
+        start++;
+      });
+    }
+
+    function orderItems(orderOptions) {
+      var options = angular.copy(orderOptions);
+      var result = [];
+
+      while (options.contents.length > 0) {
+
+        var settings = options.settings;
+        var specificContents = [];
+
+        for (var order = options.minIndex; order <= options.maxIndex; order++) {
+          var setting = getSettingByOrder(settings, order);
+          var filtered = filterContentsByLevelAndKind(options.contents, setting);
+          specificContents = specificContents.concat(filtered);
+        }
+
+        result = result.concat(specificContents);
+
+        if (options.contents.length > 0) {
+          updateLevels(options.settings, options.minLevel, options.maxLevel);
+        }
+
+      }
+
+      addIndex(result, options.startWithIndex);
+
+      return result;
+    }
+
+    function orderSettings(settings) {
+      var obj = {};
+      angular.forEach(settings, function(elm){
+        obj[elm.kind] = {
+          order: elm.order,
+          level: elm.level
+        };
+      });
+      return obj;
     }
 
     function buildGrid(contents){
@@ -109,9 +256,9 @@
     $scope.$on('neuron:remove-content', function(){
       ContentService.readContent(vm.contentSelected).then(function(response){
         /*jshint camelcase: false */
-        var index = vm.contents.indexOf(vm.contentSelected);
-        vm.contents.splice(index, 1);
-        buildGrid(vm.contents);
+        var index = vm.options.contents.indexOf(vm.contentSelected);
+        vm.options.contents.splice(index, 1);
+        buildGrid(vm.options.contents);
         if (response.data.perform_test) {
           TestService.goTest($scope, response.data.test);
         }
