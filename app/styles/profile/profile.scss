@@ -1,0 +1,185 @@
+.profile {
+  background-color: transparent;
+
+  .profile-user {
+    .content-max-view {
+      position: relative;
+      background-repeat: no-repeat;
+      background-image: url(../images/perfil-caja.png);
+      background-size: 100% 100%;
+
+      .profile-wrapper {
+        width: 100%;
+        padding: 0px 90px 0 120px;
+
+        .header-wrapper {
+          padding-top: 20px;
+          border-bottom: 3px solid $moiDarkGreen;
+
+          .user-image {
+            img{
+              width: 80px;
+            }
+          }
+
+          .user-name {
+            color: $moiDarkGreen;
+            font-size: 45px;
+            font-weight: bold;
+            margin-top: 15px;
+            font-family: FontMoi-Title;
+            width: 100%;
+            line-height: 45px;
+          }
+
+          .btns {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .btn-profile {
+              padding: 10px 15px;
+              text-align: center;
+              color: $moiDarkGreen;
+              font-family: FontMoi-Title;
+              font-weight: bold;
+              background-image: url(../images/btn-perfil.png);
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .content-wrapper {
+          padding-top: 15px;
+          height: 435px;
+
+          .more-details {
+            padding-right: 10px;
+
+            .user-description {
+              background: #889d66;
+              padding: 10px 15px;
+              font-weight: bold;
+              border: 2px solid #8f9a59;
+
+              .title {
+                color: $moiDarkGreen;
+                font-family: FontMoi-Title;
+                font-size: 15px;
+              }
+
+              .info {
+                color: $moiDarkGreen;
+                font-family: FontMoi-Title;
+                font-size: 15px;
+                color: bisque;
+                font-weight: bold;
+                padding-left: 15px;
+              }
+
+              .btn-wrapper {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                .btn-add-friend{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 10px 15px;
+                  text-align: center;
+                  color: $moiDarkGreen;
+                  font-family: FontMoi-Title;
+                  font-weight: bold;
+                  background-image: url(../images/btn-perfil.png);
+                  background-repeat: no-repeat;
+                  background-size: 100% 100%;
+                  cursor: pointer;
+
+                  .title {
+                    max-width: 80px;
+                  }
+
+                  .plus-icon {
+                    padding: 2px 5px;
+                    border: 1px solid $moiDarkGreen;
+                  }
+                }
+
+                .btn-friends{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 15px 15px;
+                  text-align: center;
+                  color: $moiDarkGreen;
+                  font-family: FontMoi-Title;
+                  font-weight: bold;
+                  background-image: url(../images/btn-perfil.png);
+                  background-repeat: no-repeat;
+                  background-size: 100% 100%;
+                  cursor: pointer;
+
+                  .title {
+                    max-width: 80px;
+                    padding-right: 10px;
+                  }
+
+                  .friend-img {
+                    width: 30px;
+                  }
+                }
+              }
+            }
+
+            .user-feedback {
+              background:  #889d66;
+              margin-top: 15px;
+              padding: 5px 10px;
+              border: 2px solid #8f9a59;
+
+              .tabs-options {
+                text-align: center;
+
+                .option {
+                  padding: 5px;
+                  border: 2px solid #7fb25b;
+                  color: bisque;
+                }
+              }
+
+              .grid-contents {
+                flex-wrap: wrap;
+                border: 2px solid #7fb25b;
+
+                .content-kind-contents {
+                  cursor: pointer;
+                  img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 90px;
+                  }
+                  .format-image {
+                    min-height: 110px;
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+          .tree-preview {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            .tree {
+              width: 65%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

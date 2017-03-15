@@ -16,18 +16,30 @@
       bindToController: true,
     };
 
-    function sidebarController($state) {
-      var vmSidebar = this;
-      vmSidebar.finishedAnimation = finishedAnimation;
-      vmSidebar.loadedGif = loadedGif;
-      vmSidebar.showGif = false;
+    function sidebarController($state, $auth) {
+      var vmSidebar = this,
+          user = $auth.user;
+      vmSidebar.goToSetting = goToSetting;
+      vmSidebar.goToProfile = goToProfile;
+      vmSidebar.loadedGifRueda = loadedGifRueda;
+      vmSidebar.loadedGifAmigos = loadedGifAmigos;
+      vmSidebar.showGifRueda = false;
+      vmSidebar.showGifAmigos = false;
 
-      function finishedAnimation() {
+      function goToSetting() {
         $state.go('settings');
       }
 
-      function loadedGif() {
-        vmSidebar.showGif = true;
+      function goToProfile() {
+        $state.go('profile', {userId: user.id});
+      }
+
+      function loadedGifRueda() {
+        vmSidebar.showGifRueda = true;
+      }
+
+      function loadedGifAmigos() {
+        vmSidebar.showGifAmigos = true;
       }
     }
 

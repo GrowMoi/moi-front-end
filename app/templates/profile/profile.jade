@@ -1,0 +1,54 @@
+ion-view.content-view-max.profile(view-title='{{vm.neuron.title}}')
+  ion-content
+    moi-sound(sound="sounds/read_content.mp3" background-sound="true")
+    .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+    .flecha-sidebar(ng-click="toggleDrawer()")
+      img(src="images/flecha_1.png")
+    .main-content-view.profile-user
+      .content-max-view
+        .profile-wrapper
+          .header-wrapper.row
+            .col-80.row
+              .user-image.col-10
+                img(src="images/user.png")
+              .user-name.col
+                {{vmProfile.user.name}}
+            .btns.col-20 
+              .btn-profile  {{ ::'buttons.edit-profile' | translate }}
+          .content-wrapper.row
+            .more-details.col-50
+              .user-description.row
+                .col-50
+                  .title {{ ::'titles.personal-descripcion' | translate }}
+                  .info {{ ::'user.age' | translate }}: {{vmProfile.user.age}} 
+                    | {{ !vmProfile.user.age ? '' : 'register.years' | translate }}
+                  .info {{ ::'user.city' | translate }}:  {{vmProfile.user.city}}
+                .btn-wrapper.col-50
+                  .btn-add-friend(ng-if="!vmProfile.isCurrentUser")
+                    .title {{ ::'buttons.add-friend' | translate }}
+                    .plus-icon +
+                  .btn-friends(ng-if="vmProfile.isCurrentUser")
+                    .title {{ ::'buttons.friends' | translate }}
+                    img.friend-img(src="images/user.png")
+              .user-feedback
+                .tabs-options
+                  .option.col-33
+                    span Ultimos 4
+                .grid-contents.row
+                  .col.col-50(ng-repeat='content in vmProfile.user.last_contents_learnt')
+                    .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
+                     img.format-image(ng-src='{{content.media[0]}}')
+                     .leyend-bottom {{content.title}}
+            .tree-preview.col-50
+              img.tree(src="images/arbol-perfil.png")
+      .btns-options
+        .btn-learn
+        .btn-search(ng-if="!vmProfile.showGifSearch")
+        gif-queue
+          gif-no-loop.btn-search-gif(src="images/btn_search.gif"
+                                    sound="sounds/btn_search.mp3"
+                                    order="0"
+                                    callback="vmProfile.finishedAnimationSearch()"
+                                    loaded="vmProfile.loadedGif('showGifSearch')"
+                                    clickgif="true")  
+  moi-sidebar
