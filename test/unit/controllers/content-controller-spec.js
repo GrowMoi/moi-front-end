@@ -129,5 +129,22 @@
 
     });
 
+    describe('Can read content', function(){
+
+      it('should show a dialog', function(){
+        var modalSpy = sinon.spy(ModalService, 'showModel');
+        var args = {
+          parentScope: $scope,
+          templateUrl: 'templates/partials/modal-unread.html',
+          model: {
+            goToMyTree: sinon.match.func
+          }
+        };
+        ctrl.showCanReadModal();
+        sinon.assert.calledWith(modalSpy, args);
+      });
+
+    });
+
   });
 })();
