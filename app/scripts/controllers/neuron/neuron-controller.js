@@ -6,7 +6,8 @@
     function ($scope,
               $state,
               user,
-              data) {
+              data,
+              ModalService) {
 
     var vmNeuron = this;
     vmNeuron.showGifSearch = false;
@@ -15,6 +16,10 @@
     vmNeuron.finishedAnimationRead = finishedAnimationRead;
     vmNeuron.loadedGif = loadedGif;
     vmNeuron.gifLearnActive = true;
+    vmNeuron.showCanReadModal = showCanReadModal;
+    var dialogCanReadModel = {
+      goToMyTree: goToMyTree
+    };
 
     /*jshint camelcase: false */
     function init(){
@@ -46,6 +51,20 @@
 
     function loadedGif(key) {
       vmNeuron[key] = true;
+    }
+
+    function showCanReadModal() {
+      var dialogOptions = {
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-unread.html',
+        model: dialogCanReadModel
+      };
+      ModalService.showModel(dialogOptions);
+    }
+
+    function goToMyTree() {
+      dialogCanReadModel.closeModal();
+      $state.go('tree');
     }
   });
 

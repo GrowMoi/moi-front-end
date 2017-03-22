@@ -9,6 +9,13 @@
         $rootScope,
         stateMock;
     beforeEach(module('moi.controllers'));
+    beforeEach(angular.mock.module(function($provide){
+      $provide.service('ModalService', function(){
+        return function () {
+          return {};
+        };
+      });
+    }));
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_) {

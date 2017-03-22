@@ -55,15 +55,19 @@ ion-view.content-view-max(view-title='Content')
                 a(href='{{::link}}' target='_blank') {{::link}}
             .corner.links-TR
       .btns-options
-        .btn-learn(ng-if="!vmContent.showGifRead")
-        gif-queue
-          gif-no-loop.btn-learn-gif(src="images/btn_learn.gif"
-                                    sound="sounds/btn_read.mp3"
-                                    order="0"
-                                    callback="vmContent.finishedAnimationRead()"
-                                    loaded="vmContent.loadedGif('showGifRead')"
-                                    clickgif="true"
-                                    ng-class="{disabled: vmContent.content.read}")
+        .btn-learn-container(ng-if="!vmContent.content.can_read")
+          .btn-learn(ng-click="vmContent.showCanReadModal()")
+
+        .btn-learn-container(ng-if="vmContent.content.can_read")
+          .btn-learn(ng-if="!vmContent.showGifRead")
+          gif-queue
+            gif-no-loop.btn-learn-gif(src="images/btn_learn.gif"
+                                      sound="sounds/btn_read.mp3"
+                                      order="0"
+                                      callback="vmContent.finishedAnimationRead()"
+                                      loaded="vmContent.loadedGif('showGifRead')"
+                                      clickgif="true"
+                                      ng-class="{disabled: vmContent.content.read}")
         .btn-search(ng-if="!vmContent.showGifSearch")
         gif-queue
           gif-no-loop.btn-search-gif(src="images/btn_search.gif"

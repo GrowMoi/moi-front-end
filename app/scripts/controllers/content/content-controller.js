@@ -16,6 +16,10 @@
     vmContent.finishedAnimationSearch = finishedAnimationSearch;
     vmContent.finishedAnimationRead = finishedAnimationRead;
     vmContent.loadedGif = loadedGif;
+    vmContent.showCanReadModal = showCanReadModal;
+    var dialogCanReadModel = {
+      goToMyTree: goToMyTree
+    };
 
     activate();
 
@@ -57,6 +61,20 @@
 
     function loadedGif(key) {
       vmContent[key] = true;
+    }
+
+    function showCanReadModal() {
+      var dialogOptions = {
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-unread.html',
+        model: dialogCanReadModel
+      };
+      ModalService.showModel(dialogOptions);
+    }
+
+    function goToMyTree() {
+      dialogCanReadModel.closeModal();
+      $state.go('tree');
     }
 
   });
