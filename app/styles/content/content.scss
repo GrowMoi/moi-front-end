@@ -13,16 +13,27 @@
   .col{
     width: 33%;
   }
+  .first-col-content{
+    display: flex;
+    flex-flow: column;
+  }
   .row-content-title {
+    display: table;
     .content-title {
       color: $titlesColor;
       font-weight: bold;;
       font-family: FontMoi-Title;
-      width: 365px;
       margin-left: 35px;
       line-height: 50px;
       text-indent: 60px;
+      width: 340px;
+      font-size: 40px;
       white-space: normal;
+      display: inline-block;
+    }
+    .corner{
+      display: inline-block;
+      position: absolute;
     }
   }
 
@@ -47,7 +58,6 @@
   }
 
   .row-content-text {
-    height: 430px;
     .content-text {
       color: $titlesColor;
       font-size: 25px;
