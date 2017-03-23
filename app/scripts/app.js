@@ -93,15 +93,16 @@
       resolve: {
         content: function(NeuronService, $stateParams, ContentService){
           var contentSelected = {};
-          return NeuronService.getNeuron($stateParams.neuronId).then(function(data) {
-            data.neuron.contents.some(function(content) {
+          return NeuronService.getNeuron($stateParams.neuronId).then(function(neuronData) {
+            neuronData.neuron.contents.some(function(content) {
               if (content.id === $stateParams.contentId){
                 contentSelected = content;
                 return true;
               }
             });
-            return ContentService.recommendedContents(contentSelected).then(function(data){
-                  contentSelected.recommended = data.contents;
+            return ContentService.recommendedContents(contentSelected).then(function(contentsData){
+                  contentSelected.recommended = contentsData.contents;
+                  contentSelected.can_read = neuronData.neuron.can_read;//jshint ignore:line
                   return contentSelected;
             });
           });

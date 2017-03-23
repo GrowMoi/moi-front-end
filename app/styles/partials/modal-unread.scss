@@ -1,0 +1,19 @@
+.modal-unread {
+  .text-container {
+    #content {
+      text-align: center;
+    }
+  }
+
+  .button-right {
+    padding: 2em 1em;
+  }
+
+  .button-left {
+    padding: 2em 2.5em;
+  }
+
+  .button.activated {
+    background-color: transparent;
+  }
+}

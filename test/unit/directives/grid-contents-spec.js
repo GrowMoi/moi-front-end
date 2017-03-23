@@ -78,13 +78,13 @@
             'image1.jpg',
             'image2.jpg'
           ],
-          'level':1,
+          'level':2,
           'kind':'que-es',
-          'description':'some description',
+          'description':'some description 1',
           'source':'own',
-          'title':'some title',
-          'learnt':false,
-          'read': false,
+          'title':'some title 1',
+          'learnt':true,
+          'read': true,
           'user_notes':null
         },
         {
@@ -94,11 +94,59 @@
             'image3.jpg',
             'image4.png'
           ],
-          'level':1,
-          'kind':'como-funciona',
+          'level':2,
+          'kind':'por-que-es',
           'description':'some description 2',
           'source':'own',
           'title':'some title 2',
+          'learnt':true,
+          'read': true,
+          'user_notes':null
+        },
+        {
+          'id':3,
+          'neuron_id':1,
+          'media':[
+            'image1.jpg',
+            'image2.jpg'
+          ],
+          'level':1,
+          'kind':'como-funciona',
+          'description':'some description 3',
+          'source':'own',
+          'title':'some title 3',
+          'learnt':false,
+          'read': false,
+          'user_notes':null
+        },
+        {
+          'id':4,
+          'neuron_id':1,
+          'media':[
+            'image3.jpg',
+            'image4.png'
+          ],
+          'level':1,
+          'kind':'como-funciona',
+          'description':'some description 4',
+          'source':'own',
+          'title':'some title 4',
+          'learnt':false,
+          'read': false,
+          'user_notes':null
+        },
+        {
+          'id':5,
+          'neuron_id':1,
+          'media':[
+            'image1.jpg',
+            'image2.jpg'
+          ],
+          'level':2,
+          'kind':'por-que-es',
+          'description':'some description 5',
+          'source':'own',
+          'title':'some title 5',
           'learnt':false,
           'read': false,
           'user_notes':null
@@ -107,24 +155,24 @@
 
       $scope.settings = [
         {
-          kind: 'que-es',
-          order: 0,
-          level:3
+          kind: 'quien-cuando-donde',
+          order: 1,
+          level: 2
         },
         {
           kind: 'como-funciona',
-          order: 1,
-          level:2
+          order: 2,
+          level: 3
         },
         {
           kind: 'por-que-es',
-          order: 2,
-          level:2
+          order: 0,
+          level: 1
         },
         {
-          kind: 'quien-cuando-donde',
+          kind: 'que-es',
           order: 3,
-          level:1
+          level: 2
         }
       ];
 
@@ -146,6 +194,103 @@
         controller = template.controller('gridContents');
         chai.expect($scope.contents.length).to.be.equal(controller.options.contents.length);
         chai.expect(controller.options.contents[0]).to.be.an('object');
+      });
+
+      it('The contents should be ordered', function () {
+        var contentsExpexted = [
+          {
+            'id': 5,
+            'neuron_id': 1,
+            'isSelected': true,
+            'index': 0,
+            'media': [
+              'image1.jpg',
+              'image2.jpg'
+            ],
+            'level': 2,
+            'kind': 'por-que-es',
+            'description': 'some description 5',
+            'source': 'own',
+            'title': 'some title 5',
+            'learnt': false,
+            'read': false,
+            'user_notes': null
+          },
+          {
+            'id': 3,
+            'neuron_id': 1,
+            'index': 1,
+            'media': [
+              'image1.jpg',
+              'image2.jpg'
+            ],
+            'level': 1,
+            'kind': 'como-funciona',
+            'description': 'some description 3',
+            'source': 'own',
+            'title': 'some title 3',
+            'learnt': false,
+            'read': false,
+            'user_notes': null
+          },
+          {
+            'id': 4,
+            'neuron_id': 1,
+            'index': 2,
+            'media': [
+              'image3.jpg',
+              'image4.png'
+            ],
+            'level': 1,
+            'kind': 'como-funciona',
+            'description': 'some description 4',
+            'source': 'own',
+            'title': 'some title 4',
+            'learnt': false,
+            'read': false,
+            'user_notes': null
+          },
+          {
+            'id': 1,
+            'neuron_id': 1,
+            'index': 3,
+            'media': [
+              'image1.jpg',
+              'image2.jpg'
+            ],
+            'level': 2,
+            'kind': 'que-es',
+            'description': 'some description 1',
+            'source': 'own',
+            'title': 'some title 1',
+            'learnt': true,
+            'read': true,
+            'user_notes': null
+          },
+          {
+            'id': 2,
+            'neuron_id': 1,
+            'index': 4,
+            'media': [
+              'image3.jpg',
+              'image4.png'
+            ],
+            'level': 2,
+            'kind': 'por-que-es',
+            'description': 'some description 2',
+            'source': 'own',
+            'title': 'some title 2',
+            'learnt': true,
+            'read': true,
+            'user_notes': null
+          }
+        ];
+
+        template = $compile('<grid-contents options="contentsOptions"></grid-contents>')($scope);
+        $scope.$digest();
+        controller = template.controller('gridContents');
+        controller.options.contents.forEach(function (elem) { delete elem.$$hashKey; });
+        chai.expect(controller.options.contents).to.deep.equal(contentsExpexted);
       });
 
     });

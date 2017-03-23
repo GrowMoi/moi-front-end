@@ -7,21 +7,34 @@
         $scope,
         dependencies,
         $rootScope,
-        stateMock;
+        stateMock,
+        ModalService,
+        modalSpy;
+
     beforeEach(module('moi.controllers'));
+    beforeEach(angular.mock.module(function($provide){
+      $provide.service('ModalService', function(){
+        modalSpy = sinon.spy();
+        return {
+          showModel: modalSpy
+        };
+      });
+    }));
     beforeEach(inject(
       function (_$controller_,
-                _$rootScope_) {
+                _$rootScope_,
+                _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         stateMock = { go: sinon.stub() };
-
+        ModalService = _ModalService_;
         dependencies = {
           $scope: $scope,
           $state: stateMock,
           data: {neuron: {id: 1}},
-          user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
+          user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'},
+          ModalService: ModalService
         };
 
         ctrl = $controller('NeuronController', dependencies);
@@ -51,6 +64,22 @@
         chai.expect(ctrl.gifLearnActive).to.be.equal(true);
         ctrl.contentsOptions.onSelect({read: true});
         chai.expect(ctrl.gifLearnActive).to.be.equal(false);
+      });
+
+    });
+
+    describe('Can read content', function(){
+
+      it('should show a dialog', function(){
+        var args = {
+          parentScope: $scope,
+          templateUrl: 'templates/partials/modal-unread.html',
+          model: {
+            goToMyTree: sinon.match.func
+          }
+        };
+        ctrl.showCanReadModal();
+        sinon.assert.calledWith(modalSpy, args);
       });
 
     });
