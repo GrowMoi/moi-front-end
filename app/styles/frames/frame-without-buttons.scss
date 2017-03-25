@@ -1,0 +1,32 @@
+.frame-without-buttons {
+  .overflow-scroll {
+    overflow-y: hidden;
+  }
+
+  .flecha-sidebar {
+    top: 45%;
+  }
+
+  .arrow {
+    top: 3%;
+    left: 35px;
+  }
+
+  .frame {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/frame-searches.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .frame-container {
+    width: 95%;
+    height: 84%;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 2%;
+  }
+}

@@ -1,11 +1,11 @@
-ion-view.content-view-max.profile(view-title='{{vm.neuron.title}}')
+ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
   ion-content
     moi-sound(sound="sounds/read_content.mp3" background-sound="true")
     .arrow.back-arrow(back-button image-url="images/back-arrow.png")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
-    .main-content-view.profile-user
-      .content-max-view
+    .frame.profile-user
+      .frame-container
         .profile-wrapper
           .header-wrapper.row
             .col-80.row
