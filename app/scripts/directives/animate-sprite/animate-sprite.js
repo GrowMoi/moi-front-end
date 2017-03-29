@@ -37,7 +37,7 @@ options directive
     return directive;
   }
 
-  function animateController($window, $scope) {
+  function animateController($window, $scope, $q) {
 
     var vm = this;
 
@@ -50,15 +50,29 @@ options directive
       framesPerRow = 0,
       repeat = true,
       speed = 100,
-      progress = false;
+      // flags
+      statusAnimation = {
+        playing: false,
+        pause: false,
+        done: false
+      },
+      //sounds
+      audioLoadDefer = $q.defer(),
+      moiSound;
+      // Keeps track of the current x and y positions of the sprite.
+      var spritePosition = {
+        x: 0,
+        y: 0
+      };
 
-    // Keeps track of the current x and y positions of the sprite.
-    var spritePosition = {
-      'x': 0,
-      'y': 0
-    };
+      var animationInterval = null;
 
-    var animationInterval = null;
+    /* sound */
+
+    $scope.$on('audioLoaded', function (e, moiSoundInstance) {
+      moiSound = moiSoundInstance;
+      audioLoadDefer.resolve();
+    });
 
     /**
      * Initializes the sprite with default CSS styles and options passed in by
@@ -76,12 +90,13 @@ options directive
       zoom = options.zoom || 0.2;
 
       vm.playAnimateSprite = playAnimateSprite;
+      vm.endSound = endSound;
+
       vm.css = {
         display: 'block',
         width: frameWidth + 'px',
         height: frameHeight + 'px',
         background: 'url(' + src + ') repeat',
-        backgroundPosition: '0px 0px',
         zoom: zoom
       };
 
@@ -91,14 +106,23 @@ options directive
     }
 
     function playAnimateSprite() {
-      if (progress === false) {
-        //reset positions
+      if (vm.options.playOnClick && statusAnimation.playing === false) {
+        statusAnimation.playing = true;
         spritePosition = {
-          'x': 0,
-          'y': 0
+          x: 0,
+          y: 0
         };
-        animate();
+        if (vm.options.sound && moiSound) {
+          moiSound.play();
+          animate();
+        }else{
+          animate();
+        }
       }
+    }
+
+    function endSound() {
+      vm.options.finishedSound();
     }
 
     /**
@@ -118,17 +142,19 @@ options directive
           if (spritePosition.x >= (framesPerRow - 1) * frameWidth &&
             spritePosition.y >= numRows * frameHeight) {
             toReturn = true;
-            console.log('finished 1');
+            statusAnimation.done = true;
+            vm.options.finishedAnimation();
           }
 
         } else {
           if (spritePosition.x >= frameWidth * frames) {
             toReturn = true;
-            console.log('finished 2');
+            statusAnimation.done = true;
+            vm.options.finishedAnimation();
           }
         }
-
-        progress = !toReturn;
+        //update status
+        statusAnimation.playing = !toReturn;
         return toReturn;
       }
 
