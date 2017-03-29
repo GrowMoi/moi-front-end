@@ -11,6 +11,7 @@
     searchesmodel.query = query;
     searchesmodel.reloadSearch = reloadSearch;
     searchesmodel.noMoreItemsAvailable = true;
+    searchesmodel.contents = [];
     searchesmodel.neurons = [];
 
     if(searchesmodel.query !== ''){
@@ -32,7 +33,8 @@
       searchesmodel.currentPage = 1;
       NeuronService.searchNeurons(searchesmodel.query, searchesmodel.currentPage).then(function(resp) {
         searchesmodel.currentPage += 1;
-        searchesmodel.neurons = resp.search;
+        searchesmodel.neurons = resp.search.neurons;
+        searchesmodel.contents = resp.search.contents;
         /*jshint camelcase: false */
         searchesmodel.totalItems = resp.meta.total_items;
         if(searchesmodel.totalItems > 8){
@@ -46,13 +48,20 @@
 
     function loadMore() {
       NeuronService.searchNeurons(searchesmodel.query, searchesmodel.currentPage).then(function(resp) {
-        searchesmodel.neurons = searchesmodel.neurons.concat(resp.search);
+        searchesmodel.neurons = searchesmodel.neurons.concat(resp.search.neurons);
+        searchesmodel.contents = searchesmodel.contents.concat(resp.search.contents);
         searchesmodel.currentPage += 1;
-        if ( searchesmodel.neurons.length === searchesmodel.totalItems ) {
+
+        if (getItemsShownStatus()) {
           searchesmodel.noMoreItemsAvailable = true;
         }
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });
+    }
+
+    function getItemsShownStatus () {
+      var itemsShown = searchesmodel.contents.length + searchesmodel.neurons.length;
+      return itemsShown === searchesmodel.totalItems;
     }
 
   });

@@ -75,6 +75,11 @@
     .scroll {
       display: flex;
       flex-wrap: wrap;
+
+    }
+
+    &.overflow-scroll {
+      overflow-y: visible;
     }
 
     .neuron {
