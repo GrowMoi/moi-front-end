@@ -7,7 +7,8 @@
 
   function UserService($http, ENV, PopupService) {
     var service = {
-      profile: profile
+      profile: profile,
+      updateProfile: updateProfile
     };
     var popupOptions = { title: 'Error'};
 
@@ -26,5 +27,14 @@
         }
       });
     }
+
+    function updateProfile(user){
+      return $http({
+        method: 'PUT',
+        url: ENV.apiHost + '/api/users/account',
+        data:user
+      });
+    }
+
   }
 })();

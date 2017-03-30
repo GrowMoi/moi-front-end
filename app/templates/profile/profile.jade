@@ -14,7 +14,8 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
               .user-name.col
                 {{vmProfile.user.name}}
             .btns.col-20 
-              .btn-profile  {{ ::'buttons.edit-profile' | translate }}
+              .btn-profile(ui-sref="profileEdit")
+                {{ ::'buttons.edit-profile' | translate }}
           .content-wrapper.row
             .more-details.col-50
               .user-description.row

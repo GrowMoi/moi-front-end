@@ -62,9 +62,10 @@
         'register': 'Register',
         'user': 'nombre de usuario',
         'birthday': 'fecha de nacimiento',
-        'password': 'contraseña',
+        'password': 'nueva contraseña',
+        'password-required': 'contraseña actual',
         'city': 'ciudad',
-        'confirm_password': 'confirme contraseña',
+        'confirm-password': 'confirme contraseña',
         'country':  'país',
         'email': 'correo electrónico',
         'years': 'años'
@@ -72,6 +73,13 @@
       user: {
         'age': 'Edad',
         'city': 'Ciudad'
+      },
+      profile: {
+        'edit-profile': 'editar perfil',
+        'first-name': 'primer Nombre',
+        'last-name': 'apellidos',
+        'my-profile': 'Mi Perfil',
+        'description-photo': 'Tu puedes subir una foto JPG, Gif, or PNG file'
       },
       msgs:{
         error:{
@@ -109,10 +117,14 @@
       buttons: {
         'edit-profile': 'Editar Perfil',
         'add-friend': 'Agregar Amigo',
-        'friends': 'Amigos'
+        'save-changes': 'Guardar Cambios',
+        'friends': 'Amigos',
+        'choose-photo': 'Escoger foto',
+        'upload-photo': 'Cargar foto'
       },
       titles: {
-        'personal-descripcion': 'Descripción Personal'
+        'personal-descripcion': 'Descripción Personal',
+        'current-photo': 'Foto Actual'
       }
     });
 
