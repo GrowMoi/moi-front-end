@@ -21,7 +21,6 @@
 @import "tree/tree-level-8";
 @import "tree/tree-level-9";
 @import "neuron/contents";
-@import "neuron/views";
 @import "content/content";
 @import "content/views";
 @import "partials/modal-image";
@@ -33,3 +32,8 @@
 @import "searches/searches";
 @import "test/test";
 @import "test/score";
+@import "profile/profile";
+@import "frames/frame-all-buttons";
+@import "frames/frame-without-sidebar";
+@import "frames/frame-without-buttons";
+@import "frames/frame-without-back-button";

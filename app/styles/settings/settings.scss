@@ -1,139 +1,122 @@
-.frame-back-btn {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  background-image: url(../images/landscape_b.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100vh;
-  &::after{
-    content: "";
-    background-image: url(../images/marco.png);
-    background-position: top left;
+.settings-page {
+  background-color: transparent;
+  
+  .content-settings {
+    top: 20px;
+    position: relative;
     background-repeat: no-repeat;
+    background-image: url("../images/caja_L.png");
     background-size: 100% 100%;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top:0;
+  }
+
+  .settings {
+    padding-top: 3%;
+    padding-left: 10%;
+    position: relative;
+    overflow: hidden;
     width: 100%;
-  }
-}
+    height: 90%;
 
-.content-settings, .content-searches{
-  position: relative;
-  background-repeat: no-repeat;
-  margin-top: 4%;
-  margin-left: 4%;
-  width: 92%;
-  height: 100%;
-  background-image: url(../images/caja_L.png);
-}
-
-.content-settings {
-  background-size: 100% 92%;
-}
-
-.settings{
-  padding-top: 3%;
-  padding-left: 10%;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 90%;
-  z-index: 2;
-
-  div[class*='panel-'] h2{
-    border-bottom: 1px solid #2A2D2B;
-    padding-bottom: 15px;
-    color: #2A2D2B;
-    text-transform: uppercase;
-  }
-
-  .panel-left{
-    .range-left-border{
-      background-repeat: no-repeat;
-      background-image: url(../images/range-left-border.png);
-      width: 16px;
-      margin-top: -2px;
+    div[class*='panel-'] h2 {
+      border-bottom: 1px solid #2A2D2B;
+      padding-bottom: 15px;
+      color: #2A2D2B;
+      text-transform: uppercase;
     }
-    .range-right-border{
-      background-repeat: no-repeat;
-      background-image: url(../images/range-right-border.png);
-      width: 16px;
-      margin-top: 2px;
-      margin-left: -1px;
-    }
-    .title-label{
-      background-color: rgba(120, 141, 90, 0.68);
-      color: $moiDarkGreen;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-      padding: 2px 10px 2px 10px;
-      margin-left: 30%;
-      width: 25%;
-      margin-bottom: 15px;
-      float: left;
-    }
-    .title-label-1{
-      background-color: rgba(120, 141, 90, 0.68);
-      color: $moiDarkGreen;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
-      padding: 2px 10px 2px 10px;
-      width: 13%;
-      margin-bottom: 15px;
-      float: left;
-    }
-    .controll{
-      background: #5B7A2C;
-      border-top: 4px solid #3F3A16;
-      border-bottom: 4px solid #3F3A16;
-      padding: 10px;
-      width: 90%;
-      margin-bottom: 10px;
-      font-weight: bold;
-      margin-left: -1px;
-      input{
-        float: right;
+
+    .panel-left {
+      .range-left-border {
+        background-repeat: no-repeat;
+        background-image: url("../images/range-left-border.png");
+        width: 16px;
+        margin-top: -2px;
       }
-    }
-  }
 
-  .panel-right{
-    .label{
-      background-color: rgba(120, 141, 90, 0.68);
-      color: $moiDarkGreen;
-      font-size: 16px;
-      font-weight: bold;
-      width: 55%;
-      border-radius: 5px;
-      padding: 2px 10px 2px 10px;
-      margin-left: 15px;
-      margin-bottom: 15px;
-    }
-    .interests-list{
-      background-image: url(../images/box-interest.png);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      padding: 10px;
-      .title{
+      .range-right-border {
+        background-repeat: no-repeat;
+        background-image: url("../images/range-right-border.png");
+        width: 16px;
+        margin-top: 2px;
+        margin-left: -1px;
+      }
+
+      .title-label {
+        background-color: rgba(120, 141, 90, 0.68);
+        color: $moiDarkGreen;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 2px 10px;
+        margin-left: 30%;
+        width: 25%;
+        margin-bottom: 15px;
         float: left;
-        min-width: 92px;
-        color: #d2d583;
-        margin: 12px 4px 0px 0px;
-        text-align: right;
-        font-size: 13px;
       }
-      img{
-        cursor: pointer;
+
+      .title-label-1 {
+        background-color: rgba(120, 141, 90, 0.68);
+        color: $moiDarkGreen;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 2px 10px;
+        width: 13%;
+        margin-bottom: 15px;
+        float: left;
+      }
+
+      .controll {
+        background: #5B7A2C;
+        border-top: 4px solid #3F3A16;
+        border-bottom: 4px solid #3F3A16;
+        padding: 10px;
+        width: 90%;
+        margin-bottom: 10px;
+        font-weight: bold;
+        margin-left: -1px;
+
+        input {
+          float: right;
+        }
+      }
+    }
+
+    .panel-right {
+      .label {
+        background-color: rgba(120, 141, 90, 0.68);
+        color: $moiDarkGreen;
+        font-size: 16px;
+        font-weight: bold;
+        width: 55%;
+        border-radius: 5px;
+        padding: 2px 10px;
+        margin-left: 15px;
+        margin-bottom: 15px;
+      }
+
+      .interests-list {
+        background-image: url("../images/box-interest.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        padding: 10px;
+
+        .title {
+          float: left;
+          min-width: 92px;
+          color: #d2d583;
+          margin: 12px 4px 0 0;
+          text-align: right;
+          font-size: 13px;
+        }
+
+        img {
+          cursor: pointer;
+        }
       }
     }
   }
-}
 
-.interest-selected{
-  opacity: 0.4;
+  .interest-selected {
+    opacity: 0.4;
+  }
 }

@@ -1,21 +1,6 @@
 .search-view-max {
   background-color: rgba(0, 0, 0, 0);
-  .main-search-view {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-image: url(../images/frame-searches.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-  .arrow{
-    top: 3%;
-    left: 35px;
-  }
-  .flecha-sidebar {
-    top: 45%;
-  }
+
   .content-kind-contents {
     img {
       object-fit: cover;
@@ -23,31 +8,25 @@
       height: 135px;
     }
   }
+
   .format-image {
     height: 240px;
     width: 100%;
     box-shadow: 2px 5px 2px 1px $titlesColor;
   }
-}
 
-.search-view-max{
-  background-color: rgba(0, 0, 0, 0);
-
-  .flecha-sidebar {
-    top: 45%;
-  }
   .main-search-view {
+    top: 20px;
     position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-image: url(../images/frame-searches.png);
     background-repeat: no-repeat;
+    background-image: url(../images/caja_L.png);
     background-size: 100% 100%;
   }
 }
+
 .content-searches {
   background-size: 100% 83%;
+
   form {
     position: absolute;
     right: 70px;
@@ -55,7 +34,7 @@
     width: 400px;
 
     label.item-input {
-      background-image: url(../images/busqueda_bar.png);
+      background-image: url("../images/busqueda_bar.png");
       @include background-size(contain);
       background-position: left center;
       background-repeat: no-repeat;
@@ -71,13 +50,14 @@
     margin-bottom: 0;
   }
 
-  .list, label {
+  .list,
+  label {
     background-color: transparent;
     border: 0;
   }
 
   .button {
-    background-image: url(../images/telescopio.png);
+    background-image: url("../images/telescopio.png");
     position: absolute;
     top: 5px;
     z-index: 2;
@@ -91,11 +71,13 @@
     left: 35px;
     bottom: 130px;
     height: 300px;
-    .scroll{
+
+    .scroll {
       display: flex;
       flex-wrap: wrap;
     }
-    .neuron{
+
+    .neuron {
       height: 150px;
     }
   }

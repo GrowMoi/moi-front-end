@@ -66,7 +66,12 @@
         'city': 'ciudad',
         'confirm_password': 'confirme contraseña',
         'country':  'país',
-        'email': 'correo electrónico'
+        'email': 'correo electrónico',
+        'years': 'años'
+      },
+      user: {
+        'age': 'Edad',
+        'city': 'Ciudad'
       },
       msgs:{
         error:{
@@ -100,8 +105,15 @@
       },
       searches: {
         'search': 'Buscar'
+      },
+      buttons: {
+        'edit-profile': 'Editar Perfil',
+        'add-friend': 'Agregar Amigo',
+        'friends': 'Amigos'
+      },
+      titles: {
+        'personal-descripcion': 'Descripción Personal'
       }
-
     });
 
     $translateProvider.preferredLanguage('es');

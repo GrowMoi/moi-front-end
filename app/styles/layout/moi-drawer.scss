@@ -37,9 +37,28 @@ drawer.left {
   }
 
   .settings-amigos {
-    top: 75px;
-    left: 25px;
-    width: 140px;
+    .amigos-img {
+      position: absolute;
+      top: 75px;
+      left: 25px;
+      width: 140px;
+      height: 60px;
+      z-index: 10;
+      background-image: url(../images/amigh.png);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+    }
+    .boton {
+      position: absolute;
+      top: 75px;
+      left: 25px;
+      z-index: 10;
+      cursor: pointer;
+      canvas{
+        width: 140px;
+      }
+    }
   }
 
   .settings-rueda {

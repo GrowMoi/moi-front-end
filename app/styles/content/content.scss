@@ -3,20 +3,20 @@
     color: $titlesColor;
     text-decoration: none;
   }
-  .arrow{
-    top: 3%;
-    left: 35px;
-  }
+
   .overflow-scroll{
     overflow-y: visible;
   }
+
   .col{
     width: 33%;
   }
+
   .first-col-content{
     display: flex;
     flex-flow: column;
   }
+  
   .row-content-title {
     display: table;
     .content-title {

@@ -1,11 +1,11 @@
-ion-view.content-view-max(view-title='Content')
+ion-view.frame-all-buttons.content-view-max(view-title='Content')
   ion-content
     moi-sound(sound="sounds/read_content.mp3" background-sound="true")
     .arrow.back-arrow(back-button image-url="images/back-arrow.png")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
-    .main-content-view
-      .row.content-max-view
+    .frame
+      .row.frame-container
         .col.first-col-content
           .row.border-bottom.row-content-title
             .content-title

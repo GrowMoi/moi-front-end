@@ -1,0 +1,30 @@
+(function () {
+'use strict';
+
+  angular
+    .module('moi.services')
+    .factory('UserService', UserService);
+
+  function UserService($http, ENV, PopupService) {
+    var service = {
+      profile: profile
+    };
+    var popupOptions = { title: 'Error'};
+
+    return service;
+
+    function profile(id) {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/' + id + '/profile'
+      }).then(function success(res) {
+        return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+  }
+})();

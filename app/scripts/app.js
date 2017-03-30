@@ -160,8 +160,21 @@
       controller: 'RegisterController',
       controllerAs: 'registerModel',
       cache: false
+    })
+    .state('profile', {
+      url: '/user/{userId:int}/profile',
+      templateUrl: 'templates/profile/profile.html',
+      controller: 'ProfileController',
+      controllerAs: 'vmProfile',
+      cache: false,
+      resolve: {
+        user: function (UserService, $stateParams){
+          return UserService.profile($stateParams.userId).then(function(data){
+            return data;
+          });
+        }
+      }
     });
-
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
 
