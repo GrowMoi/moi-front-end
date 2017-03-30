@@ -174,6 +174,18 @@
           });
         }
       }
+    })
+    .state('profileEdit', {
+      url: '/profile/edit',
+      templateUrl: 'templates/profile/edit.html',
+      controller: 'ProfileEditController',
+      controllerAs: 'vmProfileEdit',
+      cache: false,
+      resolve: {
+        user: function ($auth) {
+          return $auth.validateUser();
+        }
+      }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

@@ -1,0 +1,109 @@
+ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | translate}}")
+  ion-content
+    moi-sound(sound="sounds/read_content.mp3" background-sound="true")
+    .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+    .flecha-sidebar(ng-click="toggleDrawer()")
+      img(src="images/flecha_1.png")
+    .frame
+      .frame-container.edit-profile-view
+        .content.edit-profile
+          .row.title-content
+            .title-edit-profile.col-80
+              {{ ::'profile.my-profile' | translate}}
+            .btn-save-changes.col-20(ng-click="vmProfileEdit.editProfile()")
+              {{ ::'buttons.save-changes' | translate }}
+          .row.content-edit-profile
+            .section-photo
+              .title-photo
+                {{ ::'titles.current-photo' | translate}}
+              .content-photo
+              .description-photo
+                {{ ::'profile.description-photo' | translate }}
+              .content-button-photo
+                .btn-choose-photo
+                  {{ ::'buttons.choose-photo' | translate }}
+                .btn-upload-photo
+                  {{ ::'buttons.upload-photo' | translate }}
+            .section-form.form-container.form-register
+              form(name='editProfileForm', novalidate)
+                .form-group
+                  label.label-register.col-40 {{ ::'register.user' | translate }}
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.name',
+                    name='first_name'
+                    required='required',
+                    autocomplete='off',
+                  )
+                  
+                .form-group
+                  label.label-register.col-40 {{ ::'register.city' | translate }}
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.city'
+                    name='city'
+                    required='required',
+                    autocomplete='off',
+                  )
+                  
+                .form-group
+                  label.label-register.col-40 {{ ::'register.country' | translate }}
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.country'
+                    name='country'
+                    required='required',
+                    autocomplete='off',
+                  )
+                  
+                .form-group
+                  label.label-register.col-40 {{ ::'register.email' | translate }}
+                  input.col-60(
+                    type='email',
+                    ng-model='vmProfileEdit.user.email'
+                    name='email'
+                    required='required',
+                    autocomplete='off',
+                  )
+                
+                .form-group
+                  label.label-register.col-40 {{ ::'register.password-required' | translate }}
+                  input.col-60(
+                    type='password',
+                    ng-model='vmProfileEdit.user.current_password',
+                    name='password'
+                    required='required',
+                    autocomplete='off',
+                  )
+                  
+                .form-group
+                  label.label-register.col-40 {{ ::'register.password' | translate }}
+                  input.col-60(
+                    type='password',
+                    ng-model='vmProfileEdit.user.password',
+                    name='password'
+                    required='required',
+                    autocomplete='off',
+                  )
+                
+                .form-group
+                  label.label-register.label-date  {{ ::'register.birthday' | translate }}
+                    input.col-60(
+                      type='text',
+                      onfocus="(this.type='date')",
+                      onblur="(this.type='text')",
+                      name='birthday'
+                      ng-model='vmProfileEdit.user.birthday'
+                      required='required'
+                    )
+      .btns-options
+        .btn-learn
+        .btn-search(ng-if="!vmProfile.showGifSearch")
+        gif-queue
+          gif-no-loop.btn-search-gif(src="images/btn_search.gif"
+                                    sound="sounds/btn_search.mp3"
+                                    order="0"
+                                    callback="vmProfileEdit.finishedAnimationSearch()"
+                                    loaded="vmProfileEdit.loadedGif('showGifSearch')"
+                                    clickgif="true")              
+  moi-sidebar
