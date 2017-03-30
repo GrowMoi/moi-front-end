@@ -18,10 +18,15 @@ ion-view.frame-without-buttons.search-view-max(view-title='Content')
                 value=''
               ).button
           ion-content.result-searches
-            .col.col-25.neuron(ng-repeat='neuron in searchesmodel.neurons')
+            .col.col-25.neuron(ng-repeat='neuron in searchesmodel.neurons track by $index')
               .content-kind-contents(ui-sref="neuron({neuronId: neuron.id})")
-               img.format-image(ng-src='{{neuron.contents[0].media[0]}}')
-               .leyend-bottom
+                img.format-image(ng-src='{{neuron.contents[0].media[0]}}')
+                .leyend-bottom
                   {{neuron.title}}
+            .col.col-25.neuron(ng-repeat='content in searchesmodel.contents track by $index')
+              .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
+                img.format-image(ng-src='{{content.media[0]}}')
+                .leyend-bottom
+                  {{content.title}}
             ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='10%')
   moi-sidebar

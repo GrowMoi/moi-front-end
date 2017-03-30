@@ -56,38 +56,41 @@
     /*jshint camelcase: false */
     describe('on search', function(){
       it('should controller.searches not add infinite scroll when total_items < 8', function(){
-        var dataBackend = {search: ['neurons'], meta: {total_items: 1}};
+        var dataBackend = {search: {contents: ['contents'], neurons: ['neurons']}, meta: {total_items: 1}};
         deferred.resolve(dataBackend);
         $scope.$digest();
-        chai.expect(ctrl.neurons).to.deep.equals(dataBackend.search);
+        chai.expect(ctrl.contents).to.deep.equals(dataBackend.search.contents);
       });
 
       it('should controller.searches add infinite scroll  when total_items > 8', function(){
-        var dataBackend = {search: ['neurons'], meta: {total_items: 9}};
+        var dataBackend = {search: {contents: ['contents'], neurons: ['neurons']}, meta: {total_items: 9}};
         deferred.resolve(dataBackend);
         $scope.$digest();
-        chai.expect(ctrl.neurons).to.deep.equals(dataBackend.search);
+        chai.expect(ctrl.contents).to.deep.equals(dataBackend.search.contents);
       });
 
       it('should controller.searches use infinite scroll', function(){
-        var dataBackend = {search: ['neurons'], meta: {total_items: 9}};
+        var dataBackend = {search: {contents: ['contents'], neurons: ['neurons']}, meta: {total_items: 9}};
         deferred.resolve(dataBackend);
         $scope.$digest();
         ctrl.loadMore();
-        deferred.resolve({search: ['more_neurons'], meta: {total_items: 9}});
+        deferred.resolve({search: {contents: ['more_contents'], neurons: ['more_neurons']}, meta: {total_items: 9}});
         $scope.$digest();
-        var totalNeurons = ['neurons', 'more_neurons'];
-        chai.expect(ctrl.neurons).to.deep.equals(totalNeurons);
+        var totalContents = ['contents', 'more_contents'];
+        chai.expect(ctrl.contents).to.deep.equals(totalContents);
       });
 
       it('should controller.searches disabled infinite scroll', function(){
         var dataBackend = {
-          search: [
-            'neurons1', 'neurons2',
-            'neurons3', 'neurons4',
-            'neurons5', 'neurons6',
-            'neurons7', 'neurons8'
-          ],
+          search: {
+            contents: [
+              'contents1', 'contents2',
+              'contents3', 'contents4',
+              'contents5', 'contents6',
+              'contents7', 'contents8'
+            ],
+            neurons: []
+          },
           meta: {
             total_items: 9
           }
@@ -95,13 +98,13 @@
         deferred.resolve(dataBackend);
         $scope.$digest();
         ctrl.loadMore();
-        deferred.resolve({search: ['neuron9'], meta: {total_items: 9}});
+        deferred.resolve({search: { contents: ['content9'], neurons: []}, meta: {total_items: 9}});
         $scope.$digest();
         chai.expect(ctrl.noMoreItemsAvailable).to.be.equal(true);
       });
 
       it('should controller.searches reload when execute a new query', function(){
-        var dataBackend = {search: ['neurons'], meta: {total_items: 1}};
+        var dataBackend = {search: ['contents'], meta: {total_items: 1}};
         deferred.resolve(dataBackend);
         $scope.$digest();
         ctrl.reloadSearch();
