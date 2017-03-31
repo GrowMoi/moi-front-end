@@ -56,7 +56,7 @@ ion-view(
               ng-model='registerModel.registerForm.password_confirmation',
               required='required',
               name='password_confirmation',
-              placeholder="{{ ::'register.confirm_password' | translate }}",
+              placeholder="{{ ::'register.confirm-password' | translate }}",
               ng-pattern='registerModel.registerForm.password'
             )
             span.error-msg(ng-if='registerForm.password_confirmation.$error.pattern')
