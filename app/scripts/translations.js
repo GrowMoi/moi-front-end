@@ -60,26 +60,26 @@
       register:{
         'enter':  'Entrar',
         'register': 'Register',
-        'user': 'nombre de usuario',
-        'birthday': 'fecha de nacimiento',
-        'password': 'nueva contraseña',
-        'password-required': 'contraseña actual',
-        'city': 'ciudad',
-        'confirm-password': 'confirme contraseña',
-        'country':  'país',
-        'email': 'correo electrónico',
-        'years': 'años'
+        'user': 'Nombre de Usuario',
+        'birthday': 'Fecha de Nacimiento',
+        'password': 'Contraseña',
+        'password-required': 'Contraseña Actual',
+        'city': 'Ciudad',
+        'confirm-password': 'Confirme Contraseña',
+        'country':  'País',
+        'email': 'Correo Electrónico',
+        'years': 'Años'
       },
       user: {
         'age': 'Edad',
         'city': 'Ciudad'
       },
       profile: {
-        'edit-profile': 'editar perfil',
-        'first-name': 'primer Nombre',
-        'last-name': 'apellidos',
-        'my-profile': 'Mi Perfil',
-        'description-photo': 'Tu puedes subir una foto JPG, Gif, or PNG file'
+        'edit-profile': 'Editar Perfil',
+        'last-name': 'Apellidos',
+        'my-profile': 'Mi  Perfil',
+        'password' : 'Nueva Contraseña',
+        'description-photo': 'Tu puedes subir una foto jpg, gif, or png file'
       },
       msgs:{
         error:{
