@@ -42,10 +42,6 @@
         site.loadedImages = (toState.name === 'tree' && !vinetaShowed);
         preloadAssets();
       }
-      var killedSound = ((fromState.name === 'login' ||  fromState.name === 'register') && toState.name === 'tree');
-      if(killedSound){
-        $rootScope.$broadcast('vineta:remove-sound');
-      }
       if (toState.name === 'login' && $auth.user.id) {
         event.preventDefault();
       }else{

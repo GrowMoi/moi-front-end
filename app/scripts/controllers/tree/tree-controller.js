@@ -21,6 +21,7 @@
       var getConfigVineta = JSON.parse(localStorage.getItem('vinetas_animadas'));
       var isDiferentLevel = getConfigVineta ? getConfigVineta.depth !== data.meta.depth : false;
       if(vinetaLevels.indexOf(data.meta.depth) !== -1 && (!getConfigVineta || isDiferentLevel)) {
+        $rootScope.$broadcast('moiSound:kill-sound');
         treeModel.showTree = false;
         preloadVideos();
       }else{
