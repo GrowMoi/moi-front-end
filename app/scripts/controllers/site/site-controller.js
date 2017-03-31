@@ -8,7 +8,7 @@
   function SiteController($rootScope,
                           $ionicLoading,
                           $auth,
-                          PreloadImage,
+                          PreloadAssets,
                           IMAGES,
                           SOUNDS) {
 
@@ -19,15 +19,14 @@
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
 
-    function preloadImages() {
-      site.loadedImages = false;
+    function preloadAssets() {
       images = images.map(function(img){
         return img.substring(4); // remove 'app/' of path
       });
       sounds = sounds.map(function(snd){
         return snd.substring(4); // remove 'app/' of path
       });
-      PreloadImage.cache({'images': images, 'sounds': sounds}).then(function(){
+      PreloadAssets.cache({'images': images}).then(function(){
         site.loadedImages = true;
         site.preloadCalled = true;
       });
@@ -36,8 +35,16 @@
     //This must be the only place where we need to listen stateChanges
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState){
       var initApp = (fromState.name === '' && toState.name === 'login');
-      if (!initApp && !site.preloadCalled && toState.name !== 'register') {
-        preloadImages();
+      var registerApp = (fromState.name === 'register' && toState.name === 'login');
+      if (!initApp && !registerApp && !site.preloadCalled && toState.name !== 'register') {
+        var getConfigVineta = JSON.parse(localStorage.getItem('vinetas_animadas'));
+        var vinetaShowed = getConfigVineta ? true : false;
+        site.loadedImages = (toState.name === 'tree' && !vinetaShowed);
+        preloadAssets();
+      }
+      var killedSound = ((fromState.name === 'login' ||  fromState.name === 'register') && toState.name === 'tree');
+      if(killedSound){
+        $rootScope.$broadcast('vineta:remove-sound');
       }
       if (toState.name === 'login' && $auth.user.id) {
         event.preventDefault();
@@ -59,6 +66,5 @@
     $rootScope.$on('$stateChangeError', function(){
       $ionicLoading.hide();
     });
-
   }
 })();

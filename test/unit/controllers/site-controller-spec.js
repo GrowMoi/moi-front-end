@@ -9,7 +9,7 @@
         $ionicLoading,
         $auth,
         IMAGES,
-        PreloadImage;
+        PreloadAssets;
 
     beforeEach(module('moi.controllers'));
 
@@ -22,7 +22,7 @@
     });
 
     beforeEach(module('moi.services', function($provide){
-      $provide.factory('PreloadImage', function(){
+      $provide.factory('PreloadAssets', function(){
         return {
           cache: function(){
             return {
@@ -38,12 +38,12 @@
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
-                _PreloadImage_,
+                _PreloadAssets_,
                 _IMAGES_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
-        PreloadImage = _PreloadImage_;
+        PreloadAssets = _PreloadAssets_;
         IMAGES = _IMAGES_;
       })
     );

@@ -1,23 +1,27 @@
 ion-view(view-title='TreeMoi')
-  ion-content
-    moi-sound(sound="sounds/fondo.mp3" background-sound="true")
-    .app-content
-      .arrow.back-arrow(back-button image-url="images/back-arrow.png")
-      .clouds-container
-        .cloud.animated.slideInLeft
-          img(src="images/nube1L.png")
-        .cloud.animated.slideInRight
-          img(src="images/nube2L.png")
-        .cloud.animated.slideInLeft
-          img(src="images/nube3L.png")
-      .tree-content(ng-if="::treeModel.isBasicLevel")
-        figure.flowerpot
-          img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi")
-        moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
-      .tree-section(ng-if="::!treeModel.isBasicLevel")
-        .tree-content
+  div(ng-if="treeModel.showTree")
+    ion-content
+      moi-sound(sound="sounds/fondo.mp3" background-sound="true")
+      .app-content
+        .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+        .clouds-container
+          .cloud.animated.slideInLeft
+            img(src="images/nube1L.png")
+          .cloud.animated.slideInRight
+            img(src="images/nube2L.png")
+          .cloud.animated.slideInLeft
+            img(src="images/nube3L.png")
+        .tree-content(ng-if="::treeModel.isBasicLevel")
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi")
-        .tree-draw
           moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
-      
+        .tree-section(ng-if="::!treeModel.isBasicLevel")
+          .tree-content
+            figure.flowerpot
+              img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi")
+          .tree-draw
+            moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
+  .movies-container(ng-if="!treeModel.showTree")
+    .container-loading
+      .logo-loading
+    moi-videos.vinetas(video-url="videos/place_holder.mp4" video-type="video/mp4" callback="treeModel.finishedAnimation()")

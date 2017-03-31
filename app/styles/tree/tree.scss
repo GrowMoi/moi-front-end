@@ -163,3 +163,29 @@ a {
     }
   }
 }
+.application{
+  [view-title='TreeMoi']{
+    background: transparent;
+  }
+}
+.movies-container{
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  .container-loading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .logo-loading{
+      background-image: url(../images/moi-logo.png);
+      background-repeat: no-repeat;
+      background-size: 60%;
+      width: 6em;
+      height: 6em;
+    }
+  }
+  .vinetas{
+    position: absolute;
+  }
+}
