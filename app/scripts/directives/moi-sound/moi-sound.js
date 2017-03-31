@@ -138,7 +138,7 @@
       }
     }
 
-    $rootScope.$on('vineta:remove-sound', function() {
+    $rootScope.$on('moiSound:kill-sound', function() {
       if (isNativeImplementation) {
         stopSoundService(vmSound.sound, $cordovaNativeAudio);
       } else {
