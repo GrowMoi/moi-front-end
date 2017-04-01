@@ -1,7 +1,7 @@
-ion-view.neuron-view(view-title='{{vm.neuron.title}}')
+ion-view.frame-basic(view-title='{{vm.neuron.title}}')
   ion-content
-    .main-view#test-frame
-      .content-view
+    .frame#test-frame
+      .frame-container
         moi-sound(sound="sounds/test.mp3" background-sound="true")
         div(ng-if="!vmTest.hideTest")
           .widgets
