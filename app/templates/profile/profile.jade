@@ -14,7 +14,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
               .user-name.col
                 {{vmProfile.user.name}}
             .btns.col-20 
-              .btn-profile(ui-sref="profileEdit")
+              .btn-profile(ng-if="vmProfile.isCurrentUser" ui-sref="profileEdit")
                 {{ ::'buttons.edit-profile' | translate }}
           .content-wrapper.row
             .more-details.col-50
@@ -28,7 +28,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                   .btn-add-friend(ng-if="!vmProfile.isCurrentUser")
                     .title {{ ::'buttons.add-friend' | translate }}
                     .plus-icon +
-                  .btn-friends(ng-if="vmProfile.isCurrentUser")
+                  .btn-friends(ng-if="vmProfile.isCurrentUser" ui-sref="friends")
                     .title {{ ::'buttons.friends' | translate }}
                     img.friend-img(src="images/user.png")
               .user-feedback

@@ -186,6 +186,13 @@
           return $auth.validateUser();
         }
       }
+    })
+    .state('friends', {
+      url: '/friends/:query',
+      controller: 'FriendsController',
+      controllerAs: 'friendsmodel',
+      templateUrl: 'templates/friends/friends.html',
+      cache: false
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
