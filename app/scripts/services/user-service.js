@@ -40,7 +40,7 @@
     function searchProfiles(query, page) {
       return $http({
         method: 'GET',
-        url: ENV.apiHost + '/api/search',
+        url: ENV.apiHost + '/api/search_users',
         params: {
           page: page,
           query: query

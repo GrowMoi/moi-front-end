@@ -1,0 +1,26 @@
+.content-searches {
+  .content-title{
+    position: relative;
+    color: #4A4B21;
+    font-size: 45px;
+    font-weight: bold;
+    font-family: FontMoi-Title;
+    left: 115px;
+    top: 75px;
+  }
+  .divider-line-search{
+    position: absolute;
+    background: url("../images/linea_separacionM.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 87%;
+    height: 5px;
+    top: 120px;
+    left: 110px;
+  }
+  .result-searches{
+    .user{
+      height: 150px;
+    }
+  }
+}

@@ -39,7 +39,8 @@
         }
       },
       searches: {
-        'search': 'Search'
+        'search': 'Search',
+        'friends': 'Friends'
       }
     });
 
@@ -112,7 +113,8 @@
         }
       },
       searches: {
-        'search': 'Buscar'
+        'search': 'Buscar',
+        'friends': 'Amigos'
       },
       buttons: {
         'edit-profile': 'Editar Perfil',

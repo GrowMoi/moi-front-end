@@ -7,14 +7,24 @@ ion-view.frame-without-buttons.search-view-max(view-title='Friends')
     .frame
       .frame-container.main-search-view
         .content-searches
-          form(ng-submit='usersmodel.reloadSearch()')
+          form(ng-submit='friendsmodel.reloadSearch()')
             label.item.item-input
               input(type='text',
                     required='required',
-                    ng-model='usersmodel.query',
+                    ng-model='friendsmodel.query',
                     placeholder="{{ ::'searches.search' | translate }}")
             input(
                 type='submit',
                 value=''
               ).button
+          .content-title
+            | {{ ::'searches.friends' | translate }}
+          .divider-line-search
+          ion-content.result-searches
+            .col.col-25.user(ng-repeat='friend in friendsmodel.users track by $index')
+              .content-kind-contents(ui-sref="profile({userId: friend.id})")
+                .user-image
+                  img(src="images/user.png")
+                  | {{friend.name}}
+            ion-infinite-scroll(ng-if='!friendsmodel.noMoreItemsAvailable', on-infinite='friendsmodel.loadMore()', distance='10%')
   moi-sidebar
