@@ -47,7 +47,8 @@
 
     function loadMore() {
       UserService.searchProfiles(friendsmodel.query, friendsmodel.currentPage).then(function(resp) {
-        friendsmodel.users = friendsmodel.users.concat(resp.search.contents);
+        /*jshint camelcase: false */
+        friendsmodel.users = friendsmodel.users.concat(resp.search_users.users);
         friendsmodel.currentPage += 1;
 
         if (getItemsShownStatus()) {
@@ -58,7 +59,7 @@
     }
 
     function getItemsShownStatus () {
-      var itemsShown = friendsmodel.users.length + friendsmodel.neurons.length;
+      var itemsShown = friendsmodel.users.length;
       return itemsShown === friendsmodel.totalItems;
     }
 

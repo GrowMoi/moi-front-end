@@ -23,8 +23,8 @@ ion-view.frame-without-buttons.search-view-max(view-title='Friends')
           ion-content.result-searches
             .col.col-25.user(ng-repeat='friend in friendsmodel.users track by $index')
               .content-kind-contents(ui-sref="profile({userId: friend.id})")
-                .user-image
                   img(src="images/user.png")
-                  | {{friend.name}}
+                  .user-name
+                    | {{friend.name}}
             ion-infinite-scroll(ng-if='!friendsmodel.noMoreItemsAvailable', on-infinite='friendsmodel.loadMore()', distance='10%')
   moi-sidebar
