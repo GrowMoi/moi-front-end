@@ -46,10 +46,11 @@ options directive
       frameWidth,
       frameHeight,
       frames,
-      zoom,
       framesPerRow = 0,
       repeat = true,
       speed = 100,
+      initialSize = 100,
+      percentage  = 0,
       // flags
       statusAnimation = {
         playing: false,
@@ -60,12 +61,8 @@ options directive
       audioLoadDefer = $q.defer(),
       moiSound;
       // Keeps track of the current x and y positions of the sprite.
-      var spritePosition = {
-        x: 0,
-        y: 0
-      };
-
-      var animationInterval = null;
+      var spritePosition = { x: 0, y: 0 },
+          animationInterval = null;
 
     /* sound */
 
@@ -87,31 +84,29 @@ options directive
       repeat = false;
       speed = options.speed;
       framesPerRow = options.framesPerRow;
-      zoom = options.zoom || 0.2;
+      initialSize = (frames * 100) + '%';
+      percentage = (100/(frames-1)).toFixed(5);
+      percentage = parseFloat(percentage);
 
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
 
       vm.css = {
-        display: 'block',
-        width: frameWidth + 'px',
-        height: frameHeight + 'px',
-        background: 'url(' + src + ') repeat',
-        zoom: zoom
+        'background': 'url(' + src + ')',
+        'background-size': initialSize,
+        'background-repeat': 'no-repeat'
       };
 
       if (options.playOnClick !== true) {
         animate();
       }
+
     }
 
     function playAnimateSprite() {
       if (vm.options.playOnClick && statusAnimation.playing === false) {
         statusAnimation.playing = true;
-        spritePosition = {
-          x: 0,
-          y: 0
-        };
+        spritePosition = { x: 0, y: 0 };
         if (vm.options.sound && moiSound) {
           moiSound.play();
           animate();
@@ -137,19 +132,21 @@ options directive
         var toReturn = false;
 
         if (framesPerRow) {
-          var numRows = frames / framesPerRow;
+          var numRows = parseInt(frames / framesPerRow);
 
           if (spritePosition.x >= (framesPerRow - 1) * frameWidth &&
             spritePosition.y >= numRows * frameHeight) {
             toReturn = true;
             statusAnimation.done = true;
+            backFirst();
             vm.options.finishedAnimation();
           }
 
         } else {
-          if (spritePosition.x >= frameWidth * frames) {
+          if (spritePosition.x >= (percentage * (frames-1)) ) {
             toReturn = true;
             statusAnimation.done = true;
+            backFirst();
             vm.options.finishedAnimation();
           }
         }
@@ -158,9 +155,16 @@ options directive
         return toReturn;
       }
 
+      function backFirst() {
+        $scope.$apply(function() {
+          vm.css['background-position'] = '0 0';
+        });
+      }
+
       animationInterval = $window.setInterval(function() {
         // Update the sprite frame
-        var position =  -spritePosition.x + 'px' + ' ' + spritePosition.y + 'px';
+        var position =  spritePosition.x + '%' + ' ' + '0';
+
         $scope.$apply(function() {
           vm.css['background-position'] = position;
         });
@@ -172,11 +176,10 @@ options directive
             spritePosition.y = 0;
           } else {
             $window.clearInterval(animationInterval);
-            // $interval.cancel(animationInterval);
           }
         } else {
           // Increment the X position
-          spritePosition.x += frameWidth;
+          spritePosition.x += percentage;
 
           // Check if we should move to the next row
           if (framesPerRow !== null && spritePosition.x + frameWidth > frameWidth * framesPerRow) {
@@ -189,7 +192,6 @@ options directive
 
     $scope.$on('$destroy', function() {
       $window.clearInterval(animationInterval);
-      // $interval.cancel(animationInterval);
     });
 
     init();

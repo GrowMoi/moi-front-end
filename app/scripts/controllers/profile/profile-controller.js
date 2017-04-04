@@ -2,23 +2,21 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('ProfileController', function (user, $auth, $state) {
+  .controller('ProfileController', function (user, $auth, $state, AnimationService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
     vmProfile.user = user;
     vmProfile.isCurrentUser = user.id === currentUser.id;
-    vmProfile.showGifSearch = false;
-    vmProfile.finishedAnimationSearch = finishedAnimationSearch;
-    vmProfile.loadedGif = loadedGif;
+
+    vmProfile.searchOptions = AnimationService.searchButton({
+      finishedAnimation: finishedAnimationSearch
+    });
 
     function finishedAnimationSearch() {
       $state.go('searches');
     }
 
-    function loadedGif(key) {
-      vmProfile[key] = true;
-    }
   });
 
 })();

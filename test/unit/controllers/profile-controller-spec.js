@@ -7,13 +7,33 @@
       dependencies,
       $auth,
       $state,
-      $scope;
+      $scope,
+      AnimationService;
 
     beforeEach(module('moi.controllers'));
+    beforeEach(angular.mock.module(function($provide){
+      $provide.service('AnimationService', function(){
+        return {
+          searchButton: function (){
+            return {};
+          },
+          learnButton: function (){
+            return {};
+          },
+          settingButton: function (){
+            return {};
+          },
+          profileButton: function (){
+            return {};
+          }
+        };
+      });
+    }));
 
     beforeEach(inject(
       function(_$rootScope_,
-        $controller) {
+              $controller,
+              _AnimationService_) {
 
         $state = {
           go: sinon.stub()
@@ -27,6 +47,7 @@
         };
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        AnimationService = _AnimationService_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
@@ -37,9 +58,10 @@
             name: 'admin',
             age: '15',
             last_contents_learnt: []
-          }
+          },
+          AnimationService: AnimationService
         };
-        
+
         controller = $controller('ProfileController', dependencies);
       }));
 

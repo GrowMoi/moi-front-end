@@ -7,14 +7,10 @@
               $state,
               user,
               data,
-              ModalService) {
+              ModalService,
+              AnimationService) {
 
     var vmNeuron = this;
-    vmNeuron.showGifSearch = false;
-    vmNeuron.showGifRead = false;
-    vmNeuron.finishedAnimationSearch = finishedAnimationSearch;
-    vmNeuron.finishedAnimationRead = finishedAnimationRead;
-    vmNeuron.loadedGif = loadedGif;
     vmNeuron.gifLearnActive = true;
     vmNeuron.showCanReadModal = showCanReadModal;
     var dialogCanReadModel = {
@@ -33,6 +29,13 @@
         onSelect: onSelectItem
       };
 
+      vmNeuron.searchOptions = AnimationService.searchButton({
+        finishedAnimation: finishedAnimationSearch
+      });
+
+      vmNeuron.learnOptions = AnimationService.learnButton({
+        finishedAnimation: finishedAnimationRead
+      });
     }
 
     init();
@@ -49,17 +52,15 @@
       vmNeuron.gifLearnActive = !content.read;
     }
 
-    function loadedGif(key) {
-      vmNeuron[key] = true;
-    }
-
     function showCanReadModal() {
-      var dialogOptions = {
-        parentScope: $scope,
-        templateUrl: 'templates/partials/modal-unread.html',
-        model: dialogCanReadModel
-      };
-      ModalService.showModel(dialogOptions);
+      if (!vmNeuron.neuron.can_read) {
+        var dialogOptions = {
+          parentScope: $scope,
+          templateUrl: 'templates/partials/modal-unread.html',
+          model: dialogCanReadModel
+        };
+        ModalService.showModel(dialogOptions);
+      }
     }
 
     function goToMyTree() {

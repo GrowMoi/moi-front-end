@@ -23,11 +23,17 @@
 
 .btn-learn-gif {
   position: fixed;
-  bottom: -25px;
-  right: -6px;
+  bottom: -5px;
+  right: 3px;
   cursor: pointer;
-  canvas{
-    width: 146px;
+
+  .animate-sprite-wrapper{
+    width: 135px;
+
+    .img-animate {
+      padding-bottom: 110px;
+
+    }
   }
   &.disabled {
     pointer-events: none;
@@ -38,11 +44,16 @@
 .btn-search-gif {
   position: fixed;
   bottom: 1px;
-  right: 568px;;
+  right: 597px;
   cursor: pointer;
-  canvas{
-    width: 129px;
-    height: 72px;
+
+  .animate-sprite-wrapper{
+    width: 130px;
+
+    .img-animate {
+      padding-bottom: 80px;
+
+    }
   }
 }
 

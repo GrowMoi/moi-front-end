@@ -3,23 +3,9 @@ drawer(side="left")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_2.png")
     .settings-amigos
-      .amigos-img(ng-if="!vmSidebar.showGifAmigos")
-      gif-queue
-        gif-no-loop.boton(src="images/btn_amigos.gif" 
-                          sound="sounds/btn_amigos.mp3" 
-                          order="0" 
-                          callback="vmSidebar.goToProfile()"
-                          loaded="vmSidebar.loadedGifAmigos()"
-                          clickgif="true")
+      animate-sprite.boton(options="vm.profileOptions")
     .settings-rueda
-      .rueda-img(ng-if="!vmSidebar.showGifRueda")
-      gif-queue
-        gif-no-loop.rueda(src="images/btn_settings.gif" 
-                          sound="sounds/btn_settings.mp3" 
-                          order="0" 
-                          callback="vmSidebar.goToSetting()"
-                          loaded="vmSidebar.loadedGifRueda()"
-                          clickgif="true")
+      animate-sprite.rueda(options="vm.settingOptions")
     .settings-tutor
       img(src="images/tutorh.png")
     .settings-inventario
