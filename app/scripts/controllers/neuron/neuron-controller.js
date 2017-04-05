@@ -13,6 +13,7 @@
     var vmNeuron = this;
     vmNeuron.gifLearnActive = true;
     vmNeuron.showCanReadModal = showCanReadModal;
+    vmNeuron.finishedAnimationRead = finishedAnimationRead;
     var dialogCanReadModel = {
       goToMyTree: goToMyTree
     };

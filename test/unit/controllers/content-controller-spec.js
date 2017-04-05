@@ -29,18 +29,22 @@
     }));
     beforeEach(module('moi.services', function($provide){
       $provide.service('AnimationService', function(){
+        var config = {
+          src: 'images/example-sprite.png',
+          frames: 30,
+          repeat: false,
+          speed: 50,
+          sound: 'sounds/example.mp3',
+          playOnClick: true,
+          finishedAnimation: function(){},
+          finishedSound: function(){}
+        };
         return {
           searchButton: function (){
-            return {};
+            // return config;
           },
           learnButton: function (){
-            return { };
-          },
-          settingButton: function (){
-            return {};
-          },
-          profileButton: function (){
-            return {};
+            return config;
           }
         };
       });
@@ -141,11 +145,11 @@
         chai.expect(spy.called).to.be.equal(true);
       });
 
-      // it('readContent should call ContentService.readContent', function(){
-      //   var spy = sinon.spy(ContentService, 'readContent');
-      //   ctrl.learnOptions.finishedAnimation();
-      //   chai.expect(spy.called).to.be.equal(true);
-      // });
+      it('readContent should call ContentService.readContent', function(){
+        var spy = sinon.spy(ContentService, 'readContent');
+        ctrl.finishedAnimationRead();
+        chai.expect(spy.called).to.be.equal(true);
+      });
 
     });
 

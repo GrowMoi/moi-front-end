@@ -51,6 +51,7 @@ options directive
       speed = 100,
       initialSize = 100,
       percentage  = 0,
+      playOnClick,
       // flags
       statusAnimation = {
         playing: false,
@@ -65,7 +66,6 @@ options directive
           animationInterval = null;
 
     /* sound */
-
     $scope.$on('audioLoaded', function (e, moiSoundInstance) {
       moiSound = moiSoundInstance;
       audioLoadDefer.resolve();
@@ -84,6 +84,7 @@ options directive
       repeat = false;
       speed = options.speed;
       framesPerRow = options.framesPerRow;
+      playOnClick = options.playOnClick ? options.playOnClick : false;
       initialSize = (frames * 100) + '%';
       percentage = (100/(frames-1)).toFixed(5);
       percentage = parseFloat(percentage);
@@ -97,14 +98,13 @@ options directive
         'background-repeat': 'no-repeat'
       };
 
-      if (options.playOnClick !== true) {
+      if (!playOnClick) {
         animate();
       }
-
     }
 
     function playAnimateSprite() {
-      if (vm.options.playOnClick && statusAnimation.playing === false) {
+      if (playOnClick && statusAnimation.playing === false) {
         statusAnimation.playing = true;
         spritePosition = { x: 0, y: 0 };
         if (vm.options.sound && moiSound) {

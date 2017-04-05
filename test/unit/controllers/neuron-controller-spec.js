@@ -27,12 +27,6 @@
           },
           learnButton: function (){
             return {};
-          },
-          settingButton: function (){
-            return {};
-          },
-          profileButton: function (){
-            return {};
           }
         };
       });
@@ -73,12 +67,12 @@
     });
 
     describe('learn', function(){
-      // it('should $broadcast neuron:remove-content on read', function(){
-      //   var spy = sinon.spy($scope, '$broadcast');
-      //   ctrl.finishedAnimationRead();
-      //   $scope.$digest();
-      //   chai.expect(spy.called).to.be.equal(true);
-      // });
+      it('should $broadcast neuron:remove-content on read', function(){
+        var spy = sinon.spy($scope, '$broadcast');
+        ctrl.finishedAnimationRead();
+        $scope.$digest();
+        chai.expect(spy.called).to.be.equal(true);
+      });
 
       it('should change the gif flag', function(){
         chai.expect(ctrl.gifLearnActive).to.be.equal(true);
