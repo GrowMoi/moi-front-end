@@ -1,7 +1,5 @@
 /*
-The original directive was taken from
-https://github.com/tusharghate/angular-simple-sprite/blob/master/dist/angular-simple-sprite.js
-
+Inspired by https://github.com/tusharghate/angular-simple-sprite/blob/master/dist/angular-simple-sprite.js
 
 options directive
   src: 'images/test-image.png',
@@ -10,6 +8,8 @@ options directive
   frames: 30,
   repeat: false,
   speed: 200,
+  height: 100,
+  width: 100,
   playOnClick: false
 
 */
@@ -50,7 +50,7 @@ options directive
       repeat = true,
       speed = 100,
       initialSize = 100,
-      percentage  = 0,
+      percentage = 0,
       playOnClick,
       // flags
       statusAnimation = {
@@ -88,7 +88,8 @@ options directive
       initialSize = (frames * 100) + '%';
       percentage = (100/(frames-1)).toFixed(5);
       percentage = parseFloat(percentage);
-
+      vm.height = options.height ? options.height + 'px' : '';
+      vm.width = options.width ? options.width + 'px' : '';
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
 

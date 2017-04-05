@@ -21,6 +21,8 @@
         repeat: false,
         speed: 50,
         sound: 'sounds/btn_search.mp3',
+        width: 130,
+        height: 80,
         playOnClick: true,
       },
       learn: {
@@ -29,6 +31,8 @@
         repeat: false,
         speed: 30,
         sound: 'sounds/btn_read.mp3',
+        width: 135,
+        height: 110,
         playOnClick: true,
       },
       setting: {

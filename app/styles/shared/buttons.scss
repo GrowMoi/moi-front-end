@@ -28,15 +28,6 @@
   right: 3px;
   cursor: pointer;
 
-  .animate-sprite-wrapper{
-    width: 135px;
-
-    .img-animate {
-      padding-bottom: 110px;
-
-    }
-  }
-  
   &.disabled {
     pointer-events: none;
     cursor: default;
@@ -48,15 +39,6 @@
   bottom: 1px;
   right: 597px;
   cursor: pointer;
-
-  .animate-sprite-wrapper{
-    width: 130px;
-
-    .img-animate {
-      padding-bottom: 80px;
-
-    }
-  }
 }
 
 .gif-click{
