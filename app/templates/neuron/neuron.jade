@@ -7,9 +7,8 @@ ion-view.frame-without-back-button.neuron-view(view-title='{{vmNeuron.neuron.tit
       .frame-container.content-view
         grid-contents(options="vmNeuron.contentsOptions")
       .btns-options
-        //- .btn-learn-container(ng-if="!vmNeuron.neuron.can_read")
-        //-   .btn-learn(ng-click="vmNeuron.showCanReadModal()")
-        .btn-learn-gif
+        .btn-learn(ng-if="!vmNeuron.neuron.can_read" ng-click="vmNeuron.showCanReadModal()")
+        .btn-learn-gif(ng-if="vmNeuron.neuron.can_read" ng-class="{disabled: !vmNeuron.gifLearnActive}")
           animate-sprite(options="vmNeuron.learnOptions")
         .btn-search-gif
           animate-sprite(options="vmNeuron.searchOptions")

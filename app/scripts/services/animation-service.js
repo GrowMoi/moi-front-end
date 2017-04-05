@@ -24,7 +24,7 @@
         playOnClick: true,
       },
       learn: {
-        src: 'images/btn-learn2.png',
+        src: 'images/sprites/btn-learn-sprite.png',
         frames: 150,
         repeat: false,
         speed: 30,

@@ -12,6 +12,7 @@
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showCanReadModal = showCanReadModal;
+
       vmContent.searchOptions = AnimationService.searchButton({
         finishedAnimation: finishedAnimationSearch
       });
@@ -28,6 +29,8 @@
       function activate() {
         vmContent.content = content;
         vmContent.media = content.videos.concat(content.media);
+        console.log(content);
+        vmContent.gifLearnActive = !content.read;
       }
 
       function showImage(urlImage) {

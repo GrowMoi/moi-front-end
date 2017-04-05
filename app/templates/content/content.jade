@@ -55,9 +55,8 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
                 a(href='{{::link}}' target='_blank') {{::link}}
             .corner.links-TR
       .btns-options
-        //- .btn-learn-container(ng-if="!vmContent.content.can_read")
-        //-   .btn-learn(ng-click="vmContent.showCanReadModal()")
-        .btn-learn-gif
+        .btn-learn(ng-if="!vmContent.content.can_read" ng-click="vmContent.showCanReadModal()")
+        .btn-learn-gif(ng-if="vmContent.content.can_read" ng-class="{disabled: !vmContent.gifLearnActive}")
           animate-sprite(options="vmContent.learnOptions")
         .btn-search-gif
           animate-sprite(options="vmContent.searchOptions")

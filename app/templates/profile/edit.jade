@@ -98,12 +98,6 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                     )
       .btns-options
         .btn-learn
-        .btn-search(ng-if="!vmProfile.showGifSearch")
-        gif-queue
-          gif-no-loop.btn-search-gif(src="images/btn_search.gif"
-                                    sound="sounds/btn_search.mp3"
-                                    order="0"
-                                    callback="vmProfileEdit.finishedAnimationSearch()"
-                                    loaded="vmProfileEdit.loadedGif('showGifSearch')"
-                                    clickgif="true")              
+        .btn-search-gif
+          animate-sprite(options="vmProfileEdit.searchOptions")          
   moi-sidebar
