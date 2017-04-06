@@ -9,12 +9,33 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     .btn-close-modal {
-      min-width: 5%;
-      min-height: 12%;
+      position: relative;
+      left: 450px;
+      top: 20px;
+      width: 50px;
+      height: 50px;
       background-image: url(../images/btn_close_share_modal.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
       cursor: pointer;
+    }
+    .social-network-panel{
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: 30px;
+      img{
+        cursor: pointer;
+      }
+    }
+    .description-panel{
+      width: 400px;
+      position: relative;
+      top: 70px;
+      left: 50px;
+      font-family: FontMoi-Title;
+      color: #4A4B21;
+      text-align: justify;
     }
   }
 }
