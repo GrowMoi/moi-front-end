@@ -19,6 +19,9 @@
       vmContent.learnOptions = AnimationService.learnButton({
         finishedAnimation: finishedAnimationRead
       });
+      vmContent.shareOptions = AnimationService.shareButton({
+        finishedAnimation: finishedAnimationShare
+      });
 
       var dialogCanReadModel = {
         goToMyTree: goToMyTree
@@ -50,6 +53,18 @@
 
       function finishedAnimationSearch() {
         $state.go('searches');
+      }
+
+      function finishedAnimationShare() {
+        var modelData = {};
+        modelData.shareWithFacebook = function() {
+
+        };
+        ModalService.showModel({
+          parentScope: $scope,
+          templateUrl: 'templates/partials/modal-share-social.html',
+          model: modelData
+        });
       }
 
       function finishedAnimationRead() {

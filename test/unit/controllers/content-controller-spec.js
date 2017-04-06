@@ -45,7 +45,10 @@
           },
           learnButton: function (){
             return config;
-          }
+          },
+          shareButton: function (){
+            // return config;
+          },
         };
       });
       $provide.factory('ContentService', function(){
