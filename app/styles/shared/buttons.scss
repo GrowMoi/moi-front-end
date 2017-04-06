@@ -7,6 +7,7 @@
   background-image: url(../images/btn-learn.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  cursor: pointer;
 }
 
 .btn-search {
@@ -23,12 +24,10 @@
 
 .btn-learn-gif {
   position: fixed;
-  bottom: -25px;
-  right: -6px;
+  bottom: -5px;
+  right: 3px;
   cursor: pointer;
-  canvas{
-    width: 146px;
-  }
+
   &.disabled {
     pointer-events: none;
     cursor: default;
@@ -38,12 +37,8 @@
 .btn-search-gif {
   position: fixed;
   bottom: 1px;
-  right: 568px;;
+  right: 597px;
   cursor: pointer;
-  canvas{
-    width: 129px;
-    height: 72px;
-  }
 }
 
 .gif-click{

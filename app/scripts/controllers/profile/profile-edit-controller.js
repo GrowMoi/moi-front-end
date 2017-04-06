@@ -2,21 +2,23 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('ProfileEditController', function (user, $auth, $ionicPopup, $state, UserService) {
+  .controller('ProfileEditController', function (user,
+                                                $auth,
+                                                $ionicPopup,
+                                                $state,
+                                                UserService,
+                                                AnimationService) {
 
     var vmProfileEdit = this;
     vmProfileEdit.user = user;
     vmProfileEdit.editProfile = editProfile;
-    vmProfileEdit.finishedAnimationSearch = finishedAnimationSearch;
-    vmProfileEdit.showGifSearch = false;
-    vmProfileEdit.loadedGif = loadedGif;
+
+    vmProfileEdit.searchOptions = AnimationService.searchButton({
+      finishedAnimation: finishedAnimationSearch
+    });
 
     function finishedAnimationSearch() {
       $state.go('searches');
-    }
-
-    function loadedGif(key) {
-      vmProfileEdit[key] = true;
     }
 
     function editProfile(){

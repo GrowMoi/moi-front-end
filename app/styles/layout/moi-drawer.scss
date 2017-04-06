@@ -37,51 +37,37 @@ drawer.left {
   }
 
   .settings-amigos {
-    .amigos-img {
-      position: absolute;
-      top: 75px;
-      left: 25px;
-      width: 140px;
-      height: 60px;
-      z-index: 10;
-      background-image: url(../images/amigh.png);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      cursor: pointer;
-    }
     .boton {
       position: absolute;
       top: 75px;
       left: 25px;
       z-index: 10;
       cursor: pointer;
-      canvas{
+
+      .animate-sprite-wrapper{
         width: 140px;
+
+        .img-animate {
+          padding-bottom: 60px;
+        }
       }
     }
   }
 
   .settings-rueda {
-    .rueda-img {
-      position: absolute;
-      top: 120px;
-      width: 70px;
-      height: 60px;
-      left: 47px;
-      z-index: 10;
-      background-image: url(../images/seth.png);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      cursor: pointer;
-    }
     .rueda {
       position: absolute;
       top: 114px;
       left: 42px;
       z-index: 10;
       cursor: pointer;
-      canvas{
+
+      .animate-sprite-wrapper{
         width: 80px;
+
+        .img-animate {
+          padding-bottom: 65px;
+        }
       }
     }
   }

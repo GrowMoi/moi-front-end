@@ -7,25 +7,9 @@ ion-view.frame-without-back-button.neuron-view(view-title='{{vmNeuron.neuron.tit
       .frame-container.content-view
         grid-contents(options="vmNeuron.contentsOptions")
       .btns-options
-        .btn-learn-container(ng-if="!vmNeuron.neuron.can_read")
-          .btn-learn(ng-click="vmNeuron.showCanReadModal()")
-
-        .btn-learn-container(ng-if="vmNeuron.neuron.can_read")
-          .btn-learn(ng-if="!vmNeuron.showGifRead")
-          gif-queue
-            gif-no-loop.btn-learn-gif(src="images/btn_learn.gif"
-                                      sound="sounds/btn_read.mp3"
-                                      order="0"
-                                      callback="vmNeuron.finishedAnimationRead()"
-                                      loaded="vmNeuron.loadedGif('showGifRead')"
-                                      clickgif="true"
-                                      ng-class="{disabled: !vmNeuron.gifLearnActive}")
-        .btn-search(ng-if="!vmNeuron.showGifSearch")
-        gif-queue
-          gif-no-loop.btn-search-gif(src="images/btn_search.gif"
-                                    sound="sounds/btn_search.mp3"
-                                    order="0"
-                                    callback="vmNeuron.finishedAnimationSearch()"
-                                    loaded="vmNeuron.loadedGif('showGifSearch')"
-                                    clickgif="true")
+        .btn-learn(ng-if="!vmNeuron.neuron.can_read" ng-click="vmNeuron.showCanReadModal()")
+        .btn-learn-gif(ng-if="vmNeuron.neuron.can_read" ng-class="{disabled: !vmNeuron.gifLearnActive}")
+          animate-sprite(options="vmNeuron.learnOptions")
+        .btn-search-gif
+          animate-sprite(options="vmNeuron.searchOptions")
   moi-sidebar

@@ -12,19 +12,21 @@
       scope: false,
       replace: true,
       controller: sidebarController,
-      controllerAs: 'vmSidebar',
+      controllerAs: 'vm',
       bindToController: true,
     };
 
-    function sidebarController($state, $auth) {
-      var vmSidebar = this,
+    function sidebarController($state, $auth, AnimationService) {
+      var vm = this,
           user = $auth.user;
-      vmSidebar.goToSetting = goToSetting;
-      vmSidebar.goToProfile = goToProfile;
-      vmSidebar.loadedGifRueda = loadedGifRueda;
-      vmSidebar.loadedGifAmigos = loadedGifAmigos;
-      vmSidebar.showGifRueda = false;
-      vmSidebar.showGifAmigos = false;
+
+      vm.settingOptions = AnimationService.settingButton({
+        finishedAnimation: goToSetting
+      });
+
+      vm.profileOptions = AnimationService.profileButton({
+        finishedAnimation: goToProfile
+      });
 
       function goToSetting() {
         $state.go('settings');
@@ -32,14 +34,6 @@
 
       function goToProfile() {
         $state.go('profile', {userId: user.id});
-      }
-
-      function loadedGifRueda() {
-        vmSidebar.showGifRueda = true;
-      }
-
-      function loadedGifAmigos() {
-        vmSidebar.showGifAmigos = true;
       }
     }
 

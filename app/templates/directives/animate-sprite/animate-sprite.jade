@@ -1,0 +1,3 @@
+.animate-sprite-wrapper(style="width:{{::vm.width}}")
+  moi-sound(sound="{{::vm.options.sound}}", ng-if="::vm.options.sound", callback="vm.endSound()")
+  .img-animate(ng-style="::vm.css", ng-click="vm.playAnimateSprite()" style="padding-bottom:{{::vm.height}}")

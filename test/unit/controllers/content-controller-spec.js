@@ -10,7 +10,9 @@
         $state,
         ModalService,
         ContentService,
-        TestService;
+        TestService,
+        AnimationService;
+
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
       $provide.provider('$state', function () {
@@ -26,6 +28,26 @@
       });
     }));
     beforeEach(module('moi.services', function($provide){
+      $provide.service('AnimationService', function(){
+        var config = {
+          src: 'images/example-sprite.png',
+          frames: 30,
+          repeat: false,
+          speed: 50,
+          sound: 'sounds/example.mp3',
+          playOnClick: true,
+          finishedAnimation: function(){},
+          finishedSound: function(){}
+        };
+        return {
+          searchButton: function (){
+            // return config;
+          },
+          learnButton: function (){
+            return config;
+          }
+        };
+      });
       $provide.factory('ContentService', function(){
         return {
           addNotesToContent: function(){
@@ -51,8 +73,6 @@
           }
         };
       });
-    }));
-    beforeEach(module('moi.services', function($provide){
       $provide.factory('TestService', function(){
         return {
           goTest: function(){
@@ -65,6 +85,7 @@
         };
       });
     }));
+
     /*jshint camelcase: false */
     beforeEach(inject(
       function (_$controller_,
@@ -72,7 +93,8 @@
                 _ModalService_,
                 _ContentService_,
                 _TestService_,
-                _$state_) {
+                _$state_,
+                _AnimationService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -80,6 +102,7 @@
         ModalService = _ModalService_;
         ContentService = _ContentService_;
         TestService = _TestService_;
+        AnimationService = _AnimationService_;
 
         dependencies = {
           content: {
@@ -93,7 +116,8 @@
           $scope: $scope,
           $state: $state,
           ModalService: ModalService,
-          ContentService: ContentService
+          ContentService: ContentService,
+          AnimationService: AnimationService
         };
 
         ctrl = $controller('ContentController', dependencies);

@@ -9,6 +9,7 @@
         $rootScope,
         stateMock,
         ModalService,
+        AnimationService,
         modalSpy;
 
     beforeEach(module('moi.controllers'));
@@ -19,22 +20,35 @@
           showModel: modalSpy
         };
       });
+      $provide.service('AnimationService', function(){
+        return {
+          searchButton: function (){
+            return {};
+          },
+          learnButton: function (){
+            return {};
+          }
+        };
+      });
     }));
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
-                _ModalService_) {
+                _ModalService_,
+                _AnimationService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         stateMock = { go: sinon.stub() };
         ModalService = _ModalService_;
+        AnimationService = _AnimationService_;
         dependencies = {
           $scope: $scope,
           $state: stateMock,
           data: {neuron: {id: 1}},
           user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'},
-          ModalService: ModalService
+          ModalService: ModalService,
+          AnimationService: AnimationService
         };
 
         ctrl = $controller('NeuronController', dependencies);
