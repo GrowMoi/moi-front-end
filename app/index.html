@@ -76,6 +76,7 @@
     <script src="scripts/services/preload-service.js"></script>
     <script src="scripts/services/user-service.js"></script>
     <script src="scripts/services/animation-service.js"></script>
+    <script src="scripts/services/screenshot-service.js"></script>
     <!-- directives -->
     <script src="scripts/directives.js"></script>
     <script src="scripts/directives/grid-contents/grid-contents.js"></script>
@@ -92,7 +93,7 @@
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.loadedImages" ng-cloak>
-      <ion-nav-view class="application"></ion-nav-view>
+      <ion-nav-view class="application" id="screen"></ion-nav-view>
     </div>
     <div class="loading-app" ng-if="!site.loadedImages" ng-cloak>
       <div class="content">

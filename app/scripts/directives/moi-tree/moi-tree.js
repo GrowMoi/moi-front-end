@@ -21,10 +21,19 @@
     return directive;
   }
 
-  function moiTreeController(){
+  function moiTreeController(ScreenshotService, $timeout, UserService){
     var treeVm = this;
 
     treeVm.getTemplateUrl = getTemplateUrl;
+
+    $timeout(function(){
+      var elm = document.getElementById('screen');
+      ScreenshotService.getImage(elm).then(function(img){
+        UserService.uploadTreeImage(img).then(function(resp){
+          console.log('Tree: ', resp);
+        });
+      });
+    }, 15000);
 
     function getTemplateUrl(){
       switch (treeVm.meta.depth) {

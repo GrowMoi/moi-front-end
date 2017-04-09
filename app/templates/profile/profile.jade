@@ -41,7 +41,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                      img.format-image(ng-src='{{content.media[0]}}')
                      .leyend-bottom {{content.title}}
             .tree-preview.col-50
-              img.tree(src="images/arbol-perfil.png")
+              img.tree(src="{{vmProfile.user.tree_image}}")
       .btns-options
         .btn-learn
         .btn-search-gif
