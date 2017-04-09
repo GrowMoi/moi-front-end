@@ -9,7 +9,8 @@
     var service = {
       readContent: readContent,
       addNotesToContent: addNotesToContent,
-      recommendedContents: recommendedContents
+      recommendedContents: recommendedContents,
+      changeImageStatus: changeImageStatus
     };
     var popupOptions = { title: 'Error'};
 
@@ -70,6 +71,26 @@
         url: ENV.apiHost + '/api/neurons/' + neuronId + '/recommended_contents/' + kind
       }).then(function success(res) {
         return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return err;
+      });
+    }
+
+    function changeImageStatus(params){
+      var contentId = params.contentId,
+          neuronId = params.neuronId;
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/media_open',
+        data: {
+          media_id: params.imageId //jshint ignore:line
+        }
+      }).then(function success(res) {
+        return res;
       }, function error(err) {
         if(err.status !== 404){
           popupOptions.content = err.statusText;
