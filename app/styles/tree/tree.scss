@@ -9,7 +9,7 @@ a {
   height: 100%;
   background-image: url(../images/landscape_b.png);
   background-repeat: no-repeat;
-  background-size: 100% 100vh;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -18,7 +18,7 @@ a {
     background-image: url(../images/marco.png);
     background-position: top left;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     height: 100%;
     left: 0;
     position: absolute;
