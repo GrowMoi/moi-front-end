@@ -9,9 +9,7 @@
     var directive = {
       restrict: 'EA',
       templateUrl: 'templates/directives/back-button/back-button.html',
-      scope: {
-        imageUrl: '@'
-      },
+      scope: {},
       controller: BackButtonController,
       controllerAs: 'bbVm',
       bindToController: true

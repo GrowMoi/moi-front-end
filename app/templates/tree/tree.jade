@@ -1,9 +1,9 @@
-ion-view(view-title='TreeMoi')
+ion-view#screen(view-title='TreeMoi')
   div(ng-if="treeModel.showTree")
     ion-content
       moi-sound(sound="sounds/fondo.mp3" background-sound="true")
       .app-content
-        .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+        back-button.arrow.back-arrow
         .clouds-container
           .cloud.animated.slideInLeft
             img(src="images/nube1L.png")
