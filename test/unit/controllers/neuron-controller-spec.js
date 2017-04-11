@@ -27,6 +27,9 @@
           },
           learnButton: function (){
             return {};
+          },
+          shareButton: function (){
+            return {};
           }
         };
       });

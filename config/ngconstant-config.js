@@ -12,7 +12,8 @@
       constants: {
         ENV: {
           name: 'development',
-          apiHost: 'http://localhost:5000'
+          apiHost: 'http://localhost:5000',
+          fcbKey: ''
         },
         IMAGES: {
           paths: []
@@ -29,7 +30,8 @@
       constants: {
         ENV: {
           name: 'staging',
-          apiHost: '//moi-staging.herokuapp.com'
+          apiHost: '//moi-staging.herokuapp.com',
+          fcbKey: process.env.FACEBOOK_KEY
         },
         IMAGES: {
           paths: []
@@ -49,7 +51,8 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost: 'http://moi-backend.shiriculapo.com'
+          apiHost: 'http://moi-backend.shiriculapo.com',
+          fcbKey: process.env.FACEBOOK_KEY
         },
         IMAGES: {
           paths: []
@@ -66,7 +69,8 @@
       constants: {
         ENV: {
           name: 'test',
-          apiHost: 'http://moi-integration.herokuapp.com'
+          apiHost: 'http://moi-integration.herokuapp.com',
+          fcbKey: ''
         },
         IMAGES: {
           paths: []

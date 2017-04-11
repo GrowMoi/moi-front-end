@@ -12,7 +12,8 @@
     'pascalprecht.translate',
     'videosharing-embed',
     'ionic.contrib.drawer',
-    'dragularModule'
+    'dragularModule',
+    '720kb.socialshare'
   ])
 
   .run(function($ionicPlatform) {

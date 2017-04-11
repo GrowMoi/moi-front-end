@@ -19,16 +19,32 @@
       background-size: 100% 100%;
       cursor: pointer;
     }
-    .social-network-panel{
+    .social-network-panel {
       display: flex;
       justify-content: center;
       position: relative;
       top: 30px;
-      img{
+      a {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: 79px;
+        width: 79px;
         cursor: pointer;
       }
+      .btn-facebook {
+        background-image: url(../images/btn_fb.png);
+      }
+      .btn-twitter {
+        background-image: url(../images/btn_tw.png);
+      }
+      .btn-whatsapp {
+        background-image: url(../images/btn_ws.png);
+      }
+      .btn-mail {
+        background-image: url(../images/btn_mail.png);
+      }
     }
-    .description-panel{
+    .description-panel {
       width: 400px;
       position: relative;
       top: 70px;

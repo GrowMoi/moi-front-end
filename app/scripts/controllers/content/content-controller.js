@@ -7,7 +7,8 @@
                                               ModalService,
                                               TestService,
                                               $state,
-                                              AnimationService) {
+                                              AnimationService,
+                                              SocialService) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
@@ -56,15 +57,12 @@
       }
 
       function finishedAnimationShare() {
-        var modelData = {};
-        modelData.shareWithFacebook = function() {
-
+        var data = {
+          title: vmContent.content.title,
+          media: vmContent.content.media[0],
+          description: vmContent.content.description
         };
-        ModalService.showModel({
-          parentScope: $scope,
-          templateUrl: 'templates/partials/modal-share-social.html',
-          model: modelData
-        });
+        SocialService.showModal(data);
       }
 
       function finishedAnimationRead() {

@@ -3,10 +3,14 @@
     .modal-share-social
       .btn-close-modal(ng-click="::model.closeModal()")
       .social-network-panel
-        img(src="images/btn_fb.png")
-        img(src="images/btn_tw.png")
-        img(src="images/btn_ws.png")
-        img(src="images/btn_mail.png")
+        a.btn-facebook(ng-click="model.shareWithFacebook(model.data)")
+        a.btn-twitter(ng-click="model.shareWithTwitter(model.data.shortDescription)")
+        a.btn-whatsapp(socialshare
+          socialshare-provider="whatsapp"
+          socialshare-url="http://moi-frontend.herokuapp.com/"
+          socialshare-text="{{model.data.shortDescription}}-"
+          ng-click="model.shareWithWhatsapp()")
+        a.btn-mail(ng-click="model.shareWithMail(model.data)")
       .description-panel
-        h2 Show and tell your friends!
-        | Show your progress on your Facebook timeline or any social media you like, although you can share via mail. Spread the good news!
+        h2 {{ ::'social.tittle' | translate}}
+        | {{ ::'social.description' | translate}}

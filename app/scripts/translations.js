@@ -41,6 +41,12 @@
       searches: {
         'search': 'Search',
         'friends': 'Friends'
+      },
+      social: {
+        'tittle': 'Show and tell your friends!',
+        'description': 'Show your progress on your Facebook timeline or any '+
+                        'social media you like, although you can share via '+
+                        'mail. Spread the good news!'
       }
     });
 
@@ -127,6 +133,11 @@
       titles: {
         'personal-descripcion': 'Descripción Personal',
         'current-photo': 'Foto Actual'
+      },
+      social: {
+        'tittle': 'Muestrale a tus amigos!',
+        'description': 'Muestra tu progreso en Facebook, Twitter, '+
+                        'Whatsapp o vía email. Comparte las buenas noticias!'
       }
     });
 

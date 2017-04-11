@@ -37,6 +37,10 @@
       vmNeuron.learnOptions = AnimationService.learnButton({
         finishedAnimation: finishedAnimationRead
       });
+
+      vmNeuron.shareOptions = AnimationService.shareButton({
+        finishedAnimation: finishedAnimationShare
+      });
     }
 
     init();
@@ -47,6 +51,10 @@
 
     function finishedAnimationRead() {
       $scope.$broadcast('neuron:remove-content');
+    }
+
+    function finishedAnimationShare() {
+      $scope.$broadcast('neuron:share-content');
     }
 
     function onSelectItem(content) {
