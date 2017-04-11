@@ -1,0 +1,53 @@
+.content-searches {
+  .content-title{
+    position: relative;
+    color: #4A4B21;
+    font-size: 45px;
+    font-weight: bold;
+    font-family: FontMoi-Title;
+    left: 115px;
+    top: 75px;
+  }
+  .divider-line-search{
+    position: absolute;
+    background: url("../images/linea_separacionM.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 87%;
+    height: 5px;
+    top: 120px;
+    left: 110px;
+  }
+  .result-searches{
+    .user{
+      height: 200px;
+      .content-kind-contents {
+        position: relative;
+        width: 180px;
+        height: auto;
+        margin: auto;
+        cursor: pointer;
+        img {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+        .user-name{
+          position: absolute;
+          bottom: 25px;
+          left: 34%;
+          transform: translateX(-50%);
+          -webkit-transform: translateX(-50%);
+          font-family: FontMoi-Title;
+          font-size: 15px;
+          font-weight: bold;
+          color: bisque;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 75px;
+        }
+      }
+    }
+  }
+}
