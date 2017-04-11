@@ -21,19 +21,11 @@
     return directive;
   }
 
-  function moiTreeController(ScreenshotService, $timeout, UserService){
+  function moiTreeController($scope, ScreenshotService, $timeout, UserService, $rootScope){
     var treeVm = this;
+    var counter = 0;
 
     treeVm.getTemplateUrl = getTemplateUrl;
-
-    $timeout(function(){
-      var elm = document.getElementById('screen');
-      ScreenshotService.getImage(elm).then(function(img){
-        UserService.uploadTreeImage(img).then(function(resp){
-          console.log('Tree: ', resp);
-        });
-      });
-    }, 15000);
 
     function getTemplateUrl(){
       switch (treeVm.meta.depth) {
@@ -59,5 +51,20 @@
           return 'templates/directives/moi-tree/tree-nineth-level.html';
       }
     }
+
+    $rootScope.$on('loading:finish', function (){
+      if (counter === 0) {//save image one time by visit page
+        counter = 1;
+        $timeout(function(){
+          var elm = document.getElementById('screen');
+          if (elm) {
+            ScreenshotService.getImage(elm).then(function(img){
+              UserService.uploadTreeImage(img);
+            });
+          }
+        }, 500);
+      }
+    });
+
   }
 })();
