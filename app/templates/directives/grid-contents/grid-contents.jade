@@ -8,4 +8,5 @@
       .overlay-read(ng-if="content.learnt")
         img.cover(ng-src="../images/cover-transparent.png")
         img.approved(ng-src="../images/approved.png")
-      .leyend-bottom {{content.title}}
+      .leyend-bottom-grid(ellipsis-title='', height='95', title='content.title') 
+        {{content.title}}

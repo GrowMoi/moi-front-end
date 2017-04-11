@@ -236,11 +236,11 @@
 
       vm.rowsGrid = {
         'firstRow': {
-          'class': 'col-50',
+          'class': 'col-first',
           'items': vm.firstRow
         },
         'secondRow': {
-          'class': 'col-33',
+          'class': 'col-second',
           'items': vm.secondRow
         }
       };
