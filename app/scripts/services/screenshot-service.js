@@ -8,7 +8,8 @@
   function ScreenshotService($q) {
 
     var service = {
-      getImage: getImage
+      getImage: getImage,
+      validBase64: validBase64
     };
 
     function getImage(elm) {
@@ -20,6 +21,11 @@
         }
       });
       return deferred.promise;
+    }
+
+    function validBase64(value){
+      var reg = RegExp.new(/data:image\/([a-zA-Z]*);base64,([^\"]*)/g);
+      return reg.test(value);
     }
 
     return service;

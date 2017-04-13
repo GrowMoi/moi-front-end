@@ -54,7 +54,9 @@
           var elm = document.getElementById('screen');
           if (elm) {
             ScreenshotService.getImage(elm).then(function(img){
-              UserService.uploadTreeImage(img);
+              if (ScreenshotService.validBase64(img)) {
+                UserService.uploadTreeImage(img);
+              }
             });
           }
         }, 500);
