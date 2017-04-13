@@ -26,6 +26,7 @@
     var counter = 0;
 
     treeVm.getTemplateUrl = getTemplateUrl;
+    treeVm.imageSaved = false;
 
     function getTemplateUrl(){
       switch (treeVm.meta.depth) {
@@ -55,14 +56,14 @@
     $rootScope.$on('loading:finish', function (){
       if (counter === 0) {//save image one time by visit page
         counter = 1;
-        $timeout(function(){
-          var elm = document.getElementById('screen');
-          if (elm) {
-            ScreenshotService.getImage(elm).then(function(img){
-              UserService.uploadTreeImage(img);
+        var elm = document.getElementById('screen');
+        if (elm) {
+          ScreenshotService.getImage(elm).then(function(img){
+            UserService.uploadTreeImage(img).then(function(){
+              treeVm.imageSaved = true;
             });
-          }
-        }, 500);
+          });
+        }
       }
     });
 

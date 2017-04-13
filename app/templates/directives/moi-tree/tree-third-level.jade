@@ -7,11 +7,11 @@
       .tree-branch(ng-repeat="child1 in child.children track by $index" 
                   class="branch-level-3 third-level-branch-{{$parent.$index*2 + $index}} {{child1.state}}")
   .tree-neuron-root.neuron(class="{{treeVm.neurons.root.state}} neuron")
-    a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
+    a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})" class="{{treeVm.imageSaved ? '' : 'disabled'}}")
   .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index" 
                     class="second-level-{{$index}} {{child.state}} neuron")
-    a(ui-sref="neuron({neuronId: child.id})")
+    a(ui-sref="neuron({neuronId: child.id})" class="{{treeVm.imageSaved ? '' : 'disabled'}}")
     // TODO a better way to calculate classes
     .tree-neuron-root(ng-repeat="child1 in child.children track by $index" 
                       class="third-level-{{$parent.$index*2 + $index}} {{child1.state}} neuron")
-      a(ui-sref="neuron({neuronId: child1.id})")
+      a(ui-sref="neuron({neuronId: child1.id})" class="{{treeVm.imageSaved ? '' : 'disabled'}}")
