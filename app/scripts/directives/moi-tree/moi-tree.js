@@ -56,16 +56,19 @@
     $rootScope.$on('loading:finish', function (){
       if (counter === 0) {//save image one time by visit page
         counter = 1;
-        var elm = document.getElementById('screen');
-        if (elm) {
-          ScreenshotService.getImage(elm).then(function(img){
-            UserService.uploadTreeImage(img).then(function(){
-              treeVm.imageSaved = true;
+        $timeout(function(){
+          var elm = document.getElementById('screen');
+          if (elm) {
+            ScreenshotService.getImage(elm).then(function(img){
+              UserService.uploadTreeImage(img).then(function(){
+                treeVm.imageSaved = true;
+              });
             });
-          });
-        }
+          } else {
+            treeVm.imageSaved = true;
+          }
+        }, 500);
       }
     });
-
   }
 })();

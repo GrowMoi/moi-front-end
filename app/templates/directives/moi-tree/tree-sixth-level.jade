@@ -3,7 +3,7 @@
     img(src="images/tree/level-6/arbol-gris-6.png")
     img.tree-root(src="images/tree/tronco.png")
     .tree-neuron-root
-      a.neuron-root(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
+      a.neuron-root(ui-sref="neuron({neuronId: treeVm.neurons.root.id})" class="{{treeVm.imageSaved ? '' : 'disabled'}}")
       
     .tree-branch(ng-repeat="child in treeVm.neurons.root.children track by $index"
                 ng-init="indexLevel2=$index"
