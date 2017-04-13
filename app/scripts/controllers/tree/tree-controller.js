@@ -2,7 +2,14 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('TreeController', function ($scope, $rootScope, data, PreloadAssets, VIDEOS) {
+  .controller('TreeController', function ($scope,
+                                          $rootScope,
+                                          data,
+                                          PreloadAssets,
+                                          ScreenshotService,
+                                          UserService,
+                                          $timeout,
+                                          VIDEOS) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -10,6 +17,8 @@
     var videos = VIDEOS.paths;
     var vinetaLevels = [1, 4, 6, 8];
     var preloadMovies = false;
+    var counter = 0;
+
     initVineta();
 
     treeModel.finishedAnimation = function() {
@@ -37,6 +46,20 @@
         preloadMovies = true;
       });
     }
+
+    $rootScope.$on('loading:finish', function (){
+      if (counter === 0) {//save image one time by visit page
+        counter = 1;
+        $timeout(function(){
+          var elm = document.getElementById('screen');
+          if (elm) {
+            ScreenshotService.getImage(elm).then(function(img){
+              UserService.uploadTreeImage(img);
+            });
+          }
+        }, 500);
+      }
+    });
 
   });
 

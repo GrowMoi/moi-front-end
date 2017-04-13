@@ -35,12 +35,6 @@ a {
 
 .tree-view {
 
-  a {
-    &.disabled {
-      pointer-events: none;
-    }
-  }
-
   .tree-content {
     position: relative;
     display: flex;
@@ -155,7 +149,7 @@ a {
     position: absolute;
     animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
-    
+
     &:nth-child(1) {
       top: 115px;
       -webkit-animation-duration: 40s;

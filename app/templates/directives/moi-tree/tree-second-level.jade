@@ -6,9 +6,7 @@
     .tree-branch-root(ng-repeat="child in treeVm.neurons.root.children track by $index")
       div.branch-level-2(class="second-level-branch-{{$index}} {{child.state}}")
   .tree-neuron-root.neuron(class="{{treeVm.neurons.root.state}} neuron")
-    a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})" 
-      class="{{treeVm.imageSaved ? '' : 'disabled'}}")
+    a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
   .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index"
-                    class="second-level-{{$index}} neuron {{child.state}}")
-    a(ui-sref="neuron({neuronId: child.id})" 
-      class="{{treeVm.imageSaved ? '' : 'disabled'}}")
+    class="second-level-{{$index}} neuron {{child.state}}")
+    a(ui-sref="neuron({neuronId: child.id})")
