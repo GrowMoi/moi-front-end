@@ -74,14 +74,12 @@
         $timeout(function(){
           var elm = document.getElementById('screen');
           if (elm && callApiSaveImage === 0) {
-            console.log(elm);
             callApiSaveImage = 1;
             ScreenshotService.getImage(elm).then(function(img){
               if (ScreenshotService.validBase64(img)) {
                 UserService.uploadTreeImage(img);
                 imageSaved = true;
                 callApiSaveImage = 0;
-                console.log('saved!');
               }
             });
           }
