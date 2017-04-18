@@ -19,7 +19,8 @@
     var site = this,
         images = IMAGES.paths,
         sounds = SOUNDS.paths,
-        counter = 0;
+        imageSaved = false,
+        callApiSaveImage = 0;
 
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
@@ -69,20 +70,24 @@
     });
 
     $rootScope.$on('loading:finish', function (){
-      console.log('llamado: ', $state.current.name);
-      if ( $state.current.name === 'tree' && counter === 0) {//save image one time by visit page
-        counter = 1;
+      if ( $state.current.name === 'tree' && !imageSaved) { //save image one time by visit page
         $timeout(function(){
           var elm = document.getElementById('screen');
-          console.log(elm);
-          if (elm) {
+          if (elm && callApiSaveImage === 0) {
+            console.log(elm);
+            callApiSaveImage = 1;
             ScreenshotService.getImage(elm).then(function(img){
               if (ScreenshotService.validBase64(img)) {
                 UserService.uploadTreeImage(img);
+                imageSaved = true;
+                callApiSaveImage = 0;
+                console.log('saved!');
               }
             });
           }
         }, 500);
+      }else{
+        imageSaved = false;
       }
     });
   }
