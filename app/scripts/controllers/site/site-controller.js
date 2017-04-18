@@ -88,6 +88,7 @@
         }, 500);
       }else{
         imageSaved = false;
+        callApiSaveImage = 0;
       }
     });
   }
