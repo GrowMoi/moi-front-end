@@ -9,8 +9,7 @@
       dependencies,
       $rootScope,
       VIDEOS,
-      PreloadAssets,
-      deferredUpload;
+      PreloadAssets;
 
     beforeEach(module('moi.controllers'));
     beforeEach(module('moi.services', function($provide){
@@ -22,14 +21,6 @@
                 return null;
               }
             };
-          }
-        };
-      });
-      $provide.factory('UserService', function($q){
-        deferredUpload  = $q.defer();
-        return {
-          uploadTreeImage: function(){
-            return deferredUpload.promise;
           }
         };
       });

@@ -9,12 +9,17 @@
                           $ionicLoading,
                           $auth,
                           PreloadAssets,
+                          ScreenshotService,
+                          UserService,
+                          $timeout,
+                          $state,
                           IMAGES,
                           SOUNDS) {
 
     var site = this,
         images = IMAGES.paths,
-        sounds = SOUNDS.paths;
+        sounds = SOUNDS.paths,
+        counter = 0;
 
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
@@ -61,6 +66,24 @@
 
     $rootScope.$on('$stateChangeError', function(){
       $ionicLoading.hide();
+    });
+
+    $rootScope.$on('loading:finish', function (){
+      console.log('llamado: ', $state.current.name);
+      if ( $state.current.name === 'tree' && counter === 0) {//save image one time by visit page
+        counter = 1;
+        $timeout(function(){
+          var elm = document.getElementById('screen');
+          console.log(elm);
+          if (elm) {
+            ScreenshotService.getImage(elm).then(function(img){
+              if (ScreenshotService.validBase64(img)) {
+                UserService.uploadTreeImage(img);
+              }
+            });
+          }
+        }, 500);
+      }
     });
   }
 })();

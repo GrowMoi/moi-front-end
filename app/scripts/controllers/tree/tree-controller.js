@@ -6,9 +6,6 @@
                                           $rootScope,
                                           data,
                                           PreloadAssets,
-                                          ScreenshotService,
-                                          UserService,
-                                          $timeout,
                                           VIDEOS) {
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -17,7 +14,6 @@
     var videos = VIDEOS.paths;
     var vinetaLevels = [1, 4, 6, 8];
     var preloadMovies = false;
-    var counter = 0;
 
     initVineta();
 
@@ -46,22 +42,6 @@
         preloadMovies = true;
       });
     }
-
-    $rootScope.$on('loading:finish', function (){
-      if (counter === 0) {//save image one time by visit page
-        counter = 1;
-        $timeout(function(){
-          var elm = document.getElementById('screen');
-          if (elm) {
-            ScreenshotService.getImage(elm).then(function(img){
-              if (ScreenshotService.validBase64(img)) {
-                UserService.uploadTreeImage(img);
-              }
-            });
-          }
-        }, 500);
-      }
-    });
 
   });
 

@@ -24,7 +24,7 @@
     }
 
     function validBase64(value){
-      var reg = RegExp.new(/data:image\/([a-zA-Z]*);base64,([^\"]*)/g);
+      var reg = RegExp(/data:image\/([a-zA-Z]*);base64,([^\"]*)/g); // jshint ignore:line
       return reg.test(value);
     }
 
