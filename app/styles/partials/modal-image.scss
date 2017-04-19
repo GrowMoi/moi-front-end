@@ -5,25 +5,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: auto;
+  width: 47.375rem;
+  height: 27.75rem;
   background-image: url(../images/marco_modal.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   .btn-close-modal {
     position: fixed;
-    top: 0;
-    right: 22px;
-    min-width: 5%;
-    min-height: 12%;
+    top: 1rem;
+    margin-left: 21.6rem;
+    width: 2.5rem;
+    height: 2.5rem;
     background-image: url(../images/close_modal.png);
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 2.5rem 2.5rem;
     cursor: pointer;
   }
   .content-image {
-      width: 80%;
-      height: 80%;
+      width: 43.3125rem;
+      height: 24.6875rem;
   }
 }
 /* Fix modal backdrop for smaller devices */
