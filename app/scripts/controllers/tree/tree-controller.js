@@ -2,7 +2,11 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('TreeController', function ($scope, $rootScope, data, PreloadAssets, VIDEOS) {
+  .controller('TreeController', function ($scope,
+                                          $rootScope,
+                                          data,
+                                          PreloadAssets,
+                                          VIDEOS) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -10,6 +14,7 @@
     var videos = VIDEOS.paths;
     var vinetaLevels = [1, 4, 6, 8];
     var preloadMovies = false;
+
     initVineta();
 
     treeModel.finishedAnimation = function() {

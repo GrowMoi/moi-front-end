@@ -1,15 +1,23 @@
-.arrow{
+.arrow {
   position: absolute;
   left: 15px;
   top: 5%;
   z-index: 5;
   transition: 0.3 ease;
-  &:hover{
-    transform: scale(0.8);
+
+  &:hover {
+    .arrow-img {
+      transform: scale(0.8);
+    }
   }
 }
-.back-arrow{
-  img{
-    width: 70px;
+
+.back-arrow {
+  .arrow-img {
+    background-image: url('../images/back-arrow.png');
+    background-size: cover;
+    position: absolute;
+    width: 65px;
+    height: 60px;
   }
 }

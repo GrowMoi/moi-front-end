@@ -9,7 +9,8 @@
         $ionicLoading,
         $auth,
         IMAGES,
-        PreloadAssets;
+        PreloadAssets,
+        deferredUpload;
 
     beforeEach(module('moi.controllers'));
 
@@ -27,6 +28,25 @@
           cache: function(){
             return {
               then: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+      $provide.factory('UserService', function($q){
+        deferredUpload  = $q.defer();
+        return {
+          uploadTreeImage: function(){
+            return deferredUpload.promise;
+          }
+        };
+      });
+      $provide.provider('$state', function () {
+        return {
+          $get: function () {
+            return {
+              go: function(){
                 return null;
               }
             };

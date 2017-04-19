@@ -52,25 +52,10 @@
       })
     );
 
-    describe('#backbutton init', function(){
-      it('should have the same params you set', function(){
-        $scope.imageUrl='../images/foo.jpg';
-        var template = $compile('<back-button image-url="{{imageUrl}}"></back-button>')($scope);
-
-        $scope.$digest();
-
-        var controller = template.controller('backButton');
-
-        chai.expect($scope.imageUrl).to.deep.equals(controller.imageUrl);
-      });
-
-    });
-
     describe('#backbutton methods', function(){
       it('should call $window.history when you goBack()', function(){
         var spy = sinon.spy($window.history, 'back');
-        $scope.imageUrl='../images/foo.jpg';
-        var template = $compile('<back-button image-url="{{imageUrl}}"></back-button>')($scope);
+        var template = $compile('<back-button></back-button>')($scope);
 
         $scope.$digest();
 

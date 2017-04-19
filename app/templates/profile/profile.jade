@@ -1,7 +1,7 @@
 ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
   ion-content
     moi-sound(sound="sounds/read_content.mp3" background-sound="true")
-    .arrow.back-arrow(back-button image-url="images/back-arrow.png")
+    back-button.arrow.back-arrow
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
     .frame.profile-user
@@ -41,7 +41,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                      img.format-image(ng-src='{{content.media[0]}}')
                      .leyend-bottom {{content.title}}
             .tree-preview.col-50
-              img.tree(src="images/arbol-perfil.png")
+              img.tree(src="{{vmProfile.user.tree_image}}")
       .btns-options
         .btn-learn
         .btn-search-gif

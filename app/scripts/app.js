@@ -32,25 +32,11 @@
   })
 
   .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
-    // on 401 redirect to login
-    $httpProvider.interceptors.push(function($injector, $q){
+    $httpProvider.interceptors.push(function(InterceptorService){
       return {
-        'responseError': function(rejection) {
-            if (rejection.status === 401) {
-              $injector.get('$state').go('login');
-              $injector.get('$ionicLoading').hide();
-            }else if(rejection.status === 404){
-              var popupOptions = {
-               title: 'Error',
-               content: rejection.statusText
-              };
-              var PopupService = $injector.get('PopupService');
-              PopupService.showModel('alert', popupOptions, function() {
-               $injector.get('$state').go('tree');
-              });
-            }
-            return $q.reject(rejection);
-          }
+        responseError: InterceptorService.responseError,
+        request: InterceptorService.request,
+        response: InterceptorService.response
       };
     });
 

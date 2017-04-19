@@ -6,7 +6,7 @@
         width: 80px;
         height: 80px;
         background-image: url(../images/tree/nodos/nodo-gris.png);
-        background-size: cover;
+        background-size: 100% 100%;
         a {
           width: 100%;
           height: 100%;
@@ -59,10 +59,10 @@
       }
       .branch-level-2{
         position: absolute;
-        background-size: cover;
-        width: 390px;
-        height: 350px;
-        bottom: 3px;
+        background-size: 100% 100%;
+        width: 100%;
+        height: 100%;
+        bottom: 0px;
         left: 0px;
       }
       .second-level-branch {
