@@ -8,7 +8,8 @@
         ContentService,
         TestService,
         template,
-        controller;
+        controller,
+        SocialService;
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
@@ -38,8 +39,6 @@
           }
         };
       });
-    }));
-    beforeEach(module('moi.services', function($provide){
       $provide.factory('TestService', function(){
         return {
           goTest: function(){
@@ -51,17 +50,26 @@
           }
         };
       });
+      $provide.factory('SocialService', function(){
+        return {
+          showModal: function(){
+            return null;
+          }
+        };
+      });
     }));
     beforeEach(inject(
       function (_$compile_,
                 _$rootScope_,
                 _ContentService_,
-                _TestService_) {
+                _TestService_,
+                _SocialService_) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         ContentService = _ContentService_;
         TestService = _TestService_;
+        SocialService = _SocialService_;
       })
     );
 

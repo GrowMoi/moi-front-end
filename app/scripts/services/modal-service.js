@@ -7,8 +7,10 @@
 
   function ModalService($ionicModal, $rootScope) {
     var service = {
-      showModel: showModel
+      showModel: showModel,
+      destroy: destroy
     };
+    var modalInstance;
 
     return service;
 
@@ -40,17 +42,18 @@
         animation: myOptions.animation,
         backdropClickToClose: false
       }).then(function(modal) {
-        modalMoi.scope.modal = modal;
-        modalMoi.scope.modal.show();
+        modalInstance = modal;
+        modalInstance.show();
       });
 
-      modalMoi.scope.model.closeModal = function () {
-        modalMoi.scope.modal.remove()
-        .then(function() {
-          modalMoi.scope.modal = null;
-        });
-      };
+      modalMoi.scope.model.closeModal = destroy;
+    }
 
+    function destroy() {
+      modalInstance.remove()
+      .then(function() {
+        modalInstance = null;
+      });
     }
 
   }

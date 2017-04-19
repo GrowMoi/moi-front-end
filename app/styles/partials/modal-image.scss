@@ -1,39 +1,30 @@
 .transparent {
   background-color: transparent;
 }
-.btn-close-modal {
-  position: fixed;
-  top: 0;
-  right: 22px;
-  min-width: 5%;
-  min-height: 12%;
-  background-image: url(../images/close_modal.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  cursor: pointer;
-}
-.content-image {
-    width: 80%;
-    height: 80%;
-}
 .modal-image {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  margin-top: -1px;
-  padding-top: 1px;
-  margin-bottom: -1px;
   width: auto;
   height: auto;
   background-image: url(../images/marco_modal.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  .btn-close-modal {
+    position: fixed;
+    top: 0;
+    right: 22px;
+    min-width: 5%;
+    min-height: 12%;
+    background-image: url(../images/close_modal.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+  }
+  .content-image {
+      width: 80%;
+      height: 80%;
+  }
 }
 /* Fix modal backdrop for smaller devices */
 @media (max-width: 679px) {

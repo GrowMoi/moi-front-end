@@ -1,0 +1,69 @@
+.transparent {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  .modal-share-social {
+    width: 500px;
+    height: 350px;
+    background-image: url(../images/cont_share_modal.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .btn-close-modal {
+      position: relative;
+      left: 450px;
+      top: 20px;
+      width: 50px;
+      height: 50px;
+      background-image: url(../images/btn_close_share_modal.png);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+    }
+    .social-network-panel {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      top: 30px;
+      a {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: 79px;
+        width: 79px;
+        cursor: pointer;
+      }
+      .btn-facebook {
+        background-image: url(../images/btn_fb.png);
+      }
+      .btn-twitter {
+        background-image: url(../images/btn_tw.png);
+      }
+      .btn-whatsapp {
+        background-image: url(../images/btn_ws.png);
+      }
+      .btn-mail {
+        background-image: url(../images/btn_mail.png);
+      }
+    }
+    .description-panel {
+      width: 400px;
+      position: relative;
+      top: 70px;
+      left: 50px;
+      font-family: FontMoi-Title;
+      color: #4A4B21;
+      text-align: justify;
+    }
+  }
+}
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}

@@ -11,7 +11,8 @@
       searchButton: searchButton,
       learnButton: learnButton,
       settingButton: settingButton,
-      profileButton: profileButton
+      profileButton: profileButton,
+      shareButton: shareButton
     };
 
     var buttons = {
@@ -50,6 +51,16 @@
         speed: 50,
         sound: 'sounds/btn_amigos.mp3',
         playOnClick: true,
+      },
+      share: {
+        src: 'images/sprites/btn-compartir-sprite.png',
+        frames: 30,
+        repeat: false,
+        speed: 60,
+        sound: 'sounds/btn_share.mp3',
+        width: 52,
+        height: 52,
+        playOnClick: true,
       }
     };
 
@@ -71,6 +82,11 @@
     function profileButton(callbacks) {
       var profile = addCallbacks(buttons.profile, callbacks);
       return profile;
+    }
+
+    function shareButton(callbacks) {
+      var share = addCallbacks(buttons.share, callbacks);
+      return share;
     }
 
     function addCallbacks(button, callbacks) {

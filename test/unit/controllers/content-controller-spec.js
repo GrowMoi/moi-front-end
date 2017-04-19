@@ -11,7 +11,8 @@
         ModalService,
         ContentService,
         TestService,
-        AnimationService;
+        AnimationService,
+        SocialService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -45,7 +46,10 @@
           },
           learnButton: function (){
             return config;
-          }
+          },
+          shareButton: function (){
+            // return config;
+          },
         };
       });
       $provide.factory('ContentService', function(){
@@ -84,6 +88,13 @@
           }
         };
       });
+      $provide.factory('SocialService', function(){
+        return {
+          showModal: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     /*jshint camelcase: false */
@@ -94,7 +105,8 @@
                 _ContentService_,
                 _TestService_,
                 _$state_,
-                _AnimationService_) {
+                _AnimationService_,
+                _SocialService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -103,6 +115,7 @@
         ContentService = _ContentService_;
         TestService = _TestService_;
         AnimationService = _AnimationService_;
+        SocialService = _SocialService_;
 
         dependencies = {
           content: {

@@ -25,7 +25,8 @@
                           $state,
                           $filter,
                           ContentService,
-                          TestService){
+                          TestService,
+                          SocialService){
 
     var vm = this;
     vm.selectContent = selectContent;
@@ -265,6 +266,14 @@
       });
     });
 
+    $scope.$on('neuron:share-content', function(){
+      var data = {
+        title: vm.contentSelected.title,
+        media: vm.contentSelected.media[0],
+        description: vm.contentSelected.description
+      };
+      SocialService.showModal(data);
+    });
   }
 
 })();

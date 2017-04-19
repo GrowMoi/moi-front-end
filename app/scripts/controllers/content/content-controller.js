@@ -7,7 +7,8 @@
                                               ModalService,
                                               TestService,
                                               $state,
-                                              AnimationService) {
+                                              AnimationService,
+                                              SocialService) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
@@ -18,6 +19,9 @@
       });
       vmContent.learnOptions = AnimationService.learnButton({
         finishedAnimation: finishedAnimationRead
+      });
+      vmContent.shareOptions = AnimationService.shareButton({
+        finishedAnimation: finishedAnimationShare
       });
 
       var dialogCanReadModel = {
@@ -50,6 +54,15 @@
 
       function finishedAnimationSearch() {
         $state.go('searches');
+      }
+
+      function finishedAnimationShare() {
+        var data = {
+          title: vmContent.content.title,
+          media: vmContent.content.media[0],
+          description: vmContent.content.description
+        };
+        SocialService.showModal(data);
       }
 
       function finishedAnimationRead() {
