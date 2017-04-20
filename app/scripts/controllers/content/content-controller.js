@@ -15,17 +15,40 @@
       vmContent.sendNotes = sendNotes;
       vmContent.showCanReadModal = showCanReadModal;
       vmContent.finishedAnimationRead = finishedAnimationRead;
-      vmContent.searchOptions = AnimationService.searchButton({
-        finishedAnimation: finishedAnimationSearch
+
+      vmContent.searchOptions = AnimationService.getButton({
+        key: 'search',
+        callbacks: {
+          finishedAnimation: finishedAnimationSearch
+        }
       });
-      vmContent.learnOptions = AnimationService.learnButton({
-        finishedAnimation: finishedAnimationRead
+
+      vmContent.learnOptions = AnimationService.getButton({
+        key: 'learn',
+        callbacks: {
+          finishedAnimation: finishedAnimationRead
+        }
       });
-      vmContent.shareOptions = AnimationService.shareButton({
-        finishedAnimation: finishedAnimationShare
+
+      vmContent.shareOptions = AnimationService.getButton({
+        key: 'share',
+        callbacks: {
+          finishedAnimation: finishedAnimationShare
+        }
       });
-      vmContent.saveTasksOptions = AnimationService.saveTasksButton({
-        finishedAnimation: finishedAnimationsaveTasks
+
+      vmContent.recomendationOptions = AnimationService.getButton({
+        key: 'recomendation',
+        callbacks: {
+          finishedAnimation: finishedAnimationRecomendation
+        }
+      });
+
+      vmContent.saveTasksOptions = AnimationService.getButton({
+        key: 'saveTasks',
+        callbacks: {
+          finishedAnimation: finishedAnimationsaveTasks
+        }
       });
 
       var dialogContentModel = {
@@ -116,6 +139,11 @@
       function modalCallbak() {
         dialogContentModel.closeModal();
         $state.go('tree');
+      }
+
+      function finishedAnimationRecomendation() {
+        var id = $state.params.neuronId;
+        UserService.recommendedNeuron(id);
       }
 
     });

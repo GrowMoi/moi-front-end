@@ -7,13 +7,36 @@
       userId,
       expectedUrl,
       ENV,
-      PopupService;
+      PopupService,
+      ModalService,
+      $state;
 
     beforeEach(module('moi.services', function($provide) {
       $provide.factory('PopupService', function() {
         return {
           showModel: function() {
             return null;
+          }
+        };
+      });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
+    }));
+
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.provider('$state', function () {
+        return {
+          $get: function () {
+            return {
+              go: function(){
+                return null;
+              }
+            };
           }
         };
       });
@@ -32,11 +55,14 @@
     });
 
     beforeEach(inject(
-      function(_$httpBackend_, _UserService_, _ENV_, _PopupService_) {
+      function(_$httpBackend_, _UserService_, _ENV_, _PopupService_, _$state_,
+        _ModalService_) {
         $httpBackend = _$httpBackend_;
         service = _UserService_;
         ENV = _ENV_;
         PopupService = _PopupService_;
+        $state = _$state_;
+        ModalService = _ModalService_;
       }));
 
     afterEach(function() {

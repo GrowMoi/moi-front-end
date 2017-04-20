@@ -21,15 +21,14 @@
           showModel: modalSpy
         };
       });
+      $provide.factory('UserService', function(){
+        return {
+          recommendedNeuron: function(){}
+        };
+      });
       $provide.service('AnimationService', function(){
         return {
-          searchButton: function (){
-            return {};
-          },
-          learnButton: function (){
-            return {};
-          },
-          shareButton: function (){
+          getButton: function (){
             return {};
           },
           saveTasksButton: function() {
