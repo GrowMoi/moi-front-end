@@ -2,6 +2,8 @@
   background-color: transparent;
   display: flex;
   justify-content: center;
+  flex-flow: column;
+  align-items: center;
   .modal-share-social {
     width: 500px;
     height: 350px;
