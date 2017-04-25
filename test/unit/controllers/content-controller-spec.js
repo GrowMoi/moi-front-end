@@ -12,7 +12,8 @@
         ContentService,
         TestService,
         AnimationService,
-        SocialService;
+        SocialService,
+        UserService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -50,6 +51,9 @@
           shareButton: function (){
             // return config;
           },
+          saveTasksButton: function () {
+            return {};
+          }
         };
       });
       $provide.factory('ContentService', function(){
@@ -95,6 +99,13 @@
           }
         };
       });
+      $provide.factory('UserService', function(){
+        return {
+          addTasks: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     /*jshint camelcase: false */
@@ -106,7 +117,8 @@
                 _TestService_,
                 _$state_,
                 _AnimationService_,
-                _SocialService_) {
+                _SocialService_,
+                _UserService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -116,6 +128,7 @@
         TestService = _TestService_;
         AnimationService = _AnimationService_;
         SocialService = _SocialService_;
+        UserService = _UserService_;
 
         dependencies = {
           content: {
@@ -172,9 +185,13 @@
         var modalSpy = sinon.spy(ModalService, 'showModel');
         var args = {
           parentScope: $scope,
-          templateUrl: 'templates/partials/modal-unread.html',
+          templateUrl: 'templates/partials/modal-alert-content.html',
           model: {
-            goToMyTree: sinon.match.func
+            message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
+            modalCallbak: sinon.match.func,
+            type: 'confirm',
+            btnOkLabel: 'Seguir leyendo',
+            btnCancelLabel: 'Regresar a mi arbol'
           }
         };
         ctrl.showCanReadModal();

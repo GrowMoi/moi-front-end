@@ -8,7 +8,8 @@
                                               TestService,
                                               $state,
                                               AnimationService,
-                                              SocialService) {
+                                              SocialService,
+                                              UserService) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
@@ -23,9 +24,16 @@
       vmContent.shareOptions = AnimationService.shareButton({
         finishedAnimation: finishedAnimationShare
       });
+      vmContent.saveTasksOptions = AnimationService.saveTasksButton({
+        finishedAnimation: finishedAnimationsaveTasks
+      });
 
-      var dialogCanReadModel = {
-        goToMyTree: goToMyTree
+      var dialogContentModel = {
+        message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
+        modalCallbak: modalCallbak,
+        type: 'confirm',
+        btnOkLabel: 'Seguir leyendo',
+        btnCancelLabel: 'Regresar a mi arbol'
       };
 
       activate();
@@ -78,17 +86,35 @@
         });
       }
 
+      function finishedAnimationsaveTasks() {
+        UserService.addTasks(vmContent.content).then(function(response) {
+          if(response.data.exist){
+            dialogContentModel = {
+              message: 'Ya guardaste este contenido. Trata de guardar un contenido nuevo.',
+              type: 'alert',
+              btnOkLabel: 'Seguir leyendo',
+            };
+            showCanReadModal();
+          }else{
+            /*jshint camelcase: false */
+            $state.go('neuron', {
+              neuronId: vmContent.content.neuron_id
+            });
+          }
+        });
+      }
+
       function showCanReadModal() {
         var dialogOptions = {
           parentScope: $scope,
-          templateUrl: 'templates/partials/modal-unread.html',
-          model: dialogCanReadModel
+          templateUrl: 'templates/partials/modal-alert-content.html',
+          model: dialogContentModel
         };
         ModalService.showModel(dialogOptions);
       }
 
-      function goToMyTree() {
-        dialogCanReadModel.closeModal();
+      function modalCallbak() {
+        dialogContentModel.closeModal();
         $state.go('tree');
       }
 

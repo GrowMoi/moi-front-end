@@ -10,7 +10,8 @@
         stateMock,
         ModalService,
         AnimationService,
-        modalSpy;
+        modalSpy,
+        UserService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function($provide){
@@ -30,6 +31,16 @@
           },
           shareButton: function (){
             return {};
+          },
+          saveTasksButton: function() {
+            return {};
+          }
+        };
+      });
+      $provide.service('UserService', function(){
+        return {
+          addTasks: function(){
+            return null;
           }
         };
       });
@@ -38,17 +49,19 @@
       function (_$controller_,
                 _$rootScope_,
                 _ModalService_,
-                _AnimationService_) {
+                _AnimationService_,
+                _UserService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         stateMock = { go: sinon.stub() };
         ModalService = _ModalService_;
         AnimationService = _AnimationService_;
+        UserService = _UserService_;
         dependencies = {
           $scope: $scope,
           $state: stateMock,
-          data: {neuron: {id: 1}},
+          data: {id: 1, contents:[{id:1}]},
           user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'},
           ModalService: ModalService,
           AnimationService: AnimationService
@@ -90,9 +103,13 @@
       it('should show a dialog', function(){
         var args = {
           parentScope: $scope,
-          templateUrl: 'templates/partials/modal-unread.html',
+          templateUrl: 'templates/partials/modal-alert-content.html',
           model: {
-            goToMyTree: sinon.match.func
+            message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
+            modalCallbak: sinon.match.func,
+            type: 'confirm',
+            btnOkLabel: 'Seguir leyendo',
+            btnCancelLabel: 'Regresar a mi arbol'
           }
         };
         ctrl.showCanReadModal();
