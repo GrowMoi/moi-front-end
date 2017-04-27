@@ -54,18 +54,5 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
               .row(ng-repeat="link in vmContent.content.links")
                 a(href='{{::link}}' target='_blank') {{::link}}
             .corner.links-TR
-      .btns-options
-        .btn-learn(ng-if="!vmContent.content.can_read" ng-click="vmContent.showCanReadModal()")
-        .btn-learn-gif(ng-if="vmContent.content.can_read" ng-class="{disabled: !vmContent.gifLearnActive}")
-          animate-sprite(options="vmContent.learnOptions")
-        .btn-search-gif
-          animate-sprite(options="vmContent.searchOptions")
-        .btn-share-gif
-          animate-sprite(options="vmContent.shareOptions")
-        .btn-save-tasks-gif
-          animate-sprite(options="vmContent.saveTasksOptions")
-        .btn-recomendation-gif
-          animate-sprite(options="vmContent.recomendationOptions")
-        .btn-show-tasks-gif
-          animate-sprite(options="vmContent.showTasksOptions")
+      moi-buttons(options="vmContent.buttonsOptions")
   moi-sidebar

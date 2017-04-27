@@ -10,68 +10,26 @@
   cursor: pointer;
 }
 
-.btn-search {
-  position: fixed;
-  bottom: 6px;
-  right: 46%;
-  min-width: 10%;
-  min-height: 10%;
-  background-image: url(../images/btn-search.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  cursor: pointer;
-}
-
-.btn-show-tasks {
-  position: fixed;
-  bottom: 6px;
-  right: 57%;
-  min-width: 10%;
-  min-height: 10%;
-  background-image: url(../images/btn-show-tasks.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  cursor: pointer;
-}
-
 .btn-learn-gif {
   position: fixed;
-  bottom: -5px;
+  bottom: 0;
   right: 3px;
   cursor: pointer;
+
+  .btn-wrapper {
+    position: relative;
+
+    .idle {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
 
   &.disabled {
     pointer-events: none;
     cursor: default;
   }
-}
-
-.btn-search-gif {
-  position: fixed;
-  bottom: 1px;
-  right: 597px;
-  cursor: pointer;
-}
-
-.btn-share-gif {
-  position: fixed;
-  bottom: 23px;
-  right: 303px;
-  cursor: pointer;
-}
-
-.btn-save-tasks-gif {
-  position: fixed;
-  bottom: 20px;
-  right: 372px;
-  cursor: pointer;
-}
-
-.btn-recomendation-gif {
-  position: fixed;
-  bottom: 11px;
-  right: 475px;
-  cursor: pointer;
 }
 
 .btn-show-tasks-gif {
@@ -81,9 +39,62 @@
   cursor: pointer;
 }
 
-.gif-click{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
+.btn-search-gif {
+  position: fixed;
+  bottom: 7px;
+  right: 606px;
+  bottom: 7px;
+  right: 606px;
+  cursor: pointer;
+
+  .btn-wrapper {
+    position: relative;
+
+    .idle {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.btn-share-gif {
+  position: fixed;
+  bottom: 20px;
+  right: 303px;
+  cursor: pointer;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.btn-save-tasks-gif {
+  position: fixed;
+  bottom: 18px;
+  right: 372px;
+  cursor: pointer;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.btn-recomendation-gif {
+  position: fixed;
+  bottom: 11px;
+  right: 480px;
+  cursor: pointer;
+
+  .btn-wrapper {
+    position: relative;
+
+    .idle {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
 }

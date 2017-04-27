@@ -7,18 +7,5 @@ ion-view.frame-without-back-button.neuron-view(view-title='{{vmNeuron.neuron.tit
     .frame.main-view
       .frame-container.content-view
         grid-contents(options="vmNeuron.contentsOptions")
-      .btns-options
-        .btn-learn(ng-if="!vmNeuron.neuron.can_read" ng-click="vmNeuron.showCanReadModal()")
-        .btn-learn-gif(ng-if="vmNeuron.neuron.can_read" ng-class="{disabled: !vmNeuron.gifLearnActive}")
-          animate-sprite(options="vmNeuron.learnOptions")
-        .btn-search-gif
-          animate-sprite(options="vmNeuron.searchOptions")
-        .btn-share-gif
-          animate-sprite(options="vmNeuron.shareOptions")
-        .btn-save-tasks-gif
-          animate-sprite(options="vmNeuron.saveTasksOptions")
-        .btn-recomendation-gif
-          animate-sprite(options="vmNeuron.recomendationOptions")
-        .btn-show-tasks-gif
-          animate-sprite(options="vmNeuron.showTasksOptions")
+      moi-buttons(options="vmNeuron.buttonsOptions")
   moi-sidebar

@@ -3,142 +3,84 @@
 
   angular.module('moi.controllers')
   .controller('NeuronController',
-    function ($scope,
-              $state,
-              user,
-              data,
-              ModalService,
-              AnimationService,
-              UserService) {
+    function (user, data, $scope, $timeout) {
 
-    var vmNeuron = this;
-    vmNeuron.gifLearnActive = true;
-    vmNeuron.showCanReadModal = showCanReadModal;
-    vmNeuron.finishedAnimationRead = finishedAnimationRead;
-    var contentSelected;
-    var dialogContentModel = {
-      message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
-      modalCallbak: modalCallbak,
-      type: 'confirm',
-      btnOkLabel: 'Seguir leyendo',
-      btnCancelLabel: 'Regresar a mi arbol'
-    };
+    var vmNeuron = this,
+        ApiButtons = null,
+        ApiContent = null,
+        timeoutPromise = null;
 
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-      contentSelected = data.contents[0].id;
+
+      vmNeuron.buttonsOptions = {
+        neuron: vmNeuron.neuron,
+        content: vmNeuron.neuron.contents[0],
+        onRegisterApi: onRegisterApiMoiButtons,
+        externalAnimationIdle: true,
+        buttons: {
+          learn: true,
+          search: true,
+          share: true,
+          recomendation: true,
+          saveTask: true,
+          showTasks: true
+        }
+      };
+
       vmNeuron.contentsOptions = {
         contents: vmNeuron.neuron.contents,
         settings: user.content_preferences,
         maxLevel: 3,
         minLevel: 1,
-        onSelect: onSelectItem
+        onSelect: onSelectItem,
+        externalAnimationIdle: true,
+        onRegisterApi: onRegisterApiContents
       };
-
-      vmNeuron.searchOptions = AnimationService.getButton({
-        key: 'search',
-        callbacks: {
-          finishedAnimation: finishedAnimationSearch
-        }
-      });
-
-      vmNeuron.learnOptions = AnimationService.getButton({
-        key: 'learn',
-        callbacks: {
-          finishedAnimation: finishedAnimationRead
-        }
-      });
-
-      vmNeuron.shareOptions = AnimationService.getButton({
-        key: 'share',
-        callbacks: {
-          finishedAnimation: finishedAnimationShare
-        }
-      });
-
-      vmNeuron.recomendationOptions = AnimationService.getButton({
-        key: 'recomendation',
-        callbacks: {
-          finishedAnimation: finishedAnimationRecomendation
-        }
-      });
-
-      vmNeuron.saveTasksOptions = AnimationService.getButton({
-        key: 'saveTasks',
-        callbacks: {
-          finishedAnimation: finishedAnimationsaveTasks
-        }
-      });
-
-      vmNeuron.showTasksOptions = AnimationService.getButton({
-        key: 'showTasks',
-        callbacks: {
-          finishedAnimation: finishedAnimationShowTasks
-        }
-      });
     }
 
     init();
 
-    function finishedAnimationSearch() {
-      $state.go('searches');
-    }
-
-    function finishedAnimationRead() {
-      $scope.$broadcast('neuron:remove-content');
-    }
-
-    function finishedAnimationShare() {
-      $scope.$broadcast('neuron:share-content');
-    }
-
-    function finishedAnimationsaveTasks() {
-      UserService.addTasks(contentSelected).then(function(response) {
-        if(response.data.exist){
-          dialogContentModel = {
-            message: 'Este contenido ya esta en tus tareas, intentar guardar un contenido diferente.',
-            type: 'alert',
-            btnOkLabel: 'Seguir leyendo',
-          };
-          showModal();
-        }
+    function onRegisterApiMoiButtons(api) {
+      ApiButtons = api;
+      ApiButtons.finishedAnimation(function () {
+        activeAnimation(ApiContent);
       });
     }
 
-    function finishedAnimationRecomendation() {
-      var id = $state.params.neuronId;
-      UserService.recommendedNeuron(id);
+    function onRegisterApiContents(api) {
+      ApiContent = api;
+      ApiContent.finishedAnimation(function () {
+        activeAnimation(ApiButtons);
+      });
     }
 
-    function finishedAnimationShowTasks() {
-      $state.go('tasks');
-    }
-
-    function onSelectItem(content) {
-      vmNeuron.gifLearnActive = !content.read;
-      contentSelected = content;
-    }
-
-    function showModal() {
-      var dialogOptions = {
-        parentScope: $scope,
-        templateUrl: 'templates/partials/modal-alert-content.html',
-        model: dialogContentModel
-      };
-      ModalService.showModel(dialogOptions);
-    }
-
-    function showCanReadModal() {
-      if (!vmNeuron.neuron.can_read) {
-        showModal();
+    function activeAnimation(api) {
+      if (!timeoutPromise) {
+        timeoutPromise = $timeout(function(){
+          timeoutPromise = null;
+          if (api && api.activeAnimation) {
+            api.activeAnimation();
+          }
+        }, 3000);
       }
     }
 
-    function modalCallbak() {
-      dialogContentModel.closeModal();
-      $state.go('tree');
+    function onSelectItem(content) {
+      if (ApiButtons) {
+        ApiButtons.contentSelected(content);
+      }
     }
-  });
 
+    $scope.$on('IdleStart', function() {
+      ApiContent.activeAnimation();
+    });
+
+    $scope.$on('IdleEnd', function() {
+      $timeout.cancel(timeoutPromise);
+      timeoutPromise = null;
+    });
+
+  });
 })();

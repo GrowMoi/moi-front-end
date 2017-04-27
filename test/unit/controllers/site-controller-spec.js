@@ -8,6 +8,7 @@
         $rootScope,
         $ionicLoading,
         $auth,
+        $scope,
         IMAGES,
         PreloadAssets,
         deferredUpload;
@@ -62,6 +63,7 @@
                 _IMAGES_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
+        $scope = _$rootScope_.$new();
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
         PreloadAssets = _PreloadAssets_;
         IMAGES = _IMAGES_;
@@ -74,6 +76,7 @@
 
         dependencies = {
           $ionicLoading: $ionicLoading,
+          $scope: $scope,
           $auth: $auth
         };
 
@@ -117,6 +120,7 @@
 
         dependencies = {
           $ionicLoading: $ionicLoading,
+          $scope: $scope,
           $auth: $auth
         };
         ctrl = $controller('SiteController', dependencies);

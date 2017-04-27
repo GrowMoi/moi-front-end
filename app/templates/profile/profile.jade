@@ -42,12 +42,6 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                      .leyend-bottom {{content.title}}
             .tree-preview.col-50
               img.tree(src="{{vmProfile.user.tree_image}}")
-      .btns-options
-        .btn-learn
-        .btn-search-gif
-          animate-sprite(options="vmProfile.searchOptions")
-        .btn-recomendation-gif
-          animate-sprite(options="vmProfile.recomendationOptions")
-        .btn-show-tasks-gif
-          animate-sprite(options="vmProfile.showTasksOptions")
+      moi-buttons(options="vmProfile.buttonsOptions")
+      .btn-learn
   moi-sidebar

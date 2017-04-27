@@ -40,6 +40,7 @@ options directive
   function animateController($window, $scope, $q) {
 
     var vm = this;
+    vm.activeIdle = false;
 
     var options,
       src,
@@ -81,7 +82,7 @@ options directive
       frameWidth = parseInt(options.frameWidth, 10);
       frameHeight = parseInt(options.frameHeight, 10);
       frames = parseInt(options.frames, 10);
-      repeat = false;
+      repeat = options.repeat;
       speed = options.speed;
       framesPerRow = options.framesPerRow;
       playOnClick = options.playOnClick ? options.playOnClick : false;
@@ -92,16 +93,26 @@ options directive
       vm.width = options.width ? options.width + 'px' : '';
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
-
       vm.css = {
         'background': 'url(' + src + ')',
         'background-size': initialSize,
         'background-repeat': 'no-repeat'
       };
 
+      if (options.onRegisterApi) {
+        var api = createPublicApi();
+        options.onRegisterApi(api);
+      }
+
       if (!playOnClick) {
         animate();
       }
+    }
+
+    function createPublicApi() {
+      return {
+        animate: animate
+      };
     }
 
     function playAnimateSprite() {
