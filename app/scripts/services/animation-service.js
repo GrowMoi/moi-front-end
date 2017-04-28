@@ -12,7 +12,8 @@
       learnButton: learnButton,
       settingButton: settingButton,
       profileButton: profileButton,
-      shareButton: shareButton
+      shareButton: shareButton,
+      saveTasksButton: saveTasksButton
     };
 
     var buttons = {
@@ -61,6 +62,16 @@
         width: 52,
         height: 52,
         playOnClick: true,
+      },
+      saveTasks: {
+        src: 'images/sprites/btn-save-tasks-sprite.png',
+        frames: 30,
+        repeat: false,
+        speed: 60,
+        sound: 'sounds/btn_save_tasks.mp3',
+        width: 54,
+        height: 54,
+        playOnClick: true,
       }
     };
 
@@ -86,6 +97,11 @@
 
     function shareButton(callbacks) {
       var share = addCallbacks(buttons.share, callbacks);
+      return share;
+    }
+
+    function saveTasksButton(callbacks) {
+      var share = addCallbacks(buttons.saveTasks, callbacks);
       return share;
     }
 

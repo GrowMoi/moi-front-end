@@ -10,7 +10,8 @@
       profile: profile,
       updateProfile: updateProfile,
       searchProfiles: searchProfiles,
-      uploadTreeImage: uploadTreeImage
+      uploadTreeImage: uploadTreeImage,
+      addTasks: addTasks
     };
     var popupOptions = { title: 'Error'};
 
@@ -65,6 +66,24 @@
         }
       }).then(function success(res) {
         return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function addTasks(content){
+      /*jshint camelcase: false */
+      var contentId = content.id,
+          neuronId = content.neuron_id;
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/tasks',
+        data: {}
+      }).then(function success(res) {
+        return res;
       }, function error(err) {
         if(err.status !== 404){
           popupOptions.content = err.statusText;

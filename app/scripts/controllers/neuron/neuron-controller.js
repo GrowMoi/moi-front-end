@@ -8,20 +8,26 @@
               user,
               data,
               ModalService,
-              AnimationService) {
+              AnimationService,
+              UserService) {
 
     var vmNeuron = this;
     vmNeuron.gifLearnActive = true;
     vmNeuron.showCanReadModal = showCanReadModal;
     vmNeuron.finishedAnimationRead = finishedAnimationRead;
-    var dialogCanReadModel = {
-      goToMyTree: goToMyTree
+    var contentSelected;
+    var dialogContentModel = {
+      message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
+      modalCallbak: modalCallbak,
+      type: 'confirm',
+      btnOkLabel: 'Seguir leyendo',
+      btnCancelLabel: 'Regresar a mi arbol'
     };
 
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-
+      contentSelected = data.contents[0].id;
       vmNeuron.contentsOptions = {
         contents: vmNeuron.neuron.contents,
         settings: user.content_preferences,
@@ -41,6 +47,10 @@
       vmNeuron.shareOptions = AnimationService.shareButton({
         finishedAnimation: finishedAnimationShare
       });
+
+      vmNeuron.saveTasksOptions = AnimationService.saveTasksButton({
+        finishedAnimation: finishedAnimationsaveTasks
+      });
     }
 
     init();
@@ -57,23 +67,41 @@
       $scope.$broadcast('neuron:share-content');
     }
 
+    function finishedAnimationsaveTasks() {
+      UserService.addTasks(contentSelected).then(function(response) {
+        if(response.data.exist){
+          dialogContentModel = {
+            message: 'Este contenido ya esta en tus tareas, intentar guardar un contenido diferente.',
+            type: 'alert',
+            btnOkLabel: 'Seguir leyendo',
+          };
+          showModal();
+        }
+      });
+    }
+
     function onSelectItem(content) {
       vmNeuron.gifLearnActive = !content.read;
+      contentSelected = content;
+    }
+
+    function showModal() {
+      var dialogOptions = {
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: dialogContentModel
+      };
+      ModalService.showModel(dialogOptions);
     }
 
     function showCanReadModal() {
       if (!vmNeuron.neuron.can_read) {
-        var dialogOptions = {
-          parentScope: $scope,
-          templateUrl: 'templates/partials/modal-unread.html',
-          model: dialogCanReadModel
-        };
-        ModalService.showModel(dialogOptions);
+        showModal();
       }
     }
 
-    function goToMyTree() {
-      dialogCanReadModel.closeModal();
+    function modalCallbak() {
+      dialogContentModel.closeModal();
       $state.go('tree');
     }
   });
