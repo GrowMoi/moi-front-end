@@ -27,6 +27,13 @@
       }
     });
 
+    vmProfile.showTasksOptions = AnimationService.getButton({
+      key: 'showTasks',
+      callbacks: {
+        finishedAnimation: finishedAnimationShowTasks
+      }
+    });
+
     function finishedAnimationSearch() {
       $state.go('searches');
     }
@@ -36,6 +43,9 @@
       UserService.recommendedNeuron(id);
     }
 
+    function finishedAnimationShowTasks() {
+      $state.go('tasks');
+    }
   });
 
 })();

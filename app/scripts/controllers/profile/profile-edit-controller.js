@@ -27,6 +27,13 @@
       }
     });
 
+    vmProfileEdit.showTasksOptions = AnimationService.getButton({
+      key: 'showTasks',
+      callbacks: {
+        finishedAnimation: finishedAnimationShowTasks
+      }
+    });
+
     function finishedAnimationSearch() {
       $state.go('searches');
     }
@@ -34,6 +41,10 @@
     function finishedAnimationRecomendation() {
       var id = $state.params.neuronId;
       UserService.recommendedNeuron(id);
+    }
+
+    function finishedAnimationShowTasks() {
+      $state.go('tasks');
     }
 
     function editProfile(){

@@ -186,6 +186,13 @@
           return query;
         }
       }
+    })
+    .state('tasks', {
+      url: '/tasks',
+      controller: 'TasksController',
+      controllerAs: 'tasksmodel',
+      templateUrl: 'templates/tasks/tasks.html',
+      cache: false
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

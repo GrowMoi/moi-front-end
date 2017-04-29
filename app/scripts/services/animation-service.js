@@ -77,6 +77,16 @@
         width: 110,
         height: 70,
         playOnClick: true
+      },
+      showTasks: {
+        src: 'images/sprites/btn-show-tasks-sprite.png',
+        frames: 35,
+        repeat: false,
+        speed: 60,
+        sound: 'sounds/btn_show_tasks.mp3',
+        width: 120,
+        height: 80,
+        playOnClick: true
       }
     };
 
