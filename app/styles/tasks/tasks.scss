@@ -1,12 +1,69 @@
 .tasks {
   background-color: transparent;
 
-  .content-tasks {
+  .panel-tasks {
+
     .frame-container {
       position: relative;
       background-repeat: no-repeat;
       background-image: url("../images/caja_M.png");
       background-size: 100% 100%;
+
+      .content-title {
+        position: relative;
+        color: #4A4B21;
+        font-size: 45px;
+        font-weight: bold;
+        font-family: FontMoi-Title;
+        left: 115px;
+        top: 75px;
+      }
+
+      .divider-line {
+        position: absolute;
+        background: url("../images/linea_separacionM.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 87%;
+        height: 5px;
+        top: 120px;
+        left: 110px;
+      }
+
+      .content-tasks {
+        position: absolute;
+        width: 92%;
+        top: 135px;
+        left: 35px;
+        bottom: 130px;
+        height: 430px;
+        padding: 25px;
+
+        .tasks-tabs {
+
+          ion-item{
+            background: transparent;
+            border-color: transparent;
+            padding: 5px;
+
+            .item-tab{
+              background: #889d66;
+              padding: 12px 15px;
+              font-weight: bold;
+              border-radius: 5px;
+              border: 2px solid #8f9a59;
+              opacity: 0.7;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .tasks-view {
+          background: url("../images/content_task.png");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+        }
+      }
     }
   }
 }
