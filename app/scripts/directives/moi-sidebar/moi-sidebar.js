@@ -17,8 +17,8 @@
     };
 
     function sidebarController($state, $auth, AnimationService) {
-      var vm = this,
-          user = $auth.user;
+      var vm = this;
+          vm.user = $auth.user;
 
       vm.settingOptions = AnimationService.settingButton({
         finishedAnimation: goToSetting
@@ -33,7 +33,7 @@
       }
 
       function goToProfile() {
-        $state.go('profile', {userId: user.id});
+        $state.go('profile', {userId: vm.user.id});
       }
     }
 
