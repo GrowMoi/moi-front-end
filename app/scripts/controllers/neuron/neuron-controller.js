@@ -36,20 +36,39 @@
         onSelect: onSelectItem
       };
 
-      vmNeuron.searchOptions = AnimationService.searchButton({
-        finishedAnimation: finishedAnimationSearch
+      vmNeuron.searchOptions = AnimationService.getButton({
+        key: 'search',
+        callbacks: {
+          finishedAnimation: finishedAnimationSearch
+        }
       });
 
-      vmNeuron.learnOptions = AnimationService.learnButton({
-        finishedAnimation: finishedAnimationRead
+      vmNeuron.learnOptions = AnimationService.getButton({
+        key: 'learn',
+        callbacks: {
+          finishedAnimation: finishedAnimationRead
+        }
       });
 
-      vmNeuron.shareOptions = AnimationService.shareButton({
-        finishedAnimation: finishedAnimationShare
+      vmNeuron.shareOptions = AnimationService.getButton({
+        key: 'share',
+        callbacks: {
+          finishedAnimation: finishedAnimationShare
+        }
       });
 
-      vmNeuron.saveTasksOptions = AnimationService.saveTasksButton({
-        finishedAnimation: finishedAnimationsaveTasks
+      vmNeuron.recomendationOptions = AnimationService.getButton({
+        key: 'recomendation',
+        callbacks: {
+          finishedAnimation: finishedAnimationRecomendation
+        }
+      });
+
+      vmNeuron.saveTasksOptions = AnimationService.getButton({
+        key: 'saveTasks',
+        callbacks: {
+          finishedAnimation: finishedAnimationsaveTasks
+        }
       });
     }
 
@@ -78,6 +97,11 @@
           showModal();
         }
       });
+    }
+
+    function finishedAnimationRecomendation() {
+      var id = $state.params.neuronId;
+      UserService.recommendedNeuron(id);
     }
 
     function onSelectItem(content) {

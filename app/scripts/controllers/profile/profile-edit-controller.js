@@ -13,12 +13,27 @@
     vmProfileEdit.user = user;
     vmProfileEdit.editProfile = editProfile;
 
-    vmProfileEdit.searchOptions = AnimationService.searchButton({
-      finishedAnimation: finishedAnimationSearch
+    vmProfileEdit.searchOptions = AnimationService.getButton({
+      key: 'search',
+      callbacks: {
+        finishedAnimation: finishedAnimationSearch
+      }
+    });
+
+    vmProfileEdit.recomendationOptions = AnimationService.getButton({
+      key: 'recomendation',
+      callbacks: {
+        finishedAnimation: finishedAnimationRecomendation
+      }
     });
 
     function finishedAnimationSearch() {
       $state.go('searches');
+    }
+
+    function finishedAnimationRecomendation() {
+      var id = $state.params.neuronId;
+      UserService.recommendedNeuron(id);
     }
 
     function editProfile(){

@@ -20,12 +20,18 @@
       var vm = this,
           user = $auth.user;
 
-      vm.settingOptions = AnimationService.settingButton({
-        finishedAnimation: goToSetting
+      vm.settingOptions = AnimationService.getButton({
+        key: 'settings',
+        callbacks: {
+          finishedAnimation: goToSetting
+        }
       });
 
-      vm.profileOptions = AnimationService.profileButton({
-        finishedAnimation: goToProfile
+      vm.profileOptions = AnimationService.getButton({
+        key: 'profile',
+        callbacks: {
+          finishedAnimation: goToProfile
+        }
       });
 
       function goToSetting() {

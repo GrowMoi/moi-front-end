@@ -28,30 +28,9 @@
           }
         };
       });
-    }));
-    beforeEach(module('moi.services', function($provide){
       $provide.service('AnimationService', function(){
-        var config = {
-          src: 'images/example-sprite.png',
-          frames: 30,
-          repeat: false,
-          speed: 50,
-          sound: 'sounds/example.mp3',
-          playOnClick: true,
-          finishedAnimation: function(){},
-          finishedSound: function(){}
-        };
         return {
-          searchButton: function (){
-            // return config;
-          },
-          learnButton: function (){
-            return config;
-          },
-          shareButton: function (){
-            // return config;
-          },
-          saveTasksButton: function () {
+          getButton: function (){
             return {};
           }
         };
@@ -143,7 +122,8 @@
           $state: $state,
           ModalService: ModalService,
           ContentService: ContentService,
-          AnimationService: AnimationService
+          AnimationService: AnimationService,
+          UserService: UserService
         };
 
         ctrl = $controller('ContentController', dependencies);

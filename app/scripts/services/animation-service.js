@@ -8,12 +8,7 @@
   function AnimationService() {
 
     var service = {
-      searchButton: searchButton,
-      learnButton: learnButton,
-      settingButton: settingButton,
-      profileButton: profileButton,
-      shareButton: shareButton,
-      saveTasksButton: saveTasksButton
+      getButton: getButton
     };
 
     var buttons = {
@@ -37,7 +32,7 @@
         height: 110,
         playOnClick: true,
       },
-      setting: {
+      settings: {
         src: 'images/sprites/btn-settings-sprite.png',
         frames: 31,
         repeat: false,
@@ -71,38 +66,24 @@
         sound: 'sounds/btn_save_tasks.mp3',
         width: 54,
         height: 54,
-        playOnClick: true,
+        playOnClick: true
+      },
+      recomendation: {
+        src: 'images/sprites/btn-recomendation-sprite.png',
+        frames: 37,
+        repeat: false,
+        speed: 60,
+        sound: 'sounds/btn_recomendation.mp3',
+        width: 110,
+        height: 70,
+        playOnClick: true
       }
     };
 
-    function searchButton(callbacks) {
-      var search = addCallbacks(buttons.search, callbacks);
-      return search;
-    }
-
-    function learnButton(callbacks) {
-      var learn = addCallbacks(buttons.learn, callbacks);
-      return learn;
-    }
-
-    function settingButton(callbacks) {
-      var setting = addCallbacks(buttons.setting, callbacks);
-      return setting;
-    }
-
-    function profileButton(callbacks) {
-      var profile = addCallbacks(buttons.profile, callbacks);
-      return profile;
-    }
-
-    function shareButton(callbacks) {
-      var share = addCallbacks(buttons.share, callbacks);
-      return share;
-    }
-
-    function saveTasksButton(callbacks) {
-      var share = addCallbacks(buttons.saveTasks, callbacks);
-      return share;
+    function getButton(options){
+      var btn = buttons[options.key];
+      btn = addCallbacks(btn, options.callbacks);
+      return btn;
     }
 
     function addCallbacks(button, callbacks) {
