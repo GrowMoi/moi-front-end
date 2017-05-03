@@ -1,5 +1,5 @@
-.row.recommended-contents
-  .col.col-50(ng-repeat='content in tasksmodel.contents')
+.row.content_tasks
+  .col.col-50.content(ng-repeat='content in tasksmodel.contents')
     .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
-     img.format-image(ng-src='{{content.media[0]}}')
-     .leyend-bottom {{content.title}}
+      img.format-image(ng-src='{{content.media[0]}}')
+      .leyend-bottom {{content.title}}

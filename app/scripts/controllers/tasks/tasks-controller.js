@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('TasksController', function(){
+  .controller('TasksController', function(UserService){
     var tasksmodel = this;
 
     tasksmodel.tabs = [
@@ -36,5 +36,25 @@
         selected: false
       }
     ];
+    tasksmodel.template = 'templates/tasks/partials/tasks-section.html';
+
+    initData();
+
+    tasksmodel.changeTab = function(field) {
+      angular.forEach(tasksmodel.tabs, function(tab) {
+        if(tab.field === field){
+          tab.selected = true;
+        }else{
+          tab.selected = false;
+        }
+      });
+    };
+
+    function initData() {
+      UserService.getTasks(1).then(function(data) {
+        /*jshint camelcase: false */
+        tasksmodel.contents = data.content_tasks.content_tasks;
+      });
+    }
   });
 })();

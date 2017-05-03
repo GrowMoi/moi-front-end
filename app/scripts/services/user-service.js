@@ -12,7 +12,8 @@
       searchProfiles: searchProfiles,
       uploadTreeImage: uploadTreeImage,
       addTasks: addTasks,
-      recommendedNeuron: recommendedNeuron
+      recommendedNeuron: recommendedNeuron,
+      getTasks: getTasks
     };
 
     var popupOptions = { title: 'Error'};
@@ -91,6 +92,18 @@
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }
+      });
+    }
+
+    function getTasks(page){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/content_tasks',
+        params: {
+          page: page
+        }
+      }).then(function success(res) {
+        return res.data;
       });
     }
 
