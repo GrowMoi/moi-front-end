@@ -1,9 +1,10 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('TasksController', function(UserService){
+  .controller('TasksController', function($scope, UserService){
     var tasksmodel = this;
-
+    tasksmodel.noMoreItemsAvailable = true;
+    tasksmodel.currentPage = 1;
     tasksmodel.tabs = [
       {
         field:'notes',
@@ -52,8 +53,27 @@
 
     function initData() {
       UserService.getTasks(1).then(function(data) {
+        tasksmodel.currentPage += 1;
         /*jshint camelcase: false */
         tasksmodel.contents = data.content_tasks.content_tasks;
+        /*jshint camelcase: false */
+        tasksmodel.totalItems = data.meta.total_items;
+        if(tasksmodel.totalItems > 4){
+          tasksmodel.noMoreItemsAvailable = false;
+          tasksmodel.loadMore = loadMore;
+        }
+      });
+    }
+
+    function loadMore() {
+      UserService.getTasks(tasksmodel.currentPage).then(function(data) {
+        /*jshint camelcase: false */
+        tasksmodel.contents = tasksmodel.contents.concat(data.content_tasks.content_tasks);
+        tasksmodel.currentPage += 1;
+        if ( tasksmodel.contents.length === tasksmodel.totalItems ) {
+          tasksmodel.noMoreItemsAvailable = true;
+        }
+        $scope.$broadcast('scroll.infiniteScrollComplete');
       });
     }
   });

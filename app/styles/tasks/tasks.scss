@@ -36,7 +36,7 @@
         top: 135px;
         left: 35px;
         bottom: 130px;
-        height: 430px;
+        height: 363px;
         padding: 25px;
 
         .tasks-tabs {
@@ -44,11 +44,11 @@
           ion-item{
             background: transparent;
             border-color: transparent;
-            padding: 5px;
+            padding: 3px;
 
             .item-tab{
               background: rgba(136, 139, 74, 0.5);
-              padding: 12px 15px;
+              padding: 8px 25px;
               font-weight: bold;
               border-radius: 5px;
               border: 2px solid #8f9a59;
@@ -64,11 +64,16 @@
           background: url("../images/content_task.png");
           background-repeat: no-repeat;
           background-size: 100% 100%;
+          position: relative;
+          .overflow-scroll {
+            overflow-y: visible;
+          }
           .content_tasks {
-            flex-wrap: wrap;
             padding: 10px;
-            height: 310px;
-            overflow: scroll;
+            .scroll{
+              display: flex;
+              flex-wrap: wrap;
+            }
             .content{
               .content-kind-contents {
                 img {
