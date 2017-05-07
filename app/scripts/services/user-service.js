@@ -13,7 +13,8 @@
       uploadTreeImage: uploadTreeImage,
       addTasks: addTasks,
       recommendedNeuron: recommendedNeuron,
-      getTasks: getTasks
+      getTasks: getTasks,
+      deleteTask: deleteTask
     };
 
     var popupOptions = { title: 'Error'};
@@ -173,5 +174,22 @@
       ModalService.showModel(dialogOptions);
     }
 
+    function deleteTask(content) {
+      /*jshint camelcase: false */
+      var contentId = content.id,
+          neuronId = content.neuron_id;
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/task_update',
+        data: {}
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
   }
 })();

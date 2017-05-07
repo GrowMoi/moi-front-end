@@ -75,12 +75,24 @@
               flex-wrap: wrap;
             }
             .content{
+              position: relative;
               .content-kind-contents {
                 img {
                   object-fit: cover;
                   width: 100%;
                   height: 135px;
                 }
+              }
+              .remove-task {
+                background: url("../images/btn_delete_content.png");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                cursor: pointer;
               }
             }
           }

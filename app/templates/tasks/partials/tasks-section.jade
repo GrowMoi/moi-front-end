@@ -1,5 +1,6 @@
 ion-content.content_tasks
   .col.col-50.content(ng-repeat='content in tasksmodel.contents')
+    .remove-task(ng-click='tasksmodel.removeTask(content)')
     .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
       img.format-image(ng-src='{{content.media[0]}}')
       .leyend-bottom {{content.title}}

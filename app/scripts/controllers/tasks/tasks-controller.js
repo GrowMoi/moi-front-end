@@ -51,6 +51,15 @@
       });
     };
 
+    tasksmodel.removeTask = function(content) {
+      UserService.deleteTask(content).then(function(resp) {
+        if(resp.status === 202){
+          var contentIndex = tasksmodel.contents.indexOf(content);
+          tasksmodel.contents.splice(contentIndex, 1);
+        }
+      });
+    };
+
     function initData() {
       UserService.getTasks(1).then(function(data) {
         tasksmodel.currentPage += 1;
