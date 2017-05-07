@@ -47,6 +47,14 @@
         'description': 'Show your progress on your Facebook timeline or any '+
                         'social media you like, although you can share via '+
                         'mail. Spread the good news!'
+      },
+      tasks: {
+        'my_tasks': 'My Tasks',
+        'notes': 'Notes',
+        'recomendations': 'Recomendations',
+        'tasks': 'Tasks',
+        'notifications': 'Notifications',
+        'favorites': 'Favorites'
       }
     });
 
@@ -138,6 +146,14 @@
         'tittle': 'Muestrale a tus amigos!',
         'description': 'Muestra tu progreso en Facebook, Twitter, '+
                         'Whatsapp o vía email. Comparte las buenas noticias!'
+      },
+      tasks: {
+        'my_tasks': 'Mis Tareas',
+        'notes': 'Notas',
+        'recomendations': 'Recomendaciones',
+        'tasks': 'Tareas',
+        'notifications': 'Notificaciones',
+        'favorites': 'Favoritos'
       }
     });
 

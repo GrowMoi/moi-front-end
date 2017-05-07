@@ -7,7 +7,7 @@ ion-view.frame-all-buttons.tasks(view-title='Tasks')
     .frame.panel-tasks
       .frame-container
         .content-title
-          | {{ ::'searches.friends' | translate }}
+          | {{ ::'tasks.my_tasks' | translate }}
         .divider-line
         .row.content-tasks
           .col-50.tasks-tabs
@@ -20,4 +20,10 @@ ion-view.frame-all-buttons.tasks(view-title='Tasks')
           .col-50.tasks-view
             div(ng-include="tasksmodel.template")
       .btns-options
+        .btn-learn
+        .btn-search-gif
+          animate-sprite(options="tasksmodel.searchOptions")
+        .btn-recomendation-gif
+          animate-sprite(options="tasksmodel.recomendationOptions")
+        .btn-show-tasks
   moi-sidebar
