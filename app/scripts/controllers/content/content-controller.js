@@ -35,12 +35,10 @@
       function onRegisterApi(api) {
         api.onImageSelected(function (urlImage) {
           if (urlImage) {
-            var regex = /\/content_media\/media\/(\d+)\/\w+/g;
-            var imageId = parseInt(regex.exec(urlImage)[1]);
             var params = {
               neuronId: content.neuron_id, //jshint ignore:line
               contentId: content.id,
-              imageId: imageId
+              mediaUrl: urlImage
             };
             ContentService.changeImageStatus(params);
           }

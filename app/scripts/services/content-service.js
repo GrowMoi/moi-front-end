@@ -87,7 +87,7 @@
         method: 'POST',
         url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/media_open',
         data: {
-          media_id: params.imageId //jshint ignore:line
+          media_url: params.mediaUrl //jshint ignore:line
         }
       }).then(function success(res) {
         return res;
