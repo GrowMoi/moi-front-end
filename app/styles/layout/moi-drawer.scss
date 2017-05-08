@@ -89,10 +89,28 @@ drawer.left {
     top: 46%;
   }
 
-  .settings-arbol {
-    top: 399px;
+  .settings-arbol, .settings-img-background {
+    top: 381px;
     width: 210px;
     height: 280px;
-    left: 15px;
+    background-image: url("../images/back-arbol.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .tree{
+      object-fit: cover;
+    }
+  }
+  .view-tree{
+    z-index: -1;
+    width: 15.0rem;
+    height: 19.375rem;
+    .tree{
+      margin-top: -3.96rem;
+      width: 16rem;
+      height: 26rem;
+    }
+  }
+  .settings-img-background{
+    background: transparent;
   }
 }
