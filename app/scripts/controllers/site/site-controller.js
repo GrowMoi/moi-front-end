@@ -77,9 +77,13 @@
             callApiSaveImage = 1;
             ScreenshotService.getImage(elm).then(function(img){
               if (ScreenshotService.validBase64(img)) {
-                UserService.uploadTreeImage(img);
-                imageSaved = true;
-                callApiSaveImage = 0;
+                UserService.uploadTreeImage(img)
+                  .then(function(resp) {
+                    imageSaved = true;
+                    callApiSaveImage = 0;
+                    /*jshint camelcase: false */
+                    $auth.user.tree_image = resp.user.tree_image.url;
+                  });
               }
             });
           }
