@@ -115,8 +115,9 @@
 
     function orderContents(contents, settings, params) {
       var settingsIndex = getMaxMinSettingsIndex(settings);
-      var contentLearnt = filterContentsLearnt(contents, true);
-      var contentNotLearnt = filterContentsLearnt(contents, false);
+      var filterContents = filterContentsLearntAndNotLearnt(contents);
+      var contentLearnt = filterContents.learnt;
+      var contentNotLearnt = filterContents.notLearnt;
 
       var orderOptions = {
         minIndex: settingsIndex.min,
@@ -173,10 +174,20 @@
       return Number.isInteger(value);
     }
 
-    function filterContentsLearnt(contents, learnt) {
-      return contents.filter(function (content) {
-        return content.learnt === learnt;
+    function filterContentsLearntAndNotLearnt(contents) {
+      var learnt = [],
+          notLearnt = [];
+      angular.forEach(contents, function(elm){
+        if (elm.learnt) {
+          learnt.push(elm);
+        }else{
+          notLearnt.push(elm);
+        }
       });
+      return {
+        learnt: learnt,
+        notLearnt: notLearnt
+      };
     }
 
     function getSettingByOrder(settings, order) {

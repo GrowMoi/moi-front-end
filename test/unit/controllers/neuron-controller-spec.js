@@ -5,6 +5,7 @@
     var ctrl,
       $controller,
       $scope,
+      $auth,
       dependencies,
       $rootScope;
 
@@ -16,6 +17,15 @@
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {}
+          }
+        };
         dependencies = {
           $scope: $scope,
           data: {
@@ -24,12 +34,7 @@
               id: 1
             }]
           },
-          user: {
-            id: 1,
-            email: 'admin@example.com',
-            name: 'admin',
-            role: 'admin'
-          },
+          $auth: $auth
         };
 
         ctrl = $controller('NeuronController', dependencies);

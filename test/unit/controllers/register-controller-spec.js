@@ -9,6 +9,7 @@
         $state,
         $ionicPopup,
         deferredStateGo,
+        deferredValidateUser,
         $scope,
         $ionicLoading;
 
@@ -21,12 +22,15 @@
 
       deferredRegister  = $q.defer();
       deferredStateGo   = $q.defer();
+      deferredValidateUser   = $q.defer();
       $ionicPopup       = { alert: sinon.stub() };
       $ionicLoading     = { show: sinon.stub(), hide: sinon.stub()};
       $state            = { go: sinon.stub().returns(deferredStateGo.promise) };
       $auth             = {
         submitRegistration: sinon.stub()
-                          .returns(deferredRegister.promise)
+                          .returns(deferredRegister.promise),
+        validateUser: sinon.stub()
+                          .returns(deferredValidateUser.promise)
       };
       $rootScope = _$rootScope_;
       $scope            = $rootScope.$new();
@@ -51,13 +55,17 @@
       });
 
       describe('when the register is executed,', function() {
-        var successState = 'tree';
-
-        it('if successful, should change state', function() {
+        it('if successful, should call to validateUser', function() {
           deferredRegister.resolve();
           $rootScope.$digest();
+          chai.expect($auth.validateUser.called).to.be.equal(true);
+        });
 
-          sinon.assert.alwaysCalledWithExactly($state.go, successState);
+        it('if successful validateUser, should got to successState', function() {
+          deferredRegister.resolve();
+          deferredValidateUser.resolve();
+          $rootScope.$digest();
+          sinon.assert.alwaysCalledWithExactly($state.go, 'tree');
         });
       });
     });

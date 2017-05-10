@@ -73,9 +73,6 @@
           return NeuronService.getNeuron(id).then(function(data) {
             return data.neuron;
           });
-        },
-        user: function ($auth) {
-          return $auth.validateUser();
         }
       }
     })
@@ -85,19 +82,17 @@
       controllerAs: 'vmContent',
       templateUrl: 'templates/content/content.html',
       resolve: {
-        content: function(NeuronService, $stateParams, ContentService){
-          var contentSelected = {};
-          return NeuronService.getNeuron($stateParams.neuronId).then(function(neuronData) {
-            neuronData.neuron.contents.some(function(content) {
-              if (content.id === $stateParams.contentId){
-                contentSelected = content;
-                return true;
-              }
-            });
-            return ContentService.recommendedContents(contentSelected).then(function(contentsData){
-                  contentSelected.recommended = contentsData.contents;
-                  contentSelected.can_read = neuronData.neuron.can_read;//jshint ignore:line
-                  return contentSelected;
+        content: function($stateParams, ContentService) {
+          var contentSelected = {},
+              params = {
+                neuronId: $stateParams.neuronId,
+                contentId: $stateParams.contentId
+              };
+          return ContentService.getContent(params).then(function(data) {
+            contentSelected = data.content;
+            return ContentService.recommendedContents(contentSelected).then(function(contentsData) {
+              contentSelected.recommended = contentsData.contents;
+              return contentSelected;
             });
           });
         }

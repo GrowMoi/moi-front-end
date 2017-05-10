@@ -10,7 +10,8 @@
       readContent: readContent,
       addNotesToContent: addNotesToContent,
       recommendedContents: recommendedContents,
-      changeImageStatus: changeImageStatus
+      changeImageStatus: changeImageStatus,
+      getContent: getContent
     };
     var popupOptions = { title: 'Error'};
 
@@ -97,6 +98,20 @@
           PopupService.showModel('alert', popupOptions);
         }
         return err;
+      });
+    }
+
+    function getContent(params) {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/neurons/' + params.neuronId + '/contents/' + params.contentId
+      }).then(function success(res) {
+        return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
       });
     }
   }
