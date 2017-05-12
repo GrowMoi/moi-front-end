@@ -51,6 +51,13 @@
         }
       });
 
+      vmContent.showTasksOptions = AnimationService.getButton({
+        key: 'showTasks',
+        callbacks: {
+          finishedAnimation: finishedAnimationShowTasks
+        }
+      });
+
       var dialogContentModel = {
         message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
         modalCallbak: modalCallbak,
@@ -125,6 +132,10 @@
             });
           }
         });
+      }
+
+      function finishedAnimationShowTasks() {
+        $state.go('tasks');
       }
 
       function showCanReadModal() {

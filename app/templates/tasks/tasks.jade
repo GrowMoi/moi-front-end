@@ -1,0 +1,29 @@
+ion-view.frame-all-buttons.tasks(view-title='Tasks')
+  ion-content
+    moi-sound(sound="sounds/read_content.mp3" background-sound="true")
+    back-button.arrow.back-arrow
+    .flecha-sidebar(ng-click="toggleDrawer()")
+      img(src="images/flecha_1.png")
+    .frame.panel-tasks
+      .frame-container
+        .content-title
+          | {{ ::'tasks.my_tasks' | translate }}
+        .divider-line
+        .row.content-tasks
+          .col-50.tasks-tabs
+            ion-list(no-lines)
+              ion-item(ng-repeat="tab in tasksmodel.tabs")
+                .item-tab(ng-class="{'tab-selected': tab.selected }", ng-click="tasksmodel.changeTab(tab.field)")
+                  img(src="{{tab.image}}")
+                  span
+                    | {{::tab.name}}
+          .col-50.tasks-view
+            div(ng-include="tasksmodel.template")
+      .btns-options
+        .btn-learn
+        .btn-search-gif
+          animate-sprite(options="tasksmodel.searchOptions")
+        .btn-recomendation-gif
+          animate-sprite(options="tasksmodel.recomendationOptions")
+        .btn-show-tasks
+  moi-sidebar

@@ -22,6 +22,18 @@
   cursor: pointer;
 }
 
+.btn-show-tasks {
+  position: fixed;
+  bottom: 6px;
+  right: 57%;
+  min-width: 10%;
+  min-height: 10%;
+  background-image: url(../images/btn-show-tasks.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
 .btn-learn-gif {
   position: fixed;
   bottom: -5px;
@@ -59,6 +71,13 @@
   position: fixed;
   bottom: 11px;
   right: 475px;
+  cursor: pointer;
+}
+
+.btn-show-tasks-gif {
+  position: fixed;
+  bottom: 0px;
+  right: 740px;
   cursor: pointer;
 }
 

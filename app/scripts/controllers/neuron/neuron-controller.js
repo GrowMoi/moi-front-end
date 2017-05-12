@@ -70,6 +70,13 @@
           finishedAnimation: finishedAnimationsaveTasks
         }
       });
+
+      vmNeuron.showTasksOptions = AnimationService.getButton({
+        key: 'showTasks',
+        callbacks: {
+          finishedAnimation: finishedAnimationShowTasks
+        }
+      });
     }
 
     init();
@@ -102,6 +109,10 @@
     function finishedAnimationRecomendation() {
       var id = $state.params.neuronId;
       UserService.recommendedNeuron(id);
+    }
+
+    function finishedAnimationShowTasks() {
+      $state.go('tasks');
     }
 
     function onSelectItem(content) {

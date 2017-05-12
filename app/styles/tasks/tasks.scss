@@ -1,0 +1,115 @@
+.tasks {
+  background-color: transparent;
+
+  .panel-tasks {
+
+    .frame-container {
+      position: relative;
+      background-repeat: no-repeat;
+      background-image: url("../images/caja_M.png");
+      background-size: 100% 100%;
+
+      .content-title {
+        position: relative;
+        color: #4A4B21;
+        font-size: 45px;
+        font-weight: bold;
+        font-family: FontMoi-Title;
+        left: 115px;
+        top: 75px;
+      }
+
+      .divider-line {
+        position: absolute;
+        background: url("../images/linea_separacionM.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 87%;
+        height: 5px;
+        top: 120px;
+        left: 110px;
+      }
+
+      .content-tasks {
+        position: absolute;
+        width: 92%;
+        top: 135px;
+        left: 35px;
+        bottom: 130px;
+        height: 363px;
+        padding: 25px;
+
+        .tasks-tabs {
+
+          ion-item{
+            background: transparent;
+            border-color: transparent;
+            padding: 3px;
+
+            .item-tab{
+              background: rgba(136, 139, 74, 0.5);
+              padding: 8px 25px;
+              font-weight: bold;
+              border-radius: 5px;
+              border: 2px solid #8f9a59;
+              cursor: pointer;
+              color: #4A4B21;
+              font-size: 27px;
+              font-family: FontMoi-Title;
+              span{
+                padding-left: 20px;
+              }
+              img{
+                vertical-align: sub
+              }
+            }
+            .tab-selected {
+              background: rgba(123, 121, 76, 0.62);
+            }
+          }
+        }
+
+        .tasks-view {
+          background: url("../images/content_task.png");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          position: relative;
+          .overflow-scroll {
+            overflow-y: visible;
+          }
+          .content_tasks {
+            padding: 10px;
+            .scroll{
+              display: flex;
+              flex-wrap: wrap;
+            }
+            .content{
+              position: relative;
+              .content-kind-contents {
+                img {
+                  object-fit: cover;
+                  width: 100%;
+                  height: 135px;
+                }
+                .leyend-bottom {
+                  font-family: futura;
+                }
+              }
+              .remove-task {
+                background: url("../images/btn_delete_content.png");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
