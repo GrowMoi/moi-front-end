@@ -37,6 +37,11 @@
   bottom: 0px;
   right: 740px;
   cursor: pointer;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
 }
 
 .btn-search-gif {

@@ -1,5 +1,5 @@
 .btns-options
-  .btn-show-tasks-gif(ng-if="vm.buttons.showTasks")  
+  .btn-show-tasks-gif(ng-if="vm.buttons.showTasks" ng-class="{disabled: vm.buttons.showTasks.disabled}")  
     animate-sprite(options="vm.showTasksOptions")
     
   .btn-search-gif(ng-if="vm.buttons.search")

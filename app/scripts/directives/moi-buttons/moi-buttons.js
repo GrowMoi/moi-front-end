@@ -70,6 +70,8 @@
         //idle Animations
         idleBtns = idleBtnsActive(vm.buttons);
         vm.activeIdle = false;
+
+        getButtons();
       }
 
       init();
@@ -107,76 +109,78 @@
         vm.content = content;
       }
 
-      vm.searchOptions = AnimationService.getButton({
-        key: 'search',
-        callbacks: {
-          finishedAnimation: finishedAnimationSearch
-        }
-      });
-
-      vm.recomendationOptions = AnimationService.getButton({
-        key: 'recomendation',
-        callbacks: {
-          finishedAnimation: finishedAnimationRecomendation
-        }
-      });
-
-      vm.learnOptions = AnimationService.getButton({
-        key: 'learn',
-        callbacks: {
-          finishedAnimation: finishedAnimationRead
-        }
-      });
-
-      vm.shareOptions = AnimationService.getButton({
-        key: 'share',
-        callbacks: {
-          finishedAnimation: finishedAnimationShare
-        }
-      });
-
-      vm.saveTasksOptions = AnimationService.getButton({
-        key: 'saveTasks',
-        callbacks: {
-          finishedAnimation: finishedAnimationsaveTasks
-        }
-      });
-
-      vm.showTasksOptions = AnimationService.getButton({
-        key: 'showTasks',
-        callbacks: {
-          finishedAnimation: finishedAnimationShowTasks
-        }
-      });
-
-      //idle Animations
-
-      vm.searchIdleOptions = AnimationService.getButton({
-        key: 'searchIdle',
-        callbacks: {
-          finishedAnimation: function(){
-            animateNextBtn();
+      function getButtons() {
+        vm.searchOptions = AnimationService.getButton({
+          key: 'search',
+          callbacks: {
+            finishedAnimation: finishedAnimationSearch
           }
-        }
-      });
+        });
 
-      vm.recomendationIdleOptions = AnimationService.getButton({
-        key: 'recomendationIdle',
-        callbacks: {
-          finishedAnimation: function(){
-            animateNextBtn();
+        vm.recomendationOptions = AnimationService.getButton({
+          key: 'recomendation',
+          callbacks: {
+            finishedAnimation: finishedAnimationRecomendation
           }
-        }
-      });
+        });
 
-      vm.learnIdleOptions = AnimationService.getButton({
-        key: 'learnIdle',
-        callbacks: {
-          finishedAnimation: function(){
-            animateNextBtn();
+        vm.learnOptions = AnimationService.getButton({
+          key: 'learn',
+          callbacks: {
+            finishedAnimation: finishedAnimationRead
           }
-        }
-      });
+        });
+
+        vm.shareOptions = AnimationService.getButton({
+          key: 'share',
+          callbacks: {
+            finishedAnimation: finishedAnimationShare
+          }
+        });
+
+        vm.saveTasksOptions = AnimationService.getButton({
+          key: 'saveTasks',
+          callbacks: {
+            finishedAnimation: finishedAnimationsaveTasks
+          }
+        });
+
+        vm.showTasksOptions = AnimationService.getButton({
+          key: 'showTasks',
+          callbacks: {
+            finishedAnimation: finishedAnimationShowTasks
+          }
+        });
+
+        //idle Animations
+
+        vm.searchIdleOptions = AnimationService.getButton({
+          key: 'searchIdle',
+          callbacks: {
+            finishedAnimation: function(){
+              animateNextBtn();
+            }
+          }
+        });
+
+        vm.recomendationIdleOptions = AnimationService.getButton({
+          key: 'recomendationIdle',
+          callbacks: {
+            finishedAnimation: function(){
+              animateNextBtn();
+            }
+          }
+        });
+
+        vm.learnIdleOptions = AnimationService.getButton({
+          key: 'learnIdle',
+          callbacks: {
+            finishedAnimation: function(){
+              animateNextBtn();
+            }
+          }
+        });
+      }
 
       function animateNextBtn() {
         if (vm.externalAnimationIdle) {

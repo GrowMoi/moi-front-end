@@ -1,23 +1,22 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('TasksController', function($scope, $state, UserService, AnimationService){
+  .controller('TasksController', function($scope, UserService){
     var tasksmodel = this;
     tasksmodel.noMoreItemsAvailable = true;
     tasksmodel.currentPage = 1;
-    tasksmodel.searchOptions = AnimationService.getButton({
-      key: 'search',
-      callbacks: {
-        finishedAnimation: finishedAnimationSearch
+    tasksmodel.buttonsOptions = {
+      neuron: {},
+      content: {},
+      buttons: {
+        search: true,
+        recomendation: true,
+        showTasks: {
+          disabled: true
+        }
       }
-    });
+    };
 
-    tasksmodel.recomendationOptions = AnimationService.getButton({
-      key: 'recomendation',
-      callbacks: {
-        finishedAnimation: finishedAnimationRecomendation
-      }
-    });
     tasksmodel.tabs = [
       {
         field:'notes',
@@ -99,13 +98,5 @@
       });
     }
 
-    function finishedAnimationSearch() {
-      $state.go('searches');
-    }
-
-    function finishedAnimationRecomendation() {
-      var id = $state.params.neuronId;
-      UserService.recommendedNeuron(id);
-    }
   });
 })();

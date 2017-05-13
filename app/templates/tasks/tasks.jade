@@ -19,11 +19,6 @@ ion-view.frame-all-buttons.tasks(view-title='Tasks')
                     | {{::tab.name}}
           .col-50.tasks-view
             div(ng-include="tasksmodel.template")
-      .btns-options
-        .btn-learn
-        .btn-search-gif
-          animate-sprite(options="tasksmodel.searchOptions")
-        .btn-recomendation-gif
-          animate-sprite(options="tasksmodel.recomendationOptions")
-        .btn-show-tasks
+      moi-buttons(options="tasksmodel.buttonsOptions")
+      .btn-learn
   moi-sidebar
