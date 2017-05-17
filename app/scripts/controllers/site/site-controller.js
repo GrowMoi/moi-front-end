@@ -13,6 +13,7 @@
                           UserService,
                           $timeout,
                           $state,
+                          $scope,
                           IMAGES,
                           SOUNDS) {
 
@@ -93,5 +94,6 @@
         callApiSaveImage = 0;
       }
     });
+
   }
 })();

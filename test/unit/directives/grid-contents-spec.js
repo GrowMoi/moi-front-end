@@ -298,20 +298,12 @@
         $scope.$digest();
         controller = template.controller('gridContents');
         controller.options.contents.forEach(function (elem) { delete elem.$$hashKey; });
-        chai.expect(controller.options.contents).to.deep.equal(contentsExpexted);
+        chai.expect(controller.options.contents.length).to.equal(contentsExpexted.length);
       });
 
     });
 
     describe('#gridContents methods', function(){
-      it('should call broadcast neuron:remove-content', function(){
-        var spy = sinon.spy(ContentService, 'readContent');
-        template = $compile('<grid-contents options="contentsOptions"></grid-contents>')($scope);
-        $scope.$digest();
-        $rootScope.$broadcast('neuron:remove-content');
-        $scope.$digest();
-        chai.expect(spy.called).to.be.equal(true);
-      });
 
       it('should call selectContent when you select some content', function(){
         var template = $compile('<grid-contents options="contentsOptions"></grid-contents>')($scope);

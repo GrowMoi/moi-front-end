@@ -3,49 +3,22 @@
 
   angular.module('moi.controllers')
   .controller('ProfileEditController', function (user,
-                                                $auth,
                                                 $ionicPopup,
                                                 $state,
-                                                UserService,
-                                                AnimationService) {
+                                                UserService) {
 
     var vmProfileEdit = this;
     vmProfileEdit.user = user;
     vmProfileEdit.editProfile = editProfile;
-
-    vmProfileEdit.searchOptions = AnimationService.getButton({
-      key: 'search',
-      callbacks: {
-        finishedAnimation: finishedAnimationSearch
+    vmProfileEdit.buttonsOptions = {
+      neuron: {},
+      content: {},
+      buttons: {
+        search: true,
+        recomendation: true,
+        showTasks: true
       }
-    });
-
-    vmProfileEdit.recomendationOptions = AnimationService.getButton({
-      key: 'recomendation',
-      callbacks: {
-        finishedAnimation: finishedAnimationRecomendation
-      }
-    });
-
-    vmProfileEdit.showTasksOptions = AnimationService.getButton({
-      key: 'showTasks',
-      callbacks: {
-        finishedAnimation: finishedAnimationShowTasks
-      }
-    });
-
-    function finishedAnimationSearch() {
-      $state.go('searches');
-    }
-
-    function finishedAnimationRecomendation() {
-      var id = $state.params.neuronId;
-      UserService.recommendedNeuron(id);
-    }
-
-    function finishedAnimationShowTasks() {
-      $state.go('tasks');
-    }
+    };
 
     function editProfile(){
       UserService.updateProfile(vmProfileEdit.user)

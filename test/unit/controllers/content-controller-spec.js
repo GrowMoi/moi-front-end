@@ -151,33 +151,6 @@
         chai.expect(spy.called).to.be.equal(true);
       });
 
-      it('readContent should call ContentService.readContent', function(){
-        var spy = sinon.spy(ContentService, 'readContent');
-        ctrl.finishedAnimationRead();
-        chai.expect(spy.called).to.be.equal(true);
-      });
-
-    });
-
-    describe('Can read content', function(){
-
-      it('should show a dialog', function(){
-        var modalSpy = sinon.spy(ModalService, 'showModel');
-        var args = {
-          parentScope: $scope,
-          templateUrl: 'templates/partials/modal-alert-content.html',
-          model: {
-            message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
-            modalCallbak: sinon.match.func,
-            type: 'confirm',
-            btnOkLabel: 'Seguir leyendo',
-            btnCancelLabel: 'Regresar a mi arbol'
-          }
-        };
-        ctrl.showCanReadModal();
-        sinon.assert.calledWith(modalSpy, args);
-      });
-
     });
 
   });

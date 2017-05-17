@@ -13,10 +13,11 @@
     'videosharing-embed',
     'ionic.contrib.drawer',
     'dragularModule',
-    '720kb.socialshare'
+    '720kb.socialshare',
+    'ngIdle'
   ])
 
-  .run(function($ionicPlatform) {
+  .run(function($ionicPlatform, Idle) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -30,9 +31,15 @@
         StatusBar.styleLightContent();
       }
     });
+    Idle.watch();
   })
 
-  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, IdleProvider, KeepaliveProvider) {
+    // configure Idle settings
+    IdleProvider.idle(12); // in seconds
+    IdleProvider.timeout(3600); // in seconds
+    KeepaliveProvider.interval(10); // in seconds
+
     $httpProvider.interceptors.push(function(InterceptorService){
       return {
         responseError: InterceptorService.responseError,

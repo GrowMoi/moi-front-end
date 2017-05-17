@@ -56,8 +56,9 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
     position: relative;
   }
 
-  .overlay-read {
+  .overlay {
     position: absolute;
+    overflow: hidden;
     top: 0;
     bottom: 0;
     right: 0;

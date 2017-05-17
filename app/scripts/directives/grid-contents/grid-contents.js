@@ -24,20 +24,58 @@
                           $http,
                           $state,
                           $filter,
-                          ContentService,
-                          TestService,
-                          SocialService){
+                          AnimationService){
 
-    var vm = this;
+    var vm = this,
+        indexContentActiveIdle = 0,
+        arrayElements = [],
+        emitters = {
+          finishedAnimation: null
+        };
+
     vm.selectContent = selectContent;
     vm.sendContent = sendContent;
+    vm.activeIdle = false;
 
     init();
 
     function init(){
       vm.options.contents = filterContents(vm.options.contents);
+      vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
       buildGrid(vm.options.contents);
+
+      if (vm.options.onRegisterApi) {
+        var api = createPublicApi();
+        vm.options.onRegisterApi(api);
+      }
     }
+
+    // Api
+    function createPublicApi() {
+      return {
+        activeAnimation: activeAnimation,
+        finishedAnimation: finishedAnimation
+      };
+    }
+
+    function finishedAnimation(cb){
+      emitters.finishedAnimation = cb;
+    }
+
+    function activeAnimation() {
+      if (arrayElements.length === 0) {
+        emitters.finishedAnimation();
+        return;
+      }
+      if (arrayElements.length === 1) {
+        $scope.$apply(function() {
+          vm.contentsShown[indexContentActiveIdle].animated = true; //init
+        });
+      } else {
+        loopAnimations();
+      }
+    }
+    // end Api
 
     function filterContents(contents) {
       var newContents = contents.filter(function (content) {
@@ -228,23 +266,27 @@
     }
 
     function buildGrid(contents){
-      vm.firstRow = contents.slice(0,2);
-      vm.secondRow = contents.slice(2,5);
+      var copyContents = angular.copy(contents),
+          firstRow = copyContents.slice(0,2),
+          secondRow = copyContents.slice(2,5);
 
-      if (vm.firstRow.length > 0) {
-        selectContent(vm.firstRow[0]);
+      if (firstRow.length > 0) {
+        selectContent(firstRow[0]);
       }
 
       vm.rowsGrid = {
         'firstRow': {
           'class': 'col-first',
-          'items': vm.firstRow
+          'items': firstRow
         },
         'secondRow': {
           'class': 'col-second',
-          'items': vm.secondRow
+          'items': secondRow
         }
       };
+
+      vm.contentsShown = firstRow.concat(secondRow);
+      arrayElements = Array(vm.contentsShown.length);// jshint ignore:line
     }
 
     function sendContent(neuronId, contentId){
@@ -255,25 +297,80 @@
 
     /*if a content was reading by a user should be remove of grid*/
     $scope.$on('neuron:remove-content', function(){
-      ContentService.readContent(vm.contentSelected).then(function(response){
-        /*jshint camelcase: false */
-        var index = vm.options.contents.indexOf(vm.contentSelected);
-        vm.options.contents.splice(index, 1);
-        buildGrid(vm.options.contents);
-        if (response.data.perform_test) {
-          TestService.goTest($scope, response.data.test);
-        }
-      });
+      /*jshint camelcase: false */
+      var index = getIndex(vm.options.contents, vm.contentSelected);
+      vm.options.contents.splice(index, 1);
+      buildGrid(vm.options.contents);
     });
 
-    $scope.$on('neuron:share-content', function(){
-      var data = {
-        title: vm.contentSelected.title,
-        media: vm.contentSelected.media[0],
-        description: vm.contentSelected.description
-      };
-      SocialService.showModal(data);
+    function getIndex(contents, selectContent){
+      var indexFound = 0;
+      angular.forEach(contents, function(content, index){
+        if (content.id === selectContent.id) {
+          indexFound = index;
+        }
+      });
+      return indexFound;
+    }
+
+    ///idle Animations
+
+    vm.overlayOptions = AnimationService.getButton({
+      key: 'overlay',
+      callbacks: {
+        finishedAnimation: function(){
+          if (vm.externalAnimationIdle) {
+            if (arrayElements.length === 1) {
+              $scope.$apply(function() {
+                vm.contentsShown[indexContentActiveIdle].animated = false; //reset
+              });
+            }
+            emitters.finishedAnimation();
+          }else{
+            loopAnimations();
+          }
+        }
+      }
     });
+
+    function loopAnimations() {
+      var num = randomActiveContent(arrayElements, indexContentActiveIdle);
+      $scope.$apply(function() {
+        vm.contentsShown[indexContentActiveIdle].animated = false;
+        vm.contentsShown[num].animated = true;
+        indexContentActiveIdle = num;
+      });
+    }
+
+    function randomActiveContent(elements, index) {
+      var size = elements.length;
+      if (size !== 1) {
+        var num = randomElement(elements);
+        return (num === index) ? randomActiveContent(elements, index) : num;
+      }else{
+        return index;
+      }
+    }
+
+    function randomElement(arrayElements) {
+      return Math.floor(Math.random() * arrayElements.length);
+    }
+
+    function runOrCancelAnimation(active) {
+      vm.activeIdle = active;
+      if (!vm.externalAnimationIdle) {
+        vm.contentsShown[indexContentActiveIdle].animated = active;
+      }
+    }
+
+    $scope.$on('IdleStart', function() {
+      runOrCancelAnimation(true);
+    });
+
+    $scope.$on('IdleEnd', function() {
+      runOrCancelAnimation(false);
+    });
+
   }
 
 })();
