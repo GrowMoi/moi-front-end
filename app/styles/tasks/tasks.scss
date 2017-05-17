@@ -78,6 +78,21 @@
             overflow-y: visible;
           }
 
+          .content_tasks::-webkit-scrollbar-track {
+            border-radius: 10px;
+            border: 1px solid rgba(123, 121, 76, 0.62);
+            width: 5px;
+          }
+          .content_tasks::-webkit-scrollbar {
+            width: 5px;
+            background-color: transparent;
+            border-radius: 10px;
+          }
+          .content_tasks::-webkit-scrollbar-thumb {
+            border-radius: 25px;
+            background-color: rgba(123, 121, 76, 0.62);
+          }
+
           .content_tasks {
             padding: 10px;
             .scroll{
@@ -108,13 +123,7 @@
                 cursor: pointer;
               }
             }
-          }
-          .content_notes {
-            padding: 10px;
-            .scroll {
-              display: flex;
-              flex-wrap: wrap;
-            }
+
             .note {
               position: relative;
               background: url("../images/note_content.png");

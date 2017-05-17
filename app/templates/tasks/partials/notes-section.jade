@@ -1,6 +1,5 @@
-ion-content.content_notes
+ion-content.content_tasks
   .row.note(ng-repeat='note in tasksmodel.notes')
-    .remove-task(ng-click='tasksmodel.removeNotes(note)')
     .text-notes(ui-sref="content({neuronId: note.neuron_id, contentId: note.content_id})")
       | {{note.note}}
   ion-infinite-scroll(ng-if='!tasksmodel.noMoreItemsAvailable', on-infinite='tasksmodel.loadMoreNotes()', distance='10%')
