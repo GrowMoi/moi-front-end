@@ -51,7 +51,7 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost: 'http://moi-backend.shiriculapo.com',
+          apiHost: 'http://moi-backend.growmoi.com',
           fcbKey: process.env.FACEBOOK_KEY
         },
         IMAGES: {
