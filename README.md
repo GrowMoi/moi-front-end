@@ -61,12 +61,11 @@ if you're running protractor locally, make sure you are also running the [backen
 
 ### for ios emulate install
 
-- npm install -g ios-sim
+    $ npm install -g ios-sim
 
 ### deploying
 
-- `npm install -g pm2`
-- `./deploy.bash production`
+    $ bundle exec cap production deploy
 
 ### resources
 
