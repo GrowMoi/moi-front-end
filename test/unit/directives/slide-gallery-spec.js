@@ -41,9 +41,10 @@
     );
     beforeEach(function(){
       $scope.images = [{ url: 'youtube.com',thumbnail: 'youtube.com/img0.png' }, '../images/content.jpg', '../images/neuron.png'];
+      $scope.options = {};
       $scope.itemPerSlide = 2;
 
-      template = $compile('<slide-gallery images="images" item-per-slide="{{itemPerSlide}}"></slide-gallery>')($scope);
+      template = $compile('<slide-gallery images="images" options="options" item-per-slide="{{itemPerSlide}}"></slide-gallery>')($scope);
 
       $scope.$digest();
 

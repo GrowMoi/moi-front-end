@@ -35,7 +35,7 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
               .row.border-bottom
                 .content-subtitle-gallery {{ ::'content.max.media' | translate }}
               .row
-                slide-gallery(images='vmContent.media', item-per-slide='4')
+                slide-gallery(images='vmContent.media', options="vmContent.slideGalleryOptions" item-per-slide='4')
             .corner.gallery-TR
           .row
             .col.recomended-margin-top

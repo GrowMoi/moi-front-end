@@ -11,7 +11,8 @@
       templateUrl: 'templates/directives/slide-gallery/slide-gallery.html',
       scope: {
         itemPerSlide: '@',
-        images: '='
+        images: '=',
+        options: '='
       },
       controller: slideGalleryController,
       controllerAs: 'vmSlide',
@@ -29,6 +30,27 @@
     vmSlide.previous = previous;
     vmSlide.isImage = isImage;
     vmSlide.setImageForVideo = setImageForVideo;
+
+    var emitters = {};
+
+    loadApi();
+
+    function loadApi() {
+      if (angular.isFunction(vmSlide.options.onRegisterApi)) {
+        var api = getPublicApi();
+        vmSlide.options.onRegisterApi(api);
+      }
+    }
+
+    function getPublicApi() {
+      return {
+        onImageSelected: onImageSelected
+      };
+    }
+
+    function onImageSelected(cb) {
+      emitters.onImageSelectedCb = cb;
+    }
 
     function createGroupedArray(arr, chunkSize) {
       var groups = [], i;
@@ -54,6 +76,11 @@
                 parentScope: $scope,
                 templateUrl: 'templates/partials/modal-image.html',
                 model: modelData});
+
+      if (angular.isFunction(emitters.onImageSelectedCb)) {
+        emitters.onImageSelectedCb(url);
+      }
+
     }
 
     // Called each time the slide changes

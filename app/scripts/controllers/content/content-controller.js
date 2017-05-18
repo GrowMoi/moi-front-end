@@ -27,6 +27,23 @@
             showTasks: true
           }
         };
+        vmContent.slideGalleryOptions = {
+          onRegisterApi: onRegisterApi
+        };
+      }
+
+      function onRegisterApi(api) {
+        api.onImageSelected(function (urlImage) {
+          if (urlImage) {
+            var params = {
+              neuronId: content.neuron_id, //jshint ignore:line
+              contentId: content.id,
+              mediaUrl: urlImage
+            };
+            ContentService.changeImageStatus(params);
+          }
+
+        });
       }
 
       function showImage(urlImage) {
