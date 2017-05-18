@@ -9,12 +9,8 @@ set :npm_flags, '--silent --no-progress'
 
 set :branch, ENV['BRANCH'] || 'master'
 
-# set :nvm_node_path, -> {
-#   [
-#     "#{fetch(:nvm_path)}/#{fetch(:nvm_node)}", "#{fetch(:nvm_path)}/versions/node/#{fetch(:nvm_node)}",
-#     fetch(:rbenv_path)
-#   ]
-# }
+set :bundle_path, -> { shared_path.join('vendor/bundle') }
+
 set :npm_env_variables, {
   PATH: "#{fetch(:rbenv_path)}/shims:$PATH"
 }
@@ -43,7 +39,7 @@ append :linked_files, '.env'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads', 'node_modules'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads', 'node_modules', 'app/bower_components'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
