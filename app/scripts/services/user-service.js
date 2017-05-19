@@ -14,7 +14,8 @@
       addTasks: addTasks,
       recommendedNeuron: recommendedNeuron,
       getTasks: getTasks,
-      deleteTask: deleteTask
+      deleteTask: deleteTask,
+      getNotes: getNotes
     };
 
     var popupOptions = { title: 'Error'};
@@ -100,6 +101,18 @@
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/users/content_tasks',
+        params: {
+          page: page
+        }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function getNotes(page){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/content_notes',
         params: {
           page: page
         }
