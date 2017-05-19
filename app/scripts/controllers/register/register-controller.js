@@ -19,7 +19,9 @@
       });
       $auth.submitRegistration(registerModel.registerForm)
         .then(function() {
-          $state.go('tree');
+          $auth.validateUser().then(function(){
+            $state.go('tree');
+          });
         })
         .catch(function (resp) {
           $ionicPopup.alert({

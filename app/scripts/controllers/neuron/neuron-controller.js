@@ -3,7 +3,10 @@
 
   angular.module('moi.controllers')
   .controller('NeuronController',
-    function (user, data, $scope, $timeout) {
+    function (data,
+              $scope,
+              $timeout,
+              $auth) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -31,7 +34,7 @@
 
       vmNeuron.contentsOptions = {
         contents: vmNeuron.neuron.contents,
-        settings: user.content_preferences,
+        settings: $auth.user.content_preferences,
         maxLevel: 3,
         minLevel: 1,
         onSelect: onSelectItem,
