@@ -23,7 +23,7 @@
             email: 'admin@example.com',
             name: 'admin',
             role: 'admin',
-            content_preferences: {}
+            content_preferences: {}//jshint ignore:line
           }
         };
         dependencies = {
