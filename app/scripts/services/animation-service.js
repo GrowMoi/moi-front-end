@@ -27,6 +27,7 @@
         frames: 37,
         repeat: false,
         speed: 50,
+        sound: 'sounds/btn_recomendation.mp3',
         width: 106,
         height: 70,
         playOnClick: true
