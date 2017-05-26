@@ -195,6 +195,13 @@
       controllerAs: 'tasksmodel',
       templateUrl: 'templates/tasks/tasks.html',
       cache: false
+    })
+    .state('inventory', {
+      url: '/inventory',
+      controller: 'InventoryController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/inventory/inventory.html',
+      cache: false
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

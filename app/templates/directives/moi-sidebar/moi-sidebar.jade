@@ -8,7 +8,7 @@ drawer(side="left")
       animate-sprite.rueda(options="vm.settingOptions")
     .settings-tutor
       img(src="images/tutorh.png")
-    .settings-inventario
+    .settings-inventario(ui-sref="inventory()")
       img(src="images/inventarioh.png")
     .settings-arbol.view-tree(ng-if="vm.user.tree_image")
       img.tree(src="{{vm.user.tree_image}}")
