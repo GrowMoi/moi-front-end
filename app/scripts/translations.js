@@ -140,7 +140,8 @@
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',
-        'current-photo': 'Foto Actual'
+        'current-photo': 'Foto Actual',
+        'items': 'items'
       },
       social: {
         'tittle': 'Muestrale a tus amigos!',
