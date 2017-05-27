@@ -123,6 +123,16 @@
         width: 600,
         height: 300,
         playOnClick: false
+      },
+      inventory: {
+        src: 'images/sprites/btn-inventory-sprite.png',
+        frames: 30,
+        repeat: false,
+        speed: 50,
+        sound: 'sounds/btn_inventory.mp3',
+        width: 100,
+        height: 60,
+        playOnClick: true
       }
     };
 
