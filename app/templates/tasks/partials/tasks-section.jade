@@ -3,5 +3,5 @@ ion-content.content_tasks
     .remove-task(ng-if="content.learnt" ng-click='tasksmodel.removeTask(content)')
     .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
       img.format-image(ng-src='{{content.media[0]}}')
-      .leyend-bottom {{content.title}}
+      .leyend-bottom(ellipsis-title='', height='45', title='content.title') 
   ion-infinite-scroll(ng-if='!tasksmodel.noMoreItemsAvailable', on-infinite='tasksmodel.loadMoreTasks()', distance='10%')

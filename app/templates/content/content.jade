@@ -45,7 +45,7 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
                 .col.col-50(ng-repeat='content in vmContent.content.recommended')
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
                    img.format-image(ng-src='{{content.media[0]}}')
-                   .leyend-bottom {{content.title}}
+                   .leyend-bottom(ellipsis-title='', height='50', title='content.title')
             .corner.recomended-TR
           .row
             .col.links-margin-top
