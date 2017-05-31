@@ -2,9 +2,9 @@
   'use strict';
   angular.module('moi.controllers')
     .controller('InventoryController', function() {
-      var vm = this;
+      var vmInv = this;
 
-      vm.buttonsOptions = {
+      vmInv.buttonsOptions = {
         neuron: null,
         content: null,
         buttons: {
@@ -16,5 +16,6 @@
           showTasks: true
         }
       };
+      vmInv.medalsByTab = Array(12); //jshint ignore:line
     });
 })();

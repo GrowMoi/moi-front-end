@@ -43,11 +43,7 @@
         align-items: flex-end;
         justify-content: center;
 
-        .tabs-grid {
-
-        }
-
-        .squares {
+        .gridWrapper {
           background: url("../images/inventory/grid.png");
           background-repeat: no-repeat;
           background-size: 100% 100%;
@@ -55,6 +51,20 @@
           height: 200px;
           bottom: 0;
           margin-bottom: 10px;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 15px 20px 15px 25px;
+
+          .cell {
+            display: flex;
+            justify-content: center;
+            flex: 0 0 16.6%;
+
+            img {
+              width: 90px;
+              height: 80px;
+            }
+          }
         }
       }
     }

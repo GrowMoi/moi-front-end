@@ -11,6 +11,8 @@ ion-view.frame-all-buttons.inventory-section(view-title='Inventario')
             span.sign {{ ::'titles.items' | translate }}
           .inventory-grid
             .tabs-grid
-            .squares
-      moi-buttons(options="vm.buttonsOptions")
+            .gridWrapper
+              .cell(ng-repeat="cell in vmInv.medalsByTab track by $index")
+                img(src="images/inventory/medals/medal1.png")
+      moi-buttons(options="vmInv.buttonsOptions")
   moi-sidebar

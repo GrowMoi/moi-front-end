@@ -199,7 +199,7 @@
     .state('inventory', {
       url: '/inventory',
       controller: 'InventoryController',
-      controllerAs: 'vm',
+      controllerAs: 'vmInv',
       templateUrl: 'templates/inventory/inventory.html',
       cache: false
     });
