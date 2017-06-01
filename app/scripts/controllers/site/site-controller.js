@@ -11,6 +11,7 @@
                           PreloadAssets,
                           ScreenshotService,
                           UserService,
+                          UserNotificationsService,
                           $timeout,
                           $state,
                           $scope,
@@ -22,6 +23,8 @@
         sounds = SOUNDS.paths,
         imageSaved = false,
         callApiSaveImage = 0;
+
+    UserNotificationsService.initialize();
 
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
