@@ -13,7 +13,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                 img(src="images/user.png")
               .user-name.col
                 {{vmProfile.user.name}}
-            .btns.col-20 
+            .btns.col-20
               .btn-profile(ng-if="vmProfile.isCurrentUser" ui-sref="profileEdit")
                 {{ ::'buttons.edit-profile' | translate }}
           .content-wrapper.row
@@ -21,7 +21,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
               .user-description.row
                 .col-50
                   .title {{ ::'titles.personal-descripcion' | translate }}
-                  .info {{ ::'user.age' | translate }}: {{vmProfile.user.age}} 
+                  .info {{ ::'user.age' | translate }}: {{vmProfile.user.age}}
                     | {{ !vmProfile.user.age ? '' : 'register.years' | translate }}
                   .info {{ ::'user.city' | translate }}:  {{vmProfile.user.city}}
                 .btn-wrapper.col-50
@@ -42,6 +42,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                      .leyend-bottom(ellipsis-title='', height='50', title='content.title')
             .tree-preview.col-50
               img.tree(src="{{vmProfile.user.tree_image}}")
+              img.flowerpot(src="images/macetaH.png")
       moi-buttons(options="vmProfile.buttonsOptions")
       .btn-learn
   moi-sidebar
