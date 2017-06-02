@@ -9,6 +9,12 @@
   background-size: 100% 100%;
   cursor: pointer;
 }
+.btn-learn-wrapper {
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+}
 
 .btn-learn-gif {
   position: fixed;

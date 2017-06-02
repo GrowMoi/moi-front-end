@@ -34,12 +34,23 @@
         }
       });
 
+      vm.inventoryOptions = AnimationService.getButton({
+        key: 'inventory',
+        callbacks: {
+          finishedAnimation: goToInventory
+        }
+      });
+
       function goToSetting() {
         $state.go('settings');
       }
 
       function goToProfile() {
         $state.go('profile', {userId: vm.user.id});
+      }
+
+      function goToInventory() {
+        $state.go('inventory');
       }
     }
 
