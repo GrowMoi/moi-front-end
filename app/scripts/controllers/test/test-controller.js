@@ -5,7 +5,8 @@
   .controller('TestController',
     function ($stateParams,
               TestService,
-              $scope) {
+              $scope,
+              $rootScope) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -65,6 +66,9 @@
           totalQuestions: vmTest.totalQuestions,
           successAnswers: rigthAnswers(res.data.result)
         };
+        if(data.successAnswers > 1 ){
+          $rootScope.$broadcast('moiSound:kill-sound');
+        }
         TestService.scoreTest($scope, data);
       });
     }
