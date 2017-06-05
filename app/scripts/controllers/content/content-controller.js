@@ -34,15 +34,12 @@
 
       function onRegisterApi(api) {
         api.onImageSelected(function (urlImage) {
-          if (urlImage) {
-            var params = {
-              neuronId: content.neuron_id, //jshint ignore:line
-              contentId: content.id,
-              mediaUrl: urlImage
-            };
-            ContentService.changeImageStatus(params);
-          }
-
+          var params = {
+            neuronId: content.neuron_id, //jshint ignore:line
+            contentId: content.id,
+            mediaUrl: angular.isObject(urlImage) ? urlImage.url : urlImage
+          };
+          ContentService.changeImageStatus(params);
         });
       }
 
