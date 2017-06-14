@@ -156,6 +156,9 @@
         'tasks': 'Tareas',
         'notifications': 'Notificaciones',
         'favorites': 'Favoritos'
+      },
+      browser: {
+        'chrome': 'Para una mejor experiencia, utilice esta página con Google Chrome'
       }
     });
 

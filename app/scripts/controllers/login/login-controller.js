@@ -16,7 +16,7 @@
     vm.finishedSound = finishedSound;
 
     var successState = 'tree';
-
+    vm.isChrome = navigator.userAgent.indexOf('Chrome') > -1 ? true:false;
     $rootScope.$on('auth:validation-success', function () {
       $state.go(successState);
     });
