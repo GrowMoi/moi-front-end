@@ -271,7 +271,7 @@
       }
 
       function finishedAnimationShowTasks() {
-        $state.go('tasks');
+        $state.go('tasks.notes');
       }
 
       function showModal() {

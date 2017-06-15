@@ -194,7 +194,23 @@
       controller: 'TasksController',
       controllerAs: 'tasksmodel',
       templateUrl: 'templates/tasks/tasks.html',
-      cache: false
+      abstract: true
+    })
+    .state('tasks.default', {
+      url: '/default',
+      templateUrl: 'templates/tasks/default-section.html',
+    })
+    .state('tasks.contents', {
+      url: '/contents',
+      templateUrl: 'templates/tasks/content-tasks/content-tasks.html',
+      controller: 'ContentTasksController',
+      controllerAs: 'contenttasksmodel'
+    })
+    .state('tasks.notes', {
+      url: '/notes',
+      templateUrl: 'templates/tasks/notes/notes.html',
+      controller: 'NotesController',
+      controllerAs: 'notesmodel'
     })
     .state('inventory', {
       url: '/inventory',

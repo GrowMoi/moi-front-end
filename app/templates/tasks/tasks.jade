@@ -12,13 +12,15 @@ ion-view.frame-all-buttons.tasks(view-title='Tasks')
         .row.content-tasks
           .col-50.tasks-tabs
             ion-list(no-lines)
-              ion-item(ng-repeat="tab in tasksmodel.tabs")
-                .item-tab(ng-class="{'tab-selected': tab.selected }", ng-click="tasksmodel.changeTab(tab.field)")
+              ion-item(ng-repeat="tab in tasksmodel.tabs"
+                      ng-click="tasksmodel.changeTab(tab.field)")
+                .item-tab(ng-class="{'tab-selected': tab.selected }"
+                          ui-sref="{{tab.state}}")
                   img(src="{{tab.image}}")
                   span
                     | {{::tab.name}}
           .col-50.tasks-view
-            div(ng-include="tasksmodel.template")
+            ui-view
       moi-buttons(options="tasksmodel.buttonsOptions")
       .btn-learn
   moi-sidebar
