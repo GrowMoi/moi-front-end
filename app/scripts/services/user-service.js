@@ -15,7 +15,8 @@
       recommendedNeuron: recommendedNeuron,
       getTasks: getTasks,
       deleteTask: deleteTask,
-      getNotes: getNotes
+      getNotes: getNotes,
+      getNotifications: getNotifications
     };
 
     var popupOptions = { title: 'Error'};
@@ -119,6 +120,18 @@
       }).then(function success(res) {
         return res.data;
       });
+    }
+
+    function getNotifications(page) {
+       return $http({
+         method: 'GET',
+         url: ENV.apiHost + '/api/notifications/new',
+         params: {
+           page: page
+         }
+       }).then(function success(res) {
+         return res.data;
+       });
     }
 
     function recommendedNeurons() {

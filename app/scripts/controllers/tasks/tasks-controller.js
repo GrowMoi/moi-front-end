@@ -43,7 +43,7 @@
         name: 'Notificaciones',
         image: 'images/notifications_tasks.png',
         selected: false,
-        state: 'tasks.default'
+        state: 'tasks.notifications'
       },
       {
         field:'favorites',

@@ -212,6 +212,12 @@
       controller: 'NotesController',
       controllerAs: 'notesmodel'
     })
+    .state('tasks.notifications', {
+      url: '/notifications',
+      templateUrl: 'templates/tasks/notifications/notifications.html',
+      controller: 'NotificationsController',
+      controllerAs: 'notificationsmodel'
+    })
     .state('inventory', {
       url: '/inventory',
       controller: 'InventoryController',

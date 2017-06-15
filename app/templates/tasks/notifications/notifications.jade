@@ -1,0 +1,5 @@
+ion-content.content_tasks
+  .row.note(ng-repeat='notification in notificationsmodel.notifications')
+    .text-notes(ng-click='notificationsmodel.confirmNotification(notification)')
+      | {{notification.tutor.name}} ha realizado una solicitud para ser tu tutor
+  ion-infinite-scroll(ng-if='!notificationsmodel.noMoreItemsAvailable', on-infinite='notificationsmodel.loadMoreNotes()', distance='10%')
