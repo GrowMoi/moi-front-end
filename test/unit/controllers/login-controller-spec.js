@@ -9,14 +9,24 @@
         authMock,
         stateMock,
         ionicPopupMock,
+        UtilityService,
         ionicLoadingMock;
 
     beforeEach(module('moi.controllers'));
-
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.factory('UtilityService', function(){
+        return {
+          isAgentChrome: function(){
+            return true;
+          }
+        };
+      });
+    }));
     beforeEach(inject(
       function ($q,
                 $rootScope,
-                $controller) {
+                $controller,
+                _UtilityService_) {
 
       deferredLogin     = $q.defer();
       $scope            = $rootScope.$new();
@@ -27,13 +37,14 @@
         submitLogin: sinon.stub()
                           .returns(deferredLogin.promise)
       };
-
+      UtilityService    = _UtilityService_;
       controller = $controller('LoginController', {
         '$ionicPopup': ionicPopupMock,
         '$ionicLoading': ionicLoadingMock,
         '$state': stateMock,
         '$auth': authMock,
-        '$scope': $scope
+        '$scope': $scope,
+        'UtilityService': UtilityService
       });
     }));
 
@@ -41,6 +52,7 @@
 
       beforeEach(inject(function(_$rootScope_) {
         $rootScope = _$rootScope_;
+        controller.isChrome = UtilityService.isAgentChrome();
         controller.loginForm.email = 'test1';
         controller.loginForm.password = 'password1';
         controller.finishedSound();
