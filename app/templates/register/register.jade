@@ -85,6 +85,19 @@ ion-view(
               | {{ :: 'msgs.error.email' | translate}}
             span.error-msg(ng-if='registerForm.email.$error.required && registerForm.email.$touched')
               | {{ :: 'msgs.error.required' | translate}}
+          label.item.item-input
+            input(
+              type='text',
+              ng-model='registerModel.registerForm.school',
+              required='required',
+              name='school',
+              autocomplete='off',
+              placeholder="{{ ::'register.school' | translate }}"
+            )
+            span.error-msg(ng-if='registerForm.school.$error.school')
+              | {{ :: 'msgs.error.school' | translate}}
+            span.error-msg(ng-if='registerForm.school.$error.required && registerForm.school.$touched')
+              | {{ :: 'msgs.error.required' | translate}}
 
         .row.button-actions
           .col

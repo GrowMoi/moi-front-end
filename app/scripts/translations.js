@@ -75,7 +75,7 @@
       register:{
         'enter':  'Entrar',
         'register': 'Register',
-        'user': 'Nombre de Usuario',
+        'user': 'Nombres y Apellidos',
         'birthday': 'Fecha de Nacimiento',
         'password': 'Contraseña',
         'password-required': 'Contraseña Actual',
@@ -83,7 +83,8 @@
         'confirm-password': 'Confirme Contraseña',
         'country':  'País',
         'email': 'Correo Electrónico',
-        'years': 'Años'
+        'years': 'Años',
+        'school': 'Escuela'
       },
       user: {
         'age': 'Edad',
