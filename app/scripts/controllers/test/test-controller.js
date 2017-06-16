@@ -18,7 +18,7 @@
       vmTest.answers = [];
       vmTest.indexShow = 0;
       vmTest.percentage = 0;
-      vmTest.questions = $stateParams.testData.testQuestions;
+      vmTest.questions = shuffle($stateParams.testData.testQuestions);
       vmTest.testId = $stateParams.testData.testId;
       vmTest.questions[0].showQuestion = true;
       vmTest.totalQuestions = vmTest.questions.length;
@@ -53,6 +53,22 @@
         vmTest.questions[vmTest.indexShow].showQuestion = true;
         vmTest.nextQuestion = false;
       }
+    }
+
+    function shuffle(questions) {
+      return questions.map(function(obj){
+        /*jshint camelcase: false */
+        var array = obj.possible_answers;
+        var counter = array.length;
+        while (counter > 0) {
+            var index = Math.floor(Math.random() * counter);
+            counter--;
+            var temp = array[counter];
+            array[counter] = array[index];
+            array[index] = temp;
+        }
+        return obj;
+      });
     }
 
     function percentage() {
