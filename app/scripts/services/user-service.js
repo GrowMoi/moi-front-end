@@ -16,7 +16,8 @@
       getTasks: getTasks,
       deleteTask: deleteTask,
       getNotes: getNotes,
-      getNotifications: getNotifications
+      getNotifications: getNotifications,
+      respondNotification: respondNotification
     };
 
     var popupOptions = { title: 'Error'};
@@ -134,6 +135,24 @@
        });
     }
 
+    function respondNotification(res) {
+      /*jshint camelcase: false */
+      var id = res.id,
+          response = res.response;
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/user_tutors/' + id + '/respond',
+        data: {'response': response}
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
     function recommendedNeurons() {
       return $http({
         method: 'GET',
@@ -193,8 +212,12 @@
         templateUrl: 'templates/partials/modal-alert-content.html',
         model: {
           message: msg,
-          type: 'alert',
-          btnOkLabel: 'Seguir leyendo'
+          callbacks: {
+            btnCenter: ModalService.destroy
+          },
+          labels: {
+            btnCenter: 'Seguir leyendo'
+          }
         }
       };
       ModalService.showModel(dialogOptions);

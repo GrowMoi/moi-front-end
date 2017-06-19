@@ -1,8 +1,20 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('NotificationsController', function($scope, UserService){
+  .controller('NotificationsController', function($scope, UserService, ModalService){
     var notificationsmodel = this;
+    notificationsmodel.requestData = {};
+
+    var dialogContentModel = {
+      callbacks: {
+        btnRight: acceptNotification,
+        btnLeft: rejectNotification
+      },
+      labels: {
+        btnRight: 'Aceptar',
+        btnLeft: 'Rechazar'
+      }
+    };
     notificationsmodel.noMoreItemsAvailable = true;
     notificationsmodel.currentPage = 1;
     notificationsmodel.confirmNotification = confirmNotification;
@@ -40,7 +52,25 @@
     }
 
     function confirmNotification(notification) {
-      console.log('Darinw', notification);
+      notificationsmodel.requestData.id = notification.id;
+      dialogContentModel.message = notification.tutor.name + ' ha realizado una solicitud para ser tu tutor.';
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: dialogContentModel
+      };
+      ModalService.showModel(dialogOptions);
+    }
+
+    function acceptNotification() {
+      dialogContentModel.closeModal();
+      notificationsmodel.requestData.response = 'accepted';
+      UserService.respondNotification(notificationsmodel.requestData);
+    }
+
+    function rejectNotification() {
+      dialogContentModel.closeModal();
+      notificationsmodel.requestData.response = 'rejected';
+      UserService.respondNotification(notificationsmodel.requestData);
     }
   });
 })();

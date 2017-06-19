@@ -32,10 +32,14 @@
 
       var dialogContentModel = {
         message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
-        modalCallbak: modalCallbak,
-        type: 'confirm',
-        btnOkLabel: 'Seguir leyendo',
-        btnCancelLabel: 'Regresar a mi arbol'
+        callbacks: {
+          btnRight: ModalService.destroy,
+          btnLeft: modalCallbak
+        },
+        labels: {
+          btnRight: 'Seguir leyendo',
+          btnLeft: 'Regresar a mi arbol'
+        }
       };
 
       var idleBtns = [],
@@ -253,8 +257,12 @@
           if(response.data.exist){
             dialogContentModel = {
               message: 'Este contenido ya esta en tus tareas, intenta guardar un contenido diferente.',
-              type: 'alert',
-              btnOkLabel: 'Seguir leyendo',
+              callbacks: {
+                btnCenter: ModalService.destroy
+              },
+              labels: {
+                btnCenter: 'Seguir leyendo'
+              }
             };
             showModal();
           }else if ($state.current.name === 'content') {
