@@ -25,13 +25,16 @@ ion-view(
               required='required',
               placeholder="{{ ::'login.password' | translate }}"
             )
-
         .row.button-actions
           .col
-            .button(ui-sref="register")
+            .button(ui-sref="register", ng-disabled="!vm.isChrome", )
               | {{ 'signup' | translate }}
           .col
             input(
+              ng-disabled="!vm.isChrome",
               type='submit',
               value="{{ ::'login' | translate }}"
             ).button
+      a.legend-browser(ng-if='!vm.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
+        | {{ ::'browser.chrome' | translate }}
+        
