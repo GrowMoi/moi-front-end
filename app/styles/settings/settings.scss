@@ -1,6 +1,6 @@
 .settings-page {
   background-color: transparent;
-  
+
   .content-settings {
     top: 20px;
     position: relative;
@@ -112,6 +112,11 @@
         img {
           cursor: pointer;
         }
+      }
+      .btn-guide{
+        position: absolute;
+        right: 130px;
+        bottom: 25px;
       }
     }
   }

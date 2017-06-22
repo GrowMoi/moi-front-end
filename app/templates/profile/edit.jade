@@ -1,6 +1,6 @@
 ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | translate}}")
   ion-content
-    moi-sound(sound="sounds/read_content.mp3" background-sound="true")
+    moi-sound(sound="sounds/read_content.mp3" background-sound="true" volume="0.2")
     back-button.arrow.back-arrow
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
@@ -27,7 +27,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
             .section-form.form-container.form-register
               form(name='editProfileForm', novalidate)
                 .form-group
-                  label.label-register.col-40 {{ ::'register.user' | translate }}
+                  label.label-register.col-40 {{ ::'register.user' | translate }}:
                   input.col-60(
                     type='text',
                     ng-model='vmProfileEdit.user.name',
@@ -37,7 +37,17 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
                   
                 .form-group
-                  label.label-register.col-40 {{ ::'register.city' | translate }}
+                  label.label-register.col-40 {{ ::'register.school' | translate }}:
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.school'
+                    name='school'
+                    required='required',
+                    autocomplete='off',
+                  )
+                  
+                .form-group
+                  label.label-register.col-40 {{ ::'register.city' | translate }}:
                   input.col-60(
                     type='text',
                     ng-model='vmProfileEdit.user.city'
@@ -47,7 +57,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
                   
                 .form-group
-                  label.label-register.col-40 {{ ::'register.country' | translate }}
+                  label.label-register.col-40 {{ ::'register.country' | translate }}:
                   input.col-60(
                     type='text',
                     ng-model='vmProfileEdit.user.country'
@@ -57,7 +67,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
                   
                 .form-group
-                  label.label-register.col-40 {{ ::'register.email' | translate }}
+                  label.label-register.col-40 {{ ::'register.email' | translate }}:
                   input.col-60(
                     type='email',
                     ng-model='vmProfileEdit.user.email'
@@ -67,7 +77,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
                 
                 .form-group
-                  label.label-register.col-40 {{ ::'register.password-required' | translate }}
+                  label.label-register.col-40 {{ ::'register.password-required' | translate }}:
                   input.col-60(
                     type='password',
                     ng-model='vmProfileEdit.user.current_password',
@@ -77,7 +87,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
                   
                 .form-group
-                  label.label-register.col-40 {{ ::'profile.password' | translate }}
+                  label.label-register.col-40 {{ ::'profile.password' | translate }}:
                   input.col-60(
                     type='password',
                     ng-model='vmProfileEdit.user.password',
@@ -87,7 +97,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
                 
                 .form-group
-                  label.label-register.label-date  {{ ::'register.birthday' | translate }}
+                  label.label-register.label-date  {{ ::'register.birthday' | translate }}:
                     input.col-60(
                       type='text',
                       onfocus="(this.type='date')",

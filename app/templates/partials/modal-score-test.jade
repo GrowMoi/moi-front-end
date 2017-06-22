@@ -1,5 +1,9 @@
 .modal.transparent
   ion-pane.transparent
+    moi-sound(ng-if="model.successAnswers > 1"
+              sound="sounds/congratulations_sound.mp3"
+              background-sound="true",
+              only-play="true")
     .score-container.row
       .main-image.col
         img(src="images/user.png")

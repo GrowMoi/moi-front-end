@@ -74,7 +74,7 @@
       if ( $state.current.name === 'tree' && !imageSaved) { //save image one time by visit page
         $timeout(function(){
           var elm = document.getElementById('screen');
-          if (elm && callApiSaveImage === 0) {
+          if (elm && callApiSaveImage === 0 && imageSaved === false) {
             callApiSaveImage = 1;
             ScreenshotService.getImage(elm).then(function(img){
               if (ScreenshotService.validBase64(img)) {

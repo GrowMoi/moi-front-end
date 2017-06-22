@@ -75,7 +75,7 @@
       register:{
         'enter':  'Entrar',
         'register': 'Register',
-        'user': 'Nombre de Usuario',
+        'user': 'Nombres y Apellidos',
         'birthday': 'Fecha de Nacimiento',
         'password': 'Contraseña',
         'password-required': 'Contraseña Actual',
@@ -83,7 +83,8 @@
         'confirm-password': 'Confirme Contraseña',
         'country':  'País',
         'email': 'Correo Electrónico',
-        'years': 'Años'
+        'years': 'Años',
+        'school': 'Escuela'
       },
       user: {
         'age': 'Edad',
@@ -140,7 +141,8 @@
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',
-        'current-photo': 'Foto Actual'
+        'current-photo': 'Foto Actual',
+        'items': 'items'
       },
       social: {
         'tittle': 'Muestrale a tus amigos!',
@@ -154,6 +156,9 @@
         'tasks': 'Tareas',
         'notifications': 'Notificaciones',
         'favorites': 'Favoritos'
+      },
+      browser: {
+        'chrome': 'Para una mejor experiencia, utilice esta página con Google Chrome'
       }
     });
 

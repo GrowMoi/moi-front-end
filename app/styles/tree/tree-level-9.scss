@@ -1894,6 +1894,15 @@
                 background-image: url(../images/tree/nodos/nodo-fuccia.png);
               }
             }
+            &-31010001 { //Dibujos Animados
+              bottom: 605px;
+              left: 875px;
+              width: 25px;
+              height: 25px;
+              &.florecida{
+                background-image: url(../images/tree/nodos/nodo-fuccia.png);
+              }
+            }
           }
         }
 
@@ -3138,6 +3147,11 @@
             }
           }
           &-31311000 { //realidad virtual
+            &.florecida{
+              background-image: url(../images/tree/branchs/level-9/rama104.png);
+            }
+          }
+          &-31010001 { //Dibujos Animados
             &.florecida{
               background-image: url(../images/tree/branchs/level-9/rama104.png);
             }

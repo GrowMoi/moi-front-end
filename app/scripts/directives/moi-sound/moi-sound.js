@@ -13,7 +13,9 @@
         sound: '@',
         autoPlay: '=',
         callback: '&',
-        backgroundSound: '='
+        backgroundSound: '=',
+        volume: '=',
+        onlyPlay: '='
       },
       controller: moiSoundController,
       controllerAs: 'vmSound',
@@ -95,8 +97,11 @@
         // TODO support loops
         $cordovaNativeAudio.play(vmSound.sound, replaySound);
       } else {
+        vmSound.$audio[0].volume = vmSound.volume || 1;
         vmSound.$audio[0].play();
-        vmSound.$audio[0].onended = replaySound;
+        if(!vmSound.onlyPlay){
+          vmSound.$audio[0].onended = replaySound;
+        }
       }
     }
 

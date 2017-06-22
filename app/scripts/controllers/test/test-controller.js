@@ -5,7 +5,8 @@
   .controller('TestController',
     function ($stateParams,
               TestService,
-              $scope) {
+              $scope,
+              $rootScope) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -17,7 +18,7 @@
       vmTest.answers = [];
       vmTest.indexShow = 0;
       vmTest.percentage = 0;
-      vmTest.questions = $stateParams.testData.testQuestions;
+      vmTest.questions = shuffle($stateParams.testData.testQuestions);
       vmTest.testId = $stateParams.testData.testId;
       vmTest.questions[0].showQuestion = true;
       vmTest.totalQuestions = vmTest.questions.length;
@@ -54,6 +55,22 @@
       }
     }
 
+    function shuffle(questions) {
+      return questions.map(function(obj){
+        /*jshint camelcase: false */
+        var array = obj.possible_answers;
+        var counter = array.length;
+        while (counter > 0) {
+            var index = Math.floor(Math.random() * counter);
+            counter--;
+            var temp = array[counter];
+            array[counter] = array[index];
+            array[index] = temp;
+        }
+        return obj;
+      });
+    }
+
     function percentage() {
       vmTest.percentage = Math.round((vmTest.answers.length/vmTest.totalQuestions) * 100);
     }
@@ -65,6 +82,9 @@
           totalQuestions: vmTest.totalQuestions,
           successAnswers: rigthAnswers(res.data.result)
         };
+        if(data.successAnswers > 1 ){
+          $rootScope.$broadcast('moiSound:kill-sound');
+        }
         TestService.scoreTest($scope, data);
       });
     }
