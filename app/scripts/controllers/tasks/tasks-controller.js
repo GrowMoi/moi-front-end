@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('TasksController', function(){
+  .controller('TasksController', function($state, $rootScope, UserNotificationsService){
     var tasksmodel = this;
 
     tasksmodel.buttonsOptions = {
@@ -21,7 +21,7 @@
         field:'notes',
         name: 'Notas',
         image: 'images/notes_tasks.png',
-        selected: true,
+        selected: false,
         state: 'tasks.notes'
       },
       {
@@ -32,7 +32,7 @@
         state: 'tasks.default'
       },
       {
-        field:'tasks',
+        field:'contents',
         name: 'Tareas',
         image: 'images/notifications_tasks.png',
         selected: false,
@@ -65,5 +65,16 @@
       });
     };
 
+    initTab();
+    tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
+
+    function initTab() {
+      var stateField = $state.current.name.replace('tasks.', '');
+      tasksmodel.changeTab(stateField);
+    }
+
+    $rootScope.$on('notifications.updateCount', function(){
+      tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
+    });
   });
 })();

@@ -27,7 +27,8 @@
                                   ContentService,
                                   $scope,
                                   $timeout,
-                                  TestService) {
+                                  TestService,
+                                  UserNotificationsService) {
       var vm = this;
 
       var dialogContentModel = {
@@ -76,6 +77,7 @@
         vm.activeIdle = false;
 
         getButtons();
+        vm.showTasksOptions.totalNotifications = UserNotificationsService.totalNotifications;
       }
 
       init();
@@ -279,7 +281,11 @@
       }
 
       function finishedAnimationShowTasks() {
-        $state.go('tasks.notes');
+        if(vm.showTasksOptions.totalNotifications){
+          $state.go('tasks.notifications');
+        }else{
+          $state.go('tasks.notes');
+        }
       }
 
       function showModal() {
@@ -317,6 +323,9 @@
         timeoutPromise = null;
       });
 
+      $rootScope.$on('notifications.updateCount', function(){
+        vm.showTasksOptions.totalNotifications = UserNotificationsService.totalNotifications;
+      });
     }
 
     return directive;

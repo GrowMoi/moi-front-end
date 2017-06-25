@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('UserNotificationsService', UserNotificationsService);
 
-  function UserNotificationsService($auth, $rootScope, PusherService){
+  function UserNotificationsService($auth, $rootScope, PusherService, UserService){
     var userNotificationsChannel,
         service = { initialize: initialize };
     return service;
@@ -19,7 +19,11 @@
     function subscribeUserNotifications(){
       userNotificationsChannel = 'usernotifications.' + $auth.user.id;
 
-      PusherService.load().then(function(){
+      UserService.getNotifications(1).then(function(data) {
+        /*jshint camelcase: false */
+        service.totalNotifications = data.meta.total_count;
+        return PusherService.load();
+      }).then(function(){
         PusherService.listen(
           userNotificationsChannel,
           'new-notification',
@@ -35,6 +39,8 @@
     function notificationReceived(notification){
       // TODO toasty?
       console.log(notification);
+      service.totalNotifications ++;
+      $rootScope.$broadcast('notifications.updateCount');
     }
   }
 })();

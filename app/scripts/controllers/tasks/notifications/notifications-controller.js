@@ -1,9 +1,11 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('NotificationsController', function($scope, UserService, ModalService){
+  .controller('NotificationsController', function($scope, $rootScope, UserService, ModalService, UserNotificationsService){
     var notificationsmodel = this;
-    notificationsmodel.requestData = {};
+    var notificationSelected,
+        requestData = {};
+
 
     var dialogContentModel = {
       callbacks: {
@@ -35,12 +37,12 @@
       notificationsmodel.totalItems = data.meta.total_items;
       if(notificationsmodel.totalItems > 2){
         notificationsmodel.noMoreItemsAvailable = false;
-        notificationsmodel.loadMoreNotes = loadMoreNotes;
+        notificationsmodel.loadMoreNotifications = loadMoreNotifications;
       }
     }
 
-    function loadMoreNotes() {
-      UserService.getNotes(notificationsmodel.currentPage).then(function(data) {
+    function loadMoreNotifications() {
+      UserService.getNotifications(notificationsmodel.currentPage).then(function(data) {
         /*jshint camelcase: false */
         notificationsmodel.notifications = notificationsmodel.notifications.concat(data.user_tutors);
         notificationsmodel.currentPage += 1;
@@ -52,7 +54,8 @@
     }
 
     function confirmNotification(notification) {
-      notificationsmodel.requestData.id = notification.id;
+      notificationSelected = notification;
+      requestData.id = notificationSelected.id;
       dialogContentModel.message = notification.tutor.name + ' ha realizado una solicitud para ser tu tutor.';
       var dialogOptions = {
         templateUrl: 'templates/partials/modal-alert-content.html',
@@ -63,14 +66,23 @@
 
     function acceptNotification() {
       dialogContentModel.closeModal();
-      notificationsmodel.requestData.response = 'accepted';
-      UserService.respondNotification(notificationsmodel.requestData);
+      requestData.response = 'accepted';
+      UserService.respondNotification(requestData).then(removeNotification);
     }
 
     function rejectNotification() {
       dialogContentModel.closeModal();
-      notificationsmodel.requestData.response = 'rejected';
-      UserService.respondNotification(notificationsmodel.requestData);
+      requestData.response = 'rejected';
+      UserService.respondNotification(requestData).then(removeNotification);
+    }
+
+    function removeNotification(data){
+      if(data.statusText === 'Accepted'){
+        var notificationIndex = notificationsmodel.notifications.indexOf(notificationSelected);
+        notificationsmodel.notifications.splice(notificationIndex, 1);
+        UserNotificationsService.totalNotifications--;
+        $rootScope.$broadcast('notifications.updateCount');
+      }
     }
   });
 })();
