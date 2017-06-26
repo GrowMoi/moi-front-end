@@ -1,8 +1,12 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('NotificationsController', function($scope, $rootScope, UserService, ModalService, UserNotificationsService){
-    var notificationsmodel = this;
+  .controller('NotificationsController', function($scope,
+                                                  $rootScope,
+                                                  UserService,
+                                                  ModalService,
+                                                  UserNotificationsService){
+    var notificationsModel = this;
     var notificationSelected,
         requestData = {};
 
@@ -17,37 +21,37 @@
         btnLeft: 'Rechazar'
       }
     };
-    notificationsmodel.noMoreItemsAvailable = true;
-    notificationsmodel.currentPage = 1;
-    notificationsmodel.confirmNotification = confirmNotification;
+    notificationsModel.noMoreItemsAvailable = true;
+    notificationsModel.currentPage = 1;
+    notificationsModel.confirmNotification = confirmNotification;
 
     initData();
 
     function initData() {
-      notificationsmodel.noMoreItemsAvailable = true;
-      notificationsmodel.currentPage = 1;
+      notificationsModel.noMoreItemsAvailable = true;
+      notificationsModel.currentPage = 1;
       UserService.getNotifications(1).then(resolveNotifications);
     }
 
     function resolveNotifications(data) {
-      notificationsmodel.currentPage += 1;
+      notificationsModel.currentPage += 1;
       /*jshint camelcase: false */
-      notificationsmodel.notifications = data.user_tutors;
+      notificationsModel.notifications = data.user_tutors;
       /*jshint camelcase: false */
-      notificationsmodel.totalItems = data.meta.total_items;
-      if(notificationsmodel.totalItems > 2){
-        notificationsmodel.noMoreItemsAvailable = false;
-        notificationsmodel.loadMoreNotifications = loadMoreNotifications;
+      notificationsModel.totalItems = data.meta.total_items;
+      if(notificationsModel.totalItems > 2){
+        notificationsModel.noMoreItemsAvailable = false;
+        notificationsModel.loadMoreNotifications = loadMoreNotifications;
       }
     }
 
     function loadMoreNotifications() {
-      UserService.getNotifications(notificationsmodel.currentPage).then(function(data) {
+      UserService.getNotifications(notificationsModel.currentPage).then(function(data) {
         /*jshint camelcase: false */
-        notificationsmodel.notifications = notificationsmodel.notifications.concat(data.user_tutors);
-        notificationsmodel.currentPage += 1;
-        if ( notificationsmodel.notifications.length === notificationsmodel.totalItems ) {
-          notificationsmodel.noMoreItemsAvailable = true;
+        notificationsModel.notifications = notificationsModel.notifications.concat(data.user_tutors);
+        notificationsModel.currentPage += 1;
+        if ( notificationsModel.notifications.length === notificationsModel.totalItems ) {
+          notificationsModel.noMoreItemsAvailable = true;
         }
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });
@@ -78,8 +82,8 @@
 
     function removeNotification(data){
       if(data.statusText === 'Accepted'){
-        var notificationIndex = notificationsmodel.notifications.indexOf(notificationSelected);
-        notificationsmodel.notifications.splice(notificationIndex, 1);
+        var notificationIndex = notificationsModel.notifications.indexOf(notificationSelected);
+        notificationsModel.notifications.splice(notificationIndex, 1);
         UserNotificationsService.totalNotifications--;
         $rootScope.$broadcast('notifications.updateCount');
       }

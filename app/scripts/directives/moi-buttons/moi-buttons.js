@@ -77,7 +77,6 @@
         vm.activeIdle = false;
 
         getButtons();
-        vm.showTasksOptions.totalNotifications = UserNotificationsService.totalNotifications;
       }
 
       init();
@@ -146,6 +145,7 @@
 
         vm.saveTasksOptions = AnimationService.getButton({
           key: 'saveTasks',
+          totalNotifications: UserNotificationsService.totalNotifications,
           callbacks: {
             finishedAnimation: finishedAnimationsaveTasks
           }

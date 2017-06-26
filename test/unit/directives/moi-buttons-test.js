@@ -88,7 +88,8 @@
         return {
           initialize: function() {
             return null;
-          }
+          },
+          totalNotifications: 0
         };
       });
     }));
@@ -123,7 +124,8 @@
         neuron: {},
         content: {},
         buttons: {
-          search: true
+          search: true,
+          task: true
         }
       };
     });

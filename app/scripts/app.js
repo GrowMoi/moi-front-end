@@ -216,7 +216,7 @@
       url: '/notifications',
       templateUrl: 'templates/tasks/notifications/notifications.html',
       controller: 'NotificationsController',
-      controllerAs: 'notificationsmodel'
+      controllerAs: 'notificationsModel'
     })
     .state('inventory', {
       url: '/inventory',
