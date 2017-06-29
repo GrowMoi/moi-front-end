@@ -19,7 +19,7 @@
     'ngIdle'
   ])
 
-  .run(function($ionicPlatform, Idle) {
+  .run(function($ionicPlatform, Idle, $window, $rootScope) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -34,12 +34,16 @@
       }
     });
     Idle.watch();
+    $rootScope.$on('IdleTimeout', function() {
+      $window.localStorage.clear();
+      $window.location='/';
+   });
   })
 
   .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, IdleProvider, KeepaliveProvider) {
     // configure Idle settings
     IdleProvider.idle(12); // in seconds
-    IdleProvider.timeout(3600); // in seconds
+    IdleProvider.timeout(600); // in seconds
     KeepaliveProvider.interval(10); // in seconds
 
     $httpProvider.interceptors.push(function(InterceptorService){
