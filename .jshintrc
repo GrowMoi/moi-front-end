@@ -23,6 +23,7 @@
     "angular": false,
     "cordova": false,
     "StatusBar": false,
-    "SuperGif": false
+    "SuperGif": false,
+    "Bucky": false
   }
 }

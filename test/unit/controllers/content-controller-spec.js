@@ -13,7 +13,8 @@
         TestService,
         AnimationService,
         SocialService,
-        UserService;
+        UserService,
+        ReadContentTimingService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -85,6 +86,17 @@
           }
         };
       });
+
+      $provide.factory('ReadContentTimingService', function(){
+        return {
+          stopsReading: function(){
+            return null;
+          },
+          startsReading: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     /*jshint camelcase: false */
@@ -97,7 +109,8 @@
                 _$state_,
                 _AnimationService_,
                 _SocialService_,
-                _UserService_) {
+                _UserService_,
+                _ReadContentTimingService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -108,6 +121,7 @@
         AnimationService = _AnimationService_;
         SocialService = _SocialService_;
         UserService = _UserService_;
+        ReadContentTimingService = _ReadContentTimingService_;
 
         dependencies = {
           content: {
@@ -123,7 +137,8 @@
           ModalService: ModalService,
           ContentService: ContentService,
           AnimationService: AnimationService,
-          UserService: UserService
+          UserService: UserService,
+          ReadContentTimingService: ReadContentTimingService
         };
 
         ctrl = $controller('ContentController', dependencies);

@@ -4,12 +4,16 @@
     .controller('ContentController', function($scope,
                                               content,
                                               ContentService,
-                                              ModalService) {
+                                              ModalService,
+                                              ReadContentTimingService) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
 
       activate();
+
+      $scope.$on('$ionicView.afterEnter', startsReading);
+      $scope.$on('$ionicView.beforeLeave', stopsReading);
 
       function activate() {
         vmContent.content = content;
@@ -33,6 +37,8 @@
       }
 
       function onRegisterApi(api) {
+        api.onImageSelected(stopsReading);
+        api.onImageHidden(startsReading);
         api.onImageSelected(function (urlImage) {
           var params = {
             neuronId: content.neuron_id, //jshint ignore:line
@@ -44,20 +50,28 @@
       }
 
       function showImage(urlImage) {
+        stopsReading();
         var modelData = {};
         modelData.contentSrc = urlImage;
         modelData.isImage = true;
         ModalService.showModel({
           parentScope: $scope,
           templateUrl: 'templates/partials/modal-image.html',
-          model: modelData
+          model: modelData,
+          onHide: startsReading
         });
       }
 
       function sendNotes() {
-        /*jshint camelcase: false */
         ContentService.addNotesToContent(vmContent.content);
       }
 
+      function startsReading() {
+        ReadContentTimingService.startsReading(vmContent.content);
+      }
+
+      function stopsReading() {
+        ReadContentTimingService.stopsReading(vmContent.content);
+      }
     });
 })();
