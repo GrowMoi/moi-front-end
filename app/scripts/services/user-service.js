@@ -72,7 +72,7 @@
       }).then(function success(res) {
         return res.data;
       }, function error(err) {
-        if(err.status !== 404){
+        if(err.status !== 404 && err.status !== 401){
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }

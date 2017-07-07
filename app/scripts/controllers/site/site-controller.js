@@ -83,7 +83,9 @@
                     imageSaved = true;
                     callApiSaveImage = 0;
                     /*jshint camelcase: false */
-                    $auth.user.tree_image = resp.user.tree_image.url;
+                    if (resp) {
+                      $auth.user.tree_image = resp.user.tree_image.url;
+                    }
                   });
               }
             });
