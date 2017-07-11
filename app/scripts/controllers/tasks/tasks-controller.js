@@ -50,7 +50,7 @@
         name: 'Favoritos',
         image: 'images/favorites_tasks.png',
         selected: false,
-        state: 'tasks.default'
+        state: 'tasks.favorites'
       }
     ];
 

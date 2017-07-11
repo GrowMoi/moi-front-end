@@ -218,6 +218,12 @@
       controller: 'NotificationsController',
       controllerAs: 'notificationsModel'
     })
+    .state('tasks.favorites', {
+      url: '/favorites',
+      templateUrl: 'templates/tasks/favorites/favorites.html',
+      controller: 'FavoritesController',
+      controllerAs: 'contentFavoritesModel'
+    })
     .state('inventory', {
       url: '/inventory',
       controller: 'InventoryController',

@@ -133,6 +133,15 @@
         width: 100,
         height: 60,
         playOnClick: true
+      },
+      addFavorites: {
+        src: 'images/sprites/btn-favoritos-sprite.png',
+        frames: 30,
+        repeat: false,
+        speed: 50,
+        width: 54,
+        height: 54,
+        playOnClick: true
       }
     };
 

@@ -17,7 +17,9 @@
       deleteTask: deleteTask,
       getNotes: getNotes,
       getNotifications: getNotifications,
-      respondNotification: respondNotification
+      respondNotification: respondNotification,
+      addFavorites: addFavorites,
+      getFavorites: getFavorites
     };
 
     var popupOptions = { title: 'Error'};
@@ -238,6 +240,36 @@
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }
+      });
+    }
+
+    function addFavorites(content){
+      /*jshint camelcase: false */
+      var contentId = content.id,
+          neuronId = content.neuron_id;
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/favorites',
+        data: {}
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function getFavorites(page){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/content_favorites',
+        params: {
+          page: page
+        }
+      }).then(function success(res) {
+        return res.data;
       });
     }
   }

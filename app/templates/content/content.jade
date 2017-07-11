@@ -10,6 +10,7 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
           .row.border-bottom.row-content-title
             .content-title
               {{:: vmContent.content.title}}
+              img.favorite(ng-if="vmContent.content.favorite" src="images/estrellita.png")
             .corner.title-TR
           .row.row-content-text
             .corner.description-TL

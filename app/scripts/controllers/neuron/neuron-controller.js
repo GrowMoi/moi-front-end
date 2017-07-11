@@ -28,7 +28,8 @@
           share: true,
           recomendation: true,
           saveTask: true,
-          showTasks: true
+          showTasks: true,
+          addFavorites: true
         }
       };
 
