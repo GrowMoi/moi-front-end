@@ -16,7 +16,7 @@
     display: flex;
     flex-flow: column;
   }
-  
+
   .row-content-title {
     display: table;
     .content-title {
@@ -77,27 +77,27 @@
       font-size: 14px;
       margin-top: 10px;
     }
-    .content-text::-webkit-scrollbar-track {
-      border-radius: 10px;
-      border: 1px solid $linesColor;
-      width: 5px;
-    }
-    .content-text::-webkit-scrollbar {
-      width: 5px;
-      background-color: transparent;
-      border-radius: 10px;
-    }
-    .content-text::-webkit-scrollbar-thumb {
-      border-radius: 25px;
-      background-color: $linesColor;
-    }
+  }
+
+  .content-text::-webkit-scrollbar-track, .content-comments::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid $linesColor;
+    width: 5px;
+  }
+  .content-text::-webkit-scrollbar, .content-comments::-webkit-scrollbar  {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  .content-text::-webkit-scrollbar-thumb, .content-comments::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: $linesColor;
   }
 
   .content-comments {
     color: $titlesColor;
     font-family: FontMoi-Content;
     font-weight: 700;
-    height: 12em;
     width: 100%;
     padding: 5px 0px;
     resize: vertical;
@@ -136,6 +136,27 @@
       object-fit: cover;
       width: 100%;
       height: 90px;
+    }
+  }
+
+  .col-contents {
+    display: flex;
+    flex-direction: column;
+    .row {
+      flex-grow: 1;
+      flex-basis: 0;
+      .col {
+        display: flex;
+        flex-direction: column;
+        .text-notes {
+          flex-grow: 0.1;
+          flex-basis: 0;
+        }
+        .container-comments {
+          flex-grow: 1;
+          flex-basis: 0;
+        }
+      }
     }
   }
 }
