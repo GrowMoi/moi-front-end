@@ -139,6 +139,7 @@
         frames: 30,
         repeat: false,
         speed: 50,
+        sound: 'sounds/btn_favorites.mp3',
         width: 54,
         height: 54,
         playOnClick: true
