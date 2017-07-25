@@ -43,6 +43,13 @@
           }
         };
       });
+      $provide.factory('UserNotificationsService', function(){
+        return {
+          initialize: function(){
+            return null;
+          }
+        };
+      });
       $provide.provider('$state', function () {
         return {
           $get: function () {

@@ -14,7 +14,8 @@
       ModalService,
       template,
       controller,
-      modalSpy;
+      modalSpy,
+      UserNotificationsService;
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
@@ -83,6 +84,14 @@
           showModel: modalSpy
         };
       });
+      $provide.service('UserNotificationsService', function() {
+        return {
+          initialize: function() {
+            return null;
+          },
+          totalNotifications: 0
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -94,7 +103,8 @@
         _AnimationService_,
         _UserService_,
         _ModalService_,
-        _$state_ ) {
+        _$state_,
+        _UserNotificationsService_) {
 
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -106,6 +116,7 @@
         AnimationService = _AnimationService_;
         UserService = _UserService_;
         ModalService = _ModalService_;
+        UserNotificationsService = _UserNotificationsService_;
     }));
 
     beforeEach(function(){
@@ -113,7 +124,8 @@
         neuron: {},
         content: {},
         buttons: {
-          search: true
+          search: true,
+          task: true
         }
       };
     });

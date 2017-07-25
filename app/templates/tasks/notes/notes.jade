@@ -1,0 +1,7 @@
+ion-content.content_tasks
+  .row.note(ng-repeat='note in notesmodel.notes')
+    .text-notes(ui-sref="content({neuronId: note.neuron_id, contentId: note.content_id})")
+      | {{note.note}}
+  ion-infinite-scroll(ng-if='!notesmodel.noMoreItemsAvailable'
+                      on-infinite='notesmodel.loadMoreNotes()'
+                      distance='10%')

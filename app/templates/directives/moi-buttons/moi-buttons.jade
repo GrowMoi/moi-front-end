@@ -1,7 +1,8 @@
 .btns-options
   .btn-show-tasks-gif(ng-if="vm.buttons.showTasks" ng-class="{disabled: vm.buttons.showTasks.disabled}")  
     animate-sprite(options="vm.showTasksOptions")
-    
+    .notifications-badget(ng-if="vm.showTasksOptions.totalNotifications")
+      | {{vm.showTasksOptions.totalNotifications}}
   .btn-search-gif(ng-if="vm.buttons.search")
     .btn-wrapper
       animate-sprite(options="vm.searchOptions")
