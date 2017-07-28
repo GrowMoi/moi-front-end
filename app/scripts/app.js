@@ -210,7 +210,7 @@
       url: '/notes',
       templateUrl: 'templates/tasks/notes/notes.html',
       controller: 'NotesController',
-      controllerAs: 'notesmodel'
+      controllerAs: 'notesModel'
     })
     .state('tasks.notifications', {
       url: '/notifications',
