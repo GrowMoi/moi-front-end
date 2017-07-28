@@ -202,9 +202,9 @@
     })
     .state('tasks.contents', {
       url: '/contents',
-      templateUrl: 'templates/tasks/content-tasks/content-tasks.html',
-      controller: 'ContentTasksController',
-      controllerAs: 'contenttasksmodel'
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList'
     })
     .state('tasks.notes', {
       url: '/notes',
@@ -220,9 +220,9 @@
     })
     .state('tasks.favorites', {
       url: '/favorites',
-      templateUrl: 'templates/tasks/favorites/favorites.html',
-      controller: 'FavoritesController',
-      controllerAs: 'contentFavoritesModel'
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList'
     })
     .state('inventory', {
       url: '/inventory',
