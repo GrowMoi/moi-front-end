@@ -137,6 +137,18 @@
        });
     }
 
+    function getGenericNotifications(page) {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/notifications/generic',
+        params: {
+          page: page
+        }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
     function respondNotification(res) {
       /*jshint camelcase: false */
       var id = res.id,
