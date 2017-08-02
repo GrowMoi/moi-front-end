@@ -1,7 +1,6 @@
 body {
   .application {
     @include background-size(cover);
-
     background-image: url(../images/landscape_b.png);
     background-repeat: no-repeat;
     & > ion-view {
@@ -16,6 +15,9 @@ body {
   }
 
   .loading-app {
+    @include background-size(cover);
+    background-image: url(../images/landscape_b.png);
+    background-repeat: no-repeat;
     justify-content: center;
     display: flex;
     width: 100%;

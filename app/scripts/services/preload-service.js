@@ -33,7 +33,7 @@
             case 'images':
               file = new Image();
               file.onload = function() {
-                deferred.resolve();
+                deferred.resolve(url);
               };
               file.onerror = function() {
                 deferred.reject(resources[key][index]);
@@ -42,7 +42,7 @@
             case 'sounds':
               file = document.createElement('AUDIO');
               file.addEventListener('canplaythrough', function() {
-                deferred.resolve();
+                deferred.resolve(url);
               }, false);
               file.onerror = function() {
                 deferred.reject(resources[key][index]);
