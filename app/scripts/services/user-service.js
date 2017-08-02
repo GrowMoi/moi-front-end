@@ -128,25 +128,13 @@
     function getNotifications(page) {
        return $http({
          method: 'GET',
-         url: ENV.apiHost + '/api/notifications/new',
+         url: ENV.apiHost + '/api/notifications/',
          params: {
            page: page
          }
        }).then(function success(res) {
          return res.data;
        });
-    }
-
-    function getGenericNotifications(page) {
-      return $http({
-        method: 'GET',
-        url: ENV.apiHost + '/api/notifications/generic',
-        params: {
-          page: page
-        }
-      }).then(function success(res) {
-        return res.data;
-      });
     }
 
     function respondNotification(res) {

@@ -1,0 +1,63 @@
+.transparent {
+  background-color: transparent;
+}
+.modal-notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 47.375rem;
+  height: 27.75rem;
+  background-image: url(../images/marco_exterior_H.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  .btn-close-modal-notification {
+    position: fixed;
+    top: 4rem;
+    margin-left: 22.6rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url(../images/boton_salir_H.png);
+    background-repeat: no-repeat;
+    background-size: 2.5rem 2.5rem;
+    cursor: pointer;
+  }
+
+  .notification-description {
+    overflow: scroll;
+    font-weight: bold;
+    height: 20.75rem;
+    width: 43.1rem;
+
+    .title {
+      color: #7ECE56;
+      font-family: FontMoi-Title;
+      font-size: 15px;
+    }
+
+    .info {
+      font-family: FontMoi-Title;
+      font-size: 15px;
+      color: bisque;
+      font-weight: bold;
+      padding-left: 15px;
+    }
+
+    .content-image {
+      width: 43.3125rem;
+      height: 24.6875rem;
+    }
+  }
+}
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}
