@@ -10,10 +10,11 @@
   background-image: url(../images/marco_modal.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  position: relative;
   .btn-close-modal {
-    position: fixed;
-    top: 1rem;
-    margin-left: 21.6rem;
+    position: absolute;
+    top: 0.5rem;
+    margin-left: 21.7rem;
     width: 2.5rem;
     height: 2.5rem;
     background-image: url(../images/close_modal.png);

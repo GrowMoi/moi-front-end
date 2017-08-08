@@ -10,11 +10,12 @@
   background-image: url(../images/marco_exterior_H.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  position: relative;
 
   .btn-close-modal-notification {
-    position: fixed;
-    top: 4rem;
-    margin-left: 22.6rem;
+    position: absolute;
+    top: 0.2rem;
+    margin-left: 22.5rem;
     width: 2.5rem;
     height: 2.5rem;
     background-image: url(../images/boton_salir_H.png);
@@ -24,7 +25,7 @@
   }
 
   .notification-description {
-    overflow: scroll;
+    overflow-y: scroll;
     font-weight: bold;
     height: 20.75rem;
     width: 43.1rem;
@@ -44,9 +45,26 @@
     }
 
     .content-image {
-      width: 43.3125rem;
-      height: 24.6875rem;
+      width: 42.7rem;
+      height: 23.38rem;
     }
+  }
+
+  .notification-description::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid rgba(123, 121, 76, 0.62);
+    width: 5px;
+  }
+
+  .notification-description::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  .notification-description::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: rgba(123, 121, 76, 0.62);
   }
 }
 /* Fix modal backdrop for smaller devices */
