@@ -68,6 +68,18 @@
   }
 }
 
+.btn-add-favorites-gif {
+  position: fixed;
+  bottom: 19px;
+  right: 230px;
+  cursor: pointer;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
 .btn-search-gif {
   position: fixed;
   bottom: 7px;

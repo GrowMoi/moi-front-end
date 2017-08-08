@@ -158,6 +158,13 @@
           }
         });
 
+        vm.addFavoritesOptions = AnimationService.getButton({
+          key: 'addFavorites',
+          callbacks: {
+            finishedAnimation: finishedAnimationAddFavorites
+          }
+        });
+
         //idle Animations
 
         vm.searchIdleOptions = AnimationService.getButton({
@@ -272,6 +279,12 @@
               neuronId: vm.content.neuron_id
             });
           }
+        });
+      }
+
+      function finishedAnimationAddFavorites() {
+        UserService.addFavorites(vm.content).then(function(response) {
+          vm.content.favorite = response.data.favorite;
         });
       }
 
