@@ -128,7 +128,7 @@
     function getNotifications(page) {
        return $http({
          method: 'GET',
-         url: ENV.apiHost + '/api/notifications/new',
+         url: ENV.apiHost + '/api/notifications/',
          params: {
            page: page
          }

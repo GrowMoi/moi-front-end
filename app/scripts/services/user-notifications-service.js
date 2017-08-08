@@ -6,7 +6,7 @@
     .factory('UserNotificationsService', UserNotificationsService);
 
   function UserNotificationsService($auth, $rootScope, PusherService, UserService){
-    var userNotificationsChannel,
+    var channelsToNotifications = [],
         service = { initialize: initialize };
     return service;
 
@@ -17,23 +17,28 @@
     }
 
     function subscribeUserNotifications(){
-      userNotificationsChannel = 'usernotifications.' + $auth.user.id;
+      channelsToNotifications.push('usernotifications.' + $auth.user.id);
+      channelsToNotifications.push('usernotifications.general');
 
       UserService.getNotifications(1).then(function(data) {
         /*jshint camelcase: false */
         service.totalNotifications = data.meta.total_count;
         return PusherService.load();
       }).then(function(){
-        PusherService.listen(
-          userNotificationsChannel,
-          'new-notification',
-          notificationReceived
-        );
+        angular.forEach(channelsToNotifications, function (channel) {
+          PusherService.listen(
+            channel,
+            'new-notification',
+            notificationReceived
+          );
+        });
       });
     }
 
     function unsubscribeUserNotifications(){
-      PusherService.unlisten(userNotificationsChannel);
+      angular.forEach(channelsToNotifications, function (channel) {
+        PusherService.unlisten(channel);
+      });
     }
 
     function notificationReceived(notification){

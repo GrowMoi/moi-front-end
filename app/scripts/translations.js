@@ -42,8 +42,15 @@
         'search': 'Search',
         'friends': 'Friends'
       },
+      titles: {
+        'personal-descripcion': 'Personal Description',
+        'current-photo': 'Current Photo',
+        'items': 'items',
+        'title': 'Title',
+        'description': 'Description'
+      },
       social: {
-        'tittle': 'Show and tell your friends!',
+        'title': 'Show and tell your friends!',
         'description': 'Show your progress on your Facebook timeline or any '+
                         'social media you like, although you can share via '+
                         'mail. Spread the good news!'
@@ -142,10 +149,12 @@
       titles: {
         'personal-descripcion': 'Descripción Personal',
         'current-photo': 'Foto Actual',
-        'items': 'items'
+        'items': 'items',
+        'title': 'Título',
+        'description': 'Descripción'
       },
       social: {
-        'tittle': 'Muestrale a tus amigos!',
+        'title': 'Muestrale a tus amigos!',
         'description': 'Muestra tu progreso en Facebook, Twitter, '+
                         'Whatsapp o vía email. Comparte las buenas noticias!'
       },

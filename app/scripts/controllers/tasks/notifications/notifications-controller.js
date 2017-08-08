@@ -23,7 +23,8 @@
     };
     notificationsModel.noMoreItemsAvailable = true;
     notificationsModel.currentPage = 1;
-    notificationsModel.confirmNotification = confirmNotification;
+    notificationsModel.confirmRequest = confirmRequest;
+    notificationsModel.showNotification = showNotification;
 
     initData();
 
@@ -36,9 +37,9 @@
     function resolveNotifications(data) {
       notificationsModel.currentPage += 1;
       /*jshint camelcase: false */
-      notificationsModel.notifications = data.user_tutors;
+      notificationsModel.notifications = data.notifications;
       /*jshint camelcase: false */
-      notificationsModel.totalItems = data.meta.total_items;
+      notificationsModel.totalItems = data.meta.total_count;
       if(notificationsModel.totalItems > 2){
         notificationsModel.noMoreItemsAvailable = false;
         notificationsModel.loadMoreNotifications = loadMoreNotifications;
@@ -48,7 +49,7 @@
     function loadMoreNotifications() {
       UserService.getNotifications(notificationsModel.currentPage).then(function(data) {
         /*jshint camelcase: false */
-        notificationsModel.notifications = notificationsModel.notifications.concat(data.user_tutors);
+        notificationsModel.notifications = notificationsModel.notifications.concat(data.notifications);
         notificationsModel.currentPage += 1;
         if ( notificationsModel.notifications.length === notificationsModel.totalItems ) {
           notificationsModel.noMoreItemsAvailable = true;
@@ -57,7 +58,7 @@
       });
     }
 
-    function confirmNotification(notification) {
+    function confirmRequest(notification) {
       notificationSelected = notification;
       requestData.id = notificationSelected.id;
       dialogContentModel.message = notification.tutor.name + ' ha realizado una solicitud para ser tu tutor.';
@@ -87,6 +88,14 @@
         UserNotificationsService.totalNotifications--;
         $rootScope.$broadcast('notifications.updateCount');
       }
+    }
+
+    function showNotification(notification){
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-show-notification.html',
+        model: notification
+      };
+      ModalService.showModel(dialogOptions);
     }
   });
 })();
