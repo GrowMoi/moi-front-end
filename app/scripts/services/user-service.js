@@ -19,7 +19,8 @@
       getNotifications: getNotifications,
       respondNotification: respondNotification,
       addFavorites: addFavorites,
-      getFavorites: getFavorites
+      getFavorites: getFavorites,
+      getAchievements: getAchievements
     };
 
     var popupOptions = { title: 'Error'};
@@ -268,6 +269,15 @@
         params: {
           page: page
         }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function getAchievements(){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/achievements',
       }).then(function success(res) {
         return res.data;
       });

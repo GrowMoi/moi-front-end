@@ -58,6 +58,7 @@
             age: '15',
             last_contents_learnt: []
           },
+          achievements: ['premio1', 'premio2'],
           AnimationService: AnimationService,
           UserService: UserService
         };

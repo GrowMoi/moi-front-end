@@ -161,6 +161,11 @@
           return UserService.profile($stateParams.userId).then(function(data){
             return data;
           });
+        },
+        achievements: function(UserService){
+          return UserService.getAchievements().then(function(data){
+            return data;
+          });
         }
       }
     })

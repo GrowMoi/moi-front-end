@@ -32,14 +32,14 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                     .title {{ ::'buttons.friends' | translate }}
                     img.friend-img(src="images/user.png")
               .user-feedback
-                .tabs-options
-                  .option.col-33
-                    span Ultimos 4
+                .tabs-options.row
+                  .option.col-33(ng-repeat='tab in vmProfile.tabs'
+                                ng-class="{'tab-selected': tab.selected }"
+                                ng-click="vmProfile.changeTab(tab.field)")
+                    span
+                      | {{::tab.name}}
                 .grid-contents.row
-                  .col.col-50(ng-repeat='content in vmProfile.user.last_contents_learnt')
-                    .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
-                     img.format-image(ng-src='{{content.media[0]}}')
-                     .leyend-bottom(ellipsis-title='', height='50', title='content.title')
+                  .section-view(ng-include="vmProfile.viewSelected")
             .tree-preview.col-50
               img.tree(src="{{vmProfile.user.tree_image}}")
               img.flowerpot(src="images/macetaH.png")
