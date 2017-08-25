@@ -1,0 +1,17 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-leaderboard
+      .btn-close-modal-leaderboard(ng-click="::model.closeModal()")
+      .content-leaderboard
+        .user-item.row(ng-repeat="user in model.listUsers track by $index")
+          .user-position.content-center.col-10
+            | {{$index+1}}.
+          .user-description.row.col-90
+            .content-center.col-10
+              img.user-image(src="images/perfilM.png")
+            .content-center.col-50
+              | {{user.name}}
+            .content-center.col-25
+              | {{user.score}}
+            .content-center.col-15
+              | {{user.time}}

@@ -9,7 +9,8 @@
       $state,
       $scope,
       AnimationService,
-      UserService;
+      UserService,
+      ModalService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function($provide){
@@ -25,13 +26,21 @@
           recommendedNeuron: function(){}
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
       function(_$rootScope_,
               $controller,
               _AnimationService_,
-              _UserService_) {
+              _UserService_,
+              _ModalService_) {
 
         $state = {
           go: sinon.stub()
@@ -47,6 +56,7 @@
         $scope = $rootScope.$new();
         AnimationService = _AnimationService_;
         UserService = _UserService_;
+        UserService = _ModalService_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
@@ -60,7 +70,8 @@
           },
           achievements: ['premio1', 'premio2'],
           AnimationService: AnimationService,
-          UserService: UserService
+          UserService: UserService,
+          ModalService: ModalService
         };
 
         controller = $controller('ProfileController', dependencies);

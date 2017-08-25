@@ -9,5 +9,5 @@ ion-list(no-lines)
         | {{award.label}}:
       span(ng-if="award.category==='test'")
         | {{award.label}}: {{award.meta.current_tests_ok}}/{{award.meta.needs_tests_ok}}
-      span.btn-view-table
+      span.btn-view-table(ng-click="vmProfile.showLeaderboard()")
         | Ver tabla
