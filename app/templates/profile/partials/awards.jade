@@ -1,2 +1,13 @@
-span
-  | Awards
+ion-list(no-lines)
+  ion-item(ng-repeat="award in vmProfile.awards")
+    .item-award
+      span(ng-if="award.category==='content' && award.meta.learn_all_contents")
+        | {{award.label}}: {{award.meta.current_contents_learnt}}/{{award.meta.total_contents}}
+      span(ng-if="award.category==='content' && !award.meta.learn_all_contents")
+        | {{award.label}}: {{award.meta.current_contents_learnt}}/{{award.meta.needs_learn}}
+      span(ng-if="award.category==='time'")
+        | {{award.label}}:
+      span(ng-if="award.category==='test'")
+        | {{award.label}}: {{award.meta.current_tests_ok}}/{{award.meta.needs_tests_ok}}
+      span.btn-view-table
+        | Ver tabla

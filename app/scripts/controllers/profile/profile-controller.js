@@ -7,6 +7,7 @@
     var vmProfile = this,
         currentUser = $auth.user;
     vmProfile.user = user;
+    vmProfile.awards = achievements.achievements;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.buttonsOptions = {
       neuron: {},

@@ -1,4 +1,5 @@
-.col.col-50(ng-repeat='content in vmProfile.user.last_contents_learnt')
-  .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
-    img.format-image(ng-src='{{content.media[0]}}')
-    .leyend-bottom(ellipsis-title='', height='50', title='content.title')
+.grid-contents
+  .col.col-50(ng-repeat='content in vmProfile.user.last_contents_learnt')
+    .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
+      img.format-image(ng-src='{{content.media[0]}}')
+      .leyend-bottom(ellipsis-title='', height='50', title='content.title')

@@ -38,8 +38,8 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                                 ng-click="vmProfile.changeTab(tab.field)")
                     span
                       | {{::tab.name}}
-                .grid-contents.row
-                  .section-view(ng-include="vmProfile.viewSelected")
+                .content-panel.row
+                  .partial(ng-include="vmProfile.viewSelected")
             .tree-preview.col-50
               img.tree(src="{{vmProfile.user.tree_image}}")
               img.flowerpot(src="images/macetaH.png")
