@@ -20,7 +20,8 @@
       respondNotification: respondNotification,
       addFavorites: addFavorites,
       getFavorites: getFavorites,
-      getAchievements: getAchievements
+      getAchievements: getAchievements,
+      getLeaderboard: getLeaderboard
     };
 
     var popupOptions = { title: 'Error'};
@@ -278,6 +279,15 @@
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/achievements',
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function getLeaderboard(){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/leaderboard',
       }).then(function success(res) {
         return res.data;
       });

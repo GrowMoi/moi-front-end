@@ -3,7 +3,7 @@
     .modal-leaderboard
       .btn-close-modal-leaderboard(ng-click="::model.closeModal()")
       .content-leaderboard
-        .user-item.row(ng-repeat="user in model.listUsers track by $index")
+        .user-item.row(ng-repeat="user in model.leaders track by $index")
           .user-position.content-center.col-10
             | {{$index+1}}.
           .user-description.row.col-90
@@ -12,6 +12,20 @@
             .content-center.col-50
               | {{user.name}}
             .content-center.col-25
-              | {{user.score}}
+              | {{user.current_contents_learnt}}/{{user.total_contents}}
             .content-center.col-15
-              | {{user.time}}
+              | {{user.time_humanized || '0 seg'}}
+        .user-item.row
+          img(src="images/3puntoM.png")
+        .user-item.row
+          .user-position.content-center.col-10
+            | {{model.user.position}}.
+          .user-description.row.col-90
+            .content-center.col-10
+              img.user-image(src="images/perfilM.png")
+            .content-center.col-50
+              | {{model.user.name}}
+            .content-center.col-25
+              | {{model.user.current_contents_learnt}}/{{model.user.total_contents}}
+            .content-center.col-15
+              | {{model.user.time_humanized || '0 seg'}}
