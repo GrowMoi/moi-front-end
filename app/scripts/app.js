@@ -8,6 +8,7 @@
     'moi.controllers',
     'moi.services',
     'moi.directives',
+    'moi.filters',
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
