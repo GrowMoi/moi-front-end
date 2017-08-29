@@ -63,11 +63,18 @@
           model: {
             leaders: data.leaders,
             /*jshint camelcase: false */
-            user: data.meta.user_data
+            user: data.meta.user_data,
+            hideFooter: currentUserIsLeader(data.leaders),
+            currentUser: vmProfile.user
           }
         };
         ModalService.showModel(dialogOptions);
       });
+    }
+
+    function currentUserIsLeader(leaders){
+      var leader = leaders.find(function(leader){return leader.name === vmProfile.user.name;});
+      return leader ? true : false;
     }
   });
 })();

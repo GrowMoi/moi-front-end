@@ -12,6 +12,7 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
+  flex-direction: column;
 
   .btn-close-modal-leaderboard {
     position: absolute;
@@ -28,33 +29,45 @@
   .content-leaderboard {
     overflow-y: scroll;
     font-weight: bold;
-    height: 21.75rem;
+    height: 15.75rem;
     width: 43.1rem;
 
-    .user-item {
-      color: rgb(255, 255, 255);
-      font-size: 25px;
-      font-family: FontMoi-Title;
-      font-weight: bold;
-      padding: 8px;
-      justify-content: center;
+    &.without-current-user {
+      height: 21.75rem;
+    }
+  }
 
-      .user-description {
-        background: rgba(255, 255, 255, 0.43);
-        border-radius: 5px;
+  .user-item {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-family: FontMoi-Title;
+    font-weight: bold;
+    padding: 8px;
+    justify-content: center;
 
-        .user-image {
-          width: 50px;
-          height: 50px;
-        }
-      }
+    .user-description {
+      background: rgba(255, 255, 255, 0.43);
+      border-radius: 5px;
 
-      .content-center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .user-image {
+        width: 50px;
+        height: 50px;
       }
     }
+
+    .content-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.user-selected {
+      background: #00b274;
+    }
+  }
+
+  .current-user {
+    width: 43.1rem;
   }
 
   .content-leaderboard::-webkit-scrollbar-track {

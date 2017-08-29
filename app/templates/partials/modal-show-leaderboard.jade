@@ -2,8 +2,9 @@
   ion-pane.transparent
     .modal-leaderboard
       .btn-close-modal-leaderboard(ng-click="::model.closeModal()")
-      .content-leaderboard
-        .user-item.row(ng-repeat="user in model.leaders track by $index")
+      .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
+        .user-item.row(ng-repeat="user in model.leaders track by $index"
+                      ng-class="{'user-selected': user.name === model.user.name}")
           .user-position.content-center.col-10
             | {{$index+1}}.
           .user-description.row.col-90
@@ -15,17 +16,17 @@
               | {{user.current_contents_learnt}}/{{user.total_contents}}
             .content-center.col-15
               | {{user.time_humanized || '0 seg'}}
-        .user-item.row
-          img(src="images/3puntoM.png")
-        .user-item.row
-          .user-position.content-center.col-10
-            | {{model.user.position}}.
-          .user-description.row.col-90
-            .content-center.col-10
-              img.user-image(src="images/perfilM.png")
-            .content-center.col-50
-              | {{model.user.name}}
-            .content-center.col-25
-              | {{model.user.current_contents_learnt}}/{{model.user.total_contents}}
-            .content-center.col-15
-              | {{model.user.time_humanized || '0 seg'}}
+      .user-item.row(ng-if="!model.hideFooter")
+        img(src="images/3puntoM.png")
+      .user-item.current-user.row(ng-if="!model.hideFooter")
+        .user-position.content-center.col-10
+          | {{model.user.position}}.
+        .user-description.row.col-90
+          .content-center.col-10
+            img.user-image(src="images/perfilM.png")
+          .content-center.col-50
+            | {{model.user.name}}
+          .content-center.col-25
+            | {{model.user.current_contents_learnt}}/{{model.user.total_contents}}
+          .content-center.col-15
+            | {{model.user.time_humanized || '0 seg'}}

@@ -19,12 +19,16 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
           .content-wrapper.row
             .more-details.col-50
               .user-description.row
-                .col-50
-                  .title {{ ::'titles.personal-descripcion' | translate }}
-                  .info {{ ::'user.age' | translate }}: {{vmProfile.user.age}}
-                    | {{ !vmProfile.user.age ? '' : 'register.years' | translate }}
-                  .info {{ ::'user.city' | translate }}:  {{vmProfile.user.city}}
-                .btn-wrapper.col-50
+                .col-75
+                  .title
+                    | Logros
+                  .info(ng-repeat="award in vmProfile.awards"
+                              ng-click="vmProfile.changeTab('awards')")
+                    span.award(ng-if="award.category==='content_all'")
+                      | {{award.label}}: {{award.meta.current_contents_learnt}}/{{award.meta.total_contents}}
+                    span.award(ng-if="award.category==='content'")
+                      | {{award.label}}: {{award.meta.current_contents_learnt}}/{{award.meta.needs_learn}}
+                .btn-wrapper.col-30
                   .btn-add-friend(ng-if="!vmProfile.isCurrentUser")
                     .title {{ ::'buttons.add-friend' | translate }}
                     .plus-icon +
