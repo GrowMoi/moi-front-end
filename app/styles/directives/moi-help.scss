@@ -1,0 +1,53 @@
+.container-help{
+  background-image: url("../images/info_box_s_izqM.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 25%;
+  height: 15%;
+  position: absolute;
+
+  .description {
+    position: relative;
+    height: 100px;
+    padding: 5px;
+  }
+
+  &.top-left {
+    background-image: url("../images/info_box_s_izqM.png");
+    top: 115px;
+    .description {
+      left: 25%;
+      width: 230px;
+    }
+  }
+
+  &.bottom-left {
+    background-image: url("../images/info_box_s_izqM.png");
+    bottom: 100px;
+    .description {
+      left: 25%;
+      width: 230px;
+    }
+  }
+
+  &.top-right {
+    background-image: url("../images/info_box_s_derM.png");
+    top: 115px;
+    right:0;
+    .description{
+      right: -8px;
+      width: 235px;
+    }
+  }
+
+  &.bottom-right {
+    background-image: url("../images/info_box_s_derM.png");
+    bottom: 100px;
+    right:0;
+    .description{
+      right: -8px;
+      width: 235px;
+    }
+  }
+
+}
