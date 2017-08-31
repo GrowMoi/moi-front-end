@@ -24,4 +24,5 @@ ion-view#screen(view-title='TreeMoi')
   .movies-container(ng-if="!treeModel.showTree")
     .container-loading
       .logo-loading
-    moi-videos.vinetas(video-url="videos/place_holder.mp4" video-type="video/mp4" callback="treeModel.finishedAnimation()")
+    moi-videos.vinetas(video-url="{{treeModel.urlVineta}}" video-type="video/mp4" callback="treeModel.finishedAnimation()")
+

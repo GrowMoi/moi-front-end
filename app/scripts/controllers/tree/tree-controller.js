@@ -12,7 +12,21 @@
     treeModel.meta = data.meta;
     treeModel.isBasicLevel = data.meta.depth < 5;
     var videos = VIDEOS.paths;
-    var vinetaLevels = [1, 4, 6, 8];
+    var vinetas = [
+      {
+        depth: 1,
+        video: 'videos/introMoi.mp4'
+      },
+      {
+        depth: 4
+      },
+      {
+        depth: 6
+      },
+      {
+        depth: 8
+      }
+    ];
     var preloadMovies = false;
 
     initVineta();
@@ -25,7 +39,8 @@
     function initVineta() {
       var getConfigVineta = JSON.parse(localStorage.getItem('vinetas_animadas'));
       var isDiferentLevel = getConfigVineta ? getConfigVineta.depth !== data.meta.depth : false;
-      if(vinetaLevels.indexOf(data.meta.depth) !== -1 && (!getConfigVineta || isDiferentLevel)) {
+      treeModel.urlVineta =  getVineta(data.meta.depth);
+      if(treeModel.urlVineta !== '' && (!getConfigVineta || isDiferentLevel)) {
         $rootScope.$broadcast('moiSound:kill-sound');
         treeModel.showTree = false;
         preloadVideos();
@@ -41,6 +56,11 @@
       PreloadAssets.cache({'videos': videos}).then(function(){
         preloadMovies = true;
       });
+    }
+
+    function getVineta(depth){
+      var vinetaSelected = vinetas.filter(function(item){return item.depth === depth && item.video;});
+      return vinetaSelected[0] ? vinetaSelected[0].video : '';
     }
 
   });
