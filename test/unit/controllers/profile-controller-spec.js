@@ -8,6 +8,7 @@
       $auth,
       $state,
       $scope,
+      $stateParams,
       AnimationService,
       UserService,
       ModalService;
@@ -33,11 +34,21 @@
           }
         };
       });
+      $provide.provider('$stateParams', function () {
+        return {
+          $get: function () {
+            return {
+              userId: 1
+            };
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
       function(_$rootScope_,
               $controller,
+              _$stateParams_,
               _AnimationService_,
               _UserService_,
               _ModalService_) {
@@ -54,6 +65,7 @@
         };
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        $stateParams = _$stateParams_;
         AnimationService = _AnimationService_;
         UserService = _UserService_;
         UserService = _ModalService_;
@@ -61,6 +73,7 @@
         dependencies = {
           $state: $state,
           $auth: $auth,
+          $stateParams: $stateParams,
           user: {
             id: 1,
             email: 'admin@example.com',

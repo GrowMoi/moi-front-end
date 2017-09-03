@@ -163,8 +163,8 @@
             return data;
           });
         },
-        achievements: function(UserService){
-          return UserService.getAchievements().then(function(data){
+        achievements: function(UserService, $stateParams){
+          return UserService.getAchievements($stateParams.userId).then(function(data){
             return data;
           });
         }

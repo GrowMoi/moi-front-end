@@ -5,6 +5,7 @@
   .controller('ProfileController', function (user,
                                             achievements,
                                             $auth,
+                                            $stateParams,
                                             ModalService,
                                             UserService) {
 
@@ -57,15 +58,14 @@
     }
 
     function showLeaderboard(){
-      UserService.getLeaderboard().then(function(data){
+      UserService.getLeaderboard($stateParams.userId).then(function(data){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-show-leaderboard.html',
           model: {
             leaders: data.leaders,
             /*jshint camelcase: false */
             user: data.meta.user_data,
-            hideFooter: currentUserIsLeader(data.leaders),
-            currentUser: vmProfile.user
+            hideFooter: currentUserIsLeader(data.leaders)
           }
         };
         ModalService.showModel(dialogOptions);

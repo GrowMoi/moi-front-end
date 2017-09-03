@@ -5,6 +5,6 @@ ion-list(no-lines)
       span(ng-if="award.category==='content_all'")
         | {{award.label}}: {{award.meta.current_contents_learnt}}/{{award.meta.total_contents}}
       span(ng-if="award.category==='test'")
-        | {{award.label}}: {{award.meta.current_tests_ok}}/{{award.meta.needs_tests_ok}}
+        | {{award.label}}: {{award.meta.current_tests_ok}}
       span.btn-view-table(ng-click="vmProfile.showLeaderboard()")
         | Ver tabla

@@ -275,19 +275,27 @@
       });
     }
 
-    function getAchievements(){
+    function getAchievements(id){
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/achievements',
+        params: {
+          /*jshint camelcase: false */
+          user_id: id
+        }
       }).then(function success(res) {
         return res.data;
       });
     }
 
-    function getLeaderboard(){
+    function getLeaderboard(id){
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/leaderboard',
+        params: {
+          /*jshint camelcase: false */
+          user_id: id
+        }
       }).then(function success(res) {
         return res.data;
       });
