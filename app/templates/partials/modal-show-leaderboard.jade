@@ -15,7 +15,7 @@
                 | {{user.name}}
             .content-center.col-20
               | {{user.current_contents_learnt}}/{{user.total_contents}}
-            .content-center.col-50
+            .content-center.col-50.time-elapsed
               | {{user.time_elapsed | milliseconds}}
       .user-item.row(ng-if="!model.hideFooter")
         img(src="images/3puntoM.png")
@@ -31,5 +31,5 @@
                 | {{model.user.name}}
           .content-center.col-20
             | {{model.user.current_contents_learnt}}/{{model.user.total_contents}}
-          .content-center.col-50
+          .content-center.col-50.time-elapsed
             | {{model.user.time_elapsed | milliseconds}}

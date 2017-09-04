@@ -23,11 +23,11 @@
           finalString += duration.hours + 'h:';
         }
         if (duration.minutes > 0) {
-          finalString += duration.minutes + 'm:';
+          finalString += duration.minutes + 'min:';
         }
         var mseconds = duration.milliseconds / 1000;
         var secondsAndMilliseconds = duration.seconds + mseconds;
-        finalString += secondsAndMilliseconds + 's';
+        finalString += Math.round(secondsAndMilliseconds) + 's';
         return finalString;
       }
     };
