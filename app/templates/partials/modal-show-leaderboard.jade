@@ -10,11 +10,12 @@
           .user-description.row.col-90
             .content-center.col-10
               img.user-image(src="images/perfilM.png")
-            .content-center.col-50
-              | {{user.name}}
-            .content-center.col-25
+            .content-center.col-25.user-name-container
+              span.user-name
+                | {{user.name}}
+            .content-center.col-20
               | {{user.current_contents_learnt}}/{{user.total_contents}}
-            .content-center.col-15
+            .content-center.col-50
               | {{user.time_elapsed | milliseconds}}
       .user-item.row(ng-if="!model.hideFooter")
         img(src="images/3puntoM.png")
@@ -24,9 +25,11 @@
         .user-description.row.col-90
           .content-center.col-10
             img.user-image(src="images/perfilM.png")
-          .content-center.col-50
-            | {{model.user.name}}
           .content-center.col-25
+            .user-name-container
+              span.user-name
+                | {{model.user.name}}
+          .content-center.col-20
             | {{model.user.current_contents_learnt}}/{{model.user.total_contents}}
-          .content-center.col-15
+          .content-center.col-50
             | {{model.user.time_elapsed | milliseconds}}
