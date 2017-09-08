@@ -8,6 +8,7 @@
     'moi.controllers',
     'moi.services',
     'moi.directives',
+    'moi.filters',
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
@@ -159,6 +160,11 @@
       resolve: {
         user: function (UserService, $stateParams){
           return UserService.profile($stateParams.userId).then(function(data){
+            return data;
+          });
+        },
+        achievements: function(UserService, $stateParams){
+          return UserService.getAchievements($stateParams.userId).then(function(data){
             return data;
           });
         }

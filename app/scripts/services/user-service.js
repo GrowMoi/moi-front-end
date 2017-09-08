@@ -19,7 +19,9 @@
       getNotifications: getNotifications,
       respondNotification: respondNotification,
       addFavorites: addFavorites,
-      getFavorites: getFavorites
+      getFavorites: getFavorites,
+      getAchievements: getAchievements,
+      getLeaderboard: getLeaderboard
     };
 
     var popupOptions = { title: 'Error'};
@@ -267,6 +269,32 @@
         url: ENV.apiHost + '/api/users/content_favorites',
         params: {
           page: page
+        }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function getAchievements(id){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/achievements',
+        params: {
+          /*jshint camelcase: false */
+          user_id: id
+        }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function getLeaderboard(id){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/leaderboard',
+        params: {
+          /*jshint camelcase: false */
+          user_id: id
         }
       }).then(function success(res) {
         return res.data;

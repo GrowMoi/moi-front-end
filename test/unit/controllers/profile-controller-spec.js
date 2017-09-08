@@ -8,8 +8,10 @@
       $auth,
       $state,
       $scope,
+      $stateParams,
       AnimationService,
-      UserService;
+      UserService,
+      ModalService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function($provide){
@@ -25,13 +27,31 @@
           recommendedNeuron: function(){}
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
+      $provide.provider('$stateParams', function () {
+        return {
+          $get: function () {
+            return {
+              userId: 1
+            };
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
       function(_$rootScope_,
               $controller,
+              _$stateParams_,
               _AnimationService_,
-              _UserService_) {
+              _UserService_,
+              _ModalService_) {
 
         $state = {
           go: sinon.stub()
@@ -45,12 +65,15 @@
         };
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        $stateParams = _$stateParams_;
         AnimationService = _AnimationService_;
         UserService = _UserService_;
+        UserService = _ModalService_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
           $auth: $auth,
+          $stateParams: $stateParams,
           user: {
             id: 1,
             email: 'admin@example.com',
@@ -58,8 +81,10 @@
             age: '15',
             last_contents_learnt: []
           },
+          achievements: ['premio1', 'premio2'],
           AnimationService: AnimationService,
-          UserService: UserService
+          UserService: UserService,
+          ModalService: ModalService
         };
 
         controller = $controller('ProfileController', dependencies);

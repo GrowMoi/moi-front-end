@@ -1,0 +1,112 @@
+
+.transparent {
+  background-color: transparent;
+}
+.modal-leaderboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 47.375rem;
+  height: 27.75rem;
+  background-image: url(../images/marco_exterior_H.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  flex-direction: column;
+
+  .btn-close-modal-leaderboard {
+    position: absolute;
+    top: 0.2rem;
+    margin-left: 22.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url(../images/boton_salir_H.png);
+    background-repeat: no-repeat;
+    background-size: 2.5rem 2.5rem;
+    cursor: pointer;
+  }
+
+  .content-leaderboard {
+    overflow-y: scroll;
+    font-weight: bold;
+    height: 15.75rem;
+    width: 43.1rem;
+
+    &.without-current-user {
+      height: 21.75rem;
+    }
+  }
+
+  .user-item {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-family: FontMoi-Title;
+    font-weight: bold;
+    padding: 8px;
+    justify-content: center;
+
+    .user-description {
+      background: rgba(255, 255, 255, 0.43);
+      border-radius: 5px;
+
+      .user-image {
+        width: 50px;
+        height: 50px;
+      }
+
+      .user-name {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 0.5rem 0;
+      }
+
+      .time-elapsed {
+        font-size: 20px;
+      }
+    }
+
+    .content-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.user-selected {
+      background: #00b274;
+    }
+  }
+
+  .current-user {
+    width: 43.1rem;
+  }
+
+  .content-leaderboard::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid rgba(123, 121, 76, 0.62);
+    width: 5px;
+  }
+
+  .content-leaderboard::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  .content-leaderboard::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: rgba(123, 121, 76, 0.62);
+  }
+}
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}
