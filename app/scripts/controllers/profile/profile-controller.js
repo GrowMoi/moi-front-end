@@ -74,7 +74,7 @@
     }
 
     function currentUserIsLeader(leaders){
-      var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;});
+      var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;}); //jshint ignore:line
       return leader ? true : false;
     }
   });
