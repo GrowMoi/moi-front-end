@@ -65,6 +65,7 @@
             leaders: data.leaders,
             /*jshint camelcase: false */
             user: data.meta.user_data,
+            total_contents: data.meta.total_contents,
             hideFooter: currentUserIsLeader(data.leaders)
           }
         };
@@ -73,7 +74,7 @@
     }
 
     function currentUserIsLeader(leaders){
-      var leader = leaders.find(function(leader){return leader.name === vmProfile.user.name;});
+      var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;});
       return leader ? true : false;
     }
   });

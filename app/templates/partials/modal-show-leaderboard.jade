@@ -4,7 +4,7 @@
       .btn-close-modal-leaderboard(ng-click="::model.closeModal()")
       .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
         .user-item.row(ng-repeat="user in model.leaders track by $index"
-                      ng-class="{'user-selected': user.name === model.user.name}")
+                      ng-class="{'user-selected': user.id === model.user.user_id}")
           .user-position.content-center.col-10
             | {{$index+1}}.
           .user-description.row.col-90
@@ -14,7 +14,7 @@
               span.user-name
                 | {{user.name}}
             .content-center.col-20
-              | {{user.current_contents_learnt}}/{{user.total_contents}}
+              | {{user.contents_learnt}}/{{model.total_contents}}
             .content-center.col-50.time-elapsed
               | {{user.time_elapsed | milliseconds}}
       .user-item.row(ng-if="!model.hideFooter")
@@ -30,6 +30,6 @@
               span.user-name
                 | {{model.user.name}}
           .content-center.col-20
-            | {{model.user.current_contents_learnt}}/{{model.user.total_contents}}
+            | {{model.user.contents_learnt}}/{{model.total_contents}}
           .content-center.col-50.time-elapsed
             | {{model.user.time_elapsed | milliseconds}}
