@@ -17,19 +17,20 @@
               | {{user.contents_learnt}}/{{model.total_contents}}
             .content-center.col-50.time-elapsed
               | {{user.time_elapsed | milliseconds}}
-      .user-item.row(ng-if="!model.hideFooter")
-        img(src="images/3puntoM.png")
-      .user-item.current-user.row(ng-if="!model.hideFooter")
-        .user-position.content-center.col-10
-          | {{model.user.position}}.
-        .user-description.row.col-90
-          .content-center.col-10
-            img.user-image(src="images/perfilM.png")
-          .content-center.col-25
-            .user-name-container
-              span.user-name
-                | {{model.user.name}}
-          .content-center.col-20
-            | {{model.user.contents_learnt}}/{{model.total_contents}}
-          .content-center.col-50.time-elapsed
-            | {{model.user.time_elapsed | milliseconds}}
+      .user-item-container(ng-if="!model.hideFooter && model.user")
+        .user-item.row
+          img(src="images/3puntoM.png")
+        .user-item.current-user.row
+          .user-position.content-center.col-10
+            | {{model.user.position}}.
+          .user-description.row.col-90
+            .content-center.col-10
+              img.user-image(src="images/perfilM.png")
+            .content-center.col-25
+              .user-name-container
+                span.user-name
+                  | {{model.user.name}}
+            .content-center.col-20
+              | {{model.user.contents_learnt}}/{{model.total_contents}}
+            .content-center.col-50.time-elapsed
+              | {{model.user.time_elapsed | milliseconds}}
