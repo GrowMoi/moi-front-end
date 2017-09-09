@@ -13,7 +13,7 @@ ion-view#screen(view-title='TreeMoi')
             img(src="images/nube3L.png")
         .tree-content(ng-if="::treeModel.isBasicLevel")
           figure.flowerpot
-            img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi")
+            img.flowerpot-img#base-tree(src="images/macetaH.png", alt="maceta - tree moi")
           moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
         .tree-section(ng-if="::!treeModel.isBasicLevel")
           .tree-content
@@ -24,4 +24,5 @@ ion-view#screen(view-title='TreeMoi')
   .movies-container(ng-if="!treeModel.showTree")
     .container-loading
       .logo-loading
-    moi-videos.vinetas(video-url="videos/place_holder.mp4" video-type="video/mp4" callback="treeModel.finishedAnimation()")
+    moi-videos.vinetas(video-url="{{treeModel.urlVineta}}" video-type="video/mp4" callback="treeModel.finishedAnimation()")
+

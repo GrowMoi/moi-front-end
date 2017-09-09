@@ -10,6 +10,7 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
           .row.border-bottom.row-content-title
             .content-title
               {{:: vmContent.content.title}}
+              img.favorite(ng-if="vmContent.content.favorite" src="images/estrellita.png")
             .corner.title-TR
           .row.row-content-text
             .corner.description-TL
@@ -18,7 +19,7 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
               .content-source
                 {{vmContent.content.source}}
             .corner.description-TR
-        .col.border-right.border-left.middle-column-margin-bottom
+        .col.border-right.border-left.middle-column-margin-bottom.col-contents
           .row.border-bottom
             .col.image-center
               img.format-image(src='{{vmContent.content.media[0]}}', ng-click='vmContent.showImage(vmContent.content.media[0])')
@@ -27,7 +28,7 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
             .col
               .row.text-notes
                 .content-subtitle {{ ::'content.max.coments' | translate }}
-              .row
+              .row.container-comments
                 textarea.content-comments(ng-model='vmContent.content.user_notes', ng-blur='vmContent.sendNotes()')
         .col
           .row

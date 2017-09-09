@@ -15,7 +15,13 @@
       recommendedNeuron: recommendedNeuron,
       getTasks: getTasks,
       deleteTask: deleteTask,
-      getNotes: getNotes
+      getNotes: getNotes,
+      getNotifications: getNotifications,
+      respondNotification: respondNotification,
+      addFavorites: addFavorites,
+      getFavorites: getFavorites,
+      getAchievements: getAchievements,
+      getLeaderboard: getLeaderboard
     };
 
     var popupOptions = { title: 'Error'};
@@ -121,6 +127,36 @@
       });
     }
 
+    function getNotifications(page) {
+       return $http({
+         method: 'GET',
+         url: ENV.apiHost + '/api/notifications/',
+         params: {
+           page: page
+         }
+       }).then(function success(res) {
+         return res.data;
+       });
+    }
+
+    function respondNotification(res) {
+      /*jshint camelcase: false */
+      var id = res.id,
+          response = res.response;
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/user_tutors/' + id + '/respond',
+        data: {'response': response}
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
     function recommendedNeurons() {
       return $http({
         method: 'GET',
@@ -180,8 +216,12 @@
         templateUrl: 'templates/partials/modal-alert-content.html',
         model: {
           message: msg,
-          type: 'alert',
-          btnOkLabel: 'Seguir leyendo'
+          callbacks: {
+            btnCenter: ModalService.destroy
+          },
+          labels: {
+            btnCenter: 'Seguir leyendo'
+          }
         }
       };
       ModalService.showModel(dialogOptions);
@@ -202,6 +242,62 @@
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }
+      });
+    }
+
+    function addFavorites(content){
+      /*jshint camelcase: false */
+      var contentId = content.id,
+          neuronId = content.neuron_id;
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/neurons/' + neuronId + '/contents/' + contentId + '/favorites',
+        data: {}
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function getFavorites(page){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/content_favorites',
+        params: {
+          page: page
+        }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function getAchievements(id){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/achievements',
+        params: {
+          /*jshint camelcase: false */
+          user_id: id
+        }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function getLeaderboard(id){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/leaderboard',
+        params: {
+          /*jshint camelcase: false */
+          user_id: id
+        }
+      }).then(function success(res) {
+        return res.data;
       });
     }
   }

@@ -1,0 +1,17 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-notification
+      .btn-close-modal-notification(ng-click="::model.closeModal()")
+      .notification-description
+        .title {{ ::'titles.title' | translate }}
+        .info {{ :: model.title}}
+
+        .title {{ ::'titles.description' | translate }}
+        .info {{ :: model.description}}
+        img.content-image(ng-if='::model.media[0]'
+                          ng-src='{{::model.media[0]}}')
+        embed-video.content-video(ng-if='::model.videos[0]'
+                    data-ng-href='{{::model.videos[0]}}'
+                    controls='1'
+                    width=683
+                    height=374)

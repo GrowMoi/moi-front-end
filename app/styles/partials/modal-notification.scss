@@ -1,0 +1,81 @@
+.transparent {
+  background-color: transparent;
+}
+.modal-notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 47.375rem;
+  height: 27.75rem;
+  background-image: url(../images/marco_exterior_H.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+
+  .btn-close-modal-notification {
+    position: absolute;
+    top: 0.2rem;
+    margin-left: 22.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-image: url(../images/boton_salir_H.png);
+    background-repeat: no-repeat;
+    background-size: 2.5rem 2.5rem;
+    cursor: pointer;
+  }
+
+  .notification-description {
+    overflow-y: scroll;
+    font-weight: bold;
+    height: 20.75rem;
+    width: 43.1rem;
+
+    .title {
+      color: #7ECE56;
+      font-family: FontMoi-Title;
+      font-size: 15px;
+    }
+
+    .info {
+      font-family: FontMoi-Title;
+      font-size: 15px;
+      color: bisque;
+      font-weight: bold;
+      padding-left: 15px;
+    }
+
+    .content-image {
+      width: 42.7rem;
+      height: 23.38rem;
+    }
+  }
+
+  .notification-description::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid rgba(123, 121, 76, 0.62);
+    width: 5px;
+  }
+
+  .notification-description::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  .notification-description::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: rgba(123, 121, 76, 0.62);
+  }
+}
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}

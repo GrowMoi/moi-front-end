@@ -1,29 +1,33 @@
 .btns-options
-  .btn-show-tasks-gif(ng-if="vm.buttons.showTasks" ng-class="{disabled: vm.buttons.showTasks.disabled}")  
+  .btn-show-tasks-gif(ng-if="vm.buttons.showTasks" ng-class="{disabled: vm.buttons.showTasks.disabled}")
     animate-sprite(options="vm.showTasksOptions")
-    
+    .notifications-badget(ng-if="vm.showTasksOptions.totalNotifications")
+      | {{vm.showTasksOptions.totalNotifications}}
   .btn-search-gif(ng-if="vm.buttons.search")
     .btn-wrapper
       animate-sprite(options="vm.searchOptions")
-      animate-sprite.idle(ng-if="vm.activeIdle  && vm.activateBtn === 'search'" 
+      animate-sprite.idle(ng-if="vm.activeIdle  && vm.activateBtn === 'search'"
                           options="vm.searchIdleOptions")
-    
+
   .btn-recomendation-gif(ng-if="vm.buttons.recomendation")
     .btn-wrapper
       animate-sprite(options="vm.recomendationOptions")
-      animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'recomendation'" 
+      animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'recomendation'"
                           options="vm.recomendationIdleOptions")
-    
+
   .btn-save-tasks-gif(ng-if="vm.buttons.saveTask" ng-class="{disabled: vm.emptyContent}")
     animate-sprite(options="vm.saveTasksOptions")
-    
+
   .btn-share-gif(ng-if="vm.buttons.share" ng-class="{disabled: vm.emptyContent}")
     animate-sprite(options="vm.shareOptions")
-    
+
+  .btn-add-favorites-gif(ng-if="vm.buttons.addFavorites" ng-class="{disabled: vm.emptyContent}")
+    animate-sprite(options="vm.addFavoritesOptions")
+
   .btn-learn-wrapper(ng-if="vm.buttons.learn" ng-class="{disabled: vm.emptyContent}")
     .btn-learn(ng-if="!vm.neuron.neuron_can_read" ng-click="vm.showCanReadModal()")
     .btn-learn-gif(ng-if="vm.neuron.neuron_can_read" ng-class="{disabled: !vm.gifLearnActive}")
       .btn-wrapper
         animate-sprite(options="vm.learnOptions")
-        animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'learn'"  
+        animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'learn'"
                           options="vm.learnIdleOptions")

@@ -19,12 +19,16 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
           .content-wrapper.row
             .more-details.col-50
               .user-description.row
-                .col-50
-                  .title {{ ::'titles.personal-descripcion' | translate }}
-                  .info {{ ::'user.age' | translate }}: {{vmProfile.user.age}}
-                    | {{ !vmProfile.user.age ? '' : 'register.years' | translate }}
-                  .info {{ ::'user.city' | translate }}:  {{vmProfile.user.city}}
-                .btn-wrapper.col-50
+                .col-75
+                  .title
+                    | Logros
+                  .info(ng-repeat="award in vmProfile.awards"
+                              ng-click="vmProfile.changeTab('awards')")
+                    span.award(ng-if="award.category==='content_all'")
+                      | {{award.label}}: {{award.meta.current_contents_learnt}}/{{award.meta.total_contents}}
+                    span(ng-if="award.category==='test'")
+                      | {{award.label}}: {{award.meta.current_tests_ok}}
+                .btn-wrapper.col-30
                   .btn-add-friend(ng-if="!vmProfile.isCurrentUser")
                     .title {{ ::'buttons.add-friend' | translate }}
                     .plus-icon +
@@ -32,14 +36,14 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                     .title {{ ::'buttons.friends' | translate }}
                     img.friend-img(src="images/user.png")
               .user-feedback
-                .tabs-options
-                  .option.col-33
-                    span Ultimos 4
-                .grid-contents.row
-                  .col.col-50(ng-repeat='content in vmProfile.user.last_contents_learnt')
-                    .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
-                     img.format-image(ng-src='{{content.media[0]}}')
-                     .leyend-bottom(ellipsis-title='', height='50', title='content.title')
+                .tabs-options.row
+                  .option.col-33(ng-repeat='tab in vmProfile.tabs'
+                                ng-class="{'tab-selected': tab.selected }"
+                                ng-click="vmProfile.changeTab(tab.field)")
+                    span
+                      | {{::tab.name}}
+                .content-panel.row
+                  .partial(ng-include="vmProfile.viewSelected")
             .tree-preview.col-50
               img.tree(src="{{vmProfile.user.tree_image}}")
               img.flowerpot(src="images/macetaH.png")
