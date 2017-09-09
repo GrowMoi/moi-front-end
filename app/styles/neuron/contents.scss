@@ -76,6 +76,14 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
     top: 1.5em;
     width: 7em;
   }
+
+  .favorite {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 15px;
+    bottom: 15px;
+  }
 }
 
 .img-content-1{

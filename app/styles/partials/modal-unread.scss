@@ -10,9 +10,12 @@
   }
 
   .button-left {
-    padding: 2em 2.5em;
+    padding: 2em 0.5em;
   }
 
+  .button-center{
+    padding: 2em 2.5em;
+  }
   .button.activated {
     background-color: transparent;
   }

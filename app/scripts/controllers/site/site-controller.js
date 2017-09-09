@@ -11,45 +11,74 @@
                           PreloadAssets,
                           ScreenshotService,
                           UserService,
+                          UserNotificationsService,
                           $timeout,
                           $state,
                           $scope,
                           IMAGES,
                           SOUNDS) {
-
     var site = this,
         images = IMAGES.paths,
         sounds = SOUNDS.paths,
         imageSaved = false,
         callApiSaveImage = 0;
 
+    UserNotificationsService.initialize();
+
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
 
     function preloadAssets() {
-      images = images.map(function(img){
-        return img.substring(4); // remove 'app/' of path
-      });
+      site.loadedImages = false;
+      var validPaths = ['images/view-elements', 'images/sprites'];
+      var filterImages = filterImagesByPath(images, validPaths);
       sounds = sounds.map(function(snd){
-        return snd.substring(4); // remove 'app/' of path
+        var route = matchRouteAssets(snd);
+        return route;
       });
-      PreloadAssets.cache({'images': images}).then(function(){
+      PreloadAssets.cache({images: filterImages, sounds: sounds}).then(function(){
         site.loadedImages = true;
         site.preloadCalled = true;
       });
     }
 
+    function filterImagesByPath(images, paths ) {
+      var result = [];
+      angular.forEach(images, function(img){
+        var route = matchRouteAssets(img),
+            isValid = !!startsWithPath(route, paths);
+        if (isValid) {
+          result.push(route);
+        }
+      });
+      return result;
+    }
+
+    function startsWithPath(route, paths) {
+      var valid = paths.find(function(path){
+        if (route.startsWith(path)) {
+          return true;
+        }
+      });
+      return valid;
+    }
+
+    function matchRouteAssets(route) {
+      var initialPath = route.substring(0,3);
+      return (initialPath === 'app') ? route.substring(4) : route;
+    }
+
     //This must be the only place where we need to listen stateChanges
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState){
-      var initApp = (fromState.name === '' && toState.name === 'login');
-      var registerApp = (fromState.name === 'register' && toState.name === 'login');
-      if (!initApp && !registerApp && !site.preloadCalled && toState.name !== 'register') {
-        var getConfigVineta = JSON.parse(localStorage.getItem('vinetas_animadas'));
-        var vinetaShowed = getConfigVineta ? true : false;
-        site.loadedImages = (toState.name === 'tree' && !vinetaShowed);
+    $rootScope.$on('$stateChangeStart', function(event, toState){
+      var notPreload = {
+        login: false,
+        register: false
+      };
+      var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
+      if (activePreload && !site.preloadCalled) {
         preloadAssets();
       }
-      if (toState.name === 'login' && $auth.user.id) {
+      if ((toState.name === 'login' || toState.name === 'register') && $auth.user.id) {
         event.preventDefault();
       }else{
         if (site.loadedImages) {
@@ -73,17 +102,20 @@
     $rootScope.$on('loading:finish', function (){
       if ( $state.current.name === 'tree' && !imageSaved) { //save image one time by visit page
         $timeout(function(){
-          var elm = document.getElementById('screen');
-          if (elm && callApiSaveImage === 0 && imageSaved === false) {
+          var view = document.getElementById('screen');
+          var baseTree = document.getElementById('base-tree');
+          if (view && baseTree && callApiSaveImage === 0 && imageSaved === false) {
             callApiSaveImage = 1;
-            ScreenshotService.getImage(elm).then(function(img){
+            ScreenshotService.getImage(view).then(function(img){
               if (ScreenshotService.validBase64(img)) {
                 UserService.uploadTreeImage(img)
                   .then(function(resp) {
                     imageSaved = true;
                     callApiSaveImage = 0;
                     /*jshint camelcase: false */
-                    $auth.user.tree_image = resp.user.tree_image.url;
+                    if (resp) {
+                      $auth.user.tree_image = resp.user.tree_image.url;
+                    }
                   });
               }
             });
@@ -94,6 +126,5 @@
         callApiSaveImage = 0;
       }
     });
-
   }
 })();
