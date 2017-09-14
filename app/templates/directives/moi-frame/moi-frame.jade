@@ -1,0 +1,10 @@
+.moi-frame
+  .container-advices(ng-if="frameVm.advices.length > 1")
+    .advice(ng-repeat="advice in frameVm.advices" ng-class="advice.position")
+      .description
+        | {{advice.description}}
+  .container-frame
+    img.back-button(ng-if="frameVm.showBackButton" src="{{frameVm.imgBackButton}}")
+    img(ng-repeat="piece in frameVm.allPieces track by $index"
+        ng-class="frameVm.positions[$index]"
+        src="{{piece}}")

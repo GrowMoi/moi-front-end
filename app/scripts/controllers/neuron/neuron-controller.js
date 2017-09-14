@@ -12,7 +12,24 @@
         ApiButtons = null,
         ApiContent = null,
         timeoutPromise = null;
-
+    vmNeuron.advices = [
+      {
+        position:'top-left',
+        description: 'Esto es una primera indicacion'
+      },
+      {
+        position:'top-right',
+        description: 'Esto es una segunda indicacion'
+      },
+      {
+        position:'bottom-left',
+        description: 'Esto es una tercera indicacion'
+      },
+      {
+        position:'bottom-right',
+        description: 'Esto es una prueba dos'
+      }
+    ];
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
