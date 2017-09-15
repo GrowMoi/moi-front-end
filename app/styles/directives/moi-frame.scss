@@ -33,6 +33,10 @@
       left: 0;
       height: 14%;
       width: 9%;
+      &.top-left{
+        top: 6px;
+        left: 13px;
+      }
     }
   }
   .container-advices{
@@ -43,21 +47,23 @@
       background-image: url("../images/info_box_s_downM.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: 25%;
-      height: 15%;
+      width: 26%;
+      height: 17%;
       position: absolute;
       bottom: 7%;
       left: 5%;
 
       .description {
         position: relative;
-        height: 66px;
+        min-height: 66px;
         width: 315px;
         overflow: scroll;
-        padding: 5px;
+        padding: 9px;
         color:#767b3a;
         font-weight: bold;
         font-family: FontMoi-Title;
+        overflow: hidden;
+        font-size: 16px;
       }
 
       &.top-left {

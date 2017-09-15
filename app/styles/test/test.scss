@@ -1,4 +1,6 @@
 #test-frame {
+  background-color: transparent;
+
   .widgets {
     padding-top: 30px;
     padding-left: 10px;
@@ -16,6 +18,16 @@
         transition: 0.5s;
       }
     }
+  }
+
+  .frame-container {
+    position: absolute;
+    width: 95%;
+    height: 88%;
+    overflow: auto;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 2%;
   }
 
   .test-container {

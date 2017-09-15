@@ -1,4 +1,4 @@
-ion-view.frame-all-buttons.content-view-max(view-title='Content')
+ion-view.content-view-max(view-title='Content')
   ion-content
     moi-sound(sound="sounds/read_content.mp3" background-sound="true" volume="0.2")
     back-button.arrow.back-arrow
@@ -55,5 +55,6 @@ ion-view.frame-all-buttons.content-view-max(view-title='Content')
               .row(ng-repeat="link in vmContent.content.links")
                 a(ng-click="vmContent.showAlertExternalLink(link)") {{::link}}
             .corner.links-TR
-      moi-buttons(options="vmContent.buttonsOptions")
+    moi-frame(options="vmContent.frameOptions")
+    moi-buttons(options="vmContent.buttonsOptions")
   moi-sidebar

@@ -8,7 +8,7 @@
         h1 {{question.title}}
         .answer(ng-repeat="answer in question.possible_answers",
                 ng-class="{'answer-selected': answer.selected }",
-                ng-click="vmTest.selectAnswer(question.content_id, answer)") 
+                ng-click="vmTest.selectAnswer(question.content_id, answer)")
           h4 {{answer.text}}
     .pista.col
       span

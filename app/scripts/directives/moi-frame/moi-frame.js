@@ -10,9 +10,7 @@
         restrict: 'EA',
         templateUrl: 'templates/directives/moi-frame/moi-frame.html',
         scope: {
-          type: '@',
-          showBackButton: '=',
-          advices: '='
+          options: '='
         },
         controller: moiFrameController,
         controllerAs: 'frameVm',
@@ -34,27 +32,22 @@
 
       /*jshint camelcase: false */
       var allFrames = {
-        content_max: {
-          frames:[
+        content_max: [
             'images/containers/contenido_max/marcosuph.png',
             'images/containers/contenido_max/marcoinferiorh.png',
             'images/containers/contenido_max/marcoizqh.png',
             'images/containers/contenido_max/marcderh.png'
-          ],
-          backButton: 'images/containers/marco_arbol/back_btn.png'
-        },
-        marco_arbol: {
-          frames:[
+        ],
+        marco_arbol: [
           'images/containers/marco_arbol/marcosuph.png',
           'images/containers/marco_arbol/marcoinferiorh.png',
           'images/containers/marco_arbol/marcoizqh.png',
           'images/containers/marco_arbol/marcderh.png'
-          ],
-          backButton: 'images/containers/marco_arbol/back_btn.png'
-        }
+        ]
       };
 
-      frameVm.allPieces = allFrames[frameVm.type].frames;
-      frameVm.imgBackButton = frameVm.showBackButton ? allFrames[frameVm.type].backButton : '';
+      frameVm.allPieces = allFrames[frameVm.options.type];
+      frameVm.imgBackButton = frameVm.options.showBackButton ? 'images/containers/back_btn.png' : '';
+      frameVm.showAdvices = Array.isArray(frameVm.options.advices) && frameVm.options.advices.length>0;
     }
   })();

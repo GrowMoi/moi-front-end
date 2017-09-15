@@ -28,8 +28,24 @@
       }
     ];
     var preloadMovies = false;
+    treeModel.frameOptions = {
+      type: 'marco_arbol',
+      advices: [
+        {
+          position:'bottom-left',
+          description: 'Da clic en la neurona gris para conocer sus contenidos'
+        },
+        {
+          position:'bottom-right',
+          description: 'Elije un nuevo fruto y el camino en el que quieres aprender'
+        }
+      ],
+      showBackButton: true
+    };
+
 
     initVineta();
+    initAdvices();
 
     treeModel.finishedAnimation = function() {
       $scope.$apply(function(){treeModel.showTree = true;});
@@ -63,6 +79,19 @@
       return vinetaSelected[0] ? vinetaSelected[0].video : '';
     }
 
+    function initAdvices(){
+      var firstAdvice = localStorage.getItem('first_tree_advice');
+      if(!firstAdvice && data.meta.depth === 1){
+        localStorage.setItem('first_tree_advice', 'true');
+        treeModel.frameOptions.advices[0].show = true;
+      }
+
+      var secondAdvice = localStorage.getItem('second_tree_advice');
+      if(!secondAdvice && data.meta.depth === 2){
+        localStorage.setItem('second_tree_advice', 'true');
+        treeModel.frameOptions.advices[1].show = true;
+      }
+    }
   });
 
 })();
