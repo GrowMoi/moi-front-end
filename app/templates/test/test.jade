@@ -9,4 +9,5 @@ ion-view.frame-basic(view-title='{{vm.neuron.title}}')
               .internal-bar(style="width: {{vmTest.percentage}}%")
               span {{vmTest.percentage}}%
           div(ng-include="'templates/test/form.html'")
-  
+      .player(ng-if="vmTest.playerName")
+        h3.text-center Jugador: {{vmTest.playerName}}

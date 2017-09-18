@@ -243,6 +243,23 @@
       controllerAs: 'guidemodel',
       templateUrl: 'templates/guide/guide.html',
       cache: false
+    })
+    .state('quiz', {
+      url: '/quiz/{quizId:int}/player/{playerId:int}',
+      controller: 'QuizController',
+      controllerAs: 'vmTest',
+      templateUrl: 'templates/test/test.html',
+      resolve: {
+        quizData: function(QuizService, $stateParams) {
+          var params = {
+            quizId: $stateParams.quizId,
+            playerId: $stateParams.playerId
+          };
+          return QuizService.getQuiz(params).then(function(data){
+            return data;
+          });
+        }
+      }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
