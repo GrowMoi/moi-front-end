@@ -5,7 +5,7 @@ ion-content.content_tasks
       | {{notification.tutor.name}} ha realizado una solicitud para ser tu tutor
     .text-notes(ng-if='!notification.tutor'
                 ng-click='notificationsModel.showNotification(notification)')
-      | {{notification.title}} <br>
+      .text-title {{notification.title}}
       | {{notification.description}}
   ion-infinite-scroll(ng-if='!notificationsModel.noMoreItemsAvailable'
                       on-infinite='notificationsModel.loadMoreNotifications()'
