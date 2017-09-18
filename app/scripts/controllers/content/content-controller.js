@@ -10,7 +10,18 @@
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showAlertExternalLink = showAlertExternalLink;
+      vmContent.frameOptions = {
+        type: 'content_max',
+        advices: [
+          {
+            position:'bottom-right',
+            description: 'Cuando termines de leer la explicación presiona este botón para enviar esta pregunta al test'
+          }
+        ],
+        showBackButton: true
+      };
 
+      initAdvices();
       activate();
 
       function activate() {
@@ -83,6 +94,13 @@
           model: dialogContentModel
         };
         ModalService.showModel(dialogOptions);
+      }
+
+      function initAdvices(){
+        var firstAdvice = localStorage.getItem('first_content_advice');
+        if(!firstAdvice){
+          vmContent.frameOptions.advices[0].show = true;
+        }
       }
     });
 })();

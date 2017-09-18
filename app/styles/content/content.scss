@@ -1,4 +1,23 @@
 .content-view-max {
+
+  .frame-container {
+    position: absolute;
+    width: 95%;
+    height: 84%;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 2%;
+  }
+
+  .flecha-sidebar {
+    top: 45%;
+  }
+
+  .arrow {
+    top: 3%;
+    left: 35px;
+  }
+
   a {
     color: $titlesColor;
     text-decoration: none;

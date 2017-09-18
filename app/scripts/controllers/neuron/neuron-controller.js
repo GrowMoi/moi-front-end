@@ -12,6 +12,19 @@
         ApiButtons = null,
         ApiContent = null,
         timeoutPromise = null;
+    vmNeuron.frameOptions = {
+      type: 'content_max',
+      advices: [
+        {
+          position:'top-right',
+          description: 'Elije el contenido que más te guste y dale doble clic para desplegarlo'
+        },
+        {
+          position:'top-right',
+          description: 'Cuando envies al test 4 contenidos, podrás comprobar tus conocimientos y hacer crecer tu árbol'
+        }
+      ]
+    };
 
     /*jshint camelcase: false */
     function init(){
@@ -44,6 +57,7 @@
       };
     }
 
+    initAdvices();
     init();
 
     function onRegisterApiMoiButtons(api) {
@@ -73,7 +87,23 @@
 
     function onSelectItem(content) {
       if (ApiButtons) {
+        vmNeuron.frameOptions.advices[1].show = false;
         ApiButtons.contentSelected(content);
+      }
+    }
+
+    function initAdvices(){
+      var firstAdvice = localStorage.getItem('first_neuron_advice');
+      if(!firstAdvice){
+        localStorage.setItem('first_neuron_advice', 'true');
+        vmNeuron.frameOptions.advices[0].show = true;
+      }
+
+      var secondAdvice = localStorage.getItem('second_neuron_advice');
+      var firstContentAdvice = localStorage.getItem('first_content_advice');
+      if(!secondAdvice && firstContentAdvice){
+        localStorage.setItem('second_neuron_advice', 'true');
+        vmNeuron.frameOptions.advices[1].show = true;
       }
     }
 
@@ -86,5 +116,8 @@
       timeoutPromise = null;
     });
 
+    $scope.$on('neuron:remove-content', function(){
+      vmNeuron.frameOptions.advices[1].show = false;
+    });
   });
 })();

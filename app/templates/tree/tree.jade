@@ -1,8 +1,8 @@
-ion-view#screen(view-title='TreeMoi')
+ion-view.tree-view(view-title='TreeMoi')
   div(ng-if="treeModel.showTree")
     ion-content
       moi-sound(sound="sounds/fondo.mp3" background-sound="true")
-      .app-content.tree-view
+      .app-content
         back-button.arrow.back-arrow
         .clouds-container
           .cloud.animated.slideInLeft
@@ -21,6 +21,7 @@ ion-view#screen(view-title='TreeMoi')
               img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi")
           .tree-draw
             moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
+      moi-frame(options="treeModel.frameOptions")
   .movies-container(ng-if="!treeModel.showTree")
     .container-loading
       .logo-loading

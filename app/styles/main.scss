@@ -21,6 +21,7 @@
 @import "tree/tree-level-8";
 @import "tree/tree-level-9";
 @import "neuron/contents";
+@import "neuron/neuron";
 @import "content/content";
 @import "content/views";
 @import "partials/modal-image";
@@ -43,6 +44,7 @@
 @import "frames/frame-without-back-button";
 @import "frames/frame-basic";
 @import "directives/animate-sprite";
+@import "directives/moi-frame";
 @import "friends/friends";
 @import "tasks/tasks";
 @import "inventory/inventory";
