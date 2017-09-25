@@ -1,0 +1,14 @@
+ion-view.frame-basic(view-title='{{vm.neuron.title}}')
+  ion-content
+    .frame#test-frame
+      .frame-container
+        moi-sound(sound="sounds/test.mp3" background-sound="true")
+        div(ng-if="!vmTest.hideTest")
+          .widgets
+            .progress-bar
+              .internal-bar(style="width: {{vmTest.percentage}}%")
+              span {{vmTest.percentage}}%
+          div(ng-if="!vmTest.answers" ng-include="'templates/quiz/form.html'")
+        div(ng-if="vmTest.answers" ng-include="'templates/quiz/quiz-complete.html'")
+      .player(ng-if="vmTest.playerName")
+        h3.text-center Jugador: {{vmTest.playerName}}

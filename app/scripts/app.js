@@ -248,7 +248,7 @@
       url: '/quiz/{quizId:int}/player/{playerId:int}',
       controller: 'QuizController',
       controllerAs: 'vmTest',
-      templateUrl: 'templates/test/test.html',
+      templateUrl: 'templates/quiz/quiz.html',
       resolve: {
         quizData: function(QuizService, $stateParams) {
           var params = {

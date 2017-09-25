@@ -21,7 +21,6 @@
 
     return service;
 
-
     function scoreQuiz(scope, data) {
       var modelData = {};
       modelData.successAnswers = data.successAnswers;
@@ -42,6 +41,7 @@
         url: ENV.apiHost + '/api/quizzes/' + params.quizId + '/players/' + params.playerId + '/answer',
         data: {
           quiz_id: params.quizId,
+          player_id: params.playerId,
           answers: JSON.stringify(params.answers)
         }
       }).then(function success(res) {
@@ -70,5 +70,6 @@
         return err;
       });
     }
+
   }
 })();
