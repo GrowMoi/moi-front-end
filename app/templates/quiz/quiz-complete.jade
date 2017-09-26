@@ -1,9 +1,11 @@
-.modal.transparent
-  ion-pane.transparent
-    .score-container.row
-      .main-image.col
-        img(src="images/user.png")
-      .col-50
-        h1#title Resultado
-        .points
-          p#content Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
+.quiz-score
+  .main-image.col
+    img(src="images/user.png")
+  .result.col
+    h1#title Resultado
+    .points
+      p#summary Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
+  .answers
+    ul
+      li(ng-repeat="answer in vmTest.answersQuiz")
+        | {{answer.question}} {{answer.correct ? '✓' : 'x'}}

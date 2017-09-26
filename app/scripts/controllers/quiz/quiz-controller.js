@@ -20,7 +20,8 @@
       vmTest.indexShow = 0;
       vmTest.percentage = 0;
       // vmTest.questions = shuffle(quizData.questions);
-      vmTest.answers = quizData.answers;
+      vmTest.testComplete = !!quizData.answers;
+      vmTest.answersQuiz = quizData.answers;
       vmTest.successAnswers = rigthAnswers(quizData.answers || []);
       vmTest.questions = shuffle(quizData.questions.questions || []);
       vmTest.testId = quizData.quiz_id;

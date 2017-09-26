@@ -103,3 +103,27 @@
     }
   }
 }
+
+.quiz-score {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .main-image.col {
+    img {
+      max-width: 180px;
+    }
+  }
+
+  .result {
+    #title {
+      color: #7ECE56;
+      font-weight: bold;
+      font-family: FontMoi-Title;
+    }
+
+    #summary {
+      font-weight: bold;
+    }
+  }
+}

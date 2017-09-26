@@ -7,6 +7,7 @@
 
   function QuizService($http,
                       $ionicPopup,
+                      $window,
                       ENV,
                       ModalService,
                       PopupService){
@@ -25,6 +26,7 @@
       var modelData = {};
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
+      modelData.onClick = reloadPage;
       ModalService.showModel(
         {
           parentScope: scope,
@@ -32,6 +34,10 @@
           model: modelData
         }
       );
+    }
+
+    function reloadPage() {
+      $window.location.reload();
     }
 
     function evaluateQuiz(params) {

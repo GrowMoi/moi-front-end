@@ -2,13 +2,13 @@ ion-view.frame-basic(view-title='{{vm.neuron.title}}')
   ion-content
     .frame#test-frame
       .frame-container
-        moi-sound(sound="sounds/test.mp3" background-sound="true")
+        moi-sound(ng-if="!vmTest.testComplete" sound="sounds/test.mp3" background-sound="true")
         div(ng-if="!vmTest.hideTest")
           .widgets
-            .progress-bar
+            .progress-bar(ng-if="!vmTest.testComplete")
               .internal-bar(style="width: {{vmTest.percentage}}%")
               span {{vmTest.percentage}}%
-          div(ng-if="!vmTest.answers" ng-include="'templates/quiz/form.html'")
-        div(ng-if="vmTest.answers" ng-include="'templates/quiz/quiz-complete.html'")
-      .player(ng-if="vmTest.playerName")
-        h3.text-center Jugador: {{vmTest.playerName}}
+            .player(ng-if="vmTest.playerName")
+              h3.text-center Jugador: {{vmTest.playerName}}
+          .partial(ng-if="!vmTest.testComplete" ng-include="'templates/partials/test-questions.html'")
+        .complete-test(ng-if="vmTest.testComplete" ng-include="'templates/quiz/quiz-complete.html'")
