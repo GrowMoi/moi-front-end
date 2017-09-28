@@ -15,6 +15,6 @@
     .controls-score
       span.btn-score.button(ng-click="::model.closeModal()"
                             ui-sref="tree"
-                            ng-if="model.isTest") Continuar
+                            ng-if="!model.isQuiz") Continuar
       span.btn-score.button(ng-click="model.onClick()"
-                            ng-if="!model.isTest") Continuar
+                            ng-if="model.isQuiz") Continuar

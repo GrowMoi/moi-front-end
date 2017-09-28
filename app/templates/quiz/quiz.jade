@@ -4,11 +4,11 @@ ion-view.frame-basic(view-title='{{vm.neuron.title}}')
       .frame-container
         moi-sound(ng-if="!vmTest.testComplete" sound="sounds/test.mp3" background-sound="true")
         div(ng-if="!vmTest.hideTest")
-          .widgets
-            .progress-bar(ng-if="!vmTest.testComplete")
+          .widgets(ng-if="!vmTest.testComplete")
+            .progress-bar
               .internal-bar(style="width: {{vmTest.percentage}}%")
               span {{vmTest.percentage}}%
-            .player(ng-if="vmTest.playerName")
+            .player
               h3.text-center Jugador: {{vmTest.playerName}}
           .partial(ng-if="!vmTest.testComplete" ng-include="'templates/partials/test-questions.html'")
         .complete-test(ng-if="vmTest.testComplete" ng-include="'templates/quiz/quiz-complete.html'")

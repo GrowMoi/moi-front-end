@@ -27,6 +27,7 @@
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
       modelData.onClick = reloadPage;
+      modelData.isQuiz = true;
       ModalService.showModel(
         {
           parentScope: scope,
