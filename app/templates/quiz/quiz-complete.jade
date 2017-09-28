@@ -1,12 +1,11 @@
 .quiz-score
   .frame-container
     .main-content
-      .player
-        h3.name JUGADOR: {{vmTest.playerName}}
       .result.col
-        h1#title Resultado
+        h1.title Resultado
+        h3.name  {{ ::'quiz.player' | translate }}: {{vmTest.playerName}}
         .points
-          p#summary Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
+          p.summary Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
       .answers
         ul
           li(ng-repeat="answer in ::vmTest.answersQuiz")

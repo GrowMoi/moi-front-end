@@ -121,7 +121,7 @@
     .main-content{
       text-align: center;
 
-      .player {
+      .result {
         .name {
           text-transform: uppercase;
           color: #4A4B21;
@@ -129,16 +129,14 @@
           font-weight: bold;
           font-family: FontMoi-Title;
         }
-      }
 
-      .result {
-        #title {
+        .title {
           color: #7ECE56;
           font-weight: bold;
           font-family: FontMoi-Title;
         }
 
-        #summary {
+        .summary {
           font-weight: bold;
         }
       }

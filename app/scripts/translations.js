@@ -62,6 +62,9 @@
         'tasks': 'Tasks',
         'notifications': 'Notifications',
         'favorites': 'Favorites'
+      },
+      quiz: {
+        player: 'Player'
       }
     });
 
@@ -168,6 +171,9 @@
       },
       browser: {
         'chrome': 'Para una mejor experiencia, utilice esta página con Google Chrome'
+      },
+      quiz: {
+        player: 'Jugador'
       }
     });
 
