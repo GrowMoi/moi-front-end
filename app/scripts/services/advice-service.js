@@ -97,24 +97,15 @@
         var min = 0;
         var max = randomAdvices[page].length -1;
         var randomPosition = Math.floor(Math.random()*(max-min+1)+min);
-        var keyToPersist = page + '_' + 'advice_random' + randomPosition;
-        var savedRandomAdvice = localStorage.getItem(keyToPersist);
+        var keyToPersist = page + '_' + 'advice_random';
+        var lastIndexAdvice = localStorage.getItem(keyToPersist);
         var adviceSelected;
-        if(!savedRandomAdvice){
+        if(parseInt(lastIndexAdvice) !== randomPosition){
           adviceSelected = randomAdvices[page][randomPosition];
-          localStorage.setItem(keyToPersist, 'true');
+          localStorage.setItem(keyToPersist, randomPosition);
           return [adviceSelected];
         }else {
-          var getAgain = false;
-          for(var i=0; i < randomAdvices[page].length; i++){
-            if(!localStorage.getItem(page + '_' + 'advice_random' + i)){
-              getAgain = true;
-              break;
-            }
-          }
-          if(getAgain){
-            return getRandom(page);
-          }
+          return getRandom(page);
         }
       }
     }
