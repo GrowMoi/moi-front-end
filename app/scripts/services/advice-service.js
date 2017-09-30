@@ -30,7 +30,7 @@
         content: [
           {
             position:'bottom-right',
-            description: 'Cuando termines de leer la explicación presiona este botón para enviar esta pregunta al test'
+            description: 'Cuando termines de leer la explicación presiona el botón celeste para enviar esta pregunta al test'
           }
         ],
         test: [
@@ -50,7 +50,7 @@
           },
           {
             position:'bottom-right',
-            description: 'Usa las nuevas palabras que aprendes en tus conversaciones. El desarrollo de tu lenguaje trae nuevas ideas',
+            description: 'Usa las palabras que aprendes en tus conversaciones. El desarrollo de tu lenguaje trae nuevas ideas',
             show: true
           },
           {
@@ -113,7 +113,7 @@
             }
           }
           if(getAgain){
-            return [getRandom(page)];
+            return getRandom(page);
           }
         }
       }

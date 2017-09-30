@@ -31,13 +31,13 @@
     var preloadMovies = false;
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: AdviceService.getStatic('tree', data.meta.depth-1),
+      advices: (data.meta.depth >= 2 && localStorage.getItem('tree_advice1')) ?
+              AdviceService.getRandom('tree') : AdviceService.getStatic('tree', data.meta.depth-1),
       showBackButton: true
     };
 
 
     initVineta();
-    getRandomAdvices();
 
     treeModel.finishedAnimation = function() {
       $scope.$apply(function(){treeModel.showTree = true;});
@@ -69,12 +69,6 @@
     function getVineta(depth){
       var vinetaSelected = vinetas.filter(function(item){return item.depth === depth && item.video;});
       return vinetaSelected[0] ? vinetaSelected[0].video : '';
-    }
-
-    function getRandomAdvices(){
-      if(data.meta.depth >= 2 && localStorage.getItem('tree_advice1')){
-        treeModel.frameOptions.advices = AdviceService.getRandom('tree');
-      }
     }
   });
 
