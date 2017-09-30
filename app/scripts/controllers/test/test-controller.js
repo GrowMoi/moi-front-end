@@ -6,14 +6,14 @@
     function ($stateParams,
               TestService,
               $scope,
-              $rootScope) {
+              $rootScope,
+              AdviceService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
 
     init();
-    initAdvices();
 
     function init() {
       vmTest.answers = [];
@@ -29,12 +29,7 @@
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
         type: 'marco_arbol',
-        advices:[
-          {
-            position:'bottom-left',
-            description: 'Elije la respuesta correcta y presiona la flecha para continuar'
-          }
-        ]
+        advices: AdviceService.getStatic('test', 0)
       };
     }
 
@@ -55,7 +50,9 @@
       }
       vmTest.answers.push(vmTest.answerBackend);
       percentage();
-      vmTest.frameOptions.advices[0].show = false;
+      if(vmTest.frameOptions.advices.length > 0){
+        vmTest.frameOptions.advices[0].show = false;
+      }
       if (vmTest.answers.length === vmTest.totalQuestions) {
         scoreTest();
       }else{
@@ -108,14 +105,6 @@
         }
       });
       return count;
-    }
-
-    function initAdvices(){
-      var firstAdvice = localStorage.getItem('first_test_advice');
-      if(!firstAdvice){
-        localStorage.setItem('first_test_advice', 'true');
-        vmTest.frameOptions.advices[0].show = true;
-      }
     }
   });
 

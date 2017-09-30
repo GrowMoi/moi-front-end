@@ -6,7 +6,8 @@
                                           $rootScope,
                                           data,
                                           PreloadAssets,
-                                          VIDEOS) {
+                                          VIDEOS,
+                                          AdviceService) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -30,22 +31,13 @@
     var preloadMovies = false;
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: [
-        {
-          position:'bottom-left',
-          description: 'Da clic en la neurona gris para conocer sus contenidos'
-        },
-        {
-          position:'bottom-right',
-          description: 'Elije un nuevo fruto y el camino en el que quieres aprender'
-        }
-      ],
+      advices: (data.meta.depth >= 2 && localStorage.getItem('tree_advice1')) ?
+              AdviceService.getRandom('tree') : AdviceService.getStatic('tree', data.meta.depth-1),
       showBackButton: true
     };
 
 
     initVineta();
-    initAdvices();
 
     treeModel.finishedAnimation = function() {
       $scope.$apply(function(){treeModel.showTree = true;});
@@ -77,20 +69,6 @@
     function getVineta(depth){
       var vinetaSelected = vinetas.filter(function(item){return item.depth === depth && item.video;});
       return vinetaSelected[0] ? vinetaSelected[0].video : '';
-    }
-
-    function initAdvices(){
-      var firstAdvice = localStorage.getItem('first_tree_advice');
-      if(!firstAdvice && data.meta.depth === 1){
-        localStorage.setItem('first_tree_advice', 'true');
-        treeModel.frameOptions.advices[0].show = true;
-      }
-
-      var secondAdvice = localStorage.getItem('second_tree_advice');
-      if(!secondAdvice && data.meta.depth === 2){
-        localStorage.setItem('second_tree_advice', 'true');
-        treeModel.frameOptions.advices[1].show = true;
-      }
     }
   });
 
