@@ -103,6 +103,13 @@
       font-size: 14px;
       margin-top: 10px;
     }
+    .content-update {
+      display: flex;
+      font-size: 14px;
+      .legend-update {
+        font-style: italic;
+      }
+    }
   }
 
   .content-text::-webkit-scrollbar-track, .content-comments::-webkit-scrollbar-track {

@@ -35,7 +35,8 @@
           'coments': 'Coments',
           'media': 'Media',
           'recommended': 'Recommended',
-          'links': 'Links'
+          'links': 'Links',
+          'update': 'Last Update'
         }
       },
       searches: {
@@ -131,7 +132,8 @@
           'coments': 'Comentarios',
           'media': 'Galeria',
           'recommended': 'Recomendaciones',
-          'links': 'Enlaces'
+          'links': 'Enlaces',
+          'update': 'Última Actualización: '
         }
       },
       searches: {
