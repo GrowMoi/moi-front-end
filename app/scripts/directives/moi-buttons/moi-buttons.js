@@ -245,7 +245,7 @@
             TestService.goTest($scope, data.test);
           }
           if (page === 'content' && !data.perform_test) {
-            localStorage.setItem('first_content_advice', 'true');
+            localStorage.setItem('content_advice0', 'true');
             $state.go('neuron', {
               neuronId: vm.content.neuron_id
             });
