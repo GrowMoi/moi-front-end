@@ -22,6 +22,7 @@
       // vmTest.questions = shuffle(quizData.questions);
       vmTest.testComplete = !!quizData.answers;
       vmTest.answersQuiz = quizData.answers;
+      vmTest.timeQuiz = quizData.time || 0;
       vmTest.successAnswers = rigthAnswers(quizData.answers || []);
       vmTest.questions = shuffle(quizData.questions.questions || []);
       vmTest.testId = quizData.quiz_id;

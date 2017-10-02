@@ -1,15 +1,19 @@
 .quiz-score
   .frame-container
-    .main-content
-      .result.col
-        h1.title Resultado
-        h3.name  {{ ::'quiz.player' | translate }}: {{vmTest.playerName}}
-        .points
-          p.summary Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
-      .answers
-        ul
-          li(ng-repeat="answer in ::vmTest.answersQuiz")
-            | {{answer.question}} {{answer.correct ? '✓' : 'x'}}
-      .btn
-        .btn-score.button(ng-click="::model.closeModal()"
-                            ui-sref="tree") Ir al Árbol
+.modal.transparent.summary-section
+  ion-pane.transparent
+    .modal-leaderboard.modal-frame
+      .main-content
+        .result.col
+          h1.title Resultado
+          h3.name  {{ ::'quiz.player' | translate }}: {{vmTest.playerName}}
+          .points.summary
+            p Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
+            p Tu tiempo fue: {{vmTest.timeQuiz | milliseconds}}
+        .answers
+          ul
+            li(ng-repeat="answer in ::vmTest.answersQuiz")
+              | {{answer.question}} {{answer.correct ? '✓' : 'x'}}
+    .btn
+      .btn-score.button(ng-click="::model.closeModal()"
+                          ui-sref="tree") Ir al Árbol
