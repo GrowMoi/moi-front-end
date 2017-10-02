@@ -85,6 +85,13 @@
           }
         };
       });
+      $provide.factory('AdviceService', function(){
+        return {
+          getStatic: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     /*jshint camelcase: false */

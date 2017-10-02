@@ -4,7 +4,7 @@
       .btn-close-modal(ng-click="::model.closeModal()")
       img.content-image(ng-if='::model.isImage' ng-src='{{::model.contentSrc}}')
       embed-video(ng-if='::!model.isImage'
-                  data-ng-href='{{::model.contentSrc}}'
-                  controls='1'
-                  width=693
-                  height=395)
+                data-ng-href='{{::model.contentSrc}}'
+                controls='1'
+                width='100%'
+                height='100%')

@@ -6,7 +6,8 @@
     function ($stateParams,
               TestService,
               $scope,
-              $rootScope) {
+              $rootScope,
+              AdviceService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -26,6 +27,10 @@
       vmTest.hideTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
+      vmTest.frameOptions = {
+        type: 'marco_arbol',
+        advices: AdviceService.getStatic('test', 0)
+      };
     }
 
     function selectAnswer(contentId, answer) {
@@ -45,6 +50,9 @@
       }
       vmTest.answers.push(vmTest.answerBackend);
       percentage();
+      if(vmTest.frameOptions.advices.length > 0){
+        vmTest.frameOptions.advices[0].show = false;
+      }
       if (vmTest.answers.length === vmTest.totalQuestions) {
         scoreTest();
       }else{
@@ -98,7 +106,6 @@
       });
       return count;
     }
-
   });
 
 })();

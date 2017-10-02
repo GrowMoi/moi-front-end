@@ -10,7 +10,15 @@
       $rootScope;
 
     beforeEach(module('moi.controllers'));
-
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.factory('AdviceService', function(){
+        return {
+          getStatic: function(){
+            return null;
+          }
+        };
+      });
+    }));
     beforeEach(inject(
       function(_$controller_,
         _$rootScope_) {
