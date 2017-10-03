@@ -9,7 +9,7 @@
           h3.name  {{ ::'quiz.player' | translate }}: {{vmTest.playerName}}
           .points.summary
             p Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
-            p Tu tiempo fue: {{vmTest.timeQuiz | milliseconds}}
+            p Tu tiempo fue: {{vmTest.timeQuiz}}
         .answers
           ul
             li(ng-repeat="answer in ::vmTest.answersQuiz")
