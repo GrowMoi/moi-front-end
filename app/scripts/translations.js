@@ -35,7 +35,8 @@
           'coments': 'Coments',
           'media': 'Media',
           'recommended': 'Recommended',
-          'links': 'Links'
+          'links': 'Links',
+          'update': 'Last Update'
         }
       },
       searches: {
@@ -62,6 +63,9 @@
         'tasks': 'Tasks',
         'notifications': 'Notifications',
         'favorites': 'Favorites'
+      },
+      quiz: {
+        player: 'Player'
       }
     });
 
@@ -131,7 +135,8 @@
           'coments': 'Comentarios',
           'media': 'Galeria',
           'recommended': 'Recomendaciones',
-          'links': 'Enlaces'
+          'links': 'Enlaces',
+          'update': 'Última Actualización: '
         }
       },
       searches: {
@@ -168,6 +173,9 @@
       },
       browser: {
         'chrome': 'Para una mejor experiencia, utilice esta página con Google Chrome'
+      },
+      quiz: {
+        player: 'Jugador'
       }
     });
 

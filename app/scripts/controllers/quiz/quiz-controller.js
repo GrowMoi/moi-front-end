@@ -2,12 +2,11 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('TestController',
-    function ($stateParams,
-              TestService,
+  .controller('QuizController',
+    function (QuizService,
               $scope,
               $rootScope,
-              AdviceService) {
+              quizData) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -16,21 +15,25 @@
     init();
 
     function init() {
+      /*jshint camelcase: false */
       vmTest.answers = [];
       vmTest.indexShow = 0;
       vmTest.percentage = 0;
-      vmTest.questions = shuffle($stateParams.testData.testQuestions);
-      vmTest.testId = $stateParams.testData.testId;
+      // vmTest.questions = shuffle(quizData.questions);
+      vmTest.testComplete = !!quizData.answers;
+      vmTest.answersQuiz = quizData.answers;
+      vmTest.timeQuiz = quizData.time || 0;
+      vmTest.successAnswers = rigthAnswers(quizData.answers || []);
+      vmTest.questions = shuffle(quizData.questions.questions || []);
+      vmTest.testId = quizData.quiz_id;
+      vmTest.playerId = quizData.player_id;
+      vmTest.playerName = quizData.player_name;
       vmTest.questions[0].showQuestion = true;
       vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
       vmTest.hideTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
-      vmTest.frameOptions = {
-        type: 'marco_arbol',
-        advices: AdviceService.getStatic('test', 0)
-      };
     }
 
     function selectAnswer(contentId, answer) {
@@ -50,9 +53,6 @@
       }
       vmTest.answers.push(vmTest.answerBackend);
       percentage();
-      if(vmTest.frameOptions.advices.length > 0){
-        vmTest.frameOptions.advices[0].show = false;
-      }
       if (vmTest.answers.length === vmTest.totalQuestions) {
         scoreTest();
       }else{
@@ -85,7 +85,12 @@
 
     function scoreTest() {
       vmTest.hideTest = true;
-      TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
+      var params = {
+        quizId: vmTest.testId,
+        playerId: vmTest.playerId,
+        answers: vmTest.answers
+      };
+      QuizService.evaluateQuiz(params).then(function(res){
         var data = {
           totalQuestions: vmTest.totalQuestions,
           successAnswers: rigthAnswers(res.data.result)
@@ -93,7 +98,7 @@
         if(data.successAnswers > 1 ){
           $rootScope.$broadcast('moiSound:kill-sound');
         }
-        TestService.scoreTest($scope, data);
+        QuizService.scoreQuiz($scope, data);
       });
     }
 
@@ -106,6 +111,7 @@
       });
       return count;
     }
+
   });
 
 })();

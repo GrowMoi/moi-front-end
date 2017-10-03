@@ -1,0 +1,14 @@
+.moi-frame
+  .container-advices(ng-if="frameVm.showAdvices")
+    .advice(ng-repeat="advice in frameVm.options.advices"
+            ng-class="advice.position"
+            ng-if='advice.show')
+      .description
+        | {{advice.description}}
+  .container-frame
+    img.back-button(ng-if="frameVm.options.showBackButton"
+                    ng-class="{'top-left': frameVm.options.type === 'content_max'}"
+                    src="{{frameVm.imgBackButton}}")
+    img(ng-repeat="piece in frameVm.allPieces track by $index"
+        ng-class="frameVm.positions[$index]"
+        src="{{piece}}")
