@@ -11,19 +11,6 @@ a {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-
-  &::after {
-    content: "";
-    background-image: url("../images/view-elements/marco.png");
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
 }
 
 .overflow-scroll {
@@ -31,6 +18,9 @@ a {
 }
 
 .tree-view {
+  .overflow-scroll {
+    overflow-y: hidden;
+  }
 
   .tree-content {
     position: relative;

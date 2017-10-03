@@ -6,12 +6,18 @@
     function (data,
               $scope,
               $timeout,
-              $auth) {
+              $auth,
+              AdviceService) {
 
     var vmNeuron = this,
         ApiButtons = null,
         ApiContent = null,
         timeoutPromise = null;
+    var positionAdvice = localStorage.getItem('neuron_advice0') &&  localStorage.getItem('content_advice0')? 1 : 0;
+    vmNeuron.frameOptions = {
+      type: 'content_max',
+      advices: AdviceService.getStatic('neuron', positionAdvice)
+    };
 
     /*jshint camelcase: false */
     function init(){
@@ -73,6 +79,7 @@
 
     function onSelectItem(content) {
       if (ApiButtons) {
+        hideAdvice();
         ApiButtons.contentSelected(content);
       }
     }
@@ -86,5 +93,12 @@
       timeoutPromise = null;
     });
 
+    $scope.$on('neuron:remove-content', hideAdvice);
+
+    function hideAdvice(){
+      if(vmNeuron.frameOptions.advices.length > 0 && localStorage.getItem('neuron_advice1')){
+        vmNeuron.frameOptions.advices[0].show = false;
+      }
+    }
   });
 })();

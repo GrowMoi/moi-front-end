@@ -6,7 +6,8 @@
                                           $rootScope,
                                           data,
                                           PreloadAssets,
-                                          VIDEOS) {
+                                          VIDEOS,
+                                          AdviceService) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -28,6 +29,13 @@
       }
     ];
     var preloadMovies = false;
+    treeModel.frameOptions = {
+      type: 'marco_arbol',
+      advices: (data.meta.depth >= 2 && localStorage.getItem('tree_advice1')) ?
+              AdviceService.getRandom('tree') : AdviceService.getStatic('tree', data.meta.depth-1),
+      showBackButton: true
+    };
+
 
     initVineta();
 
@@ -62,7 +70,6 @@
       var vinetaSelected = vinetas.filter(function(item){return item.depth === depth && item.video;});
       return vinetaSelected[0] ? vinetaSelected[0].video : '';
     }
-
   });
 
 })();

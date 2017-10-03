@@ -1,0 +1,58 @@
+.quiz-score {
+  height: 95%;
+  width: 95%;
+  position: absolute;
+
+  .frame-container {
+    position: relative;
+    background-repeat: no-repeat;
+    background-image: url(../images/caja_M.png);
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.summary-section {
+  text-align: center;
+
+  ion-pane {
+    .modal-frame {
+      width: 100%;
+      padding: 20px;
+
+      .main-content{
+        width: 100%;
+        overflow-y: scroll;
+        height: 20rem;
+
+        .result {
+          .name {
+            text-transform: uppercase;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: FontMoi-Title;
+          }
+
+          .title {
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: FontMoi-Title;
+          }
+
+          .summary {
+            font-weight: bold;
+            color: white;
+          }
+        }
+      }
+
+      .answers {
+        color: white;
+      }
+    }
+  }
+}

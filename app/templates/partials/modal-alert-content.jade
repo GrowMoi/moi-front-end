@@ -8,7 +8,9 @@
           h2#content {{::model.message}}
       .pista.col
     .controls-score
-      span.btn-score.button.button-right(ng-if="model.labels.btnRight" ng-click="model.callbacks.btnRight()")
+      span.btn-score.button.button-right(ng-if="model.labels.btnRight"
+                                        ng-class="{'extend-button': model.labels.btnRight.length < 15}"
+                                        ng-click="model.callbacks.btnRight()")
         | {{::model.labels.btnRight}}
       span.btn-score.button.button-center(ng-if="model.labels.btnCenter" ng-click="model.callbacks.btnCenter()")
         | {{::model.labels.btnCenter}}
