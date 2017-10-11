@@ -31,7 +31,10 @@
     vmSlide.isImage = isImage;
     vmSlide.setImageForVideo = setImageForVideo;
 
-    var emitters = {};
+    var emitters = {
+      onImageHiddenCBs: [],
+      onImageSelectedCBs: []
+    };
 
     loadApi();
 
@@ -44,12 +47,17 @@
 
     function getPublicApi() {
       return {
+        onImageHidden: onImageHidden,
         onImageSelected: onImageSelected
       };
     }
 
+    function onImageHidden(cb) {
+      emitters.onImageHiddenCBs.push(cb);
+    }
+
     function onImageSelected(cb) {
-      emitters.onImageSelectedCb = cb;
+      emitters.onImageSelectedCBs.push(cb);
     }
 
     function createGroupedArray(arr, chunkSize) {
@@ -69,18 +77,27 @@
     }
 
     function showMedia(url) {
-      var modelData = {};
+      var onHideCB,
+          modelData = {};
+
       modelData.contentSrc = url;
       modelData.isImage = isImage(url);
+
+      emitters.onImageSelectedCBs.forEach(function(cb){
+        cb(url);
+      });
+      onHideCB = function (){
+        emitters.onImageHiddenCBs.forEach(function(cb){
+          cb();
+        });
+      };
+
       ModalService.showModel({
-                parentScope: $scope,
-                templateUrl: 'templates/partials/modal-image.html',
-                model: modelData});
-
-      if (angular.isFunction(emitters.onImageSelectedCb)) {
-        emitters.onImageSelectedCb(url);
-      }
-
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-image.html',
+        model: modelData,
+        onHide: onHideCB
+      });
     }
 
     // Called each time the slide changes

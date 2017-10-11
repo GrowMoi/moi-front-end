@@ -24,6 +24,7 @@
     "cordova": false,
     "StatusBar": false,
     "SuperGif": false,
+    "Bucky": false,
     "Pusher": false
   }
 }
