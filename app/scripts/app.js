@@ -8,6 +8,7 @@
     'moi.controllers',
     'moi.services',
     'moi.directives',
+    'moi.filters',
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
@@ -161,6 +162,11 @@
           return UserService.profile($stateParams.userId).then(function(data){
             return data;
           });
+        },
+        achievements: function(UserService, $stateParams){
+          return UserService.getAchievements($stateParams.userId).then(function(data){
+            return data;
+          });
         }
       }
     })
@@ -194,7 +200,35 @@
       controller: 'TasksController',
       controllerAs: 'tasksmodel',
       templateUrl: 'templates/tasks/tasks.html',
-      cache: false
+      abstract: true
+    })
+    .state('tasks.default', {
+      url: '/default',
+      templateUrl: 'templates/tasks/default-section.html',
+    })
+    .state('tasks.contents', {
+      url: '/contents',
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList'
+    })
+    .state('tasks.notes', {
+      url: '/notes',
+      templateUrl: 'templates/tasks/notes/notes.html',
+      controller: 'NotesController',
+      controllerAs: 'notesModel'
+    })
+    .state('tasks.notifications', {
+      url: '/notifications',
+      templateUrl: 'templates/tasks/notifications/notifications.html',
+      controller: 'NotificationsController',
+      controllerAs: 'notificationsModel'
+    })
+    .state('tasks.favorites', {
+      url: '/favorites',
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList'
     })
     .state('inventory', {
       url: '/inventory',
@@ -209,6 +243,23 @@
       controllerAs: 'guidemodel',
       templateUrl: 'templates/guide/guide.html',
       cache: false
+    })
+    .state('quiz', {
+      url: '/quiz/{quizId:int}/player/{playerId:int}',
+      controller: 'QuizController',
+      controllerAs: 'vmTest',
+      templateUrl: 'templates/quiz/quiz.html',
+      resolve: {
+        quizData: function(QuizService, $stateParams) {
+          var params = {
+            quizId: $stateParams.quizId,
+            playerId: $stateParams.playerId
+          };
+          return QuizService.getQuiz(params).then(function(data){
+            return data;
+          });
+        }
+      }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

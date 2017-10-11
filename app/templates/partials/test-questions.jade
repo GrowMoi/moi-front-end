@@ -1,0 +1,17 @@
+.test-container
+  .row(ng-repeat="question in vmTest.questions",
+      ng-show="question.showQuestion")
+    .main-image.col
+      img(src="{{question.media_url}}")
+    .question.col-50
+      .test
+        h1 {{question.title}}
+        .answer(ng-repeat="answer in question.possible_answers",
+                ng-class="{'answer-selected': answer.selected }",
+                ng-click="vmTest.selectAnswer(question.content_id, answer)")
+          h4 {{answer.text}}
+    .pista.col
+      span
+.controls(sound-button
+          image-url="images/next-test.png"
+          ng-click="vmTest.next()")

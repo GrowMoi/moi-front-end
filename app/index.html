@@ -38,12 +38,15 @@
     <script src="bower_components/html2canvas/build/html2canvas.js"></script>
     <script src="bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
     <script src="bower_components/ng-idle/angular-idle.js"></script>
-    <script src="bower_components/bucky/bucky.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+
+    <!-- bucky script -->
+    <script src="bucky.js" data-bucky-host="/bucky" data-bucky-page data-bucky-requests></script>
 
     <!-- your app's js -->
     <script src="scripts/configuration.js"></script>
@@ -69,6 +72,10 @@
     <script src="scripts/controllers/tasks/tasks-controller.js"></script>
     <script src="scripts/controllers/inventory/inventory-controller.js"></script>
     <script src="scripts/controllers/guide/guide-controller.js"></script>
+    <script src="scripts/controllers/tasks/notes/notes-controller.js"></script>
+    <script src="scripts/controllers/tasks/notifications/notifications-controller.js"></script>
+    <script src="scripts/controllers/tasks/contents-list/contents-list-controller.js"></script>
+    <script src="scripts/controllers/quiz/quiz-controller.js"></script>
     <!-- services -->
     <script src="scripts/services.js"></script>
     <script src="scripts/services/neuron-service.js"></script>
@@ -87,6 +94,10 @@
     <script src="scripts/services/social-service.js"></script>
     <script src="scripts/services/utility-service.js"></script>
     <script src="scripts/services/read-content-timing-service.js"></script>
+    <script src="scripts/services/pusher-service.js"></script>
+    <script src="scripts/services/user-notifications-service.js"></script>
+    <script src="scripts/services/quiz-service.js"></script>
+    <script src="scripts/services/advice-service.js"></script>
     <!-- directives -->
     <script src="scripts/directives.js"></script>
     <script src="scripts/directives/grid-contents/grid-contents.js"></script>
@@ -100,6 +111,10 @@
     <script src="scripts/directives/animate-sprite/animate-sprite.js"></script>
     <script src="scripts/directives/ellipsis-title/ellipsis-title.js"></script>
     <script src="scripts/directives/moi-buttons/moi-buttons.js"></script>
+    <script src="scripts/directives/moi-frame/moi-frame.js"></script>
+    <!-- filters -->
+    <script src="scripts/filters.js"></script>
+    <script src="scripts/filters/moment-duration.js"></script>
     <!-- endbuild -->
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">

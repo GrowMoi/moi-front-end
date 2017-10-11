@@ -48,6 +48,36 @@
     pointer-events: none;
     cursor: default;
   }
+
+  .notifications-badget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: #fd3d2d;
+    border: 2px solid white;
+    color: white;
+    font-family: FontMoi-Title;
+    font-weight: bold;
+    font-family: FontMoi-Title;
+  }
+}
+
+.btn-add-favorites-gif {
+  position: fixed;
+  bottom: 19px;
+  right: 230px;
+  cursor: pointer;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
 }
 
 .btn-search-gif {

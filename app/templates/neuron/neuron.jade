@@ -1,11 +1,12 @@
-ion-view.frame-without-back-button.neuron-view(view-title='{{vmNeuron.neuron.title}}')
+ion-view.neuron-view(view-title='{{vmNeuron.neuron.title}}')
   ion-content
     moi-sound(sound="sounds/read_content.mp3" background-sound="true" volume="0.2")
+    .main-view
+      .frame-container.content-view
+        grid-contents(options="vmNeuron.contentsOptions")
+    moi-frame(options="vmNeuron.frameOptions")
+    moi-buttons(options="vmNeuron.buttonsOptions")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
     .frame-background
-    .frame.main-view
-      .frame-container.content-view
-        grid-contents(options="vmNeuron.contentsOptions")
-      moi-buttons(options="vmNeuron.buttonsOptions")
   moi-sidebar

@@ -1,0 +1,111 @@
+.moi-frame {
+  width: 1280px;
+  height: 720px;
+  margin: auto;
+
+  .container-frame{
+    position: initial;
+    .right-frame{
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+    .left-frame{
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }
+    .top-frame{
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+    .bottom-frame{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+    .back-button{
+      position: absolute;
+      top: 22px;
+      left: 0;
+      height: 14%;
+      width: 9%;
+      &.top-left{
+        top: 6px;
+        left: 13px;
+      }
+    }
+  }
+  .container-advices{
+    width: 100%;
+    height: 100%;
+    position: initial;
+    .advice{
+      background-image: url("../images/info_box_s_downM.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 26%;
+      height: 17%;
+      position: absolute;
+      bottom: 7%;
+      left: 5%;
+
+      .description {
+        position: relative;
+        min-height: 66px;
+        width: 315px;
+        overflow: scroll;
+        padding: 9px;
+        color:#767b3a;
+        font-weight: bold;
+        font-family: FontMoi-Title;
+        overflow: hidden;
+        font-size: 16px;
+      }
+
+      &.top-left {
+        background-image: url("../images/info_box_s_izqM.png");
+        top: 115px;
+        left: 0;
+        .description {
+          left: 25%;
+          width: 230px;
+        }
+      }
+
+      &.bottom-left {
+        background-image: url("../images/info_box_s_izqM.png");
+        bottom: 100px;
+        left: 0;
+        .description {
+          left: 25%;
+          width: 230px;
+        }
+      }
+
+      &.top-right {
+        background-image: url("../images/info_box_s_derM.png");
+        top: 115px;
+        left: 75%;
+        .description{
+          right: -8px;
+          width: 235px;
+        }
+      }
+
+      &.bottom-right {
+        background-image: url("../images/info_box_s_derM.png");
+        bottom: 100px;
+        left: 75%;
+        .description{
+          right: -8px;
+          width: 235px;
+        }
+      }
+    }
+  }
+
+}

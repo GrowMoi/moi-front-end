@@ -23,7 +23,7 @@
       Socialshare.share({
         provider: 'facebook',
         attrs: {
-          socialshareVia: ENV.fcbKey,
+          socialshareVia: ENV.facebookKey,
           socialshareType: 'share',
           socialshareTitle: options.title,
           socialshareMedia: options.media,

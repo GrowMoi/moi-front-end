@@ -13,7 +13,8 @@
         ENV: {
           name: 'development',
           apiHost: 'http://localhost:5000',
-          fcbKey: ''
+          facebookKey: '',
+          pusherKey: 'fcad096c62e8aadb4f04'
         },
         IMAGES: {
           paths: []
@@ -31,7 +32,8 @@
         ENV: {
           name: 'staging',
           apiHost: '//moi-staging.herokuapp.com',
-          fcbKey: process.env.FACEBOOK_KEY
+          facebookKey: process.env.FACEBOOK_KEY,
+          pusherKey: process.env.PUSHER_KEY
         },
         IMAGES: {
           paths: []
@@ -52,7 +54,8 @@
         ENV: {
           name: 'production',
           apiHost: 'http://moi-backend.growmoi.com',
-          fcbKey: process.env.FACEBOOK_KEY
+          facebookKey: process.env.FACEBOOK_KEY,
+          pusherKey: process.env.PUSHER_KEY
         },
         IMAGES: {
           paths: []
@@ -70,7 +73,7 @@
         ENV: {
           name: 'test',
           apiHost: 'http://moi-integration.herokuapp.com',
-          fcbKey: ''
+          facebookKey: ''
         },
         IMAGES: {
           paths: []

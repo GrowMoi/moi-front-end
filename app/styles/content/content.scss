@@ -1,4 +1,23 @@
 .content-view-max {
+
+  .frame-container {
+    position: absolute;
+    width: 95%;
+    height: 84%;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 2%;
+  }
+
+  .flecha-sidebar {
+    top: 45%;
+  }
+
+  .arrow {
+    top: 3%;
+    left: 35px;
+  }
+
   a {
     color: $titlesColor;
     text-decoration: none;
@@ -34,6 +53,13 @@
     .corner{
       display: inline-block;
       position: absolute;
+    }
+    .favorite{
+      position: relative;
+      width: 25px;
+      height: 25px;
+      margin-bottom: -10px;
+      margin-left: 40px;
     }
   }
 
@@ -76,6 +102,13 @@
       text-decoration: underline;
       font-size: 14px;
       margin-top: 10px;
+    }
+    .content-update {
+      display: flex;
+      font-size: 14px;
+      .legend-update {
+        font-style: italic;
+      }
     }
   }
 

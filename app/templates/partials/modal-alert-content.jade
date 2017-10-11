@@ -8,11 +8,11 @@
           h2#content {{::model.message}}
       .pista.col
     .controls-score
-      div(ng-if="model.type === 'confirm'")
-        span.btn-score.button.button-left(ng-click="model.closeModal()")
-          | {{::model.btnOkLabel}}
-        span.btn-score.button.button-right(ng-click="model.modalCallbak()")
-          | {{::model.btnCancelLabel}}
-      div(ng-if="model.type === 'alert'")
-        span.btn-score.button.button-center(ng-click="model.closeModal()")
-          | {{::model.btnOkLabel}}
+      span.btn-score.button.button-right(ng-if="model.labels.btnRight"
+                                        ng-class="{'extend-button': model.labels.btnRight.length < 15}"
+                                        ng-click="model.callbacks.btnRight()")
+        | {{::model.labels.btnRight}}
+      span.btn-score.button.button-center(ng-if="model.labels.btnCenter" ng-click="model.callbacks.btnCenter()")
+        | {{::model.labels.btnCenter}}
+      span.btn-score.button.button-left(ng-if="model.labels.btnLeft" ng-click="model.callbacks.btnLeft()")
+        | {{::model.labels.btnLeft}}

@@ -1,0 +1,9 @@
+ion-content.content_tasks
+  .col.col-50.content(ng-repeat='content in contentsList.contents')
+    .remove-task(ng-if='!contentsList.isFavorites && content.learnt' ng-click='contentsList.removeItem(content)')
+    .content-kind-contents(ui-sref='content({neuronId: content.neuron_id, contentId: content.id})')
+      img.format-image(ng-src='{{content.media[0]}}')
+      .leyend-bottom(ellipsis-title='', height='45', title='content.title')
+  ion-infinite-scroll(ng-if='!contentsList.noMoreItemsAvailable'
+                      on-infinite='contentsList.loadMoreItems()'
+                      distance='10%')

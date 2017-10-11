@@ -35,15 +35,23 @@
           'coments': 'Coments',
           'media': 'Media',
           'recommended': 'Recommended',
-          'links': 'Links'
+          'links': 'Links',
+          'update': 'Last Update'
         }
       },
       searches: {
         'search': 'Search',
         'friends': 'Friends'
       },
+      titles: {
+        'personal-descripcion': 'Personal Description',
+        'current-photo': 'Current Photo',
+        'items': 'items',
+        'title': 'Title',
+        'description': 'Description'
+      },
       social: {
-        'tittle': 'Show and tell your friends!',
+        'title': 'Show and tell your friends!',
         'description': 'Show your progress on your Facebook timeline or any '+
                         'social media you like, although you can share via '+
                         'mail. Spread the good news!'
@@ -55,6 +63,9 @@
         'tasks': 'Tasks',
         'notifications': 'Notifications',
         'favorites': 'Favorites'
+      },
+      quiz: {
+        player: 'Player'
       }
     });
 
@@ -124,7 +135,8 @@
           'coments': 'Comentarios',
           'media': 'Galeria',
           'recommended': 'Recomendaciones',
-          'links': 'Enlaces'
+          'links': 'Enlaces',
+          'update': 'Última Actualización: '
         }
       },
       searches: {
@@ -142,10 +154,12 @@
       titles: {
         'personal-descripcion': 'Descripción Personal',
         'current-photo': 'Foto Actual',
-        'items': 'items'
+        'items': 'items',
+        'title': 'Título',
+        'description': 'Descripción'
       },
       social: {
-        'tittle': 'Muestrale a tus amigos!',
+        'title': 'Muestrale a tus amigos!',
         'description': 'Muestra tu progreso en Facebook, Twitter, '+
                         'Whatsapp o vía email. Comparte las buenas noticias!'
       },
@@ -159,6 +173,9 @@
       },
       browser: {
         'chrome': 'Para una mejor experiencia, utilice esta página con Google Chrome'
+      },
+      quiz: {
+        player: 'Jugador'
       }
     });
 
