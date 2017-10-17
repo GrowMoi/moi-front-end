@@ -25,7 +25,10 @@ ion-view.content-view-max(view-title='Content')
         .col.border-right.border-left.middle-column-margin-bottom.col-contents
           .row.border-bottom
             .col.image-center
-              img.format-image(src='{{vmContent.content.media[0]}}', ng-click='vmContent.showImage(vmContent.content.media[0])')
+              img.format-image(
+                ng-src='{{vmContent.currentContentImage}}',
+                ng-click='vmContent.showImage(vmContent.currentContentImage)'
+              )
             .corner.image-TR
           .row
             .col

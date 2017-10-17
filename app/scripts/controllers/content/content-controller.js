@@ -3,6 +3,7 @@
   angular.module('moi.controllers')
     .controller('ContentController', function($scope,
                                               $window,
+                                              $interval,
                                               content,
                                               ContentService,
                                               ModalService,
@@ -26,6 +27,7 @@
       function activate() {
         vmContent.content = content;
         vmContent.media = content.videos.concat(content.media);
+        vmContent.currentContentImage = getImageUrl(vmContent.media[0]);
 
         vmContent.buttonsOptions = {
           neuron: content,
@@ -43,6 +45,27 @@
         vmContent.slideGalleryOptions = {
           onRegisterApi: onRegisterApi
         };
+
+        delayImages();
+      }
+
+      function getImageUrl(params) {
+        return isImage(params) ? params : (params || {}).thumbnail || 'images/video_placeholder.png';
+      }
+
+      function delayImages() {
+        var index = 0;
+        var maxIndex = vmContent.media.length - 1;
+        var delayInMs = 3000;
+
+        $interval(function(){
+          if (index < maxIndex) {
+            index++;
+          } else {
+            index = 0;
+          }
+          vmContent.currentContentImage = getImageUrl(vmContent.media[index]);
+        }, delayInMs);
       }
 
       function onRegisterApi(api) {
@@ -61,8 +84,8 @@
       function showImage(urlImage) {
         stopsReading();
         var modelData = {};
+        modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
-        modelData.isImage = true;
         ModalService.showModel({
           parentScope: $scope,
           templateUrl: 'templates/partials/modal-image.html',
@@ -104,6 +127,10 @@
 
       function stopsReading() {
         ReadContentTimingService.stopsReading(vmContent.content);
+      }
+
+      function isImage(params) {
+        return typeof params === 'string';
       }
     });
 })();

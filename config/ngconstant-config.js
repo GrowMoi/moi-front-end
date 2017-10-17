@@ -12,7 +12,7 @@
       constants: {
         ENV: {
           name: 'development',
-          apiHost: 'http://localhost:5000',
+          apiHost: '//moi-staging.herokuapp.com',
           facebookKey: '',
           pusherKey: 'fcad096c62e8aadb4f04'
         },
