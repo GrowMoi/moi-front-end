@@ -151,6 +151,16 @@
     height: 240px;
     width: 100%;
     box-shadow: 2px 5px 2px 1px $titlesColor;
+    transition: 0.5s opacity;
+    opacity: 1;
+
+    &.enter {
+      opacity: 1;
+    }
+
+    &.leave {
+      opacity: 0;
+    }
   }
 
   .format-image-gallery {

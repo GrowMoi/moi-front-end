@@ -3,6 +3,7 @@
   angular.module('moi.controllers')
     .controller('ContentController', function($scope,
                                               $window,
+                                              $timeout,
                                               $interval,
                                               content,
                                               ContentService,
@@ -27,7 +28,9 @@
       function activate() {
         vmContent.content = content;
         vmContent.media = content.videos.concat(content.media);
-        vmContent.currentContentImage = getImageUrl(vmContent.media[0]);
+        vmContent.currentContentImageUrl = getImageUrl(vmContent.media[0]);
+        vmContent.currentContent = vmContent.media[0];
+        vmContent.currentTransition = 'leave';
 
         vmContent.buttonsOptions = {
           neuron: content,
@@ -56,7 +59,7 @@
       function delayImages() {
         var index = 0;
         var maxIndex = vmContent.media.length - 1;
-        var delayInMs = 3000;
+        var delayInMs = 5000;
 
         $interval(function(){
           if (index < maxIndex) {
@@ -64,7 +67,14 @@
           } else {
             index = 0;
           }
-          vmContent.currentContentImage = getImageUrl(vmContent.media[index]);
+          vmContent.currentContentImageUrl = getImageUrl(vmContent.media[index]);
+          vmContent.currentContent = vmContent.media[index];
+          vmContent.currentTransition = 'enter';
+
+          $timeout(function() {
+            vmContent.currentTransition = 'leave';
+          }, delayInMs - 500);
+
         }, delayInMs);
       }
 
