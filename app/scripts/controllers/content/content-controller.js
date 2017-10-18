@@ -3,6 +3,8 @@
   angular.module('moi.controllers')
     .controller('ContentController', function($scope,
                                               $window,
+                                              $timeout,
+                                              $interval,
                                               content,
                                               ContentService,
                                               ModalService,
@@ -26,6 +28,10 @@
       function activate() {
         vmContent.content = content;
         vmContent.media = content.videos.concat(content.media);
+        vmContent.currentContentImageUrl = getImageUrl(vmContent.media[0]);
+        vmContent.currentContent = vmContent.media[0];
+        vmContent.currentTransition = 'enter';
+        vmContent.imgDelayTime = 5000;
 
         vmContent.buttonsOptions = {
           neuron: content,
@@ -43,6 +49,36 @@
         vmContent.slideGalleryOptions = {
           onRegisterApi: onRegisterApi
         };
+
+        leaveImage(vmContent.imgDelayTime);
+        delayImages(vmContent.imgDelayTime);
+      }
+
+      function getImageUrl(params) {
+        return isImage(params) ? params : (params || {}).thumbnail || 'images/video_placeholder.png';
+      }
+
+      function delayImages(delayInMs) {
+        var index = 0;
+        var maxIndex = vmContent.media.length - 1;
+        
+        return $interval(function(){
+          if (index < maxIndex) {
+            index++;
+          } else {
+            index = 0;
+          }
+          vmContent.currentContentImageUrl = getImageUrl(vmContent.media[index]);
+          vmContent.currentContent = vmContent.media[index];
+          vmContent.currentTransition = 'enter';
+          leaveImage(delayInMs);
+        }, delayInMs);
+      }
+
+      function leaveImage(delayInMs) {
+        return $timeout(function() {
+          vmContent.currentTransition = 'leave';
+        }, delayInMs - 500);
       }
 
       function onRegisterApi(api) {
@@ -61,8 +97,8 @@
       function showImage(urlImage) {
         stopsReading();
         var modelData = {};
+        modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
-        modelData.isImage = true;
         ModalService.showModel({
           parentScope: $scope,
           templateUrl: 'templates/partials/modal-image.html',
@@ -104,6 +140,10 @@
 
       function stopsReading() {
         ReadContentTimingService.stopsReading(vmContent.content);
+      }
+
+      function isImage(params) {
+        return typeof params === 'string';
       }
     });
 })();
