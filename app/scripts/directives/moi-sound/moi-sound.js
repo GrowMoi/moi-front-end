@@ -13,7 +13,6 @@
         sound: '@',
         autoPlay: '=',
         callback: '&',
-        backgroundSound: '=',
         volume: '=',
         onlyPlay: '='
       },
@@ -29,8 +28,7 @@
                               $rootScope,
                               $ionicPlatform,
                               $window,
-                              $cordovaNativeAudio,
-                              SoundService) {
+                              $cordovaNativeAudio) {
     var vmSound = this,
         isNativeImplementation;
 
@@ -92,27 +90,15 @@
     }
 
     function play() {
-      var replaySound = vmSound.backgroundSound ? play : vmSound.callback;
       if (isNativeImplementation) {
         // TODO support loops
-        $cordovaNativeAudio.play(vmSound.sound, replaySound);
+        $cordovaNativeAudio.play(vmSound.sound, vmSound.callback);
       } else {
         vmSound.$audio[0].volume = vmSound.volume || 1;
         vmSound.$audio[0].play();
         if(!vmSound.onlyPlay){
-          vmSound.$audio[0].onended = replaySound;
+          vmSound.$audio[0].onended = vmSound.callback;
         }
-      }
-    }
-
-    if(vmSound.backgroundSound){
-      var soundObj = SoundService.getSound();
-      if(soundObj.url !== vmSound.sound){
-        if(soundObj.url){
-          stopSoundService(soundObj.url, soundObj.instance);
-        }
-        saveSoundService();
-        play();
       }
     }
 
@@ -126,29 +112,6 @@
       }
     }
 
-    function stopSoundService(urlSound, instanceSound) {
-      if (isNativeImplementation) {
-        instanceSound.stop(urlSound);
-        instanceSound.unload(urlSound);
-      } else {
-        instanceSound.pause();
-      }
-    }
-
-    function saveSoundService() {
-      if (isNativeImplementation) {
-        SoundService.setSound(vmSound.sound, $cordovaNativeAudio);
-      } else {
-        SoundService.setSound(vmSound.sound, vmSound.$audio[0]);
-      }
-    }
-
-    $rootScope.$on('moiSound:kill-sound', function() {
-      if (isNativeImplementation) {
-        stopSoundService(vmSound.sound, $cordovaNativeAudio);
-      } else {
-        stopSoundService(vmSound.sound, vmSound.$audio[0]);
-      }
-    });
+    $rootScope.$on('moiSound:kill-sound', stop);
   }
 })();
