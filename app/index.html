@@ -53,6 +53,7 @@
     <script src="scripts/login-provider.js"></script>
     <script src="scripts/translations.js"></script>
     <script src="scripts/bucky-config.js"></script>
+    <script src="scripts/values/sounds-page.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers.js"></script>
     <script src="scripts/controllers/site/site-controller.js"></script>
@@ -118,6 +119,10 @@
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application"></ion-nav-view>
+      <audio id="backgroundSound"
+            src="{{site.soundPage.sound}}"
+            volume="{{site.soundPage.volume}}"
+            type="{{site.soundPage.type}}" autoplay loop/>
     </div>
     <div class="loading-app" ng-if="!site.loadedImages" ng-cloak>
       <div class="content">

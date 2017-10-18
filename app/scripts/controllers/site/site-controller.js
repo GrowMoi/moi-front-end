@@ -15,6 +15,7 @@
                           $timeout,
                           $state,
                           $scope,
+                          SoundsPage,
                           IMAGES,
                           SOUNDS) {
     var site = this,
@@ -89,10 +90,12 @@
       }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(){
+    $rootScope.$on('$stateChangeSuccess', function(event, toState){
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
+      site.soundPage =  SoundsPage[toState.name];
+      site.soundPage.volume = SoundsPage[toState.name].volume ? SoundsPage[toState.name].volume : 1;
     });
 
     $rootScope.$on('$stateChangeError', function(){
