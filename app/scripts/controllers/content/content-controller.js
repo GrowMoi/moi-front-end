@@ -30,7 +30,8 @@
         vmContent.media = content.videos.concat(content.media);
         vmContent.currentContentImageUrl = getImageUrl(vmContent.media[0]);
         vmContent.currentContent = vmContent.media[0];
-        vmContent.currentTransition = 'leave';
+        vmContent.currentTransition = 'enter';
+        vmContent.imgDelayTime = 5000;
 
         vmContent.buttonsOptions = {
           neuron: content,
@@ -49,19 +50,19 @@
           onRegisterApi: onRegisterApi
         };
 
-        delayImages();
+        leaveImage(vmContent.imgDelayTime);
+        delayImages(vmContent.imgDelayTime);
       }
 
       function getImageUrl(params) {
         return isImage(params) ? params : (params || {}).thumbnail || 'images/video_placeholder.png';
       }
 
-      function delayImages() {
+      function delayImages(delayInMs) {
         var index = 0;
         var maxIndex = vmContent.media.length - 1;
-        var delayInMs = 5000;
-
-        $interval(function(){
+        
+        return $interval(function(){
           if (index < maxIndex) {
             index++;
           } else {
@@ -70,12 +71,14 @@
           vmContent.currentContentImageUrl = getImageUrl(vmContent.media[index]);
           vmContent.currentContent = vmContent.media[index];
           vmContent.currentTransition = 'enter';
-
-          $timeout(function() {
-            vmContent.currentTransition = 'leave';
-          }, delayInMs - 500);
-
+          leaveImage(delayInMs);
         }, delayInMs);
+      }
+
+      function leaveImage(delayInMs) {
+        return $timeout(function() {
+          vmContent.currentTransition = 'leave';
+        }, delayInMs - 500);
       }
 
       function onRegisterApi(api) {
