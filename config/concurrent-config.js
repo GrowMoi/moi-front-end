@@ -14,14 +14,14 @@
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
-      'jade'
+      'jadengtemplatecache'
     ],
     test: [
       'compass',
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
-      'jade:test'
+      'jadengtemplatecache'
     ],
     dist: {
       options: {
@@ -32,7 +32,7 @@
         'copy:dist',
         'copy:vendor',
         'copy:fonts',
-        'jade:dist'
+        'jadengtemplatecache'
       ]
     },
     staging: [
@@ -40,7 +40,7 @@
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
-      'jade:staging'
+      'jadengtemplatecache'
     ]
   };
 

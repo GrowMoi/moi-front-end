@@ -9,6 +9,7 @@
     'moi.services',
     'moi.directives',
     'moi.filters',
+    'moi.templates',
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
@@ -265,4 +266,11 @@
     $urlRouterProvider.otherwise('/login');
 
   });
+
+  //init modules
+  angular.module('moi.controllers', []);
+  angular.module('moi.directives', []);
+  angular.module('moi.services', []);
+  angular.module('moi.templates', []);
+  angular.module('moi.filters', []);
 })();
