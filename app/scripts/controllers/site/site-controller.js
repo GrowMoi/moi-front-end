@@ -27,6 +27,8 @@
 
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
+    site.progress = 0;
+    site.rawProgress = 0;
 
     function preloadAssets() {
       site.loadedImages = false;
@@ -36,10 +38,20 @@
         var route = matchRouteAssets(snd);
         return route;
       });
-      PreloadAssets.cache({images: filterImages, sounds: sounds}).then(function(){
-        site.loadedImages = true;
-        site.preloadCalled = true;
-      });
+      var progressValue = 100 / (filterImages.length + sounds.length);
+      PreloadAssets.cache({images: filterImages, sounds: sounds}, function() {updateProgress(progressValue);})
+        .then(function(){
+          $timeout(function() {
+            site.loadedImages = true;
+            site.preloadCalled = true;  
+          }, 500);
+        });
+    }
+
+    function updateProgress(value) {
+      var newProgressValue = site.rawProgress + value;
+      site.rawProgress = newProgressValue;
+      site.progress = Math.round(newProgressValue);
     }
 
     function filterImagesByPath(images, paths ) {
