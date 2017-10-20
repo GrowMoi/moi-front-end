@@ -16,11 +16,9 @@
                           $state,
                           $scope,
                           SoundsPage,
-                          IMAGES,
-                          SOUNDS) {
+                          IMAGES) {
     var site = this,
         images = IMAGES.paths,
-        sounds = SOUNDS.paths,
         imageSaved = false,
         callApiSaveImage = 0;
 
@@ -35,16 +33,12 @@
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
       var filterImages = filterImagesByPath(images, validPaths);
-      sounds = sounds.map(function(snd){
-        var route = matchRouteAssets(snd);
-        return route;
-      });
-      var progressValue = 100 / (filterImages.length + sounds.length);
-      PreloadAssets.cache({images: filterImages, sounds: sounds}, function() {updateProgress(progressValue);})
+      var progressValue = 100 / (filterImages.length);
+      PreloadAssets.cache({images: filterImages}, function() {updateProgress(progressValue);})
         .then(function(){
           $timeout(function() {
             site.loadedImages = true;
-            site.preloadCalled = true;  
+            site.preloadCalled = true;
           }, 500);
         });
     }
