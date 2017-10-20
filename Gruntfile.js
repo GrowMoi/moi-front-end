@@ -65,21 +65,18 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep', 'newer:copy:app']
       },
-      html: {
-        files: ['<%= yeoman.app %>/*.html'],
-        tasks: ['newer:copy:app']
-      },
-      jade: {
+      jadengtemplatecache: {
         files: ['<%= yeoman.app %>/**/*.jade'],
-        tasks: ['jade:compile']
+        tasks: ['jadengtemplatecache','newer:copy:templates']
       },
       js: {
-        files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'],
+        files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
+                '!<%= yeoman.app %>/<%= yeoman.scripts %>/templates.js'],
         tasks: ['newer:copy:app', 'newer:jshint:all']
       },
       compass: {
         files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer', 'newer:copy:tmp']
+        tasks: ['compass:server', 'newer:clean:css', 'autoprefixer', 'newer:copy:tmp']
       },
       gruntfile: {
         files: ['Gruntfile.js'],
@@ -90,6 +87,8 @@ module.exports = function (grunt) {
         tasks: ['newer:copy:images']
       }
     },
+
+    jadengtemplatecache: require('./config/jade-config'),
 
     // The actual grunt server settings
     connect: {
@@ -120,7 +119,8 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'
+        '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
+        '!<%= yeoman.app %>/<%= yeoman.scripts %>/templates.js'
       ],
       test: {
         options: {
@@ -142,7 +142,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.temp'
+      server: '.temp',
+      css: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= yeoman.dist %>/styles'
+          ]
+        }]
+      },
     },
 
     autoprefixer: {
@@ -196,7 +204,6 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/<%= yeoman.styles %>/**/*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
@@ -204,27 +211,10 @@ module.exports = function (grunt) {
     },
 
     // The following *-min tasks produce minified files in the dist folder
-    jade: require('./config/jade-config'),
     cssmin: {
       options: {
         //root: '<%= yeoman.app %>',
         noRebase: true
-      }
-    },
-    htmlmin: {
-      dist: {
-        options: {
-          collapseWhitespace: true,
-          collapseBooleanAttributes: true,
-          removeCommentsFromCDATA: true,
-          removeOptionalTags: true
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.dist %>',
-          src: ['*.html', 'templates/**/*.html'],
-          dest: '<%= yeoman.dist %>'
-        }]
       }
     },
 
@@ -563,8 +553,7 @@ module.exports = function (grunt) {
     'ngAnnotate',
     'cssmin',
     'uglify',
-    'usemin',
-    'htmlmin'
+    'usemin'
   ]);
 
   grunt.registerTask('coverage',

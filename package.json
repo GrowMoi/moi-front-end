@@ -19,6 +19,7 @@
     "grunt-contrib-copy": "~0.7.0",
     "grunt-contrib-jade": "^0.15.0",
     "grunt-ng-constant": "^1.0.0",
+    "grunt-jade-ng-template-cache": "0.0.5",
     "time-grunt": "~1.0.0"
   },
   "devDependencies": {
