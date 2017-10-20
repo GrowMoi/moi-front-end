@@ -13,7 +13,8 @@
           '*.html',
           'templates/**/*.html',
           'fonts/*',
-          'sounds/*'
+          'sounds/*',
+          'videos/*'
         ]
       }, {
         expand: true,
