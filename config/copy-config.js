@@ -45,9 +45,8 @@
       src: [
         '**/*',
         '!**/*.jade',
-        '!**/*.(scss,sass,css)',
+        '!**/*.{scss,sass}',
         '!**/*.html',
-        '!**/*.(scss,sass,css)',
         'index.html'
        ]
     },
