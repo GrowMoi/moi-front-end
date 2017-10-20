@@ -16,9 +16,11 @@
                           $state,
                           $scope,
                           SoundsPage,
-                          IMAGES) {
+                          IMAGES,
+                          SOUNDS) {
     var site = this,
         images = IMAGES.paths,
+        sounds = SOUNDS.paths,
         imageSaved = false,
         callApiSaveImage = 0;
 
@@ -33,8 +35,12 @@
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
       var filterImages = filterImagesByPath(images, validPaths);
-      var progressValue = 100 / (filterImages.length);
-      PreloadAssets.cache({images: filterImages}, function() {updateProgress(progressValue);})
+      sounds = sounds.map(function(snd){
+        var route = matchRouteAssets(snd);
+        return route;
+      });
+      var progressValue = 100 / (filterImages.length + sounds.length);
+      PreloadAssets.cache({images: filterImages, sounds: sounds}, function() {updateProgress(progressValue);})
         .then(function(){
           $timeout(function() {
             site.loadedImages = true;
@@ -100,8 +106,8 @@
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
-      site.soundPage =  SoundsPage[toState.name];
-      site.soundPage.volume = SoundsPage[toState.name].volume ? SoundsPage[toState.name].volume : 1;
+      site.soundPage =  SoundsPage[toState.name] || {};
+      site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
     });
 
     $rootScope.$on('$stateChangeError', function(){
