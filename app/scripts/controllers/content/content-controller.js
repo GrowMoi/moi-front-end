@@ -14,6 +14,8 @@
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showAlertExternalLink = showAlertExternalLink;
+      var modelData = {};
+      var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
         advices: AdviceService.getStatic('content', 0),
@@ -96,9 +98,11 @@
 
       function showImage(urlImage) {
         stopsReading();
-        var modelData = {};
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
+        if(!modelData.isImage){
+          $backgroundSound[0].pause();
+        }
         ModalService.showModel({
           parentScope: $scope,
           templateUrl: 'templates/partials/modal-image.html',
@@ -135,6 +139,9 @@
       }
 
       function startsReading() {
+        if(!modelData.isImage){
+          $backgroundSound[0].play();
+        }
         ReadContentTimingService.startsReading(vmContent.content);
       }
 
