@@ -12,6 +12,7 @@
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
+    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
     init();
 
@@ -91,7 +92,7 @@
           successAnswers: rigthAnswers(res.data.result)
         };
         if(data.successAnswers > 1 ){
-          $rootScope.$broadcast('moiSound:kill-sound');
+          $backgroundSound[0].pause();
         }
         TestService.scoreTest($scope, data);
       });
