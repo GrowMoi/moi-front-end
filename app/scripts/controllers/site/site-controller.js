@@ -44,7 +44,7 @@
         .then(function(){
           $timeout(function() {
             site.loadedImages = true;
-            site.preloadCalled = true;  
+            site.preloadCalled = true;
           }, 500);
         });
     }
@@ -106,8 +106,8 @@
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
-      site.soundPage =  SoundsPage[toState.name];
-      site.soundPage.volume = SoundsPage[toState.name].volume ? SoundsPage[toState.name].volume : 1;
+      site.soundPage =  SoundsPage[toState.name] || {};
+      site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
     });
 
     $rootScope.$on('$stateChangeError', function(){

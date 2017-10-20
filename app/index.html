@@ -82,7 +82,6 @@
     <script src="scripts/services/modal-service.js"></script>
     <script src="scripts/services/settings-service.js"></script>
     <script src="scripts/services/test-service.js"></script>
-    <script src="scripts/services/sound-service.js"></script>
     <script src="scripts/services/popup-service.js"></script>
     <script src="scripts/services/preload-service.js"></script>
     <script src="scripts/services/user-service.js"></script>
@@ -118,7 +117,7 @@
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application"></ion-nav-view>
       <audio id="backgroundSound"
-            src="{{site.soundPage.sound}}"
+            ng-src="{{site.soundPage.sound}}"
             volume="{{site.soundPage.volume}}"
             type="{{site.soundPage.type}}" autoplay loop/>
     </div>
