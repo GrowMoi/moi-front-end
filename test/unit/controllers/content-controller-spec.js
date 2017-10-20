@@ -159,12 +159,6 @@
     });
 
     describe('functions', function(){
-      it('showImage should call modalService.showModel', function(){
-        var spy = sinon.spy(ModalService, 'showModel');
-        ctrl.showImage();
-        chai.expect(spy.called).to.be.equal(true);
-      });
-
       it('sendNotes should call ContentService.addNotesToContent', function(){
         var spy = sinon.spy(ContentService, 'addNotesToContent');
         ctrl.content.user_notes = 'notes';

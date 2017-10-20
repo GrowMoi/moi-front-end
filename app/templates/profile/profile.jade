@@ -44,7 +44,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                 .content-panel.row
                   .partial(ng-include="vmProfile.viewSelected")
             .tree-preview.col-50
-              img.tree(src="{{vmProfile.user.tree_image}}")
+              img.tree(ng-src="{{vmProfile.user.tree_image}}")
               img.flowerpot(src="images/macetaH.png")
       moi-buttons(options="vmProfile.buttonsOptions")
       .btn-learn

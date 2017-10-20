@@ -2,7 +2,7 @@
   .row(ng-repeat="question in vmTest.questions",
       ng-show="question.showQuestion")
     .main-image.col
-      img(src="{{question.media_url}}")
+      img(ng-src="{{question.media_url}}")
     .question.col-50
       .test
         h1 {{question.title}}

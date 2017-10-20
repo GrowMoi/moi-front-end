@@ -43,6 +43,7 @@
     treeModel.finishedAnimation = function() {
       $scope.$apply(function(){treeModel.showTree = true;});
       $backgroundSound[0].play();
+      $backgroundSound[0].autoplay = true;
       localStorage.setItem('vinetas_animadas',JSON.stringify({'depth': data.meta.depth}));
     };
 
@@ -51,7 +52,7 @@
       var isDiferentLevel = getConfigVineta ? getConfigVineta.depth !== data.meta.depth : false;
       treeModel.urlVineta =  getVineta(data.meta.depth);
       if(treeModel.urlVineta !== '' && (!getConfigVineta || isDiferentLevel)) {
-        $backgroundSound[0].pause();
+        $backgroundSound[0].autoplay = false;
         treeModel.showTree = false;
         preloadVideos();
       }else{
