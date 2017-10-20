@@ -65,6 +65,10 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep', 'newer:copy:app']
       },
+      html: {
+          files: ['<%= yeoman.app %>/*.html'],
+          tasks: ['newer:copy:app']
+      },
       jadengtemplatecache: {
         files: ['<%= yeoman.app %>/**/*.jade'],
         tasks: ['jadengtemplatecache','newer:copy:templates']
@@ -204,6 +208,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on the useminPrepare configuration
     usemin: {
+      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/<%= yeoman.styles %>/**/*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
@@ -215,6 +220,23 @@ module.exports = function (grunt) {
       options: {
         //root: '<%= yeoman.app %>',
         noRebase: true
+      }
+    },
+
+    htmlmin: {
+      dist: {
+        options: {
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          removeCommentsFromCDATA: true,
+          removeOptionalTags: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          src: ['*.html'],
+          dest: '<%= yeoman.dist %>'
+        }]
       }
     },
 
@@ -553,7 +575,8 @@ module.exports = function (grunt) {
     'ngAnnotate',
     'cssmin',
     'uglify',
-    'usemin'
+    'usemin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('coverage',

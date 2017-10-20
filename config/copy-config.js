@@ -10,6 +10,7 @@
         dest: '<%= yeoman.dist %>',
         src: [
           '<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
+          '*.html',
           'fonts/*',
           'sounds/*'
         ]
