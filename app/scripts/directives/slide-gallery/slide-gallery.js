@@ -30,6 +30,7 @@
     vmSlide.previous = previous;
     vmSlide.isImage = isImage;
     vmSlide.setImageForVideo = setImageForVideo;
+    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
     var emitters = {
       onImageHiddenCBs: [],
@@ -87,11 +88,17 @@
         cb(url);
       });
       onHideCB = function (){
+        if(!modelData.isImage){
+          $backgroundSound[0].play();
+        }
         emitters.onImageHiddenCBs.forEach(function(cb){
           cb();
         });
       };
 
+      if(!modelData.isImage){
+        $backgroundSound[0].pause();
+      }
       ModalService.showModel({
         parentScope: $scope,
         templateUrl: 'templates/partials/modal-image.html',
