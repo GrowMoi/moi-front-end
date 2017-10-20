@@ -27,12 +27,16 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      .loader{
-        background-image: url(../images/loading.gif);
-        background-repeat: no-repeat;
-        background-size: 60%;
-        width: 6em;
-        height: 6em;
+      .loader-container {
+        display: flex;
+        justify-content: center;
+        .loader{
+          background-image: url(../images/loading.gif);
+          background-repeat: no-repeat;
+          background-size: 100%;
+          width: 3.6em;
+          height: 3.6em;
+        }
       }
     }
   }

@@ -111,6 +111,7 @@
     <script src="scripts/directives/ellipsis-title/ellipsis-title.js"></script>
     <script src="scripts/directives/moi-buttons/moi-buttons.js"></script>
     <script src="scripts/directives/moi-frame/moi-frame.js"></script>
+    <script src="scripts/directives/moi-loader/moi-loader.js"></script>
     <!-- filters -->
     <script src="scripts/filters.js"></script>
     <script src="scripts/filters/moment-duration.js"></script>
@@ -124,10 +125,6 @@
             volume="{{site.soundPage.volume}}"
             type="{{site.soundPage.type}}" autoplay loop/>
     </div>
-    <div class="loading-app" ng-if="!site.loadedImages" ng-cloak>
-      <div class="content">
-        <div class="loader"></div>
-      </div>
-    </div>
+    <moi-loader loading="!site.loadedImages" progress="site.progress"/>
   </body>
 </html>

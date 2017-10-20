@@ -13,17 +13,17 @@
 
     return service;
 
-    function cache(resources) {
+    function cache(resources, updateProgress) {
       if (!(resources.images instanceof Array) && !(resources.sounds instanceof Array) && !(resources.videos instanceof Array)){
         return $q.reject('Input is not an array');
       }
 
-      var promises = formatPromise(resources);
+      var promises = formatPromise(resources, updateProgress);
 
       return $q.all(promises);
     }
 
-    function formatPromise(resources) {
+    function formatPromise(resources, updateProgress) {
       var promises = [];
       angular.forEach(Object.keys(resources), function(key) {
         angular.forEach(resources[key], function(url, index){
@@ -34,6 +34,7 @@
               file = new Image();
               file.onload = function() {
                 deferred.resolve(url);
+                updateProgress();
               };
               file.onerror = function() {
                 deferred.reject(resources[key][index]);
@@ -43,6 +44,7 @@
               file = document.createElement('AUDIO');
               file.addEventListener('canplaythrough', function() {
                 deferred.resolve(url);
+                updateProgress();
               }, false);
               file.onerror = function() {
                 deferred.reject(resources[key][index]);
