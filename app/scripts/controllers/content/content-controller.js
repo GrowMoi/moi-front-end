@@ -61,7 +61,7 @@
       function delayImages(delayInMs) {
         var index = 0;
         var maxIndex = vmContent.media.length - 1;
-        
+
         return $interval(function(){
           if (index < maxIndex) {
             index++;

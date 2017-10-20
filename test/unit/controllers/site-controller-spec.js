@@ -11,7 +11,8 @@
         $scope,
         IMAGES,
         PreloadAssets,
-        deferredUpload;
+        deferredUpload,
+        SoundsPage;
 
     beforeEach(module('moi.controllers'));
 
@@ -19,6 +20,13 @@
       module('config', function ($provide) {
         $provide.constant('IMAGES', {
           paths: ['image/image1', 'image/image2']
+        });
+        $provide.constant('SoundsPage', {
+          login: {
+            sound: 'xxx.mp3',
+            type: 'mp3',
+            volume: 0.2
+          }
         });
       });
     });
@@ -67,12 +75,14 @@
       function (_$controller_,
                 _$rootScope_,
                 _PreloadAssets_,
+                _SoundsPage_,
                 _IMAGES_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = _$rootScope_.$new();
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
         PreloadAssets = _PreloadAssets_;
+        SoundsPage = _SoundsPage_;
         IMAGES = _IMAGES_;
       })
     );
@@ -109,7 +119,7 @@
       it('should call $ionicLoading.hode in stateChangeSuccess', function(){
         ctrl.loadedImages = true;
         ctrl.preloadCalled = true;
-        $rootScope.$broadcast('$stateChangeSuccess');
+        $rootScope.$broadcast('$stateChangeSuccess', {name: 'login'}, {}, {name: 'neuron'} );
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);
       });

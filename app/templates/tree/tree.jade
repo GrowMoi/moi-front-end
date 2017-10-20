@@ -1,7 +1,6 @@
 ion-view.tree-view(view-title='TreeMoi')
   div(ng-if="treeModel.showTree")
     ion-content
-      moi-sound(sound="sounds/fondo.mp3" background-sound="true")
       .app-content
         back-button.arrow.back-arrow
         .clouds-container
@@ -26,4 +25,3 @@ ion-view.tree-view(view-title='TreeMoi')
     .container-loading
       .logo-loading
     moi-videos.vinetas(video-url="{{treeModel.urlVineta}}" video-type="video/mp4" callback="treeModel.finishedAnimation()")
-

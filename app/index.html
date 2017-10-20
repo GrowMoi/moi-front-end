@@ -54,6 +54,7 @@
     <script src="scripts/login-provider.js"></script>
     <script src="scripts/translations.js"></script>
     <script src="scripts/bucky-config.js"></script>
+    <script src="scripts/values/sounds-page.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers/site/site-controller.js"></script>
     <script src="scripts/controllers/login/login-controller.js"></script>
@@ -108,6 +109,7 @@
     <script src="scripts/directives/ellipsis-title/ellipsis-title.js"></script>
     <script src="scripts/directives/moi-buttons/moi-buttons.js"></script>
     <script src="scripts/directives/moi-frame/moi-frame.js"></script>
+    <script src="scripts/directives/moi-loader/moi-loader.js"></script>
     <!-- filters -->
     <script src="scripts/filters/moment-duration.js"></script>
     <!-- endbuild -->
@@ -115,11 +117,11 @@
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application"></ion-nav-view>
+      <audio id="backgroundSound"
+            src="{{site.soundPage.sound}}"
+            volume="{{site.soundPage.volume}}"
+            type="{{site.soundPage.type}}" autoplay loop/>
     </div>
-    <div class="loading-app" ng-if="!site.loadedImages" ng-cloak>
-      <div class="content">
-        <div class="loader"></div>
-      </div>
-    </div>
+    <moi-loader loading="!site.loadedImages" progress="site.progress"/>
   </body>
 </html>

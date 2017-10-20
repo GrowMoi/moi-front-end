@@ -12,6 +12,7 @@
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
     treeModel.isBasicLevel = data.meta.depth < 5;
+    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var videos = VIDEOS.paths;
     var vinetas = [
       {
@@ -41,6 +42,7 @@
 
     treeModel.finishedAnimation = function() {
       $scope.$apply(function(){treeModel.showTree = true;});
+      $backgroundSound[0].play();
       localStorage.setItem('vinetas_animadas',JSON.stringify({'depth': data.meta.depth}));
     };
 
@@ -49,7 +51,7 @@
       var isDiferentLevel = getConfigVineta ? getConfigVineta.depth !== data.meta.depth : false;
       treeModel.urlVineta =  getVineta(data.meta.depth);
       if(treeModel.urlVineta !== '' && (!getConfigVineta || isDiferentLevel)) {
-        $rootScope.$broadcast('moiSound:kill-sound');
+        $backgroundSound[0].pause();
         treeModel.showTree = false;
         preloadVideos();
       }else{
