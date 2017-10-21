@@ -1,0 +1,47 @@
+//style tree level 5 - 9
+.tree-draw {
+  width: 100%;
+  height: 100%;
+
+  .position-branch-image {
+    background-size: 100% 100%;
+    background-position: center center;
+  }
+
+  .full-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .tree{
+    .tree-root {
+      left: 20px;
+    }
+
+    .tree-img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+
+      img {
+        @extend .full-image;
+      }
+    }
+
+    .tree-neuron-root {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+
+      .neuron-root {
+        position: absolute;
+        left: 600px;
+        bottom: 120px;
+        z-index: 2;
+      }
+    }
+  }
+}

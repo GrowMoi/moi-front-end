@@ -6,8 +6,6 @@
       .neuron {
         width: 50px;
         height: 50px;
-        background-image: url(../images/tree/nodos/nodo-gris.png);
-        background-size: 100% 100%;
         a {
           width: 100%;
           height: 100%;
@@ -32,39 +30,24 @@
         position: relative;
         left: 190px;
         bottom: 525px;
-        &.florecida{
-          background-image: url(../images/tree/nodos/nodo-amarillo.png);
-        }
       }
 
       .second-level {
         &-0 {
           bottom: 670px;
           left: 110px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-azul.png);
-          }
         }
         &-1 {
           bottom: 720px;
           left: 175px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-2 {
           bottom: 770px;
           left: 225px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-amarillo.png);
-          }
         }
         &-3 {
           bottom: 810px;
           left: 290px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
       }
 
@@ -72,44 +55,26 @@
         &-0 {
           bottom: 70px;
           left: -60px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-azul.png);
-          }
         }
         &-2 {
           bottom: 110px;
           left: -60px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-3 {
           bottom: 160px;
           left: 0;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-4 {
           bottom: 100px;
           left: 20px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-amarillo.png);
-          }
         }
         &-6 {
           bottom: 120px;
           left: 50px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
         &-7 {
           bottom: 110px;
           left: 110px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
       }
 
@@ -117,121 +82,70 @@
         &-0 {
           bottom: 70px;
           left: -50px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-azul.png);
-          }
         }
         &-1 {
           bottom: 110px;
           left: -110px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-azul.png);
-          }
         }
         &-2 {
           bottom: 195px;
           left: -150px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-azul.png);
-          }
         }
         &-4 {
           bottom: 95px;
           left: -50px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-5 {
           bottom: 200px;
           left: -25px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-6 {
           bottom: 260px;
           left: 30px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-10 {
           bottom: 105px;
           left: 40px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-11 {
           bottom: 170px;
           left: 90px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-verde.png);
-          }
         }
         &-8 {
           bottom: 170px;
           left: 60px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-amarillo.png);
-          }
         }
         &-9 {
           bottom: 180px;
           left: 90px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-amarillo.png);
-          }
         }
         &-12 {
           bottom: 120px;
           left: 60px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
         &-13 {
           bottom: 120px;
           left: 60px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
         &-18 {
           bottom: 120px;
           left: 60px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
         &-19 {
           bottom: 120px;
           left: 60px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
         &-20 {
           bottom: 250px;
           left: 120px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
         &-21 {
           bottom: 220px;
           left: 140px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
         &-22 {
           bottom: 300px;
           left: 190px;
-          &.florecida{
-            background-image: url(../images/tree/nodos/nodo-fuccia.png);
-          }
         }
       }
 

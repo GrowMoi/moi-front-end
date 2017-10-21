@@ -1,0 +1,3 @@
+.moi-neuron-wrapper(ng-style="::vm.neuron.styles" tooltip-moi="{{::vm.neuron.name}}" tooltip-position="up")
+  a(ui-sref="neuron({neuronId: vm.neuron.id})" )
+    img.moi-neuron(ng-src="{{::vm.img}}" ng-style="vm.increaseStyle" ng-mouseover="vm.increaseSize(true)" ng-mouseleave="vm.increaseSize(false)" style="width:{{vm.currentWidth+'px'}};height:{{vm.currentWidth+'px'}}")
