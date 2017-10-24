@@ -10,7 +10,9 @@
         $auth,
         $scope,
         IMAGES,
+        VIDEOS,
         PreloadAssets,
+        TreeService,
         deferredUpload,
         SoundsPage;
 
@@ -20,6 +22,9 @@
       module('config', function ($provide) {
         $provide.constant('IMAGES', {
           paths: ['image/image1', 'image/image2']
+        });
+        $provide.constant('VIDEOS', {
+          paths: ['app/videos/video1']
         });
         $provide.constant('SoundsPage', {
           login: {
@@ -35,6 +40,24 @@
       $provide.factory('PreloadAssets', function(){
         return {
           cache: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          shouldPreloadVideo: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+      $provide.factory('TreeService', function() {
+        return {
+          getNeuronsUser: function(){
             return {
               then: function(){
                 return null;
@@ -76,7 +99,9 @@
                 _$rootScope_,
                 _PreloadAssets_,
                 _SoundsPage_,
-                _IMAGES_) {
+                _IMAGES_,
+                _VIDEOS_,
+                _TreeService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = _$rootScope_.$new();
@@ -84,6 +109,8 @@
         PreloadAssets = _PreloadAssets_;
         SoundsPage = _SoundsPage_;
         IMAGES = _IMAGES_;
+        VIDEOS = _VIDEOS_;
+        TreeService = _TreeService_;
       })
     );
 

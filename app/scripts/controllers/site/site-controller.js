@@ -16,7 +16,9 @@
                           $state,
                           $scope,
                           SoundsPage,
-                          IMAGES) {
+                          TreeService,
+                          IMAGES,
+                          VIDEOS) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
@@ -28,13 +30,26 @@
     site.preloadCalled = false;
     site.progress = 0;
     site.rawProgress = 0;
+    var videos = VIDEOS.paths;
 
-    function preloadAssets() {
+    function preloadAssets(data) {
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
       var filterImages = filterImagesByPath(images, validPaths);
-      var progressValue = 100 / (filterImages.length);
-      PreloadAssets.cache({images: filterImages}, function() {updateProgress(progressValue);})
+      var itemsToPreload = {
+        images: filterImages
+      };
+      var shouldPreloadVideo = PreloadAssets.shouldPreloadVideo(data);
+      if (shouldPreloadVideo) {
+        itemsToPreload.videos = videos.map(function(vdo) {
+          return vdo.substring(4);
+        });
+      }
+      var progressValue = 100 / Object.keys(itemsToPreload)
+        .map(function(key) {return itemsToPreload[key].length;})
+        .reduce(function(a, b) {return a+b;});
+      
+      PreloadAssets.cache(itemsToPreload, function() {updateProgress(progressValue);})
         .then(function(){
           $timeout(function() {
             site.loadedImages = true;
@@ -83,7 +98,9 @@
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled) {
-        preloadAssets();
+        TreeService.getNeuronsUser().then(function(data) {
+          preloadAssets(data);
+        });
       }
       if ((toState.name === 'login' || toState.name === 'register') && $auth.user.id) {
         event.preventDefault();
