@@ -15,8 +15,11 @@
       },
       login: {
         'login': 'Login',
+        'email': 'Email',
         'username': 'Username',
-        'password': 'Password'
+        'password': 'Password',
+        'next': 'Next',
+        'new_login': 'New login'
       },
       setting: {
         'settings': 'Settings',
@@ -80,8 +83,11 @@
       },
       login: {
         'login': 'Inicia Sesión',
-        'email': 'Email',
-        'password': 'Contraseña'
+        'email': 'Correo',
+        'password': 'Contraseña',
+        'username': 'Nombre de Usuario',
+        'next': 'Siguiente',
+        'new_login': 'Nuevo Inicio de Sesión'
       },
       register:{
         'enter':  'Entrar',

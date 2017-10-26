@@ -53,23 +53,24 @@
       beforeEach(inject(function(_$rootScope_) {
         $rootScope = _$rootScope_;
         controller.isChrome = UtilityService.isAgentChrome();
-        controller.loginForm.email = 'test1';
+        controller.loginForm.login = 'test1';
         controller.loginForm.password = 'password1';
         controller.finishedSound();
       }));
 
       it('should call submitLogin on authService', function() {
         sinon.assert.alwaysCalledWithExactly(authMock.submitLogin, {
-          email: 'test1',
+          login: 'test1',
           password: 'password1'
         });
       });
 
       describe('when the login is executed,', function() {
         var successState = 'tree';
+        var profileEdit = 'profileEdit';
 
         it('if successful, should change state', function() {
-          deferredLogin.resolve();
+          deferredLogin.resolve({'username': 'tester'});
           $rootScope.$digest();
 
           sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
@@ -82,10 +83,10 @@
           sinon.assert.calledOnce(ionicPopupMock.alert);
         });
 
-        it('if already authenticated, change state', function () {
+        it('if user dont change the new login, should redirect user to edit profile', function () {
           $rootScope.$emit('auth:validation-success');
 
-          sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
+          sinon.assert.alwaysCalledWithExactly(stateMock.go, profileEdit);
         });
       });
     });
