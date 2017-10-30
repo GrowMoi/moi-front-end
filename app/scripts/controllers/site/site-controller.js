@@ -48,7 +48,7 @@
       var progressValue = 100 / Object.keys(itemsToPreload)
         .map(function(key) {return itemsToPreload[key].length;})
         .reduce(function(a, b) {return a+b;});
-      
+
       PreloadAssets.cache(itemsToPreload, function() {updateProgress(progressValue);})
         .then(function(){
           $timeout(function() {
@@ -94,6 +94,8 @@
     $rootScope.$on('$stateChangeStart', function(event, toState){
       var notPreload = {
         login: false,
+        /*jshint camelcase: false */
+        new_login: false,
         register: false
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
@@ -102,7 +104,7 @@
           preloadAssets(data);
         });
       }
-      if ((toState.name === 'login' || toState.name === 'register') && $auth.user.id) {
+      if ((toState.name === 'login' || toState.name === 'register' || toState.name === 'new_login') && $auth.user.id) {
         event.preventDefault();
       }else{
         if (site.loadedImages) {
