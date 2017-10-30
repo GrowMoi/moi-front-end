@@ -10,7 +10,8 @@
         stateMock,
         ionicPopupMock,
         UtilityService,
-        ionicLoadingMock;
+        ionicLoadingMock,
+        ModalService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -21,12 +22,18 @@
           }
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: sinon.stub()
+        };
+      });
     }));
     beforeEach(inject(
       function ($q,
                 $rootScope,
                 $controller,
-                _UtilityService_) {
+                _UtilityService_,
+                _ModalService_) {
 
       deferredLogin     = $q.defer();
       $scope            = $rootScope.$new();
@@ -38,13 +45,15 @@
                           .returns(deferredLogin.promise)
       };
       UtilityService    = _UtilityService_;
+      ModalService = _ModalService_;
       controller = $controller('LoginController', {
         '$ionicPopup': ionicPopupMock,
         '$ionicLoading': ionicLoadingMock,
         '$state': stateMock,
         '$auth': authMock,
         '$scope': $scope,
-        'UtilityService': UtilityService
+        'UtilityService': UtilityService,
+        'ModalService': ModalService
       });
     }));
 
@@ -67,10 +76,9 @@
 
       describe('when the login is executed,', function() {
         var successState = 'tree';
-        var profileEdit = 'profileEdit';
 
         it('if successful, should change state', function() {
-          deferredLogin.resolve({'username': 'tester'});
+          deferredLogin.resolve({'username': 'user142'});
           $rootScope.$digest();
 
           sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
@@ -83,10 +91,11 @@
           sinon.assert.calledOnce(ionicPopupMock.alert);
         });
 
-        it('if user dont change the new login, should redirect user to edit profile', function () {
-          $rootScope.$emit('auth:validation-success');
+        it('if user dont change the new login, show alert notification', function () {
+          deferredLogin.resolve({'username': 'moi-user142'});
+          $rootScope.$digest();
 
-          sinon.assert.alwaysCalledWithExactly(stateMock.go, profileEdit);
+          sinon.assert.calledOnce(ModalService.showModel);
         });
       });
     });

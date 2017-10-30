@@ -36,37 +36,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
                   span.error-msg(ng-if='editProfileForm.username.$error.required && editProfileForm.username.$touched')
                     | {{ :: 'msgs.error.required' | translate}}
-                  
-                .form-group
-                  label.label-register.col-40 {{ ::'register.school' | translate }}:
-                  input.col-60(
-                    type='text',
-                    ng-model='vmProfileEdit.user.school'
-                    name='school'
-                    required='required',
-                    autocomplete='off',
-                  )
-                  
-                .form-group
-                  label.label-register.col-40 {{ ::'register.city' | translate }}:
-                  input.col-60(
-                    type='text',
-                    ng-model='vmProfileEdit.user.city'
-                    name='city'
-                    required='required',
-                    autocomplete='off',
-                  )
-                  
-                .form-group
-                  label.label-register.col-40 {{ ::'register.country' | translate }}:
-                  input.col-60(
-                    type='text',
-                    ng-model='vmProfileEdit.user.country'
-                    name='country'
-                    required='required',
-                    autocomplete='off',
-                  )
-                  
+
                 .form-group
                   label.label-register.col-40 {{ ::'register.email' | translate }}:
                   input.col-60(
@@ -76,7 +46,7 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                     required='required',
                     autocomplete='off',
                   )
-                
+
                 .form-group
                   label.label-register.label-date  {{ ::'register.age' | translate }}:
                     input.col-60(
@@ -86,7 +56,37 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                       ng-model='vmProfileEdit.user.age'
                       required='required'
                     )
-                    
+
+                .form-group
+                  label.label-register.col-40 {{ ::'register.school' | translate }}:
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.school'
+                    name='school'
+                    required='required',
+                    autocomplete='off',
+                  )
+
+                .form-group
+                  label.label-register.col-40 {{ ::'register.city' | translate }}:
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.city'
+                    name='city'
+                    required='required',
+                    autocomplete='off',
+                  )
+
+                .form-group
+                  label.label-register.col-40 {{ ::'register.country' | translate }}:
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.country'
+                    name='country'
+                    required='required',
+                    autocomplete='off',
+                  )
+
                 .row
                   moi-select-images(images="vmProfileEdit.images"
                                     on-change="vmProfileEdit.onSelectImage(image)")
