@@ -10,9 +10,18 @@
         $state,
         $ionicPopup,
         deferredStateGo,
-        $scope;
+        $scope,
+        ImagesLogin;
 
     beforeEach(module('moi.controllers'));
+
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('ImagesLogin', {
+          paths: ['image/image1', 'image/image2']
+        });
+      });
+    });
 
     beforeEach(module('moi.services', function($provide){
       $provide.factory('UserService', function($q){
@@ -29,7 +38,8 @@
       function ($q,
                 _$rootScope_,
                 $controller,
-                _UserService_) {
+                _UserService_,
+                _ImagesLogin_) {
 
       user = {
         name: 'test',
@@ -48,6 +58,7 @@
       };
       $rootScope = _$rootScope_;
       $scope            = $rootScope.$new();
+      ImagesLogin = _ImagesLogin_;
 
       controller = $controller('ProfileEditController', {
         '$ionicPopup': $ionicPopup,
@@ -55,7 +66,8 @@
         '$auth': $auth,
         '$scope': $scope,
         'user': user,
-        'UserService': _UserService_
+        'UserService': _UserService_,
+        'ImagesLogin': ImagesLogin
       });
     }));
 

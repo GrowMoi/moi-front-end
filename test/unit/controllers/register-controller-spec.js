@@ -11,14 +11,24 @@
         deferredStateGo,
         deferredValidateUser,
         $scope,
-        $ionicLoading;
+        $ionicLoading,
+        ImagesLogin;
 
     beforeEach(module('moi.controllers'));
+
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('ImagesLogin', {
+          paths: ['image/image1', 'image/image2']
+        });
+      });
+    });
 
     beforeEach(inject(
       function ($q,
                 _$rootScope_,
-                $controller) {
+                $controller,
+                _ImagesLogin_) {
 
       deferredRegister  = $q.defer();
       deferredStateGo   = $q.defer();
@@ -34,13 +44,15 @@
       };
       $rootScope = _$rootScope_;
       $scope            = $rootScope.$new();
+      ImagesLogin = _ImagesLogin_;
 
       controller = $controller('RegisterController', {
         '$ionicPopup': $ionicPopup,
         '$ionicLoading': $ionicLoading,
         '$state': $state,
         '$auth': $auth,
-        '$scope': $scope
+        '$scope': $scope,
+        'ImagesLogin': ImagesLogin
       });
     }));
 

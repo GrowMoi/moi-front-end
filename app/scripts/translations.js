@@ -101,7 +101,9 @@
         'country':  'País',
         'email': 'Correo Electrónico',
         'years': 'Años',
-        'school': 'Escuela'
+        'school': 'Escuela',
+        'age': 'Edad',
+        'username': 'Nombre de Usuario',
       },
       user: {
         'age': 'Edad',
@@ -155,7 +157,8 @@
         'save-changes': 'Guardar Cambios',
         'friends': 'Amigos',
         'choose-photo': 'Escoger foto',
-        'upload-photo': 'Cargar foto'
+        'upload-photo': 'Cargar foto',
+        'change-password': 'Cambiar contraseña'
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',

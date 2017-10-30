@@ -8,10 +8,12 @@
   function RegisterController($ionicLoading,
                               $auth,
                               $ionicPopup,
-                              $state) {
+                              $state,
+                              ImagesLogin) {
     var registerModel = this;
     registerModel.register = register;
     registerModel.registerForm = {};
+    registerModel.images = ImagesLogin.paths;
 
     function register() {
       $ionicLoading.show({
@@ -34,5 +36,10 @@
           $ionicLoading.hide();
         });
     }
+
+    registerModel.onSelectImage = function(image){
+      /*jshint camelcase: false */
+      registerModel.registerForm.authorization_key = image.key;
+    };
   }
 })();

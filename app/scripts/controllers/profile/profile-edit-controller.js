@@ -5,7 +5,8 @@
   .controller('ProfileEditController', function (user,
                                                 $ionicPopup,
                                                 $state,
-                                                UserService) {
+                                                UserService,
+                                                ImagesLogin) {
 
     var vmProfileEdit = this;
     vmProfileEdit.user = user;
@@ -19,6 +20,7 @@
         showTasks: true
       }
     };
+    vmProfileEdit.images = ImagesLogin.paths;
 
     function editProfile(){
       UserService.updateProfile(vmProfileEdit.user)
@@ -28,8 +30,6 @@
             template: 'Actualización Exitosa'
           }).then(function(){
             /*jshint camelcase: false */
-            vmProfileEdit.user.current_password = '';
-            vmProfileEdit.user.password = '';
             $state.go('profile', {userId: vmProfileEdit.user.id});
           });
         })
@@ -47,5 +47,9 @@
           });
         });
     }
+    vmProfileEdit.onSelectImage = function(image){
+      /*jshint camelcase: false */
+      vmProfileEdit.user.authorization_key = image.key;
+    };
   });
 })();
