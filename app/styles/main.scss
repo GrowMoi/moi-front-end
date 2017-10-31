@@ -20,6 +20,7 @@
 @import "tree/tree-level-7";
 @import "tree/tree-level-8";
 @import "tree/tree-level-9";
+@import "tree/tree-share";
 @import "neuron/contents";
 @import "neuron/neuron";
 @import "content/content";
@@ -46,6 +47,8 @@
 @import "directives/animate-sprite";
 @import "directives/moi-frame";
 @import "directives/moi-loader";
+@import "directives/moi-neuron";
+@import "directives/moi-tooltip";
 @import "friends/friends";
 @import "tasks/tasks";
 @import "inventory/inventory";

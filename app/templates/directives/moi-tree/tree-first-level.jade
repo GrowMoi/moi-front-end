@@ -4,4 +4,4 @@
     img.tronco-root(src="images/tree/level-1/tronco.png"
       ng-if="treeVm.neurons.root.state === 'florecida'")
   .tree-neuron-root(class="{{treeVm.neurons.root.state}} neuron")
-    a(ui-sref="neuron({neuronId: treeVm.neurons.root.id})")
+    moi-neuron(options="treeVm.neurons.root" id='root' level="1")
