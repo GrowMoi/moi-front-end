@@ -9,8 +9,7 @@
               $ionicLoading,
               $state,
               $auth,
-              UtilityService,
-              ModalService) {
+              UtilityService) {
     var vm = this;
     var moiSound;
 
@@ -21,14 +20,6 @@
     var updateProfile = 'profileEdit';
     vm.isChrome = UtilityService.isAgentChrome();
     $rootScope.$on('auth:validation-success', redirectUser);
-    var dialogContentModel = {
-      callbacks: {
-        btnCenter: acceptAlert
-      },
-      labels: {
-        btnCenter: 'Aceptar'
-      }
-    };
 
     vm.login = function() {
       if(moiSound){
@@ -63,29 +54,10 @@
 
     function redirectUser(resp) {
       if(resp.username && resp.username.indexOf('moi-') === 0){
-        showAlert();
+        $state.go(updateProfile);
       }else{
         $state.go(successState);
       }
-    }
-
-    function showAlert(){
-      dialogContentModel.message = 'Estimado Usuarix: estamos actualizando nuestro sistema de login para hacer '+
-                                    'nuestra plataforma más accesible. Por esta razón necesitamos que actualices '+
-                                    'tu perfil con un "Nombre de Usuario" y una "Imagen Secreta". Luego de guardar '+
-                                    'los cambios, deberás ingresar a Moi utilizando tu Nombre de Usuario e Imágen '+
-                                    'Secreta. Por esta razón, te recomendamos anotar esta información o memorizarla, '+
-                                    'para que puedas usar Moi cuando quieras.';
-      var dialogOptions = {
-        templateUrl: 'templates/partials/modal-alert-content.html',
-        model: dialogContentModel
-      };
-      ModalService.showModel(dialogOptions);
-    }
-
-    function acceptAlert(){
-      dialogContentModel.closeModal();
-      $state.go(updateProfile);
     }
   });
 })();

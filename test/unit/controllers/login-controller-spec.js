@@ -76,6 +76,7 @@
 
       describe('when the login is executed,', function() {
         var successState = 'tree';
+        var updateProfile = 'profileEdit';
 
         it('if successful, should change state', function() {
           deferredLogin.resolve({'username': 'user142'});
@@ -91,11 +92,11 @@
           sinon.assert.calledOnce(ionicPopupMock.alert);
         });
 
-        it('if user dont change the new login, show alert notification', function () {
+        it('if user dont change the new login, redirect to update profile', function () {
           deferredLogin.resolve({'username': 'moi-user142'});
           $rootScope.$digest();
 
-          sinon.assert.calledOnce(ModalService.showModel);
+          sinon.assert.alwaysCalledWithExactly(stateMock.go, updateProfile);
         });
       });
     });

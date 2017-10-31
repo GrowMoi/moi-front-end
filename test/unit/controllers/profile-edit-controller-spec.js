@@ -11,7 +11,8 @@
         $ionicPopup,
         deferredStateGo,
         $scope,
-        ImagesLogin;
+        ImagesLogin,
+        ModalService;
 
     beforeEach(module('moi.controllers'));
 
@@ -32,6 +33,11 @@
           }
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: sinon.stub()
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -39,7 +45,8 @@
                 _$rootScope_,
                 $controller,
                 _UserService_,
-                _ImagesLogin_) {
+                _ImagesLogin_,
+                _ModalService_) {
 
       user = {
         name: 'test',
@@ -59,6 +66,7 @@
       $rootScope = _$rootScope_;
       $scope            = $rootScope.$new();
       ImagesLogin = _ImagesLogin_;
+      ModalService = _ModalService_;
 
       controller = $controller('ProfileEditController', {
         '$ionicPopup': $ionicPopup,
@@ -67,7 +75,8 @@
         '$scope': $scope,
         'user': user,
         'UserService': _UserService_,
-        'ImagesLogin': ImagesLogin
+        'ImagesLogin': ImagesLogin,
+        'ModalService': ModalService
       });
     }));
 

@@ -6,7 +6,8 @@
                                                 $ionicPopup,
                                                 $state,
                                                 UserService,
-                                                ImagesLogin) {
+                                                ImagesLogin,
+                                                ModalService) {
 
     var vmProfileEdit = this;
     vmProfileEdit.user = user;
@@ -51,5 +52,32 @@
       /*jshint camelcase: false */
       vmProfileEdit.user.authorization_key = image.key;
     };
+
+    dontUseNewLogin();
+
+    function dontUseNewLogin(){
+      /*jshint camelcase: false */
+      if(!vmProfileEdit.user.authorization_key){
+        showAlert();
+      }
+    }
+
+
+    function showAlert(){
+      var notification = {
+        title: 'Actualización de Datos y Acceso'
+      };
+      notification.description = 'Estimado Usuarix: estamos actualizando nuestro sistema de login para hacer '+
+                                    'nuestra plataforma más accesible. Por esta razón necesitamos que actualices '+
+                                    'tu perfil con un "Nombre de Usuario" y una "Imagen Secreta". Luego de guardar '+
+                                    'los cambios, deberás ingresar a Moi utilizando tu Nombre de Usuario e Imágen '+
+                                    'Secreta. Por esta razón, te recomendamos anotar esta información o memorizarla, '+
+                                    'para que puedas usar Moi cuando quieras.';
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-show-notification.html',
+        model: notification
+      };
+      ModalService.showModel(dialogOptions);
+    }
   });
 })();

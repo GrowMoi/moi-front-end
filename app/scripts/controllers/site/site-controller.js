@@ -39,7 +39,7 @@
       var itemsToPreload = {
         images: filterImages
       };
-      var shouldPreloadVideo = PreloadAssets.shouldPreloadVideo(data);
+      var shouldPreloadVideo = data ? PreloadAssets.shouldPreloadVideo(data) : false;
       if (shouldPreloadVideo) {
         itemsToPreload.videos = videos.map(function(vdo) {
           return vdo.substring(4);
@@ -100,9 +100,13 @@
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled) {
-        TreeService.getNeuronsUser().then(function(data) {
-          preloadAssets(data);
-        });
+        if(toState.name === 'tree'){
+          TreeService.getNeuronsUser().then(function(data) {
+            preloadAssets(data);
+          });
+        } else {
+          preloadAssets();
+        }
       }
       if ((toState.name === 'login' || toState.name === 'register' || toState.name === 'new_login') && $auth.user.id) {
         event.preventDefault();
