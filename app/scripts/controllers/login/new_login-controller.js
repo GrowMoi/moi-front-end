@@ -20,7 +20,6 @@
 
     var successState = 'tree';
     vmLogin.isChrome = UtilityService.isAgentChrome();
-    $rootScope.$on('auth:validation-success', redirectUser);
 
     vmLogin.images = ImagesLogin.paths;
 

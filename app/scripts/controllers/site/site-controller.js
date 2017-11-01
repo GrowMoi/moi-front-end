@@ -8,7 +8,6 @@
   function SiteController($rootScope,
                           $ionicLoading,
                           $auth,
-                          $stateParams,
                           PreloadAssets,
                           ScreenshotService,
                           UserService,
@@ -32,6 +31,7 @@
     site.progress = 0;
     site.rawProgress = 0;
     var videos = VIDEOS.paths;
+    var updateProfile = 'profileEdit';
 
     function preloadAssets(data) {
       site.loadedImages = false;
@@ -55,10 +55,9 @@
           $timeout(function() {
             site.loadedImages = true;
             site.preloadCalled = true;
-            UserService.profile($stateParams.userId).then(function(profileData){
-              console.log(profileData);
-            });
-            $state.go('profileEdit');
+            if((($auth.user || {}).username || '').indexOf('moi-') >= 0) {
+              $state.go(updateProfile);
+            }
           }, 500);
         });
     }

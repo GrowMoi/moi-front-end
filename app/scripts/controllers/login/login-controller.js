@@ -17,9 +17,7 @@
     vm.finishedSound = finishedSound;
 
     var successState = 'tree';
-    //var updateProfile = 'profileEdit';
     vm.isChrome = UtilityService.isAgentChrome();
-    $rootScope.$on('auth:validation-success', redirectUser);
 
     vm.login = function() {
       if(moiSound){
@@ -53,11 +51,7 @@
     }
 
     function redirectUser() {
-      // if(resp.username && resp.username.indexOf('moi-') === 0){
-      //   $state.go(updateProfile);
-      // }else{
       $state.go(successState);
-      //}
     }
   });
 })();
