@@ -2,29 +2,38 @@
   'use strict';
 
   angular.module('moi.controllers')
-  .controller('LoginController',
+  .controller('NewLoginController',
     function ($rootScope,
               $scope,
               $ionicPopup,
               $ionicLoading,
               $state,
               $auth,
-              UtilityService) {
-    var vm = this;
+              UtilityService,
+              ImagesLogin) {
+    var vmLogin = this;
     var moiSound;
 
-    vm.loginForm = {};
-    vm.finishedSound = finishedSound;
+    vmLogin.form = {};
+    vmLogin.finishedSound = finishedSound;
+    vmLogin.step = 1;
 
     var successState = 'tree';
-    vm.isChrome = UtilityService.isAgentChrome();
+    vmLogin.isChrome = UtilityService.isAgentChrome();
 
-    vm.login = function() {
+    vmLogin.images = ImagesLogin.paths;
+
+    vmLogin.submit = function() {
       if(moiSound){
         moiSound.play();
       }else{
-        vm.finishedSound();
+        finishedSound();
       }
+    };
+
+    vmLogin.onSelectImage = function(image){
+      /*jshint camelcase: false */
+      vmLogin.form.authorization_key = image.key;
     };
 
     $scope.$on('audioLoaded', function (e, moiSoundInstance) {
@@ -34,22 +43,33 @@
     });
 
     function finishedSound() {
+      /*jshint camelcase: false */
+      if(vmLogin.step === 2 && vmLogin.form.authorization_key !== ''){
+        init();
+      }else{
+        vmLogin.step ++;
+      }
+    }
+
+    function init() {
       $ionicLoading.show({
         template: 'cargando...'
       });
-      $auth.submitLogin(vm.loginForm)
+      $auth.submitLogin(vmLogin.form)
         .then(redirectUser)
         .catch(function (resp) {
           $ionicPopup.alert({
             title: 'Ups!',
             template: resp.errors.join(', ')
           });
+          vmLogin.step = 1;
+          /*jshint camelcase: false */
+          vmLogin.form.authorization_key = '';
         })
         .finally(function(){
           $ionicLoading.hide();
         });
     }
-
     function redirectUser() {
       $state.go(successState);
     }

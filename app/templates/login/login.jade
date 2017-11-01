@@ -13,7 +13,7 @@ ion-view(
           label.item.item-input
             input(
               type='email',
-              ng-model='vm.loginForm.email',
+              ng-model='vm.loginForm.login',
               required='required',
               placeholder="{{ ::'login.email' | translate }}"
             )
@@ -34,6 +34,9 @@ ion-view(
               type='submit',
               value="{{ ::'login' | translate }}"
             ).button
+        .new_login
+          span(ui-sref="new_login")
+            | {{ ::'login.new_login' | translate }}
       a.legend-browser(ng-if='!vm.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
         | {{ ::'browser.chrome' | translate }}
         

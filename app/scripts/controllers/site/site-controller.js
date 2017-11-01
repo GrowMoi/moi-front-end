@@ -31,6 +31,7 @@
     site.progress = 0;
     site.rawProgress = 0;
     var videos = VIDEOS.paths;
+    var updateProfile = 'profileEdit';
 
     function preloadAssets(data) {
       site.loadedImages = false;
@@ -39,7 +40,7 @@
       var itemsToPreload = {
         images: filterImages
       };
-      var shouldPreloadVideo = PreloadAssets.shouldPreloadVideo(data);
+      var shouldPreloadVideo = data ? PreloadAssets.shouldPreloadVideo(data) : false;
       if (shouldPreloadVideo) {
         itemsToPreload.videos = videos.map(function(vdo) {
           return vdo.substring(4);
@@ -48,12 +49,15 @@
       var progressValue = 100 / Object.keys(itemsToPreload)
         .map(function(key) {return itemsToPreload[key].length;})
         .reduce(function(a, b) {return a+b;});
-      
+
       PreloadAssets.cache(itemsToPreload, function() {updateProgress(progressValue);})
         .then(function(){
           $timeout(function() {
             site.loadedImages = true;
             site.preloadCalled = true;
+            if((($auth.user || {}).username || '').indexOf('moi-') >= 0) {
+              $state.go(updateProfile);
+            }
           }, 500);
         });
     }
@@ -94,15 +98,21 @@
     $rootScope.$on('$stateChangeStart', function(event, toState){
       var notPreload = {
         login: false,
+        /*jshint camelcase: false */
+        new_login: false,
         register: false
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled) {
-        TreeService.getNeuronsUser().then(function(data) {
-          preloadAssets(data);
-        });
+        if(toState.name === 'tree'){
+          TreeService.getNeuronsUser().then(function(data) {
+            preloadAssets(data);
+          });
+        } else {
+          preloadAssets();
+        }
       }
-      if ((toState.name === 'login' || toState.name === 'register') && $auth.user.id) {
+      if ((toState.name === 'login' || toState.name === 'register' || toState.name === 'new_login') && $auth.user.id) {
         event.preventDefault();
       }else{
         if (site.loadedImages) {

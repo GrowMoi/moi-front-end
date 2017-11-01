@@ -5,7 +5,7 @@
   .config(function ($authProvider, ENV) {
     $authProvider.configure({
       apiUrl: ENV.apiHost + '/api',
-      emailSignInPath: '/auth/user/sign_in',
+      emailSignInPath: '/auth/user/key_authorize',
       emailRegistrationPath: '/auth/user',
       tokenValidationPath: '/auth/user/validate_token',
       storage: 'localStorage'

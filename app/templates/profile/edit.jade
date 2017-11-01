@@ -26,45 +26,17 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
             .section-form.form-container.form-register
               form(name='editProfileForm', novalidate)
                 .form-group
-                  label.label-register.col-40 {{ ::'register.user' | translate }}:
+                  label.label-register.col-40 {{ ::'register.username' | translate }}:
                   input.col-60(
                     type='text',
-                    ng-model='vmProfileEdit.user.name',
-                    name='first_name'
+                    ng-model='vmProfileEdit.user.username'
+                    name='username'
                     required='required',
                     autocomplete='off',
                   )
-                  
-                .form-group
-                  label.label-register.col-40 {{ ::'register.school' | translate }}:
-                  input.col-60(
-                    type='text',
-                    ng-model='vmProfileEdit.user.school'
-                    name='school'
-                    required='required',
-                    autocomplete='off',
-                  )
-                  
-                .form-group
-                  label.label-register.col-40 {{ ::'register.city' | translate }}:
-                  input.col-60(
-                    type='text',
-                    ng-model='vmProfileEdit.user.city'
-                    name='city'
-                    required='required',
-                    autocomplete='off',
-                  )
-                  
-                .form-group
-                  label.label-register.col-40 {{ ::'register.country' | translate }}:
-                  input.col-60(
-                    type='text',
-                    ng-model='vmProfileEdit.user.country'
-                    name='country'
-                    required='required',
-                    autocomplete='off',
-                  )
-                  
+                  span.error-msg(ng-if='editProfileForm.username.$error.required && editProfileForm.username.$touched')
+                    | {{ :: 'msgs.error.required' | translate}}
+
                 .form-group
                   label.label-register.col-40 {{ ::'register.email' | translate }}:
                   input.col-60(
@@ -74,37 +46,50 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                     required='required',
                     autocomplete='off',
                   )
-                
+
                 .form-group
-                  label.label-register.col-40 {{ ::'register.password-required' | translate }}:
-                  input.col-60(
-                    type='password',
-                    ng-model='vmProfileEdit.user.current_password',
-                    name='password'
-                    required='required',
-                    autocomplete='off',
-                  )
-                  
-                .form-group
-                  label.label-register.col-40 {{ ::'profile.password' | translate }}:
-                  input.col-60(
-                    type='password',
-                    ng-model='vmProfileEdit.user.password',
-                    name='password'
-                    required='required',
-                    autocomplete='off',
-                  )
-                
-                .form-group
-                  label.label-register.label-date  {{ ::'register.birthday' | translate }}:
+                  label.label-register.label-date  {{ ::'register.age' | translate }}:
                     input.col-60(
-                      type='text',
-                      onfocus="(this.type='date')",
-                      onblur="(this.type='text')",
-                      name='birthday'
-                      ng-model='vmProfileEdit.user.birthday'
+                      type='number',
+                      min='1',
+                      name='age'
+                      ng-model='vmProfileEdit.user.age'
                       required='required'
                     )
+
+                .form-group
+                  label.label-register.col-40 {{ ::'register.school' | translate }}:
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.school'
+                    name='school'
+                    required='required',
+                    autocomplete='off',
+                  )
+
+                .form-group
+                  label.label-register.col-40 {{ ::'register.city' | translate }}:
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.city'
+                    name='city'
+                    required='required',
+                    autocomplete='off',
+                  )
+
+                .form-group
+                  label.label-register.col-40 {{ ::'register.country' | translate }}:
+                  input.col-60(
+                    type='text',
+                    ng-model='vmProfileEdit.user.country'
+                    name='country'
+                    required='required',
+                    autocomplete='off',
+                  )
+
+                .row
+                  moi-select-images(images="vmProfileEdit.images"
+                                    on-change="vmProfileEdit.onSelectImage(image)")
       moi-buttons(options="vmProfileEdit.buttonsOptions")
       .btn-learn
   moi-sidebar

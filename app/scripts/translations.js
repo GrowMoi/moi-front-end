@@ -15,8 +15,11 @@
       },
       login: {
         'login': 'Login',
+        'email': 'Email',
         'username': 'Username',
-        'password': 'Password'
+        'password': 'Password',
+        'next': 'Next',
+        'new_login': 'New login'
       },
       setting: {
         'settings': 'Settings',
@@ -80,8 +83,11 @@
       },
       login: {
         'login': 'Inicia Sesión',
-        'email': 'Email',
-        'password': 'Contraseña'
+        'email': 'Correo',
+        'password': 'Contraseña',
+        'username': 'Nombre de Usuario',
+        'next': 'Siguiente',
+        'new_login': 'Nuevo Inicio de Sesión'
       },
       register:{
         'enter':  'Entrar',
@@ -95,7 +101,9 @@
         'country':  'País',
         'email': 'Correo Electrónico',
         'years': 'Años',
-        'school': 'Escuela'
+        'school': 'Escuela',
+        'age': 'Edad',
+        'username': 'Nombre de Usuario',
       },
       user: {
         'age': 'Edad',
@@ -149,7 +157,8 @@
         'save-changes': 'Guardar Cambios',
         'friends': 'Amigos',
         'choose-photo': 'Escoger foto',
-        'upload-photo': 'Cargar foto'
+        'upload-photo': 'Cargar foto',
+        'change-password': 'Cambiar contraseña'
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',

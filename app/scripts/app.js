@@ -63,6 +63,12 @@
       controllerAs: 'vm',
       templateUrl: 'templates/login/login.html'
     })
+    .state('new_login', {
+      url: '/new_login',
+      controller: 'NewLoginController',
+      controllerAs: 'vmLogin',
+      templateUrl: 'templates/login/new_login.html'
+    })
     .state('neuron', {
       url: '/neuron/{neuronId:int}',
       controller: 'NeuronController',
