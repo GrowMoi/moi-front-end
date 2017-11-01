@@ -8,6 +8,7 @@
   function SiteController($rootScope,
                           $ionicLoading,
                           $auth,
+                          $stateParams,
                           PreloadAssets,
                           ScreenshotService,
                           UserService,
@@ -54,6 +55,10 @@
           $timeout(function() {
             site.loadedImages = true;
             site.preloadCalled = true;
+            UserService.profile($stateParams.userId).then(function(profileData){
+              console.log(profileData);
+            });
+            $state.go('profileEdit');
           }, 500);
         });
     }

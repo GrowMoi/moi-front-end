@@ -17,7 +17,7 @@
     vm.finishedSound = finishedSound;
 
     var successState = 'tree';
-    var updateProfile = 'profileEdit';
+    //var updateProfile = 'profileEdit';
     vm.isChrome = UtilityService.isAgentChrome();
     $rootScope.$on('auth:validation-success', redirectUser);
 
@@ -52,12 +52,12 @@
         });
     }
 
-    function redirectUser(resp) {
-      if(resp.username && resp.username.indexOf('moi-') === 0){
-        $state.go(updateProfile);
-      }else{
-        $state.go(successState);
-      }
+    function redirectUser() {
+      // if(resp.username && resp.username.indexOf('moi-') === 0){
+      //   $state.go(updateProfile);
+      // }else{
+      $state.go(successState);
+      //}
     }
   });
 })();
