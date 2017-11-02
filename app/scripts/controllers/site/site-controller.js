@@ -30,7 +30,11 @@
     site.preloadCalled = false;
     site.progress = 0;
     site.rawProgress = 0;
-    site.idTreeScreen = 'tree-screen';
+    site.idsTreeScreen = {
+      view: 'tree-screen',
+      baseTree: 'base-tree'
+    };
+
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
 
@@ -139,8 +143,8 @@
     $rootScope.$on('loading:finish', function (){
       if ( $state.current.name === 'tree' && !imageSaved) { //save image one time by visit page
         $timeout(function(){
-          var view = document.getElementById(site.idTreeScreen);
-          var baseTree = document.getElementById('base-tree');
+          var view = document.getElementById(site.idsTreeScreen.view),
+              baseTree = document.getElementById(site.idsTreeScreen.baseTree);
           if (view && baseTree && callApiSaveImage === 0 && imageSaved === false) {
             callApiSaveImage = 1;
             ScreenshotService.getImage(view).then(function(img){
