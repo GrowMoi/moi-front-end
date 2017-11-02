@@ -30,6 +30,7 @@
     site.preloadCalled = false;
     site.progress = 0;
     site.rawProgress = 0;
+    site.idTreeScreen = 'tree-screen';
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
 
@@ -138,7 +139,7 @@
     $rootScope.$on('loading:finish', function (){
       if ( $state.current.name === 'tree' && !imageSaved) { //save image one time by visit page
         $timeout(function(){
-          var view = document.getElementById('screen');
+          var view = document.getElementById(site.idTreeScreen);
           var baseTree = document.getElementById('base-tree');
           if (view && baseTree && callApiSaveImage === 0 && imageSaved === false) {
             callApiSaveImage = 1;
