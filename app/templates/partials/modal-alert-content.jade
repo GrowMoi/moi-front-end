@@ -9,7 +9,7 @@
       .pista.col
     .controls-score
       span.btn-score.button.button-right(ng-if="model.labels.btnRight"
-                                        ng-class="{'extend-button': model.labels.btnRight.length < 15}"
+                                        ng-class="{'extend-button': model.labels.btnRight.length < 7}"
                                         ng-click="model.callbacks.btnRight()")
         | {{::model.labels.btnRight}}
       span.btn-score.button.button-center(ng-if="model.labels.btnCenter" ng-click="model.callbacks.btnCenter()")
