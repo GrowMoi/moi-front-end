@@ -63,6 +63,10 @@
             tip.remove();
           });
 
+          element[0].addEventListener('click', function () {
+            tip.remove();
+          });
+
         }
       };
       return directive;
