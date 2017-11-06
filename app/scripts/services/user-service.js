@@ -21,7 +21,8 @@
       addFavorites: addFavorites,
       getFavorites: getFavorites,
       getAchievements: getAchievements,
-      getLeaderboard: getLeaderboard
+      getLeaderboard: getLeaderboard,
+      deleteNotification: deleteNotification
     };
 
     var popupOptions = { title: 'Error'};
@@ -298,6 +299,21 @@
         }
       }).then(function success(res) {
         return res.data;
+      });
+    }
+
+    function deleteNotification(notification){
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/notifications/' + notification.id + '/read_notifications',
+        data: {}
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
       });
     }
   }

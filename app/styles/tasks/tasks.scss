@@ -125,17 +125,18 @@
                   font-family: futura;
                 }
               }
-              .remove-task {
-                background: url("../images/btn_delete_content.png");
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                width: 20px;
-                height: 20px;
-                position: absolute;
-                right: 0px;
-                top: 0px;
-                cursor: pointer;
-              }
+            }
+
+            .remove-task {
+              background: url("../images/btn_delete_content.png");
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+              width: 20px;
+              height: 20px;
+              position: absolute;
+              right: 0px;
+              top: 0px;
+              cursor: pointer;
             }
 
             .note {
