@@ -52,7 +52,8 @@
 
     function newPusherClient(){
       pusherClient = new Pusher(ENV.pusherKey, {
-        encrypted: true
+        encrypted: true,
+        cluster: 'us2'
       });
       loadDeferred.resolve();
     }

@@ -11,7 +11,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
               .user-image.col-10
                 img(src="images/user.png")
               .user-name.col
-                {{vmProfile.user.name}}
+                {{vmProfile.user.username}}
             .btns.col-20
               .btn-profile(ng-if="vmProfile.isCurrentUser" ui-sref="profileEdit")
                 {{ ::'buttons.edit-profile' | translate }}
