@@ -25,6 +25,7 @@
   function moiVideosController($element){
     var vinetasVm = this;
     var $video = $element.find('video')[0];
+    $video.currentTime = 1;
     $video.onended = vinetasVm.callback;
   }
 })();

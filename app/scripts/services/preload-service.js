@@ -13,7 +13,8 @@
         video: 'videos/introMoi.mp4'
       },
       {
-        depth: 4
+        depth: 4,
+        video: 'videos/Final.mp4'
       },
       {
         depth: 6
