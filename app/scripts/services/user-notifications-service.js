@@ -23,6 +23,7 @@
       UserService.getNotifications(1).then(function(data) {
         /*jshint camelcase: false */
         service.totalNotifications = data.meta.total_count;
+        updateNotificationsCount();
         return PusherService.load();
       }).then(function(){
         angular.forEach(channelsToNotifications, function (channel) {
@@ -45,6 +46,10 @@
       // TODO toasty?
       console.log(notification);
       service.totalNotifications ++;
+      updateNotificationsCount();
+    }
+
+    function updateNotificationsCount(){
       $rootScope.$broadcast('notifications.updateCount');
     }
   }
