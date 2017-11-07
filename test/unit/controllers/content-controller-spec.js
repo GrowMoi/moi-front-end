@@ -13,7 +13,8 @@
         TestService,
         AnimationService,
         SocialService,
-        UserService;
+        UserService,
+        ReadContentTimingService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -92,6 +93,16 @@
           }
         };
       });
+
+      $provide.factory('ReadContentTimingService', function(){
+        return {
+          stopsReading: function(){
+            return null;
+          },
+          startsReading: function(){
+          }
+        };
+      });
     }));
 
     /*jshint camelcase: false */
@@ -104,7 +115,8 @@
                 _$state_,
                 _AnimationService_,
                 _SocialService_,
-                _UserService_) {
+                _UserService_,
+                _ReadContentTimingService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -115,6 +127,7 @@
         AnimationService = _AnimationService_;
         SocialService = _SocialService_;
         UserService = _UserService_;
+        ReadContentTimingService = _ReadContentTimingService_;
 
         dependencies = {
           content: {
@@ -130,7 +143,8 @@
           ModalService: ModalService,
           ContentService: ContentService,
           AnimationService: AnimationService,
-          UserService: UserService
+          UserService: UserService,
+          ReadContentTimingService: ReadContentTimingService
         };
 
         ctrl = $controller('ContentController', dependencies);
@@ -145,12 +159,6 @@
     });
 
     describe('functions', function(){
-      it('showImage should call modalService.showModel', function(){
-        var spy = sinon.spy(ModalService, 'showModel');
-        ctrl.showImage();
-        chai.expect(spy.called).to.be.equal(true);
-      });
-
       it('sendNotes should call ContentService.addNotesToContent', function(){
         var spy = sinon.spy(ContentService, 'addNotesToContent');
         ctrl.content.user_notes = 'notes';

@@ -39,6 +39,7 @@
     <script src="bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
     <script src="bower_components/ng-idle/angular-idle.js"></script>
     <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/bucky/bucky.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -49,12 +50,17 @@
     <script src="scripts/configuration.js"></script>
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/templates.js"></script>
     <script src="scripts/login-provider.js"></script>
     <script src="scripts/translations.js"></script>
+    <script src="scripts/bucky-config.js"></script>
+    <script src="scripts/values/sounds-page.js"></script>
+    <script src="scripts/values/neurons-options.js"></script>
+    <script src="scripts/values/images_login.js"></script>
     <!-- controllers -->
-    <script src="scripts/controllers.js"></script>
     <script src="scripts/controllers/site/site-controller.js"></script>
     <script src="scripts/controllers/login/login-controller.js"></script>
+    <script src="scripts/controllers/login/new_login-controller.js"></script>
     <script src="scripts/controllers/register/register-controller.js"></script>
     <script src="scripts/controllers/tree/tree-controller.js"></script>
     <script src="scripts/controllers/neuron/neuron-controller.js"></script>
@@ -73,14 +79,12 @@
     <script src="scripts/controllers/tasks/contents-list/contents-list-controller.js"></script>
     <script src="scripts/controllers/quiz/quiz-controller.js"></script>
     <!-- services -->
-    <script src="scripts/services.js"></script>
     <script src="scripts/services/neuron-service.js"></script>
     <script src="scripts/services/tree-service.js"></script>
     <script src="scripts/services/content-service.js"></script>
     <script src="scripts/services/modal-service.js"></script>
     <script src="scripts/services/settings-service.js"></script>
     <script src="scripts/services/test-service.js"></script>
-    <script src="scripts/services/sound-service.js"></script>
     <script src="scripts/services/popup-service.js"></script>
     <script src="scripts/services/preload-service.js"></script>
     <script src="scripts/services/user-service.js"></script>
@@ -89,12 +93,12 @@
     <script src="scripts/services/interceptors-service.js"></script>
     <script src="scripts/services/social-service.js"></script>
     <script src="scripts/services/utility-service.js"></script>
+    <script src="scripts/services/read-content-timing-service.js"></script>
     <script src="scripts/services/pusher-service.js"></script>
     <script src="scripts/services/user-notifications-service.js"></script>
     <script src="scripts/services/quiz-service.js"></script>
     <script src="scripts/services/advice-service.js"></script>
     <!-- directives -->
-    <script src="scripts/directives.js"></script>
     <script src="scripts/directives/grid-contents/grid-contents.js"></script>
     <script src="scripts/directives/moi-sound/moi-sound.js"></script>
     <script src="scripts/directives/back-button/back-button.js"></script>
@@ -107,19 +111,22 @@
     <script src="scripts/directives/ellipsis-title/ellipsis-title.js"></script>
     <script src="scripts/directives/moi-buttons/moi-buttons.js"></script>
     <script src="scripts/directives/moi-frame/moi-frame.js"></script>
+    <script src="scripts/directives/moi-loader/moi-loader.js"></script>
+    <script src="scripts/directives/moi-neuron/moi-neuron.js"></script>
+    <script src="scripts/directives/moi-tooltip/moi-tooltip.js"></script>
+    <script src="scripts/directives/moi-select-images/moi-select-images.js"></script>
     <!-- filters -->
-    <script src="scripts/filters.js"></script>
     <script src="scripts/filters/moment-duration.js"></script>
     <!-- endbuild -->
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application"></ion-nav-view>
+      <audio id="backgroundSound"
+            ng-src="{{site.soundPage.sound}}"
+            volume="{{site.soundPage.volume}}"
+            type="{{site.soundPage.type}}" autoplay loop/>
     </div>
-    <div class="loading-app" ng-if="!site.loadedImages" ng-cloak>
-      <div class="content">
-        <div class="loader"></div>
-      </div>
-    </div>
+    <moi-loader loading="!site.loadedImages" progress="site.progress"/>
   </body>
 </html>

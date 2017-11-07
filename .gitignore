@@ -11,6 +11,8 @@ plugins
 *.swo
 *.log
 *.DS_Store
-
+.bundle/
+vendor/
 app/scripts/configuration.js
 app/templates/**/*.html
+app/scripts/templates.js

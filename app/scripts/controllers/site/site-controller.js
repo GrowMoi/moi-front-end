@@ -15,11 +15,12 @@
                           $timeout,
                           $state,
                           $scope,
+                          SoundsPage,
+                          TreeService,
                           IMAGES,
-                          SOUNDS) {
+                          VIDEOS) {
     var site = this,
         images = IMAGES.paths,
-        sounds = SOUNDS.paths,
         imageSaved = false,
         callApiSaveImage = 0;
 
@@ -27,19 +28,44 @@
 
     site.loadedImages = true; // we need to start as true in login page
     site.preloadCalled = false;
+    site.progress = 0;
+    site.rawProgress = 0;
+    var videos = VIDEOS.paths;
+    var updateProfile = 'profileEdit';
 
-    function preloadAssets() {
+    function preloadAssets(data) {
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
       var filterImages = filterImagesByPath(images, validPaths);
-      sounds = sounds.map(function(snd){
-        var route = matchRouteAssets(snd);
-        return route;
-      });
-      PreloadAssets.cache({images: filterImages, sounds: sounds}).then(function(){
-        site.loadedImages = true;
-        site.preloadCalled = true;
-      });
+      var itemsToPreload = {
+        images: filterImages
+      };
+      var shouldPreloadVideo = data ? PreloadAssets.shouldPreloadVideo(data) : false;
+      if (shouldPreloadVideo) {
+        itemsToPreload.videos = videos.map(function(vdo) {
+          return vdo.substring(4);
+        });
+      }
+      var progressValue = 100 / Object.keys(itemsToPreload)
+        .map(function(key) {return itemsToPreload[key].length;})
+        .reduce(function(a, b) {return a+b;});
+
+      PreloadAssets.cache(itemsToPreload, function() {updateProgress(progressValue);})
+        .then(function(){
+          $timeout(function() {
+            site.loadedImages = true;
+            site.preloadCalled = true;
+            if((($auth.user || {}).username || '').indexOf('moi-') >= 0) {
+              $state.go(updateProfile);
+            }
+          }, 500);
+        });
+    }
+
+    function updateProgress(value) {
+      var newProgressValue = site.rawProgress + value;
+      site.rawProgress = newProgressValue;
+      site.progress = Math.round(newProgressValue);
     }
 
     function filterImagesByPath(images, paths ) {
@@ -72,13 +98,21 @@
     $rootScope.$on('$stateChangeStart', function(event, toState){
       var notPreload = {
         login: false,
+        /*jshint camelcase: false */
+        new_login: false,
         register: false
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled) {
-        preloadAssets();
+        if(toState.name === 'tree'){
+          TreeService.getNeuronsUser().then(function(data) {
+            preloadAssets(data);
+          });
+        } else {
+          preloadAssets();
+        }
       }
-      if ((toState.name === 'login' || toState.name === 'register') && $auth.user.id) {
+      if ((toState.name === 'login' || toState.name === 'register' || toState.name === 'new_login') && $auth.user.id) {
         event.preventDefault();
       }else{
         if (site.loadedImages) {
@@ -89,10 +123,12 @@
       }
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(){
+    $rootScope.$on('$stateChangeSuccess', function(event, toState){
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
+      site.soundPage =  SoundsPage[toState.name] || {};
+      site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
     });
 
     $rootScope.$on('$stateChangeError', function(){

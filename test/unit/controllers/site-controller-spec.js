@@ -10,8 +10,11 @@
         $auth,
         $scope,
         IMAGES,
+        VIDEOS,
         PreloadAssets,
-        deferredUpload;
+        TreeService,
+        deferredUpload,
+        SoundsPage;
 
     beforeEach(module('moi.controllers'));
 
@@ -20,6 +23,16 @@
         $provide.constant('IMAGES', {
           paths: ['image/image1', 'image/image2']
         });
+        $provide.constant('VIDEOS', {
+          paths: ['app/videos/video1']
+        });
+        $provide.constant('SoundsPage', {
+          login: {
+            sound: 'xxx.mp3',
+            type: 'mp3',
+            volume: 0.2
+          }
+        });
       });
     });
 
@@ -27,6 +40,24 @@
       $provide.factory('PreloadAssets', function(){
         return {
           cache: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          shouldPreloadVideo: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+      $provide.factory('TreeService', function() {
+        return {
+          getNeuronsUser: function(){
             return {
               then: function(){
                 return null;
@@ -67,13 +98,19 @@
       function (_$controller_,
                 _$rootScope_,
                 _PreloadAssets_,
-                _IMAGES_) {
+                _SoundsPage_,
+                _IMAGES_,
+                _VIDEOS_,
+                _TreeService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = _$rootScope_.$new();
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
         PreloadAssets = _PreloadAssets_;
+        SoundsPage = _SoundsPage_;
         IMAGES = _IMAGES_;
+        VIDEOS = _VIDEOS_;
+        TreeService = _TreeService_;
       })
     );
 
@@ -109,7 +146,7 @@
       it('should call $ionicLoading.hode in stateChangeSuccess', function(){
         ctrl.loadedImages = true;
         ctrl.preloadCalled = true;
-        $rootScope.$broadcast('$stateChangeSuccess');
+        $rootScope.$broadcast('$stateChangeSuccess', {name: 'login'}, {}, {name: 'neuron'} );
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);
       });

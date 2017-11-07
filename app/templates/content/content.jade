@@ -1,6 +1,5 @@
 ion-view.content-view-max(view-title='Content')
   ion-content
-    moi-sound(sound="sounds/read_content.mp3" background-sound="true" volume="0.2")
     back-button.arrow.back-arrow
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
@@ -25,7 +24,11 @@ ion-view.content-view-max(view-title='Content')
         .col.border-right.border-left.middle-column-margin-bottom.col-contents
           .row.border-bottom
             .col.image-center
-              img.format-image(src='{{vmContent.content.media[0]}}', ng-click='vmContent.showImage(vmContent.content.media[0])')
+              img.format-image(
+                ng-class='vmContent.currentTransition'
+                ng-src='{{vmContent.currentContentImageUrl}}',
+                ng-click='vmContent.showImage(vmContent.currentContent)'
+              )
             .corner.image-TR
           .row
             .col

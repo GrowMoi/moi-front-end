@@ -10,7 +10,8 @@
         stateMock,
         ionicPopupMock,
         UtilityService,
-        ionicLoadingMock;
+        ionicLoadingMock,
+        ModalService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -21,12 +22,18 @@
           }
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: sinon.stub()
+        };
+      });
     }));
     beforeEach(inject(
       function ($q,
                 $rootScope,
                 $controller,
-                _UtilityService_) {
+                _UtilityService_,
+                _ModalService_) {
 
       deferredLogin     = $q.defer();
       $scope            = $rootScope.$new();
@@ -38,13 +45,15 @@
                           .returns(deferredLogin.promise)
       };
       UtilityService    = _UtilityService_;
+      ModalService = _ModalService_;
       controller = $controller('LoginController', {
         '$ionicPopup': ionicPopupMock,
         '$ionicLoading': ionicLoadingMock,
         '$state': stateMock,
         '$auth': authMock,
         '$scope': $scope,
-        'UtilityService': UtilityService
+        'UtilityService': UtilityService,
+        'ModalService': ModalService
       });
     }));
 
@@ -53,14 +62,14 @@
       beforeEach(inject(function(_$rootScope_) {
         $rootScope = _$rootScope_;
         controller.isChrome = UtilityService.isAgentChrome();
-        controller.loginForm.email = 'test1';
+        controller.loginForm.login = 'test1';
         controller.loginForm.password = 'password1';
         controller.finishedSound();
       }));
 
       it('should call submitLogin on authService', function() {
         sinon.assert.alwaysCalledWithExactly(authMock.submitLogin, {
-          email: 'test1',
+          login: 'test1',
           password: 'password1'
         });
       });
@@ -69,7 +78,7 @@
         var successState = 'tree';
 
         it('if successful, should change state', function() {
-          deferredLogin.resolve();
+          deferredLogin.resolve({'username': 'user142'});
           $rootScope.$digest();
 
           sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
@@ -80,12 +89,6 @@
           $rootScope.$digest();
 
           sinon.assert.calledOnce(ionicPopupMock.alert);
-        });
-
-        it('if already authenticated, change state', function () {
-          $rootScope.$emit('auth:validation-success');
-
-          sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
         });
       });
     });

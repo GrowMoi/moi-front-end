@@ -1,6 +1,5 @@
 ion-view.frame-without-buttons.search-view-max(view-title='Friends')
   ion-content
-    moi-sound(sound="sounds/read_content.mp3" background-sound="true" volume="0.2")
     .arrow.back-arrow(back-button image-url="images/back-arrow.png")
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
@@ -25,6 +24,6 @@ ion-view.frame-without-buttons.search-view-max(view-title='Friends')
               .content-kind-contents(ui-sref="profile({userId: friend.id})")
                   img(src="images/user.png")
                   .user-name
-                    | {{friend.name}}
+                    | {{friend.username}}
             ion-infinite-scroll(ng-if='!friendsmodel.noMoreItemsAvailable', on-infinite='friendsmodel.loadMore()', distance='10%')
   moi-sidebar

@@ -1,6 +1,5 @@
 ion-view.frame-all-buttons.tasks(view-title='Tasks')
   ion-content
-    moi-sound(sound="sounds/read_content.mp3" background-sound="true" volume="0.2")
     back-button.arrow.back-arrow
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
@@ -16,7 +15,7 @@ ion-view.frame-all-buttons.tasks(view-title='Tasks')
                       ng-click="tasksmodel.changeTab(tab.field)")
                 .item-tab(ng-class="{'tab-selected': tab.selected }"
                           ui-sref="{{tab.state}}")
-                  img(src="{{tab.image}}")
+                  img(ng-src="{{tab.image}}")
                   span
                     | {{::tab.name}}
                   .counter-badget(ng-if="tab.field === 'notifications' && tasksmodel.totalNotifications")

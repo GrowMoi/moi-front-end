@@ -76,10 +76,6 @@ a {
           left: 190px;
           bottom: 440px;
         }
-
-        &.florecida {
-          background-image: url("../images/tree/nodos/nodo-amarillo.png");
-        }
       }
     }
   }
@@ -110,18 +106,6 @@ a {
 
     .tree-draw {
       position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .neuron {
-    width: 80px;
-    height: 80px;
-    background-image: url("../images/tree/nodos/nodo-gris.png");
-    background-size: 100% 100%;
-
-    a {
       width: 100%;
       height: 100%;
     }

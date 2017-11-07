@@ -17,7 +17,8 @@
     return service;
 
     function responseError(rejection) {
-      if (rejection.status === 401) {
+      var stateName = $injector.get('$state').current.name;
+      if (rejection.status === 401 && (stateName !== 'login' && stateName !== 'new_login')) {
         $injector.get('$state').go('login');
         $injector.get('$ionicLoading').hide();
       }else if(rejection.status === 404){

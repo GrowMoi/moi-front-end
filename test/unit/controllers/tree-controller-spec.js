@@ -8,7 +8,6 @@
       $scope,
       dependencies,
       $rootScope,
-      VIDEOS,
       PreloadAssets;
 
     beforeEach(module('moi.controllers'));
@@ -21,27 +20,22 @@
                 return null;
               }
             };
+          },
+          shouldPreloadVideo: function(){
+            return false;
           }
         };
       });
     }));
-    beforeEach(function(){
-      module('config', function ($provide) {
-        $provide.constant('VIDEOS', {
-          paths: ['video/video1', 'video/video2']
-        });
-      });
-    });
+
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
-                _PreloadAssets_,
-                _VIDEOS_) {
+                _PreloadAssets_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         PreloadAssets = _PreloadAssets_;
-        VIDEOS= _VIDEOS_;
         dependencies = {
           $scope: $scope,
           data: {tree: [{id:1}], meta:{depth:4}}

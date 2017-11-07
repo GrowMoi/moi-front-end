@@ -11,7 +11,6 @@
         src: [
           '<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
           '*.html',
-          'templates/**/*.html',
           'fonts/*',
           'sounds/*',
           'videos/*'
@@ -48,7 +47,17 @@
       src: [
         '**/*',
         '!**/*.jade',
-        '!**/*.(scss,sass,css)'
+        '!**/*.{scss,sass}',
+        '!**/*.html',
+        'index.html'
+       ]
+    },
+    templates: {
+      expand: true,
+      cwd: '<%= yeoman.app %>',
+      dest: '<%= yeoman.dist %>/',
+      src: [
+        'scripts/templates.js'
       ]
     },
     tmp: {

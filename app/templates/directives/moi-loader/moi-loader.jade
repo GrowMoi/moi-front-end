@@ -1,0 +1,7 @@
+.loading-app(ng-if="loading" ng-cloak)
+  .content
+    .loader-container
+      .loader
+    .progress-bar
+      .internal-bar(style="width: {{progress}}%")
+      span.progress-number {{progress}}%

@@ -3,14 +3,19 @@
   angular.module('moi.controllers')
     .controller('ContentController', function($scope,
                                               $window,
+                                              $timeout,
+                                              $interval,
                                               content,
                                               ContentService,
                                               ModalService,
+                                              ReadContentTimingService,
                                               AdviceService) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showAlertExternalLink = showAlertExternalLink;
+      var modelData = {};
+      var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
         advices: AdviceService.getStatic('content', 0),
@@ -19,9 +24,16 @@
 
       activate();
 
+      $scope.$on('$ionicView.afterEnter', startsReading);
+      $scope.$on('$ionicView.beforeLeave', stopsReading);
+
       function activate() {
         vmContent.content = content;
         vmContent.media = content.videos.concat(content.media);
+        vmContent.currentContentImageUrl = getImageUrl(vmContent.media[0]);
+        vmContent.currentContent = vmContent.media[0];
+        vmContent.currentTransition = 'enter';
+        vmContent.imgDelayTime = 5000;
 
         vmContent.buttonsOptions = {
           neuron: content,
@@ -39,9 +51,41 @@
         vmContent.slideGalleryOptions = {
           onRegisterApi: onRegisterApi
         };
+
+        leaveImage(vmContent.imgDelayTime);
+        delayImages(vmContent.imgDelayTime);
+      }
+
+      function getImageUrl(params) {
+        return isImage(params) ? params : (params || {}).thumbnail || 'images/video_placeholder.png';
+      }
+
+      function delayImages(delayInMs) {
+        var index = 0;
+        var maxIndex = vmContent.media.length - 1;
+
+        return $interval(function(){
+          if (index < maxIndex) {
+            index++;
+          } else {
+            index = 0;
+          }
+          vmContent.currentContentImageUrl = getImageUrl(vmContent.media[index]);
+          vmContent.currentContent = vmContent.media[index];
+          vmContent.currentTransition = 'enter';
+          leaveImage(delayInMs);
+        }, delayInMs);
+      }
+
+      function leaveImage(delayInMs) {
+        return $timeout(function() {
+          vmContent.currentTransition = 'leave';
+        }, delayInMs - 500);
       }
 
       function onRegisterApi(api) {
+        api.onImageSelected(stopsReading);
+        api.onImageHidden(startsReading);
         api.onImageSelected(function (urlImage) {
           var params = {
             neuronId: content.neuron_id, //jshint ignore:line
@@ -53,18 +97,21 @@
       }
 
       function showImage(urlImage) {
-        var modelData = {};
+        stopsReading();
+        modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
-        modelData.isImage = true;
+        if(!modelData.isImage){
+          $backgroundSound[0].pause();
+        }
         ModalService.showModel({
           parentScope: $scope,
           templateUrl: 'templates/partials/modal-image.html',
-          model: modelData
+          model: modelData,
+          onHide: startsReading
         });
       }
 
       function sendNotes() {
-        /*jshint camelcase: false */
         ContentService.addNotesToContent(vmContent.content);
       }
 
@@ -89,6 +136,21 @@
           model: dialogContentModel
         };
         ModalService.showModel(dialogOptions);
+      }
+
+      function startsReading() {
+        if(!modelData.isImage){
+          $backgroundSound[0].play();
+        }
+        ReadContentTimingService.startsReading(vmContent.content);
+      }
+
+      function stopsReading() {
+        ReadContentTimingService.stopsReading(vmContent.content);
+      }
+
+      function isImage(params) {
+        return typeof params === 'string';
       }
     });
 })();

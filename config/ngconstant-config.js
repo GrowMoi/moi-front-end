@@ -14,7 +14,7 @@
           name: 'development',
           apiHost: 'http://localhost:5000',
           facebookKey: '',
-          pusherKey: 'fcad096c62e8aadb4f04'
+          pusherKey: '2fd9acbd37b06708983b'
         },
         IMAGES: {
           paths: []

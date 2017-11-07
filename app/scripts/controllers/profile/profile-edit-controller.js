@@ -5,7 +5,9 @@
   .controller('ProfileEditController', function (user,
                                                 $ionicPopup,
                                                 $state,
-                                                UserService) {
+                                                UserService,
+                                                ImagesLogin,
+                                                ModalService) {
 
     var vmProfileEdit = this;
     vmProfileEdit.user = user;
@@ -19,6 +21,7 @@
         showTasks: true
       }
     };
+    vmProfileEdit.images = ImagesLogin.paths;
 
     function editProfile(){
       UserService.updateProfile(vmProfileEdit.user)
@@ -28,8 +31,6 @@
             template: 'Actualización Exitosa'
           }).then(function(){
             /*jshint camelcase: false */
-            vmProfileEdit.user.current_password = '';
-            vmProfileEdit.user.password = '';
             $state.go('profile', {userId: vmProfileEdit.user.id});
           });
         })
@@ -46,6 +47,37 @@
             template: msg
           });
         });
+    }
+    vmProfileEdit.onSelectImage = function(image){
+      /*jshint camelcase: false */
+      vmProfileEdit.user.authorization_key = image.key;
+    };
+
+    dontUseNewLogin();
+
+    function dontUseNewLogin(){
+      /*jshint camelcase: false */
+      if(!vmProfileEdit.user.authorization_key){
+        showAlert();
+      }
+    }
+
+
+    function showAlert(){
+      var notification = {
+        title: 'Actualización de Datos y Acceso'
+      };
+      notification.description = 'Estimado Usuarix: estamos actualizando nuestro sistema de login para hacer '+
+                                    'nuestra plataforma más accesible. Por esta razón necesitamos que actualices '+
+                                    'tu perfil con un "Nombre de Usuario" y una "Imagen Secreta". Luego de guardar '+
+                                    'los cambios, deberás ingresar a Moi utilizando tu Nombre de Usuario e Imágen '+
+                                    'Secreta. Por esta razón, te recomendamos anotar esta información o memorizarla, '+
+                                    'para que puedas usar Moi cuando quieras.';
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-show-notification.html',
+        model: notification
+      };
+      ModalService.showModel(dialogOptions);
     }
   });
 })();

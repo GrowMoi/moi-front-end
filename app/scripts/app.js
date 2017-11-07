@@ -9,6 +9,7 @@
     'moi.services',
     'moi.directives',
     'moi.filters',
+    'moi.templates',
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
@@ -61,6 +62,12 @@
       controller: 'LoginController',
       controllerAs: 'vm',
       templateUrl: 'templates/login/login.html'
+    })
+    .state('new_login', {
+      url: '/new_login',
+      controller: 'NewLoginController',
+      controllerAs: 'vmLogin',
+      templateUrl: 'templates/login/new_login.html'
     })
     .state('neuron', {
       url: '/neuron/{neuronId:int}',
@@ -265,4 +272,11 @@
     $urlRouterProvider.otherwise('/login');
 
   });
+
+  //init modules
+  angular.module('moi.controllers', []);
+  angular.module('moi.directives', []);
+  angular.module('moi.services', []);
+  angular.module('moi.templates', []);
+  angular.module('moi.filters', []);
 })();

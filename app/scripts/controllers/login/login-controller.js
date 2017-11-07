@@ -18,9 +18,6 @@
 
     var successState = 'tree';
     vm.isChrome = UtilityService.isAgentChrome();
-    $rootScope.$on('auth:validation-success', function () {
-      $state.go(successState);
-    });
 
     vm.login = function() {
       if(moiSound){
@@ -41,9 +38,7 @@
         template: 'cargando...'
       });
       $auth.submitLogin(vm.loginForm)
-        .then(function () {
-          $state.go(successState);
-        })
+        .then(redirectUser)
         .catch(function (resp) {
           $ionicPopup.alert({
             title: 'Ups!',
@@ -53,6 +48,10 @@
         .finally(function(){
           $ionicLoading.hide();
         });
+    }
+
+    function redirectUser() {
+      $state.go(successState);
     }
   });
 })();

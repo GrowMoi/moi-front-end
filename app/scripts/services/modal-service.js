@@ -10,36 +10,33 @@
       showModel: showModel,
       destroy: destroy
     };
-    var modalInstance;
+    var modalInstance,
+        modalOptions = { // Default modal options
+          animation: 'slide-in-up'
+        };
 
     return service;
 
     function showModel(options) {
-
-      // Default modal options
-      var myOptions = {
-        animation: 'slide-in-up'
-      };
-
       // Extend defaults with options passed in
-      angular.extend(myOptions, options);
+      angular.extend(modalOptions, options);
 
       var modalMoi = {
         scope: null
       };
 
       // Create a new scope
-      if (myOptions.parentScope) {
-        modalMoi.scope = myOptions.parentScope.$new();
+      if (modalOptions.parentScope) {
+        modalMoi.scope = modalOptions.parentScope.$new();
       }
       else {
         modalMoi.scope = $rootScope.$new();
       }
 
       modalMoi.scope.model = options.model;
-      $ionicModal.fromTemplateUrl(myOptions.templateUrl, {
+      $ionicModal.fromTemplateUrl(modalOptions.templateUrl, {
         scope: modalMoi.scope,
-        animation: myOptions.animation,
+        animation: modalOptions.animation,
         backdropClickToClose: false
       }).then(function(modal) {
         modalInstance = modal;
@@ -52,6 +49,9 @@
     function destroy() {
       modalInstance.remove()
       .then(function() {
+        if (modalOptions.onHide) {
+          modalOptions.onHide(modalInstance);
+        }
         modalInstance = null;
       });
     }

@@ -1,0 +1,8 @@
+.row
+  span.title-grid-images
+    | Selecciona tu imagen secreta:
+.row.grid-images
+  .col.col-20(ng-repeat="image in vmSelectImages.images" ng-click="vmSelectImages.onSelect(image.key)")
+    img(ng-src='{{image.path}}' ng-class="{selected: image.selected}")
+    span
+      | {{image.name}}

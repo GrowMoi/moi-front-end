@@ -25,6 +25,7 @@
     notificationsModel.currentPage = 1;
     notificationsModel.confirmRequest = confirmRequest;
     notificationsModel.showNotification = showNotification;
+    notificationsModel.removeItem = removeItem;
 
     initData();
 
@@ -83,10 +84,7 @@
 
     function removeNotification(data){
       if(data.statusText === 'Accepted'){
-        var notificationIndex = notificationsModel.notifications.indexOf(notificationSelected);
-        notificationsModel.notifications.splice(notificationIndex, 1);
-        UserNotificationsService.totalNotifications--;
-        $rootScope.$broadcast('notifications.updateCount');
+        updateNotifications();
       }
     }
 
@@ -96,6 +94,29 @@
         model: notification
       };
       ModalService.showModel(dialogOptions);
+    }
+
+    function removeItem(notification) {
+      if(notification.tutor){
+        var data = {
+          id: notification.id,
+          response: 'rejected'
+        };
+        UserService.respondNotification(data).then(removeNotification);
+      }else{
+        UserService.deleteNotification(notification).then(function(resp) {
+          if(resp.data.deleted){
+            updateNotifications();
+          }
+        });
+      }
+    }
+
+    function updateNotifications(){
+      var notificationIndex = notificationsModel.notifications.indexOf(notificationSelected);
+      notificationsModel.notifications.splice(notificationIndex, 1);
+      UserNotificationsService.totalNotifications--;
+      $rootScope.$broadcast('notifications.updateCount');
     }
   });
 })();

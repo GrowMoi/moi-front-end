@@ -30,8 +30,12 @@
     vmSlide.previous = previous;
     vmSlide.isImage = isImage;
     vmSlide.setImageForVideo = setImageForVideo;
+    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
-    var emitters = {};
+    var emitters = {
+      onImageHiddenCBs: [],
+      onImageSelectedCBs: []
+    };
 
     loadApi();
 
@@ -44,12 +48,17 @@
 
     function getPublicApi() {
       return {
+        onImageHidden: onImageHidden,
         onImageSelected: onImageSelected
       };
     }
 
+    function onImageHidden(cb) {
+      emitters.onImageHiddenCBs.push(cb);
+    }
+
     function onImageSelected(cb) {
-      emitters.onImageSelectedCb = cb;
+      emitters.onImageSelectedCBs.push(cb);
     }
 
     function createGroupedArray(arr, chunkSize) {
@@ -69,18 +78,33 @@
     }
 
     function showMedia(url) {
-      var modelData = {};
+      var onHideCB,
+          modelData = {};
+
       modelData.contentSrc = url;
       modelData.isImage = isImage(url);
-      ModalService.showModel({
-                parentScope: $scope,
-                templateUrl: 'templates/partials/modal-image.html',
-                model: modelData});
 
-      if (angular.isFunction(emitters.onImageSelectedCb)) {
-        emitters.onImageSelectedCb(url);
+      emitters.onImageSelectedCBs.forEach(function(cb){
+        cb(url);
+      });
+      onHideCB = function (){
+        if(!modelData.isImage){
+          $backgroundSound[0].play();
+        }
+        emitters.onImageHiddenCBs.forEach(function(cb){
+          cb();
+        });
+      };
+
+      if(!modelData.isImage){
+        $backgroundSound[0].pause();
       }
-
+      ModalService.showModel({
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-image.html',
+        model: modelData,
+        onHide: onHideCB
+      });
     }
 
     // Called each time the slide changes
