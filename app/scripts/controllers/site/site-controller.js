@@ -30,6 +30,11 @@
     site.preloadCalled = false;
     site.progress = 0;
     site.rawProgress = 0;
+    site.idsTreeScreen = {
+      view: 'tree-screen',
+      baseTree: 'base-tree'
+    };
+
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
 
@@ -138,8 +143,8 @@
     $rootScope.$on('loading:finish', function (){
       if ( $state.current.name === 'tree' && !imageSaved) { //save image one time by visit page
         $timeout(function(){
-          var view = document.getElementById('screen');
-          var baseTree = document.getElementById('base-tree');
+          var view = document.getElementById(site.idsTreeScreen.view),
+              baseTree = document.getElementById(site.idsTreeScreen.baseTree);
           if (view && baseTree && callApiSaveImage === 0 && imageSaved === false) {
             callApiSaveImage = 1;
             ScreenshotService.getImage(view).then(function(img){
@@ -149,7 +154,9 @@
                     imageSaved = true;
                     callApiSaveImage = 0;
                     /*jshint camelcase: false */
-                    $auth.user.tree_image = resp.user.tree_image.url;
+                    var response = resp || {},
+                        user = response.user || {};
+                    $auth.user.tree_image = user.tree_image.url;
                   });
               }
             });
