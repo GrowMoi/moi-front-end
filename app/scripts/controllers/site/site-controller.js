@@ -109,6 +109,7 @@
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled) {
+        site.loadedImages = false;
         if(toState.name === 'tree'){
           TreeService.getNeuronsUser().then(function(data) {
             preloadAssets(data);
