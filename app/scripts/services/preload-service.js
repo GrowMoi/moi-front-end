@@ -13,14 +13,14 @@
         video: 'videos/introMoi.mp4'
       },
       {
-        depth: 4,
+        depth: 5,
         video: 'videos/Final.mp4'
       },
       {
-        depth: 6
+        depth: 7
       },
       {
-        depth: 8
+        depth: 9
       }
     ];
 
