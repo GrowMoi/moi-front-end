@@ -5,6 +5,7 @@
             ng-if='advice.show')
       .description
         | {{advice.description}}
+      .close-button(ng-click="frameVm.removeAdvice(advice)")
   .container-frame
     img.back-button(ng-if="frameVm.options.showBackButton"
                     ng-class="{'top-left': frameVm.options.type === 'content_max'}"
