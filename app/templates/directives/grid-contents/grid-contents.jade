@@ -8,7 +8,7 @@
       .overlay(ng-if="content.learnt")
         img.cover(src="../images/cover-transparent.png")
         img.approved(src="../images/approved.png")
-      .leyend-bottom-grid(ellipsis-title='', height='95', title='content.title')
+      .leyend-bottom-grid(ellipsis-title="content.title", height='95', title="{{::content.title}}")
       img.favorite(ng-if="content.favorite" src="images/estrellita.png")
       .overlay(ng-if="vm.activeIdle && content.animated")
         animate-sprite(options="vm.overlayOptions")

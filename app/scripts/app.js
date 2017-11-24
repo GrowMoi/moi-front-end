@@ -228,7 +228,69 @@
       url: '/contents',
       templateUrl: 'templates/tasks/contents-list/contents-list.html',
       controller: 'ContentsListController',
-      controllerAs: 'contentsList'
+      controllerAs: 'contentsList',
+      resolve: {
+        gridParams: function(UserService) {
+          return {
+            apiCallHandler: UserService.getTasks,
+            showDeleteIcon: true,
+            promiseDataAccessor: function (data) {
+              return {
+                items: data.content_tasks.content_tasks, //jshint ignore:line
+                totalItems: data.meta.total_items //jshint ignore:line
+              };
+            },
+            onSelectDelete: function (content, contents) {
+              UserService.deleteTask(content).then(function (resp) {
+                if (resp.status === 202) {
+                  var contentIndex = contents.indexOf(content);
+                  contents.splice(contentIndex, 1);
+                }
+              });
+            }
+          };
+        }
+      }
+    })
+    .state('tasks.favorites', {
+      url: '/favorites',
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList',
+      resolve: {
+        gridParams: function(UserService) {
+          return {
+            apiCallHandler: UserService.getFavorites,
+            showDeleteIcon: false,
+            promiseDataAccessor: function (data) {
+              return {
+                items: data.content_tasks.content_tasks, //jshint ignore:line
+                totalItems: data.meta.total_items //jshint ignore:line
+              };
+            }
+          };
+        }
+      }
+    })
+    .state('tasks.recommendations', {
+      url: '/recommendations',
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList',
+      resolve: {
+        gridParams: function(TutorRecommendationsService) {
+          return {
+            apiCallHandler: TutorRecommendationsService.getTutorRecommendations,
+            showDeleteIcon: false,
+            promiseDataAccessor: function (data) {
+              return {
+                items: data.contents,
+                totalItems: data.meta.total_items //jshint ignore:line
+              };
+            }
+          };
+        }
+      }
     })
     .state('tasks.notes', {
       url: '/notes',
@@ -241,12 +303,6 @@
       templateUrl: 'templates/tasks/notifications/notifications.html',
       controller: 'NotificationsController',
       controllerAs: 'notificationsModel'
-    })
-    .state('tasks.favorites', {
-      url: '/favorites',
-      templateUrl: 'templates/tasks/contents-list/contents-list.html',
-      controller: 'ContentsListController',
-      controllerAs: 'contentsList'
     })
     .state('inventory', {
       url: '/inventory',

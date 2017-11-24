@@ -29,7 +29,7 @@
         name: 'Recomendaciones',
         image: 'images/recomendations_tasks.png',
         selected: false,
-        state: 'tasks.default'
+        state: 'tasks.recommendations'
       },
       {
         field:'contents',

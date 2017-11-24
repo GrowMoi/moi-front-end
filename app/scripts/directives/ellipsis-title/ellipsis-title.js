@@ -6,13 +6,13 @@
     .directive('ellipsisTitle', ellipsisTitleDirective);
     function ellipsisTitleDirective($window) {
       var directive = {
-        restrict: 'EA',
+        restrict: 'A',
         scope: {
           height: '@',
-          title: '='
+          ellipsisTitle: '='
         },
         link: function(scope, element) {
-                element[0].textContent = scope.title;
+                element[0].textContent = scope.ellipsisTitle;
                 ellipsis(scope, element);
               }
       };
