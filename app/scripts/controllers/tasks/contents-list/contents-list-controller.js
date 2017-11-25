@@ -5,7 +5,6 @@
     var contentsList = this;
     var gridContentsApi = null;
     contentsList.gridContentsOptions = {
-      itemsPerRow: 2,
       itemsPerPage: 4,
       showDeleteIcon: gridParams.showDeleteIcon,
       onRegisterApi: onRegisterApi,

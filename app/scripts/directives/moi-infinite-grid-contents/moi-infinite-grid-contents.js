@@ -21,7 +21,6 @@
   function moiInfiniteGridContentsController($scope) {
     var vm = this;
     var defaultOptions = {
-      itemsPerRow: 2,
       apiCallHandler: null,
       showDeleteIcon: false,
       promiseDataAccessor: null,
@@ -36,7 +35,7 @@
 
     vm.options = angular.extend({}, defaultOptions, vm.options);
     vm.items = [];
-    vm.gridColWidth = Math.floor(100 / vm.options.itemsPerRow);
+
     init();
 
     function init() {

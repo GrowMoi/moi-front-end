@@ -30,7 +30,6 @@
         buildDirective();
 
         var defaultOptions = {
-          itemsPerRow: 2,
           apiCallHandler: null,
           showDeleteIcon: false,
           promiseDataAccessor: null,
