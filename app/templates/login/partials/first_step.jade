@@ -6,10 +6,10 @@ ion-view(
   ion-content
     moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finishedSound()")
     .row.form-container
-      form(ng-submit='vmLogin.submit()')
+      form(ng-submit='vmLogin.nexStep()')
         .login-title
           | {{ ::'login' | translate }}
-        .list.list-inset(ng-if="vmLogin.step === 1")
+        .list.list-inset
           label.item.item-input
             input(
               type='text',
@@ -17,9 +17,6 @@ ion-view(
               required='required',
               placeholder="{{ ::'login.username' | translate }}"
             )
-        moi-select-images(ng-if="vmLogin.step === 2"
-                          images="vmLogin.images"
-                          on-change="vmLogin.onSelectImage(image)")
         .row.button-actions
           .col
             .button(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
@@ -28,8 +25,8 @@ ion-view(
             input(
               ng-disabled="!vmLogin.isChrome",
               type='submit',
-              value="{{vmLogin.step === 1 ? ('login.next' | translate) : ( 'login.login' | translate)}}"
+              value="{{ ::'login.next' | translate }}"
             ).button
       a.legend-browser(ng-if='!vmLogin.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
         | {{ ::'browser.chrome' | translate }}
-        
+

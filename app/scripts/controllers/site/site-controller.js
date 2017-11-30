@@ -118,7 +118,7 @@
           preloadAssets();
         }
       }
-      if ((toState.name === 'login' || toState.name === 'register' || toState.name === 'new_login') && $auth.user.id) {
+      if ((toState.name === 'login' || toState.name === 'register' || toState.name === 'second_step') && $auth.user.id) {
         event.preventDefault();
       }else{
         if (site.loadedImages) {

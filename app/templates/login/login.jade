@@ -35,8 +35,8 @@ ion-view(
               value="{{ ::'login' | translate }}"
             ).button
         .new_login
-          span(ui-sref="new_login")
+          span(ui-sref="first_step")
             | {{ ::'login.new_login' | translate }}
       a.legend-browser(ng-if='!vm.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
         | {{ ::'browser.chrome' | translate }}
-        
+

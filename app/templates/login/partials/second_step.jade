@@ -1,0 +1,24 @@
+ion-view(
+  view-title="{{ 'login' | translate }}",
+  hide-nav-bar="true",
+  class="login-view new_login"
+)
+  ion-content
+    moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finishedSound()")
+    .row.form-container
+      form(ng-submit='vmLogin.submit()')
+        moi-select-images(images="vmLogin.images"
+                          on-change="vmLogin.onSelectImage(image)")
+        .row.button-actions
+          .col
+            .button(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
+              | {{ 'signup' | translate }}
+          .col
+            input(
+              ng-disabled="!vmLogin.isChrome",
+              type='submit',
+              value="{{ ::'login.login' | translate }}"
+            ).button
+      a.legend-browser(ng-if='!vmLogin.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
+        | {{ ::'browser.chrome' | translate }}
+
