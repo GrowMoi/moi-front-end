@@ -8,7 +8,7 @@
         type: 'mp3'
       },
       /*jshint camelcase: false */
-      new_login: {
+      'new_login.first_step': {
         sound: 'sounds/intro.mp3',
         type: 'mp3'
       },

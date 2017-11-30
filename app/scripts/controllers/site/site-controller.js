@@ -102,10 +102,11 @@
     //This must be the only place where we need to listen stateChanges
     $rootScope.$on('$stateChangeStart', function(event, toState){
       var notPreload = {
-        login: false,
+        'login': false,
+        'register': false,
         /*jshint camelcase: false */
-        new_login: false,
-        register: false
+        'new_login.first_step': false,
+        'new_login.second_step': false,
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled) {
@@ -118,7 +119,7 @@
           preloadAssets();
         }
       }
-      if ((toState.name === 'login' || toState.name === 'register' || toState.name === 'second_step') && $auth.user.id) {
+      if (!activePreload && $auth.user.id) {
         event.preventDefault();
       }else{
         if (site.loadedImages) {

@@ -31,7 +31,7 @@
     };
 
     vmLogin.nexStep = function(){
-      $state.go('second_step');
+      $state.go('new_login.second_step');
     };
 
     vmLogin.onSelectImage = function(image){
