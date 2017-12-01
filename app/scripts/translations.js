@@ -89,7 +89,7 @@
         'username': 'Nombre de Usuario',
         'next': 'Siguiente',
         'new_login': 'Nuevo Inicio de Sesión',
-        'old_login': 'Anterior Inicio de Sesión'
+        'old_login': 'Antiguo Inicio de Sesión'
       },
       register:{
         'enter':  'Entrar',
