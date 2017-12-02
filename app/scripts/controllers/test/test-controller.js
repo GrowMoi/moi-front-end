@@ -7,7 +7,8 @@
               TestService,
               $scope,
               $rootScope,
-              AdviceService) {
+              AdviceService,
+              ModalService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -94,7 +95,12 @@
         if(data.successAnswers > 1 ){
           $backgroundSound[0].pause();
         }
-        TestService.scoreTest($scope, data);
+        TestService.scoreTest($scope, data).then(function() {
+          var recommendations = res.data.recommendations || [];
+          if (recommendations.length > 0) {
+            showModalAchievement(recommendations);
+          }
+        });
       });
     }
 
@@ -106,6 +112,48 @@
         }
       });
       return count;
+    }
+
+    function showModalAchievement(recommendations) {
+
+      var modelData = extractModelData(recommendations) ;
+
+      ModalService.showModel(
+        {
+          parentScope: $scope,
+          templateUrl: 'templates/partials/modal-tutor-achievement.html',
+          model: modelData
+        }
+      );
+    }
+
+    function extractModelData(recommendations) {
+      var tutorAuthors = '';
+      var achievements = '';
+      if (recommendations.length > 1) {
+        var tutorNames = recommendations.map(function (r) { return r.tutor.name; });
+        var achievementsNames = recommendations.map(function (r) { return r.achievement.name; });
+        var uniqAchievementsNames = achievementsNames.reduce(function (a, b) {
+          if (a.indexOf(b) < 0) {
+            a.push(b);
+          }
+          return a;
+        }, []);
+        tutorAuthors = 'de los tutores ' + tutorNames.join(', ');
+        if (uniqAchievementsNames.length > 1) {
+          achievements = uniqAchievementsNames.join(', ');
+        } else {
+          achievements = 'un ' + uniqAchievementsNames[0];
+        }
+      } else {
+        tutorAuthors = 'del tutor ' + recommendations[0].tutor.name;
+        achievements = 'un ' + recommendations[0].achievement.name;
+      }
+
+      return {
+        tutorAuthors: tutorAuthors,
+        achievements: achievements
+      };
     }
   });
 

@@ -146,6 +146,7 @@
         vm.saveTasksOptions = AnimationService.getButton({
           key: 'saveTasks',
           totalNotifications: UserNotificationsService.totalNotifications,
+          totalRecommendations: UserNotificationsService.totalRecommendations,
           callbacks: {
             finishedAnimation: finishedAnimationsaveTasks
           }
@@ -338,7 +339,9 @@
       });
 
       $rootScope.$on('notifications.updateCount', function(){
-        vm.showTasksOptions.totalNotifications = UserNotificationsService.totalNotifications;
+        var notifications = UserNotificationsService.totalNotifications +
+                            UserNotificationsService.totalRecommendationContents;
+        vm.showTasksOptions.totalNotifications = notifications;
       });
     }
 

@@ -82,5 +82,34 @@
       });
     });
 
+
+    describe('Get tutor recommendations details', function () {
+      beforeEach(function () {
+        expectedUrl = ENV.apiHost + '/api/tutors/details';
+      });
+
+      it('should do a request to /api/tutors/details', function () {
+        var details = {
+          details: {
+            total_recommendations: 5, //jshint ignore:line
+            recommendations_in_progress: 3, //jshint ignore:line
+            recommendations_reached: 2 //jshint ignore:line
+          }
+        };
+
+        $httpBackend.expectGET(expectedUrl).respond(details);
+        service.getTutorRecommendationsDetails();
+        $httpBackend.flush();
+      });
+
+      it('PopupService should be called when the backend responds 400', function () {
+        var spy = sinon.spy(PopupService, 'showModel');
+        $httpBackend.whenGET(expectedUrl).respond(400);
+        service.getTutorRecommendationsDetails();
+        $httpBackend.flush();
+        chai.expect(spy.called).to.be.equal(true);
+      });
+    });
+
   });
 })();

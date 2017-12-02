@@ -32,7 +32,6 @@
         var defaultOptions = {
           apiCallHandler: null,
           showDeleteIcon: false,
-          promiseDataAccessor: null,
           onRegisterApi: null
         };
         expect(controller.options).to.deep.equal(defaultOptions);
@@ -57,7 +56,10 @@
           apiCallHandler: stub
         };
         buildDirective();
-        deferredApiCall.resolve();
+        deferredApiCall.resolve({
+          items: 4,
+          totalItems: 10
+        });
         $scope.$digest();
         sinon.assert.calledOnce(spy);
       });
@@ -72,49 +74,21 @@
         sinon.assert.notCalled(spy);
       });
 
-      it('promiseDataAccessor should be called', function(){
-        var deferredApiCall = $q.defer();
-        var stub = sinon.stub().returns({
-          items: 4,
-          totalItems: 10
-        });
-        $scope.options = {
-          apiCallHandler: function () {
-            return deferredApiCall.promise;
-          },
-          promiseDataAccessor: stub
-        };
-        buildDirective();
-        var backendData = {
-          data: [{id: 1},{id: 2},{id: 3}]
-        };
-        deferredApiCall.resolve(backendData);
-        $scope.$digest();
-
-        sinon.assert.calledWith(stub, backendData);
-      });
-
       it('noMoreItemsAvailable should be false if totalItems > itemsPerPage', function(){
         var deferredApiCall = $q.defer();
-        var stub = sinon.stub().returns({
-          items: 4,
-          totalItems: 10
-        });
         $scope.options = {
           apiCallHandler: function () {
             return deferredApiCall.promise;
-          },
-          itemsPerPage: 4,
-          promiseDataAccessor: stub
+          }
         };
         buildDirective();
         var backendData = {
-          data: [{id: 1},{id: 2},{id: 3}]
+          items:  [{id: 1},{id: 2},{id: 3}],
+          totalItems: 10
         };
         deferredApiCall.resolve(backendData);
         $scope.$digest();
         expect(controller.noMoreItemsAvailable).to.equal(false);
-        sinon.assert.calledWith(stub, backendData);
         expect(controller.loadMoreItems).to.be.a('function');
       });
 
@@ -124,17 +98,12 @@
         $scope.options = {
           apiCallHandler: function () {
             return deferredApiCall.promise;
-          },
-          promiseDataAccessor: function (data) {
-            return {
-              items: data.data,
-              totalItems: 10
-            };
           }
         };
         buildDirective();
         var backendData = {
-          data: [{id: 1},{id: 2},{id: 3}]
+          items:  [{id: 1},{id: 2},{id: 3}],
+          totalItems: 10
         };
         deferredApiCall.resolve(backendData);
         $scope.$digest();
@@ -148,20 +117,16 @@
         stub.onCall(0).returns(deferredApiCall.promise);
         stub.onCall(1).returns(deferredApiCall2.promise);
         $scope.options = {
-          apiCallHandler: stub,
-          promiseDataAccessor: function (data) {
-            return {
-              items: data.data,
-              totalItems: 8
-            };
-          }
+          apiCallHandler: stub
         };
         buildDirective();
         var backendData1 = {
-          data: [{id: 1},{id: 2},{id: 3}]
+          items: [{id: 1},{id: 2},{id: 3}],
+          totalItems: 8
         };
         var backendData2 = {
-          data: [{id: 4},{id: 5},{id: 6}]
+          items: [{id: 4},{id: 5},{id: 6}],
+          totalItems: 8
         };
         deferredApiCall.resolve(backendData1);
         $scope.$digest();
@@ -180,20 +145,16 @@
         stub.onCall(0).returns(deferredApiCall.promise);
         stub.onCall(1).returns(deferredApiCall2.promise);
         $scope.options = {
-          apiCallHandler: stub,
-          promiseDataAccessor: function (data) {
-            return {
-              items: data.data,
-              totalItems: 8
-            };
-          }
+          apiCallHandler: stub
         };
         buildDirective();
         var backendData1 = {
-          data: [{id: 1},{id: 2},{id: 3}, {id: 4}]
+          items: [{id: 1},{id: 2},{id: 3}, {id: 4}],
+          totalItems: 8
         };
         var backendData2 = {
-          data: [{id: 5},{id: 6}, {id: 7},{id: 8}]
+          items: [{id: 5},{id: 6}, {id: 7},{id: 8}],
+          totalItems: 8
         };
         deferredApiCall.resolve(backendData1);
         $scope.$digest();
@@ -211,20 +172,16 @@
         stub.onCall(0).returns(deferredApiCall.promise);
         stub.onCall(1).returns(deferredApiCall2.promise);
         $scope.options = {
-          apiCallHandler: stub,
-          promiseDataAccessor: function (data) {
-            return {
-              items: data.data,
-              totalItems: 8
-            };
-          }
+          apiCallHandler: stub
         };
         buildDirective($scope);
         var backendData1 = {
-          data: [{id: 1},{id: 2},{id: 3}, {id: 4}]
+          items: [{id: 1},{id: 2},{id: 3}, {id: 4}],
+          totalItems: 8
         };
         var backendData2 = {
-          data: [{id: 5},{id: 6}, {id: 7},{id: 8}]
+          items: [{id: 5},{id: 6}, {id: 7},{id: 8}],
+          totalItems: 8
         };
         deferredApiCall.resolve(backendData1);
         $scope.$digest();

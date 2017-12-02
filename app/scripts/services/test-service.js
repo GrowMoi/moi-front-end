@@ -9,7 +9,8 @@
                       $ionicPopup,
                       ENV,
                       ModalService,
-                      PopupService){
+                      PopupService,
+                      $q){
 
     var service = {
       goTest: goTest,
@@ -38,13 +39,19 @@
       var modelData = {};
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
-      ModalService.showModel(
-        {
-          parentScope: scope,
-          templateUrl: 'templates/partials/modal-score-test.html',
-          model: modelData
-        }
-      );
+      return $q(function(resolve) {
+        ModalService.showModel(
+          {
+            parentScope: scope,
+            templateUrl: 'templates/partials/modal-score-test.html',
+            onHide: function() {
+              resolve();
+            },
+            model: modelData
+          }
+        );
+      });
+
     }
 
     function evaluateTest(id, answers) {
@@ -63,7 +70,7 @@
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }
-        return err;
+        return $q.reject(err);
       });
     }
   }

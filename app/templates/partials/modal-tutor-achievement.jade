@@ -1,0 +1,13 @@
+.modal.transparent.modal-tutor-achievement
+  ion-pane.transparent
+    .score-container.row
+      .main-image.col
+        img(src="images/user.png")
+      .col-50.column-details
+        h1#title Recompensa
+        .points
+          p.content-details
+            | Felicidades! Completaste todas las recomendaciones {{::model.tutorAuthors}}. Acabas de ganar {{::model.achievements}}! Hemos enviado una verificación de tus aprendizajes a tu tutor para que te entregue tu recompensa.
+      .col
+    .controls
+      .btn-score.button(ng-click="model.closeModal()") OK

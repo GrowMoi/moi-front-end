@@ -20,6 +20,8 @@ ion-view.frame-all-buttons.tasks(view-title='Tasks')
                     | {{::tab.name}}
                   .counter-badget(ng-if="tab.field === 'notifications' && tasksmodel.totalNotifications")
                     | {{tasksmodel.totalNotifications}}
+                  .counter-badget(ng-if="tab.field === 'recommendations' && tasksmodel.totalRecommendationContents")
+                    | {{tasksmodel.totalRecommendationContents}}
           .col-50.tasks-view
             ui-view
       moi-buttons(options="tasksmodel.buttonsOptions")

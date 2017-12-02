@@ -230,16 +230,19 @@
       controller: 'ContentsListController',
       controllerAs: 'contentsList',
       resolve: {
-        gridParams: function(UserService) {
+        gridParams: function(UserService, $q) {
           return {
-            apiCallHandler: UserService.getTasks,
-            showDeleteIcon: true,
-            promiseDataAccessor: function (data) {
-              return {
-                items: data.content_tasks.content_tasks, //jshint ignore:line
-                totalItems: data.meta.total_items //jshint ignore:line
-              };
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                UserService.getTasks(currentPage).then(function(data) {
+                  resolve({
+                    items: data.content_tasks.content_tasks, //jshint ignore:line
+                    totalItems: data.meta.total_items //jshint ignore:line
+                  });
+                });
+              });
             },
+            showDeleteIcon: true,
             onSelectDelete: function (content, contents) {
               UserService.deleteTask(content).then(function (resp) {
                 if (resp.status === 202) {
@@ -258,16 +261,19 @@
       controller: 'ContentsListController',
       controllerAs: 'contentsList',
       resolve: {
-        gridParams: function(UserService) {
+        gridParams: function(UserService, $q) {
           return {
-            apiCallHandler: UserService.getFavorites,
-            showDeleteIcon: false,
-            promiseDataAccessor: function (data) {
-              return {
-                items: data.content_tasks.content_tasks, //jshint ignore:line
-                totalItems: data.meta.total_items //jshint ignore:line
-              };
-            }
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                UserService.getFavorites(currentPage).then(function(data) {
+                  resolve({
+                    items: data.content_tasks.content_tasks, //jshint ignore:line
+                    totalItems: data.meta.total_items //jshint ignore:line
+                  });
+                });
+              });
+            },
+            showDeleteIcon: false
           };
         }
       }
@@ -278,16 +284,20 @@
       controller: 'ContentsListController',
       controllerAs: 'contentsList',
       resolve: {
-        gridParams: function(TutorRecommendationsService) {
+        gridParams: function(TutorRecommendationsService, $q) {
           return {
-            apiCallHandler: TutorRecommendationsService.getTutorRecommendations,
-            showDeleteIcon: false,
-            promiseDataAccessor: function (data) {
-              return {
-                items: data.contents,
-                totalItems: data.meta.total_items //jshint ignore:line
-              };
-            }
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                var dataFormat = 'contents';
+                TutorRecommendationsService.getTutorRecommendations(currentPage, dataFormat).then(function(data) {
+                  resolve({
+                    items: data.contents,
+                    totalItems: data.meta.total_items //jshint ignore:line
+                  });
+                });
+              });
+            },
+            showDeleteIcon: false
           };
         }
       }

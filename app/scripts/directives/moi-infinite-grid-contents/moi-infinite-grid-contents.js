@@ -23,7 +23,6 @@
     var defaultOptions = {
       apiCallHandler: null,
       showDeleteIcon: false,
-      promiseDataAccessor: null,
       onRegisterApi: null
     };
     var emitter = {
@@ -48,7 +47,7 @@
       var promise = null;
       var handler = vm.options.apiCallHandler;
       if (angular.isFunction(handler)) {
-        promise = handler(page);
+        promise = handler(page, itemsPerPage);
         if (isPromise(promise)) {
           promise.then(callback);
         }
@@ -73,12 +72,8 @@
 
     function extractAndConcatData(data) {
       var totalItems = 0;
-      var promiseDataAccessor = vm.options.promiseDataAccessor;
-      if (angular.isFunction(promiseDataAccessor)) {
-        var result = promiseDataAccessor(data);
-        vm.items = vm.items.concat(result.items || []);
-        totalItems = result.totalItems || 0;
-      }
+      vm.items = vm.items.concat(data.items || []);
+      totalItems = data.totalItems || 0;
       return totalItems;
     }
 

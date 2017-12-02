@@ -5,7 +5,8 @@
     .module('moi.services')
     .factory('UserNotificationsService', UserNotificationsService);
 
-  function UserNotificationsService($auth, $rootScope, PusherService, UserService){
+  function UserNotificationsService($auth, $rootScope, PusherService, UserService,
+                                    $q, TutorRecommendationsService){
     var channelsToNotifications = [],
         service = { initialize: initialize };
     return service;
@@ -20,9 +21,15 @@
       channelsToNotifications.push('usernotifications.' + $auth.user.id);
       channelsToNotifications.push('usernotifications.general');
 
-      UserService.getNotifications(1).then(function(data) {
+      $q.all([
+        UserService.getNotifications(1),
+        TutorRecommendationsService.getTutorRecommendationsDetails()
+      ])
+      .then(function(data) {
         /*jshint camelcase: false */
-        service.totalNotifications = data.meta.total_count;
+        service.totalNotifications = data[0].meta.total_count;
+        service.totalRecommendationContents = data[1].details.recommendation_contents_pending;
+        service.totalRecommendations = data[1].details.total_recommendations;
         updateNotificationsCount();
         return PusherService.load();
       }).then(function(){
