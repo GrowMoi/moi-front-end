@@ -14,6 +14,7 @@
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showAlertExternalLink = showAlertExternalLink;
+      vmContent.theme = 'azul';
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
@@ -49,7 +50,8 @@
           }
         };
         vmContent.slideGalleryOptions = {
-          onRegisterApi: onRegisterApi
+          onRegisterApi: onRegisterApi,
+          modalFrameColor: 'azul'
         };
 
         leaveImage(vmContent.imgDelayTime);
@@ -100,6 +102,7 @@
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
+        modelData.frameColor = 'azul';
         if(!modelData.isImage){
           $backgroundSound[0].pause();
         }

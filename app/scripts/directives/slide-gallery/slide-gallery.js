@@ -83,6 +83,7 @@
 
       modelData.contentSrc = url;
       modelData.isImage = isImage(url);
+      modelData.frameColor = vmSlide.options.modalFrameColor;
 
       emitters.onImageSelectedCBs.forEach(function(cb){
         cb(url);
