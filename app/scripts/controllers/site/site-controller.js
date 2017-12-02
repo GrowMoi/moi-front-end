@@ -119,15 +119,6 @@
           preloadAssets();
         }
       }
-      if (!activePreload && $auth.user.id) {
-        event.preventDefault();
-      }else{
-        if (site.loadedImages) {
-          $ionicLoading.show({
-            template: 'cargando...'
-          });
-        }
-      }
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState){

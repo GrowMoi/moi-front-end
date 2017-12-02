@@ -129,14 +129,6 @@
         ctrl.preloadCalled = true;
       });
 
-      it('should call $ionicLoading.show in stateChangeStart', function(){
-        ctrl.loadedImages = true;
-        ctrl.preloadCalled = true;
-        $rootScope.$broadcast('$stateChangeStart', {name: 'fakestate'}, {}, {name: 'fromState'});
-        $rootScope.$digest();
-        sinon.assert.calledOnce($ionicLoading.show);
-      });
-
       it('should not call $ionicLoading.show in stateChangeStart to login and user', function(){
         $rootScope.$broadcast('$stateChangeStart', {name: 'login'}, {}, {name: 'fromState'});
         $rootScope.$digest();
@@ -155,27 +147,6 @@
         $rootScope.$broadcast('$stateChangeError');
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);
-      });
-    });
-
-    describe('without user', function(){
-      beforeEach(function(){
-        $auth = { user: {}};
-
-        dependencies = {
-          $ionicLoading: $ionicLoading,
-          $scope: $scope,
-          $auth: $auth
-        };
-        ctrl = $controller('SiteController', dependencies);
-      });
-
-      it('should call $ionicLoading.show in stateChangeStart to login and no user', function(){
-        ctrl.loadedImages = true;
-        ctrl.preloadCalled = true;
-        $rootScope.$broadcast('$stateChangeStart', {name: 'login'}, {}, {name: 'fromState'} );
-        $rootScope.$digest();
-        sinon.assert.calledOnce($ionicLoading.show);
       });
     });
 
