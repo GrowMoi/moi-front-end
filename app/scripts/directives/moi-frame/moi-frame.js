@@ -49,5 +49,13 @@
       frameVm.allPieces = allFrames[frameVm.options.type];
       frameVm.imgBackButton = frameVm.options.showBackButton ? 'images/containers/back_btn.png' : '';
       frameVm.showAdvices = Array.isArray(frameVm.options.advices) && frameVm.options.advices.length>0;
+      frameVm.removeAdvice = removeAdvice;
+
+      function removeAdvice(advice) {
+        if(frameVm.showAdvices) {
+          var index = frameVm.options.advices.indexOf(advice);
+          frameVm.options.advices.splice(index, 1);
+        }
+      }
     }
   })();
