@@ -14,8 +14,7 @@
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: (data.meta.depth >= 2 && localStorage.getItem('tree_advice1')) ?
-              AdviceService.getRandom('tree') : AdviceService.getStatic('tree', data.meta.depth-1),
+      advices: getAdvices(),
       showBackButton: true
     };
 
@@ -35,6 +34,16 @@
         treeModel.showTree = false;
       }else{
         treeModel.showTree = true;
+      }
+    }
+
+    function getAdvices(){
+      if (data.meta.depth === 1 && !localStorage.getItem('tree_advice0')){
+        return AdviceService.getStatic('tree', 0);
+      }else if ( data.meta.depth === 2 && !localStorage.getItem('tree_advice1')){
+        return AdviceService.getStatic('tree', 1);
+      }else if (localStorage.getItem('tree_advice1')){
+        return AdviceService.getRandom('tree');
       }
     }
   });
