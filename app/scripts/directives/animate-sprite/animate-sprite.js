@@ -93,6 +93,7 @@ options directive
       vm.width = options.width ? options.width + 'px' : '';
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
+      vm.increaseSize = increaseSize;
       vm.css = {
         'background': 'url(' + src + ')',
         'background-size': initialSize,
@@ -207,6 +208,15 @@ options directive
     });
 
     init();
+
+    function increaseSize(increase) {
+      var scale = 1 + '.15';
+      if (increase) {
+        vm.css.transform = 'scale(' + scale + ')';
+      }else{
+        delete vm.css.transform;
+      }
+    }
 
   }
 })();
