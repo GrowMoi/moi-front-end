@@ -16,7 +16,6 @@
 
     vmLogin.form = {};
     vmLogin.finishedSound = finishedSound;
-    vmLogin.step = 1;
 
     var successState = 'tree';
     vmLogin.isChrome = UtilityService.isAgentChrome();
@@ -31,6 +30,10 @@
       }
     };
 
+    vmLogin.nexStep = function(){
+      $state.go('new_login.second_step');
+    };
+
     vmLogin.onSelectImage = function(image){
       /*jshint camelcase: false */
       vmLogin.form.authorization_key = image.key;
@@ -43,15 +46,6 @@
     });
 
     function finishedSound() {
-      /*jshint camelcase: false */
-      if(vmLogin.step === 2 && vmLogin.form.authorization_key !== ''){
-        init();
-      }else{
-        vmLogin.step ++;
-      }
-    }
-
-    function init() {
       $ionicLoading.show({
         template: 'cargando...'
       });
@@ -70,6 +64,7 @@
           $ionicLoading.hide();
         });
     }
+
     function redirectUser() {
       $state.go(successState);
     }

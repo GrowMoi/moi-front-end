@@ -19,7 +19,8 @@
         'username': 'Username',
         'password': 'Password',
         'next': 'Next',
-        'new_login': 'New login'
+        'new_login': 'New login',
+        'old_login': 'Old login'
       },
       setting: {
         'settings': 'Settings',
@@ -87,7 +88,8 @@
         'password': 'Contraseña',
         'username': 'Nombre de Usuario',
         'next': 'Siguiente',
-        'new_login': 'Nuevo Inicio de Sesión'
+        'new_login': 'Nuevo Inicio de Sesión',
+        'old_login': 'Antiguo Inicio de Sesión'
       },
       register:{
         'enter':  'Entrar',
