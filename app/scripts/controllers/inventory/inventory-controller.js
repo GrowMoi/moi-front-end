@@ -17,5 +17,12 @@
         }
       };
       vmInv.medalsByTab = Array(12); //jshint ignore:line
+      vmInv.showInventory = true;
+      vmInv.urlVideo = 'videos/introMoi.mp4';
+      vmInv.finishedAnimation = finishedAnimation;
+
+      function finishedAnimation(){
+        vmInv.showInventory = true;
+      }
     });
 })();
