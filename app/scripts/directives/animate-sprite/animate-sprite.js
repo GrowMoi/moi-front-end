@@ -93,6 +93,7 @@ options directive
       vm.width = options.width ? options.width + 'px' : '';
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
+      vm.increaseSize = increaseSize;
       vm.css = {
         'background': 'url(' + src + ')',
         'background-size': initialSize,
@@ -117,6 +118,7 @@ options directive
 
     function playAnimateSprite() {
       if (playOnClick && statusAnimation.playing === false) {
+        delete vm.css.transition;
         statusAnimation.playing = true;
         spritePosition = { x: 0, y: 0 };
         if (vm.options.sound && moiSound) {
@@ -207,6 +209,16 @@ options directive
     });
 
     init();
+
+    function increaseSize(increase) {
+      vm.css.transition= '0.2s ease-in-out';
+      var scale = 1 + '.10';
+      if (increase) {
+        vm.css.transform = 'scale(' + scale + ')';
+      }else{
+        delete vm.css.transform;
+      }
+    }
 
   }
 })();

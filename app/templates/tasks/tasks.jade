@@ -1,8 +1,7 @@
 ion-view.frame-all-buttons.tasks(view-title='Tasks')
   ion-content
     back-button.arrow.back-arrow
-    .flecha-sidebar(ng-click="toggleDrawer()")
-      img(src="images/flecha_1.png")
+    moi-arrow(on-click="toggleDrawer()" orientation="right")
     .frame.panel-tasks
       .frame-container
         .content-title
