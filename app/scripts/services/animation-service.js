@@ -32,7 +32,7 @@
         width: 106,
         height: 70,
         playOnClick: true,
-        name: 'Recomendaciones'
+        name: 'Recomendación Aleatoria'
       },
       learn: {
         src: 'images/sprites/btn-learn-sprite.png',
@@ -43,7 +43,7 @@
         width: 130,
         height: 105,
         playOnClick: true,
-        name: 'Aprender'
+        name: 'Leer Contenido'
       },
       settings: {
         src: 'images/sprites/btn-settings-sprite.png',
@@ -52,7 +52,7 @@
         speed: 50,
         sound: 'sounds/btn_settings.mp3',
         playOnClick: true,
-        name: 'Configuraciones'
+        name: 'Configuración'
       },
       profile: {
         src: 'images/sprites/btn-amigos-sprite.png',
@@ -61,7 +61,7 @@
         speed: 50,
         sound: 'sounds/btn_amigos.mp3',
         playOnClick: true,
-        name: 'Amigos'
+        name: 'Mi Perfil'
       },
       share: {
         src: 'images/sprites/btn-compartir-sprite.png',
@@ -83,7 +83,7 @@
         width: 54,
         height: 54,
         playOnClick: true,
-        name: 'Guardar Tareas'
+        name: 'Guardar Tarea'
       },
       showTasks: {
         src: 'images/sprites/btn-show-tasks-sprite.png',
@@ -94,7 +94,7 @@
         width: 120,
         height: 80,
         playOnClick: true,
-        name: 'Ver Tareas'
+        name: 'Tareas'
       },
       searchIdle: {
         src: 'images/sprites/btn-search-idle-sprite.png',
@@ -152,7 +152,7 @@
         width: 54,
         height: 54,
         playOnClick: true,
-        name: 'Añadir a favoritos'
+        name: 'Marcar como Favorito'
       }
     };
 
