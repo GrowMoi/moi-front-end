@@ -1,0 +1,43 @@
+$text-color: #EF2874;
+
+.modal-tutor-achievement {
+  .column-details{
+    .points {
+      padding-top: 0;
+    }
+  }
+
+  .content-details {
+    color: $text-color;
+    padding: 10px;
+    font-weight: bold;
+    line-height: 1.2;
+    font-size: 1rem;
+  }
+
+  .controls {
+    width: 6rem;
+    .btn-score {
+      width: 6rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      min-height: 2.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1050px) {
+  .modal-tutor-achievement {
+    .content-details {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .modal-tutor-achievement {
+    .content-details {
+      font-size: 1.2rem;
+    }
+  }
+}

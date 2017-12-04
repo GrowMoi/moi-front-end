@@ -89,7 +89,9 @@
           initialize: function() {
             return null;
           },
-          totalNotifications: 0
+          totalNotifications: 0,
+          totalRecommendationContents: 0,
+          totalRecommendations: 0
         };
       });
     }));

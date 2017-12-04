@@ -228,7 +228,79 @@
       url: '/contents',
       templateUrl: 'templates/tasks/contents-list/contents-list.html',
       controller: 'ContentsListController',
-      controllerAs: 'contentsList'
+      controllerAs: 'contentsList',
+      resolve: {
+        gridParams: function(UserService, $q) {
+          return {
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                UserService.getTasks(currentPage).then(function(data) {
+                  resolve({
+                    items: data.content_tasks.content_tasks, //jshint ignore:line
+                    totalItems: data.meta.total_items //jshint ignore:line
+                  });
+                });
+              });
+            },
+            showDeleteIcon: true,
+            onSelectDelete: function (content, contents) {
+              UserService.deleteTask(content).then(function (resp) {
+                if (resp.status === 202) {
+                  var contentIndex = contents.indexOf(content);
+                  contents.splice(contentIndex, 1);
+                }
+              });
+            }
+          };
+        }
+      }
+    })
+    .state('tasks.favorites', {
+      url: '/favorites',
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList',
+      resolve: {
+        gridParams: function(UserService, $q) {
+          return {
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                UserService.getFavorites(currentPage).then(function(data) {
+                  resolve({
+                    items: data.content_tasks.content_tasks, //jshint ignore:line
+                    totalItems: data.meta.total_items //jshint ignore:line
+                  });
+                });
+              });
+            },
+            showDeleteIcon: false
+          };
+        }
+      }
+    })
+    .state('tasks.recommendations', {
+      url: '/recommendations',
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList',
+      resolve: {
+        gridParams: function(TutorRecommendationsService, $q) {
+          return {
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                var dataFormat = 'contents';
+                TutorRecommendationsService.getTutorRecommendations(currentPage, dataFormat).then(function(data) {
+                  resolve({
+                    items: data.contents,
+                    totalItems: data.meta.total_items //jshint ignore:line
+                  });
+                });
+              });
+            },
+            showDeleteIcon: false
+          };
+        }
+      }
     })
     .state('tasks.notes', {
       url: '/notes',
@@ -241,12 +313,6 @@
       templateUrl: 'templates/tasks/notifications/notifications.html',
       controller: 'NotificationsController',
       controllerAs: 'notificationsModel'
-    })
-    .state('tasks.favorites', {
-      url: '/favorites',
-      templateUrl: 'templates/tasks/contents-list/contents-list.html',
-      controller: 'ContentsListController',
-      controllerAs: 'contentsList'
     })
     .state('inventory', {
       url: '/inventory',

@@ -7,7 +7,8 @@
               TestService,
               $scope,
               $rootScope,
-              AdviceService) {
+              AdviceService,
+              ModalService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -94,7 +95,12 @@
         if(data.successAnswers > 1 ){
           $backgroundSound[0].pause();
         }
-        TestService.scoreTest($scope, data);
+        TestService.scoreTest($scope, data).then(function() {
+          var recommendations = res.data.recommendations || [];
+          if (recommendations.length > 0) {
+            showModalAchievement(recommendations);
+          }
+        });
       });
     }
 
@@ -106,6 +112,57 @@
         }
       });
       return count;
+    }
+
+    function showModalAchievement(recommendations) {
+
+      var modelData = extractModelData(recommendations) ;
+
+      ModalService.showModel(
+        {
+          parentScope: $scope,
+          templateUrl: 'templates/partials/modal-tutor-achievement.html',
+          model: modelData
+        }
+      );
+    }
+
+    function extractModelData(recommendations) {
+      var tutorAuthors,
+          achievements,
+          tutorAuthorNames,
+          achievementNames = '';
+
+      if (recommendations.length > 1) {
+        var tutorNames = recommendations.map(function (r) { return r.tutor.name; });
+        var names = recommendations.map(function (r) { return r.achievement.name; });
+        var uniqAchievementsNames = names.reduce(function (a, b) {
+          if (a.indexOf(b) < 0) {
+            a.push(b);
+          }
+          return a;
+        }, []);
+        tutorAuthorNames = tutorNames.join(', ');
+        tutorAuthors = 'de los tutores ' + tutorAuthorNames;
+        achievementNames = uniqAchievementsNames.join(', ');
+        if (uniqAchievementsNames.length > 1) {
+          achievements = achievementNames;
+        } else {
+          achievements = 'un ' + uniqAchievementsNames[0];
+        }
+      } else {
+        tutorAuthors = 'del tutor ' + recommendations[0].tutor.name;
+        tutorAuthorNames = recommendations[0].tutor.name;
+        achievements = 'un ' + recommendations[0].achievement.name;
+        achievementNames = recommendations[0].achievement.name;
+      }
+
+      return {
+        tutorAuthors: tutorAuthors,
+        tutorAuthorNames: tutorAuthorNames,
+        achievements: achievements,
+        achievementNames: achievementNames
+      };
     }
   });
 

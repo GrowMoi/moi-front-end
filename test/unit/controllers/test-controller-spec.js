@@ -76,6 +76,10 @@
           }
         };
       });
+
+      $provide.factory('$ionicModal', function () {
+        return {};
+      });
     }));
 
     beforeEach(angular.mock.module(function ($provide) {

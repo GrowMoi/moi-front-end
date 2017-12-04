@@ -25,11 +25,11 @@
         state: 'tasks.notes'
       },
       {
-        field:'recomendations',
+        field:'recommendations',
         name: 'Recomendaciones',
         image: 'images/recomendations_tasks.png',
         selected: false,
-        state: 'tasks.default'
+        state: 'tasks.recommendations'
       },
       {
         field:'contents',
@@ -67,6 +67,7 @@
 
     initTab();
     tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
+    tasksmodel.totalRecommendationContents = UserNotificationsService.totalRecommendationContents;
 
     function initTab() {
       var stateField = $state.current.name.replace('tasks.', '');
@@ -75,6 +76,7 @@
 
     $rootScope.$on('notifications.updateCount', function(){
       tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
+      tasksmodel.totalRecommendationContents = UserNotificationsService.totalRecommendationContents;
     });
   });
 })();
