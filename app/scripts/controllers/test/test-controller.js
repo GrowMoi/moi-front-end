@@ -128,31 +128,40 @@
     }
 
     function extractModelData(recommendations) {
-      var tutorAuthors = '';
-      var achievements = '';
+      var tutorAuthors,
+          achievements,
+          tutorAuthorNames,
+          achievementNames = '';
+
       if (recommendations.length > 1) {
         var tutorNames = recommendations.map(function (r) { return r.tutor.name; });
-        var achievementsNames = recommendations.map(function (r) { return r.achievement.name; });
-        var uniqAchievementsNames = achievementsNames.reduce(function (a, b) {
+        var names = recommendations.map(function (r) { return r.achievement.name; });
+        var uniqAchievementsNames = names.reduce(function (a, b) {
           if (a.indexOf(b) < 0) {
             a.push(b);
           }
           return a;
         }, []);
-        tutorAuthors = 'de los tutores ' + tutorNames.join(', ');
+        tutorAuthorNames = tutorNames.join(', ');
+        tutorAuthors = 'de los tutores ' + tutorAuthorNames;
+        achievementNames = uniqAchievementsNames.join(', ');
         if (uniqAchievementsNames.length > 1) {
-          achievements = uniqAchievementsNames.join(', ');
+          achievements = achievementNames;
         } else {
           achievements = 'un ' + uniqAchievementsNames[0];
         }
       } else {
         tutorAuthors = 'del tutor ' + recommendations[0].tutor.name;
+        tutorAuthorNames = recommendations[0].tutor.name;
         achievements = 'un ' + recommendations[0].achievement.name;
+        achievementNames = recommendations[0].achievement.name;
       }
 
       return {
         tutorAuthors: tutorAuthors,
-        achievements: achievements
+        tutorAuthorNames: tutorAuthorNames,
+        achievements: achievements,
+        achievementNames: achievementNames
       };
     }
   });
