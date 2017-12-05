@@ -127,6 +127,22 @@
       width: 100%;
       text-align: justify;
       white-space: pre-wrap;
+
+      &.violeta {
+        color: $violeta;
+      }
+      &.azul{
+        color: $azul;
+      }
+      &.rojo{
+        color: $rojo;
+      }
+      &.amarillo{
+        color: $amarillo;
+      }
+      &.verde{
+        color: $verde;
+      }
     }
     .content-source{
       text-decoration: underline;
@@ -142,19 +158,58 @@
     }
   }
 
-  .content-text::-webkit-scrollbar-track, .content-comments::-webkit-scrollbar-track {
-    border-radius: 10px;
-    border: 1px solid $linesColor;
-    width: 5px;
+  .content-text,
+  .content-comments {
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      border: 1px solid $linesColor;
+      width: 5px;
+    }
+
+    &.violeta::-webkit-scrollbar-track {
+      border-color: $violeta;
+    }
+    &.azul::-webkit-scrollbar-track {
+      border-color: $azul;
+    }
+    &.rojo::-webkit-scrollbar-track {
+      border-color: $rojo;
+    }
+    &.amarillo::-webkit-scrollbar-track {
+      border-color: $amarillo;
+    }
+    &.verde::-webkit-scrollbar-track {
+      border-color: $verde;
+    }
   }
+
   .content-text::-webkit-scrollbar, .content-comments::-webkit-scrollbar  {
     width: 5px;
     background-color: transparent;
     border-radius: 10px;
   }
-  .content-text::-webkit-scrollbar-thumb, .content-comments::-webkit-scrollbar-thumb {
-    border-radius: 25px;
-    background-color: $linesColor;
+
+  .content-text, .content-comments {
+    &::-webkit-scrollbar-thumb {
+      border-radius: 25px;
+      background-color: $linesColor;
+    }
+
+    &.violeta::-webkit-scrollbar-thumb {
+      background-color: $violeta;
+    }
+    &.azul::-webkit-scrollbar-thumb {
+      background-color: $azul;
+    }
+    &.rojo::-webkit-scrollbar-thumb {
+      background-color: $rojo;
+    }
+    &.amarillo::-webkit-scrollbar-thumb {
+      background-color: $amarillo;
+    }
+    &.verde::-webkit-scrollbar-thumb {
+      background-color: $verde;
+    }
   }
 
   .content-comments {
