@@ -56,10 +56,10 @@
 
     function showWelcomeModal(){
       var dialogContentModel = {
-        message:'Bienvenidx '+currentUser.username+'/n'+
-                'Este es tu árbol Moi. Contiene grandes conocimientos y solo de ti '+
-                'depende su crecimiento. Sigue tu curiosidad y descubre como hacer '+
-                'que se desarrolle hasta su máxima expresión',
+        message:'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
+                'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
+                'Sigue tu curiosidad y descubre como hacer que se desarrollo hasta su '+
+                'máxima expresión.',
         callbacks: {
           btnCenter: ModalService.destroy
         },
