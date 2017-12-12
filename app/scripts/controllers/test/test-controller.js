@@ -10,7 +10,8 @@
               $auth,
               $state,
               AdviceService,
-              ModalService) {
+              ModalService,
+              MediaAchievements) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -148,7 +149,8 @@
         labels: {
           btnRight: 'Ir al inventario',
           btnLeft: 'Ok'
-        }
+        },
+        image: MediaAchievements[achievement.number].settings.badge
       };
 
       var dialogOptions = {

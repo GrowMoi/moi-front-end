@@ -13,7 +13,8 @@
         $stateParams,
         dataTest,
         contentId,
-        answer;
+        answer,
+        MediaAchievements;
 
     beforeEach(module('moi.controllers'));
 
@@ -66,6 +67,21 @@
       answer = dataTest.testQuestions[0].possible_answers[0];
     });
 
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('MediaAchievements', {
+          1: {
+            name: 'Contenidos aprendidos',
+            description: 'Han sido aprendidos los primeros 4 contenidos',
+            settings: {
+              badge:'images/inventory/badges/badge1.png',
+              video: 'videos/introMoi.mp4'
+            }
+          }
+        });
+      });
+    });
+
     beforeEach(module('moi.services', function($provide){
       $provide.factory('TestService', function(){
         return {
@@ -112,13 +128,15 @@
                 _$stateParams_,
                 _TestService_,
                 _$rootScope_,
-                _$state_) {
+                _$state_,
+                _MediaAchievements_) {
         $controller = _$controller_;
         $stateParams = _$stateParams_;
         $rootScope = _$rootScope_;
         $state = _$state_;
         $scope = $rootScope.$new();
         TestService = _TestService_;
+        MediaAchievements = _MediaAchievements_;
         $auth = {
           user: {
             id: 1,
@@ -134,7 +152,8 @@
           $scope: $scope,
           $stateParams: $stateParams,
           $auth: $auth,
-          $state: $state
+          $state: $state,
+          MediaAchievements: MediaAchievements
         };
         ctrl = $controller('TestController', dependencies);
       })

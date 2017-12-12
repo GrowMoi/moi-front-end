@@ -22,11 +22,14 @@
       vmInv.achievements = data.achievements;
       vmInv.increaseSize = increaseSize;
       vmInv.cssCell = [];
+      var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
       setMediaIntoAchievements(vmInv.achievements);
 
       function finishedAnimation(){
         vmInv.showInventory = true;
+        $backgroundSound[0].play();
+        $backgroundSound[0].autoplay = true;
       }
 
       function setMediaIntoAchievements(achievements){
@@ -46,6 +49,7 @@
           }
           UserService.activeAchievement(achievement.id);
         }else{
+          $backgroundSound[0].pause();
           vmInv.showInventory = false;
           vmInv.urlVideo = achievement.settings.video;
         }
