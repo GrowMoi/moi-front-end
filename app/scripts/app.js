@@ -321,7 +321,14 @@
       controller: 'InventoryController',
       controllerAs: 'vmInv',
       templateUrl: 'templates/inventory/inventory.html',
-      cache: false
+      cache: false,
+      resolve: {
+        data: function(UserService) {
+          return UserService.getUserAchievements().then(function(data){
+            return data;
+          });
+        }
+      }
     })
     .state('guide', {
       url: '/guide',

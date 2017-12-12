@@ -7,12 +7,15 @@
               TestService,
               $scope,
               $rootScope,
+              $auth,
+              $state,
               AdviceService,
               ModalService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
+    var currentUser = $auth.user;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
     init();
@@ -97,8 +100,12 @@
         }
         TestService.scoreTest($scope, data).then(function() {
           var recommendations = res.data.recommendations || [];
+          var achievements = res.data.achievements || [];
           if (recommendations.length > 0) {
             showModalAchievement(recommendations);
+          }
+          if (achievements.length > 0) {
+            showUserAchievement(achievements[0]);
           }
         });
       });
@@ -125,6 +132,30 @@
           model: modelData
         }
       );
+    }
+
+    function showUserAchievement(achievement){
+      var dialogContentModel = {
+        message: 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
+                  'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi',
+        callbacks: {
+          btnRight: function(){
+            $state.go('inventory');
+            ModalService.destroy();
+          },
+          btnLeft: ModalService.destroy
+        },
+        labels: {
+          btnRight: 'Ir al inventario',
+          btnLeft: 'Ok'
+        }
+      };
+
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: dialogContentModel
+      };
+      ModalService.showModel(dialogOptions);
     }
 
     function extractModelData(recommendations) {

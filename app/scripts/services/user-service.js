@@ -22,7 +22,9 @@
       getFavorites: getFavorites,
       getAchievements: getAchievements,
       getLeaderboard: getLeaderboard,
-      deleteNotification: deleteNotification
+      deleteNotification: deleteNotification,
+      getUserAchievements: getUserAchievements,
+      activeAchievement: activeAchievement
     };
 
     var popupOptions = { title: 'Error'};
@@ -309,6 +311,35 @@
         data: {}
       }).then(function success(res) {
         return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function getUserAchievements() {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/achievements'
+      }).then(function success(res) {
+        return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function activeAchievement(id) {
+      return $http({
+        method: 'PUT',
+        url: ENV.apiHost + '/api/users/achievements/'+ id +'/active',
+        data: null
+      }).then(function success(res) {
+        return res.data;
       }, function error(err) {
         if(err.status !== 404){
           popupOptions.content = err.statusText;

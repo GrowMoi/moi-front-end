@@ -5,16 +5,18 @@
                                               $window,
                                               $timeout,
                                               $interval,
+                                              $auth,
                                               content,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              AdviceService) {
+                                              AdviceService,
+                                              MediaAchievements) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showAlertExternalLink = showAlertExternalLink;
-      vmContent.theme = 'azul';
+      vmContent.userAchievements = $auth.user.achievements;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
@@ -24,6 +26,7 @@
       };
 
       activate();
+      setTheme();
 
       $scope.$on('$ionicView.afterEnter', startsReading);
       $scope.$on('$ionicView.beforeLeave', stopsReading);
@@ -50,8 +53,7 @@
           }
         };
         vmContent.slideGalleryOptions = {
-          onRegisterApi: onRegisterApi,
-          modalFrameColor: 'azul'
+          onRegisterApi: onRegisterApi
         };
 
         leaveImage(vmContent.imgDelayTime);
@@ -102,7 +104,6 @@
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
-        modelData.frameColor = 'azul';
         if(!modelData.isImage){
           $backgroundSound[0].pause();
         }
@@ -154,6 +155,15 @@
 
       function isImage(params) {
         return typeof params === 'string';
+      }
+
+      function setTheme() {
+        if(vmContent.userAchievements.length > 0){
+          var currentTheme = MediaAchievements[vmContent.userAchievements[0].number].settings.theme;
+          vmContent.theme = currentTheme;
+          modelData.frameColor = currentTheme;
+          vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
+        }
       }
     });
 })();

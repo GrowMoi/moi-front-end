@@ -6,6 +6,8 @@
         $controller,
         $scope,
         $rootScope,
+        $auth,
+        $state,
         dependencies,
         TestService,
         $stateParams,
@@ -92,23 +94,47 @@
           }
         };
       });
+      $provide.provider('$state', function () {
+        return {
+          $get: function () {
+            return {
+              go: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
       function (_$controller_,
                 _$stateParams_,
                 _TestService_,
-                _$rootScope_) {
+                _$rootScope_,
+                _$state_) {
         $controller = _$controller_;
         $stateParams = _$stateParams_;
         $rootScope = _$rootScope_;
+        $state = _$state_;
         $scope = $rootScope.$new();
         TestService = _TestService_;
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {}//jshint ignore:line
+          }
+        };
 
         dependencies = {
           TestService: TestService,
           $scope: $scope,
-          $stateParams: $stateParams
+          $stateParams: $stateParams,
+          $auth: $auth,
+          $state: $state
         };
         ctrl = $controller('TestController', dependencies);
       })

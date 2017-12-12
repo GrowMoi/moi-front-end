@@ -12,8 +12,14 @@ ion-view.frame-all-buttons.inventory-section(view-title='Inventario')
             .inventory-grid
               .tabs-grid
               .gridWrapper
-                .cell(ng-repeat="cell in vmInv.medalsByTab track by $index")
-                  img(src="images/inventory/medals/medal1.png")
+                .cell(ng-style="vmInv.cssCell[$index]"
+                      ng-repeat="achievement in vmInv.achievements track by $index"
+                      ng-click="vmInv.activateAchievement(achievement)"
+                      ng-mouseover="vmInv.increaseSize(true, $index)"
+                      ng-mouseleave="vmInv.increaseSize(false, $index)")
+                  img(
+                      ng-src="{{achievement.settings.badge}}"
+                      ng-class="{selected: achievement.active}")
         moi-buttons(options="vmInv.buttonsOptions")
     moi-sidebar
   .movies-container(ng-if="!vmInv.showInventory")
