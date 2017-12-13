@@ -6,9 +6,11 @@
     var ctrl,
       $controller,
       $scope,
+      $auth,
       dependencies,
       $rootScope,
-      PreloadAssets;
+      PreloadAssets,
+      ModalService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(module('moi.services', function($provide){
@@ -26,19 +28,39 @@
           }
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
-                _PreloadAssets_) {
+                _PreloadAssets_,
+                _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         PreloadAssets = _PreloadAssets_;
+        ModalService = _ModalService_;
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {}//jshint ignore:line
+          }
+        };
         dependencies = {
           $scope: $scope,
-          data: {tree: [{id:1}], meta:{depth:4}}
+          data: {tree: [{id:1}], meta:{depth:4}},
+          $auth: $auth,
+          ModalService: ModalService
         };
 
         ctrl = $controller('TreeController', dependencies);
