@@ -58,15 +58,14 @@
       var dialogContentModel = {
         message:'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
                 'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
-                'Sigue tu curiosidad y descubre como hacer que se desarrollo hasta su '+
+                'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
                 'máxima expresión.',
         callbacks: {
           btnCenter: ModalService.destroy
         },
         labels: {
           btnCenter: 'Ok'
-        },
-        addCongratulations: true
+        }
       };
 
       var dialogOptions = {
