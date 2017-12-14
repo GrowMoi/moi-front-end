@@ -1,9 +1,14 @@
 .row.content-in-grid(ng-repeat="(key, value) in vm.rowsGrid")
   .col(ng-class="value.class", ng-repeat="content in value.items")
     .content-kind.relative(
+          ng-style="vm.css[content.id]"
           ng-click="vm.selectContent(content)",
           on-double-tap="vm.sendContent(content.neuron_id, content.id)",
-          ng-class="content.isSelected ? 'content-selected' : 'content-unselected'")
+          ng-class="content.isSelected ? 'content-selected' : 'content-unselected'"
+          tooltip-moi="{{::vm.defaultTooltip}}"
+          tooltip-position="up"
+          ng-mouseover="vm.increaseSize(true, content.id)"
+          ng-mouseleave="vm.increaseSize(false , content.id)")
       img.img-content-1(ng-src='{{content.media[0]}}')
       .overlay(ng-if="content.learnt")
         img.cover(src="../images/cover-transparent.png")
