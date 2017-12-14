@@ -38,7 +38,6 @@
     vm.activeIdle = false;
     vm.increaseSize = increaseSize;
     vm.css = [];
-    vm.defaultTooltip = 'Haz doble clic para descubrir la respuesta';
 
     init();
 
