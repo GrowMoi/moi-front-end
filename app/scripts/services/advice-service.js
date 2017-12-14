@@ -84,6 +84,7 @@
             if(page !== 'content'){
               localStorage.setItem(keyToPersist, 'true');
             }
+            adviceSelected.showCloseBtn = true;
             return [adviceSelected];
           }else {
             return [];
