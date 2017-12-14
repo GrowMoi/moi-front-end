@@ -1,7 +1,10 @@
 (function() {
   'use strict';
   angular.module('moi.controllers')
-    .controller('InventoryController', function(data, UserService, MediaAchievements) {
+    .controller('InventoryController', function($ionicPopup,
+                                                data,
+                                                UserService,
+                                                MediaAchievements) {
       var vmInv = this;
 
       vmInv.buttonsOptions = {
@@ -19,6 +22,7 @@
       vmInv.showInventory = true;
       vmInv.finishedAnimation = finishedAnimation;
       vmInv.activateAchievement = activateAchievement;
+      vmInv.achievementSelected = {};
       vmInv.achievements = data.achievements;
       vmInv.increaseSize = increaseSize;
       vmInv.cssCell = [];
@@ -42,12 +46,8 @@
 
       function activateAchievement(achievement){
         if(achievement.settings.theme){
-          if(!achievement.active){
-            achievement.active = true;
-          }else{
-            achievement.active = false;
-          }
-          UserService.activeAchievement(achievement.id);
+          vmInv.achievementSelected = achievement;
+          UserService.activeAchievement(achievement.id).then(showpopup);
         }else{
           $backgroundSound[0].pause();
           vmInv.showInventory = false;
@@ -56,14 +56,32 @@
       }
 
       function increaseSize(increase, index) {
-        var scale = 1 + '.10';
+        var scale = 1 + '.05';
         if (increase) {
           vmInv.cssCell[index] = {
-            transform: 'scale(' + scale + ')'
+            transform: 'scale(' + scale + ')',
+            transition: '0.2s ease-in-out'
           };
         }else{
           delete vmInv.cssCell[index].transform;
         }
+      }
+
+      function showpopup(){
+        $ionicPopup.alert({
+          title: 'Cambios exitosos de mi perfil',
+          template: 'Actualización Exitosa'
+        }).then(setSelectedAchievement);
+      }
+
+      function setSelectedAchievement(){
+        angular.forEach(vmInv.achievements, function(ach, index) {
+          if(vmInv.achievementSelected.number === ach.number){
+            vmInv.achievements[index].active = true;
+          }else{
+            vmInv.achievements[index].active = false;
+          }
+        });
       }
     });
 })();

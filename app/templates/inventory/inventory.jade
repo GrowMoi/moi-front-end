@@ -16,7 +16,9 @@ ion-view.frame-all-buttons.inventory-section(view-title='Inventario')
                       ng-repeat="achievement in vmInv.achievements track by $index"
                       ng-click="vmInv.activateAchievement(achievement)"
                       ng-mouseover="vmInv.increaseSize(true, $index)"
-                      ng-mouseleave="vmInv.increaseSize(false, $index)")
+                      ng-mouseleave="vmInv.increaseSize(false, $index)"
+                      tooltip-moi="{{::achievement.name}}"
+                      tooltip-position="up")
                   img(
                       ng-src="{{achievement.settings.badge}}"
                       ng-class="{selected: achievement.active}")

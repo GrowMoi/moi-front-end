@@ -116,6 +116,11 @@
               return contentSelected;
             });
           });
+        },
+        dataInventory: function(UserService) {
+          return UserService.getUserAchievements().then(function(data){
+            return data;
+          });
         }
       }
     })

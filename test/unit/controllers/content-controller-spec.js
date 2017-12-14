@@ -166,6 +166,15 @@
             videos: [],
             recommended: []
           },
+          dataInventory: {
+            achievements: [
+              {
+                id:1,
+                name: '4 contenidos aprendios',
+                number: 5
+              }
+            ]
+          },
           $scope: $scope,
           $state: $state,
           $auth: $auth,

@@ -107,6 +107,8 @@
           }
           if (achievements.length > 0) {
             showUserAchievement(achievements[0]);
+          }else{
+            $state.go('tree');
           }
         });
       });
@@ -144,13 +146,17 @@
             $state.go('inventory');
             ModalService.destroy();
           },
-          btnLeft: ModalService.destroy
+          btnLeft: function(){
+            $state.go('tree');
+            ModalService.destroy();
+          }
         },
         labels: {
           btnRight: 'Ir al inventario',
           btnLeft: 'Ok'
         },
-        image: MediaAchievements[achievement.number].settings.badge
+        image: MediaAchievements[achievement.number].settings.badge,
+        addCongratulations: true
       };
 
       var dialogOptions = {

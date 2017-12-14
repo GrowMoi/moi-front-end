@@ -5,18 +5,18 @@
                                               $window,
                                               $timeout,
                                               $interval,
-                                              $auth,
                                               content,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
                                               AdviceService,
-                                              MediaAchievements) {
+                                              MediaAchievements,
+                                              dataInventory) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showAlertExternalLink = showAlertExternalLink;
-      vmContent.userAchievements = $auth.user.achievements;
+      vmContent.userAchievements = dataInventory.achievements;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
@@ -159,10 +159,14 @@
 
       function setTheme() {
         if(vmContent.userAchievements.length > 0){
-          var currentTheme = MediaAchievements[vmContent.userAchievements[0].number].settings.theme;
-          vmContent.theme = currentTheme;
-          modelData.frameColor = currentTheme;
-          vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
+          angular.forEach(vmContent.userAchievements, function(achievement, index){
+            if(achievement.activate){
+              var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
+              vmContent.theme = currentTheme;
+              modelData.frameColor = currentTheme;
+              vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
+            }
+          });
         }
       }
     });
