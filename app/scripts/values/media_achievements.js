@@ -40,7 +40,7 @@
           description: 'Han sido aprendidos 20 contenidos de la rama Naturaleza',
           settings: {
             badge:'images/inventory/badges/badge9.png',
-            theme: 'violeta'
+            theme: 'verde'
           }
         },
         6: {
@@ -64,7 +64,7 @@
           description: 'Han sido completados 4 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge5.png',
-            theme: 'verde'
+            theme: 'violeta'
           }
         },
         9: {
