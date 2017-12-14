@@ -160,7 +160,7 @@
       function setTheme() {
         if(vmContent.userAchievements.length > 0){
           angular.forEach(vmContent.userAchievements, function(achievement, index){
-            if(achievement.activate){
+            if(achievement.active){
               var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
               vmContent.theme = currentTheme;
               modelData.frameColor = currentTheme;

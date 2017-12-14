@@ -76,7 +76,7 @@
 
       function setSelectedAchievement(){
         angular.forEach(vmInv.achievements, function(ach, index) {
-          if(vmInv.achievementSelected.number === ach.number){
+          if(!vmInv.achievementSelected.active && vmInv.achievementSelected.number === ach.number){
             vmInv.achievements[index].active = true;
           }else{
             vmInv.achievements[index].active = false;
