@@ -47,6 +47,20 @@
       line-height: 1.2;
     }
   }
+  .text-containert::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid rgb(243, 248, 93);
+    width: 5px;
+  }
+  .text-container::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  .text-container::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: rgb(243, 248, 93);
+  }
 }
 
 .controls-score{

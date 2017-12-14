@@ -70,18 +70,16 @@
     .state('new_login', {
       url: '/new_login',
       abstract: true,
+      controller: 'NewLoginController',
+      controllerAs: 'vmLogin',
       templateUrl: 'templates/login/new_login.html'
     })
     .state('new_login.first_step', {
       url: '/first_step',
-      controller: 'NewLoginController',
-      controllerAs: 'vmLogin',
       templateUrl: 'templates/login/partials/first_step.html'
     })
     .state('new_login.second_step', {
       url: '/second_step',
-      controller: 'NewLoginController',
-      controllerAs: 'vmLogin',
       templateUrl: 'templates/login/partials/second_step.html'
     })
     .state('neuron', {
