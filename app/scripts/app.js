@@ -102,6 +102,7 @@
       controller: 'ContentController',
       controllerAs: 'vmContent',
       templateUrl: 'templates/content/content.html',
+      cache: false,
       resolve: {
         content: function($stateParams, ContentService) {
           var contentSelected = {},
