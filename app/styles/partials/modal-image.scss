@@ -11,6 +11,32 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
+  &.violeta {
+    background: url(../images/themes/violeta/marco_modal.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  &.azul{
+    background: url(../images/themes/azul/marco_modal.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  &.rojo{
+    background: url(../images/themes/rojo/marco_modal.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  &.amarillo{
+    background: url(../images/themes/amarillo/marco_modal.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  &.verde{
+    background: url(../images/themes/verde/marco_modal.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
   .btn-close-modal {
     position: absolute;
     top: 0;
@@ -21,6 +47,31 @@
     background-repeat: no-repeat;
     background-size: 2.5rem 2.5rem;
     cursor: pointer;
+    &.violeta {
+      background: url(../images/themes/violeta/close_modal.png);
+      background-repeat: no-repeat;
+      background-size: 2.5rem 2.5rem;
+    }
+    &.azul{
+      background: url(../images/themes/azul/close_modal.png);
+      background-repeat: no-repeat;
+      background-size: 2.5rem 2.5rem;
+    }
+    &.rojo{
+      background: url(../images/themes/rojo/close_modal.png);
+      background-repeat: no-repeat;
+      background-size: 2.5rem 2.5rem;
+    }
+    &.amarillo{
+      background: url(../images/themes/amarillo/close_modal.png);
+      background-repeat: no-repeat;
+      background-size: 2.5rem 2.5rem;
+    }
+    &.verde{
+      background: url(../images/themes/verde/close_modal.png);
+      background-repeat: no-repeat;
+      background-size: 2.5rem 2.5rem;
+    }
   }
   embed-video {
     width: 93%;

@@ -118,7 +118,6 @@ options directive
 
     function playAnimateSprite() {
       if (playOnClick && statusAnimation.playing === false) {
-        delete vm.css.transition;
         statusAnimation.playing = true;
         spritePosition = { x: 0, y: 0 };
         if (vm.options.sound && moiSound) {
@@ -180,6 +179,7 @@ options directive
         var position =  spritePosition.x + '%' + ' ' + '0';
 
         $scope.$apply(function() {
+          delete vm.css.transition;
           vm.css['background-position'] = position;
         });
 

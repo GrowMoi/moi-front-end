@@ -1,7 +1,7 @@
 .modal.transparent
   ion-pane.transparent
-    .modal-image
-      .btn-close-modal(ng-click="::model.closeModal()")
+    .modal-image(ng-class="::model.frameColor")
+      .btn-close-modal(ng-class="::model.frameColor" ng-click="::model.closeModal()")
       img.content-image(ng-if='::model.isImage' ng-src='{{::model.contentSrc}}')
       embed-video(ng-if='::!model.isImage'
                 data-ng-href='{{::model.contentSrc}}'
