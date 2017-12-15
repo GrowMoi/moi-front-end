@@ -8,21 +8,86 @@
   .border-bottom {
     border-bottom: 1px solid $linesColor;
     margin-bottom: 20px;
+    &.violeta {
+      border-color: $violeta;
+    }
+    &.azul{
+      border-color: $azul;
+    }
+    &.rojo{
+      border-color: $rojo;
+    }
+    &.amarillo{
+      border-color: $amarillo;
+    }
+    &.verde{
+      border-color: $verde;
+    }
   }
 
   .border-left {
     border-left: 1px solid $linesColor;
+    &.violeta {
+      border-color: $violeta;
+    }
+    &.azul{
+      border-color: $azul;
+    }
+    &.rojo{
+      border-color: $rojo;
+    }
+    &.amarillo{
+      border-color: $amarillo;
+    }
+    &.verde{
+      border-color: $verde;
+    }
   }
 
   .border-right {
     border-right: 1px solid $linesColor;
+    &.violeta {
+      border-color: $violeta;
+    }
+    &.azul{
+      border-color: $azul;
+    }
+    &.rojo{
+      border-color: $rojo;
+    }
+    &.amarillo{
+      border-color: $amarillo;
+    }
+    &.verde{
+      border-color: $verde;
+    }
   }
   //image-corner
   .corner {
     background: url("../images/corner.png");
     background-repeat: no-repeat;
     width: 38px;
-    height: 28px;
+    height: 30px;
+    &.violeta {
+      background: url("../images/themes/violeta/corner.png");
+      background-repeat: no-repeat;
+    }
+    &.azul{
+      background: url("../images/themes/azul/corner.png");
+      background-repeat: no-repeat;
+    }
+    &.rojo{
+      background: url("../images/themes/rojo/corner.png");
+      background-repeat: no-repeat;
+    }
+    &.amarillo{
+      background: url("../images/themes/amarillo/corner.png");
+      background-repeat: no-repeat;
+    }
+    &.verde{
+      background: url("../images/themes/verde/corner.png");
+      background-repeat: no-repeat;
+    }
   }
   //image-corner-circle-position
   //title

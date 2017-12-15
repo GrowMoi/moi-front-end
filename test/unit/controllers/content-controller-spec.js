@@ -8,15 +8,31 @@
         dependencies,
         $rootScope,
         $state,
+        $auth,
         ModalService,
         ContentService,
         TestService,
         AnimationService,
         SocialService,
         UserService,
-        ReadContentTimingService;
+        ReadContentTimingService,
+        MediaAchievements;
 
     beforeEach(module('moi.controllers'));
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('MediaAchievements', {
+          1: {
+            name: 'Contenidos aprendidos',
+            description: 'Han sido aprendidos los primeros 4 contenidos',
+            settings: {
+              badge:'images/inventory/badges/badge1.png',
+              video: 'videos/introMoi.mp4'
+            }
+          }
+        });
+      });
+    });
     beforeEach(angular.mock.module(function ($provide) {
       $provide.provider('$state', function () {
         return {
@@ -116,7 +132,8 @@
                 _AnimationService_,
                 _SocialService_,
                 _UserService_,
-                _ReadContentTimingService_) {
+                _ReadContentTimingService_,
+                _MediaAchievements_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -128,6 +145,17 @@
         SocialService = _SocialService_;
         UserService = _UserService_;
         ReadContentTimingService = _ReadContentTimingService_;
+        MediaAchievements = _MediaAchievements_;
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {},//jshint ignore:line
+            achievements: []
+          }
+        };
 
         dependencies = {
           content: {
@@ -138,13 +166,24 @@
             videos: [],
             recommended: []
           },
+          dataInventory: {
+            achievements: [
+              {
+                id:1,
+                name: '4 contenidos aprendios',
+                number: 5
+              }
+            ]
+          },
           $scope: $scope,
           $state: $state,
+          $auth: $auth,
           ModalService: ModalService,
           ContentService: ContentService,
           AnimationService: AnimationService,
           UserService: UserService,
-          ReadContentTimingService: ReadContentTimingService
+          ReadContentTimingService: ReadContentTimingService,
+          MediaAchievements: MediaAchievements
         };
 
         ctrl = $controller('ContentController', dependencies);

@@ -9,11 +9,14 @@
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              AdviceService) {
+                                              AdviceService,
+                                              MediaAchievements,
+                                              dataInventory) {
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.showAlertExternalLink = showAlertExternalLink;
+      vmContent.userAchievements = dataInventory.achievements;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
@@ -23,6 +26,7 @@
       };
 
       activate();
+      setTheme();
 
       $scope.$on('$ionicView.afterEnter', startsReading);
       $scope.$on('$ionicView.beforeLeave', stopsReading);
@@ -151,6 +155,19 @@
 
       function isImage(params) {
         return typeof params === 'string';
+      }
+
+      function setTheme() {
+        if(vmContent.userAchievements.length > 0){
+          angular.forEach(vmContent.userAchievements, function(achievement, index){
+            if(achievement.active){
+              var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
+              vmContent.theme = currentTheme;
+              modelData.frameColor = currentTheme;
+              vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
+            }
+          });
+        }
       }
     });
 })();
