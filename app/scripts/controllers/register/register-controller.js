@@ -21,8 +21,10 @@
       });
       $auth.submitRegistration(registerModel.registerForm)
         .then(function() {
-          $auth.validateUser().then(function(){
-            $state.go('tree');
+          $auth.validateUser().then(function(user){
+            $state.go('tree', {
+              username: user.username
+            });
           });
         })
         .catch(function (resp) {

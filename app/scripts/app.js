@@ -150,7 +150,7 @@
       }
     })
     .state('tree', {
-      url: '/tree',
+      url: '/tree/{username:string}',
       controller: 'TreeController',
       controllerAs: 'treeModel',
       templateUrl: 'templates/tree/tree.html',

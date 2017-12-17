@@ -6,6 +6,7 @@
       $scope,
       $state,
       $rootScope,
+      $auth,
       ContentService,
       TestService,
       SocialService,
@@ -119,6 +120,14 @@
         UserService = _UserService_;
         ModalService = _ModalService_;
         UserNotificationsService = _UserNotificationsService_;
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin'
+          }
+        };
     }));
 
     beforeEach(function(){

@@ -35,11 +35,11 @@
           });
         })
         .catch(function(resp) {
-          var msg;
+          var msg = '';
           if(resp.status === 401){
             msg = 'No Autorizado';
           }else{
-            msg = resp.data.errors.join(', ');
+            msg = resp.data.join(', ');
           }
           $ionicPopup.alert({
             title: 'Ups!',

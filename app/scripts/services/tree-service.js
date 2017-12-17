@@ -13,10 +13,13 @@
 
     return service;
 
-    function getNeuronsUser() {
+    function getNeuronsUser(username) {
       return $http({
         method: 'GET',
-        url: ENV.apiHost + '/api/tree'
+        url: ENV.apiHost + '/api/tree',
+        data: {
+          username: username
+        }
       }).then(function success(res) {
         return res.data;
       }, function error(err) {

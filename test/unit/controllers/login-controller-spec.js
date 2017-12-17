@@ -78,16 +78,18 @@
         var successState = 'tree';
 
         it('if successful, should change state', function() {
-          deferredLogin.resolve({'username': 'user142'});
+          var user = {
+            id: 1,
+            username: 'test'
+          };
+          deferredLogin.resolve(user);
           $rootScope.$digest();
-
-          sinon.assert.alwaysCalledWithExactly(stateMock.go, successState);
+          sinon.assert.alwaysCalledWithExactly(stateMock.go, successState, {username: user.username});
         });
 
         it('if unsuccessful, should show a popup', function() {
           deferredLogin.reject({ errors: [] });
           $rootScope.$digest();
-
           sinon.assert.calledOnce(ionicPopupMock.alert);
         });
       });

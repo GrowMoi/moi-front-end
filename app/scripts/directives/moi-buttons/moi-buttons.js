@@ -27,6 +27,7 @@
                                   ContentService,
                                   $scope,
                                   $timeout,
+                                  $auth,
                                   TestService,
                                   UserNotificationsService) {
       var vm = this;
@@ -313,7 +314,9 @@
 
       function modalCallbak() {
         dialogContentModel.closeModal();
-        $state.go('tree');
+        $state.go('tree', {
+          username: $auth.user.username
+        });
       }
 
       function showCanReadModal() {

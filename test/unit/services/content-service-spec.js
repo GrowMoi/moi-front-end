@@ -2,7 +2,7 @@
   'use strict';
 
   describe('ContentService', function () {
-    var service, $httpBackend, ENV, PopupService, $state;
+    var service, $httpBackend, ENV, PopupService, $state, $auth;
 
     beforeEach(module('moi.services', function($provide){
       $provide.factory('PopupService', function(){
@@ -45,6 +45,14 @@
         service = (_ContentService_);
         ENV = _ENV_;
         PopupService = _PopupService_;
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin'
+          }
+        };
       })
     );
 
