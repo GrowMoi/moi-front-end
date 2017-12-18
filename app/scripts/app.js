@@ -93,7 +93,7 @@
         data: function(NeuronService, $stateParams){
           var id = $stateParams.neuronId;
           return NeuronService.getNeuron(id).then(function(data) {
-            return data.neuron;
+            return data;
           });
         }
       }
