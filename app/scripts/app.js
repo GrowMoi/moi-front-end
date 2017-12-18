@@ -157,8 +157,9 @@
       cache: false,
       resolve: {
         currentUser: checkIfIsAuthorized,
-        data: function(TreeService){
-          return TreeService.getNeuronsUser().then(function(data) {
+        data: function(TreeService, $stateParams){
+          var username = $stateParams.username;
+          return TreeService.getNeuronsUser(username).then(function(data) {
             return data;
           });
         }

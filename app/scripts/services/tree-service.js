@@ -17,7 +17,7 @@
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/tree',
-        data: {
+        params: {
           username: username
         }
       }).then(function success(res) {
