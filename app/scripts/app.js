@@ -89,6 +89,7 @@
       templateUrl: 'templates/neuron/neuron.html',
       cache: false,
       resolve: {
+        currentUser: checkIfIsAuthorized,
         data: function(NeuronService, $stateParams){
           var id = $stateParams.neuronId;
           return NeuronService.getNeuron(id).then(function(data) {
@@ -104,6 +105,7 @@
       templateUrl: 'templates/content/content.html',
       cache: false,
       resolve: {
+        currentUser: checkIfIsAuthorized,
         content: function($stateParams, ContentService) {
           var contentSelected = {},
               params = {
@@ -131,6 +133,7 @@
       controllerAs: 'vm',
       templateUrl: 'templates/settings/settings.html',
       resolve: {
+        currentUser: checkIfIsAuthorized,
         user: function ($auth) {
           return $auth.validateUser();
         }
@@ -141,7 +144,10 @@
       controller: 'TestController',
       controllerAs: 'vmTest',
       templateUrl: 'templates/test/test.html',
-      params: {testData: null}
+      params: {testData: null},
+      resolve: {
+        currentUser: checkIfIsAuthorized
+      }
     })
     .state('tree', {
       url: '/tree',
@@ -150,6 +156,7 @@
       templateUrl: 'templates/tree/tree.html',
       cache: false,
       resolve: {
+        currentUser: checkIfIsAuthorized,
         data: function(TreeService){
           return TreeService.getNeuronsUser().then(function(data) {
             return data;
@@ -164,6 +171,7 @@
       templateUrl: 'templates/searches/searches.html',
       cache: false,
       resolve: {
+        currentUser: checkIfIsAuthorized,
         query: function($stateParams) {
           var query = $stateParams.query ? $stateParams.query : '';
           return query;
@@ -184,6 +192,7 @@
       controllerAs: 'vmProfile',
       cache: false,
       resolve: {
+        currentUser: checkIfIsAuthorized,
         user: function (UserService, $stateParams){
           return UserService.profile($stateParams.userId).then(function(data){
             return data;
@@ -203,9 +212,7 @@
       controllerAs: 'vmProfileEdit',
       cache: false,
       resolve: {
-        user: function ($auth) {
-          return $auth.validateUser();
-        }
+        user: checkIfIsAuthorized
       }
     })
     .state('friends', {
@@ -215,6 +222,7 @@
       templateUrl: 'templates/friends/friends.html',
       cache: false,
       resolve: {
+        currentUser: checkIfIsAuthorized,
         query: function($stateParams) {
           var query = $stateParams.query ? $stateParams.query : '';
           return query;
@@ -231,6 +239,9 @@
     .state('tasks.default', {
       url: '/default',
       templateUrl: 'templates/tasks/default-section.html',
+      resolve: {
+        currentUser: checkIfIsAuthorized
+      }
     })
     .state('tasks.contents', {
       url: '/contents',
@@ -238,6 +249,7 @@
       controller: 'ContentsListController',
       controllerAs: 'contentsList',
       resolve: {
+        currentUser: checkIfIsAuthorized,
         gridParams: function(UserService, $q) {
           return {
             apiCallHandler: function (currentPage) {
@@ -269,6 +281,7 @@
       controller: 'ContentsListController',
       controllerAs: 'contentsList',
       resolve: {
+        currentUser: checkIfIsAuthorized,
         gridParams: function(UserService, $q) {
           return {
             apiCallHandler: function (currentPage) {
@@ -292,6 +305,7 @@
       controller: 'ContentsListController',
       controllerAs: 'contentsList',
       resolve: {
+        currentUser: checkIfIsAuthorized,
         gridParams: function(TutorRecommendationsService, $q) {
           return {
             apiCallHandler: function (currentPage) {
@@ -314,13 +328,19 @@
       url: '/notes',
       templateUrl: 'templates/tasks/notes/notes.html',
       controller: 'NotesController',
-      controllerAs: 'notesModel'
+      controllerAs: 'notesModel',
+      resolve: {
+        currentUser: checkIfIsAuthorized
+      }
     })
     .state('tasks.notifications', {
       url: '/notifications',
       templateUrl: 'templates/tasks/notifications/notifications.html',
       controller: 'NotificationsController',
-      controllerAs: 'notificationsModel'
+      controllerAs: 'notificationsModel',
+      resolve: {
+        currentUser: checkIfIsAuthorized
+      }
     })
     .state('inventory', {
       url: '/inventory',
@@ -329,6 +349,7 @@
       templateUrl: 'templates/inventory/inventory.html',
       cache: false,
       resolve: {
+        currentUser: checkIfIsAuthorized,
         data: function(UserService) {
           return UserService.getUserAchievements().then(function(data){
             return data;
@@ -349,6 +370,7 @@
       controllerAs: 'vmTest',
       templateUrl: 'templates/quiz/quiz.html',
       resolve: {
+        currentUser: checkIfIsAuthorized,
         quizData: function(QuizService, $stateParams) {
           var params = {
             quizId: $stateParams.quizId,
@@ -371,4 +393,13 @@
   angular.module('moi.services', []);
   angular.module('moi.templates', []);
   angular.module('moi.filters', []);
+
+  function checkIfIsAuthorized($auth, $state){
+    return $auth.validateUser()
+      .then(function userAuthorized(user){
+        return user;
+      }, function userNotAuthorized(){
+        $state.go('new_login.first_step');
+      });
+  }
 })();
