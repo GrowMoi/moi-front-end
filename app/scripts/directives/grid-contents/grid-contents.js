@@ -42,7 +42,7 @@
     init();
 
     function init(){
-      vm.options.contents = filterContents(vm.options.contents);
+      vm.options.contents = vm.options.readOnly ? vm.options.contents : filterContents(vm.options.contents);
       vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
       buildGrid(vm.options.contents);
 

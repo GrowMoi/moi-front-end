@@ -40,6 +40,7 @@
       };
 
       vmNeuron.contentsOptions = {
+        readOnly: !!vmNeuron.neuron.read_only,
         contents: vmNeuron.neuron.contents,
         settings: $auth.user.content_preferences,
         maxLevel: 3,
