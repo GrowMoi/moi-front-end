@@ -113,17 +113,22 @@
                 contentId: $stateParams.contentId
               };
           return ContentService.getContent(params).then(function(data) {
-            contentSelected = data.content;
-            return ContentService.recommendedContents(contentSelected).then(function(contentsData) {
-              contentSelected.recommended = contentsData.contents;
-              return contentSelected;
-            });
+            contentSelected = data;
+            contentSelected.recommended = [];
+            return contentSelected;
+            // return ContentService.recommendedContents(contentSelected).then(function(contentsData) {
+            //   contentSelected.recommended = contentsData.contents;
+            //   return contentSelected;
+            // });
           });
         },
-        dataInventory: function(UserService) {
-          return UserService.getUserAchievements().then(function(data){
-            return data;
-          });
+        dataInventory: function() {
+          return {
+            achievements: []
+          };
+          // return UserService.getUserAchievements().then(function(data){
+          //   return data;
+          // });
         }
       }
     })
