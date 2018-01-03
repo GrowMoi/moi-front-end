@@ -158,16 +158,18 @@
 
     function getButton(options){
       var btn = buttons[options.key];
-      btn = addCallbacks(btn, options.callbacks, options.onRegisterApi);
+      btn = addCallbacks(btn, options);
       return btn;
     }
 
-    function addCallbacks(button, callbacks, onRegisterApi) {
+    function addCallbacks(button, options) {
       var btn = angular.copy(button),
-          cb = callbacks || {};
+          cb = options.callbacks || {};
       btn.finishedSound = cb.finishedSound || emptyFunction;
       btn.finishedAnimation = cb.finishedAnimation || emptyFunction;
-      btn.onRegisterApi = onRegisterApi || emptyFunction;
+      btn.onClickReadOnly = cb.onClickReadOnly || emptyFunction;
+      btn.onRegisterApi = options.onRegisterApi || emptyFunction;
+      btn.readOnly = !!options.readOnly;
       return btn;
     }
 

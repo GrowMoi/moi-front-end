@@ -117,6 +117,11 @@ options directive
     }
 
     function playAnimateSprite() {
+      if (options.readOnly) {
+        console.log('readOnly');
+        vm.options.onClickReadOnly();
+        return;
+      }
       if (playOnClick && statusAnimation.playing === false) {
         statusAnimation.playing = true;
         spritePosition = { x: 0, y: 0 };

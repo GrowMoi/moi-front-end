@@ -118,51 +118,65 @@
       function getButtons() {
         vm.searchOptions = AnimationService.getButton({
           key: 'search',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: finishedAnimationSearch
           }
         });
 
         vm.recomendationOptions = AnimationService.getButton({
           key: 'recomendation',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: finishedAnimationRecomendation
           }
         });
 
         vm.learnOptions = AnimationService.getButton({
           key: 'learn',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: finishedAnimationRead
           }
         });
 
         vm.shareOptions = AnimationService.getButton({
           key: 'share',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: finishedAnimationShare
           }
         });
 
         vm.saveTasksOptions = AnimationService.getButton({
           key: 'saveTasks',
+          readOnly: vm.neuron.read_only,
           totalNotifications: UserNotificationsService.totalNotifications,
           totalRecommendations: UserNotificationsService.totalRecommendations,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: finishedAnimationsaveTasks
           }
         });
 
         vm.showTasksOptions = AnimationService.getButton({
           key: 'showTasks',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: finishedAnimationShowTasks
           }
         });
 
         vm.addFavoritesOptions = AnimationService.getButton({
           key: 'addFavorites',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: finishedAnimationAddFavorites
           }
         });
@@ -171,7 +185,9 @@
 
         vm.searchIdleOptions = AnimationService.getButton({
           key: 'searchIdle',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: function(){
               animateNextBtn();
             }
@@ -180,7 +196,9 @@
 
         vm.recomendationIdleOptions = AnimationService.getButton({
           key: 'recomendationIdle',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: function(){
               animateNextBtn();
             }
@@ -189,12 +207,18 @@
 
         vm.learnIdleOptions = AnimationService.getButton({
           key: 'learnIdle',
+          readOnly: vm.neuron.read_only,
           callbacks: {
+            onClickReadOnly: showNotification,
             finishedAnimation: function(){
               animateNextBtn();
             }
           }
         });
+      }
+
+      function showNotification() {
+        console.log('show notification top');
       }
 
       function animateNextBtn() {
