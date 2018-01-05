@@ -1,0 +1,20 @@
+.modal-notification-join {
+  display: flex;
+  align-items: center;
+  background-image: url(../images/notification-bar.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  background-color: transparent;
+  z-index: 99;
+  height: 8rem;
+  width: 1280px;
+  margin: auto;
+
+  .notification-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+}

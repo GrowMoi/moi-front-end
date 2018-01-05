@@ -219,6 +219,7 @@
 
       function showNotification() {
         console.log('show notification top');
+        showNotificationModal();
       }
 
       function animateNextBtn() {
@@ -331,6 +332,14 @@
       function showModal() {
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-alert-content.html',
+          model: dialogContentModel
+        };
+        ModalService.showModel(dialogOptions);
+      }
+
+      function showNotificationModal() {
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-notification-join-app.html',
           model: dialogContentModel
         };
         ModalService.showModel(dialogOptions);
