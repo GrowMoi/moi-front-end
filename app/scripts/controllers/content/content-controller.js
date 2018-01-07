@@ -46,6 +46,7 @@
         vmContent.buttonsOptions = {
           neuron: content,
           content: content,
+          readOnly: content.read_only,
           buttons: {
             learn: true,
             search: true,

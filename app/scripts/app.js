@@ -193,7 +193,7 @@
       cache: false
     })
     .state('profile', {
-      url: '/user/{userId:int}/profile',
+      url: '/user/{username:string}/profile',
       templateUrl: 'templates/profile/profile.html',
       controller: 'ProfileController',
       controllerAs: 'vmProfile',
@@ -201,14 +201,20 @@
       resolve: {
         currentUser: checkIfIsAuthorized,
         user: function (UserService, $stateParams){
-          return UserService.profile($stateParams.userId).then(function(data){
+          return UserService.profile($stateParams.username).then(function(data){
             return data;
           });
         },
-        achievements: function(UserService, $stateParams){
-          return UserService.getAchievements($stateParams.userId).then(function(data){
-            return data;
-          });
+        achievements: function($auth, UserService) {
+          if ($auth.user.id) {
+            return UserService.getUserAchievements().then(function(data){
+              return data;
+            });
+          }else{
+            return {
+              achievements: []
+            };
+          }
         }
       }
     })

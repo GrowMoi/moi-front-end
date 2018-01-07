@@ -22,10 +22,10 @@
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
         content: vmNeuron.neuron.contents[0],
+        readOnly: vmNeuron.neuron.read_only,
         onRegisterApi: onRegisterApiMoiButtons,
         externalAnimationIdle: true,
         buttons: {

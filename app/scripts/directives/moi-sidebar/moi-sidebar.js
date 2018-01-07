@@ -53,7 +53,7 @@
       }
 
       function goToProfile() {
-        $state.go('profile', {userId: vm.user.id});
+        $state.go('profile', {username: vm.user.username});
       }
 
       function goToInventory() {

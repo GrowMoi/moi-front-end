@@ -57,6 +57,7 @@
         vm.neuron = options.neuron || {};
         vm.content = options.content || {};
         vm.buttons = options.buttons || {};
+        vm.readOnly = !!options.readOnly;
         vm.showModalAction = showModalAction;
         vm.emptyContent = (Object.keys(vm.content).length === 0);
         vm.emptyNeuron = (Object.keys(vm.neuron).length === 0);
@@ -118,7 +119,7 @@
       function getButtons() {
         vm.searchOptions = AnimationService.getButton({
           key: 'search',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationSearch
@@ -127,7 +128,7 @@
 
         vm.recomendationOptions = AnimationService.getButton({
           key: 'recomendation',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationRecomendation
@@ -136,7 +137,7 @@
 
         vm.learnOptions = AnimationService.getButton({
           key: 'learn',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationRead
@@ -145,7 +146,7 @@
 
         vm.shareOptions = AnimationService.getButton({
           key: 'share',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationShare
@@ -154,7 +155,7 @@
 
         vm.saveTasksOptions = AnimationService.getButton({
           key: 'saveTasks',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           totalNotifications: UserNotificationsService.totalNotifications,
           totalRecommendations: UserNotificationsService.totalRecommendations,
           callbacks: {
@@ -165,7 +166,7 @@
 
         vm.showTasksOptions = AnimationService.getButton({
           key: 'showTasks',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationShowTasks
@@ -174,7 +175,7 @@
 
         vm.addFavoritesOptions = AnimationService.getButton({
           key: 'addFavorites',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationAddFavorites
@@ -185,7 +186,7 @@
 
         vm.searchIdleOptions = AnimationService.getButton({
           key: 'searchIdle',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
@@ -196,7 +197,7 @@
 
         vm.recomendationIdleOptions = AnimationService.getButton({
           key: 'recomendationIdle',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
@@ -207,7 +208,7 @@
 
         vm.learnIdleOptions = AnimationService.getButton({
           key: 'learnIdle',
-          readOnly: vm.neuron.read_only,
+          readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
@@ -348,7 +349,7 @@
       }
 
       function showModalAction() {
-        if (vm.neuron.read_only) {
+        if (vm.readOnly) {
           showNotificationModal();
         }else if (!vm.neuron.can_read){
           showModal();
