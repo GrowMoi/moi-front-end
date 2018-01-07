@@ -3,7 +3,9 @@
     .logo-app
       img(src="images/moi-logo.png")
     .options
-      .btn-play
-        span Jugar
-      .btn-parents-tutors
-        span Padres/Tutores
+      .btn-basic.play
+        a(ui-sref='new_login.first_step')
+          | Jugar!
+      .btn-basic.parents
+        a(ng-href="http://moi-backend.growmoi.com/users/sign_in")
+          | Padres y tutores

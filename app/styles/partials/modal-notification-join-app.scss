@@ -16,5 +16,37 @@
     width: 100%;
     justify-content: space-between;
     padding: 0 50px;
+
+    .options {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .btn-basic {
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-left: 10px;
+
+        &.play {
+          border: 1.5px solid #179cd0;
+          a {
+            text-decoration: none;
+            color: #179cd0;
+            font-weight: bold;
+            font-size: 18px;
+          }
+        }
+
+        &.parents {
+          border: 1.5px solid #ff9207;
+          a {
+            text-decoration: none;
+            color: #ff9207;
+            font-weight: bold;
+            font-size: 18px;
+          }
+        }
+      }
+    }
   }
 }
