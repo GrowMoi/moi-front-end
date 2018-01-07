@@ -10,6 +10,20 @@
   height: 8rem;
   width: 1280px;
   margin: auto;
+  top:50px;
+
+  .close-button {
+    background: url(../images/btn_delete_content.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 0;
+  }
 
   .notification-container {
     display: flex;
