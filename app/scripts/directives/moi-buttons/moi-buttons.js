@@ -120,7 +120,7 @@
           key: 'search',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationSearch
           }
         });
@@ -129,7 +129,7 @@
           key: 'recomendation',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationRecomendation
           }
         });
@@ -138,7 +138,7 @@
           key: 'learn',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationRead
           }
         });
@@ -147,7 +147,7 @@
           key: 'share',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationShare
           }
         });
@@ -158,7 +158,7 @@
           totalNotifications: UserNotificationsService.totalNotifications,
           totalRecommendations: UserNotificationsService.totalRecommendations,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationsaveTasks
           }
         });
@@ -167,7 +167,7 @@
           key: 'showTasks',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationShowTasks
           }
         });
@@ -176,7 +176,7 @@
           key: 'addFavorites',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationAddFavorites
           }
         });
@@ -187,7 +187,7 @@
           key: 'searchIdle',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
               animateNextBtn();
             }
@@ -198,7 +198,7 @@
           key: 'recomendationIdle',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
               animateNextBtn();
             }
@@ -209,17 +209,12 @@
           key: 'learnIdle',
           readOnly: vm.neuron.read_only,
           callbacks: {
-            onClickReadOnly: showNotification,
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
               animateNextBtn();
             }
           }
         });
-      }
-
-      function showNotification() {
-        console.log('show notification top');
-        showNotificationModal();
       }
 
       function animateNextBtn() {
