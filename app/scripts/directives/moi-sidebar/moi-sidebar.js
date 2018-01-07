@@ -23,22 +23,28 @@
 
       vm.settingOptions = AnimationService.getButton({
         key: 'settings',
+        readOnly: vm.user.id ? false : true,
         callbacks: {
-          finishedAnimation: vm.user.id ? goToSetting : showNotificationModal
+          onClickReadOnly: showNotificationModal,
+          finishedAnimation: goToSetting
         }
       });
 
       vm.profileOptions = AnimationService.getButton({
         key: 'profile',
+        readOnly: vm.user.id ? false : true,
         callbacks: {
-          finishedAnimation: vm.user.id ? goToProfile : showNotificationModal
+          onClickReadOnly: showNotificationModal,
+          finishedAnimation: goToProfile
         }
       });
 
       vm.inventoryOptions = AnimationService.getButton({
         key: 'inventory',
+        readOnly: vm.user.id ? false : true,
         callbacks: {
-          finishedAnimation: vm.user.id ? goToInventory : showNotificationModal
+          onClickReadOnly: showNotificationModal,
+          finishedAnimation: goToInventory
         }
       });
 
