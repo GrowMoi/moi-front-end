@@ -57,7 +57,7 @@
         vm.neuron = options.neuron || {};
         vm.content = options.content || {};
         vm.buttons = options.buttons || {};
-        vm.showCanReadModal = showCanReadModal;
+        vm.showModalAction = showModalAction;
         vm.emptyContent = (Object.keys(vm.content).length === 0);
         vm.emptyNeuron = (Object.keys(vm.neuron).length === 0);
         vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
@@ -347,8 +347,10 @@
         });
       }
 
-      function showCanReadModal() {
-        if (!vm.neuron.can_read) {
+      function showModalAction() {
+        if (vm.neuron.read_only) {
+          showNotificationModal();
+        }else if (!vm.neuron.can_read){
           showModal();
         }
       }
