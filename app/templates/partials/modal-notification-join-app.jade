@@ -3,7 +3,7 @@
   .notification-container
     .logo-app
       img(src="images/moi-logo.png")
-    .options
+    .options(ng-click="::model.closeModal()")
       .btn-basic.play
         a(ui-sref='new_login.first_step')
           | Jugar!
