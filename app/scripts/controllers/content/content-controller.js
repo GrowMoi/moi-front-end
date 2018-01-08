@@ -58,7 +58,7 @@
           }
         };
         vmContent.slideGalleryOptions = {
-          onRegisterApi: onRegisterApi
+          onRegisterApi: vmContent.readOnly ? emptyFuncion : onRegisterApi
         };
 
         leaveImage(vmContent.imgDelayTime);
@@ -178,5 +178,7 @@
           });
         }
       }
+
+      function emptyFuncion() {}
     });
 })();
