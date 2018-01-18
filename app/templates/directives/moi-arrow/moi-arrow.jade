@@ -2,6 +2,6 @@
                 tooltip-moi="{{::arrowVm.name}}"
                 tooltip-position="up")
   img(ng-src='{{arrowVm.urlImg}}'
-      ng-style="arrowVm.css"
-      ng-mouseover="arrowVm.increaseSize(true)"
-      ng-mouseleave="arrowVm.increaseSize(false)")
+      ng-style="arrowVm.cssOptions.styles[0]"
+      ng-mouseover="arrowVm.increaseSize(true, arrowVm.cssOptions, 0)"
+      ng-mouseleave="arrowVm.increaseSize(false, arrowVm.cssOptions, 0)")
