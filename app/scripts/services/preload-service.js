@@ -17,7 +17,8 @@
         video: 'videos/Final.mp4'
       },
       {
-        depth: 7
+        depth: 7,
+        video: 'videos/vineta_3.mp4'
       },
       {
         depth: 9

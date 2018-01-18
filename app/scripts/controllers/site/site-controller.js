@@ -109,7 +109,7 @@
         'new_login.second_step': false,
       };
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
-      if (activePreload && !site.preloadCalled) {
+      if (activePreload && !site.preloadCalled && $auth.user.id) {
         site.loadedImages = false;
         if(toState.name === 'tree'){
           TreeService.getNeuronsUser().then(function(data) {
@@ -117,6 +117,15 @@
           });
         } else {
           preloadAssets();
+        }
+      }
+      if (!activePreload && $auth.user.id) {
+        event.preventDefault();
+      }else{
+        if (site.loadedImages && $auth.user.id) {
+          $ionicLoading.show({
+            template: 'cargando...'
+          });
         }
       }
     });

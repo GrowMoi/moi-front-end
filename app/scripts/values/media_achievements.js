@@ -56,7 +56,7 @@
           description: 'Al menos un contenido ha sido aprendido en cada neurona pública',
           settings: {
             badge:'images/inventory/badges/badge7.png',
-            video: 'videos/Final.mp4'
+            video: 'videos/vineta_3.mp4'
           }
         },
         8: {
