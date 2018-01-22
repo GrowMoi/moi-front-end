@@ -112,9 +112,10 @@
       if (activePreload && !site.preloadCalled && $auth.user.id) {
         site.loadedImages = false;
         if(toState.name === 'tree'){
-          // TreeService.getNeuronsUser().then(function(data) {
-            preloadAssets({meta:{}});
-          // });
+          var username = $auth.user.username;
+          TreeService.getNeuronsUser(username).then(function(data) {
+            preloadAssets(data);
+          });
         } else {
           preloadAssets();
         }
