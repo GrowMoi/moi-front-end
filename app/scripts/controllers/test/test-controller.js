@@ -11,7 +11,8 @@
               $state,
               AdviceService,
               ModalService,
-              MediaAchievements) {
+              MediaAchievements,
+              HoverAnimationService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -36,6 +37,10 @@
       vmTest.frameOptions = {
         type: 'marco_arbol',
         advices: AdviceService.getStatic('test', 0)
+      };
+      vmTest.increaseSize = HoverAnimationService.increaseSize;
+      vmTest.cssOptions = {
+        styles: []
       };
     }
 
