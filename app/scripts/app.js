@@ -89,7 +89,6 @@
       templateUrl: 'templates/neuron/neuron.html',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
         data: function(NeuronService, $stateParams){
           var id = $stateParams.neuronId;
           return NeuronService.getNeuron(id).then(function(data) {
@@ -105,7 +104,6 @@
       templateUrl: 'templates/content/content.html',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
         content: function($stateParams, ContentService) {
           var contentSelected = {},
               params = {
@@ -162,7 +160,6 @@
       templateUrl: 'templates/tree/tree.html',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
         data: function(TreeService, $stateParams){
           var username = $stateParams.username;
           return TreeService.getNeuronsUser(username).then(function(data) {
@@ -199,7 +196,6 @@
       controllerAs: 'vmProfile',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
         user: function (UserService, $stateParams){
           return UserService.profile($stateParams.username).then(function(data){
             return data;
