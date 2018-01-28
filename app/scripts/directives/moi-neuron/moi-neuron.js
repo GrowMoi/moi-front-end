@@ -22,7 +22,7 @@
     return directive;
   }
 
-  function MoiNeuronController(NeuronsOptions, HoverAnimationService){
+  function MoiNeuronController($element, NeuronsOptions, NeuronAnimateService, HoverAnimationService){
 
     var vm = this;
 
@@ -80,6 +80,12 @@
         scale: 1 + '.' + vm.percentage,
         styles: []
       };
+
+      //add neuron element to NeuronAnimateService for later animate it.
+      if(vm.neuron.state === 'descubierta'){
+        var $neuroImg = $element.find('img');
+        NeuronAnimateService.setNeuronElement($neuroImg);
+      }
     }
 
     function calculateSize(progress, steps) {
