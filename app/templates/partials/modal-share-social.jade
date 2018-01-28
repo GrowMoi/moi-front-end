@@ -5,11 +5,6 @@
       .social-network-panel
         a.btn-facebook(ng-click="model.shareWithFacebook(model.data)")
         a.btn-twitter(ng-click="model.shareWithTwitter(model.data.shortDescription)")
-        a.btn-whatsapp(socialshare
-          socialshare-provider="whatsapp"
-          socialshare-url="http://moi-frontend.herokuapp.com/"
-          socialshare-text="{{model.data.shortDescription}}-"
-          ng-click="model.shareWithWhatsapp()")
         a.btn-mail(ng-click="model.shareWithMail(model.data)")
       .description-panel
         h2 {{ ::'social.title' | translate}}

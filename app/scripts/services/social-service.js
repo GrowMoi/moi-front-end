@@ -48,9 +48,6 @@
         }
       });
     }
-    function shareWithWhatsapp() {
-      ModalService.destroy();
-    }
 
     function shareWithMail(options) {
       ModalService.destroy();
@@ -72,7 +69,6 @@
       modelData.data = data;
       modelData.shareWithFacebook = shareWithFacebook;
       modelData.shareWithTwitter = shareWithTwitter;
-      modelData.shareWithWhatsapp = shareWithWhatsapp;
       modelData.shareWithMail = shareWithMail;
       modelData.data.shortDescription = getShortDescription(data);
       ModalService.showModel({
