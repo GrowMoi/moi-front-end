@@ -108,7 +108,9 @@
           if (achievements.length > 0) {
             showUserAchievement(achievements[0]);
           }else{
-            $state.go('tree');
+            $state.go('tree', {
+              username: currentUser.username
+            });
           }
         });
       });
@@ -147,7 +149,9 @@
             ModalService.destroy();
           },
           btnLeft: function(){
-            $state.go('tree');
+            $state.go('tree', {
+              username: currentUser.username
+            });
             ModalService.destroy();
           }
         },
