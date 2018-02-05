@@ -31,10 +31,13 @@
 
     return service;
 
-    function profile(id) {
+    function profile(username) {
       return $http({
         method: 'GET',
-        url: ENV.apiHost + '/api/users/' + id + '/profile'
+        url: ENV.apiHost + '/api/users/profile',
+        params: {
+          username: username
+        }
       }).then(function success(res) {
         return res.data;
       }, function error(err) {

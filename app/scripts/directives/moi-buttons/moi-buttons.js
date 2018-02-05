@@ -27,6 +27,7 @@
                                   ContentService,
                                   $scope,
                                   $timeout,
+                                  $auth,
                                   TestService,
                                   UserNotificationsService) {
       var vm = this;
@@ -56,7 +57,8 @@
         vm.neuron = options.neuron || {};
         vm.content = options.content || {};
         vm.buttons = options.buttons || {};
-        vm.showCanReadModal = showCanReadModal;
+        vm.readOnly = !!options.readOnly;
+        vm.showModalAction = showModalAction;
         vm.emptyContent = (Object.keys(vm.content).length === 0);
         vm.emptyNeuron = (Object.keys(vm.neuron).length === 0);
         vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
@@ -117,51 +119,65 @@
       function getButtons() {
         vm.searchOptions = AnimationService.getButton({
           key: 'search',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationSearch
           }
         });
 
         vm.recomendationOptions = AnimationService.getButton({
           key: 'recomendation',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationRecomendation
           }
         });
 
         vm.learnOptions = AnimationService.getButton({
           key: 'learn',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationRead
           }
         });
 
         vm.shareOptions = AnimationService.getButton({
           key: 'share',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationShare
           }
         });
 
         vm.saveTasksOptions = AnimationService.getButton({
           key: 'saveTasks',
+          readOnly: vm.readOnly,
           totalNotifications: UserNotificationsService.totalNotifications,
           totalRecommendations: UserNotificationsService.totalRecommendations,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationsaveTasks
           }
         });
 
         vm.showTasksOptions = AnimationService.getButton({
           key: 'showTasks',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationShowTasks
           }
         });
 
         vm.addFavoritesOptions = AnimationService.getButton({
           key: 'addFavorites',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationAddFavorites
           }
         });
@@ -170,7 +186,9 @@
 
         vm.searchIdleOptions = AnimationService.getButton({
           key: 'searchIdle',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
               animateNextBtn();
             }
@@ -179,7 +197,9 @@
 
         vm.recomendationIdleOptions = AnimationService.getButton({
           key: 'recomendationIdle',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
               animateNextBtn();
             }
@@ -188,7 +208,9 @@
 
         vm.learnIdleOptions = AnimationService.getButton({
           key: 'learnIdle',
+          readOnly: vm.readOnly,
           callbacks: {
+            onClickReadOnly: showNotificationModal,
             finishedAnimation: function(){
               animateNextBtn();
             }
@@ -311,13 +333,25 @@
         ModalService.showModel(dialogOptions);
       }
 
-      function modalCallbak() {
-        dialogContentModel.closeModal();
-        $state.go('tree');
+      function showNotificationModal() {
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-notification-join-app.html',
+          model: dialogContentModel
+        };
+        ModalService.showModel(dialogOptions);
       }
 
-      function showCanReadModal() {
-        if (!vm.neuron.can_read) {
+      function modalCallbak() {
+        dialogContentModel.closeModal();
+        $state.go('tree', {
+          username: $auth.user.username
+        });
+      }
+
+      function showModalAction() {
+        if (vm.readOnly) {
+          showNotificationModal();
+        }else if (!vm.neuron.can_read){
           showModal();
         }
       }

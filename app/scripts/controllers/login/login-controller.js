@@ -52,8 +52,10 @@
         });
     }
 
-    function redirectUser() {
-      $state.go(successState);
+    function redirectUser(user) {
+      $state.go(successState, {
+        username: user.username
+      });
     }
   });
 })();

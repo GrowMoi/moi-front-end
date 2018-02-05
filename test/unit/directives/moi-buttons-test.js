@@ -6,6 +6,7 @@
       $scope,
       $state,
       $rootScope,
+      $auth,
       ContentService,
       TestService,
       SocialService,
@@ -94,6 +95,16 @@
           totalRecommendations: 0
         };
       });
+      $provide.service('$auth', function() {
+        return {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin'
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -106,7 +117,8 @@
         _UserService_,
         _ModalService_,
         _$state_,
-        _UserNotificationsService_) {
+        _UserNotificationsService_,
+        _$auth_) {
 
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -119,6 +131,7 @@
         UserService = _UserService_;
         ModalService = _ModalService_;
         UserNotificationsService = _UserNotificationsService_;
+        $auth = _$auth_;
     }));
 
     beforeEach(function(){

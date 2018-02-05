@@ -12,9 +12,11 @@
                                               AdviceService,
                                               MediaAchievements,
                                               dataInventory) {
+      /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
+      vmContent.readOnly = !!content.read_only;
       vmContent.showAlertExternalLink = showAlertExternalLink;
       vmContent.userAchievements = dataInventory.achievements;
       var modelData = {};
@@ -28,8 +30,10 @@
       activate();
       setTheme();
 
-      $scope.$on('$ionicView.afterEnter', startsReading);
-      $scope.$on('$ionicView.beforeLeave', stopsReading);
+      if (vmContent.readOnly) {
+        $scope.$on('$ionicView.afterEnter', startsReading);
+        $scope.$on('$ionicView.beforeLeave', stopsReading);
+      }
 
       function activate() {
         vmContent.content = content;
@@ -42,6 +46,7 @@
         vmContent.buttonsOptions = {
           neuron: content,
           content: content,
+          readOnly: content.read_only,
           buttons: {
             learn: true,
             search: true,
@@ -53,7 +58,7 @@
           }
         };
         vmContent.slideGalleryOptions = {
-          onRegisterApi: onRegisterApi
+          onRegisterApi: vmContent.readOnly ? emptyFuncion : onRegisterApi
         };
 
         leaveImage(vmContent.imgDelayTime);
@@ -146,11 +151,15 @@
         if(!modelData.isImage){
           $backgroundSound[0].play();
         }
-        ReadContentTimingService.startsReading(vmContent.content);
+        if (!vmContent.readOnly) {
+          ReadContentTimingService.startsReading(vmContent.content);
+        }
       }
 
       function stopsReading() {
-        ReadContentTimingService.stopsReading(vmContent.content);
+        if (!vmContent.readOnly) {
+          ReadContentTimingService.stopsReading(vmContent.content);
+        }
       }
 
       function isImage(params) {
@@ -169,5 +178,7 @@
           });
         }
       }
+
+      function emptyFuncion() {}
     });
 })();

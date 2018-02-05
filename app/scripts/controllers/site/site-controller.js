@@ -112,7 +112,8 @@
       if (activePreload && !site.preloadCalled && $auth.user.id) {
         site.loadedImages = false;
         if(toState.name === 'tree'){
-          TreeService.getNeuronsUser().then(function(data) {
+          var username = $auth.user.username;
+          TreeService.getNeuronsUser(username).then(function(data) {
             preloadAssets(data);
           });
         } else {
@@ -143,7 +144,7 @@
     });
 
     $rootScope.$on('loading:finish', function (){
-      if ( $state.current.name === 'tree' && !imageSaved) { //save image one time by visit page
+      if ( $state.current.name === 'tree' && !imageSaved && $auth.user.id) {
         $timeout(function(){
           var view = document.getElementById(site.idsTreeScreen.view),
               baseTree = document.getElementById(site.idsTreeScreen.baseTree);

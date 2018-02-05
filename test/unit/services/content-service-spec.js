@@ -2,13 +2,23 @@
   'use strict';
 
   describe('ContentService', function () {
-    var service, $httpBackend, ENV, PopupService, $state;
+    var service, $httpBackend, ENV, PopupService, $state, $auth;
 
     beforeEach(module('moi.services', function($provide){
       $provide.factory('PopupService', function(){
         return {
           showModel: function(){
             return null;
+          }
+        };
+      });
+      $provide.service('$auth', function() {
+        return {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin'
           }
         };
       });
@@ -39,12 +49,19 @@
     }));
 
     beforeEach(inject(
-      function (_$httpBackend_, _$state_, _ContentService_, _ENV_, _PopupService_) {
+      function (_$httpBackend_,
+                _$state_,
+                _ContentService_,
+                _ENV_,
+                _PopupService_,
+                _$auth_) {
+
         $httpBackend = _$httpBackend_;
         $state = _$state_;
         service = (_ContentService_);
         ENV = _ENV_;
         PopupService = _PopupService_;
+        $auth = _$auth_;
       })
     );
 

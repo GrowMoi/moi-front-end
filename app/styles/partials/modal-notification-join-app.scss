@@ -1,0 +1,66 @@
+.modal-notification-join {
+  display: flex;
+  align-items: center;
+  background-image: url(../images/notification-bar.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  background-color: transparent;
+  z-index: 99;
+  height: 8rem;
+  width: 1280px;
+  margin: auto;
+  top:50px;
+
+  .close-button {
+    background: url(../images/btn_delete_content.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 0;
+  }
+
+  .notification-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 50px;
+
+    .options {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .btn-basic {
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-left: 10px;
+
+        &.play {
+          border: 1.5px solid #179cd0;
+          a {
+            text-decoration: none;
+            color: #179cd0;
+            font-weight: bold;
+            font-size: 18px;
+          }
+        }
+
+        &.parents {
+          border: 1.5px solid #ff9207;
+          a {
+            text-decoration: none;
+            color: #ff9207;
+            font-weight: bold;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}

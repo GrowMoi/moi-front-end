@@ -5,7 +5,13 @@
     .module('moi.services')
     .factory('ContentService', ContentService);
 
-  function ContentService($http, $ionicPopup, $state, ENV, PopupService, $q) {
+  function ContentService($http,
+                          $ionicPopup,
+                          $state,
+                          ENV,
+                          PopupService,
+                          $q,
+                          $auth) {
     var service = {
       readContent: readContent,
       addNotesToContent: addNotesToContent,
@@ -32,7 +38,9 @@
         popupOptions.content = err.statusText;
         if(err.status === 422){
           PopupService.showModel('alert', popupOptions, function() {
-            $state.go('tree');
+            $state.go('tree', {
+              username: $auth.user.username
+            });
           });
         }else if(err.status !== 404){
           PopupService.showModel('alert', popupOptions);

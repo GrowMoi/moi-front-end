@@ -22,10 +22,10 @@
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
         content: vmNeuron.neuron.contents[0],
+        readOnly: vmNeuron.neuron.read_only,
         onRegisterApi: onRegisterApiMoiButtons,
         externalAnimationIdle: true,
         buttons: {
@@ -40,6 +40,7 @@
       };
 
       vmNeuron.contentsOptions = {
+        readOnly: !!vmNeuron.neuron.read_only,
         contents: vmNeuron.neuron.contents,
         settings: $auth.user.content_preferences,
         maxLevel: 3,

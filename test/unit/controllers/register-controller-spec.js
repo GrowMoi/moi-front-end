@@ -74,10 +74,14 @@
         });
 
         it('if successful validateUser, should got to successState', function() {
+          var user = {
+            id: 1,
+            username: 'test'
+          };
           deferredRegister.resolve();
-          deferredValidateUser.resolve();
+          deferredValidateUser.resolve(user);
           $rootScope.$digest();
-          sinon.assert.alwaysCalledWithExactly($state.go, 'tree');
+          sinon.assert.alwaysCalledWithExactly($state.go, 'tree', {username: user.username});
         });
       });
     });

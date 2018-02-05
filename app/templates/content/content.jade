@@ -37,7 +37,8 @@ ion-view.content-view-max(ng-class="vmContent.theme" view-title='Content')
               .row.container-comments
                 textarea.content-comments(ng-class="vmContent.theme"
                                           ng-model='vmContent.content.user_notes'
-                                          ng-blur='vmContent.sendNotes()')
+                                          ng-blur='vmContent.sendNotes()'
+                                          ng-disabled='vmContent.readOnly')
         .col
           .row
             .col

@@ -4,7 +4,7 @@
   describe('UserService', function() {
     var service,
       $httpBackend,
-      userId,
+      username,
       expectedUrl,
       ENV,
       PopupService,
@@ -72,12 +72,12 @@
 
     describe('#service', function() {
       beforeEach(function() {
-        userId = 4;
         /*jshint camelcase: false */
-        expectedUrl = ENV.apiHost + '/api/users/' + userId + '/profile';
+        username = 'jhondoe';
+        expectedUrl = ENV.apiHost + '/api/users/profile?username=' + username;
       });
 
-      it('should do a request to /api/users/:id/profile', function(){
+      it('should do a request to /api/users/profile', function(){
         var objectToRespond = {
           name: 'jhon doe',
           city: 'loja',
@@ -86,14 +86,14 @@
 
         $httpBackend.expectGET(expectedUrl)
           .respond(objectToRespond);
-        service.profile(userId);
+        service.profile(username);
         $httpBackend.flush();
       });
 
       it('should not call to PopupService when respond with 404', function() {
         var spy = sinon.spy(PopupService, 'showModel');
         $httpBackend.expectGET(expectedUrl).respond(404);
-        service.profile(userId).then(function(){
+        service.profile(username).then(function(){
           chai.expect(spy.called).to.not.be.equal(true);
         });
         $httpBackend.flush();

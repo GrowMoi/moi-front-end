@@ -89,11 +89,10 @@
       templateUrl: 'templates/neuron/neuron.html',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
         data: function(NeuronService, $stateParams){
           var id = $stateParams.neuronId;
           return NeuronService.getNeuron(id).then(function(data) {
-            return data.neuron;
+            return data;
           });
         }
       }
@@ -105,7 +104,6 @@
       templateUrl: 'templates/content/content.html',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
         content: function($stateParams, ContentService) {
           var contentSelected = {},
               params = {
@@ -113,17 +111,23 @@
                 contentId: $stateParams.contentId
               };
           return ContentService.getContent(params).then(function(data) {
-            contentSelected = data.content;
+            contentSelected = data;
             return ContentService.recommendedContents(contentSelected).then(function(contentsData) {
               contentSelected.recommended = contentsData.contents;
               return contentSelected;
             });
           });
         },
-        dataInventory: function(UserService) {
-          return UserService.getUserAchievements().then(function(data){
-            return data;
-          });
+        dataInventory: function($auth, UserService) {
+          if ($auth.user.id) {
+            return UserService.getUserAchievements().then(function(data){
+              return data;
+            });
+          }else{
+            return {
+              achievements: []
+            };
+          }
         }
       }
     })
@@ -150,15 +154,15 @@
       }
     })
     .state('tree', {
-      url: '/tree',
+      url: '/tree/{username:string}',
       controller: 'TreeController',
       controllerAs: 'treeModel',
       templateUrl: 'templates/tree/tree.html',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
-        data: function(TreeService){
-          return TreeService.getNeuronsUser().then(function(data) {
+        data: function(TreeService, $stateParams){
+          var username = $stateParams.username;
+          return TreeService.getNeuronsUser(username).then(function(data) {
             return data;
           });
         }
@@ -186,22 +190,27 @@
       cache: false
     })
     .state('profile', {
-      url: '/user/{userId:int}/profile',
+      url: '/user/{username:string}/profile',
       templateUrl: 'templates/profile/profile.html',
       controller: 'ProfileController',
       controllerAs: 'vmProfile',
       cache: false,
       resolve: {
-        currentUser: checkIfIsAuthorized,
         user: function (UserService, $stateParams){
-          return UserService.profile($stateParams.userId).then(function(data){
+          return UserService.profile($stateParams.username).then(function(data){
             return data;
           });
         },
-        achievements: function(UserService, $stateParams){
-          return UserService.getAchievements($stateParams.userId).then(function(data){
-            return data;
-          });
+        achievements: function($auth, UserService) {
+          if ($auth.user.id) {
+            return UserService.getUserAchievements().then(function(data){
+              return data;
+            });
+          }else{
+            return {
+              achievements: []
+            };
+          }
         }
       }
     })
