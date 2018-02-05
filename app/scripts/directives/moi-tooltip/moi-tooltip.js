@@ -7,7 +7,6 @@
     function tooltipMoiDirective($document, $compile) {
       var directive = {
         restrict: 'A',
-        scope: true,
         link: function (scope, element, attrs) {
 
           var tip = $compile('<div ng-class="tipClass">{{ text }}<div class="tooltip-arrow"></div></div>')(scope),

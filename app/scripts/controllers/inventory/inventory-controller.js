@@ -4,7 +4,8 @@
     .controller('InventoryController', function($ionicPopup,
                                                 data,
                                                 UserService,
-                                                MediaAchievements) {
+                                                MediaAchievements,
+                                                HoverAnimationService) {
       var vmInv = this;
 
       vmInv.buttonsOptions = {
@@ -24,8 +25,10 @@
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
       vmInv.achievements = data.achievements;
-      vmInv.increaseSize = increaseSize;
-      vmInv.cssCell = [];
+      vmInv.increaseSize = HoverAnimationService.increaseSize;
+      vmInv.cssOptions = {
+        styles: []
+      };
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
       setMediaIntoAchievements(vmInv.achievements);
@@ -52,18 +55,6 @@
           $backgroundSound[0].pause();
           vmInv.showInventory = false;
           vmInv.urlVideo = achievement.settings.video;
-        }
-      }
-
-      function increaseSize(increase, index) {
-        var scale = 1 + '.05';
-        if (increase) {
-          vmInv.cssCell[index] = {
-            transform: 'scale(' + scale + ')',
-            transition: '0.2s ease-in-out'
-          };
-        }else{
-          delete vmInv.cssCell[index].transform;
         }
       }
 

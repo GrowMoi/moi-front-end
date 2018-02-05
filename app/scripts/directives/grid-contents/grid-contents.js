@@ -24,7 +24,8 @@
                           $http,
                           $state,
                           $filter,
-                          AnimationService){
+                          AnimationService,
+                          HoverAnimationService){
 
     var vm = this,
         indexContentActiveIdle = 0,
@@ -36,8 +37,11 @@
     vm.selectContent = selectContent;
     vm.sendContent = sendContent;
     vm.activeIdle = false;
-    vm.increaseSize = increaseSize;
-    vm.css = [];
+    vm.increaseSize = HoverAnimationService.increaseSize;
+    vm.cssOptions = {
+      scale: '1.02',
+      styles: []
+    };
 
     init();
 
@@ -383,19 +387,6 @@
     $scope.$on('IdleEnd', function() {
       runOrCancelAnimation(false);
     });
-
-    function increaseSize(increase, id) {
-      vm.css[id] = {
-        transition: '0.2s ease-in-out'
-      };
-
-      var scale = 1 + '.02';
-      if (increase) {
-        vm.css[id].transform = 'scale(' + scale + ')';
-      }else{
-        delete vm.css[id].transform;
-      }
-    }
 
   }
 

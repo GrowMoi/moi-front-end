@@ -21,22 +21,14 @@
       return directive;
     }
 
-    function MoiArrowController(){
+    function MoiArrowController(HoverAnimationService){
       var arrowVm = this;
       arrowVm.urlImg = arrowVm.orientation === 'right' ? 'images/flecha_1.png': 'images/flecha_2.png';
       arrowVm.name = arrowVm.orientation === 'right' ? 'Desplegar Menú': 'Colapsar Menú';
-      arrowVm.increaseSize = increaseSize;
-      arrowVm.css = {
-        transition: '0.2s ease-in-out'
+      arrowVm.increaseSize = HoverAnimationService.increaseSize;
+      arrowVm.cssOptions = {
+        scale: '1.15',
+        styles: []
       };
-
-      function increaseSize(increase) {
-        var scale = 1 + '.15';
-        if (increase) {
-          arrowVm.css.transform = 'scale(' + scale + ')';
-        }else{
-          delete arrowVm.css.transform;
-        }
-      }
     }
   })();

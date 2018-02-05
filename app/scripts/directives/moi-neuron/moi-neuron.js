@@ -22,10 +22,9 @@
     return directive;
   }
 
-  function MoiNeuronController(NeuronsOptions){
+  function MoiNeuronController(NeuronsOptions, HoverAnimationService){
 
     var vm = this;
-    vm.increaseSize = increaseSize;
 
     var NEURON_COLOR = {
       yellow: 'images/tree/nodos/nodo-amarillo.png',
@@ -76,6 +75,11 @@
       changeSizeNeuron(conditional);
       calculateStyles(position);
       vm.percentage = percentageIncrease();
+      vm.increaseSize = HoverAnimationService.increaseSize;
+      vm.cssOptions = {
+        scale: 1 + '.' + vm.percentage,
+        styles: []
+      };
     }
 
     function calculateSize(progress, steps) {
@@ -99,17 +103,6 @@
         'width': vm.neuron.size.max + 'px',
         'height': vm.neuron.size.max + 'px'
       };
-    }
-
-    function increaseSize(increase) {
-      var scale = 1 + '.' + vm.percentage;
-      if (increase) {
-        vm.increaseStyle = {
-          'transform': 'scale(' + scale + ')'
-        };
-      }else{
-        vm.increaseStyle = null;
-      }
     }
 
     function changeSizeNeuron(conditional) {
