@@ -62,6 +62,8 @@
         vm.emptyContent = (Object.keys(vm.content).length === 0);
         vm.emptyNeuron = (Object.keys(vm.neuron).length === 0);
         vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
+        vm.totalNotifications = UserNotificationsService.totalNotifications +
+                                UserNotificationsService.totalRecommendations;
 
         if (vm.content.read === undefined) {
           vm.gifLearnActive = false;
@@ -156,8 +158,6 @@
         vm.saveTasksOptions = AnimationService.getButton({
           key: 'saveTasks',
           readOnly: vm.readOnly,
-          totalNotifications: UserNotificationsService.totalNotifications,
-          totalRecommendations: UserNotificationsService.totalRecommendations,
           callbacks: {
             onClickReadOnly: showNotificationModal,
             finishedAnimation: finishedAnimationsaveTasks
@@ -373,9 +373,8 @@
       });
 
       $rootScope.$on('notifications.updateCount', function(){
-        var notifications = UserNotificationsService.totalNotifications +
-                            UserNotificationsService.totalRecommendationContents;
-        vm.showTasksOptions.totalNotifications = notifications;
+        vm.totalNotifications = UserNotificationsService.totalNotifications +
+                                UserNotificationsService.totalRecommendationContents;
       });
     }
 
