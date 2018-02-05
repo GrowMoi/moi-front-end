@@ -5,10 +5,12 @@
   .controller('TreeController', function ($scope,
                                           $rootScope,
                                           $auth,
+                                          $timeout,
                                           data,
                                           PreloadAssets,
                                           AdviceService,
-                                          ModalService) {
+                                          ModalService,
+                                          NeuronAnimateService) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -41,6 +43,7 @@
         treeModel.showTree = false;
       }else{
         treeModel.showTree = true;
+        $timeout(NeuronAnimateService.callToAction, 6000);
       }
     }
 
@@ -74,6 +77,7 @@
       };
       ModalService.showModel(dialogOptions);
     }
+
   });
 
 })();
