@@ -96,7 +96,7 @@
       ModalService.showModel(dialogOptions);
     }
 
-    function removeItem(notification) {
+    function removeItem(notification, index) {
       if(notification.tutor){
         var data = {
           id: notification.id,
@@ -106,15 +106,14 @@
       }else{
         UserService.deleteNotification(notification).then(function(resp) {
           if(resp.data.deleted){
-            updateNotifications();
+            updateNotifications(index);
           }
         });
       }
     }
 
-    function updateNotifications(){
-      var notificationIndex = notificationsModel.notifications.indexOf(notificationSelected);
-      notificationsModel.notifications.splice(notificationIndex, 1);
+    function updateNotifications(index){
+      notificationsModel.notifications.splice(index, 1);
       UserNotificationsService.totalNotifications--;
       $rootScope.$broadcast('notifications.updateCount');
     }
