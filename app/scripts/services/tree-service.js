@@ -13,13 +13,17 @@
 
     return service;
 
-    function getNeuronsUser(username) {
+    function getNeuronsUser(username, neuronId) {
+      var params = {
+        username: username
+      };
+      if(neuronId){
+        params.neuronId = neuronId;
+      }
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/tree',
-        params: {
-          username: username
-        }
+        params: params
       }).then(function success(res) {
         return res.data;
       }, function error(err) {
