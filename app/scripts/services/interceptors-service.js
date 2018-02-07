@@ -1,5 +1,5 @@
-(function () {
-'use strict';
+(function() {
+  'use strict';
 
   angular
     .module('moi.services')
@@ -21,14 +21,17 @@
       if (rejection.status === 401 && (stateName !== 'new_login.first_step' && stateName !== 'login')) {
         $injector.get('$state').go('new_login.first_step');
         $injector.get('$ionicLoading').hide();
-      }else if(rejection.status === 404){
-        var popupOptions = {
-         title: 'Error',
-         content: rejection.statusText
-        };
-        var PopupService = $injector.get('PopupService');
+      } else if (rejection.status === 404) {
+        var PopupService = $injector.get('PopupService'),
+            auth = $injector.get('$auth'),
+            popupOptions = {
+              title: 'Error',
+              content: rejection.statusText
+            };
         PopupService.showModel('alert', popupOptions, function() {
-         $injector.get('$state').go('tree');
+          $injector.get('$state').go('tree', {
+            username: auth.user.username
+          });
         });
       }
       return $q.reject(rejection);
@@ -41,7 +44,7 @@
       return config || $q.when(config);
     }
 
-    function response (resp) {
+    function response(resp) {
       if (--loadingCount === 0) {
         $rootScope.$broadcast('loading:finish');
       }

@@ -49,9 +49,8 @@
       });
     }
 
-    function notificationReceived(notification){
-      // TODO toasty?
-      console.log(notification);
+    function notificationReceived(){
+      // TODO toasty? we can test a notificacion in this method
       service.totalNotifications ++;
       updateNotificationsCount();
     }
