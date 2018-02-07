@@ -148,6 +148,62 @@ a {
   }
 }
 
+.tree-percentage {
+  position: absolute;
+  top: 10%;
+  right: 3%;
+
+  .percentage-container {
+    position: relative;
+    width: 120px;
+
+    .progres-bar {
+      z-index: -1;
+      position: relative;
+      background: white;
+      border-top-left-radius: 10px;
+      top: 10px;
+      left: 10px;
+      width: 72px;
+      height: 27px;
+
+      .label {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        color: $moiDarkGreen;
+        font-family: FontMoi-Title;
+        font-weight: bold;
+      }
+
+      .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        z-index: 0;
+        border-top-left-radius: 10px;
+        padding: 0;
+        background-color: #40c8b3
+      }
+
+    }
+
+    .widget {
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+}
+
 .application {
   [view-title='TreeMoi'] {
     background: transparent;

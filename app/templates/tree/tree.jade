@@ -10,6 +10,13 @@ ion-view.tree-view(view-title='TreeMoi')
             img(src="images/nube2L.png")
           .cloud.animated.slideInLeft
             img(src="images/nube3L.png")
+        .tree-percentage
+          .percentage-container
+            .progres-bar
+              .label
+                  | {{treeModel.percentage}} %
+              .bar(style="width: {{treeModel.percentage}}%")
+            img.widget(src="images/tree-percentage-bar.png")
         .tree-content(ng-if="::treeModel.isBasicLevel")
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")

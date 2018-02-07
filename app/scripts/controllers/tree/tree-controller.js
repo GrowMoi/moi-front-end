@@ -14,6 +14,8 @@
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
+    var percentage = (treeModel.meta.current_learnt_contents * 100) / treeModel.meta.total_approved_contents; //jshint ignore:line
+    treeModel.percentage = Math.round(percentage);
     treeModel.isBasicLevel = data.meta.depth < 5;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
