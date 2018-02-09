@@ -7,6 +7,8 @@
 
     function NeuronAnimateService($timeout) {
       var discoveredNeurons = [];
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      var counterAnimation = 4;
 
       var service = {
         setNeuronElement: setNeuronElement,
@@ -25,11 +27,10 @@
 
       function callToAction(){
         var $neuronToAnimate = discoveredNeurons[Math.floor(Math.random() * discoveredNeurons.length)];
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        var classes = 'animated swing';
-        $neuronToAnimate.addClass(classes).one(animationEnd, function() {
+        var cssClass = 'animated swing';
+        $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
           // Do somthing after animation
-          $neuronToAnimate.removeClass(classes);
+          $neuronToAnimate.removeClass(cssClass);
           $timeout(function() {
             if(!service.stopCallToAction){
               callToAction();
@@ -40,13 +41,22 @@
 
       function specialCallToAction(){
         var $neuronToAnimate = service.neuronElementUnavailable;
-        var classes = 'animated tada infinite';
-        $neuronToAnimate.addClass(classes);
-        $timeout(function(){
-          $neuronToAnimate.removeClass(classes);
+        var cssClass = 'animated tada';
+
+        $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
+          $neuronToAnimate.removeClass(cssClass);
+          $timeout(function() {
+            if(counterAnimation > 0){
+              specialCallToAction();
+            }
+          }, 1000);
+          counterAnimation --;
+        });
+
+        if(counterAnimation === 1){
           setNeuronElement($neuronToAnimate);
           service.callToAction();
-        }, 12000);
+        }
       }
 
     }

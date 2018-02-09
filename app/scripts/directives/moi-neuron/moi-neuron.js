@@ -86,7 +86,6 @@
       if(vm.neuron.state === 'descubierta'){
         var $neuroImg = $element.find('img');
         if(vm.neuron.in_desired_neuron_path){ //jshint ignore:line
-          console.log('entro por que se va animar luego');
           NeuronAnimateService.neuronElementUnavailable = $neuroImg;
         }else {
           NeuronAnimateService.setNeuronElement($neuroImg);
