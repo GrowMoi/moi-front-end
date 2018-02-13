@@ -65,7 +65,10 @@
       url: '/login',
       controller: 'LoginController',
       controllerAs: 'vm',
-      templateUrl: 'templates/login/login.html'
+      templateUrl: 'templates/login/login.html',
+      resolve: {
+        checkIfIsLogin: redirectTree
+      }
     })
     .state('new_login', {
       url: '/new_login',
@@ -76,11 +79,17 @@
     })
     .state('new_login.first_step', {
       url: '/first_step',
-      templateUrl: 'templates/login/partials/first_step.html'
+      templateUrl: 'templates/login/partials/first_step.html',
+      resolve: {
+        checkIfIsLogin: redirectTree
+      }
     })
     .state('new_login.second_step', {
       url: '/second_step',
-      templateUrl: 'templates/login/partials/second_step.html'
+      templateUrl: 'templates/login/partials/second_step.html',
+      resolve: {
+        checkIfIsLogin: redirectTree
+      }
     })
     .state('neuron', {
       url: '/neuron/{neuronId:int}',
@@ -411,4 +420,16 @@
         $state.go('new_login.first_step');
       });
   }
+
+  function redirectTree($auth, $state) {
+    return $auth.validateUser()
+      .then(function userAuthorized(user) {
+        $state.go('tree', {
+          username: user.username
+        });
+      }, function userNotAuthorized() {
+        return;
+      });
+  }
+
 })();

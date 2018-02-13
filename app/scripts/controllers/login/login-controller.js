@@ -19,8 +19,6 @@
     var successState = 'tree';
     vm.isChrome = UtilityService.isAgentChrome();
 
-    $rootScope.$on('auth:validation-success', redirectUser);
-
     vm.login = function() {
       if(moiSound){
         moiSound.play();

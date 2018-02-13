@@ -17,8 +17,6 @@
     vmLogin.form = {};
     vmLogin.finishedSound = finishedSound;
 
-    $rootScope.$on('auth:validation-success', redirectUser);
-
     var successState = 'tree';
     vmLogin.isChrome = UtilityService.isAgentChrome();
 
