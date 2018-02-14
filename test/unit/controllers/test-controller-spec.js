@@ -75,7 +75,7 @@
             description: 'Han sido aprendidos los primeros 4 contenidos',
             settings: {
               badge:'images/inventory/badges/badge1.png',
-              video: 'videos/introMoi.mp4'
+              video: 'videos/vineta_1.mp4'
             }
           }
         });

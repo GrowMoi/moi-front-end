@@ -8,7 +8,7 @@
           description: 'Han sido aprendidos los primeros 4 contenidos',
           settings: {
             badge:'images/inventory/badges/badge1.png',
-            video: 'videos/introMoi.mp4'
+            video: 'videos/vineta_1.mp4'
           }
         },
         2: {
@@ -48,7 +48,7 @@
           description: 'Todos los contenidos han sido aprendidos',
           settings: {
             badge:'images/inventory/badges/badge8.png',
-            video: 'videos/Final.mp4'
+            video: 'videos/vineta_4.mp4'
           }
         },
         7: {
@@ -72,7 +72,7 @@
           description: 'Han sido desplegados 50 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge6.png',
-            video: 'videos/Final.mp4'
+            video: 'videos/vineta_2.mp4'
           }
         }
     });

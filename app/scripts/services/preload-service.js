@@ -10,18 +10,19 @@
     var vinetas = [
       {
         depth: 1,
-        video: 'videos/introMoi.mp4'
+        video: 'videos/vineta_1.mp4'
       },
       {
         depth: 5,
-        video: 'videos/Final.mp4'
+        video: 'videos/vineta_2.mp4'
       },
       {
         depth: 7,
         video: 'videos/vineta_3.mp4'
       },
       {
-        depth: 9
+        depth: 9,
+        video: 'videos/vineta_4.mp4'
       }
     ];
 
