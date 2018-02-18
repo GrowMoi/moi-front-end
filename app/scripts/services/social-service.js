@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('SocialService', SocialService);
 
-  function SocialService(Socialshare, ModalService, ENV) {
+  function SocialService(Socialshare, ModalService, ENV, ScreenshotService) {
     var service = {
       showModal: showModal
     };
@@ -71,9 +71,13 @@
       modelData.shareWithTwitter = shareWithTwitter;
       modelData.shareWithMail = shareWithMail;
       modelData.data.shortDescription = getShortDescription(data);
-      ModalService.showModel({
-        templateUrl: 'templates/partials/modal-share-social.html',
-        model: modelData
+      var view = document.getElementsByClassName('scroll-content');
+      ScreenshotService.getImage(view).then(function(imageBase64){
+        console.log('Esta es la imagen-->', imageBase64);
+        ModalService.showModel({
+          templateUrl: 'templates/partials/modal-share-social.html',
+          model: modelData
+        });
       });
     }
 
