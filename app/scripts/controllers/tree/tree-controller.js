@@ -35,6 +35,7 @@
         'animation':'rotate 2s linear',
         'animation-iteration-count': successAnswers
       };
+      localStorage.setItem('successAnswers', 0);
     }
 
     initVineta();
