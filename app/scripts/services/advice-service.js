@@ -44,22 +44,22 @@
       var randomAdvices = {
         tree: [
           {
-            position:'bottom-left',
+            position:'top-left',
             description: 'Recuerda comprobar tus nuevos aprendizajes, poniéndolos en práctica día a día',
             show: true
           },
           {
-            position:'bottom-right',
+            position:'top-right',
             description: 'Usa las palabras que aprendes en tus conversaciones. El desarrollo de tu lenguaje trae nuevas ideas',
             show: true
           },
           {
-            position:'bottom-left',
+            position:'top-left',
             description: 'Mientras más sabes, más herramientas tienes para resolver problemas',
             show: true
           },
           {
-            position:'bottom-right',
+            position:'top-right',
             description: 'Tu curiosidad apunta directamente a lo que te interesa. ¿Qué quieres aprender a continuación?',
             show: true
           }

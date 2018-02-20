@@ -150,21 +150,21 @@ a {
 
 .tree-percentage {
   position: absolute;
-  top: 10%;
+  top: 8%;
   right: 3%;
 
   .percentage-container {
     position: relative;
     width: 120px;
 
-    .progres-bar {
+    .percentage-progress-bar {
       z-index: -1;
       position: relative;
       background: white;
       border-top-left-radius: 10px;
       top: 10px;
-      left: 10px;
-      width: 72px;
+      left: 4px;
+      width: 75px;
       height: 27px;
 
       .label {
@@ -178,7 +178,7 @@ a {
         font-weight: bold;
       }
 
-      .bar {
+      .percentage-bar {
         position: absolute;
         top: 0;
         left: 0;
@@ -203,6 +203,80 @@ a {
   }
 
 }
+
+.level-user{
+  position: absolute;
+  bottom: 10%;
+  left: 6%;
+  height: 32%;
+  width: 8.5%;
+  .level-user-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .level-container{
+      position: relative;
+      height: 100%;
+      z-index: 1;
+      .level-progress-bar{
+        z-index: -1;
+        position: relative;
+        background: white;
+        height: 180px;
+        width: 80px;
+        -webkit-mask-image: url(../images/internal-bar.png);
+        mask-image: url(../images/internal-bar.png);
+        -webkit-mask-size: 44px 155px;
+        mask-size: 44px 155px;
+        -webkit-mask-position: center center;
+        mask-position: center center;
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        .level-bar {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0%;
+          z-index: 0;
+          padding: 0;
+          background-color: #40c8b3
+        }
+      }
+    }
+    .widget{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .counter-container {
+      position: absolute;
+      top: -30px;
+      right: 0px;
+      .counter{
+        position: relative;
+        display: block;
+        span{
+          position: absolute;
+          top: 46%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    .point{
+      position: absolute;
+      bottom: 0;
+      z-index: 1;
+    }
+  }
+}
+
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes rotate { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 .application {
   [view-title='TreeMoi'] {

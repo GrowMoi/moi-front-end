@@ -12,11 +12,25 @@ ion-view.tree-view(view-title='TreeMoi')
             img(src="images/nube3L.png")
         .tree-percentage
           .percentage-container
-            .progres-bar
+            .percentage-progress-bar
               .label
                   | {{treeModel.percentage}} %
-              .bar(style="width: {{treeModel.percentage}}%")
+              .percentage-bar(style="width: {{treeModel.percentage}}%")
             img.widget(src="images/tree-percentage-bar.png")
+        .level-user
+          .level-user-container
+            .level-container
+              .level-progress-bar
+                .level-bar(style="height: {{treeModel.percentage}}%")
+              img.widget(src="images/tree-user-level.png")
+            img#pointerLevel.point(ng-style="treeModel.cssPoint"
+                                  style="bottom: {{treeModel.percentage}}"
+                                  src="images/tree-point-level.png")
+            .counter-container
+              .counter
+                span
+                  | {{treeModel.userLevel}}
+                img(src= "images/tree-number-level.png")
         .tree-content(ng-if="::treeModel.isBasicLevel")
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
