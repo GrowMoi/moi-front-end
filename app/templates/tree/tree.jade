@@ -23,9 +23,8 @@ ion-view.tree-view(view-title='TreeMoi')
               .level-progress-bar
                 .level-bar(style="height: {{treeModel.percentage}}%")
               img.widget(src="images/tree-user-level.png")
-            img#pointerLevel.point(ng-style="treeModel.cssPoint"
-                                  style="bottom: {{treeModel.percentage}}"
-                                  src="images/tree-point-level.png")
+            img.point(ng-style="treeModel.cssPoint"
+                      src="images/tree-point-level.png")
             .counter-container
               .counter
                 span

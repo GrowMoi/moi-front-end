@@ -31,8 +31,8 @@
 
     if(successAnswers > 0){
       treeModel.cssPoint = {
-        '-webkit-animation': 'rotate 2s linear',
-        'animation':'rotate 2s linear',
+        '-webkit-animation': 'rotate 1s linear',
+        'animation':'rotate 1s linear',
         'animation-iteration-count': successAnswers
       };
       localStorage.setItem('successAnswers', 0);

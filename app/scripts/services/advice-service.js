@@ -9,11 +9,11 @@
       var staticAdvices = {
         tree: [
           {
-            position:'bottom-left',
+            position:'top-left',
             description: 'Da clic en la neurona gris para conocer sus contenidos'
           },
           {
-            position:'bottom-right',
+            position:'top-right',
             description: 'Elije un nuevo fruto y el camino en el que quieres aprender'
           }
         ],

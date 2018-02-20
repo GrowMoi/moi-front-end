@@ -38,12 +38,10 @@
     function progressTree(data) {
       var percentage = (data.current_learnt_contents * 100) / data.total_approved_contents; //jshint ignore:line
       var finalPercentage = parseFloat(percentage.toFixed(1));
-      var pointPosition = (80 * finalPercentage)/100;
       var userLevel = getUserLevel(finalPercentage);
       return {
         'percentage': finalPercentage,
-        'userLevel': userLevel,
-        'pointPosition': parseFloat(pointPosition.toFixed(1))
+        'userLevel': userLevel
       };
     }
 
