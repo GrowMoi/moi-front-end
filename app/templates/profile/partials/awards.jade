@@ -6,5 +6,5 @@ ion-list(no-lines)
       br
       span
         | Tests sin errores: {{vmProfile.user.successful_tests}}
-      span.btn-view-table(ng-click="vmProfile.showLeaderboard()")
+      span.btn-view-table(ng-if="!vmProfile.buttonsOptions.readOnly" ng-click="vmProfile.showLeaderboard()")
         | Ver tabla

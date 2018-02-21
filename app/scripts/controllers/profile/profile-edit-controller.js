@@ -31,7 +31,7 @@
             template: 'Actualización Exitosa'
           }).then(function(){
             /*jshint camelcase: false */
-            $state.go('profile', {userId: vmProfileEdit.user.id});
+            $state.go('profile', {username: vmProfileEdit.user.username});
           });
         })
         .catch(function(resp) {
