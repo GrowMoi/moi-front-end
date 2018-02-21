@@ -26,7 +26,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                       | {{award.label}}: {{award.meta.current_contents_learnt}}/{{award.meta.total_contents}}
                     span(ng-if="award.category==='test'")
                       | {{award.label}}: {{award.meta.current_tests_ok}}
-                .btn-wrapper.col-30
+                .btn-wrapper.col-30(ng-if="!vmProfile.buttonsOptions.readOnly")
                   .btn-add-friend(ng-if="!vmProfile.isCurrentUser")
                     .title {{ ::'buttons.add-friend' | translate }}
                     .plus-icon +

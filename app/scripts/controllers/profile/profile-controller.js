@@ -18,7 +18,7 @@
     vmProfile.buttonsOptions = {
       neuron: {},
       content: {},
-      readOnly: vmProfile.user.id ? true : false,
+      readOnly: currentUser.id ? false : true,
       buttons: {
         search: true,
         recomendation: true,
