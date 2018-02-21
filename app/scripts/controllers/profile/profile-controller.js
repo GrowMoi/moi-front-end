@@ -3,7 +3,6 @@
 
   angular.module('moi.controllers')
   .controller('ProfileController', function (user,
-                                            achievements,
                                             $auth,
                                             $stateParams,
                                             ModalService,
@@ -12,7 +11,6 @@
     var vmProfile = this,
         currentUser = $auth.user;
     vmProfile.user = user;
-    vmProfile.awards = achievements.achievements;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
     vmProfile.buttonsOptions = {
