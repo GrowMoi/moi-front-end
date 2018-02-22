@@ -5,7 +5,8 @@
                                                   $rootScope,
                                                   UserService,
                                                   ModalService,
-                                                  UserNotificationsService){
+                                                  UserNotificationsService,
+                                                  $window){
     var notificationsModel = this;
     var notificationSelected,
         requestData = {};
@@ -21,11 +22,26 @@
         btnLeft: 'Rechazar'
       }
     };
+
+    var notificationStates = {
+      quiz: {
+        template: 'templates/tasks/notifications/partials/quiz.html'
+      },
+      request: {
+        template: 'templates/tasks/notifications/partials/request.html'
+      },
+      generic: {
+        template: 'templates/tasks/notifications/partials/generic.html'
+      }
+    };
+
     notificationsModel.noMoreItemsAvailable = true;
     notificationsModel.currentPage = 1;
     notificationsModel.confirmRequest = confirmRequest;
     notificationsModel.showNotification = showNotification;
     notificationsModel.removeItem = removeItem;
+    notificationsModel.getNotificationPartial = getNotificationPartial;
+    notificationsModel.goToQuiz = goToQuiz;
 
     initData();
 
@@ -116,6 +132,42 @@
       notificationsModel.notifications.splice(index, 1);
       UserNotificationsService.totalNotifications--;
       $rootScope.$broadcast('notifications.updateCount');
+    }
+
+    function getNotificationPartial(notification) {
+      var stateSelected = notificationStates[notification.type];
+      return stateSelected.template || notificationStates.generic.template;
+    }
+
+    function goToQuiz(notification) {
+      notificationSelected = notification;
+      var tutorName = notificationSelected.tutor.name || notificationSelected.tutor.username;
+      var dialogQuizModel = {
+        header: 'El tutor ' + tutorName + ' ha creado un nuevo test para ti.',
+        description: notification.description,
+        callbacks: {
+          openTabQuiz: function() {
+            var url = notification.description.match(/(https?:\/\/[^\s]+)/g);
+            if (url && url[0]) {
+              $window.open(url[0], '_blank');
+            }
+          },
+          continueReading: function () {
+            dialogQuizModel.closeModal();
+          }
+        },
+        labels: {
+          openTabQuiz: 'Ir a la prueba',
+          continueReading: 'Seguir leyendo'
+        }
+      };
+
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-go-to-quiz.html',
+        model: dialogQuizModel
+      };
+
+      ModalService.showModel(dialogOptions);
     }
   });
 })();

@@ -1,0 +1,17 @@
+.modal.modal-unread.transparent
+  ion-pane.transparent
+    .score-container.row
+      .main-image.col
+        img(src="images/user.png")
+      .col-50
+        .text-container
+          h2#content
+            span {{::model.header}}
+            br
+            p {{::model.description}}
+      .pista.col
+    .controls-score
+      span.btn-score.button.button-right(ng-click="model.callbacks.openTabQuiz()")
+        | {{::model.labels.openTabQuiz}}
+      span.btn-score.button.button-left(ng-click="model.callbacks.continueReading()")
+        | {{::model.labels.continueReading}}
