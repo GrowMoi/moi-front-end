@@ -5,7 +5,12 @@
     .module('moi.services')
     .factory('SocialService', SocialService);
 
-  function SocialService(Socialshare, ModalService, ENV, ScreenshotService) {
+  function SocialService($location,
+                        Socialshare,
+                        ModalService,
+                        ENV,
+                        ScreenshotService,
+                        UploadImageService) {
     var service = {
       showModal: showModal
     };
@@ -27,7 +32,7 @@
           socialshareType: 'share',
           socialshareTitle: options.title,
           socialshareMedia: options.media,
-          socialshareDescription: options.description,
+          socialshareDescription: options.description+' '+options.previewImage,
           socialshareText: configSocialNetwork.appName,
           socialshareUrl: configSocialNetwork.appUrl,
           socialsharePopupHeight: configSocialNetwork.popupHeight,
@@ -65,6 +70,8 @@
     }
 
     function showModal(data) {
+      //update link
+      configSocialNetwork.appName = $location.absUrl();
       var modelData = {};
       modelData.data = data;
       modelData.shareWithFacebook = shareWithFacebook;
@@ -73,10 +80,12 @@
       modelData.data.shortDescription = getShortDescription(data);
       var view = document.getElementsByClassName('scroll-content');
       ScreenshotService.getImage(view).then(function(imageBase64){
-        console.log('Esta es la imagen-->', imageBase64);
-        ModalService.showModel({
-          templateUrl: 'templates/partials/modal-share-social.html',
-          model: modelData
+        UploadImageService.uploadFile(imageBase64).then(function(resp) {
+          modelData.data.previewImage = resp.data.url;
+          ModalService.showModel({
+            templateUrl: 'templates/partials/modal-share-social.html',
+            model: modelData
+          });
         });
       });
     }
