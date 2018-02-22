@@ -61,6 +61,7 @@
         name: options.title || 'neuron',
         source: options.source || 'images/tree/nodos/nodo-gris.png',
         state: options.state || 'descubierta',
+        in_desired_neuron_path: options.in_desired_neuron_path || false, //jshint ignore:line
         size: {
           max: size.max || NEURON_SIZE[vm.level],
           min: size.min ||  NEURON_SIZE[vm.level] / 2,
@@ -84,7 +85,11 @@
       //add neuron element to NeuronAnimateService for later animate it.
       if(vm.neuron.state === 'descubierta'){
         var $neuroImg = $element.find('img');
-        NeuronAnimateService.setNeuronElement($neuroImg);
+        if(vm.neuron.in_desired_neuron_path){ //jshint ignore:line
+          NeuronAnimateService.neuronElementUnavailable = $neuroImg;
+        }else {
+          NeuronAnimateService.setNeuronElement($neuroImg);
+        }
       }
     }
 
