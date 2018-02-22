@@ -104,6 +104,7 @@
         if(data.successAnswers > 1 ){
           $backgroundSound[0].pause();
         }
+        localStorage.setItem('successAnswers', data.successAnswers);
         TestService.scoreTest($scope, data).then(function() {
           var recommendations = res.data.recommendations || [];
           var achievements = res.data.achievements || [];

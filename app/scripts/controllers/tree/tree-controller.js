@@ -10,20 +10,37 @@
                                           PreloadAssets,
                                           AdviceService,
                                           ModalService,
+                                          TreeService,
                                           NeuronAnimateService) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
-    var percentage = (treeModel.meta.current_learnt_contents * 100) / treeModel.meta.total_approved_contents; //jshint ignore:line
-    treeModel.percentage = Math.round(percentage);
+    var progressTree = TreeService.progressTree(treeModel.meta);
+    treeModel.percentageLevel = progressTree.userLevel.percentage;
+    treeModel.userLevel = progressTree.userLevel.level;
+    treeModel.percentage = progressTree.percentage;
     treeModel.isBasicLevel = data.meta.depth < 5;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
+    var successAnswers = localStorage.getItem('successAnswers');
+
     treeModel.frameOptions = {
       type: 'marco_arbol',
       advices: getAdvices(),
       showBackButton: true
     };
+
+    if(successAnswers > 0){
+      treeModel.cssPoint = {
+        '-webkit-animation': 'rotate 1s linear',
+        'animation':'rotate 1s linear',
+        'animation-iteration-count': successAnswers
+      };
+      treeModel.cssBar = {
+        'transition': 'height '+successAnswers+'s ease-in-out'
+      };
+      localStorage.setItem('successAnswers', 0);
+    }
 
     initVineta();
 
