@@ -168,12 +168,20 @@
       controllerAs: 'treeModel',
       templateUrl: 'templates/tree/tree.html',
       cache: false,
+      params: {neuronId: null},
       resolve: {
         data: function(TreeService, $stateParams){
           var username = $stateParams.username;
-          return TreeService.getNeuronsUser(username).then(function(data) {
-            return data;
-          });
+          var neuronId = $stateParams.neuronId;
+          if(neuronId){
+            return TreeService.getNeuronsUser(username, neuronId).then(function(data) {
+              return data;
+            });
+          }else{
+            return TreeService.getNeuronsUser(username).then(function(data) {
+              return data;
+            });
+          }
         }
       }
     })

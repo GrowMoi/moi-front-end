@@ -344,7 +344,8 @@
       function modalCallbak() {
         dialogContentModel.closeModal();
         $state.go('tree', {
-          username: $auth.user.username
+          username: $auth.user.username,
+          neuronId: vm.neuron.neuron_id || vm.neuron.id
         });
       }
 

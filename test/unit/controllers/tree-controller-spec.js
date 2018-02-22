@@ -58,7 +58,7 @@
         };
         dependencies = {
           $scope: $scope,
-          data: {tree: [{id:1}], meta:{depth:4}},
+          data: {tree: {root: {in_desired_neuron_path: false}}, meta:{depth:4}},
           $auth: $auth,
           ModalService: ModalService
         };
