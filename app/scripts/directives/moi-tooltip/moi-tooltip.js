@@ -24,6 +24,13 @@
           }
 
           element[0].addEventListener('mouseover', function (e) {
+            if(scope.text !== attrs.tooltipMoi){
+              scope.$apply(function() {
+                scope.text = attrs.tooltipMoi;
+                var positionClass = attrs.tooltipPosition ? ('tooltip-'+attrs.tooltipPosition) : 'tooltip-down';
+                scope.tipClass = ['tooltip-moi', positionClass] ;
+              });
+            }
             $document.find('body').append(tip);
             tip.addClass(tipActiveClassName);
 

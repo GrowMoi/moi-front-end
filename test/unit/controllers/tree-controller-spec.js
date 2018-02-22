@@ -35,6 +35,17 @@
           }
         };
       });
+      $provide.factory('TreeService', function(){
+        return {
+          progressTree: function(){
+            return {
+              'percentage': 10,
+              'userLevel': 10,
+              'pointPosition': 9
+            };
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
