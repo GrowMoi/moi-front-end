@@ -13,10 +13,10 @@
         ENV: {
           name: 'development',
           apiHost: 'http://localhost:5000',
-          facebookKey: '',
+          facebookKey: '12345678',
           pusherKey: '2fd9acbd37b06708983b',
-          cloudinaryName: 'moi-images',
-          unsignedUploadPreset: 'nmk8efc6'
+          cloudinaryName: 'test',
+          unsignedUploadPreset: 'testpreset'
         },
         IMAGES: {
           paths: []

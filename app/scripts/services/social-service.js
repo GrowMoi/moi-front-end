@@ -16,7 +16,6 @@
     };
     var configSocialNetwork = {
       appName: 'Moi Social Learning',
-      appUrl: 'http://moi-frontend.herokuapp.com/',
       popupHeight: '300',
       popupWidth: '400'
     };
@@ -30,24 +29,21 @@
         attrs: {
           socialshareVia: ENV.facebookKey,
           socialshareType: 'share',
-          socialshareTitle: options.title,
-          socialshareMedia: options.media,
-          socialshareDescription: options.description+' '+options.previewImage,
-          socialshareText: configSocialNetwork.appName,
-          socialshareUrl: configSocialNetwork.appUrl,
+          socialshareDisplay: options.description,
+          socialshareUrl: options.publicUrl,
           socialsharePopupHeight: configSocialNetwork.popupHeight,
           socialsharePopupWidth: configSocialNetwork.popupWidth
         }
       });
     }
 
-    function shareWithTwitter(sms) {
+    function shareWithTwitter(options) {
       ModalService.destroy();
       Socialshare.share({
         provider: 'twitter',
         attrs: {
-          socialshareText: sms,
-          socialshareUrl: configSocialNetwork.appUrl,
+          socialshareText: options.shortDescription,
+          socialshareUrl: options.publicUrl,
           socialsharePopupHeight: configSocialNetwork.popupHeight,
           socialsharePopupWidth: configSocialNetwork.popupWidth
         }
@@ -57,7 +53,7 @@
     function shareWithMail(options) {
       ModalService.destroy();
       var contentBody = options.description+
-                ' Unete: '+configSocialNetwork.appUrl;
+                ' Visítanos: '+options.publicUrl;
       Socialshare.share({
         provider: 'email',
         attrs: {
@@ -71,13 +67,13 @@
 
     function showModal(data) {
       //update link
-      configSocialNetwork.appName = $location.absUrl();
       var modelData = {};
       modelData.data = data;
       modelData.shareWithFacebook = shareWithFacebook;
       modelData.shareWithTwitter = shareWithTwitter;
       modelData.shareWithMail = shareWithMail;
       modelData.data.shortDescription = getShortDescription(data);
+      modelData.data.publicUrl = $location.absUrl();
       var view = document.getElementsByClassName('scroll-content');
       ScreenshotService.getImage(view).then(function(imageBase64){
         UploadImageService.uploadFile(imageBase64).then(function(resp) {
@@ -93,11 +89,11 @@
     function getShortDescription(options) {
       var shortDescription,
           previewDescription = options.title +' '+ options.description;
-      if(previewDescription.length > 105){
-        shortDescription = previewDescription.substring(0,105);
-        shortDescription = shortDescription.concat('... unete');
+      if(previewDescription.length > 100){
+        shortDescription = previewDescription.substring(0,100);
+        shortDescription = shortDescription.concat('... Visítanos');
       }else{
-        shortDescription = previewDescription.concat(', unete');
+        shortDescription = previewDescription.concat(', Visítanos');
       }
       return shortDescription;
     }

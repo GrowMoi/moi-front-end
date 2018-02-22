@@ -4,7 +4,7 @@
       .btn-close-modal(ng-click="::model.closeModal()")
       .social-network-panel
         a.btn-facebook(ng-click="model.shareWithFacebook(model.data)")
-        a.btn-twitter(ng-click="model.shareWithTwitter(model.data.shortDescription)")
+        a.btn-twitter(ng-click="model.shareWithTwitter(model.data)")
         a.btn-mail(ng-click="model.shareWithMail(model.data)")
       .description-panel
         h2 {{ ::'social.title' | translate}}
