@@ -57,7 +57,7 @@
     }
 
     function showLeaderboard(){
-      UserService.getLeaderboard(vmProfile.user.id).then(function(data){
+      UserService.getLeaderboard(vmProfile.user.username).then(function(data){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-show-leaderboard.html',
           model: {
