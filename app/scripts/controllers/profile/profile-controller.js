@@ -3,7 +3,6 @@
 
   angular.module('moi.controllers')
   .controller('ProfileController', function (user,
-                                            achievements,
                                             $auth,
                                             $stateParams,
                                             ModalService,
@@ -12,13 +11,12 @@
     var vmProfile = this,
         currentUser = $auth.user;
     vmProfile.user = user;
-    vmProfile.awards = achievements.achievements;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
     vmProfile.buttonsOptions = {
       neuron: {},
       content: {},
-      readOnly: vmProfile.user.id ? true : false,
+      readOnly: currentUser.id ? false : true,
       buttons: {
         search: true,
         recomendation: true,
@@ -59,7 +57,7 @@
     }
 
     function showLeaderboard(){
-      UserService.getLeaderboard($stateParams.userId).then(function(data){
+      UserService.getLeaderboard(vmProfile.user.id).then(function(data){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-show-leaderboard.html',
           model: {

@@ -217,17 +217,6 @@
           return UserService.profile($stateParams.username).then(function(data){
             return data;
           });
-        },
-        achievements: function($auth, UserService) {
-          if ($auth.user.id) {
-            return UserService.getUserAchievements().then(function(data){
-              return data;
-            });
-          }else{
-            return {
-              achievements: []
-            };
-          }
         }
       }
     })

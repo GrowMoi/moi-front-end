@@ -30,10 +30,8 @@
       activate();
       setTheme();
 
-      if (vmContent.readOnly) {
-        $scope.$on('$ionicView.afterEnter', startsReading);
-        $scope.$on('$ionicView.beforeLeave', stopsReading);
-      }
+      $scope.$on('$ionicView.afterEnter', startsReading);
+      $scope.$on('$ionicView.beforeLeave', stopsReading);
 
       function activate() {
         vmContent.content = content;
