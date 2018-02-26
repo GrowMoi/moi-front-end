@@ -182,6 +182,11 @@
               return data;
             });
           }
+        },
+        storage: function(StorageService) {
+          return StorageService.get().then(function(resp) {
+            return resp.data.storage;
+          });
         }
       }
     })

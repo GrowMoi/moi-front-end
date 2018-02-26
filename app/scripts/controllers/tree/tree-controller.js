@@ -7,6 +7,7 @@
                                           $auth,
                                           $timeout,
                                           data,
+                                          storage,
                                           PreloadAssets,
                                           AdviceService,
                                           ModalService,
@@ -44,15 +45,12 @@
     }
 
     initVineta();
-    StorageService.get().then(function(resp) {
-      console.log('Respuesta', resp);
-    });
-    StorageService.update({'tree': {'video': 3}});
+
     treeModel.finishedAnimation = function() {
       $scope.$apply(function(){treeModel.showTree = true;});
       $backgroundSound[0].play();
       $backgroundSound[0].autoplay = true;
-      localStorage.setItem('vinetas_animadas',JSON.stringify({'depth': data.meta.depth}));
+      StorageService.update({'tree': {'vinetas_animadas': {'depth': data.meta.depth}}});
       //show only when a user is new
       if(data.meta.depth === 1){
         showWelcomeModal();
@@ -60,7 +58,7 @@
     };
 
     function initVineta() {
-      treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data);
+      treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data, storage);
       if(treeModel.urlVineta) {
         $backgroundSound[0].autoplay = false;
         treeModel.showTree = false;

@@ -9,6 +9,7 @@
                           $ionicLoading,
                           $auth,
                           PreloadAssets,
+                          StorageService,
                           ScreenshotService,
                           UserService,
                           UserNotificationsService,
@@ -38,14 +39,14 @@
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
 
-    function preloadAssets(data) {
+    function preloadAssets(data, storage) {
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
       var filterImages = filterImagesByPath(images, validPaths);
       var itemsToPreload = {
         images: filterImages
       };
-      var shouldPreloadVideo = data ? PreloadAssets.shouldPreloadVideo(data) : false;
+      var shouldPreloadVideo = data ? PreloadAssets.shouldPreloadVideo(data, storage) : false;
       if (shouldPreloadVideo) {
         itemsToPreload.videos = videos.map(function(vdo) {
           return vdo.substring(4);
@@ -114,7 +115,9 @@
         if(toState.name === 'tree'){
           var username = $auth.user.username;
           TreeService.getNeuronsUser(username).then(function(data) {
-            preloadAssets(data);
+            StorageService.get().then(function(resp) {
+              preloadAssets(data, resp.data.storage);
+            });
           });
         } else {
           preloadAssets();
