@@ -46,6 +46,20 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          update: function() {
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(

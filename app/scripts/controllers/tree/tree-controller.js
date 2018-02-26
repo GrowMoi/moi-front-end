@@ -11,7 +11,8 @@
                                           AdviceService,
                                           ModalService,
                                           TreeService,
-                                          NeuronAnimateService) {
+                                          NeuronAnimateService,
+                                          StorageService) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -43,7 +44,10 @@
     }
 
     initVineta();
-
+    StorageService.get().then(function(resp) {
+      console.log('Respuesta', resp);
+    });
+    StorageService.update({'tree': {'video': 3}});
     treeModel.finishedAnimation = function() {
       $scope.$apply(function(){treeModel.showTree = true;});
       $backgroundSound[0].play();
