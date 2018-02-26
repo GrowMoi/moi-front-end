@@ -16,7 +16,8 @@
         SocialService,
         UserService,
         ReadContentTimingService,
-        MediaAchievements;
+        MediaAchievements,
+        StorageService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
@@ -119,6 +120,21 @@
           }
         };
       });
+
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          update: function() {
+            return null;
+          }
+        };
+      });
     }));
 
     /*jshint camelcase: false */
@@ -133,7 +149,8 @@
                 _SocialService_,
                 _UserService_,
                 _ReadContentTimingService_,
-                _MediaAchievements_) {
+                _MediaAchievements_,
+                _StorageService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -146,6 +163,7 @@
         UserService = _UserService_;
         ReadContentTimingService = _ReadContentTimingService_;
         MediaAchievements = _MediaAchievements_;
+        StorageService = _StorageService_;
         $auth = {
           user: {
             id: 1,
@@ -175,6 +193,7 @@
               }
             ]
           },
+          storage: {tree: {'advices': ['advice0']}},
           $scope: $scope,
           $state: $state,
           $auth: $auth,
@@ -183,7 +202,8 @@
           AnimationService: AnimationService,
           UserService: UserService,
           ReadContentTimingService: ReadContentTimingService,
-          MediaAchievements: MediaAchievements
+          MediaAchievements: MediaAchievements,
+          StorageService: StorageService
         };
 
         ctrl = $controller('ContentController', dependencies);

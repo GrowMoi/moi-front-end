@@ -5,7 +5,7 @@
       .module('moi.services')
       .factory('AdviceService', AdviceService);
 
-    function AdviceService() {
+    function AdviceService(StorageService) {
       var staticAdvices = {
         tree: [
           {
@@ -73,16 +73,25 @@
 
       return service;
 
-      function getStatic(page, position){
+      function getStatic(page, position, storage){
         try {
-          var keyToPersist = page + '_' + 'advice' + position;
-          var savedAdvice = localStorage.getItem(keyToPersist);
+          var savedAdvice = (storage[page] && storage[page].advices) ? storage[page].advices[position] : undefined;
           var adviceSelected;
           if(!savedAdvice){
             adviceSelected = staticAdvices[page][position];
             adviceSelected.show = true;
             if(page !== 'content'){
-              localStorage.setItem(keyToPersist, 'true');
+              if(storage[page]){
+                if(storage[page].advices){
+                  storage[page].advices.push('advice' + position);
+                }else{
+                  storage[page].advices = ['advice' + position];
+                }
+                StorageService.update(storage);
+              }else {
+                storage[page] = {'advices': ['advice' + position]};
+                StorageService.update(storage);
+              }
             }
             adviceSelected.showCloseBtn = true;
             return [adviceSelected];

@@ -25,6 +25,7 @@
                                   ModalService,
                                   SocialService,
                                   ContentService,
+                                  StorageService,
                                   $scope,
                                   $timeout,
                                   $auth,
@@ -268,7 +269,11 @@
             TestService.goTest($scope, data.test);
           }
           if (page === 'content' && !data.perform_test) {
-            localStorage.setItem('content_advice0', 'true');
+            StorageService.get().then(function(resp) {
+              var storage = resp.data.storage;
+              storage.content = {'advices': ['advice0']};
+              StorageService.update(storage);
+            });
             $state.go('neuron', {
               neuronId: vm.content.neuron_id
             });

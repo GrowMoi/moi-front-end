@@ -6,6 +6,7 @@
                                               $timeout,
                                               $interval,
                                               content,
+                                              storage,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
@@ -23,7 +24,7 @@
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
-        advices: AdviceService.getStatic('content', 0),
+        advices: AdviceService.getStatic('content', 0, storage),
         showBackButton: true
       };
 

@@ -7,16 +7,17 @@
               $scope,
               $timeout,
               $auth,
-              AdviceService) {
+              AdviceService,
+              storage) {
 
     var vmNeuron = this,
         ApiButtons = null,
         ApiContent = null,
         timeoutPromise = null;
-    var positionAdvice = localStorage.getItem('neuron_advice0') &&  localStorage.getItem('content_advice0')? 1 : 0;
+    var positionAdvice = ((storage.neuron && storage.neuron.advices[0]) && (storage.content && storage.content.advices[0])) ? 1 : 0;
     vmNeuron.frameOptions = {
       type: 'content_max',
-      advices: AdviceService.getStatic('neuron', positionAdvice)
+      advices: AdviceService.getStatic('neuron', positionAdvice, storage)
     };
 
     /*jshint camelcase: false */
@@ -97,7 +98,8 @@
     $scope.$on('neuron:remove-content', hideAdvice);
 
     function hideAdvice(){
-      if(vmNeuron.frameOptions.advices.length > 0 && localStorage.getItem('neuron_advice1')){
+      var advicesSaved = storage.neuron && storage.neuron.advices;
+      if(vmNeuron.frameOptions.advices.length > 0 && (advicesSaved && advicesSaved[1])){
         vmNeuron.frameOptions.advices[0].show = false;
       }
     }

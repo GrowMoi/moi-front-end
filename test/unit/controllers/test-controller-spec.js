@@ -14,7 +14,8 @@
         dataTest,
         contentId,
         answer,
-        MediaAchievements;
+        MediaAchievements,
+        StorageService;
 
     beforeEach(module('moi.controllers'));
 
@@ -94,7 +95,20 @@
           }
         };
       });
-
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          update: function() {
+            return null;
+          }
+        };
+      });
       $provide.factory('$ionicModal', function () {
         return {};
       });
@@ -129,7 +143,8 @@
                 _TestService_,
                 _$rootScope_,
                 _$state_,
-                _MediaAchievements_) {
+                _MediaAchievements_,
+                _StorageService_) {
         $controller = _$controller_;
         $stateParams = _$stateParams_;
         $rootScope = _$rootScope_;
@@ -137,6 +152,7 @@
         $scope = $rootScope.$new();
         TestService = _TestService_;
         MediaAchievements = _MediaAchievements_;
+        StorageService = _StorageService_;
         $auth = {
           user: {
             id: 1,
@@ -153,7 +169,9 @@
           $stateParams: $stateParams,
           $auth: $auth,
           $state: $state,
-          MediaAchievements: MediaAchievements
+          MediaAchievements: MediaAchievements,
+          StorageService: StorageService,
+          storage: {test: {'advices': ['advice0']}}
         };
         ctrl = $controller('TestController', dependencies);
       })

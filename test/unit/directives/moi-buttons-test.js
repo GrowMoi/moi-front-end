@@ -16,7 +16,8 @@
       template,
       controller,
       modalSpy,
-      UserNotificationsService;
+      UserNotificationsService,
+      StorageService;
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
@@ -105,6 +106,20 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          update: function() {
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -118,7 +133,8 @@
         _ModalService_,
         _$state_,
         _UserNotificationsService_,
-        _$auth_) {
+        _$auth_,
+        _StorageService_) {
 
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -132,6 +148,7 @@
         ModalService = _ModalService_;
         UserNotificationsService = _UserNotificationsService_;
         $auth = _$auth_;
+        StorageService = _StorageService_;
     }));
 
     beforeEach(function(){
