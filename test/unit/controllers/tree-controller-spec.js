@@ -57,6 +57,13 @@
             };
           },
           update: function() {
+
+          }
+        };
+      });
+      $provide.factory('SocialService', function(){
+        return {
+          showModal: function(){
             return null;
           }
         };

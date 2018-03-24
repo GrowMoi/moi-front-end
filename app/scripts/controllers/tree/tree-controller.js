@@ -13,7 +13,8 @@
                                           ModalService,
                                           TreeService,
                                           NeuronAnimateService,
-                                          StorageService) {
+                                          StorageService,
+                                          SocialService) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -22,6 +23,7 @@
     treeModel.userLevel = progressTree.userLevel.level;
     treeModel.percentage = progressTree.percentage;
     treeModel.isBasicLevel = data.meta.depth < 5;
+    treeModel.sharedTree = sharedTree;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
@@ -112,6 +114,14 @@
         model: dialogContentModel
       };
       ModalService.showModel(dialogOptions);
+    }
+
+    function sharedTree(){
+      var data = {
+        title: 'Tree',
+        description: 'Screenshot'
+      };
+      SocialService.showModal(data);
     }
 
   });

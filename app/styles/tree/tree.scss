@@ -276,6 +276,18 @@ a {
   }
 }
 
+.btn-shared-tree {
+  position: absolute;
+  bottom: 18%;
+  right: 5%;
+  background-image: url(../images/btn_shared_tree.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 4em;
+  height: 4em;
+  cursor: pointer;
+}
+
 @-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes rotate { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 

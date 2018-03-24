@@ -32,6 +32,7 @@ ion-view.tree-view(view-title='TreeMoi')
                 span
                   | {{::treeModel.userLevel}}
                 img(src= "images/tree-number-level.png")
+        .btn-shared-tree(ng-click="treeModel.sharedTree()")
         .tree-content(ng-if="::treeModel.isBasicLevel")
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
