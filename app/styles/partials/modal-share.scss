@@ -6,17 +6,18 @@
   align-items: center;
   .modal-share-social {
     width: 500px;
-    height: 350px;
+    height: auto;
     background-image: url(../images/cont_share_modal.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    padding-bottom: 15px;
     .btn-close-modal {
       position: relative;
-      left: 450px;
-      top: 20px;
+      left: 460px;
+      top: 0px;
       width: 50px;
       height: 50px;
-      background-image: url(../images/btn_close_share_modal.png);
+      background-image: url(../images/boton_salir_H.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
       cursor: pointer;
@@ -25,7 +26,12 @@
       display: flex;
       justify-content: center;
       position: relative;
-      top: 30px;
+      margin-left: 30px;
+      margin-right: 30px;
+      padding: 10px;
+      background-image: url(../images/social_networks_shared.png);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
       a {
         background-repeat: no-repeat;
         background-size: 100% 100%;
@@ -42,16 +48,39 @@
       .btn-mail {
         background-image: url(../images/btn_mail.png);
       }
+      .selected {
+        filter: brightness(1) grayscale(0.4) opacity(0.8);
+      }
     }
     .description-panel {
-      width: 400px;
-      position: relative;
-      top: 70px;
-      left: 50px;
       font-family: FontMoi-Title;
       color: #4A4B21;
       text-align: justify;
+      margin: 15px 30px 15px 30px;
+      background: #00000021;
+      border-radius: 10px;
+      padding: 15px;
     }
+    .email-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 30px 15px 30px;
+      background: #00000021;
+      border-radius: 10px;
+      .email{
+        width: 75%;
+        background: transparent;
+        margin-left: 10px;
+      }
+      .button{
+        width: 25%;
+        background-image: url(../images/btn_send.png);
+        background-size: 150%;
+        margin-right: 10px;
+      }
+    }
+
   }
 }
 /* Fix modal backdrop for smaller devices */

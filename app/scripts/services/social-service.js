@@ -10,7 +10,8 @@
                         ModalService,
                         ENV,
                         ScreenshotService,
-                        UploadImageService) {
+                        UploadImageService,
+                        UserService) {
     var service = {
       showModal: showModal
     };
@@ -18,6 +19,10 @@
       appName: 'Moi Social Learning',
       popupHeight: '300',
       popupWidth: '400'
+    };
+    var modelData = {
+      activeEmail: false,
+      sendEmail: sendEmail
     };
 
     return service;
@@ -50,28 +55,26 @@
       });
     }
 
-    function shareWithMail(options) {
-      ModalService.destroy();
-      var contentBody = options.description+
-                ' Visítanos: '+options.publicUrl;
-      Socialshare.share({
-        provider: 'email',
-        attrs: {
-          socialshareBody: contentBody,
-          socialshareSubject: options.title+' - '+configSocialNetwork.appName,
-          socialsharePopupHeight: configSocialNetwork.popupHeight,
-          socialsharePopupWidth: configSocialNetwork.popupWidth
-        }
+    function showMailForm() {
+      modelData.activeEmail = !modelData.activeEmail;
+    }
+
+    function sendEmail() {
+      var emailParams = {
+        'email': modelData.data.email,
+        'public_url': modelData.data.publicUrl,
+        'image_url': modelData.data.previewImage
+      };
+      UserService.sharedEmailContent(emailParams).then(function() {
+        ModalService.destroy();
       });
     }
 
     function showModal(data) {
-      //update link
-      var modelData = {};
       modelData.data = data;
       modelData.shareWithFacebook = shareWithFacebook;
       modelData.shareWithTwitter = shareWithTwitter;
-      modelData.shareWithMail = shareWithMail;
+      modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
       modelData.data.publicUrl = $location.absUrl();
       var view = document.getElementsByClassName('scroll-content');

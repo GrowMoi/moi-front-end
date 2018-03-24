@@ -5,7 +5,16 @@
       .social-network-panel
         a.btn-facebook(ng-click="model.shareWithFacebook(model.data)")
         a.btn-twitter(ng-click="model.shareWithTwitter(model.data)")
-        a.btn-mail(ng-click="model.shareWithMail(model.data)")
+        a.btn-mail(ng-click="model.showMailForm()" ng-class="{selected: model.activeEmail}")
       .description-panel
         h2 {{ ::'social.title' | translate}}
         | {{ ::'social.description' | translate}}
+      form.email-form(ng-submit='model.sendEmail()' ng-if="model.activeEmail")
+        input.email(
+            type='email',
+            ng-model='model.data.email',
+            required='required',
+            placeholder="{{ ::'login.email' | translate }}")
+        input.button(
+          type='submit',
+          value="{{ ::'social.send' | translate }}")
