@@ -14,9 +14,7 @@
         buttons: {
           learn: true,
           search: true,
-          share: true,
           recomendation: true,
-          saveTask: true,
           showTasks: true
         }
       };

@@ -9,7 +9,6 @@
       $auth,
       ContentService,
       TestService,
-      SocialService,
       AnimationService,
       UserService,
       ModalService,
@@ -55,13 +54,6 @@
                 return null;
               }
             };
-          }
-        };
-      });
-      $provide.factory('SocialService', function() {
-        return {
-          showModal: function() {
-            return null;
           }
         };
       });
@@ -127,7 +119,6 @@
         _$rootScope_,
         _ContentService_,
         _TestService_,
-        _SocialService_,
         _AnimationService_,
         _UserService_,
         _ModalService_,
@@ -142,7 +133,6 @@
         $state = _$state_;
         ContentService = _ContentService_;
         TestService = _TestService_;
-        SocialService = _SocialService_;
         AnimationService = _AnimationService_;
         UserService = _UserService_;
         ModalService = _ModalService_;

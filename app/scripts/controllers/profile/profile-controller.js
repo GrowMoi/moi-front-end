@@ -6,7 +6,8 @@
                                             $auth,
                                             $stateParams,
                                             ModalService,
-                                            UserService) {
+                                            UserService,
+                                            SocialService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
@@ -19,9 +20,11 @@
       readOnly: currentUser.id ? false : true,
       buttons: {
         search: true,
+        share: true,
         recomendation: true,
         showTasks: true
-      }
+      },
+      shareCallback: shareProfile
     };
 
     vmProfile.tabs = [
@@ -75,6 +78,14 @@
     function currentUserIsLeader(leaders){
       var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;}); //jshint ignore:line
       return leader ? true : false;
+    }
+
+    function shareProfile() {
+      var data = {
+        title: 'My Profile',
+        description: 'Screenshot'
+      };
+      SocialService.showModal(data);
     }
   });
 })();

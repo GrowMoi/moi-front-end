@@ -23,7 +23,6 @@
                                   AnimationService,
                                   UserService,
                                   ModalService,
-                                  SocialService,
                                   ContentService,
                                   StorageService,
                                   $scope,
@@ -62,6 +61,7 @@
         vm.showModalAction = showModalAction;
         vm.emptyContent = (Object.keys(vm.content).length === 0);
         vm.emptyNeuron = (Object.keys(vm.neuron).length === 0);
+        vm.shareCallback = options.shareCallback;
         vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
         vm.totalNotifications = UserNotificationsService.totalNotifications +
                                 UserNotificationsService.totalRecommendations;
@@ -152,7 +152,7 @@
           readOnly: vm.readOnly,
           callbacks: {
             onClickReadOnly: showNotificationModal,
-            finishedAnimation: finishedAnimationShare
+            finishedAnimation: vm.shareCallback
           }
         });
 
@@ -279,15 +279,6 @@
             });
           }
         });
-      }
-
-      function finishedAnimationShare() {
-        var data = {
-          title: vm.content.title,
-          media: vm.content.media[0],
-          description: vm.content.description
-        };
-        SocialService.showModal(data);
       }
 
       function finishedAnimationsaveTasks() {
