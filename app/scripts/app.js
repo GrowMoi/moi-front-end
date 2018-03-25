@@ -416,6 +416,20 @@
           });
         }
       }
+    })
+    .state('finaltest', {
+      url: '/finaltest',
+      controller: 'FinalTestController',
+      controllerAs: 'vmTest',
+      templateUrl: 'templates/finaltest/finaltest.html',
+      resolve: {
+        currentUser: checkIfIsAuthorized,
+        testData: function(TestService) {
+          return TestService.createFinalTest().then(function(data){
+            return data;
+          });
+        }
+      }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/new_login/first_step');

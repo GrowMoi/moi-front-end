@@ -15,11 +15,27 @@
     var service = {
       goTest: goTest,
       scoreTest: scoreTest,
-      evaluateTest: evaluateTest
+      evaluateTest: evaluateTest,
+      goFinalTest: goFinalTest,
+      createFinalTest: createFinalTest
     };
+
     var popupOptions = { title: 'Error'};
 
     return service;
+
+    function goFinalTest(scope, test) {
+      var modelData = {
+        test: test
+      };
+      ModalService.showModel(
+        {
+          parentScope: scope,
+          templateUrl: 'templates/partials/modal-launch-test.html',
+          model: modelData
+        }
+      );
+    }
 
     function goTest(scope, test) {
       var modelData = {};
@@ -72,6 +88,10 @@
         }
         return $q.reject(err);
       });
+    }
+
+    function createFinalTest() {
+
     }
   }
 })();
