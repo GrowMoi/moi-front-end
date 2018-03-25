@@ -6,10 +6,12 @@
     function (QuizService,
               $scope,
               $rootScope,
-              quizData) {
+              quizData,
+              $auth) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
+    vmTest.currentUser = $auth.user;
     vmTest.next = next;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     init();

@@ -6,7 +6,7 @@
                                                   UserService,
                                                   ModalService,
                                                   UserNotificationsService,
-                                                  $window){
+                                                  $state){
     var notificationsModel = this;
     var notificationSelected,
         requestData = {};
@@ -24,14 +24,29 @@
     };
 
     var notificationStates = {
-      quiz: {
-        template: 'templates/tasks/notifications/partials/quiz.html'
+      'quiz': {
+        template: 'templates/tasks/notifications/partials/tutor-quiz.html',
+        actionRemove: deleteNotification
       },
-      request: {
-        template: 'templates/tasks/notifications/partials/request.html'
+      'tutor_quiz': {
+        template: 'templates/tasks/notifications/partials/tutor-quiz.html',
+        actionRemove: deleteNotification
       },
-      generic: {
-        template: 'templates/tasks/notifications/partials/generic.html'
+      'tutor_request': {
+        template: 'templates/tasks/notifications/partials/tutor-request.html',
+        actionRemove: rejectRequest
+      },
+      'generic': {
+        template: 'templates/tasks/notifications/partials/generic.html',
+        actionRemove: deleteNotification
+      },
+      'admin_generic': {
+        template: 'templates/tasks/notifications/partials/generic.html',
+        actionRemove: deleteNotification
+      },
+      'tutor_generic': {
+        template: 'templates/tasks/notifications/partials/generic.html',
+        actionRemove: deleteNotification
       }
     };
 
@@ -113,19 +128,24 @@
     }
 
     function removeItem(notification, index) {
-      if(notification.tutor){
-        var data = {
-          id: notification.id,
-          response: 'rejected'
-        };
-        UserService.respondNotification(data).then(removeNotification);
-      }else{
-        UserService.deleteNotification(notification).then(function(resp) {
-          if(resp.data.deleted){
-            updateNotifications(index);
-          }
-        });
-      }
+      var stateSelected = notificationStates[notification.type];
+      stateSelected.actionRemove(notification, index);
+    }
+
+    function deleteNotification(notification, index) {
+      UserService.deleteNotification(notification).then(function(resp) {
+        if(resp.data.deleted){
+          updateNotifications(index);
+        }
+      });
+    }
+
+    function rejectRequest(notification) {
+      var data = {
+        id: notification.id,
+        response: 'rejected'
+      };
+      UserService.respondNotification(data).then(removeNotification);
     }
 
     function updateNotifications(index){
@@ -149,7 +169,14 @@
           openTabQuiz: function() {
             var url = notification.description.match(/(https?:\/\/[^\s]+)/g);
             if (url && url[0]) {
-              $window.open(url[0], '_blank');
+              var data = url[0].match(/quiz\/(\d*)\/player\/(\d*)/);
+              if (data && angular.isArray(data)) {
+                dialogQuizModel.closeModal();
+                $state.go('quiz', {
+                  quizId: parseInt(data[1]),
+                  playerId: parseInt(data[2])
+                });
+              }
             }
           },
           continueReading: function () {

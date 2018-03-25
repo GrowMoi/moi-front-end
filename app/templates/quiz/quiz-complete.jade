@@ -15,5 +15,12 @@
             li(ng-repeat="answer in ::vmTest.answersQuiz")
               | {{answer.question}} {{answer.correct ? '✓' : 'x'}}
     .btn
-      .btn-score.button(ng-click="::model.closeModal()"
-                          ui-sref="tree") Ir al Árbol
+      .button-container(ng-if="vmTest.currentUser")
+        .btn-score.button(ng-click="::model.closeModal()"
+                          ui-sref="tree({username: vmTest.currentUser.username})")
+          | Ir al Árbol
+
+      .button-container(ng-if="!vmTest.currentUser")
+        .btn-score.button(ng-click="::model.closeModal()"
+                          ui-sref="login")
+          | Regresar

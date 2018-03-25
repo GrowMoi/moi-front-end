@@ -9,7 +9,7 @@
       $rootScope,
       deferGetNotifications,
       ModalService,
-      $window;
+      $state;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -24,8 +24,8 @@
 
       $provide.factory('ModalService', function () {
         return {
-          showModel: function() {
-
+          showModel: function(options) {
+            options.model.closeModal = function(){};
           }
         };
       });
@@ -34,20 +34,20 @@
         return {};
       });
 
-      $provide.factory('$window', function () {
+      $provide.factory('$state', function () {
         return {
-          open: function(){}
+          go: function(){}
         };
       });
     }));
     beforeEach(inject(
       function (_$controller_, _$rootScope_, _UserService_, _ModalService_,
-        _UserNotificationsService_, _$window_) {
+        _UserNotificationsService_, _$state_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
 
-        $window = _$window_;
+        $state = _$state_;
 
         ModalService = _ModalService_;
 
@@ -57,7 +57,7 @@
           UserService: _UserService_,
           ModalService: ModalService,
           UserNotificationsService: _UserNotificationsService_,
-          $window: $window
+          $state: $state
         };
 
         ctrl = $controller('NotificationsController', dependencies);
@@ -104,7 +104,7 @@
             'title': 'Peticion tutor 1',
             'description': 'Nueva peticion tutor',
             'user_id': 5902,
-            'type': 'request'
+            'type': 'tutor_request'
           }
         ],
         'meta': {
@@ -117,18 +117,18 @@
         var template1 = ctrl.getNotificationPartial(data.notifications[0]);
         var template2 = ctrl.getNotificationPartial(data.notifications[1]);
         var template3 = ctrl.getNotificationPartial(data.notifications[2]);
-        chai.expect(template1).to.equals('templates/tasks/notifications/partials/quiz.html');
+        chai.expect(template1).to.equals('templates/tasks/notifications/partials/tutor-quiz.html');
         chai.expect(template2).to.equals('templates/tasks/notifications/partials/generic.html');
-        chai.expect(template3).to.equals('templates/tasks/notifications/partials/request.html');
+        chai.expect(template3).to.equals('templates/tasks/notifications/partials/tutor-request.html');
       });
 
       it('should go to the quiz url', function() {
         var spy = sinon.spy(ModalService, 'showModel');
-        var spy2 = sinon.spy($window, 'open');
+        var spy2 = sinon.spy($state, 'go');
         ctrl.goToQuiz(data.notifications[0]);
         var params = spy.getCall(0).args[0];
         params.model.callbacks.openTabQuiz();
-        expect(spy2.calledWith('http://localhost:8100/#/quiz/56/player/98')).to.equal(true);
+        expect(spy2.calledWith('quiz')).to.equal(true);
       });
 
       it('showModel should be called', function () {
