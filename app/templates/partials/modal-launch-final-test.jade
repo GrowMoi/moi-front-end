@@ -1,0 +1,16 @@
+.modal.transparent
+  ion-pane.transparent
+    .score-container.row
+      .main-image.col
+        img(src="images/user.png")
+      .col-50
+        .text-container
+          h2#title Felicidades {{model.username}}!, ¿Porqué no probamos si de verdad has aprendido?.
+          h2#content Responderás 21 preguntas y al final recibirás tus resultados y recompensa inmediatamente
+      .pista.col
+    .controls-score
+      span.btn-score.button(ng-click="::model.closeModal()"
+                            ui-sref="test({ testId: model.testId, testData: model} )") Continuar
+    .controls-score
+      span.btn-score.button(ng-click="::model.goToFinalTest()") OK
+      span.btn-score.button(ng-click="model.closeModal()") Seguir Leyendo

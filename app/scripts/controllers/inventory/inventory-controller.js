@@ -49,10 +49,14 @@
         if(achievement.settings.theme){
           vmInv.achievementSelected = achievement;
           UserService.activeAchievement(achievement.id).then(showpopup);
-        }else{
+        }
+        if (achievement.settings.video) {
           $backgroundSound[0].pause();
           vmInv.showInventory = false;
           vmInv.urlVideo = achievement.settings.video;
+        }
+        if (achievement.settings.runFunction) {
+
         }
       }
 

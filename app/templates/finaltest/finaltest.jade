@@ -1,0 +1,13 @@
+ion-view.frame-basic(view-title='{{vm.neuron.title}}')
+  ion-content
+    .frame#test-frame
+      .frame-container
+        div(ng-if="!vmTest.hideTest")
+          .widgets(ng-if="!vmTest.testComplete")
+            .progress-bar
+              .internal-bar(style="width: {{vmTest.percentage}}%")
+              span {{vmTest.percentage}}%
+            .player
+              h3.text-center Jugador: {{vmTest.playerName}}
+          .partial(ng-if="!vmTest.testComplete" ng-include="'templates/partials/test-questions.html'")
+        .complete-test(ng-if="vmTest.testComplete" ng-include="'templates/finaltest/finaltest-complete.html'")
