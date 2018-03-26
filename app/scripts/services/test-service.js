@@ -10,6 +10,7 @@
                       ENV,
                       ModalService,
                       PopupService,
+                      $state,
                       $q){
 
     var service = {
@@ -24,14 +25,17 @@
 
     return service;
 
-    function goFinalTest(scope, test) {
+    function goFinalTest(scope, name) {
       var modelData = {
-        test: test
+        name: name,
+        createFinalTest: function(){
+          $state.go('finaltest');
+        }
       };
       ModalService.showModel(
         {
           parentScope: scope,
-          templateUrl: 'templates/partials/modal-launch-test.html',
+          templateUrl: 'templates/partials/modal-launch-final-test.html',
           model: modelData
         }
       );
@@ -91,7 +95,20 @@
     }
 
     function createFinalTest() {
-
+      /*jshint camelcase: false */
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/users/final_test ',
+        data: {}
+      }).then(function success(res) {
+        return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return $q.reject(err);
+      });
     }
   }
 })();
