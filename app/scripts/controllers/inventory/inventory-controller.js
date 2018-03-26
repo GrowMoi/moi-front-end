@@ -5,9 +5,11 @@
                                                 data,
                                                 UserService,
                                                 MediaAchievements,
-                                                HoverAnimationService) {
+                                                HoverAnimationService,
+                                                TestService,
+                                                $auth) {
       var vmInv = this;
-
+      vmInv.user = $auth.user;
       vmInv.buttonsOptions = {
         neuron: null,
         content: null,
@@ -55,8 +57,8 @@
           vmInv.showInventory = false;
           vmInv.urlVideo = achievement.settings.video;
         }
-        if (achievement.settings.runFunction) {
-
+        if (achievement.settings.runFunction === 'openModal') {
+            TestService.goFinalTest(null, vmInv.user.name);
         }
       }
 

@@ -80,7 +80,7 @@
           description: 'El usuario ha llegado al nivel 9',
           settings: {
             badge:'images/inventory/badges/badge10.png',
-            runFunction: true
+            runFunction: 'openModal'
           }
         }
     });
