@@ -1,13 +1,7 @@
 ion-content.content_tasks
   .row.note(ng-repeat='notification in notificationsModel.notifications')
     .remove-task(ng-click='notificationsModel.removeItem(notification, $index)')
-    .text-notes(ng-if='notification.tutor'
-                ng-click='notificationsModel.confirmRequest(notification)')
-      | {{notification.tutor.name}} ha realizado una solicitud para ser tu tutor
-    .text-notes(ng-if='!notification.tutor'
-                ng-click='notificationsModel.showNotification(notification)')
-      .text-title {{notification.title}}
-      | {{notification.description}}
+    .row-notification(ng-include="notificationsModel.getNotificationPartial(notification)")
   ion-infinite-scroll(ng-if='!notificationsModel.noMoreItemsAvailable'
                       on-infinite='notificationsModel.loadMoreNotifications()'
                       distance='10%')
