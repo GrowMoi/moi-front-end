@@ -6,6 +6,7 @@
     .factory('SocialService', SocialService);
 
   function SocialService($location,
+                        $ionicLoading,
                         Socialshare,
                         ModalService,
                         ENV,
@@ -60,13 +61,25 @@
     }
 
     function sendEmail() {
+      ModalService.destroy();
       var emailParams = {
         'email': modelData.data.email,
-        'public_url': modelData.data.publicUrl,
-        'image_url': modelData.data.previewImage
+        'public_url': modelData.data.publicUrl
       };
-      UserService.sharedEmailContent(emailParams).then(function() {
-        ModalService.destroy();
+      var view = document.getElementsByClassName('scroll-content');
+      $ionicLoading.show({
+        content: 'Sharing',
+        animation: 'fade-in',
+        showBackdrop: true,
+        showDelay: 0
+      });
+      ScreenshotService.getImage(view).then(function(imageBase64){
+        UploadImageService.uploadFile(imageBase64).then(function(resp) {
+          emailParams.image_url = resp.data.url; //jshint ignore:line
+          UserService.sharedEmailContent(emailParams).then(function() {
+            $ionicLoading.hide();
+          });
+        });
       });
     }
 
@@ -77,15 +90,9 @@
       modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
       modelData.data.publicUrl = $location.absUrl();
-      var view = document.getElementsByClassName('scroll-content');
-      ScreenshotService.getImage(view).then(function(imageBase64){
-        UploadImageService.uploadFile(imageBase64).then(function(resp) {
-          modelData.data.previewImage = resp.data.url;
-          ModalService.showModel({
-            templateUrl: 'templates/partials/modal-share-social.html',
-            model: modelData
-          });
-        });
+      ModalService.showModel({
+        templateUrl: 'templates/partials/modal-share-social.html',
+        model: modelData
       });
     }
 
