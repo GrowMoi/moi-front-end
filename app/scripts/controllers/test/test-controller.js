@@ -9,6 +9,7 @@
               $rootScope,
               $auth,
               $state,
+              storage,
               AdviceService,
               ModalService,
               MediaAchievements,
@@ -36,7 +37,7 @@
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
         type: 'marco_arbol',
-        advices: AdviceService.getStatic('test', 0)
+        advices: AdviceService.getStatic('test', 0, storage)
       };
       vmTest.increaseSize = HoverAnimationService.increaseSize;
       vmTest.cssOptions = {

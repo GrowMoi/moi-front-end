@@ -103,6 +103,11 @@
           return NeuronService.getNeuron(id).then(function(data) {
             return data;
           });
+        },
+        storage: function(StorageService) {
+          return StorageService.get().then(function(resp) {
+            return resp.data.storage;
+          });
         }
       }
     })
@@ -137,6 +142,11 @@
               achievements: []
             };
           }
+        },
+        storage: function(StorageService) {
+          return StorageService.get().then(function(resp) {
+            return resp.data.storage;
+          });
         }
       }
     })
@@ -159,7 +169,12 @@
       templateUrl: 'templates/test/test.html',
       params: {testData: null},
       resolve: {
-        currentUser: checkIfIsAuthorized
+        currentUser: checkIfIsAuthorized,
+        storage: function(StorageService) {
+          return StorageService.get().then(function(resp) {
+            return resp.data.storage;
+          });
+        }
       }
     })
     .state('tree', {
@@ -182,6 +197,11 @@
               return data;
             });
           }
+        },
+        storage: function(StorageService) {
+          return StorageService.get().then(function(resp) {
+            return resp.data.storage;
+          });
         }
       }
     })

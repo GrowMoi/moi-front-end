@@ -7,7 +7,8 @@
       $scope,
       $auth,
       dependencies,
-      $rootScope;
+      $rootScope,
+      StorageService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -18,13 +19,29 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          update: function() {
+            return null;
+          }
+        };
+      });
     }));
     beforeEach(inject(
       function(_$controller_,
-        _$rootScope_) {
+        _$rootScope_,
+        _StorageService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        StorageService = _StorageService_;
         $auth = {
           user: {
             id: 1,
@@ -42,6 +59,7 @@
               id: 1
             }]
           },
+          storage: {neuron: {'advices': ['advice0']}},
           $auth: $auth
         };
 

@@ -7,11 +7,13 @@
                                           $auth,
                                           $timeout,
                                           data,
+                                          storage,
                                           PreloadAssets,
                                           AdviceService,
                                           ModalService,
                                           TreeService,
-                                          NeuronAnimateService) {
+                                          NeuronAnimateService,
+                                          StorageService) {
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -48,7 +50,17 @@
       $scope.$apply(function(){treeModel.showTree = true;});
       $backgroundSound[0].play();
       $backgroundSound[0].autoplay = true;
-      localStorage.setItem('vinetas_animadas',JSON.stringify({'depth': data.meta.depth}));
+      if(storage.tree){
+        if(storage.tree.vinetas_animadas){ //jshint ignore:line
+          storage.tree.vinetas_animadas.depth = data.meta.depth; //jshint ignore:line
+        }else {
+          storage.tree.vinetas_animadas = {'depth': data.meta.depth}; //jshint ignore:line
+        }
+        StorageService.update(storage);
+      }else {
+        storage.tree = {'vinetas_animadas': {'depth': data.meta.depth}};
+        StorageService.update(storage);
+      }
       //show only when a user is new
       if(data.meta.depth === 1){
         showWelcomeModal();
@@ -56,7 +68,7 @@
     };
 
     function initVineta() {
-      treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data);
+      treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data, storage);
       if(treeModel.urlVineta) {
         $backgroundSound[0].autoplay = false;
         treeModel.showTree = false;
@@ -71,11 +83,12 @@
     }
 
     function getAdvices(){
-      if (data.meta.depth === 1 && !localStorage.getItem('tree_advice0')){
-        return AdviceService.getStatic('tree', 0);
-      }else if ( data.meta.depth === 2 && !localStorage.getItem('tree_advice1')){
-        return AdviceService.getStatic('tree', 1);
-      }else if (localStorage.getItem('tree_advice1')){
+      var advicesSaved = storage.tree && storage.tree.advices;
+      if (data.meta.depth === 1 && !(advicesSaved && advicesSaved[0])){
+        return AdviceService.getStatic('tree', 0, storage);
+      }else if ( data.meta.depth === 2 && !(advicesSaved && advicesSaved[1])){
+        return AdviceService.getStatic('tree', 1, storage);
+      }else if (advicesSaved && advicesSaved[1]){
         return AdviceService.getRandom('tree');
       }
     }

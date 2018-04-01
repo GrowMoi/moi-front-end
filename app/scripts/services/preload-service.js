@@ -33,8 +33,8 @@
 
     return service;
 
-    function shouldPreloadVideo(data) {
-      var getConfigVineta = JSON.parse(localStorage.getItem('vinetas_animadas'));
+    function shouldPreloadVideo(data, storage) {
+      var getConfigVineta = storage.tree ? storage.tree.vinetas_animadas : undefined; //jshint ignore:line
       var isDiferentLevel = getConfigVineta ? getConfigVineta.depth !== data.meta.depth : false;
       return getVineta(data.meta.depth) !== '' && (!getConfigVineta || isDiferentLevel) ? getVineta(data.meta.depth) : false;
     }

@@ -10,7 +10,8 @@
       dependencies,
       $rootScope,
       PreloadAssets,
-      ModalService;
+      ModalService,
+      StorageService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(module('moi.services', function($provide){
@@ -46,18 +47,34 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          update: function() {
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
                 _PreloadAssets_,
-                _ModalService_) {
+                _ModalService_,
+                _StorageService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         PreloadAssets = _PreloadAssets_;
         ModalService = _ModalService_;
+        StorageService = _StorageService_;
         $auth = {
           user: {
             id: 1,
@@ -70,8 +87,10 @@
         dependencies = {
           $scope: $scope,
           data: {tree: {root: {in_desired_neuron_path: false}}, meta:{depth:4}},
+          storage: {tree: {'vinetas_animadas': {'depth': 1}}},
           $auth: $auth,
-          ModalService: ModalService
+          ModalService: ModalService,
+          StorageService: StorageService
         };
 
         ctrl = $controller('TreeController', dependencies);
