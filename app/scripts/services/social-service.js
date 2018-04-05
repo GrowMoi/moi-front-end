@@ -66,7 +66,7 @@
         'email': modelData.data.email,
         'public_url': modelData.data.publicUrl
       };
-      var view = document.getElementsByClassName('scroll-content');
+      var view = document.querySelector('#screenCapture');
       $ionicLoading.show({
         content: 'Sharing',
         animation: 'fade-in',
