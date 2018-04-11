@@ -103,6 +103,29 @@
       height: 90px;
       width: 100%;
       background-color: white;
+      color: #219fd1;
+      font-family: FontMoi-Title;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .grade {
+        font-size: 25px;
+      }
+
+      .advance {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        .time {
+          display: flex;
+          font-size: 20px;
+          span {
+            font-size: 14px;
+          }
+        }
+      }
     }
 
     .website-info {
