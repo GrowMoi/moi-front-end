@@ -7,7 +7,8 @@
               $scope,
               $rootScope,
               $auth,
-              testData) {
+              testData,
+              ModalService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -100,6 +101,7 @@
         console.log('result: ', data);
         console.log('backend data: ', res);
         // TestService.scoreQuiz($scope, data);
+        showCertificate();
       });
     }
 
@@ -111,6 +113,18 @@
         }
       });
       return count;
+    }
+
+    function showCertificate(){
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-finish-certificate.html',
+        model: {
+          data: {
+            'tree_image': $auth.user.tree_image //jshint ignore:line
+          }
+        }
+      };
+      ModalService.showModel(dialogOptions);
     }
 
   });
