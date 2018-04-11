@@ -3,7 +3,7 @@
 
   angular.module('moi.controllers')
   .controller('FinalTestController',
-    function (QuizService,
+    function (TestService,
               $scope,
               $rootScope,
               $auth,
@@ -26,7 +26,7 @@
       vmTest.timeQuiz = testData.time || 0;
       vmTest.successAnswers = rigthAnswers(testData.answers || []);
       vmTest.questions = shuffle(testData.questions.questions || []);
-      vmTest.testId = testData.testId;
+      vmTest.testId = testData.questions.id;
       vmTest.questions[0].showQuestion = true;
       vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
@@ -85,11 +85,10 @@
     function scoreTest() {
       vmTest.hideTest = true;
       var params = {
-        testId: vmTest.testId,
-        userId: vmTest.user.id,
+        id: vmTest.testId,
         answers: vmTest.answers
       };
-      QuizService.evaluateQuiz(params).then(function(res){
+      TestService.evaluateFinalTest(params).then(function(res){
         var data = {
           totalQuestions: vmTest.totalQuestions,
           successAnswers: rigthAnswers(res.data.result)
@@ -97,7 +96,9 @@
         if(data.successAnswers > 1 ){
           $backgroundSound[0].pause();
         }
-        QuizService.scoreQuiz($scope, data);
+
+        console.log('result: ', data);
+        // TestService.scoreQuiz($scope, data);
       });
     }
 

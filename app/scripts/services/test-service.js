@@ -18,7 +18,9 @@
       scoreTest: scoreTest,
       evaluateTest: evaluateTest,
       goFinalTest: goFinalTest,
-      createFinalTest: createFinalTest
+      createFinalTest: createFinalTest,
+      getFinalTest: getFinalTest,
+      evaluateFinalTest: evaluateFinalTest
     };
 
     var popupOptions = { title: 'Error'};
@@ -30,6 +32,7 @@
         name: name,
         createFinalTest: function(){
           $state.go('finaltest');
+          ModalService.destroy();
         }
       };
       ModalService.showModel(
@@ -102,6 +105,42 @@
         data: {}
       }).then(function success(res) {
         return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return $q.reject(err);
+      });
+    }
+
+    function getFinalTest(id) {
+      /*jshint camelcase: false */
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/final_test/' + id
+      }).then(function success(res) {
+        return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return err;
+      });
+    }
+
+    function evaluateFinalTest(params) {
+      /*jshint camelcase: false */
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/users/final_test/' + params.id + '/answer',
+        data: {
+          id: params.id,
+          answers: JSON.stringify(params.answers || [])
+        }
+      }).then(function success(res) {
+        return res;
       }, function error(err) {
         if(err.status !== 404){
           popupOptions.content = err.statusText;
