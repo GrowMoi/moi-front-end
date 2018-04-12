@@ -98,6 +98,7 @@
         }
 
         console.log('result: ', data);
+        console.log('backend data: ', res);
         // TestService.scoreQuiz($scope, data);
       });
     }
