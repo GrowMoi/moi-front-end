@@ -11,7 +11,8 @@
         answers,
         scope,
         test,
-        data;
+        data,
+        $state;
 
     beforeEach(function(){
       /*jshint camelcase: false */
@@ -76,6 +77,20 @@
       };
     });
 
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.provider('$state', function () {
+        return {
+          $get: function () {
+            return {
+              go: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
+    }));
+
     beforeEach(function(){
       module('config', function ($provide) {
         $provide.constant('ENV', {
@@ -110,11 +125,13 @@
                 _TestService_,
                 _PopupService_,
                 _ModalService_,
+                _$state_,
                 _ENV_) {
         $httpBackend = _$httpBackend_;
         service = (_TestService_);
         PopupService = _PopupService_;
         ModalService = _ModalService_;
+        $state = _$state_;
         ENV = _ENV_;
       })
     );
