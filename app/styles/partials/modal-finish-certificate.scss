@@ -103,26 +103,61 @@
       height: 90px;
       width: 100%;
       background-color: white;
+      display: flex;
+      justify-content: space-between;
       color: #219fd1;
       font-family: FontMoi-Title;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
 
-      .grade {
-        font-size: 25px;
+      #chart-area {
+        height: 80px;
+        width: 160px;
       }
 
       .advance {
+        justify-content: center;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        width: 30%;
-        .time {
+        .title {
+          font-size: 25px;
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+        .subtitle {
+          font-size: 18px;
+        }
+      }
+
+      .grade {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+
+        .percentage{
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .timeContainer {
           display: flex;
-          font-size: 20px;
-          span {
-            font-size: 14px;
+          .time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+            img {
+              margin-right: 5px;
+            }
+          }
+          .label {
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            word-wrap: break-word;
+            width: 150px;
+            line-height: 15px;
           }
         }
       }

@@ -29,18 +29,22 @@
               img(ng-src="{{model.user.tree_image}}")
           img(src="images/diploma/niños.png")
           .report-user
-            .chart
-            .grade
-              | {{::model.totalContentsLearnt}} contenidos aprendidos
+            #canvas-holder
+              canvas#chart-area
             .advance
-              span
+              .title
+                | {{::model.totalContentsLearnt}} contenidos aprendidos
+              .subtitle
                 | {{::model.progressTree}}% crecimiento arbol
-              span
+            .grade
+              .percentage
                 | {{::model.resultFinalTest}}% ultimo test
-              .time
-                img(src="images/diploma/tiempo-8.png")
-                | {{::model.timeOfReading}}
-                span
+              .timeContainer
+                .time
+                  img(src="images/diploma/tiempo-8.png")
+                  div
+                    | {{::model.timeOfReading}}
+                .label
                   | tiempo de lectura promedio
           span.website-info
             | Para más información, visite growmoi.com

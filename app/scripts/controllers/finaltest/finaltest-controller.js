@@ -9,7 +9,8 @@
               $auth,
               testData,
               ModalService,
-              TreeService) {
+              TreeService,
+              $timeout) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -138,7 +139,11 @@
 
     function getPercentageByBranch(data) {
       var totalContentLearns = 0;
-      var finalData = [];
+      var pieChartData = {
+        data: [],
+        colors: [],
+        labels: []
+      };
       //Colores por ramas
       var colors = {
         'Aprender': {value: '#0089b6', color: 'azul'},
@@ -152,14 +157,14 @@
       });
 
       angular.forEach(data.contents_learnt_by_branch, function(branch) { //jshint ignore:line
-        var dataByBranch = {
-          'title': branch.title,
-          'value': getPercentage(totalContentLearns, branch.total_contents_learnt, 2), //jshint ignore:line
-          'color': colors[branch.title].value
-        };
-        finalData.push(dataByBranch);
+        var label = branch.title;
+        var value = getPercentage(totalContentLearns, branch.total_contents_learnt, 2); //jshint ignore:line
+        var color = colors[branch.title].value;
+        pieChartData.data.push(value);
+        pieChartData.labels.push(label);
+        pieChartData.colors.push(color);
       });
-      return finalData;
+      return pieChartData;
     }
 
     function showCertificate(dataModel){
@@ -168,6 +173,24 @@
         model: dataModel
       };
       ModalService.showModel(dialogOptions);
+      $timeout(function() {
+        var config = {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: dataModel.pieChart.data,
+              backgroundColor: dataModel.pieChart.colors
+            }],
+            labels: dataModel.pieChart.labels
+          },
+          options: {
+            legend: false,
+            tooltips: false
+          }
+        };
+        var ctx = document.getElementById('chart-area').getContext('2d');
+        vmTest.myDoughnut = new Chart(ctx, config); // jshint ignore:line
+      }, 0);
     }
 
   });
