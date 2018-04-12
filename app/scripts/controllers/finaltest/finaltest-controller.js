@@ -8,7 +8,8 @@
               $rootScope,
               $auth,
               testData,
-              ModalService) {
+              ModalService,
+              TreeService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -101,7 +102,7 @@
         console.log('result: ', data);
         console.log('backend data: ', res);
         // TestService.scoreQuiz($scope, data);
-        showCertificate();
+        makeReportToCertificate(data, res);
       });
     }
 
@@ -115,14 +116,56 @@
       return count;
     }
 
-    function showCertificate(){
+    function makeReportToCertificate(data, res) {
+      var progressTree = TreeService.progressTree(res.data);
+      var percentageTest = getPercentage(data.totalQuestions,data.successAnswers);
+      var dataReport = {
+        user: vmTest.user,
+        progressTree: progressTree.percentage,
+        resultFinalTest: percentageTest,
+        pieChart: getPercentageByBranch(res.data),
+        timeOfReading: res.data.time,
+        totalContentsLearnt: res.data.current_learnt_contents //jshint ignore:line
+      };
+      showCertificate(dataReport);
+    }
+
+    function getPercentage(total, value, decimals) {
+      var numberOfDecimals = decimals || 1;
+      var percentage = (value * 100) / total;
+      return parseFloat(percentage.toFixed(numberOfDecimals));
+    }
+
+    function getPercentageByBranch(data) {
+      var totalContentLearns = 0;
+      var finalData = [];
+      //Colores por ramas
+      var colors = {
+        'Aprender': {value: '#0089b6', color: 'azul'},
+        'Artes': {value: '#b83b67', color: 'rojo'},
+        'Lenguaje': {value: '#f7af1f', color: 'amarillo'},
+        'Naturaleza': {value: '#359b3d', color: 'verde'},
+      };
+      //TODO: Cambiar por el valor de total de contenidos aprendidos que retorna el backend
+      angular.forEach(data.contents_learnt_by_branch, function(branch) { //jshint ignore:line
+        totalContentLearns += branch.total_contents_learnt; //jshint ignore:line
+      });
+
+      angular.forEach(data.contents_learnt_by_branch, function(branch) { //jshint ignore:line
+        var dataByBranch = {
+          'title': branch.title,
+          'value': getPercentage(totalContentLearns, branch.total_contents_learnt, 2), //jshint ignore:line
+          'color': colors[branch.title].value
+        };
+        finalData.push(dataByBranch);
+      });
+      return finalData;
+    }
+
+    function showCertificate(dataModel){
       var dialogOptions = {
         templateUrl: 'templates/partials/modal-finish-certificate.html',
-        model: {
-          data: {
-            'tree_image': $auth.user.tree_image //jshint ignore:line
-          }
-        }
+        model: dataModel
       };
       ModalService.showModel(dialogOptions);
     }
