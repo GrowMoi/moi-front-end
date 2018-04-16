@@ -7,7 +7,8 @@
               $scope,
               $rootScope,
               quizData,
-              $auth) {
+              $auth,
+              HoverAnimationService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -36,6 +37,10 @@
       vmTest.hideTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
+      vmTest.increaseSize = HoverAnimationService.increaseSize;
+      vmTest.cssOptions = {
+        styles: []
+      };
     }
 
     function selectAnswer(contentId, answer) {
