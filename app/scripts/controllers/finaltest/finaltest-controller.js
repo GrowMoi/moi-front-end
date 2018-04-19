@@ -199,8 +199,15 @@
             labels: dataModel.pieChart.labels
           },
           options: {
+            maintainAspectRatio: false,
             legend: false,
-            tooltips: false
+            tooltips: false,
+            pieceLabel: {
+              render: 'percentage',
+              fontSize: 10,
+              arc: true,
+              fontColor: 'white'
+            }
           }
         };
         var ctx = document.getElementById('chart-area').getContext('2d');
