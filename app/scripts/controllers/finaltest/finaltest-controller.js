@@ -7,6 +7,7 @@
               $scope,
               $rootScope,
               $auth,
+              $state,
               testData,
               ModalService,
               TreeService,
@@ -34,8 +35,10 @@
       vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
       vmTest.hideTest = false;
+      vmTest.hideQuestionTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
+      vmTest.finishedCredits = finishedCredits;
     }
 
     function selectAnswer(contentId, answer) {
@@ -86,7 +89,7 @@
     }
 
     function scoreTest() {
-      vmTest.hideTest = true;
+      vmTest.hideQuestionTest = true;
       var params = {
         id: vmTest.testId,
         answers: vmTest.answers
@@ -100,8 +103,6 @@
           $backgroundSound[0].pause();
         }
 
-        console.log('result: ', data);
-        console.log('backend data: ', res);
         // TestService.scoreQuiz($scope, data);
         makeReportToCertificate(data, res);
       });
@@ -126,9 +127,23 @@
         resultFinalTest: percentageTest,
         pieChart: getPercentageByBranch(res.data),
         timeOfReading: res.data.time,
-        totalContentsLearnt: res.data.current_learnt_contents //jshint ignore:line
+        totalContentsLearnt: res.data.current_learnt_contents, //jshint ignore:line
+        close: closeCertificate
       };
       showCertificate(dataReport);
+    }
+
+    function finishedCredits() {
+      $state.go('profile', {username: vmTest.user.username});
+    }
+
+    function closeCertificate(resultFinalTest) {
+      ModalService.destroy();
+      if(resultFinalTest >= 70){
+        vmTest.hideTest = true;
+      }else{
+        $state.go('inventory');
+      }
     }
 
     function getPercentage(total, value, decimals) {

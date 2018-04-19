@@ -1,7 +1,4 @@
 .modal-certificate {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
   background-image: url(../images/marco_exterior_H.png);
@@ -13,7 +10,7 @@
   .btn-close-modal {
     position: absolute;
     top: 0.2rem;
-    margin-left: 30rem;
+    right: 0;
     width: 2.5rem;
     height: 2.5rem;
     background-image: url(../images/boton_salir_H.png);
