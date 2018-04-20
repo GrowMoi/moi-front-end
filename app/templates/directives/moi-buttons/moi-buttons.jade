@@ -18,7 +18,7 @@
   .btn-save-tasks-gif(ng-if="vm.buttons.saveTask" ng-class="{disabled: vm.emptyContent}")
     animate-sprite(options="vm.saveTasksOptions")
 
-  .btn-share-gif(ng-if="vm.buttons.share" ng-class="{disabled: vm.emptyContent}")
+  .btn-share-gif(ng-if="vm.buttons.share" ng-class="{disabled: !vm.shareCallback}")
     animate-sprite(options="vm.shareOptions")
 
   .btn-add-favorites-gif(ng-if="vm.buttons.addFavorites" ng-class="{disabled: vm.emptyContent}")

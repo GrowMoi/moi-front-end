@@ -24,7 +24,8 @@
       getLeaderboard: getLeaderboard,
       deleteNotification: deleteNotification,
       getUserAchievements: getUserAchievements,
-      activeAchievement: activeAchievement
+      activeAchievement: activeAchievement,
+      sharedEmailContent: sharedEmailContent
     };
 
     var popupOptions = { title: 'Error'};
@@ -343,6 +344,21 @@
         data: null
       }).then(function success(res) {
         return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function sharedEmailContent(params) {
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/users/shared_contents',
+        data: params
+      }).then(function success(res) {
+        return res;
       }, function error(err) {
         if(err.status !== 404){
           popupOptions.content = err.statusText;

@@ -14,11 +14,8 @@
 
     function getImage(elm) {
       var deferred = $q.defer();
-      html2canvas(elm, { // jshint ignore:line
-        onrendered: function (cv){
-          var img = cv.toDataURL('image/png');
-          deferred.resolve(img);
-        }
+      html2canvas(elm).then(function(canvas) { // jshint ignore:line
+        deferred.resolve(canvas.toDataURL());
       });
       return deferred.promise;
     }

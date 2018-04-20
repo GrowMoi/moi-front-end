@@ -35,7 +35,6 @@
     <script src="bower_components/ng-videosharing-embed/build/ng-videosharing-embed.min.js"></script>
     <script src="bower_components/ionic-ion-drawer/ionic.contrib.drawer.js"></script>
     <script src="bower_components/dragular/dist/dragular.min.js"></script>
-    <script src="bower_components/html2canvas/build/html2canvas.js"></script>
     <script src="bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
     <script src="bower_components/ng-idle/angular-idle.js"></script>
     <script src="bower_components/moment/moment.js"></script>
@@ -48,6 +47,7 @@
 
     <!-- your app's js -->
     <script src="scripts/configuration.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/templates.js"></script>
@@ -103,6 +103,7 @@
     <script src="scripts/services/hover-animation-service.js"></script>
     <script src="scripts/services/neuron-animate-service.js"></script>
     <script src="scripts/services/storage-service.js"></script>
+    <script src="scripts/services/upload-image-service.js"></script>
     <!-- directives -->
     <script src="scripts/directives/grid-contents/grid-contents.js"></script>
     <script src="scripts/directives/moi-sound/moi-sound.js"></script>
@@ -128,7 +129,7 @@
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.loadedImages" ng-cloak>
-      <ion-nav-view class="application"></ion-nav-view>
+      <ion-nav-view class="application" id="screenCapture"></ion-nav-view>
       <audio id="backgroundSound"
             ng-src="{{site.soundPage.sound}}"
             volume="{{site.soundPage.volume}}"

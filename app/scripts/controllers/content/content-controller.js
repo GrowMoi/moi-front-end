@@ -12,7 +12,8 @@
                                               ReadContentTimingService,
                                               AdviceService,
                                               MediaAchievements,
-                                              dataInventory) {
+                                              dataInventory,
+                                              SocialService) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -54,7 +55,8 @@
             saveTask: true,
             showTasks: true,
             addFavorites: true
-          }
+          },
+          shareCallback: shareContent
         };
         vmContent.slideGalleryOptions = {
           onRegisterApi: vmContent.readOnly ? emptyFuncion : onRegisterApi
@@ -179,5 +181,14 @@
       }
 
       function emptyFuncion() {}
+
+      function shareContent() {
+        var data = {
+          title: content.title,
+          media: content.media[0],
+          description: content.description
+        };
+        SocialService.showModal(data);
+      }
     });
 })();

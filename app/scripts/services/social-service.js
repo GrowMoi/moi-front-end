@@ -5,15 +5,25 @@
     .module('moi.services')
     .factory('SocialService', SocialService);
 
-  function SocialService(Socialshare, ModalService, ENV) {
+  function SocialService($location,
+                        $ionicLoading,
+                        Socialshare,
+                        ModalService,
+                        ENV,
+                        ScreenshotService,
+                        UploadImageService,
+                        UserService) {
     var service = {
       showModal: showModal
     };
     var configSocialNetwork = {
       appName: 'Moi Social Learning',
-      appUrl: 'http://moi-frontend.herokuapp.com/',
       popupHeight: '300',
       popupWidth: '400'
+    };
+    var modelData = {
+      activeEmail: false,
+      sendEmail: sendEmail
     };
 
     return service;
@@ -25,56 +35,61 @@
         attrs: {
           socialshareVia: ENV.facebookKey,
           socialshareType: 'share',
-          socialshareTitle: options.title,
-          socialshareMedia: options.media,
-          socialshareDescription: options.description,
-          socialshareText: configSocialNetwork.appName,
-          socialshareUrl: configSocialNetwork.appUrl,
+          socialshareDisplay: options.description,
+          socialshareUrl: options.publicUrl,
           socialsharePopupHeight: configSocialNetwork.popupHeight,
           socialsharePopupWidth: configSocialNetwork.popupWidth
         }
       });
     }
 
-    function shareWithTwitter(sms) {
+    function shareWithTwitter(options) {
       ModalService.destroy();
       Socialshare.share({
         provider: 'twitter',
         attrs: {
-          socialshareText: sms,
-          socialshareUrl: configSocialNetwork.appUrl,
+          socialshareText: options.shortDescription,
+          socialshareUrl: options.publicUrl,
           socialsharePopupHeight: configSocialNetwork.popupHeight,
           socialsharePopupWidth: configSocialNetwork.popupWidth
         }
       });
     }
-    function shareWithWhatsapp() {
-      ModalService.destroy();
+
+    function showMailForm() {
+      modelData.activeEmail = !modelData.activeEmail;
     }
 
-    function shareWithMail(options) {
+    function sendEmail() {
       ModalService.destroy();
-      var contentBody = options.description+
-                ' Unete: '+configSocialNetwork.appUrl;
-      Socialshare.share({
-        provider: 'email',
-        attrs: {
-          socialshareBody: contentBody,
-          socialshareSubject: options.title+' - '+configSocialNetwork.appName,
-          socialsharePopupHeight: configSocialNetwork.popupHeight,
-          socialsharePopupWidth: configSocialNetwork.popupWidth
-        }
+      var emailParams = {
+        'email': modelData.data.email,
+        'public_url': modelData.data.publicUrl
+      };
+      var view = document.querySelector('#screenCapture');
+      $ionicLoading.show({
+        content: 'Sharing',
+        animation: 'fade-in',
+        showBackdrop: true,
+        showDelay: 0
+      });
+      ScreenshotService.getImage(view).then(function(imageBase64){
+        UploadImageService.uploadFile(imageBase64).then(function(resp) {
+          emailParams.image_url = resp.data.url; //jshint ignore:line
+          UserService.sharedEmailContent(emailParams).then(function() {
+            $ionicLoading.hide();
+          });
+        });
       });
     }
 
     function showModal(data) {
-      var modelData = {};
       modelData.data = data;
       modelData.shareWithFacebook = shareWithFacebook;
       modelData.shareWithTwitter = shareWithTwitter;
-      modelData.shareWithWhatsapp = shareWithWhatsapp;
-      modelData.shareWithMail = shareWithMail;
+      modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
+      modelData.data.publicUrl = $location.absUrl();
       ModalService.showModel({
         templateUrl: 'templates/partials/modal-share-social.html',
         model: modelData
@@ -84,11 +99,11 @@
     function getShortDescription(options) {
       var shortDescription,
           previewDescription = options.title +' '+ options.description;
-      if(previewDescription.length > 105){
-        shortDescription = previewDescription.substring(0,105);
-        shortDescription = shortDescription.concat('... unete');
+      if(previewDescription.length > 100){
+        shortDescription = previewDescription.substring(0,100);
+        shortDescription = shortDescription.concat('... Visítanos');
       }else{
-        shortDescription = previewDescription.concat(', unete');
+        shortDescription = previewDescription.concat(', Visítanos');
       }
       return shortDescription;
     }

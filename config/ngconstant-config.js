@@ -13,8 +13,10 @@
         ENV: {
           name: 'development',
           apiHost: 'http://localhost:5000',
-          facebookKey: '',
-          pusherKey: '2fd9acbd37b06708983b'
+          facebookKey: '12345678',
+          pusherKey: '2fd9acbd37b06708983b',
+          cloudinaryName: 'test',
+          unsignedUploadPreset: 'test_key'
         },
         IMAGES: {
           paths: []
@@ -33,7 +35,9 @@
           name: 'staging',
           apiHost: '//moi-staging.herokuapp.com',
           facebookKey: process.env.FACEBOOK_KEY,
-          pusherKey: process.env.PUSHER_KEY
+          pusherKey: process.env.PUSHER_KEY,
+          cloudinaryName: process.env.CLOUDINARY_NAME,
+          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
         },
         IMAGES: {
           paths: []
@@ -55,7 +59,9 @@
           name: 'production',
           apiHost: 'http://moi-backend.growmoi.com',
           facebookKey: process.env.FACEBOOK_KEY,
-          pusherKey: process.env.PUSHER_KEY
+          pusherKey: process.env.PUSHER_KEY,
+          cloudinaryName: process.env.CLOUDINARY_NAME,
+          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
         },
         IMAGES: {
           paths: []

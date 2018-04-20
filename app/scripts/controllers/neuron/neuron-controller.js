@@ -8,7 +8,8 @@
               $timeout,
               $auth,
               AdviceService,
-              storage) {
+              storage,
+              SocialService) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -37,7 +38,8 @@
           saveTask: true,
           showTasks: true,
           addFavorites: true
-        }
+        },
+        shareCallback: shareNeuron
       };
 
       vmNeuron.contentsOptions = {
@@ -102,6 +104,15 @@
       if(vmNeuron.frameOptions.advices.length > 0 && (advicesSaved && advicesSaved[1])){
         vmNeuron.frameOptions.advices[0].show = false;
       }
+    }
+
+    function shareNeuron() {
+      var data = {
+        title: vmNeuron.neuron.contents[0].title,
+        media: vmNeuron.neuron.contents[0].media[0],
+        description: vmNeuron.neuron.contents[0].description
+      };
+      SocialService.showModal(data);
     }
   });
 })();

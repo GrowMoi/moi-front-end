@@ -58,7 +58,8 @@
         'title': 'Show and tell your friends!',
         'description': 'Show your progress on your Facebook timeline or any '+
                         'social media you like, although you can share via '+
-                        'mail. Spread the good news!'
+                        'mail. Spread the good news!',
+        'send': 'Send'
       },
       tasks: {
         'my_tasks': 'My Tasks',
@@ -171,8 +172,9 @@
       },
       social: {
         'title': 'Muestrale a tus amigos!',
-        'description': 'Muestra tu progreso en Facebook, Twitter, '+
-                        'Whatsapp o vía email. Comparte las buenas noticias!'
+        'description': 'Muestra tu progreso en Facebook, Twitter '+
+                        'o vía email. Comparte las buenas noticias!',
+        'send': 'Enviar'
       },
       tasks: {
         'my_tasks': 'Mis Tareas',
