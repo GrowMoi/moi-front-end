@@ -2,7 +2,7 @@
   ion-pane.transparent
     .modal-certificate
       .btn-close-modal(ng-click="::model.close(model.resultFinalTest)")
-      .background-certificate
+      .background-certificate(ng-if="!model.certificate")
         .title
           img(src="images/diploma/title.png")
         .container
@@ -46,3 +46,4 @@
                   | tiempo de lectura promedio
           span.website-info
             | Para más información, visite growmoi.com
+      img(ng-if="model.certificate" ng-src="{{::model.certificate}}")

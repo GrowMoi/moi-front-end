@@ -25,7 +25,10 @@
       deleteNotification: deleteNotification,
       getUserAchievements: getUserAchievements,
       activeAchievement: activeAchievement,
-      sharedEmailContent: sharedEmailContent
+      sharedEmailContent: sharedEmailContent,
+      saveCertificate: saveCertificate,
+      getCertificates: getCertificates,
+      deleteCertificate: deleteCertificate
     };
 
     var popupOptions = { title: 'Error'};
@@ -357,6 +360,54 @@
         method: 'POST',
         url: ENV.apiHost + '/api/users/shared_contents',
         data: params
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function saveCertificate(url){
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/users/certificates',
+        data: {
+          /*jshint camelcase: false */
+          media_url: url
+        }
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function getCertificates(page){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/certificates',
+        params: {
+          page: page
+        }
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
+    function deleteCertificate(id){
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + '/api/users/certificates/'+ id,
+        data:{},
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }).then(function success(res) {
         return res;
       }, function error(err) {

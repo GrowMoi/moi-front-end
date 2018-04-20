@@ -1,0 +1,6 @@
+.grid-contents.row
+  .col.col-50.certificate(ng-repeat='certificate in vmProfile.certificates')
+    .remove-certificate(ng-click="vmProfile.removeCertificate(certificate.id)")
+    .content-kind-contents(ng-click="vmProfile.showCertificate(certificate.media_url)")
+      img.format-image(ng-src='{{certificate.media_url}}')
+

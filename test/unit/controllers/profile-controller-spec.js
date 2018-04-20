@@ -88,6 +88,13 @@
             age: '15',
             last_contents_learnt: []
           },
+          certificates: [
+            {
+              id: 1,
+              user_id: 2,
+              media_url: 'asdjlaksd'
+            }
+          ],
           achievements: ['premio1', 'premio2'],
           AnimationService: AnimationService,
           UserService: UserService,

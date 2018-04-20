@@ -237,7 +237,12 @@
           return UserService.profile($stateParams.username).then(function(data){
             return data;
           });
-        }
+        },
+        certificates: function (UserService){
+          return UserService.getCertificates().then(function(data){
+            return data.certificates;
+          });
+        },
       }
     })
     .state('profileEdit', {

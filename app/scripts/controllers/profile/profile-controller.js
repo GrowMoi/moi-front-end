@@ -3,6 +3,7 @@
 
   angular.module('moi.controllers')
   .controller('ProfileController', function (user,
+                                            certificates,
                                             $auth,
                                             $stateParams,
                                             ModalService,
@@ -14,6 +15,9 @@
     vmProfile.user = user;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
+    vmProfile.certificates = certificates;
+    vmProfile.showCertificate = showCertificate;
+    vmProfile.removeCertificate = UserService.deleteCertificate;
     vmProfile.buttonsOptions = {
       neuron: {},
       content: {},
@@ -38,6 +42,12 @@
         field:'awards',
         name: 'Logros',
         partial: 'templates/profile/partials/awards.html',
+        selected: false
+      },
+      {
+        field:'certificates',
+        name: 'Premios',
+        partial: 'templates/profile/partials/certificates.html',
         selected: false
       }
     ];
@@ -86,6 +96,18 @@
         description: 'Screenshot'
       };
       SocialService.showModal(data);
+    }
+
+    function showCertificate(url_certificate){ //jshint ignore:line
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-finish-certificate.html',
+        model: {
+          /*jshint camelcase: false */
+          certificate: url_certificate,
+          close: ModalService.destroy
+        }
+      };
+      ModalService.showModel(dialogOptions);
     }
   });
 })();
