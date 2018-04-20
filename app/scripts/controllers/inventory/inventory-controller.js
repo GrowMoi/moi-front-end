@@ -58,7 +58,7 @@
           vmInv.urlVideo = achievement.settings.video;
         }
         if (achievement.settings.runFunction === 'openModal') {
-            TestService.goFinalTest(null, vmInv.user.name);
+          TestService.goFinalTest(null, vmInv.user.name);
         }
       }
 
