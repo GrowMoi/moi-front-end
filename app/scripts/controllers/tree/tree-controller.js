@@ -14,7 +14,9 @@
                                           TreeService,
                                           NeuronAnimateService,
                                           StorageService,
-                                          SocialService) {
+                                          SocialService,
+                                          TestService) {
+
     var treeModel = this;
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
@@ -66,6 +68,10 @@
       //show only when a user is new
       if(data.meta.depth === 1){
         showWelcomeModal();
+      }
+      //show only when a user reach level 9
+      if(data.meta.depth === 9){
+        TestService.goFinalTest(null, currentUser.name);
       }
     };
 

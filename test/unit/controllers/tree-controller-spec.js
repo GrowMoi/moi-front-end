@@ -11,6 +11,7 @@
       $rootScope,
       PreloadAssets,
       ModalService,
+      TestService,
       StorageService;
 
     beforeEach(module('moi.controllers'));
@@ -68,6 +69,17 @@
           }
         };
       });
+      $provide.factory('TestService', function(){
+        return {
+          goFinalTest: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -75,13 +87,15 @@
                 _$rootScope_,
                 _PreloadAssets_,
                 _ModalService_,
-                _StorageService_) {
+                _StorageService_,
+                _TestService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         PreloadAssets = _PreloadAssets_;
         ModalService = _ModalService_;
         StorageService = _StorageService_;
+        TestService = _TestService_;
         $auth = {
           user: {
             id: 1,
