@@ -1,11 +1,16 @@
 ion-view.frame-basic(view-title='{{vm.neuron.title}}')
-  ion-content
-    .frame#test-frame
-      .frame-container
-        div(ng-if="!vmTest.hideTest")
-          .widgets(ng-if="!vmTest.testComplete")
-            .progress-bar
-              .internal-bar(style="width: {{vmTest.percentage}}%")
-              span {{vmTest.percentage}}%
-          .partial(ng-if="!vmTest.testComplete" ng-include="'templates/partials/test-questions.html'")
+  div(ng-if="!vmTest.hideTest")
+    ion-content
+      .frame#test-frame
+        .frame-container
+          div(ng-if="!vmTest.hideQuestionTest")
+            .widgets(ng-if="!vmTest.testComplete")
+              .progress-bar
+                .internal-bar(style="width: {{vmTest.percentage}}%")
+                span {{vmTest.percentage}}%
+            .partial(ng-if="!vmTest.testComplete" ng-include="'templates/partials/test-questions.html'")
         .complete-test(ng-if="vmTest.testComplete" ng-include="'templates/finaltest/finaltest-complete.html'")
+  .movies-container(ng-if="vmTest.hideTest")
+    .container-loading
+      .logo-loading
+    moi-videos.vinetas(video-url="videos/creditos.mp4" video-type="video/mp4" callback="vmTest.finishedCredits()")

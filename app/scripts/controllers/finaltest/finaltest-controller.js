@@ -7,7 +7,11 @@
               $scope,
               $rootScope,
               $auth,
-              testData) {
+              $state,
+              testData,
+              ModalService,
+              TreeService,
+              $timeout) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -31,8 +35,10 @@
       vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
       vmTest.hideTest = false;
+      vmTest.hideQuestionTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
+      vmTest.finishedCredits = finishedCredits;
     }
 
     function selectAnswer(contentId, answer) {
@@ -83,7 +89,7 @@
     }
 
     function scoreTest() {
-      vmTest.hideTest = true;
+      vmTest.hideQuestionTest = true;
       var params = {
         id: vmTest.testId,
         answers: vmTest.answers
@@ -97,9 +103,8 @@
           $backgroundSound[0].pause();
         }
 
-        console.log('result: ', data);
-        console.log('backend data: ', res);
         // TestService.scoreQuiz($scope, data);
+        makeReportToCertificate(data, res);
       });
     }
 
@@ -111,6 +116,103 @@
         }
       });
       return count;
+    }
+
+    function makeReportToCertificate(data, res) {
+      var progressTree = TreeService.progressTree(res.data);
+      var percentageTest = getPercentage(data.totalQuestions,data.successAnswers);
+      var dataReport = {
+        user: vmTest.user,
+        progressTree: progressTree.percentage,
+        resultFinalTest: percentageTest,
+        pieChart: getPercentageByBranch(res.data),
+        timeOfReading: res.data.time,
+        totalContentsLearnt: res.data.current_learnt_contents, //jshint ignore:line
+        close: closeCertificate
+      };
+      showCertificate(dataReport);
+    }
+
+    function finishedCredits() {
+      $state.go('profile', {username: vmTest.user.username});
+    }
+
+    function closeCertificate(resultFinalTest) {
+      ModalService.destroy();
+      if(resultFinalTest >= 70){
+        vmTest.hideTest = true;
+      }else{
+        $state.go('inventory');
+      }
+    }
+
+    function getPercentage(total, value, decimals) {
+      var numberOfDecimals = decimals || 1;
+      var percentage = (value * 100) / total;
+      return parseFloat(percentage.toFixed(numberOfDecimals));
+    }
+
+    function getPercentageByBranch(data) {
+      var totalContentLearns = 0;
+      var pieChartData = {
+        data: [],
+        colors: [],
+        labels: []
+      };
+      //Colores por ramas
+      var colors = {
+        'Aprender': {value: '#0089b6', color: 'azul'},
+        'Artes': {value: '#b83b67', color: 'rojo'},
+        'Lenguaje': {value: '#f7af1f', color: 'amarillo'},
+        'Naturaleza': {value: '#359b3d', color: 'verde'},
+      };
+      //TODO: Cambiar por el valor de total de contenidos aprendidos que retorna el backend
+      angular.forEach(data.contents_learnt_by_branch, function(branch) { //jshint ignore:line
+        totalContentLearns += branch.total_contents_learnt; //jshint ignore:line
+      });
+
+      angular.forEach(data.contents_learnt_by_branch, function(branch) { //jshint ignore:line
+        var label = branch.title;
+        var value = getPercentage(totalContentLearns, branch.total_contents_learnt, 2); //jshint ignore:line
+        var color = colors[branch.title].value;
+        pieChartData.data.push(value);
+        pieChartData.labels.push(label);
+        pieChartData.colors.push(color);
+      });
+      return pieChartData;
+    }
+
+    function showCertificate(dataModel){
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-finish-certificate.html',
+        model: dataModel
+      };
+      ModalService.showModel(dialogOptions);
+      $timeout(function() {
+        var config = {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: dataModel.pieChart.data,
+              backgroundColor: dataModel.pieChart.colors
+            }],
+            labels: dataModel.pieChart.labels
+          },
+          options: {
+            maintainAspectRatio: false,
+            legend: false,
+            tooltips: false,
+            pieceLabel: {
+              render: 'percentage',
+              fontSize: 10,
+              arc: true,
+              fontColor: 'white'
+            }
+          }
+        };
+        var ctx = document.getElementById('chart-area').getContext('2d');
+        vmTest.myDoughnut = new Chart(ctx, config); // jshint ignore:line
+      }, 0);
     }
 
   });

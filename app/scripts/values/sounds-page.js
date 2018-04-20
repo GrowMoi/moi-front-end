@@ -73,6 +73,10 @@
       quiz: {
         sound: 'sounds/test.mp3',
         type: 'mp3'
+      },
+      finaltest:{
+        sound: 'sounds/test.mp3',
+        type: 'mp3'
       }
     });
 })();

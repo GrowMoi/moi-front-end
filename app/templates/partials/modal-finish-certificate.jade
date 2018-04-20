@@ -1,0 +1,48 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-certificate
+      .btn-close-modal(ng-click="::model.close(model.resultFinalTest)")
+      .background-certificate
+        .title
+          img(src="images/diploma/title.png")
+        .container
+          .info-user
+            .table
+              .row
+                | {{::model.user.name}}
+              .row
+                .column.space-btwn
+                  | {{::model.user.age}}
+                  span
+                    | edad
+                .column.space-btwn
+                  | {{::model.user.country}}
+                  span
+                    | pais
+              .row
+                .column
+                  | {{::model.user.school}}
+                  span
+                    | escuela
+            .tree-preview
+              img.marco(src="images/view-elements/marco.png")
+              img(ng-src="{{model.user.tree_image}}")
+          img(src="images/diploma/niños.png")
+          .report-user
+            #canvas-holder
+              canvas#chart-area
+            .advance
+              .title
+                | {{::model.totalContentsLearnt}} contenidos aprendidos
+              .subtitle
+                | {{::model.progressTree}}% crecimiento arbol
+            .grade
+              .percentage
+                | {{::model.resultFinalTest}}% ultimo test
+              .timeContainer
+                .time
+                  | {{::model.timeOfReading}}
+                .label
+                  | tiempo de lectura promedio
+          span.website-info
+            | Para más información, visite growmoi.com
