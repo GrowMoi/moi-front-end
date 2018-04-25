@@ -66,21 +66,29 @@
         'email': modelData.data.email,
         'public_url': modelData.data.publicUrl
       };
-      var view = document.querySelector('#screenCapture');
+
       $ionicLoading.show({
         content: 'Sharing',
         animation: 'fade-in',
         showBackdrop: true,
         showDelay: 0
       });
-      ScreenshotService.getImage(view).then(function(imageBase64){
-        UploadImageService.uploadFile(imageBase64).then(function(resp) {
-          emailParams.image_url = resp.data.url; //jshint ignore:line
-          UserService.sharedEmailContent(emailParams).then(function() {
-            $ionicLoading.hide();
+      if(modelData.data.image_url){ //jshint ignore:line
+        emailParams.image_url = modelData.data.image_url; //jshint ignore:line
+        UserService.sharedEmailContent(emailParams).then(function() {
+          $ionicLoading.hide();
+        });
+      }else {
+        var view = document.querySelector('#screenCapture');
+        ScreenshotService.getImage(view).then(function(imageBase64){
+          UploadImageService.uploadFile(imageBase64).then(function(resp) {
+            emailParams.image_url = resp.data.url; //jshint ignore:line
+            UserService.sharedEmailContent(emailParams).then(function() {
+              $ionicLoading.hide();
+            });
           });
         });
-      });
+      }
     }
 
     function showModal(data) {

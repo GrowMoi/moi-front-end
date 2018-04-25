@@ -117,7 +117,8 @@
         model: {
           /*jshint camelcase: false */
           certificate: url_certificate,
-          close: ModalService.destroy
+          close: ModalService.destroy,
+          sharedCertificate: sharedCertificate
         }
       };
       ModalService.showModel(dialogOptions);
@@ -133,6 +134,15 @@
         }
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });
+    }
+
+    function sharedCertificate(image_url){//jshint ignore:line
+      var data = {
+        title: 'Certificate',
+        description: 'Screenshot',
+        image_url: image_url //jshint ignore:line
+      };
+      SocialService.showModal(data);
     }
 
   });
