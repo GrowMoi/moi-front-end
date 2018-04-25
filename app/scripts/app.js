@@ -239,8 +239,8 @@
           });
         },
         certificates: function (UserService){
-          return UserService.getCertificates().then(function(data){
-            return data.certificates;
+          return UserService.getCertificates(1).then(function(data){
+            return data;
           });
         },
       }

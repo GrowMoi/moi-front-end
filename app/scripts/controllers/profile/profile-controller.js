@@ -6,6 +6,7 @@
                                             certificates,
                                             $auth,
                                             $stateParams,
+                                            $scope,
                                             ModalService,
                                             UserService,
                                             SocialService) {
@@ -15,9 +16,11 @@
     vmProfile.user = user;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
-    vmProfile.certificates = certificates;
+    vmProfile.certificates = certificates.certificates;
     vmProfile.showCertificate = showCertificate;
     vmProfile.removeCertificate = UserService.deleteCertificate;
+    vmProfile.noMoreItemsAvailable = true;
+    vmProfile.currentPage = 2;
     vmProfile.buttonsOptions = {
       neuron: {},
       content: {},
@@ -63,7 +66,17 @@
       });
     };
 
+    init();
     initTab();
+
+    function init() {
+      /*jshint camelcase: false */
+      vmProfile.totalItems = certificates.meta.total_items;
+      if(vmProfile.totalItems > 2){
+        vmProfile.noMoreItemsAvailable = false;
+        vmProfile.loadMoreCertificates = loadMoreCertificates;
+      }
+    }
 
     function initTab() {
       vmProfile.changeTab('lasts-contents');
@@ -109,5 +122,18 @@
       };
       ModalService.showModel(dialogOptions);
     }
+
+    function loadMoreCertificates() {
+      UserService.getCertificates(vmProfile.currentPage).then(function(data) {
+        /*jshint camelcase: false */
+        vmProfile.certificates = vmProfile.certificates.concat(data.certificates);
+        vmProfile.currentPage += 1;
+        if ( vmProfile.certificates.length === vmProfile.totalItems ) {
+          vmProfile.noMoreItemsAvailable = true;
+        }
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+    }
+
   });
 })();

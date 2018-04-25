@@ -88,17 +88,23 @@
             age: '15',
             last_contents_learnt: []
           },
-          certificates: [
-            {
-              id: 1,
-              user_id: 2,
-              media_url: 'asdjlaksd'
+          certificates: {
+            certificates: [
+              {
+                id: 1,
+                user_id: 2,
+                media_url: 'asdjlaksd'
+              }
+            ],
+            meta:{
+              total_items:4
             }
-          ],
+        },
           achievements: ['premio1', 'premio2'],
           AnimationService: AnimationService,
           UserService: UserService,
-          ModalService: ModalService
+          ModalService: ModalService,
+          $scope: $scope
         };
 
         controller = $controller('ProfileController', dependencies);

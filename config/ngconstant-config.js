@@ -15,8 +15,8 @@
           apiHost: 'http://localhost:5000',
           facebookKey: '12345678',
           pusherKey: '2fd9acbd37b06708983b',
-          cloudinaryName: 'test',
-          unsignedUploadPreset: 'test_key'
+          cloudinaryName: 'moi-images',
+          unsignedUploadPreset: 'nmk8efc6'
         },
         IMAGES: {
           paths: []
