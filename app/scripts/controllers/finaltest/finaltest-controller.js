@@ -142,7 +142,6 @@
     }
 
     function closeCertificate(resultFinalTest) {
-      ModalService.destroy();
       $ionicLoading.show({
         content: 'Sharing',
         animation: 'fade-in',

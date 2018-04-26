@@ -227,7 +227,7 @@
         model: {
           message: msg,
           callbacks: {
-            btnCenter: ModalService.destroy
+            btnCenter: function(){dialogOptions.closeModal();}
           },
           labels: {
             btnCenter: 'Seguir leyendo'

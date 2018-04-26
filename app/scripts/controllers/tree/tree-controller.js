@@ -108,7 +108,7 @@
                 'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
                 'máxima expresión.',
         callbacks: {
-          btnCenter: ModalService.destroy
+          btnCenter: function(){dialogContentModel.closeModal();}
         },
         labels: {
           btnCenter: 'Ok'

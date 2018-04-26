@@ -153,13 +153,13 @@
         callbacks: {
           btnRight: function(){
             $state.go('inventory');
-            ModalService.destroy();
+            dialogContentModel.closeModal();
           },
           btnLeft: function(){
             $state.go('tree', {
               username: currentUser.username
             });
-            ModalService.destroy();
+            dialogContentModel.closeModal();
           }
         },
         labels: {

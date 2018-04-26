@@ -118,7 +118,6 @@
         model: {
           /*jshint camelcase: false */
           certificate: url_certificate,
-          close: ModalService.destroy,
           sharedCertificate: sharedCertificate
         }
       };

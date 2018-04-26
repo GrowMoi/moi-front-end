@@ -35,7 +35,7 @@
       var dialogContentModel = {
         message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
         callbacks: {
-          btnRight: ModalService.destroy,
+          btnRight: function(){dialogContentModel.closeModal();},
           btnLeft: modalCallbak
         },
         labels: {
@@ -287,7 +287,7 @@
             dialogContentModel = {
               message: 'Este contenido ya esta en tus tareas, intenta guardar un contenido diferente.',
               callbacks: {
-                btnCenter: ModalService.destroy
+                btnCenter: function(){dialogContentModel.closeModal();}
               },
               labels: {
                 btnCenter: 'Seguir leyendo'

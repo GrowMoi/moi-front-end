@@ -29,7 +29,7 @@
     return service;
 
     function shareWithFacebook(options) {
-      ModalService.destroy();
+      modelData.closeModal();
       Socialshare.share({
         provider: 'facebook',
         attrs: {
@@ -44,7 +44,7 @@
     }
 
     function shareWithTwitter(options) {
-      ModalService.destroy();
+      modelData.closeModal();
       Socialshare.share({
         provider: 'twitter',
         attrs: {
@@ -61,7 +61,7 @@
     }
 
     function sendEmail() {
-      ModalService.destroy();
+      modelData.closeModal();
       var emailParams = {
         'email': modelData.data.email,
         'public_url': modelData.data.publicUrl
