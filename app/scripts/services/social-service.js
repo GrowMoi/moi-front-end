@@ -97,7 +97,7 @@
       modelData.shareWithTwitter = shareWithTwitter;
       modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
-      modelData.data.publicUrl = $location.absUrl();
+      modelData.data.publicUrl = data.publicUrl || $location.absUrl();
       ModalService.showModel({
         templateUrl: 'templates/partials/modal-share-social.html',
         model: modelData

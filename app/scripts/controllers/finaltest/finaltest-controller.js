@@ -138,7 +138,7 @@
     }
 
     function finishedCredits() {
-      $state.go('profile', {username: vmTest.user.username});
+      $state.go('profile', {username: vmTest.user.username, defaultTab: 'certificates'});
     }
 
     function closeCertificate(resultFinalTest) {

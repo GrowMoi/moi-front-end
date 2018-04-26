@@ -32,7 +32,6 @@ ion-view.tree-view(view-title='TreeMoi')
                 span
                   | {{::treeModel.userLevel}}
                 img(src= "images/tree-number-level.png")
-        .btn-shared-tree(ng-click="treeModel.sharedTree()")
         .tree-content(ng-if="::treeModel.isBasicLevel")
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
@@ -43,6 +42,7 @@ ion-view.tree-view(view-title='TreeMoi')
               img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
           .tree-draw
             moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
+        .btn-shared-tree(ng-click="treeModel.sharedTree()")
       moi-frame(options="treeModel.frameOptions")
   .movies-container(ng-if="!treeModel.showTree")
     .container-loading

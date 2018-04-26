@@ -232,6 +232,7 @@
       controller: 'ProfileController',
       controllerAs: 'vmProfile',
       cache: false,
+      params: {defaultTab: null},
       resolve: {
         user: function (UserService, $stateParams){
           return UserService.profile($stateParams.username).then(function(data){

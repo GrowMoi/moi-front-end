@@ -79,7 +79,8 @@
     }
 
     function initTab() {
-      vmProfile.changeTab('lasts-contents');
+      var defaultTab = $stateParams.defaultTab || 'lasts-contents';
+      vmProfile.changeTab(defaultTab);
     }
 
     function showLeaderboard(){
@@ -140,7 +141,8 @@
       var data = {
         title: 'Certificate',
         description: 'Screenshot',
-        image_url: image_url //jshint ignore:line
+        image_url: image_url, //jshint ignore:line
+        publicUrl: image_url //jshint ignore:line
       };
       SocialService.showModal(data);
     }
