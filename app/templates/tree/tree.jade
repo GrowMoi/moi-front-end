@@ -2,7 +2,7 @@ ion-view.tree-view(view-title='TreeMoi')
   div(ng-if="treeModel.showTree")
     ion-content
       .app-content(id="{{site.idsTreeScreen.view}}")
-        back-button.arrow.back-arrow
+        back-button.arrow.back-arrow(data-html2canvas-ignore="true")
         .clouds-container
           .cloud.animated.slideInLeft
             img(src="images/nube1L.png")
@@ -10,7 +10,7 @@ ion-view.tree-view(view-title='TreeMoi')
             img(src="images/nube2L.png")
           .cloud.animated.slideInLeft
             img(src="images/nube3L.png")
-        .tree-percentage
+        .tree-percentage(data-html2canvas-ignore="true")
           .percentage-container(tooltip-moi="Has descubierto el {{::treeModel.percentage}}% de tu árbol Moi"
                                 tooltip-position="left")
             .percentage-progress-bar
@@ -19,7 +19,7 @@ ion-view.tree-view(view-title='TreeMoi')
               .percentage-bar(style="width: {{treeModel.percentage}}%")
             img.widget(src="images/tree-percentage-bar.png")
         .level-user
-          .level-user-container
+          .level-user-container(data-html2canvas-ignore="true")
             .level-container(tooltip-moi="Tu nivel de aprendizaje es {{::treeModel.userLevel}}"
                     tooltip-position="up")
               .level-progress-bar
@@ -42,7 +42,7 @@ ion-view.tree-view(view-title='TreeMoi')
               img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
           .tree-draw
             moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
-        .btn-shared-tree(ng-click="treeModel.sharedTree()")
+        .btn-shared-tree(ng-click="treeModel.sharedTree()" data-html2canvas-ignore="true")
       moi-frame(options="treeModel.frameOptions")
   .movies-container(ng-if="!treeModel.showTree")
     .container-loading
