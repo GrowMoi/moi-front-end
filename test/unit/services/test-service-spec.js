@@ -4,6 +4,7 @@
   describe('TestService', function () {
     var service,
         $httpBackend,
+        $auth,
         PopupService,
         ModalService,
         ENV,
@@ -118,6 +119,17 @@
           }
         };
       });
+      $provide.service('$auth', function() {
+        return {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            username: 'admin'
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -126,12 +138,14 @@
                 _PopupService_,
                 _ModalService_,
                 _$state_,
+                _$auth_,
                 _ENV_) {
         $httpBackend = _$httpBackend_;
         service = (_TestService_);
         PopupService = _PopupService_;
         ModalService = _ModalService_;
         $state = _$state_;
+        $auth = _$auth_;
         ENV = _ENV_;
       })
     );

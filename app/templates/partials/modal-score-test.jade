@@ -13,7 +13,5 @@
           p#content Respondiste {{model.successAnswers}} de {{model.totalQuestions}} preguntas correctamente
       .col
     .controls-score
-      span.btn-score.button(ng-click="::model.closeModal()"
-                            ng-if="!model.isQuiz") Continuar
-      span.btn-score.button(ng-click="model.onClick()"
-                            ng-if="model.isQuiz") Continuar
+      span.btn-score.button(ng-click="model.onClick()")
+        | Continuar
