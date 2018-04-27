@@ -14,7 +14,7 @@
 
     function getImage(elm) {
       var deferred = $q.defer();
-      html2canvas(elm).then(function(canvas) { // jshint ignore:line
+      html2canvas(elm, {backgroundColor: null}).then(function(canvas) { // jshint ignore:line
         deferred.resolve(canvas.toDataURL());
       });
       return deferred.promise;
