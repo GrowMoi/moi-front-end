@@ -232,12 +232,18 @@
       controller: 'ProfileController',
       controllerAs: 'vmProfile',
       cache: false,
+      params: {defaultTab: null},
       resolve: {
         user: function (UserService, $stateParams){
           return UserService.profile($stateParams.username).then(function(data){
             return data;
           });
-        }
+        },
+        certificates: function (UserService){
+          return UserService.getCertificates(1).then(function(data){
+            return data;
+          });
+        },
       }
     })
     .state('profileEdit', {

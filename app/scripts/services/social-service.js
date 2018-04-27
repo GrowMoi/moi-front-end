@@ -29,7 +29,7 @@
     return service;
 
     function shareWithFacebook(options) {
-      ModalService.destroy();
+      modelData.closeModal();
       Socialshare.share({
         provider: 'facebook',
         attrs: {
@@ -44,7 +44,7 @@
     }
 
     function shareWithTwitter(options) {
-      ModalService.destroy();
+      modelData.closeModal();
       Socialshare.share({
         provider: 'twitter',
         attrs: {
@@ -61,26 +61,34 @@
     }
 
     function sendEmail() {
-      ModalService.destroy();
+      modelData.closeModal();
       var emailParams = {
         'email': modelData.data.email,
         'public_url': modelData.data.publicUrl
       };
-      var view = document.querySelector('#screenCapture');
+
       $ionicLoading.show({
         content: 'Sharing',
         animation: 'fade-in',
         showBackdrop: true,
         showDelay: 0
       });
-      ScreenshotService.getImage(view).then(function(imageBase64){
-        UploadImageService.uploadFile(imageBase64).then(function(resp) {
-          emailParams.image_url = resp.data.url; //jshint ignore:line
-          UserService.sharedEmailContent(emailParams).then(function() {
-            $ionicLoading.hide();
+      if(modelData.data.image_url){ //jshint ignore:line
+        emailParams.image_url = modelData.data.image_url; //jshint ignore:line
+        UserService.sharedEmailContent(emailParams).then(function() {
+          $ionicLoading.hide();
+        });
+      }else {
+        var view = document.querySelector('#screenCapture');
+        ScreenshotService.getImage(view).then(function(imageBase64){
+          UploadImageService.uploadFile(imageBase64).then(function(resp) {
+            emailParams.image_url = resp.data.url; //jshint ignore:line
+            UserService.sharedEmailContent(emailParams).then(function() {
+              $ionicLoading.hide();
+            });
           });
         });
-      });
+      }
     }
 
     function showModal(data) {
@@ -89,7 +97,7 @@
       modelData.shareWithTwitter = shareWithTwitter;
       modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
-      modelData.data.publicUrl = $location.absUrl();
+      modelData.data.publicUrl = data.publicUrl || $location.absUrl();
       ModalService.showModel({
         templateUrl: 'templates/partials/modal-share-social.html',
         model: modelData

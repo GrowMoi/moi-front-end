@@ -286,6 +286,7 @@ a {
   width: 4em;
   height: 4em;
   cursor: pointer;
+  z-index: 2;
 }
 
 @-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg); } }

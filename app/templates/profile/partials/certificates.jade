@@ -1,0 +1,9 @@
+ion-content.grid-certificates
+  .col.col-50.certificate(ng-repeat='certificate in vmProfile.certificates track by $index')
+    .remove-certificate(ng-click="vmProfile.removeCertificate(certificate.id)")
+    .content-cetificates(ng-click="vmProfile.showCertificate(certificate.media_url)")
+      img.format-image(ng-src='{{certificate.media_url}}')
+  ion-infinite-scroll(ng-if='!vmProfile.noMoreItemsAvailable'
+                      on-infinite='vmProfile.loadMoreCertificates()'
+                      distance='5%')
+

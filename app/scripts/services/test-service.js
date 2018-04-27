@@ -32,7 +32,7 @@
         name: name,
         createFinalTest: function(){
           $state.go('finaltest');
-          ModalService.destroy();
+          modelData.closeModal();
         }
       };
       ModalService.showModel(

@@ -1,15 +1,17 @@
 .modal.transparent
   ion-pane.transparent
     .modal-certificate
-      .btn-close-modal(ng-click="::model.close(model.resultFinalTest)")
-      .background-certificate
+      .btn-close-modal(ng-click="model.closeModal(); model.close(model.resultFinalTest)"
+                      tooltip-moi="Cerrar"
+                      tooltip-position="up")
+      .background-certificate(ng-if="!model.certificate")
         .title
           img(src="images/diploma/title.png")
         .container
           .info-user
             .table
               .row
-                | {{::model.user.name}}
+                | {{::model.user.username}}
               .row
                 .column.space-btwn
                   | {{::model.user.age}}
@@ -46,3 +48,8 @@
                   | tiempo de lectura promedio
           span.website-info
             | Para más información, visite growmoi.com
+      img.certificate-image(ng-if="model.certificate" ng-src="{{::model.certificate}}")
+      .btn-shared-certificate(ng-if="model.certificate"
+                              ng-click="model.sharedCertificate(model.certificate)"
+                              tooltip-moi="Compartir"
+                              tooltip-position="up")

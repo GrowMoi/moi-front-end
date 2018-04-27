@@ -8,10 +8,14 @@
               $rootScope,
               $auth,
               $state,
+              $ionicLoading,
               testData,
               ModalService,
               TreeService,
-              $timeout) {
+              $timeout,
+              ScreenshotService,
+              UploadImageService,
+              UserService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -134,16 +138,29 @@
     }
 
     function finishedCredits() {
-      $state.go('profile', {username: vmTest.user.username});
+      $state.go('profile', {username: vmTest.user.username, defaultTab: 'certificates'});
     }
 
     function closeCertificate(resultFinalTest) {
-      ModalService.destroy();
-      if(resultFinalTest >= 70){
-        vmTest.hideTest = true;
-      }else{
-        $state.go('inventory');
-      }
+      $ionicLoading.show({
+        content: 'Sharing',
+        animation: 'fade-in',
+        showBackdrop: true,
+        showDelay: 0
+      });
+      var view = document.querySelector('.background-certificate');
+      ScreenshotService.getImage(view).then(function(imageBase64){
+        UploadImageService.uploadFile(imageBase64).then(function(resp) {
+          UserService.saveCertificate(resp.data.url).then(function() {
+            $ionicLoading.hide();
+            if(resultFinalTest >= 70){
+              vmTest.hideTest = true;
+            }else{
+              $state.go('inventory');
+            }
+          });
+        });
+      });
     }
 
     function getPercentage(total, value, decimals) {

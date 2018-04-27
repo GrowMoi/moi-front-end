@@ -131,9 +131,9 @@
           callbacks: {
             btnRight: function(){
               $window.open(link);
-              ModalService.destroy();
+              dialogContentModel.closeModal();
             },
-            btnLeft: ModalService.destroy
+            btnLeft: function(){dialogContentModel.closeModal();}
           },
           labels: {
             btnRight: 'Ok',

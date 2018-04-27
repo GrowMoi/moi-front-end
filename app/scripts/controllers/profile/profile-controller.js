@@ -3,8 +3,10 @@
 
   angular.module('moi.controllers')
   .controller('ProfileController', function (user,
+                                            certificates,
                                             $auth,
                                             $stateParams,
+                                            $scope,
                                             ModalService,
                                             UserService,
                                             SocialService) {
@@ -14,6 +16,11 @@
     vmProfile.user = user;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
+    vmProfile.certificates = certificates.certificates;
+    vmProfile.showCertificate = showCertificate;
+    vmProfile.removeCertificate = UserService.deleteCertificate;
+    vmProfile.noMoreItemsAvailable = true;
+    vmProfile.currentPage = 2;
     vmProfile.buttonsOptions = {
       neuron: {},
       content: {},
@@ -39,6 +46,12 @@
         name: 'Logros',
         partial: 'templates/profile/partials/awards.html',
         selected: false
+      },
+      {
+        field:'certificates',
+        name: 'Premios',
+        partial: 'templates/profile/partials/certificates.html',
+        selected: false
       }
     ];
 
@@ -53,10 +66,21 @@
       });
     };
 
+    init();
     initTab();
 
+    function init() {
+      /*jshint camelcase: false */
+      vmProfile.totalItems = certificates.meta.total_items;
+      if(vmProfile.totalItems > 2){
+        vmProfile.noMoreItemsAvailable = false;
+        vmProfile.loadMoreCertificates = loadMoreCertificates;
+      }
+    }
+
     function initTab() {
-      vmProfile.changeTab('lasts-contents');
+      var defaultTab = $stateParams.defaultTab || 'lasts-contents';
+      vmProfile.changeTab(defaultTab);
     }
 
     function showLeaderboard(){
@@ -87,5 +111,40 @@
       };
       SocialService.showModal(data);
     }
+
+    function showCertificate(url_certificate){ //jshint ignore:line
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-finish-certificate.html',
+        model: {
+          /*jshint camelcase: false */
+          certificate: url_certificate,
+          sharedCertificate: sharedCertificate
+        }
+      };
+      ModalService.showModel(dialogOptions);
+    }
+
+    function loadMoreCertificates() {
+      UserService.getCertificates(vmProfile.currentPage).then(function(data) {
+        /*jshint camelcase: false */
+        vmProfile.certificates = vmProfile.certificates.concat(data.certificates);
+        vmProfile.currentPage += 1;
+        if ( vmProfile.certificates.length === vmProfile.totalItems ) {
+          vmProfile.noMoreItemsAvailable = true;
+        }
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+    }
+
+    function sharedCertificate(image_url){//jshint ignore:line
+      var data = {
+        title: 'Certificate',
+        description: 'Screenshot',
+        image_url: image_url, //jshint ignore:line
+        publicUrl: image_url //jshint ignore:line
+      };
+      SocialService.showModal(data);
+    }
+
   });
 })();
