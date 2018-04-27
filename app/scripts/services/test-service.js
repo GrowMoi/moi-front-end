@@ -11,6 +11,7 @@
                       ModalService,
                       PopupService,
                       $state,
+                      $auth,
                       $q){
 
     var service = {
@@ -62,6 +63,12 @@
       var modelData = {};
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
+      modelData.onClick = function(){
+        modelData.closeModal();
+        $state.go('tree', {
+          username: $auth.user.username
+        });
+      };
       return $q(function(resolve) {
         ModalService.showModel(
           {
