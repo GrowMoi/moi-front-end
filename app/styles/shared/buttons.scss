@@ -1,6 +1,6 @@
 .btn-learn {
   position: fixed;
-  bottom: -1px;
+  bottom: -7px;
   right: 4px;
   min-width: 10.5%;
   min-height: 15%;
@@ -18,36 +18,53 @@
 
 .btn-learn-gif {
   position: fixed;
-  bottom: 0;
-  right: 3px;
-  cursor: pointer;
-
+  right: 0.5%;
+  width: 10%;
   .btn-wrapper {
     position: relative;
-
+    bottom: 35px;
     .idle {
       position: absolute;
+      width: 100%;
       top: 0;
       left: 0;
     }
   }
+}
+
+.btn-lg-gif {
+  cursor: pointer;
+  width: 10%;
 
   &.disabled {
     pointer-events: none;
     cursor: default;
   }
 }
-
-.btn-show-tasks-gif {
-  position: fixed;
-  bottom: 0px;
-  right: 740px;
+.btn-md-gif {
+  cursor: pointer;
+  width: 15%;
+  padding: 10px;
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+.btn-sm-gif {
+  position: relative;
+  top: 15px;
+  width: 16%;
   cursor: pointer;
 
   &.disabled {
     pointer-events: none;
     cursor: default;
   }
+}
+.btn-show-tasks-gif {
+  position: relative;
+  right: 30px;
+  top: 4px;
 
   .notifications-badget {
     display: flex;
@@ -68,25 +85,10 @@
   }
 }
 
-.btn-add-favorites-gif {
-  position: fixed;
-  bottom: 19px;
-  right: 230px;
-  cursor: pointer;
-
-  &.disabled {
-    pointer-events: none;
-    cursor: default;
-  }
-}
-
 .btn-search-gif {
-  position: fixed;
-  bottom: 7px;
-  right: 606px;
-  bottom: 7px;
-  right: 606px;
-  cursor: pointer;
+  position: relative;
+  right: 8px;
+  top: 4px;
 
   .btn-wrapper {
     position: relative;
@@ -95,40 +97,20 @@
       position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
     }
   }
 }
 
 .btn-share-gif {
-  position: fixed;
-  bottom: 20px;
-  right: 303px;
-  cursor: pointer;
-
-  &.disabled {
-    pointer-events: none;
-    cursor: default;
-  }
+  right: 7%;
 }
 
 .btn-save-tasks-gif {
-  position: fixed;
-  bottom: 18px;
-  right: 372px;
-  cursor: pointer;
-
-  &.disabled {
-    pointer-events: none;
-    cursor: default;
-  }
+  right: 13%;
 }
 
 .btn-recomendation-gif {
-  position: fixed;
-  bottom: 11px;
-  right: 480px;
-  cursor: pointer;
-
   .btn-wrapper {
     position: relative;
 
@@ -136,6 +118,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
     }
   }
 }
