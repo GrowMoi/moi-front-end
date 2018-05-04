@@ -2,7 +2,7 @@
   background-color: transparent;
 
   .widgets {
-    padding-top: 30px;
+    padding-top: 25px;
     padding-left: 10px;
 
     .progress-bar {
@@ -20,11 +20,35 @@
     }
   }
 
+  @media (max-height: 600px){
+    .widgets {
+      padding-top: 20px;
+      .text-center {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (max-height: 550px){
+    .widgets {
+      padding-top: 10px;
+      .text-center {
+        font-size: 15px;
+      }
+    }
+  }
+
+  @media (max-width: 1150px){
+    .widgets {
+      padding-top: 10px;
+    }
+  }
+
   .frame-container {
     position: absolute;
     width: 95%;
     height: 88%;
-    overflow: auto;
+    overflow: visible;
     margin-top: 2%;
     margin-left: 3%;
     margin-right: 2%;
@@ -38,10 +62,16 @@
     height: auto;
 
     .main-image {
+      display: flex;
+      align-items: center;
       img {
-        padding-left: 10%;
-        padding-top: 24%;
+        margin-left: 8%;
         max-width: 150px;
+      }
+      @media (max-width: 1000px) {
+        img {
+          max-width: 110px;
+        }
       }
     }
 
@@ -60,6 +90,21 @@
         bottom: 100%;
         width: 100%;
       }
+      @media (max-width:1150px){
+        h1{
+          bottom: 95%;
+        }
+      }
+      @media (max-height: 600px){
+        h1 {
+          font-size: 22px;
+        }
+      }
+      @media (max-height: 550px){
+        h1 {
+          font-size: 16px;
+        }
+      }
 
       .answer {
         background-image: url("../images/caja-no-select.png");
@@ -77,6 +122,22 @@
         h4 {
           padding-top: 10px;
           color: white;
+          font-size: 25px;
+        }
+        @media (max-width: 1000px) {
+          h4 {
+            font-size: 18px;
+          }
+        }
+        @media (max-height: 650px) {
+          h4 {
+            font-size: 15px;
+          }
+        }
+        @media (max-height: 510px) {
+          h4 {
+            font-size: 13px;
+          }
         }
       }
 
@@ -104,7 +165,13 @@
 
   .controls {
     text-align: center;
-
+    .sound-button {
+      display: flex;
+      width: 100%;
+      height: 60px;
+      justify-content: center;
+      align-items: center;
+    }
     img {
       cursor: pointer;
     }
@@ -114,4 +181,12 @@
       height: 50px;
     }
   }
+}
+
+.question-test {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
 }
