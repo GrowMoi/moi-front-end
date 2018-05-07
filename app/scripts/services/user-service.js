@@ -28,7 +28,8 @@
       sharedEmailContent: sharedEmailContent,
       saveCertificate: saveCertificate,
       getCertificates: getCertificates,
-      deleteCertificate: deleteCertificate
+      deleteCertificate: deleteCertificate,
+      sharingContent: sharingContent
     };
 
     var popupOptions = { title: 'Error'};
@@ -408,6 +409,21 @@
         headers: {
           'Content-Type': 'application/json'
         }
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function sharingContent(params) {
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/sharings',
+        data: params
       }).then(function success(res) {
         return res;
       }, function error(err) {

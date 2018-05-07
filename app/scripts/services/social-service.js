@@ -30,17 +30,42 @@
 
     function shareWithFacebook(options) {
       modelData.closeModal();
-      Socialshare.share({
-        provider: 'facebook',
-        attrs: {
-          socialshareVia: ENV.facebookKey,
-          socialshareType: 'share',
-          socialshareDisplay: options.description,
-          socialshareUrl: options.publicUrl,
-          socialsharePopupHeight: configSocialNetwork.popupHeight,
-          socialsharePopupWidth: configSocialNetwork.popupWidth
-        }
+
+      $ionicLoading.show({
+        content: 'Sharing',
+        animation: 'fade-in',
+        showBackdrop: true,
+        showDelay: 0
       });
+
+      var paramsToShare = {
+        titulo: 'MOI-SOCIAL LEARNING',
+        descripcion: 'Este es mi primer post desde moi',
+        uri: options.publicUrl
+      };
+
+      var view = document.querySelector('#screenCapture');
+      ScreenshotService.getImage(view).then(function(imageBase64){
+        UploadImageService.uploadFile(imageBase64).then(function(resp) {
+          paramsToShare.imagen_url = resp.data.url; //jshint ignore:line
+          UserService.sharingContent(paramsToShare).then(function(resp) {
+            console.log('resp.data.social_sharing.public_url', resp.data.social_sharing.public_url); //jshint ignore:line
+            $ionicLoading.hide();
+            Socialshare.share({
+              provider: 'facebook',
+              attrs: {
+                socialshareVia: ENV.facebookKey,
+                socialshareType: 'share',
+                socialshareUrl: resp.data.social_sharing.public_url, //jshint ignore:line
+                socialsharePopupHeight: configSocialNetwork.popupHeight,
+                socialsharePopupWidth: configSocialNetwork.popupWidth
+              }
+            });
+          });
+        });
+      });
+
+
     }
 
     function shareWithTwitter(options) {
