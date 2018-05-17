@@ -1,28 +1,29 @@
 .btns-options
-  .btn-show-tasks-gif(ng-if="vm.buttons.showTasks" ng-class="{disabled: vm.buttons.showTasks.disabled}")
-    animate-sprite(options="vm.showTasksOptions")
-    .notifications-badget(ng-if="vm.totalNotifications")
-      | {{vm.totalNotifications}}
-  .btn-search-gif(ng-if="vm.buttons.search")
-    .btn-wrapper
-      animate-sprite(options="vm.searchOptions")
-      animate-sprite.idle(ng-if="vm.activeIdle  && vm.activateBtn === 'search'"
-                          options="vm.searchIdleOptions")
+  .big-btns
+    .btn-md-gif.btn-show-tasks-gif(ng-if="vm.buttons.showTasks" ng-class="{disabled: vm.buttons.showTasks.disabled}")
+      animate-sprite(options="vm.showTasksOptions")
+      .notifications-badget(ng-if="vm.totalNotifications")
+        | {{vm.totalNotifications}}
+    .btn-md-gif.btn-search-gif(ng-if="vm.buttons.search")
+      .btn-wrapper
+        animate-sprite(options="vm.searchOptions")
+        animate-sprite.idle(ng-if="vm.activeIdle  && vm.activateBtn === 'search'"
+                            options="vm.searchIdleOptions")
 
-  .btn-recomendation-gif(ng-if="vm.buttons.recomendation")
-    .btn-wrapper
-      animate-sprite(options="vm.recomendationOptions")
-      animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'recomendation'"
-                          options="vm.recomendationIdleOptions")
+    .btn-md-gif.btn-recomendation-gif(ng-if="vm.buttons.recomendation")
+      .btn-wrapper
+        animate-sprite(options="vm.recomendationOptions")
+        animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'recomendation'"
+                            options="vm.recomendationIdleOptions")
+  .small-btns
+    .btn-sm-gif.btn-save-tasks-gif(ng-if="vm.buttons.saveTask" ng-class="{disabled: vm.emptyContent}")
+      animate-sprite(options="vm.saveTasksOptions")
 
-  .btn-save-tasks-gif(ng-if="vm.buttons.saveTask" ng-class="{disabled: vm.emptyContent}")
-    animate-sprite(options="vm.saveTasksOptions")
+    .btn-sm-gif.btn-share-gif(ng-if="vm.buttons.share" ng-class="{disabled: !vm.shareCallback}")
+      animate-sprite(options="vm.shareOptions")
 
-  .btn-share-gif(ng-if="vm.buttons.share" ng-class="{disabled: !vm.shareCallback}")
-    animate-sprite(options="vm.shareOptions")
-
-  .btn-add-favorites-gif(ng-if="vm.buttons.addFavorites" ng-class="{disabled: vm.emptyContent}")
-    animate-sprite(options="vm.addFavoritesOptions")
+    .btn-sm-gif(ng-if="vm.buttons.addFavorites" ng-class="{disabled: vm.emptyContent}")
+      animate-sprite(options="vm.addFavoritesOptions")
 
   .btn-learn-wrapper(ng-if="vm.buttons.learn" ng-class="{disabled: vm.emptyContent}")
     .btn-learn(ng-if="!vm.neuron.neuron_can_read" ng-click="vm.showModalAction()")
