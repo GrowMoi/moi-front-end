@@ -47,6 +47,9 @@
       };
 
       frameVm.allPieces = allFrames[frameVm.options.type];
+      if(frameVm.options.type ==='marco_arbol' && frameVm.options.withSidebar){
+        frameVm.allPieces[2] = allFrames.content_max[2];
+      }
       frameVm.imgBackButton = frameVm.options.showBackButton ? 'images/containers/back_btn.png' : '';
       frameVm.showAdvices = Array.isArray(frameVm.options.advices) && frameVm.options.advices.length>0;
       frameVm.removeAdvice = removeAdvice;
