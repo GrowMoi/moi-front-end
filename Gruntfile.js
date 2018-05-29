@@ -47,16 +47,8 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
-    // Project settings
     yeoman: require('./config/yeoman-config'),
-
-    // Environment Variables for Angular App
-    // This creates an Angular Module that can be injected via ENV
-    // Add any desired constants to the ENV objects below.
-    // https://github.com/diegonetto/generator-ionic/blob/master/docs/FAQ.md#how-do-i-add-constants
     ngconstant: require('./config/ngconstant-config'),
-
-    // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
         files: ['bower.json'],
@@ -73,7 +65,7 @@ module.exports = function (grunt) {
       js: {
         files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
                 '!<%= yeoman.app %>/<%= yeoman.scripts %>/templates.js'],
-        tasks: ['newer:copy:app', 'newer:jshint:all']
+        tasks: ['newer:copy:js', 'newer:jshint:all']
       },
       compass: {
         files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.{scss,sass}'],
@@ -465,7 +457,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'compress') {
-      return grunt.task.run(['compress']);
+      return grunt.task.run(['compress', 'connect:server','watch' ]);
     }
     grunt.task.run(['wiredep', 'init', 'connect:server','watch']);
   });
@@ -484,6 +476,7 @@ module.exports = function (grunt) {
     'concurrent:server',
     'autoprefixer',
     'newer:copy:app',
+    'newer:copy:js',
     'newer:copy:tmp'
   ]);
 
