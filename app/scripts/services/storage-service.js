@@ -5,7 +5,7 @@
       .module('moi.services')
       .factory('StorageService', StorageService);
 
-    function StorageService($http, $ionicPopup, ENV, PopupService) {
+    function StorageService($http, ENV, PopupService) {
 
       var service = {
         get: get,

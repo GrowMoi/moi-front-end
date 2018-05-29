@@ -5,8 +5,6 @@
   .controller('NewLoginController',
     function ($rootScope,
               $scope,
-              $ionicPopup,
-              $ionicLoading,
               $state,
               $auth,
               UtilityService,
@@ -46,22 +44,23 @@
     });
 
     function finishedSound() {
-      $ionicLoading.show({
-        template: 'cargando...'
-      });
+      // $ionicLoading.show({
+      //   template: 'cargando...'
+      // });
       $auth.submitLogin(vmLogin.form)
         .then(redirectUser)
         .catch(function (resp) {
-          $ionicPopup.alert({
-            title: 'Ups!',
-            template: resp.errors.join(', ')
-          });
+          // $ionicPopup.alert({
+          //   title: 'Ups!',
+          //   template: resp.errors.join(', ')
+          // });
+          console.log(resp);
           vmLogin.step = 1;
           /*jshint camelcase: false */
           vmLogin.form.authorization_key = '';
         })
         .finally(function(){
-          $ionicLoading.hide();
+          // $ionicLoading.hide();
         });
     }
 

@@ -7,9 +7,9 @@
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="bower_components/dragular/dist/dragular.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="bower_components/ionic-ion-drawer/ionic.contrib.drawer.css"></script>
     <!-- endbuild -->
@@ -23,11 +23,10 @@
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/ionic/release/js/ionic.js"></script>
-    <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+    <script src="bower_components/angular-scenario/angular-scenario.js"></script>
     <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
     <script src="bower_components/angular-cookie/angular-cookie.js"></script>
     <script src="bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
@@ -41,6 +40,8 @@
     <script src="bower_components/bucky/bucky.js"></script>
     <script src="bower_components/chart.js/dist/Chart.js"></script>
     <script src="bower_components/Chart.PieceLabel.js/src/Chart.PieceLabel.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -132,7 +133,7 @@
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.loadedImages" ng-cloak>
-      <ion-nav-view class="application" id="screenCapture"></ion-nav-view>
+      <ui-view class="application" id="screenCapture"></ui-view>
       <audio id="backgroundSound"
             ng-src="{{site.soundPage.sound}}"
             volume="{{site.soundPage.volume}}"
