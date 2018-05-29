@@ -10,7 +10,6 @@ namespace :moi do
              path: "#{nvm_path}:#{rbenv_path}:$PATH" do
           SSHKit.config.command_map[:grunt] = "./node_modules/grunt-cli/bin/grunt"
           execute :grunt, :compress
-          execute :touch, 'www/cordova.js'
         end
       end
     end
