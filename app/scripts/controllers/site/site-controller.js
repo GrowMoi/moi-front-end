@@ -6,7 +6,7 @@
     .controller('SiteController', SiteController);
 
   function SiteController($rootScope,
-                          $mdProgressCircular,
+                          $ionicLoading,
                           $auth,
                           PreloadAssets,
                           StorageService,
@@ -127,21 +127,23 @@
         event.preventDefault();
       }else{
         if (site.loadedImages && $auth.user.id) {
-          // $mdProgressCircular.startIndeterminate();
+          $ionicLoading.show({
+            template: 'cargando...'
+          });
         }
       }
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState){
       if (site.loadedImages) {
-        // $mdProgressCircular.endIndeterminate = 100;
+        $ionicLoading.hide();
       }
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
     });
 
     $rootScope.$on('$stateChangeError', function(){
-      // $mdProgressCircular.endIndeterminate = 100;
+      $ionicLoading.hide();
     });
 
     $rootScope.$on('loading:finish', function (){

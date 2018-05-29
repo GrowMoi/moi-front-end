@@ -2,6 +2,7 @@
   'use strict';
 
   angular.module('moi', [
+    'ionic',
     'config',
     'ngCordova',
     'moi.controllers',
@@ -12,15 +13,26 @@
     'ng-token-auth',
     'pascalprecht.translate',
     'videosharing-embed',
-    'ngMaterial',
-    'ngMessages',
+    'ionic.contrib.drawer',
     'dragularModule',
     '720kb.socialshare',
-    'ngIdle',
-    'ui.router'
+    'ngIdle'
   ])
 
-  .run(function(Idle, $window, $rootScope) {
+  .run(function($ionicPlatform, Idle, $window, $rootScope) {
+    $ionicPlatform.ready(function() {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
+
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleLightContent();
+      }
+    });
     Idle.watch();
     $rootScope.$on('IdleTimeout', function() {
       $window.localStorage.clear();
@@ -28,7 +40,7 @@
    });
   })
 
-  .config(function($stateProvider, $urlRouterProvider, $httpProvider, IdleProvider, KeepaliveProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, IdleProvider, KeepaliveProvider) {
     // configure Idle settings
     IdleProvider.idle(12); // in seconds
     IdleProvider.timeout(600); // in seconds
@@ -41,6 +53,12 @@
         response: InterceptorService.response
       };
     });
+
+    $ionicConfigProvider.views.transition('none');
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
     $stateProvider
 
     .state('login', {

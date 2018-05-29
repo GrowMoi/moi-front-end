@@ -1,6 +1,7 @@
 @import "fonts/fonts";
+@import "ionic/scss/_variables";
+@import "ionic/scss/_mixins";
 
-@import "ionic/ionic";
 @import "layout/flex_mixin";
 @import "layout/application";
 @import "layout/moi-drawer";

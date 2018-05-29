@@ -26,6 +26,7 @@
                               $scope,
                               $element,
                               $rootScope,
+                              $ionicPlatform,
                               $window,
                               $cordovaNativeAudio) {
     var vmSound = this,
@@ -38,13 +39,13 @@
     vmSound.soundType = vmSound.getAudioType(vmSound.sound);
 
     // we'll do it once the device is ready
-    // $ionicPlatform.ready(function () {
-    //   isNativeImplementation = !!$window.cordova;
-    //   preloadAudio().then(function () {
-    //     audioHasLoaded();
-    //     autoPlay();
-    //   });
-    // });
+    $ionicPlatform.ready(function () {
+      isNativeImplementation = !!$window.cordova;
+      preloadAudio().then(function () {
+        audioHasLoaded();
+        autoPlay();
+      });
+    });
 
     function preloadAudio() {
       if (isNativeImplementation) {

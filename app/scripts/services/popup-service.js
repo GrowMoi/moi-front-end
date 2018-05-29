@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('PopupService', PopupService);
 
-  function PopupService($mdDialog) {
+  function PopupService($ionicPopup) {
     var service = {
       showModel: showModel
     };
@@ -24,10 +24,10 @@
 
       switch (type) {
         case 'confirm':
-          $mdDialog.confirm(myOptions).then(callback);
+          $ionicPopup.confirm(myOptions).then(callback);
           break;
         default:
-          $mdDialog.alert(myOptions).then(callback);
+          $ionicPopup.alert(myOptions).then(callback);
       }
 
     }

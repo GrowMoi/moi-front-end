@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('ModalService', ModalService);
 
-  function ModalService($mdDialog, $rootScope) {
+  function ModalService($ionicModal, $rootScope) {
     var service = {
           showModel: showModel
         },
@@ -22,7 +22,7 @@
       var modalMoi = { scope: $rootScope.$new() };
 
       modalMoi.scope.model = options.model;
-      $mdDialog.alert(modalOptions.templateUrl, {
+      $ionicModal.fromTemplateUrl(modalOptions.templateUrl, {
         scope: modalMoi.scope,
         animation: modalOptions.animation,
         backdropClickToClose: false
