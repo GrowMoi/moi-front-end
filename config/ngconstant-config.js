@@ -12,7 +12,7 @@
       constants: {
         ENV: {
           name: 'development',
-          apiHost: 'http://localhost:3000',
+          apiHost: 'http://localhost:5000',
           facebookKey: '12345678',
           pusherKey: '2fd9acbd37b06708983b',
           cloudinaryName: 'moi-images',
