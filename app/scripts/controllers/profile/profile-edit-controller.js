@@ -21,6 +21,10 @@
         showTasks: true
       }
     };
+    vmProfileEdit.frameOptions = {
+      type: 'content_max',
+      showBackButton: true
+    };
     vmProfileEdit.images = ImagesLogin.paths;
 
     function editProfile(){

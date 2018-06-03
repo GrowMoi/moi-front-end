@@ -1,16 +1,48 @@
+.edit-profile-content {
+  .overflow-scroll {
+    overflow-y: hidden;
+  }
+
+  .flecha-sidebar {
+    top: 45%;
+  }
+
+  .arrow {
+    top: 3%;
+    left: 35px;
+  }
+
+  .frame {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .frame-container {
+    width: 95%;
+    height: 84%;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 2%;
+  }
+  .select-images-edit {
+    .col-20 {
+      max-width: unset;
+    }
+  }
+}
 .edit-profile-view{
-    height: 88% !important;
-    margin-top: 2% !important;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding-left: 140px;
+  padding-top: 50px;
+  padding-right: 125px;
+  background-image: url(../images/edit-profile/main.png);
   .content.edit-profile{
     width: 100%;
     height: 100%;
-    padding-left: 140px;
-    padding-top: 50px;
-    padding-right: 125px;
-    background-image: url(../images/edit-profile/main.png);
-    background-position: bottom center;
-    background-size: 93%;
-    background-repeat: no-repeat;
     .title-content{
       border-bottom: 3px solid $moiDarkGreen;
       .title-edit-profile{
@@ -41,10 +73,39 @@
     .content-edit-profile{
       width: 100%;
       height: 100%;
+      .section-photo::-webkit-scrollbar-track {
+        border-radius: 10px;
+        border: 1px solid rgba(123, 121, 76, 0.62);
+        width: 5px;
+      }
+      .section-photo::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+        border-radius: 10px;
+      }
+      .section-photo::-webkit-scrollbar-thumb {
+        border-radius: 25px;
+        background-color: rgba(123, 121, 76, 0.62);
+      }
+      @media (min-height: 620px) {
+        .section-photo{
+          height: 76%;
+        }
+      }
+      @media (max-height: 620px) {
+        .section-photo{
+          height: 70%;
+        }
+      }
+      @media (max-height: 560px) {
+        .section-photo{
+          height: 67%;
+        }
+      }
       .section-photo{
+        overflow-y: auto;
         background-color: #7DA462;
         margin-top: 20px;
-        height: 78%;
         margin-right: 47px;
         width: 35%;
         opacity: 0.5;
@@ -60,9 +121,16 @@
         }
         .content-photo{
           background-image: url(../images/edit-profile/userphoto.png);
+          background-size: 50% 100%;
           height: 150px;
           background-repeat: no-repeat;
           background-position: center;
+        }
+        @media (max-width: 900px) {
+          .content-photo{
+            background-size: 70% 100%;
+            height: 100px;
+          }
         }
         .content-button-photo{
           display: flex;
@@ -82,14 +150,43 @@
           padding-bottom: 30px;
         }
       }
+      .section-form::-webkit-scrollbar-track {
+        border-radius: 10px;
+        border: 1px solid rgba(123, 121, 76, 0.62);
+        width: 5px;
+      }
+      .section-form::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+        border-radius: 10px;
+      }
+      .section-form::-webkit-scrollbar-thumb {
+        border-radius: 25px;
+        background-color: rgba(123, 121, 76, 0.62);
+      }
+      @media (min-height: 620px) {
+        .section-form{
+          height: 76%;
+        }
+      }
+      @media (max-height: 620px) {
+        .section-form{
+          height: 70%;
+        }
+      }
+      @media (max-height: 560px) {
+        .section-form{
+          height: 67%;
+        }
+      }
       .section-form{
         background-color: $backgroundForm;
         margin-top: 20px;
-        height: 78%;
         width: 55%;
         padding-left: 30px;
         opacity: 0.4;
         border-radius: 20px;
+        overflow-y: auto;
         form{
           width: 80%;
           .form-group{
@@ -100,6 +197,16 @@
               font-family: FontMoi-Content;
               font-size: 15px;
               font-weight: bold;
+            }
+            @media (max-width: 1080px) {
+              .label-register{
+                font-size: 13px;
+              }
+            }
+            @media (max-width: 850px) {
+              .label-register{
+                font-size: 11px;
+              }
             }
             .label-date{
               display: flex;
@@ -113,6 +220,17 @@
               background-color: $sourceColor;
               border-radius: 5px;
               padding-left: 10px;
+              font-size: 15px;
+            }
+            @media (max-width: 1080px) {
+              input{
+                font-size: 13px;
+              }
+            }
+            @media (max-width: 850px) {
+              input{
+                font-size: 11px;
+              }
             }
           }
         }
