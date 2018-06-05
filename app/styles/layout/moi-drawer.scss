@@ -24,7 +24,7 @@ drawer.left {
 
 .sidebar-menu {
   background-image: url(../images/view-elements/deslizah.png);
-  background-size: cover;
+  background-size: 100% 100%;
   height: 100%;
 
   & > div {
@@ -35,53 +35,146 @@ drawer.left {
       height: 100%;
     }
   }
-
-  .settings-amigos {
-    .boton {
+  .settings-btns {
+    position: absolute;
+    width: 75%;
+    height: 26%;
+    top: 12%;
+    left: 0;
+    .settings-amigos{
       position: absolute;
-      top: 75px;
-      left: 25px;
-      z-index: 10;
-      cursor: pointer;
-
-      .animate-sprite-wrapper{
-        width: 140px;
-
-        .img-animate {
-          padding-bottom: 60px;
-        }
+      top: 13%;
+      left: 16%;
+      width: 67%;
+    }
+    .settings-rueda {
+      position: absolute;
+      top: 30%;
+      left: 25%;
+      width: 40%;
+      z-index: 1;
+    }
+    .settings-inventario {
+      position: absolute;
+      top: 59%;
+      left: 17%;
+      width: 53%;
+    }
+    .settings-tutor {
+      position: absolute;
+      top: 32%;
+      left: 40%;
+      width: 48%;
+      img{
+        width: 100%;
+        height: 100%;
       }
     }
   }
 
-  .settings-rueda {
-    .rueda {
-      position: absolute;
-      top: 114px;
-      left: 42px;
-      z-index: 10;
-      cursor: pointer;
-
-      .animate-sprite-wrapper{
-        width: 80px;
-
-        .img-animate {
-          padding-bottom: 65px;
-        }
+  @media (min-height: 400px) {
+    .settings-btns {
+      .settings-amigos {
+        top: 8%;
+        left: 16%;
+        width: 50%;
+      }
+      .settings-rueda {
+        top: 30%;
+        left: 25%;
+        width: 30%;
+      }
+      .settings-inventario {
+        top: 66%;
+        left: 17%;
+        width: 35%;
+      }
+      .settings-tutor {
+        top: 36%;
+        left: 40%;
+        width: 31%;
       }
     }
   }
 
-  .settings-tutor {
-    width: 85px;
-    top: 130px;
-    left: 82px;
+  @media (min-height: 600px) {
+    .settings-btns {
+      .settings-amigos {
+        top: 0;
+        left: 16%;
+        width: 57%;
+      }
+      .settings-rueda {
+        top: 23%;
+        left: 25%;
+        width: 33%;
+      }
+      .settings-inventario {
+        top: 61%;
+        left: 17%;
+        width: 45%;
+      }
+      .settings-tutor {
+        top: 28%;
+        left: 40%;
+        width: 37%;
+      }
+    }
   }
 
-  .settings-inventario {
-    width: 100px;
-    top: 185px;
-    left: 30px;
+  @media (min-height: 700px) {
+    .settings-btns {
+      .settings-amigos {
+        top: 8px;
+        left: 13%;
+        width: 64%;
+      }
+      .settings-rueda {
+        top: 23%;
+        left: 25%;
+        width: 38%;
+      }
+      .settings-inventario {
+        top: 61%;
+        left: 17%;
+        width: 50%;
+      }
+      .settings-tutor {
+        top: 28%;
+        left: 40%;
+        width: 44%;
+      }
+    }
+  }
+
+  @media (min-height: 800px) {
+    .settings-btns {
+      .settings-amigos {
+        top: 14px;
+        left: 10%;
+        width: 67%;
+      }
+      .settings-rueda {
+        top: 23%;
+        left: 20%;
+        width: 41%;
+      }
+      .settings-inventario {
+        top: 58%;
+        left: 12%;
+        width: 52%;
+      }
+      .settings-tutor {
+        top: 30%;
+        left: 37%;
+        width: 46%;
+      }
+    }
+
+    .view-tree {
+      width: 15.0rem;
+      height: 19.375rem;
+    }
   }
 
   .flecha-sidebar {
@@ -90,7 +183,7 @@ drawer.left {
   }
 
   .settings-arbol, .settings-img-background {
-    top: 381px;
+    bottom: 6.5%;
     width: 210px;
     height: 280px;
     background-image: url("../images/back-arbol.png");
@@ -102,15 +195,19 @@ drawer.left {
   }
   .view-tree{
     z-index: -1;
-    width: 15.0rem;
-    height: 19.375rem;
+    width: 15rem;
+    height: 24.375rem;
     .tree{
-      margin-top: -3.96rem;
+      margin-top: -1.96rem;
       width: 16rem;
       height: 26rem;
     }
   }
   .settings-img-background{
     background: transparent;
+    left: 20px;
+    border-radius: 30%;
+    bottom: 9%;
+    height: 37%;
   }
 }

@@ -1,9 +1,11 @@
 .arrow {
   position: absolute;
-  left: 15px;
-  top: 5%;
+  left: 1%;
+  top: 0.5%;
   z-index: 5;
   transition: 0.3 ease;
+  height: 14%;
+  width: 9%;
 
   &:hover {
     .arrow-img {
@@ -15,9 +17,11 @@
 .back-arrow {
   .arrow-img {
     background-image: url('../images/back-arrow.png');
-    background-size: cover;
+    background-size: 100% 100%;
     position: absolute;
-    width: 65px;
-    height: 60px;
+    width: 70%;
+    height: 70%;
+    bottom: 18%;
+    left: 15%;
   }
 }
