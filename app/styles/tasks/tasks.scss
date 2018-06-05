@@ -2,8 +2,12 @@
   background-color: transparent;
 
   .panel-tasks {
-
+    height: 100%;
+    width: 100%;
+    padding: 3rem 2rem 6rem 3rem;
     .frame-container {
+      height: 100%;
+      width: 100%;
       position: relative;
       background-repeat: no-repeat;
       background-image: url("../images/caja_M.png");
@@ -15,29 +19,28 @@
         font-size: 45px;
         font-weight: bold;
         font-family: FontMoi-Title;
-        left: 115px;
-        top: 75px;
+        left: 10%;
+        top: 10%;
       }
 
       .divider-line {
-        position: absolute;
+        position: relative;
         background: url("../images/linea_separacionM.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
         width: 87%;
         height: 5px;
-        top: 120px;
-        left: 110px;
+        top: 13%;
+        left: 10%;
       }
 
       .content-tasks {
         position: absolute;
         width: 92%;
-        top: 135px;
-        left: 35px;
-        bottom: 130px;
-        height: 363px;
-        padding: 25px;
+        top: 20%;
+        left: 3%;
+        height: 80%;
+        padding: 0px 0px 4% 4%;
 
         .tasks-tabs {
 
@@ -48,7 +51,6 @@
 
             .item-tab{
               background: rgba(136, 139, 74, 0.5);
-              padding: 8px 25px;
               font-weight: bold;
               border-radius: 5px;
               border: 2px solid #8f9a59;
