@@ -15,34 +15,6 @@
         };
       });
     }));
-    beforeEach(angular.mock.module(function ($provide) {
-      $provide.provider('$ionicPlatform', function () {
-        return {
-          $get: function () {
-            return {
-              ready: function () {
-                return true;
-              }
-            };
-          }
-        };
-      });
-
-      $provide.provider('$cordovaNativeAudio', function () {
-        return {
-          $get: function () {
-            return {
-              preloadComplex: function(){
-                return {finally: function(){return null;}};
-              },
-              play: sinon.spy(),
-              stop: sinon.spy(),
-              unload: sinon.spy()
-            };
-          }
-        };
-      });
-    }));
 
     beforeEach(inject(
       function (_$compile_, _$rootScope_, _$window_) {

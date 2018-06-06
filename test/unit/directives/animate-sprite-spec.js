@@ -6,7 +6,6 @@
         $scope,
         element,
         controller,
-        $cordovaNativeAudio,
         $rootScope,
         $window,
         $q;
@@ -22,33 +21,14 @@
         };
       });
     }));
-    beforeEach(module('ionic'));
-    beforeEach(angular.mock.module(function ($provide) {
-      $provide.provider('$cordovaNativeAudio', function () {
-        return {
-          $get: function () {
-            return {
-              preloadComplex: function(){
-                return {finally: function(){return null;}};
-              },
-              play: sinon.spy(),
-              stop: sinon.spy(),
-              unload: sinon.spy(),
-              load: sinon.spy()
-            };
-          }
-        };
-      });
-    }));
 
     beforeEach(inject(
-      function(_$compile_, _$rootScope_, _$window_, _$q_, _$cordovaNativeAudio_) {
+      function(_$compile_, _$rootScope_, _$window_, _$q_) {
         $compile = _$compile_;
         $scope = _$rootScope_.$new();
         $rootScope = _$rootScope_;
         $window = _$window_;
         $q = _$q_;
-        $cordovaNativeAudio = _$cordovaNativeAudio_;
       }));
 
     describe('init methods', function() {
@@ -71,10 +51,6 @@
         chai.expect(controller.options).to.deep.equal($scope.options);
       });
 
-      it('should not play sound if not exit moiSound', function() {
-        controller.playAnimateSprite();
-        sinon.assert.notCalled($cordovaNativeAudio.play);
-      });
     });
   });
 })();
