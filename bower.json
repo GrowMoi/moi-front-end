@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "dependencies": {
     "ionic": "git://github.com/GrowMoi/ionic.git#v1.2.1-moi",
-    "ngCordova": "~0.1.26-alpha",
     "ng-token-auth": "~0.0.27",
     "angular-translate": "~2.8.1",
     "animate.css": "~3.5.1",

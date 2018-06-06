@@ -21,7 +21,6 @@
   "validthis": true,
   "globals": {
     "angular": false,
-    "cordova": false,
     "StatusBar": false,
     "SuperGif": false,
     "Bucky": false,
