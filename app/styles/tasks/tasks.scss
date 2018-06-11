@@ -37,7 +37,7 @@
       .content-tasks {
         position: absolute;
         width: 92%;
-        top: 20%;
+        top: 22%;
         left: 3%;
         height: 80%;
         padding: 0px 0px 4% 4%;
@@ -51,6 +51,7 @@
 
             .item-tab{
               background: rgba(136, 139, 74, 0.5);
+              padding: 2%;
               font-weight: bold;
               border-radius: 5px;
               border: 2px solid #8f9a59;
@@ -163,6 +164,24 @@
                 padding: 10px;
                 overflow: hidden;
                 height: 111px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-height: 585px) {
+  .tasks {
+    .panel-tasks {
+      .frame-container {
+        .content-tasks {
+          .tasks-tabs {
+            ion-item{
+              .item-tab{
+                padding: 1%;
               }
             }
           }
