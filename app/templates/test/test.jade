@@ -6,5 +6,5 @@ ion-view#test-frame(view-title='{{vm.neuron.title}}')
           .progress-bar
             .internal-bar(style="width: {{vmTest.percentage}}%")
             span {{vmTest.percentage}}%
-        div(ng-include="'templates/partials/test-questions.html'")
+        .question-test(ng-include="'templates/partials/test-questions.html'")
     moi-frame(options="vmTest.frameOptions")
