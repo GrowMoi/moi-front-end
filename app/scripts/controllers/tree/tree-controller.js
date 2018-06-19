@@ -21,8 +21,8 @@
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
     var progressTree = TreeService.progressTree(treeModel.meta);
-    treeModel.percentageLevel = progressTree.userLevel.percentage;
-    treeModel.userLevel = progressTree.userLevel.level;
+    treeModel.percentageLevel = progressTree.userLevel ? progressTree.userLevel.percentage : 0;
+    treeModel.userLevel = progressTree.userLevel ? progressTree.userLevel.level : 1;
     treeModel.percentage = progressTree.percentage;
     treeModel.isBasicLevel = data.meta.depth < 5;
     treeModel.sharedTree = sharedTree;
