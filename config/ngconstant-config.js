@@ -33,7 +33,7 @@
       constants: {
         ENV: {
           name: 'staging',
-          apiHost: '//moi-staging.herokuapp.com',
+          apiHost: process.env.apiHost,
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
@@ -57,7 +57,7 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost: 'http://moi-backend.growmoi.com',
+          apiHost: process.env.apiHost,
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
@@ -78,7 +78,7 @@
       constants: {
         ENV: {
           name: 'test',
-          apiHost: 'http://moi-integration.herokuapp.com',
+          apiHost: '',
           facebookKey: ''
         },
         IMAGES: {
