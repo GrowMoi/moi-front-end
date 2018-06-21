@@ -21,6 +21,10 @@
     vmProfile.removeCertificate = UserService.deleteCertificate;
     vmProfile.noMoreItemsAvailable = true;
     vmProfile.currentPage = 2;
+    vmProfile.frameOptions = {
+      type: 'content_max',
+      showBackButton: true
+    };
     vmProfile.buttonsOptions = {
       neuron: {},
       content: {},
