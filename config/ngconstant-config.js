@@ -74,6 +74,30 @@
         }
       }
     },
+    demo: {
+      options: {
+        dest: '<%= yeoman.dist %>/<%= yeoman.scripts %>/configuration.js'
+      },
+      constants: {
+        ENV: {
+          name: 'demo',
+          apiHost: 'http://moi-demo-backend.shiriculapo.com',
+          facebookKey: process.env.FACEBOOK_KEY,
+          pusherKey: process.env.PUSHER_KEY,
+          cloudinaryName: process.env.CLOUDINARY_NAME,
+          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
+        },
+        IMAGES: {
+          paths: []
+        },
+        SOUNDS: {
+          paths: []
+        },
+        VIDEOS: {
+          paths: []
+        }
+      }
+    },
     test: {
       constants: {
         ENV: {
