@@ -66,8 +66,8 @@ drawer.left {
       left: 40%;
       width: 48%;
       img{
-        width: 100%;
-        height: 100%;
+        width: 86%;
+        height: 106%;
       }
     }
   }
@@ -91,7 +91,7 @@ drawer.left {
   .view-tree{
     z-index: -1;
     width: 15rem;
-    height: 24.375rem;
+    height: 25.375rem;
     .tree{
       margin-top: -1.96rem;
       width: 16rem;
@@ -104,6 +104,19 @@ drawer.left {
     border-radius: 30%;
     bottom: 9%;
     height: 37%;
+  }
+
+  .settings-default-tree {
+    bottom: 5.5%;
+    width: 15rem;
+    height: 24.375rem;
+  }
+
+  .default-tree {
+    background-image: url("../images/arbolito_despH.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
   }
 }
 
@@ -128,7 +141,7 @@ drawer.left {
       .settings-tutor {
         top: 36%;
         left: 40%;
-        width: 31%;
+        width: 38%;
       }
     }
   }
@@ -160,7 +173,7 @@ drawer.left {
       .settings-tutor {
         top: 28%;
         left: 40%;
-        width: 37%;
+        width: 47%;
       }
     }
   }
@@ -190,9 +203,9 @@ drawer.left {
         width: 50%;
       }
       .settings-tutor {
-        top: 28%;
-        left: 40%;
-        width: 44%;
+        top: 30%;
+        left: 44%;
+        width: 48%;
       }
     }
   }
@@ -223,8 +236,8 @@ drawer.left {
       }
       .settings-tutor {
         top: 30%;
-        left: 37%;
-        width: 46%;
+        left: 43%;
+        width: 51%;
       }
     }
   }
