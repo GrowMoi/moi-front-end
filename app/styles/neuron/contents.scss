@@ -17,6 +17,7 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
   img {
     object-fit: cover;
     width: 100%;
+    height: 100%;
   }
 }
 
@@ -46,6 +47,8 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
 
   .relative {
     position: relative;
+    width: 100%;
+    height: 100%;
   }
 
   .overlay {
@@ -78,11 +81,6 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
   }
 }
 
-.img-content-1{
-  height: 295px;
-  vertical-align: middle;
-}
-
 .leyend-bottom, .leyend-bottom-grid{
   background-color: rgba(0, 0, 0, 0.55);
   color: white;
@@ -100,13 +98,31 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
 
 .leyend-bottom-grid{
   margin-top: -95px;
-  font-size: 35px;
+  font-size: 37px;
   font-weight: 200;
   font-family: futura;
   padding-top: 6px;
   overflow: hidden;
   line-height: 40px;
   position: relative;
+}
+
+@media (max-width: 1000px) {
+  .leyend-bottom-grid{
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 950px) {
+  .leyend-bottom-grid{
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 850px) {
+  .leyend-bottom-grid{
+    font-size: 26px;
+  }
 }
 
 grid-contents{
@@ -124,6 +140,7 @@ grid-contents{
       -moz-flex: 0 0 33%;
       -ms-flex: 0 0 33%;
       flex: 0 0 33%;
+      padding: 10px;
     }
   }
 
