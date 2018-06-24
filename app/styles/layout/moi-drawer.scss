@@ -94,7 +94,7 @@ drawer.left {
     height: 25.375rem;
     .tree{
       width: 16rem;
-      height: 26.6rem;
+      height: 26.4rem;
     }
   }
   .settings-img-background{
@@ -143,6 +143,15 @@ drawer.left {
         width: 38%;
       }
     }
+
+    .settings-arbol, .settings-img-background {
+      bottom: 2.5%;
+    }
+    .view-tree{
+      .tree{
+        height: 28rem;
+      }
+    }
   }
 
   .flecha-sidebar {
@@ -173,6 +182,14 @@ drawer.left {
         top: 28%;
         left: 40%;
         width: 47%;
+      }
+    }
+    .settings-arbol, .settings-img-background {
+      bottom: 1.5%;
+    }
+    .view-tree{
+      .tree{
+        height: 26.8rem;
       }
     }
   }
@@ -207,6 +224,14 @@ drawer.left {
         width: 48%;
       }
     }
+    .settings-arbol, .settings-img-background {
+      bottom: 2%;
+    }
+    .view-tree{
+      .tree{
+        height: 26.7rem;
+      }
+    }
   }
 
   .flecha-sidebar {
@@ -237,6 +262,14 @@ drawer.left {
         top: 30%;
         left: 43%;
         width: 51%;
+      }
+    }
+    .settings-arbol, .settings-img-background {
+      bottom: 5.5%;
+    }
+    .view-tree{
+      .tree{
+        height: 28.5rem;
       }
     }
   }
