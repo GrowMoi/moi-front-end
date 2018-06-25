@@ -1,4 +1,4 @@
-ion-view.frame-all-buttons.tasks(view-title='Tasks')
+ion-view.tasks(view-title='Tasks')
   ion-content
     back-button.arrow.back-arrow
     moi-arrow(on-click="toggleDrawer()" orientation="right")
@@ -23,6 +23,7 @@ ion-view.frame-all-buttons.tasks(view-title='Tasks')
                     | {{tasksmodel.totalRecommendationContents}}
           .col-50.tasks-view
             ui-view
-      moi-buttons(options="tasksmodel.buttonsOptions")
-      .btn-learn
+    moi-frame(options="{type: 'content_max', showBackButton: true}")
+    moi-buttons(options="tasksmodel.buttonsOptions")
+    .btn-learn
   moi-sidebar
