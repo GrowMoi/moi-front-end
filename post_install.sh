@@ -1,7 +1,6 @@
 #!/bin/bash
 gem install bundler -N
 bundle install --path vendor/bundle --without development test --deployment --quiet
-./node_modules/bower/bin/bower install
 
 # build if there's a Gruntfile for
 # this environment. Currently used

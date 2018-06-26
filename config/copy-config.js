@@ -34,6 +34,15 @@
       dest: '<%= yeoman.app %>/fonts/',
       src: '*'
     },
+    bower: {
+      expand: true,
+      cwd: 'node_modules/@bower_components',
+      dest: '<%= yeoman.app %>/bower_components/',
+      src: [
+        '**/**/*.js',
+        '**/**/*.css'
+      ]
+    },
     vendor: {
       expand: true,
       cwd: '<%= yeoman.app %>/vendor',

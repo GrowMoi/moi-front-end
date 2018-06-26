@@ -50,10 +50,6 @@ module.exports = function (grunt) {
     yeoman: require('./config/yeoman-config'),
     ngconstant: require('./config/ngconstant-config'),
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep', 'newer:copy:app']
-      },
       html: {
           files: ['<%= yeoman.app %>/*.html'],
           tasks: ['newer:copy:app']
@@ -164,18 +160,6 @@ module.exports = function (grunt) {
           src: '{,*/}*.css',
           dest: '<%= yeoman.dist %>/<%= yeoman.styles %>/'
         }]
-      }
-    },
-
-    // Automatically inject Bower components into the app
-    wiredep: {
-      app: {
-        src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
-      },
-      sass: {
-        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     },
 
@@ -420,7 +404,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
-    'wiredep',
+    'copy:bower',
     'clean',
     'concurrent:test',
     'autoprefixer',
@@ -430,7 +414,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test:ci', [
     'jshint:all',
-    'wiredep',
+    'copy:bower',
     'clean',
     'concurrent:test',
     'ngconstant:test',
@@ -444,7 +428,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test:precommit', [
     'jshint:all',
     'jshint:test',
-    'wiredep',
+    'copy:bower',
     'clean',
     'concurrent:test',
     'ngconstant:test',
@@ -459,7 +443,7 @@ module.exports = function (grunt) {
     if (target === 'compress') {
       return grunt.task.run(['compress', 'connect:server','watch' ]);
     }
-    grunt.task.run(['wiredep', 'init', 'connect:server','watch']);
+    grunt.task.run(['init', 'connect:server','watch']);
   });
 
   grunt.registerTask('build', function() {
@@ -472,7 +456,7 @@ module.exports = function (grunt) {
     'imagespath:development',
     'soundspath:development',
     'videospath:development',
-    'wiredep',
+    'copy:bower',
     'concurrent:server',
     'autoprefixer',
     'newer:copy:app',
@@ -487,7 +471,7 @@ module.exports = function (grunt) {
     'imagespath:production',
     'soundspath:production',
     'videospath:production',
-    'wiredep',
+    'copy:bower',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -505,7 +489,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'wiredep',
+    'copy:bower',
     'newer:jshint',
     'karma:continuous',
     'compress'
