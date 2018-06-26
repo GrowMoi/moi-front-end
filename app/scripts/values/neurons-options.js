@@ -346,7 +346,7 @@
       'sixth-level-31412': {
         color: 'red'
       },
-      'seventh-level-001020': { //ángulos
+      'seventh-level-001020': { //angulos
         color: 'blue'
       },
       'seventh-level-001001': { //problemas
@@ -454,7 +454,7 @@
       'seventh-level-313110': { //fotografia
         color: 'red'
       },
-      'seventh-level-310100': { //fábula
+      'seventh-level-310100': { //fabula
         color: 'red'
       },
       'seventh-level-311100': { //escala
