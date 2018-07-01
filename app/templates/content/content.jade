@@ -21,7 +21,7 @@ ion-view.content-view-max(ng-class="vmContent.theme" view-title='Content')
                 .legend-update{{ ::'content.max.update' | translate }}
                 .update-date{{vmContent.content.updated_at | date:'dd-MM-yyyy'}}
             .corner.description-TR(ng-class="vmContent.theme")
-        .col.border-right.border-left.middle-column-margin-bottom.col-contents(ng-class="vmContent.theme")
+        .col.second-col-content.border-right.border-left.middle-column-margin-bottom.col-contents(ng-class="vmContent.theme")
           .row.border-bottom(ng-class="vmContent.theme")
             .col.image-center
               img.format-image(
@@ -39,17 +39,17 @@ ion-view.content-view-max(ng-class="vmContent.theme" view-title='Content')
                                           ng-model='vmContent.content.user_notes'
                                           ng-blur='vmContent.sendNotes()'
                                           ng-disabled='vmContent.readOnly')
-        .col
+        .col.third-col-content
           .row
-            .col
-              .row.border-bottom(ng-class="vmContent.theme")
-                .content-subtitle-gallery {{ ::'content.max.media' | translate }}
+            .col.content-max-third
+              .row.border-third-column(ng-class="vmContent.theme")
+                .content-subtitle.content-subtitle-gallery {{ ::'content.max.media' | translate }}
               .row
                 slide-gallery(images='vmContent.media', options="vmContent.slideGalleryOptions" item-per-slide='4')
             .corner.gallery-TR(ng-class="vmContent.theme")
           .row
-            .col.recomended-margin-top
-              .row.border-bottom(ng-class="vmContent.theme")
+            .col.recomended-margin-top.content-max-third
+              .row.border-third-column(ng-class="vmContent.theme")
                 .content-subtitle {{ ::'content.max.recommended ' | translate }}
               .row.recommended-contents
                 .col.col-50(ng-repeat='content in vmContent.content.recommended')
@@ -58,8 +58,8 @@ ion-view.content-view-max(ng-class="vmContent.theme" view-title='Content')
                    .leyend-bottom(ellipsis-title="content.title" height="50" title="{{::content.title}}")
             .corner.recomended-TR(ng-class="vmContent.theme")
           .row
-            .col.links-margin-top
-              .row.border-bottom(ng-class="vmContent.theme")
+            .col.links-margin-top.content-max-third
+              .row.border-third-column(ng-class="vmContent.theme")
                 .content-subtitle {{ ::'content.max.links ' | translate }}
               .row(ng-repeat="link in vmContent.content.links")
                 a(ng-click="vmContent.showAlertExternalLink(link)") {{::link}}
