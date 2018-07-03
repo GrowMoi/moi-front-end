@@ -1,7 +1,6 @@
 @import "shared/colors";
 
 .login-view, .register-view {
-  @include background-size(100%);
   background-color: transparent; // move to main.scss if needed in other views
   background-repeat: no-repeat;
   background-position: bottom right;
