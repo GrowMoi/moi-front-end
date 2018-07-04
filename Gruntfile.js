@@ -256,58 +256,58 @@ module.exports = function (grunt) {
 
     // Test settings
     // These will override any config options in karma.conf.js if you create it.
-    karma: {
-      options: {
-        browsers: ['PhantomJS'],
-        basePath: '',
-        frameworks: ['mocha', 'chai', 'sinon'],
-        files: [
-          '<%= yeoman.app %>/bower_components/angular/angular.js',
-          '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
-          '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
-          '<%= yeoman.app %>/bower_components/angular-sanitize/angular-sanitize.js',
-          '<%= yeoman.app %>/bower_components/angular-ui-router/release/angular-ui-router.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
-          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
-          '<%= yeoman.app %>/templates/**/*.html',
-          '<%= yeoman.test %>/unit/**/*.js'
-        ],
-        autoWatch: false,
-        reporters: ['dots', 'coverage'],
-        port: 8080,
-        singleRun: false,
-        colors: true,
-        phantomjsLauncher: {
-          exitOnResourceError: true
-        },
-        preprocessors: {
-          // Update this if you change the yeoman config path
-          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js': ['coverage'],
-          '<%= yeoman.app %>/templates/**/*.html': ['ng-html2js']
-        },
-        coverageReporter: {
-          reporters: [
-            { type: 'html', dir: 'coverage/' },
-            { type: 'text-summary' }
-          ]
-        },
-        ngHtml2JsPreprocessor: {
-           moduleName: 'moi.templates',
-           stripPrefix: '<%= yeoman.app %>/'
-        }
-      },
-      unit: {
-        // Change this to 'Chrome', 'Firefox', etc. Note that you will need
-        // to install a karma launcher plugin for browsers other than Chrome.
-        browsers: ['PhantomJS'],
-        background: true
-      },
-      continuous: {
-        browsers: ['PhantomJS'],
-        singleRun: true
-      }
-    },
+    // karma: {
+    //   options: {
+    //     browsers: ['PhantomJS'],
+    //     basePath: '',
+    //     frameworks: ['mocha', 'chai', 'sinon'],
+    //     files: [
+    //       '<%= yeoman.app %>/bower_components/angular/angular.js',
+    //       '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
+    //       '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
+    //       '<%= yeoman.app %>/bower_components/angular-sanitize/angular-sanitize.js',
+    //       '<%= yeoman.app %>/bower_components/angular-ui-router/release/angular-ui-router.js',
+    //       '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
+    //       '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
+    //       '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
+    //       '<%= yeoman.app %>/templates/**/*.html',
+    //       '<%= yeoman.test %>/unit/**/*.js'
+    //     ],
+    //     autoWatch: false,
+    //     reporters: ['dots', 'coverage'],
+    //     port: 8080,
+    //     singleRun: false,
+    //     colors: true,
+    //     phantomjsLauncher: {
+    //       exitOnResourceError: true
+    //     },
+    //     preprocessors: {
+    //       // Update this if you change the yeoman config path
+    //       '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js': ['coverage'],
+    //       '<%= yeoman.app %>/templates/**/*.html': ['ng-html2js']
+    //     },
+    //     coverageReporter: {
+    //       reporters: [
+    //         { type: 'html', dir: 'coverage/' },
+    //         { type: 'text-summary' }
+    //       ]
+    //     },
+    //     ngHtml2JsPreprocessor: {
+    //        moduleName: 'moi.templates',
+    //        stripPrefix: '<%= yeoman.app %>/'
+    //     }
+    //   },
+    //   unit: {
+    //     // Change this to 'Chrome', 'Firefox', etc. Note that you will need
+    //     // to install a karma launcher plugin for browsers other than Chrome.
+    //     browsers: ['PhantomJS'],
+    //     background: true
+    //   },
+    //   continuous: {
+    //     browsers: ['PhantomJS'],
+    //     singleRun: true
+    //   }
+    // },
 
     // ngAnnotate tries to make the code safe for minification automatically by
     // using the Angular long form for dependency injection.

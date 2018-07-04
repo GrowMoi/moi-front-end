@@ -36,11 +36,28 @@
     },
     bower: {
       expand: true,
-      cwd: 'node_modules/@bower_components',
+      cwd: 'node_modules',
       dest: '<%= yeoman.app %>/bower_components/',
       src: [
-        '**/**/*.js',
-        '**/**/*.css'
+        "ionic-sdk/release/css/ionic.css",
+        "animate.css/animate.css",
+        "dragular/dist/dragular.min.css",
+        "angular/angular.js",
+        "angular-animate/angular-animate.js",
+        "angular-sanitize/angular-sanitize.js",
+        "angular-ui-router/release/angular-ui-router.js",
+        "ionic-sdk/release/js/ionic.js",
+        "ionic-sdk/release/js/ionic-angular.js",
+        "angular-cookie/angular-cookie.js",
+        "ng-token-auth/dist/ng-token-auth.js",
+        "ng-videosharing-embed/build/ng-videosharing-embed.min.js",
+        "dragular/dist/dragular.min.js",
+        "angular-socialshare/dist/angular-socialshare.min.js",
+        "ng-idle/angular-idle.js",
+        "moment/moment.js",
+        "bucky/bucky.js",
+        "chart.js/dist/Chart.js",
+        "Chart.PieceLabel.js/src/Chart.PieceLabel.js"
       ]
     },
     vendor: {
