@@ -124,6 +124,9 @@
         templateUrl: 'templates/partials/modal-show-notification.html',
         model: notification
       };
+
+      UserNotificationsService.notifyOpenNotification(notification);
+
       ModalService.showModel(dialogOptions);
     }
 
