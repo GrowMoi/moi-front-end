@@ -25,12 +25,8 @@
   function moiSoundController($q,
                               $scope,
                               $element,
-                              $rootScope,
-                              $ionicPlatform,
-                              $window,
-                              $cordovaNativeAudio) {
-    var vmSound = this,
-        isNativeImplementation;
+                              $rootScope) {
+    var vmSound = this;
 
     vmSound.$audio = $element.find('audio');
     vmSound.play = play;
@@ -38,32 +34,15 @@
     vmSound.getAudioType = getAudioType;
     vmSound.soundType = vmSound.getAudioType(vmSound.sound);
 
-    // we'll do it once the device is ready
-    $ionicPlatform.ready(function () {
-      isNativeImplementation = !!$window.cordova;
+    function init(){
       preloadAudio().then(function () {
         audioHasLoaded();
         autoPlay();
       });
-    });
-
-    function preloadAudio() {
-      if (isNativeImplementation) {
-        return nativePreloadAudio();
-      } else {
-        return listenForWebAudio();
-      }
     }
 
-    function nativePreloadAudio() {
-      var deferred = $q.defer();
-      $cordovaNativeAudio.preloadComplex(
-        vmSound.sound, // id
-        vmSound.sound, // path
-        1, // volume
-        1  // voices
-      ).finally(deferred.resolve);
-      return deferred.promise;
+    function preloadAudio() {
+      return listenForWebAudio();
     }
 
     function listenForWebAudio() {
@@ -90,28 +69,18 @@
     }
 
     function play() {
-      if (isNativeImplementation) {
-        // TODO support loops
-        $cordovaNativeAudio.play(vmSound.sound, vmSound.callback);
-      } else {
-        vmSound.$audio[0].volume = vmSound.volume || 1;
-        vmSound.$audio[0].play();
-        if(!vmSound.onlyPlay){
-          vmSound.$audio[0].onended = vmSound.callback;
-        }
+      vmSound.$audio[0].volume = vmSound.volume || 1;
+      vmSound.$audio[0].play();
+      if(!vmSound.onlyPlay){
+        vmSound.$audio[0].onended = vmSound.callback;
       }
     }
 
     function stop() {
-      if (isNativeImplementation) {
-        $cordovaNativeAudio.stop(vmSound.sound);
-        // remember to unload from memory
-        $cordovaNativeAudio.unload(vmSound.sound);
-      } else {
-        vmSound.$audio[0].pause();
-      }
+      vmSound.$audio[0].pause();
     }
 
     $rootScope.$on('moiSound:kill-sound', stop);
+    init();
   }
 })();

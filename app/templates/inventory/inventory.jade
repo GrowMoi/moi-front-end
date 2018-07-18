@@ -1,4 +1,4 @@
-ion-view.frame-all-buttons.inventory-section(view-title='Inventario')
+ion-view.inventory-section(view-title='Inventario')
   div(ng-if="vmInv.showInventory")
     ion-content
       .arrow.back-arrow(back-button image-url="images/back-arrow.png")
@@ -22,6 +22,7 @@ ion-view.frame-all-buttons.inventory-section(view-title='Inventario')
                   img(
                       ng-src="{{achievement.settings.badge}}"
                       ng-class="{selected: achievement.active}")
+        moi-frame(options="vmInv.frameOptions")
         moi-buttons(options="vmInv.buttonsOptions")
     moi-sidebar
   .movies-container(ng-if="!vmInv.showInventory")

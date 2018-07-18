@@ -41,6 +41,9 @@
       vmTest.cssOptions = {
         styles: []
       };
+      vmTest.frameOptions = {
+        type: 'marco_arbol'
+      };
     }
 
     function selectAnswer(contentId, answer) {

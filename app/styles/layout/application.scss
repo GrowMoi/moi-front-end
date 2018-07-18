@@ -4,9 +4,11 @@ body {
     background-image: url(../images/landscape_b.png);
     background-repeat: no-repeat;
     & > ion-view {
-      width: 1280px;
-      height: 720px;
-      margin: auto;
+      min-width: 800px;
+      min-height: 482px;
+      .overflow-scroll{
+        overflow-y: hidden;
+      }
     }
   }
 

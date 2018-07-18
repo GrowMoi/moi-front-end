@@ -12,6 +12,11 @@
     friendsmodel.reloadSearch = reloadSearch;
     friendsmodel.noMoreItemsAvailable = true;
     friendsmodel.users = [];
+    friendsmodel.frameOptions = {
+      type: 'marco_arbol',
+      withSidebar: true,
+      showBackButton: true
+    };
 
     if(friendsmodel.query !== ''){
       search();

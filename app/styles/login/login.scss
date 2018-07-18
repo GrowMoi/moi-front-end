@@ -2,10 +2,19 @@
 
 .login-view{
   background-image: url(../images/login/bg.png);
+  background-size: 1280px 720px;
+  background-position: top right;
   form{
     right: 200px;
-    bottom: 380px;
+    top: 15%;
     width: 440px;
+
+    @media (max-width: 560px) {
+      top: 16%;
+    }
+    @media (max-height: 510px) {
+      top: 17%;
+    }
   }
   .legend-browser{
     color: white;

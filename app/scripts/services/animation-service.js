@@ -18,8 +18,6 @@
         repeat: false,
         speed: 50,
         sound: 'sounds/btn_search.mp3',
-        width: 111,
-        height: 70,
         playOnClick: true,
         name: 'Buscar'
       },
@@ -29,8 +27,6 @@
         repeat: false,
         speed: 50,
         sound: 'sounds/btn_recomendation.mp3',
-        width: 106,
-        height: 70,
         playOnClick: true,
         name: 'Recomendación Aleatoria'
       },
@@ -40,8 +36,6 @@
         repeat: false,
         speed: 30,
         sound: 'sounds/btn_read.mp3',
-        width: 130,
-        height: 105,
         playOnClick: true,
         name: 'Leer Contenido'
       },
@@ -69,8 +63,6 @@
         repeat: false,
         speed: 60,
         sound: 'sounds/btn_share.mp3',
-        width: 52,
-        height: 52,
         playOnClick: true,
         name: 'Compartir'
       },
@@ -80,8 +72,6 @@
         repeat: false,
         speed: 60,
         sound: 'sounds/btn_save_tasks.mp3',
-        width: 54,
-        height: 54,
         playOnClick: true,
         name: 'Guardar Tarea'
       },
@@ -91,8 +81,6 @@
         repeat: false,
         speed: 60,
         sound: 'sounds/btn_show_tasks.mp3',
-        width: 120,
-        height: 80,
         playOnClick: true,
         name: 'Tareas'
       },
@@ -101,8 +89,6 @@
         frames: 40,
         repeat: false,
         speed: 50,
-        width: 111,
-        height: 70,
         playOnClick: false
       },
       recomendationIdle: {
@@ -110,8 +96,6 @@
         frames: 44,
         repeat: false,
         speed: 50,
-        width: 106,
-        height: 70,
         playOnClick: false
       },
       learnIdle: {
@@ -119,8 +103,6 @@
         frames: 45,
         repeat: false,
         speed: 50,
-        width: 130,
-        height: 105,
         playOnClick: false
       },
       overlay: {
@@ -128,8 +110,6 @@
         frames: 22,
         repeat: false,
         speed: 60,
-        width: 600,
-        height: 300,
         playOnClick: false
       },
       inventory: {
@@ -138,8 +118,6 @@
         repeat: false,
         speed: 50,
         sound: 'sounds/btn_inventory.mp3',
-        width: 100,
-        height: 60,
         playOnClick: true,
         name: 'Inventario'
       },
@@ -149,8 +127,6 @@
         repeat: false,
         speed: 50,
         sound: 'sounds/btn_favorites.mp3',
-        width: 54,
-        height: 54,
         playOnClick: true,
         name: 'Marcar como Favorito'
       }
