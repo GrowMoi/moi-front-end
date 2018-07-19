@@ -18,7 +18,7 @@ ion-view.friends-container.search-view-max(view-title='Friends')
           .content-title
             | {{ ::'searches.friends' | translate }}
           .divider-line-search
-          ion-content.result-searches.friends-searches
+          ion-content.result-searches
             .col.col-25.user(ng-repeat='friend in friendsmodel.users track by $index')
               .content-kind-contents(ui-sref="profile({username: friend.username})")
                   img(src="images/user.png")
