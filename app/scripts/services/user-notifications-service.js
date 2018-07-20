@@ -6,9 +6,12 @@
     .factory('UserNotificationsService', UserNotificationsService);
 
   function UserNotificationsService($auth, $rootScope, PusherService, UserService,
-                                    $q, TutorRecommendationsService){
+                                    $q, TutorRecommendationsService, $http, ENV){
     var channelsToNotifications = [],
-        service = { initialize: initialize };
+        service = {
+          initialize: initialize,
+          notifyOpenNotification: notifyOpenNotification
+        };
     return service;
 
     function initialize(){
@@ -57,6 +60,24 @@
 
     function updateNotificationsCount(){
       $rootScope.$broadcast('notifications.updateCount');
+    }
+
+    function notifyOpenNotification(notification) {
+      var params = {
+        type: notification.type
+      };
+      if (notification.user_id) { //jshint ignore:line
+        params.tutor_id = notification.user_id //jshint ignore:line
+      }
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/notifications/' + notification.id + '/open',
+        params: params
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        return $q.reject(err);
+      });
     }
   }
 })();
