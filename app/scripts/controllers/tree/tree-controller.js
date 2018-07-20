@@ -103,7 +103,7 @@
 
     function showWelcomeModal(){
       var dialogContentModel = {
-        message:'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
+        message:'Bienvenido '+currentUser.username+'. Este es tu árbol Haedus. '+
                 'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
                 'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
                 'máxima expresión.',

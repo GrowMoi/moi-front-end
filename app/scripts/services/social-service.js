@@ -17,7 +17,7 @@
       showModal: showModal
     };
     var configSocialNetwork = {
-      appName: 'Moi Social Learning',
+      appName: 'Haedus',
       popupHeight: '300',
       popupWidth: '400'
     };

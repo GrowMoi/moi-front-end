@@ -149,7 +149,7 @@
     function showUserAchievement(achievement){
       var dialogContentModel = {
         message: 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
-                  'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi',
+                  'Activa este item en el inventario y disfruta de tus logros aprendiendo con Haedus',
         callbacks: {
           btnRight: function(){
             $state.go('inventory');

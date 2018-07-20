@@ -127,7 +127,7 @@
 
       function showAlertExternalLink(link){
         var dialogContentModel = {
-          message: 'En este momento estás saliendo de Moi. Para volver, simplemente cierra la pestaña con el enlace',
+          message: 'En este momento estás saliendo de Haedus. Para volver, simplemente cierra la pestaña con el enlace',
           callbacks: {
             btnRight: function(){
               $window.open(link);
