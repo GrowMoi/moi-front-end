@@ -1,10 +1,10 @@
-ion-view.frame-without-sidebar.settings-page(view-title='{{vm.neuron.title}}')
+ion-view.settings-page(view-title='{{vm.neuron.title}}')
   ion-content
     back-button.arrow.back-arrow
     .frame
       .frame-container.content-settings
         .settings.row
-          .panel-left.col-50.panel-left-margin-right
+          .panel-left.col-40
             .content-title-settings.border-bottom-settings {{ ::'setting.settings' | translate }}
             .title-label Level
             .title-label-1 1
@@ -20,9 +20,9 @@ ion-view.frame-without-sidebar.settings-page(view-title='{{vm.neuron.title}}')
                   ng-model="config.level",
                   ng-change="vm.contentSettings(config)")
                 .range-right-border
-          .panel-right.col-50.panel-right-margin-right
+          .panel-right.col-50
             .content-title-settings.border-bottom-settings {{ ::'setting.interests' | translate }}
-            .label {{ ::'setting.choose-interest' | translate }}
+            span.label {{ ::'setting.choose-interest' | translate }}
             .interests-list
               .row(ng-repeat='interest in vm.interests', ng-if='$index %3 === 0')
                 .col.col-35(ng-if='$index < vm.interests.length')
@@ -43,3 +43,4 @@ ion-view.frame-without-sidebar.settings-page(view-title='{{vm.neuron.title}}')
               .row
                 img.btn-guide(src='images/info_M.png'
                             ui-sref="guide")
+    moi-frame(options="vm.frameOptions")
