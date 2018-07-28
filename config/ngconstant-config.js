@@ -57,7 +57,7 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost: process.env.apiHost,
+          apiHost:'http://moi-demo-backend.shiriculapo.com',
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
@@ -81,7 +81,7 @@
       constants: {
         ENV: {
           name: 'demo',
-          apiHost: process.env.apiHost,
+          apiHost: 'http://moi-demo-backend.shiriculapo.com',
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
