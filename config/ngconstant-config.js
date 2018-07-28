@@ -58,10 +58,10 @@
         ENV: {
           name: 'production',
           apiHost:'http://moi-demo-backend.shiriculapo.com',
-          facebookKey: process.env.FACEBOOK_KEY,
-          pusherKey: process.env.PUSHER_KEY,
-          cloudinaryName: process.env.CLOUDINARY_NAME,
-          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
+          facebookKey: '1472552379444628',
+          pusherKey: 'f43df1534c561963bc67',
+          cloudinaryName: 'moi-images',
+          unsignedUploadPreset: 'nmk8efc6'
         },
         IMAGES: {
           paths: []
