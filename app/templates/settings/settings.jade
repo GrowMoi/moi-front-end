@@ -4,8 +4,10 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
     .frame
       .frame-container.content-settings
         .settings.row
-          .panel-left.col-40
-            .content-title-settings.border-bottom-settings {{ ::'setting.settings' | translate }}
+          .panel-left.col-45
+            .border-bottom-settings
+              span.content-title-settings.left-padding
+                | {{ ::'setting.settings' | translate }}
             .title-label Level
             .title-label-1 1
             .title-label-1 2
@@ -20,27 +22,28 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
                   ng-model="config.level",
                   ng-change="vm.contentSettings(config)")
                 .range-right-border
-          .panel-right.col-50
-            .content-title-settings.border-bottom-settings {{ ::'setting.interests' | translate }}
+          .panel-right.col-45
+            .border-bottom-settings
+              span.content-title-settings
+                | {{ ::'setting.interests' | translate }}
             span.label {{ ::'setting.choose-interest' | translate }}
             .interests-list
               .row(ng-repeat='interest in vm.interests', ng-if='$index %3 === 0')
-                .col.col-35(ng-if='$index < vm.interests.length')
+                .col.interest(ng-if='$index < vm.interests.length')
                   span.title {{vm.interests[$index].interest}}
                   img(ng-src='{{vm.interests[$index].src}}',
                       ng-click="vm.selectInterest(vm.interests[$index])",
                       ng-class="{'interest-selected': vm.interests[$index].selected }")
-                .col.col-30(ng-if='$index+1 < vm.interests.length')
+                .col.interest(ng-if='$index+1 < vm.interests.length')
                   span.title {{vm.interests[$index+1].interest}}
                   img(ng-src='{{vm.interests[$index+1].src}}',
                       ng-click="vm.selectInterest(vm.interests[$index+1])"
                       ng-class="{'interest-selected': vm.interests[$index+1].selected }")
-                .col.col-35(ng-if='$index+2 < vm.interests.length')
+                .col.interest(ng-if='$index+2 < vm.interests.length')
                   span.title {{vm.interests[$index+2].interest}}
                   img(ng-src='{{vm.interests[$index+2].src}}',
                       ng-click="vm.selectInterest(vm.interests[$index+2])"
                       ng-class="{'interest-selected': vm.interests[$index+2].selected }")
-              .row
-                img.btn-guide(src='images/info_M.png'
+          img.btn-guide(src='images/info_M.png'
                             ui-sref="guide")
     moi-frame(options="vm.frameOptions")

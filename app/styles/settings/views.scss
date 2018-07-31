@@ -1,13 +1,13 @@
 .content-title-settings{
   color: $moiDarkGreen;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: bold;
-  margin-bottom: 30px;
-  margin-top: 15px;
-  margin-left: 20px;
   font-family: FontMoi-Title;
   width: 100%;
   line-height: 50px;
+  &.left-padding {
+    margin-left: 12%;
+  }
 }
 
 .content-subtitle-settings{
@@ -22,7 +22,7 @@
   border-bottom: 4px solid $moiDarkGreen;
   margin-bottom: 20px;
   margin-left: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 2%;
   width: 95%;
 }
 
