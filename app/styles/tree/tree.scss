@@ -322,3 +322,27 @@ a {
     position: absolute;
   }
 }
+
+@media (max-width: 1200px) {
+  .tree-view {
+    .tree-content {
+      zoom: 0.85;
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .tree-view {
+    .tree-content {
+      zoom: 0.75;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .tree-view {
+    .tree-content {
+      zoom: 0.65;
+    }
+  }
+}
