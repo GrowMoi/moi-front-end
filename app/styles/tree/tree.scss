@@ -322,11 +322,71 @@ a {
     position: absolute;
   }
 }
+@media (max-width: 1700px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -3.5%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1550px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -3%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -2.5%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -1.5%;
+      }
+    }
+  }
+}
 
 @media (max-width: 1200px) {
   .tree-view {
     .tree-content {
       zoom: 0.85;
+    }
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -3%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 0;
+        bottom: -2%;
+      }
     }
   }
 }
@@ -336,6 +396,12 @@ a {
     .tree-content {
       zoom: 0.75;
     }
+    .tree-section {
+      .tree-draw {
+        left: 0;
+        bottom: 0;
+      }
+    }
   }
 }
 
@@ -343,6 +409,12 @@ a {
   .tree-view {
     .tree-content {
       zoom: 0.65;
+    }
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: 0;
+      }
     }
   }
 }
