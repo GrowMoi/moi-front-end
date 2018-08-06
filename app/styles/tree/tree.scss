@@ -320,6 +320,14 @@ a {
 
   .vinetas {
     position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    video{
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 @media (max-width: 1700px) {
@@ -375,6 +383,12 @@ a {
       .tree-draw {
         left: 1%;
         bottom: -3%;
+        .neuron {
+          zoom: 0.7;
+        }
+        .tree-neuron-root {
+          zoom: 0.7;
+        }
       }
     }
   }
@@ -400,6 +414,12 @@ a {
       .tree-draw {
         left: 0;
         bottom: 0;
+        .neuron {
+          zoom: 0.6;
+        }
+        .tree-neuron-root {
+          zoom: 0.6;
+        }
       }
     }
   }
@@ -414,6 +434,12 @@ a {
       .tree-draw {
         left: 1%;
         bottom: 0;
+        .neuron {
+          zoom: 0.5;
+        }
+        .tree-neuron-root {
+          zoom: 0.5;
+        }
       }
     }
   }
