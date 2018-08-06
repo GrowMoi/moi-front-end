@@ -97,6 +97,7 @@
 
     .panel-right {
       width: 100%;
+      margin-right: 5%;
       .label {
         background-color: rgba(120, 141, 90, 0.68);
         color: $moiDarkGreen;
@@ -118,7 +119,7 @@
           justify-content: space-between;
           .title {
             color: #d2d583;
-            font-size: 13px;
+            font-size: 18px;
           }
           img {
             width: 50%;
@@ -135,12 +136,78 @@
       height: 10%;
       cursor: pointer;
       position: absolute;
-      bottom: 2%;
       right: 4%;
     }
   }
 
   .interest-selected {
     opacity: 0.4;
+  }
+  @media (max-width: 1100px) {
+    .content-title-settings {
+      font-size: 36px;
+    }
+    .border-bottom-settings {
+      margin-top: 8px;
+      padding-bottom: 4%;
+    }
+    .content-subtitle-settings {
+      font-size: 10px;
+    }
+    .settings {
+      .panel-right {
+        .interests-list {
+          .interest {
+            .title {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 950) {
+    .content-title-settings {
+      font-size: 30px;
+    }
+    .content-subtitle-settings {
+      font-size: 10px;
+    }
+    .settings {
+      .panel-right {
+        .interests-list {
+          .interest {
+            .title {
+              font-size: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 850px) {
+    .content-title-settings {
+      font-size: 30px;
+    }
+    .border-bottom-settings {
+      margin-top: 5px;
+      padding-bottom: 2%;
+    }
+    .content-subtitle-settings {
+      font-size: 8px;
+    }
+    .settings {
+      .panel-right {
+        .interests-list {
+          .interest {
+            .title {
+              font-size: 8px;
+            }
+          }
+        }
+      }
+    }
   }
 }
