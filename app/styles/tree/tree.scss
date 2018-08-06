@@ -375,6 +375,15 @@ a {
 }
 
 @media (max-width: 1200px) {
+  .btn-shared-tree {
+    zoom: 0.85;
+  }
+  .tree-percentage {
+    zoom: 0.85;
+  }
+  .level-user {
+    zoom: 0.85;
+  }
   .tree-view {
     .tree-content {
       zoom: 0.85;
@@ -406,6 +415,15 @@ a {
 }
 
 @media (max-width: 950px) {
+  .btn-shared-tree {
+    zoom: 0.75;
+  }
+  .tree-percentage {
+    zoom: 0.75;
+  }
+  .level-user {
+    zoom: 0.75;
+  }
   .tree-view {
     .tree-content {
       zoom: 0.75;
@@ -426,6 +444,15 @@ a {
 }
 
 @media (max-width: 850px) {
+  .btn-shared-tree {
+    zoom: 0.65;
+  }
+  .tree-percentage {
+    zoom: 0.65;
+  }
+  .level-user {
+    zoom: 0.65;
+  }
   .tree-view {
     .tree-content {
       zoom: 0.65;
