@@ -110,6 +110,14 @@ a {
       height: 100%;
     }
   }
+  .app-content {
+    .back-arrow {
+      .arrow-img {
+        bottom: 13%;
+        left: 13%;
+      }
+    }
+  }
 }
 
 .clouds-container {
@@ -320,5 +328,154 @@ a {
 
   .vinetas {
     position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    video{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+@media (max-width: 1700px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -3.5%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1550px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -3%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -2.5%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -1.5%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .btn-shared-tree {
+    zoom: 0.85;
+  }
+  .tree-percentage {
+    zoom: 0.85;
+  }
+  .level-user {
+    zoom: 0.85;
+  }
+  .tree-view {
+    .tree-content {
+      zoom: 0.85;
+    }
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: -3%;
+        .neuron {
+          zoom: 0.7;
+        }
+        .tree-neuron-root {
+          zoom: 0.7;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .tree-view {
+    .tree-section {
+      .tree-draw {
+        left: 0;
+        bottom: -2%;
+      }
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .btn-shared-tree {
+    zoom: 0.75;
+  }
+  .tree-percentage {
+    zoom: 0.75;
+  }
+  .level-user {
+    zoom: 0.75;
+  }
+  .tree-view {
+    .tree-content {
+      zoom: 0.75;
+    }
+    .tree-section {
+      .tree-draw {
+        left: 0;
+        bottom: 0;
+        .neuron {
+          zoom: 0.6;
+        }
+        .tree-neuron-root {
+          zoom: 0.6;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .btn-shared-tree {
+    zoom: 0.65;
+  }
+  .tree-percentage {
+    zoom: 0.65;
+  }
+  .level-user {
+    zoom: 0.65;
+  }
+  .tree-view {
+    .tree-content {
+      zoom: 0.65;
+    }
+    .tree-section {
+      .tree-draw {
+        left: 1%;
+        bottom: 0;
+        .neuron {
+          zoom: 0.5;
+        }
+        .tree-neuron-root {
+          zoom: 0.5;
+        }
+      }
+    }
   }
 }

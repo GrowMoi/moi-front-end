@@ -15,6 +15,10 @@
     /*jshint camelcase: false */
     vm.preferences = user.content_preferences;
     vm.preferences = $filter('orderBy')(vm.preferences, 'order');
+    vm.frameOptions = {
+      type: 'marco_arbol',
+      showBackButton: true
+    };
 
     dragularService('.drag-panel', {
       containersModel: [vm.preferences],

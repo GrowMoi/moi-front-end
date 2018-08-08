@@ -15,7 +15,8 @@
     'ionic.contrib.drawer',
     'dragularModule',
     '720kb.socialshare',
-    'ngIdle'
+    'ngIdle',
+    '720kb.tooltips'
   ])
 
   .run(function(Idle, $window, $rootScope) {
