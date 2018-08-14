@@ -27,7 +27,6 @@ a {
     display: flex;
     align-content: flex-end;
     justify-content: center;
-    z-index: 1;
     bottom: -5%;
 
     .flowerpot {
@@ -93,7 +92,6 @@ a {
       justify-content: center;
       width: 100%;
       height: 100%;
-      z-index: 0;
 
       .flowerpot {
         position: absolute;
@@ -295,6 +293,18 @@ a {
   width: 4em;
   height: 4em;
   cursor: pointer;
+  z-index: 2;
+}
+
+.logo-haedus {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  background-image: url(../images/haedus-logo.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 5em;
+  height: 5em;
   z-index: 2;
 }
 

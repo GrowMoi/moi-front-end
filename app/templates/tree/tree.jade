@@ -43,6 +43,7 @@ ion-view.tree-view(view-title='TreeMoi')
           .tree-draw
             moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
         .btn-shared-tree(ng-click="treeModel.sharedTree()" data-html2canvas-ignore="true")
+        .logo-haedus(data-html2canvas-ignore="true")
       moi-frame(options="treeModel.frameOptions")
   .movies-container(ng-if="!treeModel.showTree")
     .container-loading
