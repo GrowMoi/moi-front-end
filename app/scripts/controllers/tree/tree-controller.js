@@ -80,6 +80,12 @@
       if(treeModel.urlVineta) {
         $backgroundSound[0].autoplay = false;
         treeModel.showTree = false;
+        if(data.meta.depth === 1){
+          treeModel.showLogo = true;
+          $timeout(function() {
+            $scope.$apply(function(){treeModel.showLogo = false;});
+          }, 3000);
+        }
       }else{
         treeModel.showTree = true;
         if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line

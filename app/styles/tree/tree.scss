@@ -27,7 +27,7 @@ a {
     display: flex;
     align-content: flex-end;
     justify-content: center;
-    bottom: -5%;
+    bottom: -7%;
 
     .flowerpot {
       position: relative;
@@ -39,7 +39,7 @@ a {
 
     .tree {
       position: absolute;
-      bottom: 10%;
+      bottom: 5%;
       left: 0;
       width: 100%;
       height: 100%;
@@ -320,6 +320,7 @@ a {
 .movies-container {
   justify-content: center;
   display: flex;
+  align-items: center;
   height: 100%;
   width: 100%;
 
@@ -335,6 +336,14 @@ a {
       width: 6em;
       height: 6em;
     }
+  }
+
+  .logo-haedus-welcome {
+    background-image: url(../images/haedus-logo.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 15em;
+    height: 15em;
   }
 
   .vinetas {
