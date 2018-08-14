@@ -1,6 +1,11 @@
 .settings-page {
   background-color: transparent;
-
+  .back-arrow {
+    .arrow-img {
+      bottom: 15%;
+      left: 15%;
+    }
+  }
   .frame {
     position: relative;
     overflow: hidden;
