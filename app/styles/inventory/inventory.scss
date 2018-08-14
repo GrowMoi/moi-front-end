@@ -1,6 +1,11 @@
 .inventory-section {
   background-color: transparent;
-
+  .back-arrow {
+    .arrow-img {
+      bottom: 8%;
+      left: 10%;
+    }
+  }
   .frame-container {
     display: flex;
     justify-content: center;

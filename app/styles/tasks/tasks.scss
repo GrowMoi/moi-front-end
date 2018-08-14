@@ -1,6 +1,11 @@
 .tasks {
   background-color: transparent;
-
+  .back-arrow {
+    .arrow-img {
+      bottom: 8%;
+      left: 8%;
+    }
+  }
   .panel-tasks {
     height: 100%;
     width: 100%;
