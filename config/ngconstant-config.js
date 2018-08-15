@@ -57,7 +57,7 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost:'http://moi-demo-backend.shiriculapo.com',
+          apiHost:'http://moi.backend.haedus.cl',
           facebookKey: '1472552379444628',
           pusherKey: 'f43df1534c561963bc67',
           cloudinaryName: 'moi-images',
@@ -81,7 +81,7 @@
       constants: {
         ENV: {
           name: 'demo',
-          apiHost: 'http://moi-demo-backend.shiriculapo.com',
+          apiHost: 'http://moi.backend.haedus.cl',
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
