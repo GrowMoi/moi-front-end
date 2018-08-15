@@ -12,32 +12,32 @@
           }
         },
         2: {
-          name: 'Contenidos aprendidos rama Lenguaje',
-          description: 'Han sido aprendidos 20 contenidos de la rama Lenguaje',
+          name: 'Contenidos aprendidos rama Comunicación',
+          description: 'Han sido aprendidos 20 contenidos de la rama Comunicación',
           settings: {
             badge:'images/inventory/badges/badge2.png',
             theme: 'amarillo'
           }
         },
         3: {
-          name: 'Contenidos aprendidos rama Arte',
-          description: 'Han sido aprendidos 20 contenidos de la rama Arte',
+          name: 'Contenidos aprendidos rama Creatividad',
+          description: 'Han sido aprendidos 20 contenidos de la rama Creatividad',
           settings: {
             badge:'images/inventory/badges/badge3.png',
             theme: 'rojo'
           }
         },
         4: {
-          name: 'Contenidos aprendidos rama Aprender',
-          description: 'Han sido aprendidos 20 contenidos de la rama Aprender',
+          name: 'Contenidos aprendidos rama Pensamiento Crítico',
+          description: 'Han sido aprendidos 20 contenidos de la rama Pensamiento Crítico',
           settings: {
             badge:'images/inventory/badges/badge4.png',
             theme: 'azul'
           }
         },
         5: {
-          name: 'Contenidos aprendidos rama Naturaleza',
-          description: 'Han sido aprendidos 20 contenidos de la rama Naturaleza',
+          name: 'Contenidos aprendidos rama Colaboración',
+          description: 'Han sido aprendidos 20 contenidos de la rama Colaboración',
           settings: {
             badge:'images/inventory/badges/badge9.png',
             theme: 'verde'

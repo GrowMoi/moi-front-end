@@ -10,7 +10,8 @@
           showModel: showModel
         },
         modalOptions = { // Default modal options
-          animation: 'slide-in-up'
+          animation: 'slide-in-up',
+          onHide: function(){}
         };
 
     return service;
@@ -29,6 +30,7 @@
       }).then(function(modalInstance) {
         modalMoi.scope.model.closeModal = function() {
           closeAndRemove(modalInstance);
+          modalOptions.onHide();
         };
         modalInstance.show();
       });
