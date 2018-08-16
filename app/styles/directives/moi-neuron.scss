@@ -13,3 +13,10 @@
     transition: 0.2s ease-in-out;
   }
 }
+
+moi-neuron {
+
+  &:hover{
+    z-index: 9999 !important;
+  }
+}

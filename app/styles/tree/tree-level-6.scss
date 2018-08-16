@@ -345,8 +345,8 @@
           &-11011{
             bottom: 44.44%;
             left: 45.31%;
-            width: 83.3%;
-            height: 83.3%;
+            width: 25px;
+            height: 25px;
           }
           &-11001{
             bottom: 49.30%;
@@ -613,7 +613,7 @@
           }
           &-21 {
             &.florecida{
-              z-index: 1;
+              // z-index: 1;
               background-image: url(../images/tree/branchs/level-4/rama085.png);
             }
           }
@@ -737,7 +737,7 @@
           }
           &-3011{
             &.florecida{
-              z-index: 1;
+              // z-index: 1;
               background-image: url(../images/tree/branchs/level-5/rama088.png);
             }
           }
