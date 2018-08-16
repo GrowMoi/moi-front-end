@@ -11,8 +11,9 @@ ion-view.tree-view(view-title='TreeMoi')
           .cloud.animated.slideInLeft
             img(src="images/nube3L.png")
         .tree-percentage(data-html2canvas-ignore="true")
-          .percentage-container(tooltip-moi="Has descubierto el {{::treeModel.percentage}}% de tu árbol Moi"
-                                tooltip-position="left")
+          .percentage-container(tooltips
+                                tooltip-template="Has descubierto el {{::treeModel.percentage}}% de tu árbol Moi"
+                                tooltip-side="left")
             .percentage-progress-bar
               .label
                   | {{::treeModel.percentage}} %
@@ -20,8 +21,9 @@ ion-view.tree-view(view-title='TreeMoi')
             img.widget(src="images/tree-percentage-bar.png")
         .level-user
           .level-user-container(data-html2canvas-ignore="true")
-            .level-container(tooltip-moi="Tu nivel de aprendizaje es {{::treeModel.userLevel}}"
-                    tooltip-position="up")
+            .level-container(tooltips
+                            tooltip-template="Tu nivel de aprendizaje es {{::treeModel.userLevel}}"
+                            tooltip-side="top")
               .level-progress-bar
                 .level-bar(ng-style="treeModel.cssBar" style="height: {{treeModel.percentageLevel}}%")
               img.widget(src="images/tree-user-level.png")
