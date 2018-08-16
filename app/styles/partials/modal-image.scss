@@ -11,6 +11,7 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
+  padding: 4%;
   &.violeta {
     background: url(../images/themes/violeta/marco_modal.png);
     background-repeat: no-repeat;
@@ -78,7 +79,8 @@
     height: 88%;
   }
   .content-image {
-    height: 88%;
+    height: 100%;
+    width: 100%;
   }
 }
 /* Fix modal backdrop for smaller devices */

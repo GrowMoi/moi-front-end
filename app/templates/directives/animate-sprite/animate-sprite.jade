@@ -1,7 +1,7 @@
-.animate-sprite-wrapper(style="width:{{::vm.width}}" ng-click="vm.playAnimateSprite()"
+.animate-sprite-wrapper(ng-click="vm.playAnimateSprite()"
                 tooltip-moi="{{::vm.options.name}}"
                 tooltip-position="up")
   moi-sound(sound="{{::vm.options.sound}}", ng-if="::vm.options.sound", callback="vm.endSound()")
-  .img-animate(ng-style="vm.css" style="padding-bottom:{{::vm.height}}"
+  .img-animate(ng-style="vm.css"
                ng-mouseover="vm.increaseSize(true)"
                ng-mouseleave="vm.increaseSize(false)")

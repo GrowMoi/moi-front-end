@@ -52,6 +52,15 @@
         'index.html'
        ]
     },
+    js: {
+      expand: true,
+      cwd: '<%= yeoman.app %>',
+      dest: '<%= yeoman.dist %>/',
+      src: [
+        '**/**/*.js',
+        '!scripts/templates.js'
+       ]
+    },
     templates: {
       expand: true,
       cwd: '<%= yeoman.app %>',

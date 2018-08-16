@@ -1,4 +1,4 @@
-ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
+ion-view.profile-content.profile(view-title='{{vm.neuron.title}}')
   ion-content
     back-button.arrow.back-arrow
     moi-arrow(on-click="toggleDrawer()" orientation="right")
@@ -7,7 +7,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
         .profile-wrapper
           .header-wrapper.row
             .col-80.row
-              .user-image.col-10
+              .user-image
                 img(src="images/user.png")
               .user-name.col
                 {{vmProfile.user.username}}
@@ -17,7 +17,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
           .content-wrapper.row
             .more-details.col-50
               .user-description.row
-                .col-75
+                .container-logros
                   .title
                     | Logros
                   .info(ng-click="vmProfile.changeTab('awards')")
@@ -44,7 +44,7 @@ ion-view.frame-all-buttons.profile(view-title='{{vm.neuron.title}}')
                   .partial(ng-include="vmProfile.viewSelected")
             .tree-preview.col-50
               img.tree(ng-src="{{vmProfile.user.tree_image}}")
-              img.flowerpot(src="images/macetaH.png")
+      moi-frame(options="vmProfile.frameOptions")
       moi-buttons(options="vmProfile.buttonsOptions")
       .btn-learn
   moi-sidebar

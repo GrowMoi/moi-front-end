@@ -29,6 +29,10 @@
       vmInv.cssOptions = {
         styles: []
       };
+      vmInv.frameOptions = {
+        type: 'content_max',
+        showBackButton: true
+      };
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
       setMediaIntoAchievements(vmInv.achievements);

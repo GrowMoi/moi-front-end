@@ -1,5 +1,5 @@
 .moi-frame
-  .container-advices(ng-if="frameVm.showAdvices")
+  .container-advices(ng-if="frameVm.showAdvices" data-html2canvas-ignore="true")
     .advice(ng-repeat="advice in frameVm.options.advices"
             ng-class="advice.position"
             ng-if='advice.show')

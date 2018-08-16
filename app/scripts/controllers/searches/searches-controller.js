@@ -13,6 +13,11 @@
     searchesmodel.noMoreItemsAvailable = true;
     searchesmodel.contents = [];
     searchesmodel.neurons = [];
+    searchesmodel.frameOptions = {
+      type: 'marco_arbol',
+      withSidebar: true,
+      showBackButton: true
+    };
 
     if(searchesmodel.query !== ''){
       search();

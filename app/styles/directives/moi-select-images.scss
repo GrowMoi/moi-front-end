@@ -1,8 +1,10 @@
 .login-view.new_login {
   form {
-    bottom: 410px;
     right: 190px;
   }
+}
+moi-select-images{
+  width: 100%;
 }
 .title-grid-images{
   color: #fef9bf;
@@ -26,6 +28,10 @@
       &:hover {
         filter: brightness(1.2) grayscale(.5) opacity(.9);
       }
+      @media (max-width: 900px) {
+          padding-left: 50px;
+          padding-right: 50px;
+      }
     }
     .selected {
       filter: none;
@@ -35,6 +41,9 @@
       font-size: 10px;
       font-weight: bold;
       font-family: FontMoi-Title;
+    }
+    @media (max-width: 900px) {
+      flex: 0 0 10%;
     }
   }
 }

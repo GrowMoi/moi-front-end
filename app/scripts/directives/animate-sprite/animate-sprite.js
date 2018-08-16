@@ -89,8 +89,6 @@ options directive
       initialSize = (frames * 100) + '%';
       percentage = (100/(frames-1)).toFixed(5);
       percentage = parseFloat(percentage);
-      vm.height = options.height ? options.height + 'px' : '';
-      vm.width = options.width ? options.width + 'px' : '';
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
       vm.increaseSize = increaseSize;

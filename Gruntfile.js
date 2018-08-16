@@ -1,9 +1,6 @@
-// Generated on 2015-09-12 using generator-ionic 0.7.3
 'use strict';
 
-var _ = require('lodash');
 var path = require('path');
-var cordovaCli = require('cordova');
 var spawn = process.platform === 'win32' ? require('win-spawn') : require('child_process').spawn;
 var promise = require('bluebird');
 var fs = promise.promisifyAll(require('fs'));
@@ -50,16 +47,8 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
-    // Project settings
     yeoman: require('./config/yeoman-config'),
-
-    // Environment Variables for Angular App
-    // This creates an Angular Module that can be injected via ENV
-    // Add any desired constants to the ENV objects below.
-    // https://github.com/diegonetto/generator-ionic/blob/master/docs/FAQ.md#how-do-i-add-constants
     ngconstant: require('./config/ngconstant-config'),
-
-    // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
         files: ['bower.json'],
@@ -76,7 +65,7 @@ module.exports = function (grunt) {
       js: {
         files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
                 '!<%= yeoman.app %>/<%= yeoman.scripts %>/templates.js'],
-        tasks: ['newer:copy:app', 'newer:jshint:all']
+        tasks: ['newer:copy:js', 'newer:jshint:all']
       },
       compass: {
         files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.{scss,sass}'],
@@ -96,8 +85,15 @@ module.exports = function (grunt) {
 
     // The actual grunt server settings
     connect: {
+      server: {
+        options:{
+          port: 8100,
+          hostname: 'localhost',
+          base: '<%= yeoman.dist %>'
+        }
+      },
       options: {
-        port: 9000,
+        port: 8100,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost'
       },
@@ -352,62 +348,6 @@ module.exports = function (grunt) {
 
   });
 
-  // Register tasks for all Cordova commands
-  _.functions(cordovaCli).forEach(function (name) {
-    grunt.registerTask(name, function () {
-      this.args.unshift(name.replace('cordova:', ''));
-      // Handle URL's being split up by Grunt because of `:` characters
-      if (_.contains(this.args, 'http') || _.contains(this.args, 'https')) {
-        this.args = this.args.slice(0, -2).concat(_.last(this.args, 2).join(':'));
-      }
-      var done = this.async();
-      var exec = process.platform === 'win32' ? 'cordova.cmd' : 'cordova';
-      var cmd = path.resolve('./node_modules/cordova/bin', exec);
-      var flags = process.argv.splice(3);
-      var child = spawn(cmd, this.args.concat(flags));
-      child.stdout.on('data', function (data) {
-        grunt.log.writeln(data);
-      });
-      child.stderr.on('data', function (data) {
-        grunt.log.error(data);
-      });
-      child.on('close', function (code) {
-        code = code ? false : true;
-        done(code);
-      });
-    });
-  });
-
-  // Since Apache Ripple serves assets directly out of their respective platform
-  // directories, we watch all registered files and then copy all un-built assets
-  // over to <%= yeoman.dist %>/. Last step is running cordova prepare so we can refresh the ripple
-  // browser tab to see the changes. Technically ripple runs `cordova prepare` on browser
-  // refreshes, but at this time you would need to re-run the emulator to see changes.
-  grunt.registerTask('ripple', ['wiredep', 'newer:copy:app', 'ripple-emulator']);
-  grunt.registerTask('ripple-emulator', function () {
-    grunt.config.set('watch', {
-      all: {
-        files: _.flatten(_.pluck(grunt.config.get('watch'), 'files')),
-        tasks: ['newer:copy:app', 'prepare']
-      }
-    });
-
-    var cmd = path.resolve('./node_modules/ripple-emulator/bin', 'ripple');
-    var child = spawn(cmd, ['emulate']);
-    child.stdout.on('data', function (data) {
-      grunt.log.writeln(data);
-    });
-    child.stderr.on('data', function (data) {
-      grunt.log.error(data);
-    });
-    process.on('exit', function (code) {
-      child.kill('SIGINT');
-      process.exit(code);
-    });
-
-    return grunt.task.run(['watch']);
-  });
-
   grunt.registerTask('protractor:ci', [
     'protractor:ci:standalone'
   ]);
@@ -450,18 +390,6 @@ module.exports = function (grunt) {
     grunt.config.set('watch', [karma, protractor]);
 
     return grunt.task.run(['watch']);
-  });
-
-  // Wrap ionic-cli commands
-  grunt.registerTask('ionic', function() {
-    var done = this.async();
-    var script = path.resolve('./node_modules/ionic/bin/', 'ionic');
-    var flags = process.argv.splice(3);
-    var child = spawn(script, this.args.concat(flags), { stdio: 'inherit' });
-    child.on('close', function (code) {
-      code = code ? false : true;
-      done(code);
-    });
   });
 
   grunt.registerTask('imagespath', function(environment){
@@ -529,22 +457,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'compress') {
-      return grunt.task.run(['compress', 'ionic:serve']);
+      return grunt.task.run(['compress', 'connect:server','watch' ]);
     }
+    grunt.task.run(['wiredep', 'init', 'connect:server','watch']);
+  });
 
-    grunt.config('concurrent.ionic.tasks', ['ionic:serve', 'watch']);
-    grunt.task.run(['wiredep', 'init', 'concurrent:ionic']);
-  });
-  grunt.registerTask('emulate', function() {
-    grunt.config('concurrent.ionic.tasks', ['ionic:emulate:' + this.args.join(), 'watch']);
-    return grunt.task.run(['init', 'concurrent:ionic']);
-  });
-  grunt.registerTask('run', function() {
-    grunt.config('concurrent.ionic.tasks', ['ionic:run:' + this.args.join(), 'watch']);
-    return grunt.task.run(['init', 'concurrent:ionic']);
-  });
   grunt.registerTask('build', function() {
-    return grunt.task.run(['init', 'ionic:build:' + this.args.join()]);
+    return grunt.task.run(['init']);
   });
 
   grunt.registerTask('init', [
@@ -557,6 +476,7 @@ module.exports = function (grunt) {
     'concurrent:server',
     'autoprefixer',
     'newer:copy:app',
+    'newer:copy:js',
     'newer:copy:tmp'
   ]);
 

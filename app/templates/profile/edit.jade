@@ -1,4 +1,4 @@
-ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | translate}}")
+ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | translate}}")
   ion-content
     back-button.arrow.back-arrow
     moi-arrow(on-click="toggleDrawer()" orientation="right")
@@ -48,13 +48,13 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
 
                 .form-group
                   label.label-register.label-date  {{ ::'register.age' | translate }}:
-                    input.col-60(
-                      type='number',
-                      min='1',
-                      name='age'
-                      ng-model='vmProfileEdit.user.age'
-                      required='required'
-                    )
+                  input.col-60(
+                    type='number',
+                    min='1',
+                    name='age'
+                    ng-model='vmProfileEdit.user.age'
+                    required='required'
+                  )
 
                 .form-group
                   label.label-register.col-40 {{ ::'register.school' | translate }}:
@@ -87,8 +87,9 @@ ion-view.frame-all-buttons.profile(view-title="{{ ::'profile.edit-profile' | tra
                   )
 
                 .row
-                  moi-select-images(images="vmProfileEdit.images"
+                  moi-select-images.select-images-edit(images="vmProfileEdit.images"
                                     on-change="vmProfileEdit.onSelectImage(image)")
+      moi-frame(options="vmProfileEdit.frameOptions")
       moi-buttons(options="vmProfileEdit.buttonsOptions")
       .btn-learn
   moi-sidebar
