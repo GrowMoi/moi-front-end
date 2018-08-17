@@ -15,7 +15,7 @@
     "bucky": "^0.2.8",
     "chart.js": "^2.7.2",
     "Chart.PieceLabel.js": "^0.8.2",
-    "angular-tooltips": "^1.2.2"
+    "angular-tooltips": "git://github.com/720kb/angular-tooltips.git#^1.2.2"
   },
   "devDependencies": {
     "angular-mocks": "1.4.3",
