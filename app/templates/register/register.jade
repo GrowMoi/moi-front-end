@@ -74,11 +74,12 @@ ion-view(
         .row
           moi-select-images(images="registerModel.images"
                             on-change="registerModel.onSelectImage(image)")
-
+        .link-terms(ng-click="registerModel.showTerms()" )
+          | {{ 'register.terms' | translate }}
         .row.button-actions
-          .col
+          .col.actions-register
             input(
               ng-disabled="!registerForm.$valid && !registerModel.registerForm.authorization_key",
               type='submit',
               value="{{ ::'register.enter' | translate }}"
-            ).button
+            ).button.action-button
