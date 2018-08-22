@@ -10,12 +10,21 @@
         $ionicPopup,
         deferredStateGo,
         deferredValidateUser,
+        ModalService,
         $scope,
         $ionicLoading,
         ImagesLogin;
 
     beforeEach(module('moi.controllers'));
-
+    beforeEach(angular.mock.module(function ($provide) {
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
+    }));
     beforeEach(function(){
       module('config', function ($provide) {
         $provide.constant('ImagesLogin', {
@@ -27,12 +36,14 @@
     beforeEach(inject(
       function ($q,
                 _$rootScope_,
+                _ModalService_,
                 $controller,
                 _ImagesLogin_) {
 
       deferredRegister  = $q.defer();
       deferredStateGo   = $q.defer();
       deferredValidateUser   = $q.defer();
+      ModalService = _ModalService_;
       $ionicPopup       = { alert: sinon.stub() };
       $ionicLoading     = { show: sinon.stub(), hide: sinon.stub()};
       $state            = { go: sinon.stub().returns(deferredStateGo.promise) };

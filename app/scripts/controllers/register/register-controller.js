@@ -9,11 +9,14 @@
                               $auth,
                               $ionicPopup,
                               $state,
+                              $scope,
+                              ModalService,
                               ImagesLogin) {
     var registerModel = this;
     registerModel.register = register;
     registerModel.registerForm = {};
     registerModel.images = ImagesLogin.paths;
+    registerModel.term = false;
 
     function register() {
       $ionicLoading.show({
@@ -42,6 +45,23 @@
     registerModel.onSelectImage = function(image){
       /*jshint camelcase: false */
       registerModel.registerForm.authorization_key = image.key;
+    };
+
+    registerModel.showTerms = function(){
+      var dialogOptions = {
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-terms.html',
+        model: registerModel
+      };
+      ModalService.showModel(dialogOptions);
+    };
+
+    registerModel.refuse = function(){
+      location.replace('https://www.growmoi.com');
+    };
+
+    registerModel.acceptTerms = function(){
+      registerModel.closeModal();
     };
   }
 })();

@@ -79,6 +79,21 @@
       top: 7%;
     }
   }
+  .actions-register {
+    display: flex;
+    justify-content: center;
+  }
+  .action-button {
+    line-height: 28px;
+  }
+  .link-terms {
+    color: #fef9bf;
+    font-family: FontMoi-Title;
+    position: absolute;
+    top: 90%;
+    cursor: pointer;
+    padding-left: 5px;
+  }
 }
 .register-view {
   @media (max-width: 1000px) {
