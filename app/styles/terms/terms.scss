@@ -1,0 +1,41 @@
+.modal-terms {
+  .content-terms {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 20.75rem;
+    width: 43.1rem;
+    font-family: FontMoi-Title;
+    color:white;
+    padding-left: 10px;
+    padding-right: 10px;
+    .title{
+      font-weight: bold;
+      font-size: 20px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+    .description{
+      font-size: 17px;
+      text-align: justify;
+    }
+    .content-buttons {
+      display: flex;
+      justify-content: center;
+    }
+    .button {
+      background-image: url(../images/btn.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 0;
+      background-color: transparent;
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 47px;
+      color: #FDF9BF;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+}
