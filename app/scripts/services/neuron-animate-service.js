@@ -27,6 +27,7 @@
 
       function callToAction(){
         var $neuronToAnimate = discoveredNeurons[Math.floor(Math.random() * discoveredNeurons.length)];
+            $neuronToAnimate = $neuronToAnimate.find('img');
         var cssClass = 'animated swing';
         $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
           // Do somthing after animation
@@ -41,6 +42,7 @@
 
       function specialCallToAction(){
         var $neuronToAnimate = service.neuronElementUnavailable;
+            $neuronToAnimate = $neuronToAnimate.find('img');
         var cssClass = 'animated tada';
 
         $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {

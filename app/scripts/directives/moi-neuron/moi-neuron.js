@@ -84,7 +84,7 @@
 
       //add neuron element to NeuronAnimateService for later animate it.
       if(vm.neuron.state === 'descubierta'){
-        var $neuroImg = $element.find('img');
+        var $neuroImg = $element;
         if(vm.neuron.in_desired_neuron_path){ //jshint ignore:line
           NeuronAnimateService.neuronElementUnavailable = $neuroImg;
         }else {
