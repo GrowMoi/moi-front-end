@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  require('dotenv').config({ silent: true });
 
   var ngconstantConfig = {
     options: {
