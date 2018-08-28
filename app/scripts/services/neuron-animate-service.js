@@ -26,12 +26,15 @@
       }
 
       function callToAction(){
-        var $neuronToAnimate = discoveredNeurons[Math.floor(Math.random() * discoveredNeurons.length)];
-            $neuronToAnimate = $neuronToAnimate.find('img');
+        var $neuronElement = discoveredNeurons[Math.floor(Math.random() * discoveredNeurons.length)];
+        var $neuronToAnimate = $neuronElement.find('img');
+        var $neuronTooltip = $neuronElement.find('tooltip');
         var cssClass = 'animated swing';
+        $neuronTooltip.addClass('active');
         $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
           // Do somthing after animation
           $neuronToAnimate.removeClass(cssClass);
+          $neuronTooltip.removeClass('active');
           $timeout(function() {
             if(!service.stopCallToAction){
               callToAction();
@@ -41,12 +44,14 @@
       }
 
       function specialCallToAction(){
-        var $neuronToAnimate = service.neuronElementUnavailable;
-            $neuronToAnimate = $neuronToAnimate.find('img');
+        var $neuronElement = service.neuronElementUnavailable;
+        var $neuronToAnimate = $neuronElement.find('img');
+        var $neuronTooltip = $neuronElement.find('tooltip');
         var cssClass = 'animated tada';
-
+        $neuronTooltip.addClass('active');
         $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
           $neuronToAnimate.removeClass(cssClass);
+          $neuronTooltip.removeClass('active');
           $timeout(function() {
             if(counterAnimation > 0){
               specialCallToAction();
