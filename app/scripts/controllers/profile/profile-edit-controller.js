@@ -13,10 +13,10 @@
     var vmProfileEdit = this;
 
     vmProfileEdit.file = null;
-    vmProfileEdit.filepreview = 'images/edit-profile/userphoto.png';
+    vmProfileEdit.filepreview = user.image || 'images/edit-profile/userphoto.png';
 
     vmProfileEdit.test = function(){
-      UploadImageService.uploadImageUser(vmProfileEdit.file).then(function(resp){
+      UploadImageService.uploadImageUser(vmProfileEdit.filepreview).then(function(resp){
         console.log(resp);
       });
     };

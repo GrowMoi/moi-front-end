@@ -31,12 +31,12 @@
         });
       }
 
-      function uploadImageUser(file) {
+      function uploadImageUser(imageBase64) {
         return $http({
           method: 'PUT',
           url: ENV.apiHost + '/api/users/user_image',
           data: {
-            image: file
+            image: imageBase64
           }
         }).then(function success(res) {
           return res.data;

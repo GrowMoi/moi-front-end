@@ -8,7 +8,7 @@ ion-view.profile-content.profile(view-title='{{vm.neuron.title}}')
           .header-wrapper.row
             .col-80.row
               .user-image
-                img(src="images/user.png")
+                img(ng-src="{{vmProfile.imageUser}}")
               .user-name.col
                 {{vmProfile.user.username}}
             .btns.col-20
