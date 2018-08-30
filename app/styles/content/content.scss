@@ -63,6 +63,10 @@
 
   .first-col-content, .second-col-content, .third-col-content {
     width: 33%;
+    background: rgba(230, 230, 230, 0.5);
+  }
+  .second-col-content {
+    background: rgba(230, 230, 230, 0.20);
   }
   .third-col-content {
     .content-max-third {
@@ -87,6 +91,7 @@
       font-size: 40px;
       white-space: normal;
       display: inline-block;
+      text-shadow: 2px 2px 4px #000000;
     }
     @media (max-width: 1175px) {
       .content-title{
@@ -125,6 +130,7 @@
     margin-bottom: 5px;
     font-family: FontMoi-Title;
     width: 100%;
+    text-shadow: 2px 2px 4px #000000;
   }
 
   .content-subtitle-gallery {
@@ -161,6 +167,10 @@
   }
 
   .row-content-text {
+    background: $azul;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
     .content-text {
       font-size: 25px;
       font-weight: 400;
@@ -177,9 +187,9 @@
       &.violeta {
         color: $violeta;
       }
-      &.azul{
-        color: $azul;
-      }
+      // &.azul{
+      //   color: $azul;
+      // }
       &.rojo{
         color: $rojo;
       }

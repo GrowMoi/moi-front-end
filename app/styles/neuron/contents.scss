@@ -39,6 +39,7 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
     height: 100%;
     opacity: 0.7;
     left: 0;
+    border-radius: 10px;
   }
 }
 
@@ -49,6 +50,9 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
     position: relative;
     width: 100%;
     height: 100%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
   }
 
   .overlay {
@@ -82,12 +86,30 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
 }
 
 .leyend-bottom, .leyend-bottom-grid{
-  background-color: rgba(0, 0, 0, 0.55);
+  // background-color: rgba(0, 0, 0, 0.55);
+  background: url(../images/themes/azul/content_footer.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   color: white;
   padding: 6px 25px;
   transition: all 0.2s ease 0s;
   vertical-align: middle;
   position: relative;
+  &.violeta {
+    background: url(../images/themes/violeta/content_footer.png);
+  }
+  &.azul{
+    background: url(../images/themes/azul/content_footer.png);
+  }
+  &.rojo{
+    background: url(../images/themes/rojo/content_footer.png);
+  }
+  &.amarillo{
+    background: url(../images/themes/amarillo/content_footer.png);
+  }
+  &.verde{
+    background: url(../images/themes/verde/content_footer.png);
+  }
 }
 .leyend-bottom{
   margin-top: -50px;

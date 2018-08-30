@@ -33,6 +33,7 @@
 
       activate();
       setTheme();
+      vmContent.theme = 'azul';
 
       $scope.$on('$ionicView.afterEnter', startsReading);
       $scope.$on('$ionicView.beforeLeave', stopsReading);
