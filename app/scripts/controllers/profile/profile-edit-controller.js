@@ -7,9 +7,20 @@
                                                 $state,
                                                 UserService,
                                                 ImagesLogin,
-                                                ModalService) {
+                                                ModalService,
+                                                UploadImageService) {
 
     var vmProfileEdit = this;
+
+    vmProfileEdit.file = null;
+    vmProfileEdit.filepreview = 'images/edit-profile/userphoto.png';
+
+    vmProfileEdit.test = function(){
+      UploadImageService.uploadImageUser(vmProfileEdit.file).then(function(resp){
+        console.log(resp);
+      });
+    };
+
     vmProfileEdit.user = user;
     vmProfileEdit.editProfile = editProfile;
     vmProfileEdit.buttonsOptions = {

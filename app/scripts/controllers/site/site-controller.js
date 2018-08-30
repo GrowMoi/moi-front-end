@@ -39,9 +39,9 @@
 
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
-    $window.onbeforeunload = function () {
-      $window.localStorage.clear();
-    };
+    // $window.onbeforeunload = function () {
+    //   $window.localStorage.clear();
+    // };
     function preloadAssets(data, storage) {
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
