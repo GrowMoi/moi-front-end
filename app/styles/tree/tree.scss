@@ -97,6 +97,10 @@ a {
       .flowerpot {
         position: absolute;
         bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
 
         &-img {
           width: 450px;
@@ -374,6 +378,13 @@ a {
 
 @media (max-width: 1300px) {
   .tree-view {
+    .tree-content {
+      .flowerpot {
+        &-img {
+          width: 35% !important;
+        }
+      }
+    }
     .tree-section {
       .tree-draw {
         left: 1%;
@@ -395,19 +406,24 @@ a {
   }
   .tree-view {
     .tree-content {
-      zoom: 0.85;
+      .flowerpot {
+        &-img {
+          width: 40% !important;
+        }
+      }
     }
     .tree-section {
       .tree-draw {
         left: 1%;
         bottom: -3%;
-        .neuron {
-          zoom: 0.7;
-        }
-        .tree-neuron-root {
-          zoom: 0.7;
-        }
       }
+    }
+  }
+  .moi-neuron-wrapper{
+    height: 65% !important;
+    a img{
+      width: 65% !important;
+      height: 65% !important;
     }
   }
 }
@@ -435,19 +451,24 @@ a {
   }
   .tree-view {
     .tree-content {
-      zoom: 0.75;
+      .flowerpot {
+        &-img {
+          width: 52% !important;
+        }
+      }
     }
     .tree-section {
       .tree-draw {
         left: 0;
         bottom: 0;
-        .neuron {
-          zoom: 0.6;
-        }
-        .tree-neuron-root {
-          zoom: 0.6;
-        }
       }
+    }
+  }
+  .moi-neuron-wrapper{
+    height: 55% !important;
+    a img{
+      width: 55% !important;
+      height: 55% !important;
     }
   }
 }
@@ -464,19 +485,24 @@ a {
   }
   .tree-view {
     .tree-content {
-      zoom: 0.65;
+      .flowerpot {
+        &-img {
+          width: 42% !important;
+        }
+      }
     }
     .tree-section {
       .tree-draw {
         left: 1%;
         bottom: 0;
-        .neuron {
-          zoom: 0.5;
-        }
-        .tree-neuron-root {
-          zoom: 0.5;
-        }
       }
+    }
+  }
+  .moi-neuron-wrapper{
+    height: 45% !important;
+    a img{
+      width: 45% !important;
+      height: 45% !important;
     }
   }
 }
