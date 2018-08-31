@@ -123,9 +123,10 @@
     }
 
     function sharedTree(){
+      var learntContents = treeModel.meta.current_learnt_contents; //jshint ignore:line
       var data = {
-        title: 'Tree',
-        description: 'Screenshot'
+        title: 'Así se ve mi árbol Moi',
+        description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
     }

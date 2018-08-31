@@ -110,8 +110,8 @@
 
     function shareProfile() {
       var data = {
-        title: 'My Profile',
-        description: 'Screenshot'
+        title: 'Mira todos mis avances en mi perfil Moi',
+        description: 'Conoce todo mi progreso y empieza a crecer tú también con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
     }
