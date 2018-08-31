@@ -142,8 +142,8 @@
 
     function sharedCertificate(image_url){//jshint ignore:line
       var data = {
-        title: 'Certificate',
-        description: 'Screenshot',
+        title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
+        description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
         image_url: image_url, //jshint ignore:line
         publicUrl: image_url //jshint ignore:line
       };
