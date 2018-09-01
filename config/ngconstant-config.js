@@ -17,7 +17,9 @@
           facebookKey: '12345678',
           pusherKey: '2fd9acbd37b06708983b',
           cloudinaryName: 'moi-images',
-          unsignedUploadPreset: 'nmk8efc6'
+          unsignedUploadPreset: 'nmk8efc6',
+          gaTrackID: 'UA-101348862-1',
+          gaScriptSrc: 'https://www.google-analytics.com/analytics_debug.js'
         },
         IMAGES: {
           paths: []

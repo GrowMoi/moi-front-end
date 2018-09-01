@@ -24,6 +24,7 @@
     "StatusBar": false,
     "SuperGif": false,
     "Bucky": false,
-    "Pusher": false
+    "Pusher": false,
+    "ga": false
   }
 }

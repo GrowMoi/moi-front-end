@@ -19,8 +19,9 @@
     '720kb.tooltips'
   ])
 
-  .run(function(Idle, $window, $rootScope) {
+  .run(function(Idle, $window, $rootScope, GAService) {
     Idle.watch();
+    GAService.loadScript();
     $rootScope.$on('IdleTimeout', function() {
       $window.localStorage.clear();
       $window.location='/';
