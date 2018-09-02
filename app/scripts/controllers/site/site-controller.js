@@ -19,6 +19,8 @@
                           $window,
                           SoundsPage,
                           TreeService,
+                          $location,
+                          GAService,
                           IMAGES,
                           VIDEOS) {
     var site = this,
@@ -138,6 +140,21 @@
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState){
+      var path = $location.path();
+
+      if (toState.name === 'neuron') {
+        path = '/neuron';
+      } else if (toState.name === 'content') {
+        path = '/neuron/content/';
+      } else if (toState.name === 'profile') {
+        path = '/user/profile';
+      } else if (toState.name === 'tree') {
+        path = '/tree';
+      }
+
+      GAService.track('set', 'page', path);
+      GAService.track('send', 'pageview');
+
       if (site.loadedImages) {
         $ionicLoading.hide();
       }

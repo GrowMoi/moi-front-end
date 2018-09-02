@@ -1,7 +1,3 @@
-
-
-
-
 (function () {
   'use strict';
 
@@ -9,10 +5,11 @@
     .module('moi.services')
     .factory('GAService', GAService);
 
-  function GAService(ENV) {
+  function GAService(ENV, $location) {
 
     var service = {
-      loadScript: loadScript
+      loadScript: loadScript,
+      track: track
     };
 
     return service;
@@ -24,11 +21,18 @@
         (i[r].q = i[r].q || []).push(arguments)
       }, i[r].l = 1 * new Date(); a = s.createElement(o),
         m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', ENV.gaScriptSrc, 'ga');
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
       /*jshint ignore: end */
       ga('create', ENV.gaTrackID, 'auto');
-      ga('send', 'pageview');
+
+      if ($location.host() === 'localhost' || $location.host() === '127.0.0.1') {
+        ga('set', 'sendHitTask', null);
+      }
+
     }
 
+    function track() {
+      return ga.apply(this, arguments);
+    }
   }
 })();
