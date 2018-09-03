@@ -110,8 +110,8 @@
 
     function shareProfile() {
       var data = {
-        title: 'My Profile',
-        description: 'Screenshot'
+        title: 'Mira todos mis avances en mi perfil Moi',
+        description: 'Conoce todo mi progreso y empieza a crecer tú también con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
     }
@@ -142,8 +142,8 @@
 
     function sharedCertificate(image_url){//jshint ignore:line
       var data = {
-        title: 'Certificate',
-        description: 'Screenshot',
+        title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
+        description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
         image_url: image_url, //jshint ignore:line
         publicUrl: image_url //jshint ignore:line
       };

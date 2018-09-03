@@ -14,11 +14,12 @@
     var vmNeuron = this,
         ApiButtons = null,
         ApiContent = null,
-        timeoutPromise = null;
+        timeoutPromise = null,
+        currentUser = $auth.user;
     var positionAdvice = ((storage.neuron && storage.neuron.advices[0]) && (storage.content && storage.content.advices[0])) ? 1 : 0;
     vmNeuron.frameOptions = {
       type: 'content_max',
-      advices: AdviceService.getStatic('neuron', positionAdvice, storage)
+      advices: currentUser.username ? AdviceService.getStatic('neuron', positionAdvice, storage) : []
     };
 
     /*jshint camelcase: false */
@@ -45,7 +46,7 @@
       vmNeuron.contentsOptions = {
         readOnly: !!vmNeuron.neuron.read_only,
         contents: vmNeuron.neuron.contents,
-        settings: $auth.user.content_preferences,
+        settings: currentUser.content_preferences,
         maxLevel: 3,
         minLevel: 1,
         onSelect: onSelectItem,

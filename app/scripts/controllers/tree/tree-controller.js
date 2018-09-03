@@ -32,7 +32,7 @@
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: getAdvices(),
+      advices: currentUser.username ? getAdvices() : [],
       showBackButton: true
     };
 
@@ -61,7 +61,7 @@
           storage.tree.vinetas_animadas = {'depth': data.meta.depth}; //jshint ignore:line
         }
         StorageService.update(storage);
-      }else {
+      }else if(currentUser.username){
         storage.tree = {'vinetas_animadas': {'depth': data.meta.depth}};
         StorageService.update(storage);
       }
@@ -77,7 +77,7 @@
 
     function initVineta() {
       treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data, storage);
-      if(treeModel.urlVineta) {
+      if(treeModel.urlVineta && currentUser.username) {
         $backgroundSound[0].autoplay = false;
         treeModel.showTree = false;
       }else{
@@ -123,9 +123,10 @@
     }
 
     function sharedTree(){
+      var learntContents = treeModel.meta.current_learnt_contents; //jshint ignore:line
       var data = {
-        title: 'Tree',
-        description: 'Screenshot'
+        title: 'Así se ve mi árbol Moi',
+        description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
     }
