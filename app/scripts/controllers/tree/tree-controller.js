@@ -32,7 +32,7 @@
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: getAdvices(),
+      advices: currentUser.username ? getAdvices() : [],
       showBackButton: true
     };
 
@@ -61,7 +61,7 @@
           storage.tree.vinetas_animadas = {'depth': data.meta.depth}; //jshint ignore:line
         }
         StorageService.update(storage);
-      }else {
+      }else if(currentUser.username){
         storage.tree = {'vinetas_animadas': {'depth': data.meta.depth}};
         StorageService.update(storage);
       }
@@ -77,7 +77,7 @@
 
     function initVineta() {
       treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data, storage);
-      if(treeModel.urlVineta) {
+      if(treeModel.urlVineta && currentUser.username) {
         $backgroundSound[0].autoplay = false;
         treeModel.showTree = false;
       }else{
