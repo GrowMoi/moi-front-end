@@ -14,7 +14,7 @@
     var vmProfile = this,
         currentUser = $auth.user;
     vmProfile.user = user;
-    vmProfile.imageUser = currentUser.image || 'images/edit-profile/userphoto.png';
+    vmProfile.imageUser = vmProfile.user.image || 'images/edit-profile/userphoto.png';
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
     vmProfile.certificates = certificates.certificates;
