@@ -26,7 +26,8 @@
       }
 
       function callToAction(){
-        var totalNeuronsToAnimate = 4;
+        var limitGroup = 4;
+        var totalNeuronsToAnimate = Math.floor(Math.random() * limitGroup);
         //animate a gropup neurons
         for (var i = 0; i <= totalNeuronsToAnimate; i ++) {
           var randomPosition = Math.floor(Math.random() * discoveredNeurons.length);
@@ -38,21 +39,16 @@
       function addAnimateClass(randomPosition, isTheLastItem) {
         var $neuronElement = discoveredNeurons[randomPosition];
         var $neuronToAnimate = $neuronElement.find('img');
-        var $neuronTooltip = $neuronElement.find('tooltip');
         var cssClass = 'animated swing';
-        $neuronTooltip.addClass('active');
-        $neuronElement.css('z-index', '99999'); // fix olverlap tooltip
         $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
           // Do somthing after animation
           $neuronToAnimate.removeClass(cssClass);
-          $neuronTooltip.removeClass('active');
-          $neuronElement.css('z-index', '');
           if(isTheLastItem){
             $timeout(function() {
               if(!service.stopCallToAction){
                 callToAction();
               }
-            }, 4500);
+            }, 1500);
           }
         });
       }
