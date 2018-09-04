@@ -91,10 +91,14 @@
             return data;
           });
         },
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
-          });
+        storage: function(StorageService, $auth) {
+          if ($auth.user.id) {
+            return StorageService.get().then(function(resp) {
+              return resp.data.storage;
+            });
+          }else{
+            return {};
+          }
         }
       }
     })
@@ -130,10 +134,14 @@
             };
           }
         },
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
-          });
+        storage: function(StorageService, $auth) {
+          if ($auth.user.id) {
+            return StorageService.get().then(function(resp) {
+              return resp.data.storage;
+            });
+          }else{
+            return {};
+          }
         }
       }
     })
@@ -185,10 +193,14 @@
             });
           }
         },
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
-          });
+        storage: function(StorageService, $auth) {
+          if ($auth.user.id) {
+            return StorageService.get().then(function(resp) {
+              return resp.data.storage;
+            });
+          }else{
+            return {};
+          }
         }
       }
     })
