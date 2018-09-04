@@ -1,34 +1,39 @@
+.content-view-max.moi_theme {
+  background-image: url(../images/landscape_a.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 .content-view-max {
   color: $titlesColor;
   a, textarea {
     color: $titlesColor;
   }
 
-  &.violeta {
+  &.violeta, &.moi_violeta {
     color: $violeta;
     a, textarea {
       color: $violeta;
     }
   }
-  &.azul{
+  &.azul, &.moi_azul{
     color: $azul;
     a, textarea {
       color: $azul;
     }
   }
-  &.rojo{
+  &.rojo, &.moi_rojo{
     color: $rojo;
     a, textarea {
       color: $rojo;
     }
   }
-  &.amarillo{
+  &.amarillo, &.moi_amarillo{
     color: $amarillo;
     a, textarea {
       color: $amarillo;
     }
   }
-  &.verde{
+  &.verde, &.moi_verde{
     color: $verde;
     a, textarea {
       color: $verde;
@@ -42,6 +47,13 @@
     margin-top: 3%;
     margin-left: 3%;
     margin-right: 2%;
+    &.moi_theme {
+      width: 97%;
+      height: 91%;
+      margin-top: 1%;
+      margin-left: 2%;
+      margin-right: 1%;
+    }
   }
 
   .flecha-sidebar {
@@ -63,10 +75,16 @@
 
   .first-col-content, .second-col-content, .third-col-content {
     width: 33%;
-    // background: rgba(230, 230, 230, 0.5); //Transparencia ContenMax
+    &.moi_theme {
+      padding-top: 3%;
+      background: rgba(247, 242, 223, 0.5);
+    }
   }
   .second-col-content {
-    // background: rgba(230, 230, 230, 0.20); //Transparencia ContenMax
+    &.moi_theme {
+      padding-top: 3%;
+      background: rgba(247, 242, 223, 0.35);
+    }
   }
   .third-col-content {
     .content-max-third {
@@ -77,6 +95,10 @@
   .first-col-content{
     display: flex;
     flex-flow: column;
+    &.moi_theme {
+      padding-top: 3%;
+      padding-left: 2%;
+    }
   }
 
   .row-content-title {
@@ -91,7 +113,23 @@
       font-size: 40px;
       white-space: normal;
       display: inline-block;
-      text-shadow: 2px 2px 4px #000000;
+      &.moi_theme {
+        &.moi_violeta {
+          text-shadow: 2px 2px 4px #3D0242;
+        }
+        &.moi_azul{
+          text-shadow: 2px 2px 4px #01444F;
+        }
+        &.moi_rojo{
+          text-shadow: 2px 2px 4px #470223;
+        }
+        &.moi_amarillo{
+          text-shadow: 2px 2px 4px #4C3F02;
+        }
+        &.moi_verde{
+          text-shadow: 2px 2px 4px #1A3F01;
+        }
+      }
     }
     @media (max-width: 1175px) {
       .content-title{
@@ -130,7 +168,23 @@
     margin-bottom: 5px;
     font-family: FontMoi-Title;
     width: 100%;
-    text-shadow: 2px 2px 4px #000000;
+    &.moi_theme {
+      &.moi_violeta {
+        text-shadow: 2px 2px 4px #3D0242;
+      }
+      &.moi_azul{
+        text-shadow: 2px 2px 4px #01444F;
+      }
+      &.moi_rojo{
+        text-shadow: 2px 2px 4px #470223;
+      }
+      &.moi_amarillo{
+        text-shadow: 2px 2px 4px #4C3F02;
+      }
+      &.moi_verde{
+        text-shadow: 2px 2px 4px #1A3F01;
+      }
+    }
   }
 
   .content-subtitle-gallery {
@@ -167,10 +221,27 @@
   }
 
   .row-content-text {
-    // background: $azul;
-    // color: white;
-    // padding: 10px;
-    // border-radius: 10px;
+    &.moi_theme {
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      &.moi_violeta {
+        background: url(../images/themes/violeta/cont_max_caja.png);
+      }
+      &.moi_azul {
+        background: url(../images/themes/azul/cont_max_caja.png);
+      }
+      &.moi_rojo {
+        background: url(../images/themes/rojo/cont_max_caja.png);
+      }
+      &.moi_amarillo {
+        background: url(../images/themes/amarillo/cont_max_caja.png);
+      }
+      &.moi_verde {
+        background: url(../images/themes/verde/cont_max_caja.png);
+      }
+    }
+
     .content-text {
       font-size: 25px;
       font-weight: 400;
@@ -281,6 +352,9 @@
     background: url(../images/notebook.png);
     margin-left: 12px;
     margin-right: 12px;
+    &.moi_theme {
+      color: #666665;
+    }
     &.violeta {
       background: url(../images/themes/violeta/notebook.png);
     }
@@ -348,6 +422,9 @@
   .border-third-column{
     margin-bottom: 20px;
     border-bottom: 1px solid $linesColor;
+    &.moi_theme {
+      border-color: #B5A88F;
+    }
     &.violeta {
       border-color: $violeta;
     }

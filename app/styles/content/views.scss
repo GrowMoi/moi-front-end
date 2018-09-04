@@ -17,6 +17,9 @@
   .border-bottom {
     border-bottom: 1px solid $linesColor;
     margin-bottom: 20px;
+    &.moi_theme {
+      border-color: #B5A88F;
+    }
     &.violeta {
       border-color: $violeta;
     }
@@ -36,6 +39,9 @@
 
   .border-left {
     border-left: 1px solid $linesColor;
+    &.moi_theme {
+      border-color: #B5A88F;
+    }
     &.violeta {
       border-color: $violeta;
     }
@@ -55,6 +61,9 @@
 
   .border-right {
     border-right: 1px solid $linesColor;
+    &.moi_theme {
+      border-color: #B5A88F;
+    }
     &.violeta {
       border-color: $violeta;
     }
@@ -163,6 +172,10 @@
 
     a {
       word-break: break-all;
+      &.moi_theme {
+        font-weight: bold;
+        color: #666665;
+      }
     }
   }
 }

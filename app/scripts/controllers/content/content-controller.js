@@ -180,8 +180,8 @@
               var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
               vmContent.theme = currentTheme;
               vmContent.isMoitheme = currentTheme.includes('moi');
-              modelData.frameColor = currentTheme;
-              vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
+              modelData.frameColor = currentTheme.replace('moi_', '');
+              vmContent.slideGalleryOptions.modalFrameColor = currentTheme.replace('moi_', '');
             }
           });
         }
