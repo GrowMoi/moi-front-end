@@ -13,7 +13,8 @@
                                               AdviceService,
                                               MediaAchievements,
                                               dataInventory,
-                                              SocialService) {
+                                              SocialService,
+                                              GAService) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -107,6 +108,7 @@
       }
 
       function showImage(urlImage) {
+        GAService.track('send', 'event', 'Mostrar Dialogo', 'Click');
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
