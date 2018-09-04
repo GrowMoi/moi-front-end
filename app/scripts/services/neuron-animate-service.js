@@ -31,15 +31,17 @@
         var $neuronTooltip = $neuronElement.find('tooltip');
         var cssClass = 'animated swing';
         $neuronTooltip.addClass('active');
+        $neuronElement.css('z-index', '99999'); // fix olverlap tooltip
         $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
           // Do somthing after animation
           $neuronToAnimate.removeClass(cssClass);
           $neuronTooltip.removeClass('active');
+          $neuronElement.css('z-index', '');
           $timeout(function() {
             if(!service.stopCallToAction){
               callToAction();
             }
-          }, 6000);
+          }, 4500);
         });
       }
 
