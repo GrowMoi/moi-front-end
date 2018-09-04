@@ -91,6 +91,17 @@
             return data;
           });
         },
+        dataInventory: function($auth, UserService) {
+          if ($auth.user.id) {
+            return UserService.getUserAchievements().then(function(data){
+              return data;
+            });
+          }else{
+            return {
+              achievements: []
+            };
+          }
+        },
         storage: function(StorageService, $auth) {
           if ($auth.user.id) {
             return StorageService.get().then(function(resp) {

@@ -63,10 +63,10 @@
 
   .first-col-content, .second-col-content, .third-col-content {
     width: 33%;
-    background: rgba(230, 230, 230, 0.5);
+    // background: rgba(230, 230, 230, 0.5); //Transparencia ContenMax
   }
   .second-col-content {
-    background: rgba(230, 230, 230, 0.20);
+    // background: rgba(230, 230, 230, 0.20); //Transparencia ContenMax
   }
   .third-col-content {
     .content-max-third {
@@ -167,10 +167,10 @@
   }
 
   .row-content-text {
-    background: $azul;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
+    // background: $azul;
+    // color: white;
+    // padding: 10px;
+    // border-radius: 10px;
     .content-text {
       font-size: 25px;
       font-weight: 400;
@@ -187,9 +187,9 @@
       &.violeta {
         color: $violeta;
       }
-      // &.azul{
-      //   color: $azul;
-      // }
+      &.azul{
+        color: $azul;
+      }
       &.rojo{
         color: $rojo;
       }
@@ -348,6 +348,21 @@
   .border-third-column{
     margin-bottom: 20px;
     border-bottom: 1px solid $linesColor;
+    &.violeta {
+      border-color: $violeta;
+    }
+    &.azul {
+      border-color: $azul;
+    }
+    &.rojo {
+      border-color: $rojo;
+    }
+    &.amarillo {
+      border-color: $amarillo;
+    }
+    &.verde {
+      border-color: $verde;
+    }
   }
 
   @media (max-height: 635px) {

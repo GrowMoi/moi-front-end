@@ -31,9 +31,12 @@
         showBackButton: true
       };
 
+      //set default theme
+      vmContent.theme = 'moi_verde';
+      vmContent.isMoitheme = true;
+
       activate();
       setTheme();
-      vmContent.theme = 'azul';
 
       $scope.$on('$ionicView.afterEnter', startsReading);
       $scope.$on('$ionicView.beforeLeave', stopsReading);
@@ -176,6 +179,7 @@
             if(achievement.active){
               var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
               vmContent.theme = currentTheme;
+              vmContent.isMoitheme = currentTheme.includes('moi');
               modelData.frameColor = currentTheme;
               vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
             }
