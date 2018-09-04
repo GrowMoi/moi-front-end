@@ -26,7 +26,17 @@
       }
 
       function callToAction(){
-        var $neuronElement = discoveredNeurons[Math.floor(Math.random() * discoveredNeurons.length)];
+        var totalNeuronsToAnimate = 4;
+        //animate a gropup neurons
+        for (var i = 0; i <= totalNeuronsToAnimate; i ++) {
+          var randomPosition = Math.floor(Math.random() * discoveredNeurons.length);
+          var isTheLastItem = i === totalNeuronsToAnimate;
+          addAnimateClass(randomPosition, isTheLastItem);
+        }
+      }
+
+      function addAnimateClass(randomPosition, isTheLastItem) {
+        var $neuronElement = discoveredNeurons[randomPosition];
         var $neuronToAnimate = $neuronElement.find('img');
         var $neuronTooltip = $neuronElement.find('tooltip');
         var cssClass = 'animated swing';
@@ -37,11 +47,13 @@
           $neuronToAnimate.removeClass(cssClass);
           $neuronTooltip.removeClass('active');
           $neuronElement.css('z-index', '');
-          $timeout(function() {
-            if(!service.stopCallToAction){
-              callToAction();
-            }
-          }, 4500);
+          if(isTheLastItem){
+            $timeout(function() {
+              if(!service.stopCallToAction){
+                callToAction();
+              }
+            }, 4500);
+          }
         });
       }
 
