@@ -24,6 +24,18 @@
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
+
+      vmNeuron.contentsOptions = {
+        readOnly: !!vmNeuron.neuron.read_only,
+        contents: vmNeuron.neuron.contents,
+        settings: $auth.user.content_preferences,
+        maxLevel: 3,
+        minLevel: 1,
+        onSelect: onSelectItem,
+        externalAnimationIdle: true,
+        onRegisterApi: onRegisterApiContents
+      };
+
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
         content: vmNeuron.neuron.contents[0],
@@ -40,17 +52,6 @@
           addFavorites: true
         },
         shareCallback: shareNeuron
-      };
-
-      vmNeuron.contentsOptions = {
-        readOnly: !!vmNeuron.neuron.read_only,
-        contents: vmNeuron.neuron.contents,
-        settings: $auth.user.content_preferences,
-        maxLevel: 3,
-        minLevel: 1,
-        onSelect: onSelectItem,
-        externalAnimationIdle: true,
-        onRegisterApi: onRegisterApiContents
       };
     }
 
@@ -82,6 +83,9 @@
     }
 
     function onSelectItem(content) {
+      //update content on Init
+      vmNeuron.buttonsOptions.content = content;
+
       if (ApiButtons) {
         hideAdvice();
         ApiButtons.contentSelected(content);
