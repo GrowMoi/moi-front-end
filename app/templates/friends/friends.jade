@@ -10,6 +10,7 @@ ion-view.friends-container.search-view-max(view-title='Friends')
               input(type='text',
                     required='required',
                     ng-model='friendsmodel.query',
+                    accept=".png,.gif,.jpeg,.svg",
                     placeholder="{{ ::'searches.search' | translate }}")
             input(
                 type='submit',

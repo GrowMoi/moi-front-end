@@ -146,7 +146,34 @@
           display: flex;
           flex-flow: column;
           align-items: center;
-          .btn-upload-photo, .btn-choose-photo{
+
+          .upload-image-btn {
+            padding: 10px 15px;
+            text-align: center;
+            color: $moiDarkGreen;
+            font-family: FontMoi-Title;
+            font-weight: bold;
+            background-image: url(../images/btn-perfil.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            position:relative;
+            width: 150px;
+            cursor: pointer;
+
+            input {
+              opacity: 0;
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              z-index: 1;
+              cursor: pointer;
+            }
+          }
+
+
+          .btn-upload-photo{
             width: 150px;
           }
         }

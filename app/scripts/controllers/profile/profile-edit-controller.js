@@ -16,9 +16,7 @@
     vmProfileEdit.filepreview = user.image || 'images/edit-profile/userphoto.png';
 
     vmProfileEdit.test = function(){
-      UploadImageService.uploadImageUser(vmProfileEdit.filepreview).then(function(resp){
-        console.log(resp);
-      });
+      UploadImageService.uploadImageUser(vmProfileEdit.filepreview);
     };
 
     vmProfileEdit.user = user;
@@ -72,7 +70,7 @@
 
     function dontUseNewLogin(){
       /*jshint camelcase: false */
-      if(!vmProfileEdit.user.authorization_key){
+      if(!(!!vmProfileEdit.user.username)){
         showAlert();
       }
     }

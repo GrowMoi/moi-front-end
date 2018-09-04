@@ -19,7 +19,12 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
               .description-photo
                 {{ ::'profile.description-photo' | translate }}
               .content-button-photo
-                input(type="file" fileinput="vmProfileEdit.file" filepreview="vmProfileEdit.filepreview")
+                .upload-image-btn
+                  {{ ::'buttons.choose-photo' | translate }}
+                  input(type="file"
+                        fileinput="vmProfileEdit.file"
+                        filepreview="vmProfileEdit.filepreview"
+                        accept=".png,.gif,.jpeg")
                 .btn-upload-photo(ng-click="vmProfileEdit.test()")
                   {{ ::'buttons.upload-photo' | translate }}
             .section-form.form-container.form-register
