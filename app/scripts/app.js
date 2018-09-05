@@ -21,8 +21,18 @@
 
   .run(function(Idle, $window, $rootScope, GAService, $auth) {
     Idle.watch();
-    GAService.loadScript($auth.user.id);
+
+    GAService.loadScript();
+
+    $auth.validateUser()
+      .then(function userAuthorized(user){
+        GAService.track('set', 'userId', user.id);
+      }, function userNotAuthorized(){
+        GAService.track('set', 'userId', null);
+      });
+
     $rootScope.$on('IdleTimeout', function() {
+      GAService.track('set', 'userId', null);
       $window.localStorage.clear();
       $window.location='/';
    });
@@ -449,11 +459,13 @@
   angular.module('moi.templates', []);
   angular.module('moi.filters', []);
 
-  function checkIfIsAuthorized($auth, $state){
+  function checkIfIsAuthorized($auth, $state, GAService){
     return $auth.validateUser()
       .then(function userAuthorized(user){
+        GAService.track('set', 'userId', user.id);
         return user;
       }, function userNotAuthorized(){
+        GAService.track('set', 'userId', null);
         $state.go('new_login.first_step');
       });
   }
