@@ -19,9 +19,9 @@
     '720kb.tooltips'
   ])
 
-  .run(function(Idle, $window, $rootScope, GAService) {
+  .run(function(Idle, $window, $rootScope, GAService, $auth) {
     Idle.watch();
-    GAService.loadScript();
+    GAService.loadScript($auth.user.id);
     $rootScope.$on('IdleTimeout', function() {
       $window.localStorage.clear();
       $window.location='/';
