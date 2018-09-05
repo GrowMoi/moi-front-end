@@ -7,6 +7,7 @@
                                             $auth,
                                             $stateParams,
                                             $scope,
+                                            $window,
                                             ModalService,
                                             UserService,
                                             SocialService) {
@@ -16,6 +17,7 @@
     vmProfile.user = user;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
+    vmProfile.logout = logout;
     vmProfile.certificates = certificates.certificates;
     vmProfile.showCertificate = showCertificate;
     vmProfile.removeCertificate = UserService.deleteCertificate;
@@ -102,6 +104,10 @@
         ModalService.showModel(dialogOptions);
       });
     }
+    function logout(){
+      $window.localStorage.clear();
+      $window.location='/';
+    }
 
     function currentUserIsLeader(leaders){
       var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;}); //jshint ignore:line
@@ -110,8 +116,8 @@
 
     function shareProfile() {
       var data = {
-        title: 'My Profile',
-        description: 'Screenshot'
+        title: 'Mira todos mis avances en mi perfil Moi',
+        description: 'Conoce todo mi progreso y empieza a crecer tú también con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
     }
@@ -142,8 +148,8 @@
 
     function sharedCertificate(image_url){//jshint ignore:line
       var data = {
-        title: 'Certificate',
-        description: 'Screenshot',
+        title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
+        description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
         image_url: image_url, //jshint ignore:line
         publicUrl: image_url //jshint ignore:line
       };

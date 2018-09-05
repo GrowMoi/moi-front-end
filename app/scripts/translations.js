@@ -120,7 +120,8 @@
         'last-name': 'Apellidos',
         'my-profile': 'Mi  Perfil',
         'password' : 'Nueva Contraseña',
-        'description-photo': 'Tu puedes subir una foto jpg, gif, or png file'
+        'description-photo': 'Tu puedes subir una foto jpg, gif, or png file',
+        'logout': 'Cerrar Sesión'
       },
       msgs:{
         error:{
