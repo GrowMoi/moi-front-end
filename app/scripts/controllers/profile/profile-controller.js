@@ -7,6 +7,7 @@
                                             $auth,
                                             $stateParams,
                                             $scope,
+                                            $window,
                                             ModalService,
                                             UserService,
                                             SocialService) {
@@ -16,6 +17,7 @@
     vmProfile.user = user;
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
+    vmProfile.logout = logout;
     vmProfile.certificates = certificates.certificates;
     vmProfile.showCertificate = showCertificate;
     vmProfile.removeCertificate = UserService.deleteCertificate;
@@ -101,6 +103,10 @@
         };
         ModalService.showModel(dialogOptions);
       });
+    }
+    function logout(){
+      $window.localStorage.clear();
+      $window.location='/';
     }
 
     function currentUserIsLeader(leaders){
