@@ -159,6 +159,20 @@
     .recommended-contents {
       flex-wrap: wrap;
       padding-bottom: 0;
+      &.moi_theme{
+        .col {
+          .content-kind-contents {
+            border-radius: 10px;
+            .leyend-bottom {
+              border-bottom-right-radius: 10px;
+              border-bottom-left-radius: 10px;
+            }
+            img {
+              border-radius: 10px;
+            }
+          }
+        }
+      }
     }
   }
   //links

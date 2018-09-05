@@ -26,7 +26,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
           .row.border-bottom(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
             .col.image-center
               img.format-image(
-                ng-class='vmContent.currentTransition'
+                ng-class="[vmContent.currentTransition, {'moi_theme': vmContent.isMoitheme}]"
                 ng-src='{{vmContent.currentContentImageUrl}}',
                 ng-click='vmContent.showImage(vmContent.currentContent)'
               )
@@ -55,7 +55,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
               .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                   | {{ ::'content.max.recommended ' | translate }}
-              .row.recommended-contents
+              .row.recommended-contents(ng-class="{'moi_theme': vmContent.isMoitheme}")
                 .col.col-50(ng-repeat='content in vmContent.content.recommended')
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
                    img.format-image(ng-src='{{content.media[0]}}')

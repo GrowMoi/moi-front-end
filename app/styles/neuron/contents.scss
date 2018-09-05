@@ -60,6 +60,9 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
       background-color: white;
       padding: 10px;
       border-radius: 10px;
+      img {
+        border-radius: 10px;
+      }
     }
   }
 
@@ -81,7 +84,9 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
     position: absolute;
     right: 2em;
     top: 1.5em;
-    width: 7em;
+    width: 6em;
+    height: 7em;
+    border-radius: 0 !important;
   }
 
   .favorite {
