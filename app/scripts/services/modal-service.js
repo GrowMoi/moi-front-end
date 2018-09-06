@@ -11,6 +11,7 @@
         },
         modalOptions = { // Default modal options
           animation: 'slide-in-up',
+          backdropClickToClose: false,
           onHide: function(){}
         };
 
@@ -26,7 +27,7 @@
       $ionicModal.fromTemplateUrl(modalOptions.templateUrl, {
         scope: modalMoi.scope,
         animation: modalOptions.animation,
-        backdropClickToClose: false
+        backdropClickToClose: modalOptions.backdropClickToClose
       }).then(function(modalInstance) {
         modalMoi.scope.model.closeModal = function() {
           closeAndRemove(modalInstance);
