@@ -11,15 +11,24 @@
                                                 UploadImageService) {
 
     var vmProfileEdit = this;
-
-    vmProfileEdit.file = null;
-    vmProfileEdit.filepreview = user.image || 'images/edit-profile/userphoto.png';
+    vmProfileEdit.errorImage = false;
 
     vmProfileEdit.test = function(){
-      UploadImageService.uploadImageUser(vmProfileEdit.filepreview);
+      if (vmProfileEdit.filepreview) {
+        UploadImageService.uploadImageUser(vmProfileEdit.filepreview).then(function(resp){
+          vmProfileEdit.user.image = resp.image;
+          vmProfileEdit.filepreview = null;
+        }, function(){
+          vmProfileEdit.filepreview = user.image;
+          vmProfileEdit.errorImage = true;
+          vmProfileEdit.file = null;
+        });
+      }
     };
 
     vmProfileEdit.user = user;
+    vmProfileEdit.user.image = user.image || 'images/edit-profile/userphoto.png';
+
     vmProfileEdit.editProfile = editProfile;
     vmProfileEdit.buttonsOptions = {
       neuron: {},

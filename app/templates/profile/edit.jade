@@ -15,7 +15,7 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
               .title-photo
                 {{ ::'titles.current-photo' | translate}}
               .content-photo
-                img(ng-src="{{vmProfileEdit.filepreview}}" class="img-responsive")
+                img(ng-src="{{vmProfileEdit.user.image}}" class="img-responsive")
               .description-photo
                 {{ ::'profile.description-photo' | translate }}
               .content-button-photo
@@ -25,7 +25,8 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
                         fileinput="vmProfileEdit.file"
                         filepreview="vmProfileEdit.filepreview"
                         accept=".png,.gif,.jpeg")
-                .btn-upload-photo(ng-click="vmProfileEdit.test()")
+                .btn-upload-photo(ng-click="vmProfileEdit.test()"
+                                  class="{{vmProfileEdit.filepreview ? 'active-btn' : 'disabled-btn'}}")
                   {{ ::'buttons.upload-photo' | translate }}
             .section-form.form-container.form-register
               form(name='editProfileForm', novalidate)
