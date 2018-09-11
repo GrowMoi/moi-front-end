@@ -22,14 +22,21 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
 }
 
 .content-selected {
-  -webkit-box-shadow: $content-unselected-effect;
-  -moz-box-shadow:  $content-unselected-effect;
-  box-shadow: $content-unselected-effect;
-  margin-top: -5px;
-  transform: translateX(-5px)
+  &.border-default-theme {
+    -webkit-box-shadow: $content-unselected-effect;
+    -moz-box-shadow:  $content-unselected-effect;
+    box-shadow: $content-unselected-effect;
+    margin-top: -5px;
+    transform: translateX(-5px);
+  }
 }
 
 .content-unselected {
+  &.moi_theme {
+    &:after{
+      border-radius: 10px;
+    }
+  }
   &:after{
     content: '';
     background-color: $black;
@@ -49,6 +56,14 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
     position: relative;
     width: 100%;
     height: 100%;
+    &.moi_theme {
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      img {
+        border-radius: 10px;
+      }
+    }
   }
 
   .overlay {
@@ -69,7 +84,9 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
     position: absolute;
     right: 2em;
     top: 1.5em;
-    width: 7em;
+    width: 6em;
+    height: 7em;
+    border-radius: 0 !important;
   }
 
   .favorite {
@@ -81,13 +98,28 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
   }
 }
 
-.leyend-bottom, .leyend-bottom-grid{
+.leyend-bottom, .leyend-bottom-grid {
   background-color: rgba(0, 0, 0, 0.55);
   color: white;
   padding: 6px 25px;
   transition: all 0.2s ease 0s;
   vertical-align: middle;
   position: relative;
+  &.moi_violeta {
+    background: url(../images/themes/violeta/content_footer.png);
+  }
+  &.moi_azul {
+    background: url(../images/themes/azul/content_footer.png);
+  }
+  &.moi_rojo {
+    background: url(../images/themes/rojo/content_footer.png);
+  }
+  &.moi_amarillo {
+    background: url(../images/themes/amarillo/content_footer.png);
+  }
+  &.moi_verde {
+    background: url(../images/themes/verde/content_footer.png);
+  }
 }
 .leyend-bottom{
   margin-top: -50px;
@@ -105,6 +137,12 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
   overflow: hidden;
   line-height: 40px;
   position: relative;
+  &.moi_theme {
+    font-family: FontMoi-Grid;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-top: -100px;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -132,6 +170,7 @@ grid-contents{
       -moz-flex: 0 0 50%;
       -ms-flex: 0 0 50%;
       flex: 0 0 50%;
+      position: relative;
     }
   }
   .content-in-grid{
@@ -141,7 +180,31 @@ grid-contents{
       -ms-flex: 0 0 33%;
       flex: 0 0 33%;
       padding: 10px;
+      position: relative;
     }
   }
-
+  .border-moi-theme {
+    border: 2px solid;
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    height: 94%;
+    width: 97.6%;
+    border-radius: 10px;
+    &.moi_violeta {
+      border-color: $violeta;
+    }
+    &.moi_azul{
+      border-color: $azul;
+    }
+    &.moi_rojo{
+      border-color: $rojo;
+    }
+    &.moi_amarillo{
+      border-color: $amarillo;
+    }
+    &.moi_verde{
+      border-color: $verde;
+    }
+  }
 }

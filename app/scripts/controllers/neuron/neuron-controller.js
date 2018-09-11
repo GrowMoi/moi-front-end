@@ -9,7 +9,9 @@
               $auth,
               AdviceService,
               storage,
-              SocialService) {
+              SocialService,
+              MediaAchievements,
+              dataInventory) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -21,6 +23,7 @@
       type: 'content_max',
       advices: currentUser.username ? AdviceService.getStatic('neuron', positionAdvice, storage) : []
     };
+    vmNeuron.userAchievements = dataInventory.achievements;
 
     /*jshint camelcase: false */
     function init(){
@@ -51,11 +54,15 @@
         minLevel: 1,
         onSelect: onSelectItem,
         externalAnimationIdle: true,
-        onRegisterApi: onRegisterApiContents
+        onRegisterApi: onRegisterApiContents,
+        //set default theme
+        theme:'moi_verde',
+        isMoitheme: true
       };
     }
 
     init();
+    setTheme();
 
     function onRegisterApiMoiButtons(api) {
       ApiButtons = api;
@@ -114,6 +121,18 @@
         description: vmNeuron.neuron.contents[0].description
       };
       SocialService.showModal(data);
+    }
+
+    function setTheme() {
+      if(vmNeuron.userAchievements.length > 0){
+        angular.forEach(vmNeuron.userAchievements, function(achievement, index){
+          if(achievement.active){
+            var currentTheme = MediaAchievements[vmNeuron.userAchievements[index].number].settings.theme;
+            vmNeuron.contentsOptions.theme = currentTheme;
+            vmNeuron.contentsOptions.isMoitheme = currentTheme.includes('moi');
+          }
+        });
+      }
     }
   });
 })();
