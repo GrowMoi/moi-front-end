@@ -40,7 +40,7 @@
   .border-left {
     border-left: 1px solid $linesColor;
     &.moi_theme {
-      border-color: #B5A88F;
+      border-left: none;
     }
     &.violeta {
       border-color: $violeta;
@@ -62,7 +62,7 @@
   .border-right {
     border-right: 1px solid $linesColor;
     &.moi_theme {
-      border-color: #B5A88F;
+      border-right: none;
     }
     &.violeta {
       border-color: $violeta;

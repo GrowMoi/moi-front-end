@@ -84,7 +84,7 @@
     &.moi_theme {
       padding-top: 3%;
       background: rgba(247, 242, 223, 0.5);
-      box-shadow: 8px 0 20px #76767382 inset;
+      box-shadow: 8px 0 20px #767673d4 inset;
     }
   }
   .third-col-content {
@@ -93,7 +93,7 @@
       padding-bottom: 0;
     }
     &.moi_theme {
-      box-shadow: -8px 0 25px #76767382;
+      box-shadow: -8px 0 25px #767673e0;
       slide-gallery {
         ion-slide {
           .col {
@@ -134,7 +134,7 @@
           text-shadow: 2px 2px 4px #01444F;
         }
         &.moi_rojo{
-          text-shadow: 2px 2px 4px #470223;
+          text-shadow: 2px 2px 4px #FFA07A;
         }
         &.moi_amarillo{
           text-shadow: 2px 2px 4px #4C3F02;
@@ -189,7 +189,7 @@
         text-shadow: 2px 2px 4px #01444F;
       }
       &.moi_rojo{
-        text-shadow: 2px 2px 4px #470223;
+        text-shadow: 2px 2px 4px #FFA07A;
       }
       &.moi_amarillo{
         text-shadow: 2px 2px 4px #4C3F02;
@@ -236,22 +236,9 @@
   .row-content-text {
     &.moi_theme {
       color: white;
-      padding: 10px;
-      border-radius: 10px;
-      &.moi_violeta {
-        background: url(../images/themes/violeta/cont_max_caja.png);
-      }
-      &.moi_azul {
-        background: url(../images/themes/azul/cont_max_caja.png);
-      }
-      &.moi_rojo {
-        background: url(../images/themes/rojo/cont_max_caja.png);
-      }
-      &.moi_amarillo {
-        background: url(../images/themes/amarillo/cont_max_caja.png);
-      }
-      &.moi_verde {
-        background: url(../images/themes/verde/cont_max_caja.png);
+      overflow: auto;
+      &.moi_amarillo{
+        text-shadow: 2px 2px 4px #4C3F02;
       }
     }
 
@@ -267,6 +254,39 @@
       width: 100%;
       text-align: justify;
       white-space: pre-wrap;
+      &.moi_theme {
+        padding: 15px;
+        border-radius: 10px;
+        overflow: unset;
+        height: 100%;
+        margin-right: 1%;
+
+        &.moi_violeta {
+          background: url(../images/themes/violeta/cont_max_caja.png);
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        &.moi_azul {
+          background: url(../images/themes/azul/cont_max_caja.png);
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        &.moi_rojo {
+          background: url(../images/themes/rojo/cont_max_caja.png);
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        &.moi_amarillo {
+          background: url(../images/themes/amarillo/cont_max_caja.png);
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        &.moi_verde {
+          background: url(../images/themes/verde/cont_max_caja.png);
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
 
       &.violeta {
         color: $violeta;
@@ -299,65 +319,58 @@
   }
 
   .content-text,
-  .content-comments {
-    &.moi_theme{
-      &::-webkit-scrollbar-track {
-        border-color: #B5A88F;
-      }
-    }
+  .content-comments,
+  .row-content-text {
     &::-webkit-scrollbar-track {
       border-radius: 10px;
       border: 1px solid $linesColor;
       width: 5px;
     }
 
-    &.violeta::-webkit-scrollbar-track {
+    &.violeta::-webkit-scrollbar-track, &.moi_violeta::-webkit-scrollbar-track {
       border-color: $violeta;
     }
-    &.azul::-webkit-scrollbar-track {
+    &.azul::-webkit-scrollbar-track, &.moi_azul::-webkit-scrollbar-track {
       border-color: $azul;
     }
-    &.rojo::-webkit-scrollbar-track {
+    &.rojo::-webkit-scrollbar-track, &.moi_rojo::-webkit-scrollbar-track {
       border-color: $rojo;
     }
-    &.amarillo::-webkit-scrollbar-track {
+    &.amarillo::-webkit-scrollbar-track, &.moi_amarillo::-webkit-scrollbar-track {
       border-color: $amarillo;
     }
-    &.verde::-webkit-scrollbar-track {
+    &.verde::-webkit-scrollbar-track, &.moi_verde::-webkit-scrollbar-track {
       border-color: $verde;
     }
   }
 
-  .content-text::-webkit-scrollbar, .content-comments::-webkit-scrollbar  {
+  .content-text::-webkit-scrollbar,
+  .content-comments::-webkit-scrollbar,
+  .row-content-text::-webkit-scrollbar  {
     width: 5px;
     background-color: transparent;
     border-radius: 10px;
   }
 
-  .content-text, .content-comments {
-    &.moi_theme{
-      &::-webkit-scrollbar-thumb {
-        background-color: #B5A88F;
-      }
-    }
+  .content-text, .content-comments, .row-content-text {
     &::-webkit-scrollbar-thumb {
       border-radius: 25px;
       background-color: $linesColor;
     }
 
-    &.violeta::-webkit-scrollbar-thumb {
+    &.violeta::-webkit-scrollbar-thumb, &.moi_violeta::-webkit-scrollbar-thumb {
       background-color: $violeta;
     }
-    &.azul::-webkit-scrollbar-thumb {
+    &.azul::-webkit-scrollbar-thumb, &.moi_azul::-webkit-scrollbar-thumb {
       background-color: $azul;
     }
-    &.rojo::-webkit-scrollbar-thumb {
+    &.rojo::-webkit-scrollbar-thumb, &.moi_rojo::-webkit-scrollbar-thumb {
       background-color: $rojo;
     }
-    &.amarillo::-webkit-scrollbar-thumb {
+    &.amarillo::-webkit-scrollbar-thumb, &.moi_amarillo::-webkit-scrollbar-thumb {
       background-color: $amarillo;
     }
-    &.verde::-webkit-scrollbar-thumb {
+    &.verde::-webkit-scrollbar-thumb, &.moi_verde::-webkit-scrollbar-thumb {
       background-color: $verde;
     }
   }
@@ -378,19 +391,19 @@
     &.moi_theme {
       color: #666665;
     }
-    &.violeta {
+    &.violeta, &.moi-violeta {
       background: url(../images/themes/violeta/notebook.png);
     }
-    &.azul{
+    &.azul, &.moi_azul {
       background: url(../images/themes/azul/notebook.png);
     }
-    &.rojo{
+    &.rojo, &.moi_rojo {
       background: url(../images/themes/rojo/notebook.png);
     }
-    &.amarillo{
+    &.amarillo, &.moi_amarillo{
       background: url(../images/themes/amarillo/notebook.png);
     }
-    &.verde{
+    &.verde, &.moi_verde{
       background: url(../images/themes/verde/notebook.png);
     }
   }
