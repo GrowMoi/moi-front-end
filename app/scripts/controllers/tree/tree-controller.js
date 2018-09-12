@@ -3,13 +3,12 @@
 
   angular.module('moi.controllers')
   .controller('TreeController', function ($scope,
-                                          $rootScope,
                                           $auth,
                                           $timeout,
                                           data,
                                           storage,
                                           PreloadAssets,
-                                          AdviceService,
+                                          Advices,
                                           ModalService,
                                           TreeService,
                                           NeuronAnimateService,
@@ -32,7 +31,6 @@
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: currentUser.username ? getAdvices() : [],
       showBackButton: true
     };
 
@@ -87,18 +85,20 @@
         }else{
           $timeout(NeuronAnimateService.callToAction, 6000);
         }
+        $timeout(showPassiveModal, 6000);
       }
     }
 
-    function getAdvices(){
-      var advicesSaved = storage.tree && storage.tree.advices;
-      if (data.meta.depth === 1 && !(advicesSaved && advicesSaved[0])){
-        return AdviceService.getStatic('tree', 0, storage);
-      }else if ( data.meta.depth === 2 && !(advicesSaved && advicesSaved[1])){
-        return AdviceService.getStatic('tree', 1, storage);
-      }else if (advicesSaved && advicesSaved[1]){
-        return AdviceService.getRandom('tree');
-      }
+    function showPassiveModal() {
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-pasive-info.html',
+        animation: 'animated flipInX',
+        backdropClickToClose: true,
+        model: {
+          message: Advices.tree.message
+        }
+      };
+      ModalService.showModel(dialogOptions);
     }
 
     function showWelcomeModal(){
@@ -108,7 +108,10 @@
                 'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
                 'máxima expresión.',
         callbacks: {
-          btnCenter: function(){dialogContentModel.closeModal();}
+          btnCenter: function(){
+            dialogContentModel.closeModal();
+            $timeout(showPassiveModal, 6000);
+          }
         },
         labels: {
           btnCenter: 'Ok'
