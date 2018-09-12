@@ -6,6 +6,18 @@
     background-image: url(../images/nuevo_modal-8.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #content{
+      color: white;
+      font-size: 36px;
+      font-family: FontMoi-Grid;
+      line-height: 1.2;
+      padding: 5%;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(104, 104, 104, 0.76);
+    }
   }
 }
 /* Fix modal backdrop for smaller devices */
