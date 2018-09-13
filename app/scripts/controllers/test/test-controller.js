@@ -6,11 +6,10 @@
     function ($stateParams,
               TestService,
               $scope,
-              $rootScope,
+              $timeout,
               $auth,
               $state,
-              storage,
-              AdviceService,
+              Advices,
               ModalService,
               MediaAchievements,
               HoverAnimationService) {
@@ -45,13 +44,13 @@
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
-        type: 'marco_arbol',
-        advices: AdviceService.getStatic('test', 0, storage)
+        type: 'marco_arbol'
       };
       vmTest.increaseSize = HoverAnimationService.increaseSize;
       vmTest.cssOptions = {
         styles: []
       };
+      $timeout(showPassiveModal, 6000);
     }
 
     function selectAnswer(contentId, answer) {
@@ -71,9 +70,6 @@
       }
       vmTest.answers.push(vmTest.answerBackend);
       percentage();
-      if(vmTest.frameOptions.advices.length > 0){
-        vmTest.frameOptions.advices[0].show = false;
-      }
       if (vmTest.answers.length === vmTest.totalQuestions) {
         scoreTest();
       }else{
@@ -222,6 +218,18 @@
         achievements: achievements,
         achievementNames: achievementNames
       };
+    }
+
+    function showPassiveModal() {
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-pasive-info.html',
+        animation: 'animated flipInX',
+        backdropClickToClose: true,
+        model: {
+          message: Advices.quiz.message
+        }
+      };
+      ModalService.showModel(dialogOptions);
     }
   });
 
