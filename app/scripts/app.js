@@ -101,15 +101,6 @@
               achievements: []
             };
           }
-        },
-        storage: function(StorageService, $auth) {
-          if ($auth.user.id) {
-            return StorageService.get().then(function(resp) {
-              return resp.data.storage;
-            });
-          }else{
-            return {};
-          }
         }
       }
     })
@@ -144,15 +135,6 @@
               achievements: []
             };
           }
-        },
-        storage: function(StorageService, $auth) {
-          if ($auth.user.id) {
-            return StorageService.get().then(function(resp) {
-              return resp.data.storage;
-            });
-          }else{
-            return {};
-          }
         }
       }
     })
@@ -175,12 +157,7 @@
       templateUrl: 'templates/test/test.html',
       params: {testData: null},
       resolve: {
-        currentUser: checkIfIsAuthorized,
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
-          });
-        }
+        currentUser: checkIfIsAuthorized
       }
     })
     .state('tree', {
