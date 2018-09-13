@@ -31,6 +31,11 @@ a {
 
     .flowerpot {
       position: relative;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
 
       &-img {
         width: 450px;
@@ -378,14 +383,14 @@ a {
 
 @media (max-width: 1300px) {
   .tree-view {
-    .tree-content {
-      .flowerpot {
-        &-img {
-          width: 35% !important;
+    .tree-section {
+      .tree-content {
+        .flowerpot {
+          &-img {
+            width: 35% !important;
+          }
         }
       }
-    }
-    .tree-section {
       .tree-draw {
         left: 1%;
         bottom: -1.5%;
@@ -405,25 +410,25 @@ a {
     zoom: 0.85;
   }
   .tree-view {
-    .tree-content {
-      .flowerpot {
-        &-img {
-          width: 35% !important;
+    .tree-section {
+      .tree-content {
+        .flowerpot {
+          &-img {
+            width: 35% !important;
+          }
         }
       }
-    }
-    .tree-section {
       .tree-draw {
         left: 1%;
         bottom: -3%;
+        .moi-neuron-wrapper{
+          height: 65% !important;
+          a img{
+            width: 65% !important;
+            height: 65% !important;
+          }
+        }
       }
-    }
-  }
-  .moi-neuron-wrapper{
-    height: 65% !important;
-    a img{
-      width: 65% !important;
-      height: 65% !important;
     }
   }
 }
@@ -450,25 +455,25 @@ a {
     zoom: 0.75;
   }
   .tree-view {
-    .tree-content {
-      .flowerpot {
-        &-img {
-          width: 45% !important;
+    .tree-section {
+      .tree-content {
+        .flowerpot {
+          &-img {
+            width: 45% !important;
+          }
         }
       }
-    }
-    .tree-section {
       .tree-draw {
         left: 0;
         bottom: 0;
+        .moi-neuron-wrapper{
+          height: 55% !important;
+          a img{
+            width: 55% !important;
+            height: 55% !important;
+          }
+        }
       }
-    }
-  }
-  .moi-neuron-wrapper{
-    height: 55% !important;
-    a img{
-      width: 55% !important;
-      height: 55% !important;
     }
   }
 }
@@ -484,25 +489,25 @@ a {
     zoom: 0.65;
   }
   .tree-view {
-    .tree-content {
-      .flowerpot {
-        &-img {
-          width: 42% !important;
+    .tree-section {
+      .tree-content {
+        .flowerpot {
+          &-img {
+            width: 42% !important;
+          }
         }
       }
-    }
-    .tree-section {
       .tree-draw {
         left: 1%;
         bottom: 0;
+        .moi-neuron-wrapper{
+          height: 45% !important;
+          a img{
+            width: 45% !important;
+            height: 45% !important;
+          }
+        }
       }
-    }
-  }
-  .moi-neuron-wrapper{
-    height: 45% !important;
-    a img{
-      width: 45% !important;
-      height: 45% !important;
     }
   }
 }
