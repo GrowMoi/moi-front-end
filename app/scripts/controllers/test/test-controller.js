@@ -6,10 +6,8 @@
     function ($stateParams,
               TestService,
               $scope,
-              $timeout,
               $auth,
               $state,
-              Advices,
               ModalService,
               MediaAchievements,
               HoverAnimationService) {
@@ -50,7 +48,6 @@
       vmTest.cssOptions = {
         styles: []
       };
-      $timeout(showPassiveModal, 6000);
     }
 
     function selectAnswer(contentId, answer) {
@@ -218,18 +215,6 @@
         achievements: achievements,
         achievementNames: achievementNames
       };
-    }
-
-    function showPassiveModal() {
-      var dialogOptions = {
-        templateUrl: 'templates/partials/modal-pasive-info.html',
-        animation: 'animated flipInX',
-        backdropClickToClose: true,
-        model: {
-          message: Advices.quiz.message
-        }
-      };
-      ModalService.showModel(dialogOptions);
     }
   });
 

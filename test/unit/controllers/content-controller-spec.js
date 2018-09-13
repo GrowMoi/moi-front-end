@@ -17,8 +17,7 @@
         UserService,
         ReadContentTimingService,
         MediaAchievements,
-        StorageService,
-        Advices;
+        StorageService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
@@ -31,11 +30,6 @@
               badge:'images/inventory/badges/badge1.png',
               video: 'videos/vineta_1.mp4'
             }
-          }
-        });
-        $provide.constant('Advices', {
-          content: {
-            message: 'Test'
           }
         });
       });
@@ -149,8 +143,7 @@
                 _UserService_,
                 _ReadContentTimingService_,
                 _MediaAchievements_,
-                _StorageService_,
-                _Advices_) {
+                _StorageService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -164,7 +157,6 @@
         ReadContentTimingService = _ReadContentTimingService_;
         MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
-        Advices = _Advices_;
         $auth = {
           user: {
             id: 1,
@@ -204,8 +196,7 @@
           UserService: UserService,
           ReadContentTimingService: ReadContentTimingService,
           MediaAchievements: MediaAchievements,
-          StorageService: StorageService,
-          Advices: Advices
+          StorageService: StorageService
         };
 
         ctrl = $controller('ContentController', dependencies);

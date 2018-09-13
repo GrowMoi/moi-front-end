@@ -9,7 +9,6 @@
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              Advices,
                                               MediaAchievements,
                                               dataInventory,
                                               SocialService) {
@@ -66,7 +65,6 @@
 
         leaveImage(vmContent.imgDelayTime);
         delayImages(vmContent.imgDelayTime);
-        $timeout(showPassiveModal, 6000);
       }
 
       function getImageUrl(params) {
@@ -193,18 +191,6 @@
           description: content.description
         };
         SocialService.showModal(data);
-      }
-
-      function showPassiveModal() {
-        var dialogOptions = {
-          templateUrl: 'templates/partials/modal-pasive-info.html',
-          animation: 'animated flipInX',
-          backdropClickToClose: true,
-          model: {
-            message: Advices.content.message
-          }
-        };
-        ModalService.showModel(dialogOptions);
       }
 
     });

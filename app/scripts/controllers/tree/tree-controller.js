@@ -8,7 +8,6 @@
                                           data,
                                           storage,
                                           PreloadAssets,
-                                          Advices,
                                           ModalService,
                                           TreeService,
                                           NeuronAnimateService,
@@ -93,19 +92,6 @@
       }else{
         $timeout(NeuronAnimateService.callToAction, 6000);
       }
-      $timeout(showPassiveModal, 6000);
-    }
-
-    function showPassiveModal() {
-      var dialogOptions = {
-        templateUrl: 'templates/partials/modal-pasive-info.html',
-        animation: 'animated flipInX',
-        backdropClickToClose: true,
-        model: {
-          message: Advices.tree.message
-        }
-      };
-      ModalService.showModel(dialogOptions);
     }
 
     function showWelcomeModal(){

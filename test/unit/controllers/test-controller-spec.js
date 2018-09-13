@@ -15,8 +15,7 @@
         contentId,
         answer,
         MediaAchievements,
-        StorageService,
-        Advices;
+        StorageService;
 
     beforeEach(module('moi.controllers'));
 
@@ -79,11 +78,6 @@
               badge:'images/inventory/badges/badge1.png',
               video: 'videos/vineta_1.mp4'
             }
-          }
-        });
-        $provide.constant('Advices', {
-          quiz: {
-            message: 'Test'
           }
         });
       });
@@ -150,8 +144,7 @@
                 _$rootScope_,
                 _$state_,
                 _MediaAchievements_,
-                _StorageService_,
-                _Advices_) {
+                _StorageService_) {
         $controller = _$controller_;
         $stateParams = _$stateParams_;
         $rootScope = _$rootScope_;
@@ -160,7 +153,6 @@
         TestService = _TestService_;
         MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
-        Advices = _Advices_;
         $auth = {
           user: {
             id: 1,
@@ -179,8 +171,7 @@
           $state: $state,
           MediaAchievements: MediaAchievements,
           StorageService: StorageService,
-          storage: {test: {'advices': ['advice0']}},
-          Advices: Advices
+          storage: {test: {'advices': ['advice0']}}
         };
         ctrl = $controller('TestController', dependencies);
       })

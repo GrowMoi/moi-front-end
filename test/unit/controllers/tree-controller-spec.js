@@ -12,19 +12,9 @@
       PreloadAssets,
       ModalService,
       TestService,
-      StorageService,
-      Advices;
+      StorageService;
 
     beforeEach(module('moi.controllers'));
-    beforeEach(function(){
-      module('config', function ($provide) {
-        $provide.constant('Advices', {
-          tree: {
-            message: 'Test'
-          }
-        });
-      });
-    });
     beforeEach(module('moi.services', function($provide){
       $provide.factory('PreloadAssets', function(){
         return {
@@ -98,8 +88,7 @@
                 _PreloadAssets_,
                 _ModalService_,
                 _StorageService_,
-                _TestService_,
-                _Advices_) {
+                _TestService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -107,7 +96,6 @@
         ModalService = _ModalService_;
         StorageService = _StorageService_;
         TestService = _TestService_;
-        Advices = _Advices_;
         $auth = {
           user: {
             id: 1,
@@ -123,8 +111,7 @@
           storage: {tree: {'vinetas_animadas': {'depth': 1}}},
           $auth: $auth,
           ModalService: ModalService,
-          StorageService: StorageService,
-          Advices: Advices
+          StorageService: StorageService
         };
 
         ctrl = $controller('TreeController', dependencies);

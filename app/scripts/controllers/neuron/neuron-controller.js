@@ -7,8 +7,6 @@
               $scope,
               $timeout,
               $auth,
-              Advices,
-              ModalService,
               SocialService,
               MediaAchievements,
               dataInventory) {
@@ -17,8 +15,7 @@
         ApiButtons = null,
         ApiContent = null,
         timeoutPromise = null,
-        currentUser = $auth.user,
-        lastIndexAdvice = parseInt(localStorage.getItem('neuron_advice')) || 0;
+        currentUser = $auth.user;
     vmNeuron.frameOptions = {
       type: 'content_max'
     };
@@ -58,7 +55,6 @@
         theme:'moi_verde',
         isMoitheme: true
       };
-      $timeout(showPassiveModal, 6000);
     }
 
     init();
@@ -103,25 +99,6 @@
       $timeout.cancel(timeoutPromise);
       timeoutPromise = null;
     });
-
-    function showPassiveModal() {
-      var dialogOptions = {
-        templateUrl: 'templates/partials/modal-pasive-info.html',
-        animation: 'animated flipInX',
-        backdropClickToClose: true,
-        model: {
-          type: 'passive',
-          message: Advices.neuron.messages[lastIndexAdvice]
-        },
-        onHide: saveIndexAdvice
-      };
-      ModalService.showModel(dialogOptions);
-    }
-
-    function saveIndexAdvice() {
-      var nexIndexAdvice = (lastIndexAdvice < Advices.neuron.messages.length-1) ? lastIndexAdvice + 1 : 0;
-      localStorage.setItem('neuron_advice', nexIndexAdvice);
-    }
 
     function shareNeuron() {
       var data = {
