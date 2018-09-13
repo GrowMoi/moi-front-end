@@ -5,13 +5,11 @@
                                               $window,
                                               $timeout,
                                               $interval,
-                                              $auth,
                                               content,
-                                              storage,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              AdviceService,
+                                              Advices,
                                               MediaAchievements,
                                               dataInventory,
                                               SocialService) {
@@ -23,11 +21,9 @@
       vmContent.showAlertExternalLink = showAlertExternalLink;
       vmContent.userAchievements = dataInventory.achievements;
       var modelData = {};
-      var currentUser = $auth.user;
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
-        advices: currentUser.username ? AdviceService.getStatic('content', 0, storage) : [],
         showBackButton: true
       };
 
@@ -70,6 +66,7 @@
 
         leaveImage(vmContent.imgDelayTime);
         delayImages(vmContent.imgDelayTime);
+        $timeout(showPassiveModal, 6000);
       }
 
       function getImageUrl(params) {
@@ -197,5 +194,18 @@
         };
         SocialService.showModal(data);
       }
+
+      function showPassiveModal() {
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-pasive-info.html',
+          animation: 'animated flipInX',
+          backdropClickToClose: true,
+          model: {
+            message: Advices.content.message
+          }
+        };
+        ModalService.showModel(dialogOptions);
+      }
+
     });
 })();
