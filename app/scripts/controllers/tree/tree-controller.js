@@ -63,6 +63,9 @@
         storage.tree = {'vinetas_animadas': {'depth': data.meta.depth}};
         StorageService.update(storage);
       }
+
+      initAnimations();
+
       //show only when a user is new
       if(data.meta.depth === 1){
         showWelcomeModal();
@@ -80,13 +83,17 @@
         treeModel.showTree = false;
       }else{
         treeModel.showTree = true;
-        if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
-          $timeout(NeuronAnimateService.specialCallToAction, 2000);
-        }else{
-          $timeout(NeuronAnimateService.callToAction, 6000);
-        }
-        $timeout(showPassiveModal, 6000);
+        initAnimations();
       }
+    }
+
+    function initAnimations() {
+      if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
+        $timeout(NeuronAnimateService.specialCallToAction, 2000);
+      }else{
+        $timeout(NeuronAnimateService.callToAction, 6000);
+      }
+      $timeout(showPassiveModal, 6000);
     }
 
     function showPassiveModal() {
@@ -110,7 +117,6 @@
         callbacks: {
           btnCenter: function(){
             dialogContentModel.closeModal();
-            $timeout(showPassiveModal, 6000);
           }
         },
         labels: {
