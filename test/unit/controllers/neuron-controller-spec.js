@@ -9,7 +9,9 @@
       dependencies,
       $rootScope,
       StorageService,
-      MediaAchievements;
+      MediaAchievements,
+      ModalService,
+      Advices;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
@@ -27,10 +29,10 @@
       });
     });
     beforeEach(angular.mock.module(function ($provide) {
-      $provide.factory('AdviceService', function(){
+      $provide.factory('Advices', function(){
         return {
-          getStatic: function(){
-            return null;
+          neuron: {
+            messages: ['Test0', 'Test1']
           }
         };
       });
@@ -55,17 +57,28 @@
           }
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
     }));
     beforeEach(inject(
       function(_$controller_,
         _$rootScope_,
         _StorageService_,
-        _MediaAchievements_) {
+        _MediaAchievements_,
+        _Advices_,
+        _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
+        Advices = _Advices_;
+        ModalService = _ModalService_;
         $auth = {
           user: {
             id: 1,
@@ -93,7 +106,9 @@
             ]
           },
           storage: {neuron: {'advices': ['advice0']}},
-          $auth: $auth
+          $auth: $auth,
+          Advices: Advices,
+          ModalService: ModalService
         };
 
         ctrl = $controller('NeuronController', dependencies);

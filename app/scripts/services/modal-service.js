@@ -35,6 +35,13 @@
         };
         modalInstance.show();
       });
+
+      // Execute action on hide modal
+      modalMoi.scope.$on('modal.hidden', function() {
+        if(modalOptions.model.type === 'passive'){
+          modalOptions.onHide();
+        }
+      });
     }
 
     function closeAndRemove(modalInstance) {
