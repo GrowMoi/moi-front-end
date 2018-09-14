@@ -38,6 +38,10 @@
       view: 'tree-screen',
       baseTree: 'base-tree'
     };
+    //init nofitications in passive time
+    if(!localStorage.getItem('advicesOn')){
+      localStorage.setItem('advicesOn', 'true');
+    }
 
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
@@ -180,7 +184,8 @@
     $scope.$on('IdleStart', showPassiveModal);
 
     function showPassiveModal() {
-      if(site.advicePage && !isShowingPassiveModal && $state.current.name !== 'tree'){
+      var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
+      if(site.advicePage && !isShowingPassiveModal && $state.current.name !== 'tree' && isActiveMessages){
         var modalPositions = {
           topLeft: 'modal-topLeft',
           topRight: 'modal-topRight',

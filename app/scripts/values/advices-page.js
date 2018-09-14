@@ -28,10 +28,30 @@
       },
       searches: {
         messages: [
-          'Escribe lo que quieres conocerr y presiona el botón buscar o la tecla enter'
+          'Escribe lo que quieres conocer y presiona el botón buscar o la tecla enter'
         ]
       },
-      tasks: {
+      'tasks.notes': {
+        messages: [
+          'Revisa y completa tus tareas para recibir distintas recompensas'
+        ]
+      },
+      'tasks.recommendations': {
+        messages: [
+          'Revisa y completa tus tareas para recibir distintas recompensas'
+        ]
+      },
+      'tasks.contents': {
+        messages: [
+          'Revisa y completa tus tareas para recibir distintas recompensas'
+        ]
+      },
+      'tasks.notifications': {
+        messages: [
+          'Revisa y completa tus tareas para recibir distintas recompensas'
+        ]
+      },
+      'tasks.favorites': {
         messages: [
           'Revisa y completa tus tareas para recibir distintas recompensas'
         ]

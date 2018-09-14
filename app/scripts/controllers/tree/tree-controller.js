@@ -131,7 +131,8 @@
     $scope.$on('IdleStart', showPassiveModal);
 
     function showPassiveModal() {
-      if(!isShowingPassiveModal && treeModel.showTree){
+      var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
+      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-pasive-info.html',
           animation: 'animated flipInX',
