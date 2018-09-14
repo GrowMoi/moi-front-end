@@ -26,13 +26,19 @@
 
     $auth.validateUser()
       .then(function userAuthorized(user){
-        GAService.track('set', 'userId', user.id);
+        GAService.track('set', 'userId', user.username);
+        GAService.track('set', 'metric1', user.id);
+        GAService.track('set', 'dimension1', user.id);
       }, function userNotAuthorized(){
         GAService.track('set', 'userId', null);
+        GAService.track('set', 'metric1', null);
+        GAService.track('set', 'dimension1', null);
       });
 
     $rootScope.$on('IdleTimeout', function() {
       GAService.track('set', 'userId', null);
+      GAService.track('set', 'metric1', null);
+      GAService.track('set', 'dimension1', null);
       $window.localStorage.clear();
       $window.location='/';
    });
@@ -462,10 +468,14 @@
   function checkIfIsAuthorized($auth, $state, GAService){
     return $auth.validateUser()
       .then(function userAuthorized(user){
-        GAService.track('set', 'userId', user.id);
+        GAService.track('set', 'userId', user.username);
+        GAService.track('set', 'dimension1', user.id);
+        GAService.track('send', 'pageview');
         return user;
       }, function userNotAuthorized(){
         GAService.track('set', 'userId', null);
+        GAService.track('set', 'dimension1', null);
+        GAService.track('send', 'pageview');
         $state.go('new_login.first_step');
       });
   }

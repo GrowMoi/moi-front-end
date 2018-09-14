@@ -25,7 +25,8 @@
                           $state,
                           $filter,
                           AnimationService,
-                          HoverAnimationService){
+                          HoverAnimationService,
+                          GAService){
 
     var vm = this,
         indexContentActiveIdle = 0,
@@ -306,7 +307,8 @@
       arrayElements = Array(vm.contentsShown.length);// jshint ignore:line
     }
 
-    function sendContent(neuronId, contentId){
+    function sendContent(neuronId, contentId, contentTitle){
+      GAService.track('send', 'event', 'Abrir contenido desde recomendaciones ' + contentTitle, 'Click');
       $state.go('content', {neuronId: neuronId,contentId: contentId});
     }
 

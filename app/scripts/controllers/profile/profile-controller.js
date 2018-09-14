@@ -107,6 +107,7 @@
     }
     function logout(){
       GAService.track('set', 'userId', null);
+      GAService.track('set', 'dimension1', user.id);
       $window.localStorage.clear();
       $window.location='/';
     }

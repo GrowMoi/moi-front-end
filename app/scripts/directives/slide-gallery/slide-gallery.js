@@ -20,7 +20,7 @@
     };
   }
 
-  function slideGalleryController($element, $scope, $ionicSlideBoxDelegate, ModalService) {
+  function slideGalleryController($element, $scope, $ionicSlideBoxDelegate, ModalService, GAService) {
     var vmSlide = this;
 
     vmSlide.showMedia = showMedia;
@@ -100,6 +100,9 @@
       if(!modelData.isImage){
         $backgroundSound[0].pause();
       }
+
+      GAService.track('send', 'event', 'Mostrar media '+ url, 'Click');
+
       ModalService.showModel({
         parentScope: $scope,
         templateUrl: 'templates/partials/modal-image.html',

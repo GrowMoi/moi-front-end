@@ -52,7 +52,8 @@
     }
 
     function redirectUser(user) {
-      GAService.track('set', 'userId', user.id);
+      GAService.track('set', 'userId', user.username);
+      GAService.track('set', 'dimension1', user.id);
       $state.go(successState, {
         username: user.username
       });

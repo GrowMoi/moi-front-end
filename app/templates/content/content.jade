@@ -53,7 +53,8 @@ ion-view.content-view-max(ng-class="vmContent.theme" view-title='Content')
                 .content-subtitle {{ ::'content.max.recommended ' | translate }}
               .row.recommended-contents
                 .col.col-50(ng-repeat='content in vmContent.content.recommended')
-                  .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
+                  .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})"
+                    ng-click="vmContent.registerClick(content.title)")
                    img.format-image(ng-src='{{content.media[0]}}')
                    .leyend-bottom(ellipsis-title="content.title" height="50" title="{{::content.title}}")
             .corner.recomended-TR(ng-class="vmContent.theme")
