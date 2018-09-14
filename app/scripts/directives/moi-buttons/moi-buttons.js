@@ -28,7 +28,8 @@
                                   $timeout,
                                   $auth,
                                   TestService,
-                                  UserNotificationsService) {
+                                  UserNotificationsService,
+                                  GAService) {
       var vm = this;
 
       var dialogContentModel = {
@@ -254,10 +255,12 @@
       //callbacks functions
 
       function finishedAnimationSearch() {
+        GAService.track('send', 'event', 'Ir a sección Buscar', 'Click');
         $state.go('searches');
       }
 
       function finishedAnimationRead() {
+        GAService.track('send', 'event', 'Aprender contenido '+ vm.content.title, 'Click');
         ContentService.readContent(vm.content).then(function(response){
           var data = response.data,
               page = $state.current.name;
@@ -276,6 +279,7 @@
       }
 
       function finishedAnimationsaveTasks() {
+        GAService.track('send', 'event', 'Guardar tarea', 'Click');
         UserService.addTasks(vm.content).then(function(response) {
           if(response.data.exist){
             dialogContentModel = {
@@ -297,17 +301,20 @@
       }
 
       function finishedAnimationAddFavorites() {
+        GAService.track('send', 'event', 'Ir a sección Buscar', 'Click');
         UserService.addFavorites(vm.content).then(function(response) {
           vm.content.favorite = response.data.favorite;
         });
       }
 
       function finishedAnimationRecomendation() {
+        GAService.track('send', 'event', 'Generar recomendación aleatoria', 'Click');
         var id = $state.params.neuronId;
         UserService.recommendedNeuron(id);
       }
 
       function finishedAnimationShowTasks() {
+        GAService.track('send', 'event', 'Mostrar tareas', 'Click');
         if(vm.showTasksOptions.totalNotifications){
           $state.go('tasks.notifications');
         }else{

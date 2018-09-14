@@ -3,7 +3,8 @@
   angular.module('moi.controllers')
   .controller('TasksController', function($state,
                                           $rootScope,
-                                          UserNotificationsService){
+                                          UserNotificationsService,
+                                          GAService){
     var tasksmodel = this;
 
     tasksmodel.buttonsOptions = {
@@ -57,6 +58,7 @@
     ];
 
     tasksmodel.changeTab = function(field) {
+      GAService.track('send', 'event', 'Seleccionar tab ' + field, 'Click');
       angular.forEach(tasksmodel.tabs, function(tab) {
         if(tab.field === field){
           tab.selected = true;
