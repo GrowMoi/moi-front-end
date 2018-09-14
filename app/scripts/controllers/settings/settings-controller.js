@@ -12,6 +12,8 @@
     vm.selectInterest = selectInterest;
     vm.contentSettings = contentSettings;
     vm.listSelected = [];
+    vm.advicesOn = (localStorage.getItem('advicesOn') === 'true') || false;
+    vm.updateAdvicesSettings = updateAdvicesSettings;
     /*jshint camelcase: false */
     vm.preferences = user.content_preferences;
     vm.preferences = $filter('orderBy')(vm.preferences, 'order');
@@ -113,6 +115,9 @@
       SettingsService.saveContentSettings(config);
     }
 
+    function updateAdvicesSettings() {
+      localStorage.setItem('advicesOn', vm.advicesOn);
+    }
   });
 
 })();

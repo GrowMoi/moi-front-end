@@ -22,6 +22,10 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
                   ng-model="config.level",
                   ng-change="vm.contentSettings(config)")
                 .range-right-border
+            .advices-toggle
+              span.content-subtitle-settings
+                | Encender/Apagar tutorial
+              ion-toggle(ng-model='vm.advicesOn' ng-change="vm.updateAdvicesSettings()")
           .panel-right.col-45
             .border-bottom-settings
               span.content-title-settings
