@@ -7,8 +7,6 @@
               $scope,
               $timeout,
               $auth,
-              AdviceService,
-              storage,
               SocialService,
               MediaAchievements,
               dataInventory) {
@@ -18,10 +16,8 @@
         ApiContent = null,
         timeoutPromise = null,
         currentUser = $auth.user;
-    var positionAdvice = ((storage.neuron && storage.neuron.advices[0]) && (storage.content && storage.content.advices[0])) ? 1 : 0;
     vmNeuron.frameOptions = {
-      type: 'content_max',
-      advices: currentUser.username ? AdviceService.getStatic('neuron', positionAdvice, storage) : []
+      type: 'content_max'
     };
     vmNeuron.userAchievements = dataInventory.achievements;
 
@@ -91,7 +87,6 @@
 
     function onSelectItem(content) {
       if (ApiButtons) {
-        hideAdvice();
         ApiButtons.contentSelected(content);
       }
     }
@@ -104,15 +99,6 @@
       $timeout.cancel(timeoutPromise);
       timeoutPromise = null;
     });
-
-    $scope.$on('neuron:remove-content', hideAdvice);
-
-    function hideAdvice(){
-      var advicesSaved = storage.neuron && storage.neuron.advices;
-      if(vmNeuron.frameOptions.advices.length > 0 && (advicesSaved && advicesSaved[1])){
-        vmNeuron.frameOptions.advices[0].show = false;
-      }
-    }
 
     function shareNeuron() {
       var data = {

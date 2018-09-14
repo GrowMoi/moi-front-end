@@ -19,11 +19,14 @@
                           SoundsPage,
                           TreeService,
                           IMAGES,
-                          VIDEOS) {
+                          VIDEOS,
+                          AdvicesPage,
+                          ModalService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
-        callApiSaveImage = 0;
+        callApiSaveImage = 0,
+        isShowingPassiveModal = false;
 
     UserNotificationsService.initialize();
 
@@ -35,6 +38,10 @@
       view: 'tree-screen',
       baseTree: 'base-tree'
     };
+    //init nofitications in passive time
+    if(!localStorage.getItem('advicesOn')){
+      localStorage.setItem('advicesOn', 'true');
+    }
 
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
@@ -139,6 +146,7 @@
       }
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
+      site.advicePage = AdvicesPage[toState.name];
     });
 
     $rootScope.$on('$stateChangeError', function(){
@@ -172,5 +180,47 @@
         callApiSaveImage = 0;
       }
     });
+
+    $scope.$on('IdleStart', showPassiveModal);
+
+    function showPassiveModal() {
+      var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
+      if(site.advicePage && !isShowingPassiveModal && $state.current.name !== 'tree' && isActiveMessages){
+        var modalPositions = {
+          topLeft: 'modal-topLeft',
+          topRight: 'modal-topRight',
+          bottomLeft: 'modal-bottomLeft',
+          bottomRight: 'modal-bottomRight'
+        };
+
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-pasive-info.html',
+          animation: 'animated flipInX',
+          backdropClickToClose: true,
+          model: {
+            message: site.advicePage.messages[0],
+            type: 'passive',
+            cssClass: modalPositions.bottomRight
+          },
+          onHide: function() {
+            isShowingPassiveModal = false;
+          }
+        };
+
+        if(site.advicePage.messages.length > 1){
+          var keyAdvice = $state.current.name + '_advice';
+          var lastIndexAdvice = parseInt(localStorage.getItem(keyAdvice)) || 0;
+          dialogOptions.model.message = site.advicePage.messages[lastIndexAdvice];
+          dialogOptions.onHide = function() {
+            var nexIndexAdvice = (lastIndexAdvice < site.advicePage.messages.length-1) ? lastIndexAdvice + 1 : 0;
+            localStorage.setItem(keyAdvice, nexIndexAdvice);
+            isShowingPassiveModal = false;
+          };
+        }
+
+        ModalService.showModel(dialogOptions);
+        isShowingPassiveModal = true;
+      }
+    }
   }
 })();

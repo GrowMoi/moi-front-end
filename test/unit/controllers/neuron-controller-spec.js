@@ -27,13 +27,6 @@
       });
     });
     beforeEach(angular.mock.module(function ($provide) {
-      $provide.factory('AdviceService', function(){
-        return {
-          getStatic: function(){
-            return null;
-          }
-        };
-      });
       $provide.factory('StorageService', function(){
         return {
           get: function(){

@@ -12,9 +12,19 @@
       PreloadAssets,
       ModalService,
       TestService,
-      StorageService;
+      StorageService,
+      AdvicesPage;
 
     beforeEach(module('moi.controllers'));
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('AdvicesPage', {
+          tree: {
+            messages: 'Test'
+          }
+        });
+      });
+    });
     beforeEach(module('moi.services', function($provide){
       $provide.factory('PreloadAssets', function(){
         return {
@@ -88,7 +98,8 @@
                 _PreloadAssets_,
                 _ModalService_,
                 _StorageService_,
-                _TestService_) {
+                _TestService_,
+                _AdvicesPage_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -96,6 +107,7 @@
         ModalService = _ModalService_;
         StorageService = _StorageService_;
         TestService = _TestService_;
+        AdvicesPage = _AdvicesPage_;
         $auth = {
           user: {
             id: 1,

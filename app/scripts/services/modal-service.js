@@ -11,6 +11,7 @@
         },
         modalOptions = { // Default modal options
           animation: 'slide-in-up',
+          backdropClickToClose: false,
           onHide: function(){}
         };
 
@@ -26,13 +27,24 @@
       $ionicModal.fromTemplateUrl(modalOptions.templateUrl, {
         scope: modalMoi.scope,
         animation: modalOptions.animation,
-        backdropClickToClose: false
+        backdropClickToClose: modalOptions.backdropClickToClose
       }).then(function(modalInstance) {
         modalMoi.scope.model.closeModal = function() {
           closeAndRemove(modalInstance);
           modalOptions.onHide();
         };
+        if(modalOptions.model.type === 'passive'){
+          var cssClass = modalOptions.model.cssClass || 'my-custom-modal';
+          modalInstance.$el.addClass(cssClass);
+        }
         modalInstance.show();
+      });
+
+      // Execute action on hide modal
+      modalMoi.scope.$on('modal.hidden', function() {
+        if(modalOptions.model.type === 'passive'){
+          modalOptions.onHide();
+        }
       });
     }
 

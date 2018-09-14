@@ -6,11 +6,8 @@
     function ($stateParams,
               TestService,
               $scope,
-              $rootScope,
               $auth,
               $state,
-              storage,
-              AdviceService,
               ModalService,
               MediaAchievements,
               HoverAnimationService) {
@@ -45,8 +42,7 @@
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
-        type: 'marco_arbol',
-        advices: AdviceService.getStatic('test', 0, storage)
+        type: 'marco_arbol'
       };
       vmTest.increaseSize = HoverAnimationService.increaseSize;
       vmTest.cssOptions = {
@@ -71,9 +67,6 @@
       }
       vmTest.answers.push(vmTest.answerBackend);
       percentage();
-      if(vmTest.frameOptions.advices.length > 0){
-        vmTest.frameOptions.advices[0].show = false;
-      }
       if (vmTest.answers.length === vmTest.totalQuestions) {
         scoreTest();
       }else{

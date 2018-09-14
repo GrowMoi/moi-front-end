@@ -5,13 +5,10 @@
                                               $window,
                                               $timeout,
                                               $interval,
-                                              $auth,
                                               content,
-                                              storage,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              AdviceService,
                                               MediaAchievements,
                                               dataInventory,
                                               SocialService) {
@@ -23,11 +20,9 @@
       vmContent.showAlertExternalLink = showAlertExternalLink;
       vmContent.userAchievements = dataInventory.achievements;
       var modelData = {};
-      var currentUser = $auth.user;
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
-        advices: currentUser.username ? AdviceService.getStatic('content', 0, storage) : [],
         showBackButton: true
       };
 
@@ -197,5 +192,6 @@
         };
         SocialService.showModal(data);
       }
+
     });
 })();
