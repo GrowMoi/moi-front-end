@@ -13,7 +13,8 @@
                                           NeuronAnimateService,
                                           StorageService,
                                           SocialService,
-                                          TestService) {
+                                          TestService,
+                                          AdvicesPage) {
 
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -27,6 +28,7 @@
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
+    var isShowingPassiveModal = false;
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
@@ -124,6 +126,29 @@
         description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
+    }
+
+    $scope.$on('IdleStart', showPassiveModal);
+
+    function showPassiveModal() {
+      if(!isShowingPassiveModal && treeModel.showTree){
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-pasive-info.html',
+          animation: 'animated flipInX',
+          backdropClickToClose: true,
+          model: {
+            message: AdvicesPage.tree.messages[0],
+            type: 'passive',
+            cssClass: 'modal-bottomRight'
+          },
+          onHide: function() {
+            isShowingPassiveModal = false;
+          }
+        };
+
+        ModalService.showModel(dialogOptions);
+        isShowingPassiveModal = true;
+      }
     }
 
   });

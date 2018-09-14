@@ -37,3 +37,69 @@
   -webkit-animation-name:flipOutX;
   animation-name:flipOutX;
 }
+
+.my-custom-modal {
+  .modal-backdrop-bg {
+    opacity: 0;
+  }
+}
+
+.modal-topLeft {
+  .modal-backdrop-bg {
+    opacity: 0;
+  }
+  .modal-wrapper {
+    .modal {
+      width: 50%;
+      top: 0;
+      left: 0;
+      right: unset;
+      bottom: unset;
+    }
+  }
+}
+
+.modal-topRight {
+  .modal-backdrop-bg {
+    opacity: 0;
+  }
+  .modal-wrapper {
+    .modal {
+      width: 50%;
+      top: 0;
+      right: 0;
+      left: unset;
+      bottom: unset;
+    }
+  }
+}
+
+.modal-bottomLeft {
+  .modal-backdrop-bg {
+    opacity: 0;
+  }
+  .modal-wrapper {
+    .modal {
+      width: 50%;
+      bottom: 0;
+      left: 0;
+      right: unset;
+      top: unset;
+    }
+  }
+}
+
+.modal-bottomRight {
+  .modal-backdrop-bg {
+    opacity: 0;
+  }
+  .modal-wrapper {
+    .modal {
+      width: 50%;
+      bottom: 0;
+      right: 0;
+      left: unset;
+      top: unset;
+    }
+  }
+}

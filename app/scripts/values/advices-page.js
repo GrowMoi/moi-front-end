@@ -18,7 +18,7 @@
       },
       content: {
         messages: [
-          'Cuando termines de leer la aplicación, presiona el botón celeste para enviar la pregunta al test'
+          'Cuando termines de leer la explicación, presiona el botón celeste para enviar la pregunta al test'
         ]
       },
       quiz: {

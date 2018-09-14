@@ -25,7 +25,8 @@
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
-        callApiSaveImage = 0;
+        callApiSaveImage = 0,
+        isShowingPassiveModal = false;
 
     UserNotificationsService.initialize();
 
@@ -179,13 +180,25 @@
     $scope.$on('IdleStart', showPassiveModal);
 
     function showPassiveModal() {
-      if(site.advicePage){
+      if(site.advicePage && !isShowingPassiveModal && $state.current.name !== 'tree'){
+        var modalPositions = {
+          topLeft: 'modal-topLeft',
+          topRight: 'modal-topRight',
+          bottomLeft: 'modal-bottomLeft',
+          bottomRight: 'modal-bottomRight'
+        };
+
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-pasive-info.html',
           animation: 'animated flipInX',
           backdropClickToClose: true,
           model: {
-            message: site.advicePage.messages[0]
+            message: site.advicePage.messages[0],
+            type: 'passive',
+            cssClass: modalPositions.bottomRight
+          },
+          onHide: function() {
+            isShowingPassiveModal = false;
           }
         };
 
@@ -193,14 +206,15 @@
           var keyAdvice = $state.current.name + '_advice';
           var lastIndexAdvice = parseInt(localStorage.getItem(keyAdvice)) || 0;
           dialogOptions.model.message = site.advicePage.messages[lastIndexAdvice];
-          dialogOptions.model.type = 'passive';
           dialogOptions.onHide = function() {
             var nexIndexAdvice = (lastIndexAdvice < site.advicePage.messages.length-1) ? lastIndexAdvice + 1 : 0;
             localStorage.setItem(keyAdvice, nexIndexAdvice);
+            isShowingPassiveModal = false;
           };
         }
 
         ModalService.showModel(dialogOptions);
+        isShowingPassiveModal = true;
       }
     }
   }

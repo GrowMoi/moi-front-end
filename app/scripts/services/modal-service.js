@@ -33,6 +33,10 @@
           closeAndRemove(modalInstance);
           modalOptions.onHide();
         };
+        if(modalOptions.model.type === 'passive'){
+          var cssClass = modalOptions.model.cssClass || 'my-custom-modal';
+          modalInstance.$el.addClass(cssClass);
+        }
         modalInstance.show();
       });
 
