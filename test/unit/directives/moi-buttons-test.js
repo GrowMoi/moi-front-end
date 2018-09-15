@@ -34,6 +34,14 @@
       });
 
     }));
+    beforeEach(function() {
+      module('config', function($provide) {
+        $provide.constant('ENV', {
+          name: 'development',
+          apiHost: 'http://localhost:5000'
+        });
+      });
+    });
     beforeEach(module('moi.services', function($provide) {
       $provide.factory('ContentService', function() {
         return {

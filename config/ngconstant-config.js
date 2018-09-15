@@ -39,7 +39,8 @@
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
-          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
+          unsignedUploadPreset: process.env.CLOUDINARY_PRESET,
+          gaTrackID: process.env.GA_TRACK_ID
         },
         IMAGES: {
           paths: []
@@ -63,7 +64,8 @@
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
-          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
+          unsignedUploadPreset: process.env.CLOUDINARY_PRESET,
+          gaTrackID: process.env.GA_TRACK_ID
         },
         IMAGES: {
           paths: []
