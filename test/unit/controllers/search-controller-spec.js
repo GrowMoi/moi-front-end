@@ -14,7 +14,6 @@
         deferred;
 
     beforeEach(module('moi.controllers'));
-
     beforeEach(module('moi.services', function($provide){
       $provide.factory('NeuronService', function(){
         return {

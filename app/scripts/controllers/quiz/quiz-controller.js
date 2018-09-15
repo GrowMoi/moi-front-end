@@ -28,6 +28,15 @@
       vmTest.timeQuiz = quizData.time || 0;
       vmTest.successAnswers = rigthAnswers(quizData.answers || []);
       vmTest.questions = shuffle(quizData.questions.questions || []);
+      vmTest.questions.map( function(obj){
+        obj.possible_answers.map( function(ins){ //jshint ignore:line
+            if(ins.text.length > 100){
+              obj.isClass = true;
+            }
+          }
+        );
+        return obj;
+      });
       vmTest.testId = quizData.quiz_id;
       vmTest.playerId = quizData.player_id;
       vmTest.playerName = quizData.player_name;

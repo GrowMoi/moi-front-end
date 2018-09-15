@@ -91,13 +91,15 @@
             return data;
           });
         },
-        storage: function(StorageService, $auth) {
+        dataInventory: function($auth, UserService) {
           if ($auth.user.id) {
-            return StorageService.get().then(function(resp) {
-              return resp.data.storage;
+            return UserService.getUserAchievements().then(function(data){
+              return data;
             });
           }else{
-            return {};
+            return {
+              achievements: []
+            };
           }
         }
       }
@@ -133,15 +135,6 @@
               achievements: []
             };
           }
-        },
-        storage: function(StorageService, $auth) {
-          if ($auth.user.id) {
-            return StorageService.get().then(function(resp) {
-              return resp.data.storage;
-            });
-          }else{
-            return {};
-          }
         }
       }
     })
@@ -164,12 +157,7 @@
       templateUrl: 'templates/test/test.html',
       params: {testData: null},
       resolve: {
-        currentUser: checkIfIsAuthorized,
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
-          });
-        }
+        currentUser: checkIfIsAuthorized
       }
     })
     .state('tree', {

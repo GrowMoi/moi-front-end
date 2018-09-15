@@ -1,5 +1,6 @@
 .test-container
   .row(ng-repeat="question in vmTest.questions",
+      ng-class="question.isClass ? 'big-question' : 'minor-question'"
       ng-show="question.showQuestion")
     .main-image.col
       img(ng-src="{{question.media_url}}")
@@ -7,7 +8,7 @@
       .test
         h1 {{question.title}}
         .answer(ng-repeat="answer in question.possible_answers track by $index",
-                ng-class="{'answer-selected': answer.selected }",
+                ng-class="{'answer-selected': answer.selected}",
                 ng-style="vmTest.cssOptions.styles[$index+1]"
                 ng-click="vmTest.selectAnswer(question.content_id, answer)"
                 tooltip-moi="Elegir esta alternativa"

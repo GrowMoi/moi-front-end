@@ -1,7 +1,7 @@
 body {
   .application {
     @include background-size(cover);
-    background-image: url(../images/landscape_b.png);
+    background-image: url(../images/landscape_a.png);
     background-repeat: no-repeat;
     & > ion-view {
       min-width: 800px;
@@ -18,7 +18,7 @@ body {
 
   .loading-app {
     @include background-size(cover);
-    background-image: url(../images/landscape_b.png);
+    background-image: url(../images/landscape_a.png);
     background-repeat: no-repeat;
     justify-content: center;
     display: flex;

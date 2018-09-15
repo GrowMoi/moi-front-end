@@ -3,19 +3,18 @@
 
   angular.module('moi.controllers')
   .controller('TreeController', function ($scope,
-                                          $rootScope,
                                           $auth,
                                           $timeout,
                                           data,
                                           storage,
                                           PreloadAssets,
-                                          AdviceService,
                                           ModalService,
                                           TreeService,
                                           NeuronAnimateService,
                                           StorageService,
                                           SocialService,
-                                          TestService) {
+                                          TestService,
+                                          AdvicesPage) {
 
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -29,10 +28,10 @@
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
+    var isShowingPassiveModal = false;
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: currentUser.username ? getAdvices() : [],
       showBackButton: true
     };
 
@@ -65,6 +64,9 @@
         storage.tree = {'vinetas_animadas': {'depth': data.meta.depth}};
         StorageService.update(storage);
       }
+
+      initAnimations();
+
       //show only when a user is new
       if(data.meta.depth === 1){
         showWelcomeModal();
@@ -82,22 +84,15 @@
         treeModel.showTree = false;
       }else{
         treeModel.showTree = true;
-        if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
-          $timeout(NeuronAnimateService.specialCallToAction, 2000);
-        }else{
-          $timeout(NeuronAnimateService.callToAction, 6000);
-        }
+        initAnimations();
       }
     }
 
-    function getAdvices(){
-      var advicesSaved = storage.tree && storage.tree.advices;
-      if (data.meta.depth === 1 && !(advicesSaved && advicesSaved[0])){
-        return AdviceService.getStatic('tree', 0, storage);
-      }else if ( data.meta.depth === 2 && !(advicesSaved && advicesSaved[1])){
-        return AdviceService.getStatic('tree', 1, storage);
-      }else if (advicesSaved && advicesSaved[1]){
-        return AdviceService.getRandom('tree');
+    function initAnimations() {
+      if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
+        $timeout(NeuronAnimateService.specialCallToAction, 2000);
+      }else{
+        $timeout(NeuronAnimateService.callToAction, 6000);
       }
     }
 
@@ -108,7 +103,9 @@
                 'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
                 'máxima expresión.',
         callbacks: {
-          btnCenter: function(){dialogContentModel.closeModal();}
+          btnCenter: function(){
+            dialogContentModel.closeModal();
+          }
         },
         labels: {
           btnCenter: 'Ok'
@@ -129,6 +126,30 @@
         description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
+    }
+
+    $scope.$on('IdleStart', showPassiveModal);
+
+    function showPassiveModal() {
+      var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
+      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages){
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-pasive-info.html',
+          animation: 'animated flipInX',
+          backdropClickToClose: true,
+          model: {
+            message: AdvicesPage.tree.messages[0],
+            type: 'passive',
+            cssClass: 'modal-bottomRight'
+          },
+          onHide: function() {
+            isShowingPassiveModal = false;
+          }
+        };
+
+        ModalService.showModel(dialogOptions);
+        isShowingPassiveModal = true;
+      }
     }
 
   });
