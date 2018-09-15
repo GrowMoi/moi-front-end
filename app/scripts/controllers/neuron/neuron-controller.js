@@ -7,34 +7,23 @@
               $scope,
               $timeout,
               $auth,
-              AdviceService,
-              storage,
-              SocialService) {
+              SocialService,
+              MediaAchievements,
+              dataInventory) {
 
     var vmNeuron = this,
         ApiButtons = null,
         ApiContent = null,
-        timeoutPromise = null;
-    var positionAdvice = ((storage.neuron && storage.neuron.advices[0]) && (storage.content && storage.content.advices[0])) ? 1 : 0;
+        timeoutPromise = null,
+        currentUser = $auth.user || {};
     vmNeuron.frameOptions = {
-      type: 'content_max',
-      advices: AdviceService.getStatic('neuron', positionAdvice, storage)
+      type: 'content_max'
     };
+    vmNeuron.userAchievements = dataInventory.achievements;
 
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-
-      vmNeuron.contentsOptions = {
-        readOnly: !!vmNeuron.neuron.read_only,
-        contents: vmNeuron.neuron.contents,
-        settings: $auth.user.content_preferences,
-        maxLevel: 3,
-        minLevel: 1,
-        onSelect: onSelectItem,
-        externalAnimationIdle: true,
-        onRegisterApi: onRegisterApiContents
-      };
 
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
@@ -53,9 +42,24 @@
         },
         shareCallback: shareNeuron
       };
+
+      vmNeuron.contentsOptions = {
+        readOnly: !!vmNeuron.neuron.read_only,
+        contents: vmNeuron.neuron.contents,
+        settings: currentUser.content_preferences,
+        maxLevel: 3,
+        minLevel: 1,
+        onSelect: onSelectItem,
+        externalAnimationIdle: true,
+        onRegisterApi: onRegisterApiContents,
+        //set default theme
+        theme:'moi_verde',
+        isMoitheme: true
+      };
     }
 
     init();
+    setTheme();
 
     function onRegisterApiMoiButtons(api) {
       ApiButtons = api;
@@ -85,9 +89,8 @@
     function onSelectItem(content) {
       //update content on Init
       vmNeuron.buttonsOptions.content = content;
-
+      console.log('here: ', content);
       if (ApiButtons) {
-        hideAdvice();
         ApiButtons.contentSelected(content);
       }
     }
@@ -101,15 +104,6 @@
       timeoutPromise = null;
     });
 
-    $scope.$on('neuron:remove-content', hideAdvice);
-
-    function hideAdvice(){
-      var advicesSaved = storage.neuron && storage.neuron.advices;
-      if(vmNeuron.frameOptions.advices.length > 0 && (advicesSaved && advicesSaved[1])){
-        vmNeuron.frameOptions.advices[0].show = false;
-      }
-    }
-
     function shareNeuron() {
       var data = {
         title: vmNeuron.neuron.contents[0].title,
@@ -117,6 +111,18 @@
         description: vmNeuron.neuron.contents[0].description
       };
       SocialService.showModal(data);
+    }
+
+    function setTheme() {
+      if(vmNeuron.userAchievements.length > 0){
+        angular.forEach(vmNeuron.userAchievements, function(achievement, index){
+          if(achievement.active){
+            var currentTheme = MediaAchievements[vmNeuron.userAchievements[index].number].settings.theme;
+            vmNeuron.contentsOptions.theme = currentTheme;
+            vmNeuron.contentsOptions.isMoitheme = currentTheme.includes('moi');
+          }
+        });
+      }
     }
   });
 })();

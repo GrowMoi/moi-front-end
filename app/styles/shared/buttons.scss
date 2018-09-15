@@ -21,6 +21,7 @@
   right: 0.5%;
   bottom: -4%;
   width: 10%;
+
   .btn-wrapper {
     position: relative;
     .idle {
@@ -29,6 +30,11 @@
       top: 0;
       left: 0;
     }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
   }
 }
 

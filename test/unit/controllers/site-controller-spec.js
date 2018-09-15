@@ -14,7 +14,9 @@
         PreloadAssets,
         TreeService,
         deferredUpload,
-        SoundsPage;
+        SoundsPage,
+        AdvicesPage,
+        ModalService;
 
     beforeEach(module('moi.controllers'));
 
@@ -31,6 +33,11 @@
             sound: 'xxx.mp3',
             type: 'mp3',
             volume: 0.2
+          }
+        });
+        $provide.constant('AdvicesPage', {
+          tree: {
+            messages: 'Test'
           }
         });
       });
@@ -106,6 +113,13 @@
           }
         };
       });
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -115,7 +129,9 @@
                 _SoundsPage_,
                 _IMAGES_,
                 _VIDEOS_,
-                _TreeService_) {
+                _TreeService_,
+                _AdvicesPage_,
+                _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = _$rootScope_.$new();
@@ -125,6 +141,8 @@
         IMAGES = _IMAGES_;
         VIDEOS = _VIDEOS_;
         TreeService = _TreeService_;
+        AdvicesPage = _AdvicesPage_;
+        ModalService = _ModalService_;
       })
     );
 
@@ -135,7 +153,9 @@
         dependencies = {
           $ionicLoading: $ionicLoading,
           $scope: $scope,
-          $auth: $auth
+          $auth: $auth,
+          AdvicesPage: AdvicesPage,
+          ModalService: ModalService
         };
 
         ctrl = $controller('SiteController', dependencies);

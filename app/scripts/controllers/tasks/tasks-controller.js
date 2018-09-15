@@ -1,7 +1,9 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('TasksController', function($state, $rootScope, UserNotificationsService){
+  .controller('TasksController', function($state,
+                                          $rootScope,
+                                          UserNotificationsService){
     var tasksmodel = this;
 
     tasksmodel.buttonsOptions = {

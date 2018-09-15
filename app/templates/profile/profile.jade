@@ -9,11 +9,14 @@ ion-view.profile-content.profile(view-title='{{vm.neuron.title}}')
             .col-80.row
               .user-image
                 img(ng-src="{{vmProfile.imageUser}}")
-              .user-name.col
+              .user-name
                 {{vmProfile.user.username}}
+              .btns
+                .btn-profile(ng-if="vmProfile.isCurrentUser" ui-sref="profileEdit")
+                  {{ ::'buttons.edit-profile' | translate }}
             .btns.col-20
-              .btn-profile(ng-if="vmProfile.isCurrentUser" ui-sref="profileEdit")
-                {{ ::'buttons.edit-profile' | translate }}
+              .btn-profile(ng-click="vmProfile.logout()")
+                {{ ::'profile.logout' | translate }}
           .content-wrapper.row
             .more-details.col-50
               .user-description.row

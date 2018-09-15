@@ -103,13 +103,6 @@
           }
         };
       });
-      $provide.factory('AdviceService', function(){
-        return {
-          getStatic: function(){
-            return null;
-          }
-        };
-      });
 
       $provide.factory('ReadContentTimingService', function(){
         return {

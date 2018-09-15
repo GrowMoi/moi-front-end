@@ -6,11 +6,8 @@
     function ($stateParams,
               TestService,
               $scope,
-              $rootScope,
               $auth,
               $state,
-              storage,
-              AdviceService,
               ModalService,
               MediaAchievements,
               HoverAnimationService) {
@@ -28,6 +25,15 @@
       vmTest.indexShow = 0;
       vmTest.percentage = 0;
       vmTest.questions = shuffle($stateParams.testData.testQuestions);
+      vmTest.questions.map( function(obj){
+        obj.possible_answers.map( function(ins){ //jshint ignore:line
+            if(ins.text.length > 100){
+              obj.isClass = true;
+            }
+          }
+        );
+        return obj;
+      });
       vmTest.testId = $stateParams.testData.testId;
       vmTest.questions[0].showQuestion = true;
       vmTest.totalQuestions = vmTest.questions.length;
@@ -36,8 +42,7 @@
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
-        type: 'marco_arbol',
-        advices: AdviceService.getStatic('test', 0, storage)
+        type: 'marco_arbol'
       };
       vmTest.increaseSize = HoverAnimationService.increaseSize;
       vmTest.cssOptions = {
@@ -62,9 +67,6 @@
       }
       vmTest.answers.push(vmTest.answerBackend);
       percentage();
-      if(vmTest.frameOptions.advices.length > 0){
-        vmTest.frameOptions.advices[0].show = false;
-      }
       if (vmTest.answers.length === vmTest.totalQuestions) {
         scoreTest();
       }else{

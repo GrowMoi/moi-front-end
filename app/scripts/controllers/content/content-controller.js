@@ -6,11 +6,9 @@
                                               $timeout,
                                               $interval,
                                               content,
-                                              storage,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              AdviceService,
                                               MediaAchievements,
                                               dataInventory,
                                               SocialService) {
@@ -25,9 +23,12 @@
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
-        advices: AdviceService.getStatic('content', 0, storage),
         showBackButton: true
       };
+
+      //set default theme
+      vmContent.theme = 'moi_verde';
+      vmContent.isMoitheme = true;
 
       activate();
       setTheme();
@@ -173,8 +174,9 @@
             if(achievement.active){
               var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
               vmContent.theme = currentTheme;
-              modelData.frameColor = currentTheme;
-              vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
+              vmContent.isMoitheme = currentTheme.includes('moi');
+              modelData.frameColor = currentTheme.replace('moi_', '');
+              vmContent.slideGalleryOptions.modalFrameColor = currentTheme.replace('moi_', '');
             }
           });
         }
@@ -190,5 +192,6 @@
         };
         SocialService.showModal(data);
       }
+
     });
 })();
