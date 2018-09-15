@@ -89,7 +89,6 @@
     function onSelectItem(content) {
       //update content on Init
       vmNeuron.buttonsOptions.content = content;
-      console.log('here: ', content);
       if (ApiButtons) {
         ApiButtons.contentSelected(content);
       }
