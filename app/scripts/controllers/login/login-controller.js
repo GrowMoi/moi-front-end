@@ -9,7 +9,8 @@
               $ionicLoading,
               $state,
               $auth,
-              UtilityService) {
+              UtilityService,
+              GAService) {
     var vm = this;
     var moiSound;
 
@@ -51,6 +52,8 @@
     }
 
     function redirectUser(user) {
+      GAService.track('set', 'userId', user.username);
+      GAService.track('set', 'dimension1', user.id);
       $state.go(successState, {
         username: user.username
       });

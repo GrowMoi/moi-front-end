@@ -11,7 +11,8 @@
                                               ReadContentTimingService,
                                               MediaAchievements,
                                               dataInventory,
-                                              SocialService) {
+                                              SocialService,
+                                              GAService) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -108,6 +109,7 @@
       }
 
       function showImage(urlImage) {
+        GAService.track('send', 'event', 'Mostrar media '+ urlImage, 'Click');
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
@@ -121,6 +123,10 @@
           onHide: startsReading
         });
       }
+
+      vmContent.registerClick = function (contentTitle) {
+        GAService.track('send', 'event', 'Abrir contenido ' + contentTitle, 'Click');
+      };
 
       function sendNotes() {
         ContentService.addNotesToContent(vmContent.content);

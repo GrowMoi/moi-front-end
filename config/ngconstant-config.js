@@ -17,7 +17,8 @@
           facebookKey: '12345678',
           pusherKey: '2fd9acbd37b06708983b',
           cloudinaryName: 'test',
-          unsignedUploadPreset: '1AxAzA2'
+          unsignedUploadPreset: '1AxAzA2',
+          gaTrackID: 'UA-101348862-1'
         },
         IMAGES: {
           paths: []
@@ -38,7 +39,8 @@
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
-          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
+          unsignedUploadPreset: process.env.CLOUDINARY_PRESET,
+          gaTrackID: process.env.GA_TRACK_ID
         },
         IMAGES: {
           paths: []
@@ -62,7 +64,8 @@
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,
-          unsignedUploadPreset: process.env.CLOUDINARY_PRESET
+          unsignedUploadPreset: process.env.CLOUDINARY_PRESET,
+          gaTrackID: process.env.GA_TRACK_ID
         },
         IMAGES: {
           paths: []

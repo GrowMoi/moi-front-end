@@ -10,7 +10,8 @@
                                             $window,
                                             ModalService,
                                             UserService,
-                                            SocialService) {
+                                            SocialService,
+                                            GAService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
@@ -106,6 +107,8 @@
       });
     }
     function logout(){
+      GAService.track('set', 'userId', null);
+      GAService.track('set', 'dimension1', user.id);
       $window.localStorage.clear();
       $window.location='/';
     }

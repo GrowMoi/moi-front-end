@@ -50,6 +50,13 @@
           }
         };
       });
+      $provide.factory('GAService', function(){
+        return {
+          track: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
