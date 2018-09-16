@@ -7,10 +7,28 @@
                                                 $state,
                                                 UserService,
                                                 ImagesLogin,
-                                                ModalService) {
+                                                ModalService,
+                                                UploadImageService) {
 
     var vmProfileEdit = this;
+    vmProfileEdit.errorImage = false;
+
+    vmProfileEdit.test = function(){
+      if (vmProfileEdit.filepreview) {
+        UploadImageService.uploadImageUser(vmProfileEdit.filepreview).then(function(resp){
+          vmProfileEdit.user.image = resp.image;
+          vmProfileEdit.filepreview = null;
+        }, function(){
+          vmProfileEdit.filepreview = user.image;
+          vmProfileEdit.errorImage = true;
+          vmProfileEdit.file = null;
+        });
+      }
+    };
+
     vmProfileEdit.user = user;
+    vmProfileEdit.user.image = user.image || 'images/edit-profile/userphoto.png';
+
     vmProfileEdit.editProfile = editProfile;
     vmProfileEdit.buttonsOptions = {
       neuron: {},
@@ -61,7 +79,7 @@
 
     function dontUseNewLogin(){
       /*jshint camelcase: false */
-      if(!vmProfileEdit.user.authorization_key){
+      if(!(!!vmProfileEdit.user.username)){
         showAlert();
       }
     }

@@ -9,7 +9,7 @@
             | {{$index+1}}.
           .user-description.row.col-90
             .content-center.col-10
-              img.user-image(src="images/perfilM.png")
+              img.lenin.user-image(ng-src="{{user.user_image || 'images/perfilM.png'}}")
             .content-center.col-25.user-name-container
               span.user-name
                 | {{user.username}}
@@ -25,7 +25,7 @@
             | {{model.user.position}}.
           .user-description.row.col-90
             .content-center.col-10
-              img.user-image(src="images/perfilM.png")
+              img.user-image(ng-src="{{model.user.user_image || 'images/perfilM.png'}}")
             .content-center.col-25
               .user-name-container
                 span.user-name
