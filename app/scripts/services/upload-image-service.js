@@ -9,7 +9,8 @@
           unsignedUploadPreset = ENV.unsignedUploadPreset;
 
       var service = {
-        uploadFile: uploadFile
+        uploadFile: uploadFile,
+        uploadImageUser: uploadImageUser
       };
 
       return service;
@@ -27,6 +28,20 @@
           data: formData,
           headers: { 'Content-Type': undefined,
                     'If-Modified-Since': undefined}
+        });
+      }
+
+      function uploadImageUser(imageBase64) {
+        return $http({
+          method: 'PUT',
+          url: ENV.apiHost + '/api/users/user_image',
+          data: {
+            image: imageBase64
+          }
+        }).then(function success(res) {
+          return res.data;
+        }, function error(err) {
+          return err;
         });
       }
     }

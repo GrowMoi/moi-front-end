@@ -15,7 +15,7 @@
         ApiButtons = null,
         ApiContent = null,
         timeoutPromise = null,
-        currentUser = $auth.user;
+        currentUser = $auth.user || {};
     vmNeuron.frameOptions = {
       type: 'content_max'
     };
@@ -24,6 +24,7 @@
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
+
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
         content: vmNeuron.neuron.contents[0],
@@ -86,6 +87,8 @@
     }
 
     function onSelectItem(content) {
+      //update content on Init
+      vmNeuron.buttonsOptions.content = content;
       if (ApiButtons) {
         ApiButtons.contentSelected(content);
       }
