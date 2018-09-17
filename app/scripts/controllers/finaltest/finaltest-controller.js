@@ -134,7 +134,7 @@
     function makeReportToCertificate(data, res) {
       var progressTree = TreeService.progressTree(res.data);
       var percentageTest = getPercentage(data.totalQuestions,data.successAnswers);
-      var dataReport = {
+      vmTest.dataReport = {
         user: vmTest.user,
         progressTree: progressTree.percentage,
         resultFinalTest: percentageTest,
@@ -143,14 +143,21 @@
         totalContentsLearnt: res.data.current_learnt_contents, //jshint ignore:line
         close: closeCertificate
       };
-      showCertificate(dataReport);
+
+      if(vmTest.dataReport.resultFinalTest >= 70){
+        vmTest.hideTest = true;
+      }else{
+        $state.go('inventory');
+      }
     }
 
     function finishedCredits() {
-      $state.go('profile', {username: vmTest.user.username, defaultTab: 'certificates'});
+      $state.go('profile', {username: vmTest.user.username, defaultTab: 'certificates'}).then(function(){
+        showCertificate(vmTest.dataReport);
+      });
     }
 
-    function closeCertificate(resultFinalTest) {
+    function closeCertificate() {
       $ionicLoading.show({
         content: 'Sharing',
         animation: 'fade-in',
@@ -162,11 +169,7 @@
         UploadImageService.uploadFile(imageBase64).then(function(resp) {
           UserService.saveCertificate(resp.data.url).then(function() {
             $ionicLoading.hide();
-            if(resultFinalTest >= 70){
-              vmTest.hideTest = true;
-            }else{
-              $state.go('inventory');
-            }
+            $state.reload();
           });
         });
       });
