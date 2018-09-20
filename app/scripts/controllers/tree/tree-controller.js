@@ -14,7 +14,8 @@
                                           StorageService,
                                           SocialService,
                                           TestService,
-                                          AdvicesPage) {
+                                          AdvicesPage,
+                                          TreeAnimateService) {
 
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -94,6 +95,7 @@
       }else{
         $timeout(NeuronAnimateService.callToAction, 6000);
       }
+      $timeout(animateWidgets, 2000);
     }
 
     function showWelcomeModal(){
@@ -149,6 +151,27 @@
 
         ModalService.showModel(dialogOptions);
         isShowingPassiveModal = true;
+      }
+    }
+
+    function animateWidgets() {
+      var oldPercentage = TreeAnimateService.getTempData('percentageTree');
+      var oldLevel = TreeAnimateService.getTempData('levelUser');
+
+      if(oldPercentage !== treeModel.percentage){
+        TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
+        if(!!oldPercentage){
+          var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
+          TreeAnimateService.animateWidget(percentageTreeWidget);
+        }
+      }
+
+      if(oldLevel !== treeModel.userLevel){
+        TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
+        if(!!oldLevel){
+          var levelUserWidget = angular.element(document.querySelector('.level-user'));
+          TreeAnimateService.animateWidget(levelUserWidget);
+        }
       }
     }
 
