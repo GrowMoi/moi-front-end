@@ -96,6 +96,7 @@
         $timeout(NeuronAnimateService.callToAction, 6000);
       }
       $timeout(animateWidgets, 2000);
+      $timeout(animateNeuronAndBranch, 2000);
     }
 
     function showWelcomeModal(){
@@ -162,16 +163,29 @@
         TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
         if(!!oldPercentage){
           var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
+          var levelUserWidget = angular.element(document.querySelector('.level-user'));
           TreeAnimateService.animateWidget(percentageTreeWidget);
+          TreeAnimateService.animateWidget(levelUserWidget);
         }
       }
 
       if(oldLevel !== treeModel.userLevel){
         TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
         if(!!oldLevel){
-          var levelUserWidget = angular.element(document.querySelector('.level-user'));
-          TreeAnimateService.animateWidget(levelUserWidget);
+          var levelUserCountWidget = angular.element(document.querySelector('.counter-container'));
+          TreeAnimateService.animateWidget(levelUserCountWidget);
         }
+      }
+    }
+
+    function animateNeuronAndBranch(){
+      var keyNeuronSelected = TreeAnimateService.getTempData('neuronSelected');
+      var $neuronElement = angular.element(document.querySelector('#'+keyNeuronSelected));
+      var $branchElement = angular.element(document.querySelector('.'+keyNeuronSelected));
+      var isDiscovered = $branchElement.hasClass('florecida');
+      if(keyNeuronSelected !== '' && isDiscovered){
+        TreeAnimateService.animateWidget($neuronElement);
+        TreeAnimateService.animateWidget($branchElement);
       }
     }
 

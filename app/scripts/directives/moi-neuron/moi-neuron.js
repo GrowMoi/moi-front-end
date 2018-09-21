@@ -22,7 +22,12 @@
     return directive;
   }
 
-  function MoiNeuronController($element, NeuronsOptions, NeuronAnimateService, HoverAnimationService, GAService){
+  function MoiNeuronController($element,
+                              NeuronsOptions,
+                              NeuronAnimateService,
+                              HoverAnimationService,
+                              GAService,
+                              TreeAnimateService){
 
     var vm = this;
 
@@ -93,8 +98,15 @@
       }
     }
 
-    vm.registerClick = function(name) {
-      GAService.track('send', 'event', 'Abrir neurona ' + name, 'Click');
+    vm.registerClick = function(neuron, idElement) {
+      var keyNeuronSelected = TreeAnimateService.getTempData('neuronSelected');
+      if(neuron.state === 'descubierta' && (keyNeuronSelected !== idElement)){
+        TreeAnimateService.setTempData('neuronSelected', idElement);
+      }else{
+        TreeAnimateService.setTempData('neuronSelected', '');
+      }
+      var neuronName = neuron.name;
+      GAService.track('send', 'event', 'Abrir neurona ' + neuronName, 'Click');
     };
 
     function calculateSize(progress, steps) {
