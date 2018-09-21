@@ -21,11 +21,20 @@
         tempData[key] = value;
       }
 
-      function animateWidget(element){
+      function animateWidget(element, animationType){
+        var cssClass = 'animated '+ animationType;
+        var loopAnimations = 3;
+        addAnimateClass(element, cssClass, loopAnimations);
+      }
+
+      function addAnimateClass(element, cssClass, loopAnimations) {
         var $widgetToAnimate = element;
-        var cssClass = 'animated zoomIn';
         $widgetToAnimate.addClass(cssClass).one(animationEnd, function() {
           $widgetToAnimate.removeClass(cssClass);
+          loopAnimations--;
+          if(loopAnimations !== 0){
+            addAnimateClass(element, cssClass, loopAnimations);
+          }
         });
       }
 
