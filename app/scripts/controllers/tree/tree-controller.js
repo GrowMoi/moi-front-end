@@ -26,6 +26,7 @@
     treeModel.percentage = progressTree.percentage;
     treeModel.isBasicLevel = data.meta.depth < 5;
     treeModel.sharedTree = sharedTree;
+    treeModel.randomPositionsCss = getRandomPositionCss();
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
@@ -191,6 +192,19 @@
         TreeAnimateService.animateWidget($neuronElement, animationTypeNeuron);
         TreeAnimateService.animateWidget($branchElement, animationTypeBranch);
       }
+    }
+
+    function getRandomPositionCss() {
+      var minRange = 5;
+      var maxRange = 30;
+      var totalClouds = 3;
+      var randomPositionsCss = [];
+      for (var i = 0; i < totalClouds; i ++) {
+        var randomPercentage = Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+        var cssPosition = { 'top': randomPercentage + '%' };
+        randomPositionsCss.push(cssPosition);
+      }
+      return randomPositionsCss;
     }
 
   });
