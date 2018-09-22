@@ -3,6 +3,12 @@
 
   angular.module('moi')
     .value('AdvicesPage', {
+      /*jshint camelcase: false */
+      'new_login.first_step': {
+        messages: [
+          'Hola! Ingresa tu nombre de usuario y presiona siguiente. Si no tienes uno, da clic en Registrarse'
+        ]
+      },
       tree: {
         messages: [
           'El mundo del conocimiento espera por ti. Da clic en un fruto gris para conocer sus contenidos'
