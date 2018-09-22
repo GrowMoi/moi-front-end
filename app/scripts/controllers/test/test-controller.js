@@ -154,14 +154,14 @@
                   'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi',
         callbacks: {
           btnRight: function(){
-            $state.go('inventory');
             dialogContentModel.closeModal();
+            $state.go('inventory');
           },
           btnLeft: function(){
+            dialogContentModel.closeModal();
             $state.go('tree', {
               username: currentUser.username
             });
-            dialogContentModel.closeModal();
           }
         },
         labels: {

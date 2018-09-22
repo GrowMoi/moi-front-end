@@ -188,7 +188,7 @@
       var isDiscovered = $branchElement.hasClass('florecida');
       if(keyNeuronSelected !== '' && isDiscovered){
         var animationTypeNeuron = 'zoomIn';
-        var animationTypeBranch = 'tada';
+        var animationTypeBranch = 'tada slower';
         TreeAnimateService.animateWidget($neuronElement, animationTypeNeuron);
         TreeAnimateService.animateWidget($branchElement, animationTypeBranch);
       }
