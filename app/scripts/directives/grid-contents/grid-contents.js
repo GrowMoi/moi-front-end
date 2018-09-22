@@ -307,9 +307,23 @@
       arrayElements = Array(vm.contentsShown.length);// jshint ignore:line
     }
 
-    function sendContent(neuronId, contentId, contentTitle){
-      GAService.track('send', 'event', 'Abrir contenido desde recomendaciones ' + contentTitle, 'Click');
-      $state.go('content', {neuronId: neuronId,contentId: contentId});
+    function sendContent($event, content){
+      GAService.track('send', 'event', 'Abrir contenido desde recomendaciones ' + content.title, 'Click');
+      animateContentBox($event, content);
+    }
+
+    function animateContentBox($event, content) {
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      var $contentGridElement = angular.element($event.currentTarget);
+      var $contentBorderlement = angular.element($contentGridElement.parent().children()[0]);
+      var cssClass = 'animated zoomOutDown';
+      $contentBorderlement.addClass(cssClass).one(animationEnd, function() {
+        $contentGridElement.removeClass(cssClass);
+      });
+      $contentGridElement.addClass(cssClass).one(animationEnd, function() {
+        $contentGridElement.removeClass(cssClass);
+        $state.go('content', {neuronId: content.neuron_id, contentId: content.id});// jshint ignore:line
+      });
     }
 
     // listeners
