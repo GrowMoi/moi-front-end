@@ -97,7 +97,6 @@
         $timeout(NeuronAnimateService.callToAction, 6000);
       }
       $timeout(animateWidgets, 2000);
-      $timeout(animateNeuronAndBranch, 2000);
     }
 
     function showWelcomeModal(){
@@ -178,19 +177,6 @@
           var numberAnimation = 'zoomIn';
           TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
         }
-      }
-    }
-
-    function animateNeuronAndBranch(){
-      var keyNeuronSelected = TreeAnimateService.getTempData('neuronSelected');
-      var $neuronElement = angular.element(document.querySelector('#'+keyNeuronSelected));
-      var $branchElement = angular.element(document.querySelector('.'+keyNeuronSelected));
-      var isDiscovered = $branchElement.hasClass('florecida');
-      if(keyNeuronSelected !== '' && isDiscovered){
-        var animationTypeNeuron = 'zoomIn';
-        var animationTypeBranch = 'tada slower';
-        TreeAnimateService.animateWidget($neuronElement, animationTypeNeuron);
-        TreeAnimateService.animateWidget($branchElement, animationTypeBranch);
       }
     }
 

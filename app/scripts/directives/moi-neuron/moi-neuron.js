@@ -26,8 +26,7 @@
                               NeuronsOptions,
                               NeuronAnimateService,
                               HoverAnimationService,
-                              GAService,
-                              TreeAnimateService){
+                              GAService){
 
     var vm = this;
 
@@ -98,15 +97,8 @@
       }
     }
 
-    vm.registerClick = function(neuron, idElement) {
-      var keyNeuronSelected = TreeAnimateService.getTempData('neuronSelected');
-      if(neuron.state === 'descubierta' && (keyNeuronSelected !== idElement)){
-        TreeAnimateService.setTempData('neuronSelected', idElement);
-      }else{
-        TreeAnimateService.setTempData('neuronSelected', '');
-      }
-      var neuronName = neuron.name;
-      GAService.track('send', 'event', 'Abrir neurona ' + neuronName, 'Click');
+    vm.registerClick = function(neuron) {
+      GAService.track('send', 'event', 'Abrir neurona ' + neuron.name, 'Click');
     };
 
     function calculateSize(progress, steps) {

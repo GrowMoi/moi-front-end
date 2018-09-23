@@ -1,7 +1,7 @@
 .moi-neuron-wrapper(ng-style="::vm.neuron.styles"
                     tooltips
                     tooltip-template="{{::vm.neuron.name}}"
-                    ng-click="vm.registerClick(vm.neuron, vm.id)")
+                    ng-click="vm.registerClick(vm.neuron)")
   a(ui-sref="neuron({neuronId: vm.neuron.id})" )
     img.moi-neuron(ng-src="{{::vm.img}}"
         ng-style="vm.cssOptions.styles[0]"

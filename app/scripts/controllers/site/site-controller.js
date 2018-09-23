@@ -203,13 +203,6 @@
     function showPassiveModal() {
       var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
       if(site.advicePage && !isShowingPassiveModal && $state.current.name !== 'tree' && isActiveMessages){
-        var modalPositions = {
-          topLeft: 'modal-topLeft',
-          topRight: 'modal-topRight',
-          bottomLeft: 'modal-bottomLeft',
-          bottomRight: 'modal-bottomRight'
-        };
-
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-pasive-info.html',
           animation: 'animated flipInX',
@@ -217,7 +210,7 @@
           model: {
             message: site.advicePage.messages[0],
             type: 'passive',
-            cssClass: modalPositions.bottomRight
+            cssClass: site.advicePage.position || 'modal-bottomRight'
           },
           onHide: function() {
             isShowingPassiveModal = false;
