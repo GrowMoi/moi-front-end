@@ -307,14 +307,14 @@
       arrayElements = Array(vm.contentsShown.length);// jshint ignore:line
     }
 
-    function sendContent($event, content){
+    function sendContent(content){
       GAService.track('send', 'event', 'Abrir contenido desde recomendaciones ' + content.title, 'Click');
-      animateContentBox($event, content);
+      $state.go('content', {neuronId: content.neuron_id, contentId: content.id});// jshint ignore:line
     }
 
-    function animateContentBox($event, content) {
+    function animateContentBox() {
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-      var $contentGridElement = angular.element($event.currentTarget);
+      var $contentGridElement = angular.element(document.querySelector('.content-selected'));
       var $contentBorderlement = angular.element($contentGridElement.parent().children()[0]);
       var cssClass = 'animated zoomOutDown';
       $contentBorderlement.addClass(cssClass).one(animationEnd, function() {
@@ -322,19 +322,21 @@
       });
       $contentGridElement.addClass(cssClass).one(animationEnd, function() {
         $contentGridElement.removeClass(cssClass);
-        $state.go('content', {neuronId: content.neuron_id, contentId: content.id});// jshint ignore:line
+        removeContentGrid();
       });
     }
 
     // listeners
 
     /*if a content was reading by a user should be remove of grid*/
-    $scope.$on('neuron:remove-content', function(){
+    $scope.$on('neuron:remove-content', animateContentBox);
+
+    function removeContentGrid() {
       /*jshint camelcase: false */
       var index = getIndex(vm.options.contents, vm.contentSelected);
       vm.options.contents.splice(index, 1);
       buildGrid(vm.options.contents);
-    });
+    }
 
     function getIndex(contents, selectContent){
       var indexFound = 0;
