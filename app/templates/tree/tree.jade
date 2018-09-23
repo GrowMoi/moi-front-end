@@ -1,7 +1,7 @@
 ion-view.tree-view(view-title='TreeMoi')
   div(ng-if="treeModel.showTree")
     ion-content
-      .app-content(id="{{site.idsTreeScreen.view}}" ng-class="treeModel.transitionPage")
+      .app-content(id="{{site.idsTreeScreen.view}}")
         back-button.arrow.back-arrow(data-html2canvas-ignore="true")
         .clouds-container
           .cloud.animated.slideInLeft(ng-style="treeModel.randomPositionsCss[0]")

@@ -5,7 +5,6 @@
                                               $window,
                                               $timeout,
                                               $interval,
-                                              $rootScope,
                                               content,
                                               ContentService,
                                               ModalService,
@@ -31,8 +30,6 @@
       //set default theme
       vmContent.theme = 'moi_verde';
       vmContent.isMoitheme = true;
-
-      vmContent.transitionPage = $rootScope.transitionPage;
 
       activate();
       setTheme();

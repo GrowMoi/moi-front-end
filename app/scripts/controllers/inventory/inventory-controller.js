@@ -2,7 +2,6 @@
   'use strict';
   angular.module('moi.controllers')
     .controller('InventoryController', function($ionicPopup,
-                                                $rootScope,
                                                 data,
                                                 UserService,
                                                 MediaAchievements,
@@ -34,7 +33,6 @@
         type: 'content_max',
         showBackButton: true
       };
-      vmInv.transitionPage = $rootScope.transitionPage;
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
       setMediaIntoAchievements(vmInv.achievements);

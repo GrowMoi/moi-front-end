@@ -4,7 +4,6 @@
   .controller('FriendsController', function($scope,
                                             $ionicLoading,
                                             $state,
-                                            $rootScope,
                                             UserService,
                                             query)
   {
@@ -18,7 +17,6 @@
       withSidebar: true,
       showBackButton: true
     };
-    friendsmodel.transitionPage = $rootScope.transitionPage;
 
     if(friendsmodel.query !== ''){
       search();

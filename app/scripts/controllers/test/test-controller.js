@@ -8,7 +8,6 @@
               $scope,
               $auth,
               $state,
-              $rootScope,
               ModalService,
               MediaAchievements,
               HoverAnimationService) {
@@ -49,7 +48,6 @@
       vmTest.cssOptions = {
         styles: []
       };
-      vmTest.transitionPage = $rootScope.transitionPage;
     }
 
     function selectAnswer(contentId, answer) {

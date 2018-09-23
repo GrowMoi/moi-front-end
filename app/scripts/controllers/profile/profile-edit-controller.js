@@ -5,7 +5,6 @@
   .controller('ProfileEditController', function (user,
                                                 $ionicPopup,
                                                 $state,
-                                                $rootScope,
                                                 UserService,
                                                 ImagesLogin,
                                                 ModalService,
@@ -45,7 +44,6 @@
       showBackButton: true
     };
     vmProfileEdit.images = ImagesLogin.paths;
-    vmProfileEdit.transitionPage = $rootScope.transitionPage;
 
     function editProfile(){
       UserService.updateProfile(vmProfileEdit.user)

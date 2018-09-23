@@ -4,7 +4,6 @@
   .controller('SearchesController', function($scope,
                                             $ionicLoading,
                                             $state,
-                                            $rootScope,
                                             NeuronService,
                                             query,
                                             GAService)
@@ -20,7 +19,6 @@
       withSidebar: true,
       showBackButton: true
     };
-    searchesmodel.transitionPage = $rootScope.transitionPage;
 
     if(searchesmodel.query !== ''){
       search();

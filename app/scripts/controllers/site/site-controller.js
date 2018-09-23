@@ -8,7 +8,6 @@
   function SiteController($rootScope,
                           $ionicLoading,
                           $auth,
-                          $ionicHistory,
                           PreloadAssets,
                           StorageService,
                           ScreenshotService,
@@ -118,7 +117,6 @@
         'new_login.first_step': false,
         'new_login.second_step': false,
       };
-      setTransitionPage(toState);
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled && $auth.user.id) {
         site.loadedImages = false;
@@ -232,15 +230,6 @@
 
         ModalService.showModel(dialogOptions);
         isShowingPassiveModal = true;
-      }
-    }
-
-    function setTransitionPage(toState) {
-      var history = $ionicHistory.viewHistory();
-      if(history.backView && (history.backView.stateName === toState.name)) {
-        $rootScope.transitionPage = 'animation-panel animated slideInRight';
-      }else{
-        $rootScope.transitionPage = 'animation-panel animated slideInLeft';
       }
     }
   }

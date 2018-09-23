@@ -10,7 +10,6 @@
                                             $state,
                                             $scope,
                                             $window,
-                                            $rootScope,
                                             ModalService,
                                             UserService,
                                             SocialService,
@@ -32,7 +31,6 @@
       type: 'content_max',
       showBackButton: true
     };
-    vmProfile.transitionPage = $rootScope.transitionPage;
     vmProfile.buttonsOptions = {
       neuron: {},
       content: {},

@@ -3,7 +3,7 @@ ion-view.searches-container.search-view-max(view-title='Content')
     back-button.arrow.back-arrow
     moi-arrow(on-click="toggleDrawer()" orientation="right")
     .frame
-      .frame-container.main-search-view(ng-class="searchesmodel.transitionPage")
+      .frame-container.main-search-view
         .content-searches
           form(ng-submit='searchesmodel.reloadSearch()')
             label.item.item-input
