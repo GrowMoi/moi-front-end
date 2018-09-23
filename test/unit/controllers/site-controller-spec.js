@@ -99,6 +99,22 @@
           }
         };
       });
+      $provide.provider('$ionicHistory', function () {
+        return {
+          $get: function () {
+            return {
+              viewHistory: function () {
+                return {
+                  backView: {
+                    stateName: 'tree'
+                  }
+                };
+              }
+            };
+          }
+        };
+      });
+
       $provide.factory('StorageService', function(){
         return {
           get: function(){

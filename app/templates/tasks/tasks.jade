@@ -2,7 +2,7 @@ ion-view.tasks(view-title='Tasks')
   ion-content
     back-button.arrow.back-arrow
     moi-arrow(on-click="toggleDrawer()" orientation="right")
-    .frame.panel-tasks
+    .frame.panel-tasks(ng-class="tasksmodel.transitionPage")
       .frame-container
         .content-title
           | {{ ::'tasks.my_tasks' | translate }}

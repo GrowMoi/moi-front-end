@@ -1,6 +1,6 @@
 ion-view#test-frame(view-title='{{vm.neuron.title}}')
   ion-content
-    .frame-container
+    .frame-container(ng-class="vmTest.transitionPage")
       div(ng-if="!vmTest.hideTest")
         .widgets
           .progress-bar

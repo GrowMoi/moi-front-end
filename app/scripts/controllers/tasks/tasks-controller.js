@@ -68,6 +68,7 @@
         }
       });
     };
+    tasksmodel.transitionPage = $rootScope.transitionPage;
 
     initTab();
     tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;

@@ -3,7 +3,7 @@ ion-view.profile-content.profile(view-title='{{vm.neuron.title}}')
     back-button.arrow.back-arrow
     moi-arrow(on-click="toggleDrawer()" orientation="right")
     .frame.profile-user
-      .frame-container
+      .frame-container(ng-class="vmProfile.transitionPage")
         .profile-wrapper
           .header-wrapper.row
             .col-80.row

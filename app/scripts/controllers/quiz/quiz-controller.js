@@ -47,6 +47,7 @@
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.increaseSize = HoverAnimationService.increaseSize;
+      vmTest.transitionPage = $rootScope.transitionPage;
       vmTest.cssOptions = {
         styles: []
       };

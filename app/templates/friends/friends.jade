@@ -3,7 +3,7 @@ ion-view.friends-container.search-view-max(view-title='Friends')
     .arrow.back-arrow(back-button image-url="images/back-arrow.png")
     moi-arrow(on-click="toggleDrawer()" orientation="right")
     .frame
-      .frame-container.main-search-view
+      .frame-container.main-search-view(ng-class="friendsmodel.transitionPage")
         .content-searches
           form(ng-submit='friendsmodel.reloadSearch()')
             label.item.item-input

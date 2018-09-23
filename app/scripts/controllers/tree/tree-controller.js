@@ -5,6 +5,7 @@
   .controller('TreeController', function ($scope,
                                           $auth,
                                           $timeout,
+                                          $rootScope,
                                           data,
                                           storage,
                                           PreloadAssets,
@@ -27,6 +28,7 @@
     treeModel.isBasicLevel = data.meta.depth < 5;
     treeModel.sharedTree = sharedTree;
     treeModel.randomPositionsCss = getRandomPositionCss();
+    treeModel.transitionPage = $rootScope.transitionPage;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');

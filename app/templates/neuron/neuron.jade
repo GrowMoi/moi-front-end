@@ -1,6 +1,6 @@
-ion-view.neuron-view(view-title='{{vmNeuron.neuron.title}}' class='animated slideInLeft')
+ion-view.neuron-view(view-title='{{vmNeuron.neuron.title}}')
   ion-content
-    .main-view
+    .main-view(ng-class="vmNeuron.transitionPage")
       .frame-container.content-view
         grid-contents(options="vmNeuron.contentsOptions")
     moi-frame(options="vmNeuron.frameOptions")

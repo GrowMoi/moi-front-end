@@ -7,6 +7,7 @@
               $scope,
               $timeout,
               $auth,
+              $rootScope,
               SocialService,
               MediaAchievements,
               dataInventory) {
@@ -56,6 +57,7 @@
         theme:'moi_verde',
         isMoitheme: true
       };
+      vmNeuron.transitionPage = $rootScope.transitionPage;
     }
 
     init();

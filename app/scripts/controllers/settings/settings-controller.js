@@ -6,7 +6,8 @@
                                               user,
                                               dragularService,
                                               $scope,
-                                              $filter) {
+                                              $filter,
+                                              $rootScope) {
 
     var vm = this;
     vm.selectInterest = selectInterest;
@@ -21,6 +22,7 @@
       type: 'marco_arbol',
       showBackButton: true
     };
+    vm.transitionPage = $rootScope.transitionPage;
 
     dragularService('.drag-panel', {
       containersModel: [vm.preferences],
