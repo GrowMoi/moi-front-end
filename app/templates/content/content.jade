@@ -3,7 +3,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
     back-button.arrow.back-arrow
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
-    .frame.animated.slideInLeft(style="width:100%; height:100%")
+    .frame
       .row.frame-container(ng-class="{'moi_theme': vmContent.isMoitheme}")
         .col.first-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row.border-bottom.row-content-title(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")

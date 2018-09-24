@@ -7,8 +7,6 @@
 
     function TreeAnimateService() {
       var tempData = {};
-      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-
       var service = {
         setTempData: setTempData,
         getTempData: getTempData,
@@ -23,19 +21,8 @@
 
       function animateWidget(element, animationType){
         var cssClass = 'animated '+ animationType;
-        var loopAnimations = 3;
-        addAnimateClass(element, cssClass, loopAnimations);
-      }
-
-      function addAnimateClass(element, cssClass, loopAnimations) {
         var $widgetToAnimate = element;
-        $widgetToAnimate.addClass(cssClass).one(animationEnd, function() {
-          $widgetToAnimate.removeClass(cssClass);
-          loopAnimations--;
-          if(loopAnimations !== 0){
-            addAnimateClass(element, cssClass, loopAnimations);
-          }
-        });
+        $widgetToAnimate.addClass(cssClass);
       }
 
       function getTempData(key){
