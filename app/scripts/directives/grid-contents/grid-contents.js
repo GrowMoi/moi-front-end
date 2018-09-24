@@ -283,7 +283,7 @@
       return obj;
     }
 
-    function buildGrid(contents){
+    function buildGrid(contents, withAnimation){
       var copyContents = angular.copy(contents),
           firstRow = copyContents.slice(0,2),
           secondRow = copyContents.slice(2,5);
@@ -292,6 +292,33 @@
         selectContent(firstRow[0]);
       }
 
+      if(withAnimation){
+        animateContentBox(firstRow, secondRow);
+      }else {
+        initGrid(firstRow, secondRow);
+      }
+    }
+
+    function sendContent(content){
+      GAService.track('send', 'event', 'Abrir contenido desde recomendaciones ' + content.title, 'Click');
+      $state.go('content', {neuronId: content.neuron_id, contentId: content.id});// jshint ignore:line
+    }
+
+    function animateContentBox(firstRow, secondRow) {
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      var $contentGridElement = angular.element(document.querySelector('.content-selected'));
+      var $contentBorderlement = angular.element($contentGridElement.parent().children()[0]);
+      var cssClass = 'animated zoomOutDown';
+      $contentBorderlement.addClass(cssClass).one(animationEnd, function() {
+        $contentGridElement.removeClass(cssClass);
+      });
+      $contentGridElement.addClass(cssClass).one(animationEnd, function() {
+        $contentGridElement.removeClass(cssClass);
+        initGrid(firstRow, secondRow);
+      });
+    }
+
+    function initGrid(firstRow, secondRow) {
       vm.rowsGrid = {
         'firstRow': {
           'class': 'col-first',
@@ -302,40 +329,20 @@
           'items': secondRow
         }
       };
-
       vm.contentsShown = firstRow.concat(secondRow);
       arrayElements = Array(vm.contentsShown.length);// jshint ignore:line
-    }
-
-    function sendContent(content){
-      GAService.track('send', 'event', 'Abrir contenido desde recomendaciones ' + content.title, 'Click');
-      $state.go('content', {neuronId: content.neuron_id, contentId: content.id});// jshint ignore:line
-    }
-
-    function animateContentBox() {
-      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-      var $contentGridElement = angular.element(document.querySelector('.content-selected'));
-      var $contentBorderlement = angular.element($contentGridElement.parent().children()[0]);
-      var cssClass = 'animated zoomOutDown';
-      $contentBorderlement.addClass(cssClass).one(animationEnd, function() {
-        $contentGridElement.removeClass(cssClass);
-      });
-      $contentGridElement.addClass(cssClass).one(animationEnd, function() {
-        $contentGridElement.removeClass(cssClass);
-        removeContentGrid();
-      });
     }
 
     // listeners
 
     /*if a content was reading by a user should be remove of grid*/
-    $scope.$on('neuron:remove-content', animateContentBox);
+    $scope.$on('neuron:remove-content', removeContentGrid);
 
     function removeContentGrid() {
       /*jshint camelcase: false */
       var index = getIndex(vm.options.contents, vm.contentSelected);
       vm.options.contents.splice(index, 1);
-      buildGrid(vm.options.contents);
+      buildGrid(vm.options.contents, true);
     }
 
     function getIndex(contents, selectContent){
