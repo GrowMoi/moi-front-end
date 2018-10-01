@@ -106,15 +106,13 @@
           });
         },
         dataInventory: function($auth, UserService) {
-          if ($auth.user.id) {
+          return $auth.validateUser().then(function userAuthorized(){
             return UserService.getUserAchievements().then(function(data){
               return data;
             });
-          }else{
-            return {
-              achievements: []
-            };
-          }
+          }, function publicUser(){
+            return {};
+          });
         }
       }
     })
@@ -140,15 +138,13 @@
           });
         },
         dataInventory: function($auth, UserService) {
-          if ($auth.user.id) {
+          return $auth.validateUser().then(function userAuthorized(){
             return UserService.getUserAchievements().then(function(data){
               return data;
             });
-          }else{
-            return {
-              achievements: []
-            };
-          }
+          }, function publicUser(){
+            return {};
+          });
         }
       }
     })
