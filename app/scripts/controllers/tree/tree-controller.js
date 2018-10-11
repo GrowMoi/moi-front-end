@@ -94,7 +94,7 @@
       if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
         $timeout(NeuronAnimateService.specialCallToAction, 2000);
       }else{
-        $timeout(NeuronAnimateService.callToAction, 6000);
+        $timeout(NeuronAnimateService.callToAction);
       }
       $timeout(animateWidgets, 2000);
     }
