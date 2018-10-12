@@ -309,12 +309,9 @@
       var $contentGridElement = angular.element(document.querySelector('.content-selected'));
       var $contentBorderlement = angular.element($contentGridElement.parent().children()[0]);
       var cssClass = 'animated zoomOutDown';
-      $contentBorderlement.addClass(cssClass).one(animationEnd, function() {
-        $contentGridElement.removeClass(cssClass);
-      });
+      $contentBorderlement.addClass(cssClass);
       $contentGridElement.addClass(cssClass).one(animationEnd, function() {
         initGrid(firstRow, secondRow);
-        $contentGridElement.removeClass(cssClass);
       });
     }
 
