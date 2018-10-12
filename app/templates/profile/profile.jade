@@ -45,7 +45,7 @@ ion-view.profile-content.profile(view-title='{{vm.neuron.title}}')
                       | {{::tab.name}}
                 .content-panel.row
                   .partial(ng-include="vmProfile.viewSelected")
-            .tree-preview.col-50
+            .tree-preview.col-50(ng-click="vmProfile.goToTree()")
               img.tree(ng-src="{{vmProfile.user.tree_image}}")
       moi-frame(options="vmProfile.frameOptions")
       moi-buttons(options="vmProfile.buttonsOptions")
