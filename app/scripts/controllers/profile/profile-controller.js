@@ -5,7 +5,9 @@
   .controller('ProfileController', function (user,
                                             certificates,
                                             $auth,
+                                            $ionicPopup,
                                             $stateParams,
+                                            $state,
                                             $scope,
                                             $window,
                                             ModalService,
@@ -62,7 +64,7 @@
         selected: false
       }
     ];
-
+    vmProfile.goToTree = goToTree;
     vmProfile.changeTab = function(field) {
       angular.forEach(vmProfile.tabs, function(tab) {
         if(tab.field === field){
@@ -160,5 +162,17 @@
       SocialService.showModal(data);
     }
 
+    function goToTree() {
+      if (vmProfile.user.id) {
+        $state.go('tree', {
+          username: vmProfile.user.username
+        });
+      }else{
+        $ionicPopup.alert({
+          title: 'Ups!',
+          template: 'Algo fallo'
+        });
+      }
+    }
   });
 })();

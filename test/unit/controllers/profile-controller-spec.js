@@ -9,6 +9,7 @@
       $state,
       $scope,
       $stateParams,
+      $ionicPopup,
       AnimationService,
       UserService,
       ModalService;
@@ -62,6 +63,7 @@
     beforeEach(inject(
       function(_$rootScope_,
               $controller,
+              $q,
               _$stateParams_,
               _AnimationService_,
               _UserService_,
@@ -77,6 +79,8 @@
             name: 'admin'
           }
         };
+        $ionicPopup       = { alert: sinon.stub()
+          .returns($q.defer().promise)};
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         $stateParams = _$stateParams_;
@@ -88,6 +92,7 @@
           $state: $state,
           $auth: $auth,
           $stateParams: $stateParams,
+          $ionicPopup: $ionicPopup,
           user: {
             id: 1,
             email: 'admin@example.com',
