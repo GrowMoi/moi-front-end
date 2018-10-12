@@ -31,6 +31,7 @@
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
     var isShowingPassiveModal = false;
+    var finishedAnimations = false;
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
@@ -91,11 +92,6 @@
     }
 
     function initAnimations() {
-      if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
-        $timeout(NeuronAnimateService.specialCallToAction, 2000);
-      }else{
-        $timeout(NeuronAnimateService.callToAction);
-      }
       $timeout(animateWidgets, 2000);
     }
 
@@ -135,7 +131,7 @@
 
     function showPassiveModal() {
       var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
-      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages){
+      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages && finishedAnimations){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-pasive-info.html',
           animation: 'animated flipInX',
@@ -157,19 +153,28 @@
 
     function animateWidgets() {
       var oldPercentage = TreeAnimateService.getTempData('percentageTree');
-      var oldLevel = TreeAnimateService.getTempData('levelUser');
-
       if(oldPercentage !== treeModel.percentage){
         TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
         if(!!oldPercentage){
           var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
           var levelUserWidget = angular.element(document.querySelector('.level-user'));
           var barAnimation = 'pulse';
-          TreeAnimateService.animateWidget(percentageTreeWidget, barAnimation);
-          TreeAnimateService.animateWidget(levelUserWidget, barAnimation);
+          animationLevelBadge();
+          TreeAnimateService.animateWidget(levelUserWidget, barAnimation).then(function(){
+            TreeAnimateService.animateWidget(percentageTreeWidget, barAnimation).then(function(){
+              animateNeurons();
+            });
+          });
+        }else{
+          animateNeurons();  
         }
+      }else {
+        animateNeurons();
       }
+    }
 
+    function animationLevelBadge(){
+      var oldLevel = TreeAnimateService.getTempData('levelUser');
       if(oldLevel !== treeModel.userLevel){
         TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
         if(!!oldLevel){
@@ -178,6 +183,14 @@
           TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
         }
       }
+    }
+
+    function animateNeurons(){
+      if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
+        $timeout(NeuronAnimateService.specialCallToAction, 1000);
+      }
+      $timeout(NeuronAnimateService.callToAction, 1000);
+      finishedAnimations = true;
     }
 
     function getRandomPositionCss() {

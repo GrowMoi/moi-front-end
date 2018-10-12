@@ -313,8 +313,8 @@
         $contentGridElement.removeClass(cssClass);
       });
       $contentGridElement.addClass(cssClass).one(animationEnd, function() {
-        $contentGridElement.removeClass(cssClass);
         initGrid(firstRow, secondRow);
+        $contentGridElement.removeClass(cssClass);
       });
     }
 

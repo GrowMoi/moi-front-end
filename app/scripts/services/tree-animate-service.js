@@ -5,8 +5,9 @@
       .module('moi.services')
       .factory('TreeAnimateService', TreeAnimateService);
 
-    function TreeAnimateService() {
+    function TreeAnimateService($q) {
       var tempData = {};
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
       var service = {
         setTempData: setTempData,
         getTempData: getTempData,
@@ -22,7 +23,11 @@
       function animateWidget(element, animationType){
         var cssClass = 'animated '+ animationType;
         var $widgetToAnimate = element;
-        $widgetToAnimate.addClass(cssClass);
+        var animationDeferred = $q.defer();
+        $widgetToAnimate.addClass(cssClass).one(animationEnd, function() {
+          animationDeferred.resolve();
+        });
+        return animationDeferred.promise;
       }
 
       function getTempData(key){
