@@ -14,12 +14,8 @@
 
       function removeAllTooltips(){
         var moiTooltips = document.getElementsByClassName('tooltip-moi');
-        console.log('moiTooltips.length', moiTooltips.length);
-        for (var i = 0; i < moiTooltips.length; i ++) {
-          var $currentNeuronElement = angular.element(moiTooltips[i]);
-          console.log('i', i);
-          $currentNeuronElement.remove();
-        }
+        //remove all moi tooltips
+        angular.element(moiTooltips).remove();
       }
     }
   })();
