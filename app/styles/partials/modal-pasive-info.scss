@@ -20,6 +20,47 @@
     }
   }
 }
+
+@media (min-height: 400px) {
+  .transparent {
+    .modal-pasive-info {
+      #content{ 
+        font-size: 23px;
+      }
+    }
+  }
+}
+
+@media (min-height: 600px) {
+  .transparent {
+    .modal-pasive-info {
+      #content{ 
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+@media (min-height: 700px) {
+  .transparent {
+    .modal-pasive-info {
+      #content{ 
+        font-size: 32px;
+      }
+    }
+  }
+}
+
+@media (min-height: 800px) {
+  .transparent {
+    .modal-pasive-info {
+      #content{ 
+        font-size: 34px;
+      }
+    }
+  }
+}
+
 /* Fix modal backdrop for smaller devices */
 @media (max-width: 679px) {
   .active .modal-backdrop-bg {

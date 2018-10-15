@@ -14,7 +14,8 @@
                                           StorageService,
                                           SocialService,
                                           TestService,
-                                          AdvicesPage) {
+                                          AdvicesPage,
+                                          TreeAnimateService) {
 
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -25,10 +26,12 @@
     treeModel.percentage = progressTree.percentage;
     treeModel.isBasicLevel = data.meta.depth < 5;
     treeModel.sharedTree = sharedTree;
+    treeModel.randomPositionsCss = getRandomPositionCss();
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
     var isShowingPassiveModal = false;
+    var finishedAnimations = false;
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
@@ -89,11 +92,7 @@
     }
 
     function initAnimations() {
-      if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
-        $timeout(NeuronAnimateService.specialCallToAction, 2000);
-      }else{
-        $timeout(NeuronAnimateService.callToAction, 6000);
-      }
+      $timeout(animateWidgets, 2000);
     }
 
     function showWelcomeModal(){
@@ -132,7 +131,7 @@
 
     function showPassiveModal() {
       var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
-      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages){
+      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages && finishedAnimations){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-pasive-info.html',
           animation: 'animated flipInX',
@@ -150,6 +149,61 @@
         ModalService.showModel(dialogOptions);
         isShowingPassiveModal = true;
       }
+    }
+
+    function animateWidgets() {
+      var oldPercentage = TreeAnimateService.getTempData('percentageTree');
+      if(oldPercentage !== treeModel.percentage){
+        TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
+        if(!!oldPercentage){
+          var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
+          var levelUserWidget = angular.element(document.querySelector('.level-user'));
+          var barAnimation = 'pulse';
+          animationLevelBadge();
+          TreeAnimateService.animateWidget(levelUserWidget, barAnimation).then(function(){
+            TreeAnimateService.animateWidget(percentageTreeWidget, barAnimation).then(function(){
+              animateNeurons();
+            });
+          });
+        }else{
+          animateNeurons();  
+        }
+      }else {
+        animateNeurons();
+      }
+    }
+
+    function animationLevelBadge(){
+      var oldLevel = TreeAnimateService.getTempData('levelUser');
+      if(oldLevel !== treeModel.userLevel){
+        TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
+        if(!!oldLevel){
+          var levelUserCountWidget = angular.element(document.querySelector('.counter-container'));
+          var numberAnimation = 'zoomIn';
+          TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
+        }
+      }
+    }
+
+    function animateNeurons(){
+      if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
+        $timeout(NeuronAnimateService.specialCallToAction, 1000);
+      }
+      $timeout(NeuronAnimateService.callToAction, 1000);
+      finishedAnimations = true;
+    }
+
+    function getRandomPositionCss() {
+      var minRange = 5;
+      var maxRange = 30;
+      var totalClouds = 3;
+      var randomPositionsCss = [];
+      for (var i = 0; i < totalClouds; i ++) {
+        var randomPercentage = Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+        var cssPosition = { 'top': randomPercentage + '%' };
+        randomPositionsCss.push(cssPosition);
+      }
+      return randomPositionsCss;
     }
 
   });

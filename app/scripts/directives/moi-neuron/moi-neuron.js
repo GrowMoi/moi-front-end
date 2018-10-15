@@ -22,7 +22,11 @@
     return directive;
   }
 
-  function MoiNeuronController($element, NeuronsOptions, NeuronAnimateService, HoverAnimationService, GAService){
+  function MoiNeuronController($element,
+                              NeuronsOptions,
+                              NeuronAnimateService,
+                              HoverAnimationService,
+                              GAService){
 
     var vm = this;
 
@@ -93,8 +97,8 @@
       }
     }
 
-    vm.registerClick = function(name) {
-      GAService.track('send', 'event', 'Abrir neurona ' + name, 'Click');
+    vm.registerClick = function(neuron) {
+      GAService.track('send', 'event', 'Abrir neurona ' + neuron.name, 'Click');
     };
 
     function calculateSize(progress, steps) {

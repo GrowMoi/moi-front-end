@@ -169,6 +169,7 @@ a {
   position: absolute;
   top: 8%;
   right: 3%;
+  -webkit-animation-iteration-count: 4;
 
   .percentage-container {
     position: relative;
@@ -228,6 +229,8 @@ a {
   left: 6%;
   height: 32%;
   width: 8.5%;
+  -webkit-animation-iteration-count: 4;
+
   .level-user-container{
     position: relative;
     display: flex;
@@ -274,6 +277,8 @@ a {
       position: absolute;
       top: -30px;
       right: 0px;
+      -webkit-animation-iteration-count: 4;
+
       .counter{
         position: relative;
         display: block;
@@ -353,7 +358,7 @@ a {
     .tree-section {
       .tree-draw {
         left: 1%;
-        bottom: -3.5%;
+        bottom: -1.5%;
       }
     }
   }
@@ -364,7 +369,7 @@ a {
     .tree-section {
       .tree-draw {
         left: 1%;
-        bottom: -3%;
+        bottom: -1%;
       }
     }
   }
@@ -375,7 +380,7 @@ a {
     .tree-section {
       .tree-draw {
         left: 1%;
-        bottom: -2.5%;
+        bottom: 0%;
       }
     }
   }
@@ -393,7 +398,7 @@ a {
       }
       .tree-draw {
         left: 1%;
-        bottom: -1.5%;
+        bottom: -0.5%;
       }
     }
   }
@@ -420,7 +425,7 @@ a {
       }
       .tree-draw {
         left: 1%;
-        bottom: -3%;
+        bottom: -0.5%;
         .moi-neuron-wrapper{
           height: 65% !important;
           a img{
@@ -438,7 +443,7 @@ a {
     .tree-section {
       .tree-draw {
         left: 1%;
-        bottom: -2%;
+        bottom: -0.5%;
       }
     }
   }

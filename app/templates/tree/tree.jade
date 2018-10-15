@@ -4,11 +4,11 @@ ion-view.tree-view(view-title='TreeMoi')
       .app-content(id="{{site.idsTreeScreen.view}}")
         back-button.arrow.back-arrow(data-html2canvas-ignore="true")
         .clouds-container
-          .cloud.animated.slideInLeft
+          .cloud.animated.slideInLeft(ng-style="treeModel.randomPositionsCss[0]")
             img(src="images/nube1L.png")
-          .cloud.animated.slideInRight
+          .cloud.animated.slideInRight(ng-style="treeModel.randomPositionsCss[1]")
             img(src="images/nube2L.png")
-          .cloud.animated.slideInLeft
+          .cloud.animated.slideInLeft(ng-style="treeModel.randomPositionsCss[2]")
             img(src="images/nube3L.png")
         .tree-percentage(data-html2canvas-ignore="true")
           .percentage-container(tooltips

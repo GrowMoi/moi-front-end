@@ -5,7 +5,7 @@
     .content-kind.relative(
           ng-style="vm.cssOptions.styles[content.id]"
           ng-click="vm.selectContent(content)",
-          on-double-tap="vm.sendContent(content.neuron_id, content.id, content.title)",
+          on-double-tap="vm.sendContent(content)",
           ng-class="{'moi_theme': vm.options.isMoitheme,"+
                     "'content-selected': content.isSelected,"+
                     "'content-unselected': !content.isSelected,"+
