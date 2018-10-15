@@ -23,7 +23,8 @@
                           IMAGES,
                           VIDEOS,
                           AdvicesPage,
-                          ModalService) {
+                          ModalService,
+                          TooltipsService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
@@ -117,6 +118,7 @@
         'new_login.first_step': false,
         'new_login.second_step': false,
       };
+      TooltipsService.removeAllTooltips();
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled && $auth.user.id) {
         site.loadedImages = false;
