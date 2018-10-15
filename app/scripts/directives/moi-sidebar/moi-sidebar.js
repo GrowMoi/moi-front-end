@@ -16,7 +16,7 @@
       bindToController: true,
     };
 
-    function sidebarController($state, $auth, AnimationService, ModalService) {
+    function sidebarController($scope, $state, $auth, AnimationService, ModalService) {
       var vm = this;
       vm.user = $auth.user;
       vm.goToTree = goToTree;
@@ -77,7 +77,9 @@
         };
         ModalService.showModel(dialogOptions);
       }
-
+      $scope.$on('scanner-started', function(event, args) {
+        vm.user.tree_image = args.any.tree_image.url; //jshint ignore:line
+      });
     }
 
     return directive;

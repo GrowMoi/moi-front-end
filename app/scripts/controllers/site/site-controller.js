@@ -189,11 +189,12 @@
                     var response = resp || {},
                         user = response.user || {};
                     $auth.user.tree_image = user.tree_image.url;
+                    $rootScope.$broadcast('scanner-started', { any: user });
                   });
               }
             });
           }
-        }, 500);
+        }, 700);
       }else{
         imageSaved = false;
         callApiSaveImage = 0;
