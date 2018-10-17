@@ -71,12 +71,12 @@
       },
       friends: {
         messages: [
-          'Busca a tus amigos por su nombre. Podrás conocer su árbol y su progreso en Moi.'
+          'Busca a tus amigos por su nombre. Podrás conocer su árbol y su progreso en Haedus.'
         ]
       },
       sidebar: {
         messages: [
-          'Edita tus preferencias, revisa tu perfil y tu inventario o si prefieres, vuelve a tu árbol Moi'
+          'Edita tus preferencias, revisa tu perfil y tu inventario o si prefieres, vuelve a tu árbol Haedus'
         ]
       },
       inventory: {
