@@ -5,7 +5,8 @@
                                             $ionicLoading,
                                             $state,
                                             NeuronService,
-                                            query)
+                                            query,
+                                            GAService)
   {
     var searchesmodel = this;
     searchesmodel.query = query;
@@ -24,6 +25,7 @@
     }
 
     function reloadSearch() {
+      GAService.track('send', 'event', 'Buscar ' + searchesmodel.query, 'Search');
       $state.go('searches', { query: searchesmodel.query });
     }
 

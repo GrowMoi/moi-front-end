@@ -1,17 +1,25 @@
 .row.content-in-grid(ng-repeat="(key, value) in vm.rowsGrid")
   .col(ng-class="value.class", ng-repeat="content in value.items")
+    .border-moi-theme(ng-if="content.isSelected && vm.options.isMoitheme"
+                      ng-class="vm.options.theme")
     .content-kind.relative(
           ng-style="vm.cssOptions.styles[content.id]"
           ng-click="vm.selectContent(content)",
-          on-double-tap="vm.sendContent(content.neuron_id, content.id)",
-          ng-class="content.isSelected ? 'content-selected' : 'content-unselected'"
+          on-double-tap="vm.sendContent(content)",
+          ng-class="{'moi_theme': vm.options.isMoitheme,"+
+                    "'content-selected': content.isSelected,"+
+                    "'content-unselected': !content.isSelected,"+
+                    "'border-default-theme': !vm.options.isMoitheme}"
           ng-mouseover="vm.increaseSize(true, vm.cssOptions, content.id)"
           ng-mouseleave="vm.increaseSize(false , vm.cssOptions, content.id)")
       img(ng-src='{{content.media[0]}}')
       .overlay(ng-if="content.learnt")
-        img.cover(src="../images/cover-transparent.png")
+        img.cover(ng-if="!vm.options.isMoitheme" src="../images/cover-transparent.png")
         img.approved(src="../images/approved.png")
-      .leyend-bottom-grid(ellipsis-title="content.title", height='95', title="{{::content.title}}")
+      .leyend-bottom-grid(ng-class="[vm.options.theme, {'moi_theme': vm.options.isMoitheme}]"
+                          ellipsis-title="content.title"
+                          height='95'
+                          title="{{::content.title}}")
       img.favorite(ng-if="content.favorite" src="images/estrellita.png")
       .overlay(ng-if="vm.activeIdle && content.animated")
         animate-sprite(options="vm.overlayOptions")

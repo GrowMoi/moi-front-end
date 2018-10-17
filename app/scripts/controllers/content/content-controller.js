@@ -6,14 +6,13 @@
                                               $timeout,
                                               $interval,
                                               content,
-                                              storage,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              AdviceService,
                                               MediaAchievements,
                                               dataInventory,
-                                              SocialService) {
+                                              SocialService,
+                                              GAService) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -25,9 +24,12 @@
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
-        advices: AdviceService.getStatic('content', 0, storage),
         showBackButton: true
       };
+
+      //set default theme
+      vmContent.theme = 'moi_verde';
+      vmContent.isMoitheme = true;
 
       activate();
       setTheme();
@@ -107,6 +109,7 @@
       }
 
       function showImage(urlImage) {
+        GAService.track('send', 'event', 'Mostrar media '+ urlImage, 'Click');
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
@@ -120,6 +123,10 @@
           onHide: startsReading
         });
       }
+
+      vmContent.registerClick = function (contentTitle) {
+        GAService.track('send', 'event', 'Abrir contenido ' + contentTitle, 'Click');
+      };
 
       function sendNotes() {
         ContentService.addNotesToContent(vmContent.content);
@@ -173,8 +180,9 @@
             if(achievement.active){
               var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
               vmContent.theme = currentTheme;
-              modelData.frameColor = currentTheme;
-              vmContent.slideGalleryOptions.modalFrameColor = currentTheme;
+              vmContent.isMoitheme = currentTheme.includes('moi');
+              modelData.frameColor = currentTheme.replace('moi_', '');
+              vmContent.slideGalleryOptions.modalFrameColor = currentTheme.replace('moi_', '');
             }
           });
         }
@@ -190,5 +198,6 @@
         };
         SocialService.showModal(data);
       }
+
     });
 })();

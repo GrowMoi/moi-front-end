@@ -98,6 +98,20 @@
           float: right;
         }
       }
+
+      .advices-toggle {
+        display: flex;
+        align-items: center;
+        margin-left: 4%;
+        .item-toggle {
+          background: transparent;
+          border: none;
+          padding-right: 75px;
+          .toggle {
+            top: 0;
+          }
+        }
+      }
     }
 
     .panel-right {

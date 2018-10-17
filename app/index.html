@@ -58,6 +58,7 @@
     <script src="scripts/values/neurons-options.js"></script>
     <script src="scripts/values/images_login.js"></script>
     <script src="scripts/values/media_achievements.js"></script>
+    <script src="scripts/values/advices-page.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers/site/site-controller.js"></script>
     <script src="scripts/controllers/login/login-controller.js"></script>
@@ -103,8 +104,11 @@
     <script src="scripts/services/tutor-recommendations-service.js"></script>
     <script src="scripts/services/hover-animation-service.js"></script>
     <script src="scripts/services/neuron-animate-service.js"></script>
+    <script src="scripts/services/tree-animate-service.js"></script>
     <script src="scripts/services/storage-service.js"></script>
     <script src="scripts/services/upload-image-service.js"></script>
+    <script src="scripts/services/ga-service.js"></script>
+    <script src="scripts/services/tooltips-service.js"></script>
     <!-- directives -->
     <script src="scripts/directives/grid-contents/grid-contents.js"></script>
     <script src="scripts/directives/moi-sound/moi-sound.js"></script>
@@ -124,9 +128,12 @@
     <script src="scripts/directives/moi-select-images/moi-select-images.js"></script>
     <script src="scripts/directives/moi-infinite-grid-contents/moi-infinite-grid-contents.js"></script>
     <script src="scripts/directives/moi-arrow/moi-arrow.js"></script>
+    <script src="scripts/directives/input-file/input-file.js"></script>
     <!-- filters -->
     <script src="scripts/filters/moment-duration.js"></script>
     <!-- endbuild -->
+
+
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.loadedImages" ng-cloak>

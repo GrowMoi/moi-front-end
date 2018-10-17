@@ -14,13 +14,19 @@
         deferred;
 
     beforeEach(module('moi.controllers'));
-
     beforeEach(module('moi.services', function($provide){
       $provide.factory('NeuronService', function(){
         return {
           searchNeurons: function(){
             deferred = $q.defer();
             return deferred.promise;
+          }
+        };
+      });
+      $provide.factory('GAService', function(){
+        return {
+          track: function(){
+            return null;
           }
         };
       });

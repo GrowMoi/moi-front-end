@@ -10,7 +10,8 @@
               $state,
               $auth,
               UtilityService,
-              ImagesLogin) {
+              ImagesLogin,
+              GAService) {
     var vmLogin = this;
     var moiSound;
 
@@ -66,6 +67,8 @@
     }
 
     function redirectUser(user) {
+      GAService.track('set', 'userId', user.username);
+      GAService.track('set', 'dimension1', user.id);
       $state.go(successState, {
         username: user.username
       });

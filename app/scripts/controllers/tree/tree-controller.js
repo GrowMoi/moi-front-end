@@ -3,19 +3,19 @@
 
   angular.module('moi.controllers')
   .controller('TreeController', function ($scope,
-                                          $rootScope,
                                           $auth,
                                           $timeout,
                                           data,
                                           storage,
                                           PreloadAssets,
-                                          AdviceService,
                                           ModalService,
                                           TreeService,
                                           NeuronAnimateService,
                                           StorageService,
                                           SocialService,
-                                          TestService) {
+                                          TestService,
+                                          AdvicesPage,
+                                          TreeAnimateService) {
 
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -26,13 +26,15 @@
     treeModel.percentage = progressTree.percentage;
     treeModel.isBasicLevel = data.meta.depth < 5;
     treeModel.sharedTree = sharedTree;
+    treeModel.randomPositionsCss = getRandomPositionCss();
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
+    var isShowingPassiveModal = false;
+    var finishedAnimations = false;
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      advices: getAdvices(),
       showBackButton: true
     };
 
@@ -61,10 +63,13 @@
           storage.tree.vinetas_animadas = {'depth': data.meta.depth}; //jshint ignore:line
         }
         StorageService.update(storage);
-      }else {
+      }else if(currentUser.username){
         storage.tree = {'vinetas_animadas': {'depth': data.meta.depth}};
         StorageService.update(storage);
       }
+
+      initAnimations();
+
       //show only when a user is new
       if(data.meta.depth === 1){
         showWelcomeModal();
@@ -77,7 +82,7 @@
 
     function initVineta() {
       treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data, storage);
-      if(treeModel.urlVineta) {
+      if(treeModel.urlVineta && currentUser.username) {
         $backgroundSound[0].autoplay = false;
         treeModel.showTree = false;
         if(data.meta.depth === 1){
@@ -88,23 +93,12 @@
         }
       }else{
         treeModel.showTree = true;
-        if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
-          $timeout(NeuronAnimateService.specialCallToAction, 2000);
-        }else{
-          $timeout(NeuronAnimateService.callToAction, 6000);
-        }
+        initAnimations();
       }
     }
 
-    function getAdvices(){
-      var advicesSaved = storage.tree && storage.tree.advices;
-      if (data.meta.depth === 1 && !(advicesSaved && advicesSaved[0])){
-        return AdviceService.getStatic('tree', 0, storage);
-      }else if ( data.meta.depth === 2 && !(advicesSaved && advicesSaved[1])){
-        return AdviceService.getStatic('tree', 1, storage);
-      }else if (advicesSaved && advicesSaved[1]){
-        return AdviceService.getRandom('tree');
-      }
+    function initAnimations() {
+      $timeout(animateWidgets, 2000);
     }
 
     function showWelcomeModal(){
@@ -114,7 +108,9 @@
                 'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
                 'máxima expresión.',
         callbacks: {
-          btnCenter: function(){dialogContentModel.closeModal();}
+          btnCenter: function(){
+            dialogContentModel.closeModal();
+          }
         },
         labels: {
           btnCenter: 'Ok'
@@ -129,11 +125,91 @@
     }
 
     function sharedTree(){
+      var learntContents = treeModel.meta.current_learnt_contents; //jshint ignore:line
       var data = {
-        title: 'Tree',
-        description: 'Screenshot'
+        title: 'Así se ve mi árbol Moi',
+        description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
       };
       SocialService.showModal(data);
+    }
+
+    $scope.$on('IdleStart', showPassiveModal);
+
+    function showPassiveModal() {
+      var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
+      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages && finishedAnimations){
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-pasive-info.html',
+          animation: 'animated flipInX',
+          backdropClickToClose: true,
+          model: {
+            message: AdvicesPage.tree.messages[0],
+            type: 'passive',
+            cssClass: 'modal-bottomRight'
+          },
+          onHide: function() {
+            isShowingPassiveModal = false;
+          }
+        };
+
+        ModalService.showModel(dialogOptions);
+        isShowingPassiveModal = true;
+      }
+    }
+
+    function animateWidgets() {
+      var oldPercentage = TreeAnimateService.getTempData('percentageTree');
+      if(oldPercentage !== treeModel.percentage){
+        TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
+        if(!!oldPercentage){
+          var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
+          var levelUserWidget = angular.element(document.querySelector('.level-user'));
+          var barAnimation = 'pulse';
+          animationLevelBadge();
+          TreeAnimateService.animateWidget(levelUserWidget, barAnimation).then(function(){
+            TreeAnimateService.animateWidget(percentageTreeWidget, barAnimation).then(function(){
+              animateNeurons();
+            });
+          });
+        }else{
+          animateNeurons();  
+        }
+      }else {
+        animateNeurons();
+      }
+    }
+
+    function animationLevelBadge(){
+      var oldLevel = TreeAnimateService.getTempData('levelUser');
+      if(oldLevel !== treeModel.userLevel){
+        TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
+        if(!!oldLevel){
+          var levelUserCountWidget = angular.element(document.querySelector('.counter-container'));
+          var numberAnimation = 'zoomIn';
+          TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
+        }
+      }
+    }
+
+    function animateNeurons(){
+      if(treeModel.neurons.root.in_desired_neuron_path){ //jshint ignore:line
+        $timeout(NeuronAnimateService.specialCallToAction, 1000);
+      }
+      $timeout(NeuronAnimateService.callToAction, 1000);
+      finishedAnimations = true;
+    }
+
+    function getRandomPositionCss() {
+      var minRange = 5;
+      var maxRange = 30;
+      var totalClouds = 3;
+      var randomPositionsCss = [];
+      for (var i = 0; i < totalClouds; i ++) {
+        var randomPercentage = Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+        var cssPosition = { 'top': randomPercentage + '%' };
+        randomPositionsCss.push(cssPosition);
+      }
+      return randomPositionsCss;
     }
 
   });

@@ -22,7 +22,11 @@
     return directive;
   }
 
-  function MoiNeuronController($element, NeuronsOptions, NeuronAnimateService, HoverAnimationService){
+  function MoiNeuronController($element,
+                              NeuronsOptions,
+                              NeuronAnimateService,
+                              HoverAnimationService,
+                              GAService){
 
     var vm = this;
 
@@ -84,7 +88,7 @@
 
       //add neuron element to NeuronAnimateService for later animate it.
       if(vm.neuron.state === 'descubierta'){
-        var $neuroImg = $element.find('img');
+        var $neuroImg = $element;
         if(vm.neuron.in_desired_neuron_path){ //jshint ignore:line
           NeuronAnimateService.neuronElementUnavailable = $neuroImg;
         }else {
@@ -92,6 +96,10 @@
         }
       }
     }
+
+    vm.registerClick = function(neuron) {
+      GAService.track('send', 'event', 'Abrir neurona ' + neuron.name, 'Click');
+    };
 
     function calculateSize(progress, steps) {
       var max = vm.neuron.size.max,

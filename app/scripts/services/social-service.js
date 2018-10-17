@@ -28,31 +28,49 @@
 
     return service;
 
-    function shareWithFacebook(options) {
+    function shareWith(options, socialNetwork) {
       modelData.closeModal();
-      Socialshare.share({
-        provider: 'facebook',
-        attrs: {
-          socialshareVia: ENV.facebookKey,
-          socialshareType: 'share',
-          socialshareDisplay: options.description,
-          socialshareUrl: options.publicUrl,
-          socialsharePopupHeight: configSocialNetwork.popupHeight,
-          socialsharePopupWidth: configSocialNetwork.popupWidth
-        }
-      });
-    }
 
-    function shareWithTwitter(options) {
-      modelData.closeModal();
-      Socialshare.share({
-        provider: 'twitter',
-        attrs: {
-          socialshareText: options.shortDescription,
-          socialshareUrl: options.publicUrl,
-          socialsharePopupHeight: configSocialNetwork.popupHeight,
-          socialsharePopupWidth: configSocialNetwork.popupWidth
-        }
+      $ionicLoading.show({
+        content: 'Sharing',
+        animation: 'fade-in',
+        showBackdrop: true,
+        showDelay: 0
+      });
+
+      var paramsToShare = {
+        titulo: options.title,
+        descripcion: options.description,
+        uri: options.publicUrl
+      };
+
+      var view = document.querySelector('#screenCapture');
+      ScreenshotService.getImage(view).then(function(imageBase64){
+        UploadImageService.uploadFile(imageBase64).then(function(resp) {
+          paramsToShare.imagen_url = resp.data.url; //jshint ignore:line
+          UserService.sharingContent(paramsToShare).then(function(resp) {
+            $ionicLoading.hide();
+            var defaultAttrs = {
+              socialshareUrl: resp.data.social_sharing.public_url, //jshint ignore:line
+              socialsharePopupHeight: configSocialNetwork.popupHeight,
+              socialsharePopupWidth: configSocialNetwork.popupWidth
+            };
+            if(socialNetwork === 'facebook'){
+              defaultAttrs.socialshareVia=  ENV.facebookKey;
+              defaultAttrs.socialshareType = 'share';
+              Socialshare.share({
+                provider: socialNetwork,
+                attrs: defaultAttrs
+              });
+            }else if(socialNetwork === 'twitter'){
+              defaultAttrs.socialshareText = options.shortDescription;
+              Socialshare.share({
+                provider: socialNetwork,
+                attrs: defaultAttrs
+              });
+            }
+          });
+        });
       });
     }
 
@@ -93,8 +111,7 @@
 
     function showModal(data) {
       modelData.data = data;
-      modelData.shareWithFacebook = shareWithFacebook;
-      modelData.shareWithTwitter = shareWithTwitter;
+      modelData.shareWith = shareWith;
       modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
       modelData.data.publicUrl = data.publicUrl || $location.absUrl();

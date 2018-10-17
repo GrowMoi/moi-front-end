@@ -19,9 +19,23 @@
     '720kb.tooltips'
   ])
 
-  .run(function(Idle, $window, $rootScope) {
+  .run(function(Idle, $window, $rootScope, GAService, $auth) {
     Idle.watch();
+
+    GAService.loadScript();
+
+    $auth.validateUser()
+      .then(function userAuthorized(user){
+        GAService.track('set', 'userId', user.username);
+        GAService.track('set', 'dimension1', user.id);
+      }, function userNotAuthorized(){
+        GAService.track('set', 'userId', null);
+        GAService.track('set', 'dimension1', null);
+      });
+
     $rootScope.$on('IdleTimeout', function() {
+      GAService.track('set', 'userId', null);
+      GAService.track('set', 'dimension1', null);
       $window.localStorage.clear();
       $window.location='/';
    });
@@ -91,9 +105,13 @@
             return data;
           });
         },
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
+        dataInventory: function($auth, UserService) {
+          return $auth.validateUser().then(function userAuthorized(){
+            return UserService.getUserAchievements().then(function(data){
+              return data;
+            });
+          }, function publicUser(){
+            return {};
           });
         }
       }
@@ -120,19 +138,12 @@
           });
         },
         dataInventory: function($auth, UserService) {
-          if ($auth.user.id) {
+          return $auth.validateUser().then(function userAuthorized(){
             return UserService.getUserAchievements().then(function(data){
               return data;
             });
-          }else{
-            return {
-              achievements: []
-            };
-          }
-        },
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
+          }, function publicUser(){
+            return {};
           });
         }
       }
@@ -156,12 +167,7 @@
       templateUrl: 'templates/test/test.html',
       params: {testData: null},
       resolve: {
-        currentUser: checkIfIsAuthorized,
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
-          });
-        }
+        currentUser: checkIfIsAuthorized
       }
     })
     .state('tree', {
@@ -185,9 +191,13 @@
             });
           }
         },
-        storage: function(StorageService) {
-          return StorageService.get().then(function(resp) {
-            return resp.data.storage;
+        storage: function(StorageService, $auth) {
+          return $auth.validateUser().then(function userAuthorized(){
+            return StorageService.get().then(function(resp) {
+              return resp.data.storage;
+            });
+          }, function publicUser(){
+            return {};
           });
         }
       }
@@ -436,11 +446,17 @@
   angular.module('moi.templates', []);
   angular.module('moi.filters', []);
 
-  function checkIfIsAuthorized($auth, $state){
+  function checkIfIsAuthorized($auth, $state, GAService){
     return $auth.validateUser()
       .then(function userAuthorized(user){
+        GAService.track('set', 'userId', user.username);
+        GAService.track('set', 'dimension1', user.id);
+        GAService.track('send', 'pageview');
         return user;
       }, function userNotAuthorized(){
+        GAService.track('set', 'userId', null);
+        GAService.track('set', 'dimension1', null);
+        GAService.track('send', 'pageview');
         $state.go('new_login.first_step');
       });
   }

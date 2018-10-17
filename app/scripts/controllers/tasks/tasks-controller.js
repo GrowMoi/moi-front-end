@@ -1,7 +1,10 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('TasksController', function($state, $rootScope, UserNotificationsService){
+  .controller('TasksController', function($state,
+                                          $rootScope,
+                                          UserNotificationsService,
+                                          GAService){
     var tasksmodel = this;
 
     tasksmodel.buttonsOptions = {
@@ -55,6 +58,7 @@
     ];
 
     tasksmodel.changeTab = function(field) {
+      GAService.track('send', 'event', 'Seleccionar tab ' + field, 'Click');
       angular.forEach(tasksmodel.tabs, function(tab) {
         if(tab.field === field){
           tab.selected = true;

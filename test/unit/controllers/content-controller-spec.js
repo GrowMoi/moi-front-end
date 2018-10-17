@@ -103,13 +103,6 @@
           }
         };
       });
-      $provide.factory('AdviceService', function(){
-        return {
-          getStatic: function(){
-            return null;
-          }
-        };
-      });
 
       $provide.factory('ReadContentTimingService', function(){
         return {
@@ -131,6 +124,14 @@
             };
           },
           update: function() {
+            return null;
+          }
+        };
+      });
+
+      $provide.factory('GAService', function(){
+        return {
+          track: function(){
             return null;
           }
         };

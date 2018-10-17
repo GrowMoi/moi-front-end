@@ -18,12 +18,18 @@
                           $scope,
                           SoundsPage,
                           TreeService,
+                          $location,
+                          GAService,
                           IMAGES,
-                          VIDEOS) {
+                          VIDEOS,
+                          AdvicesPage,
+                          ModalService,
+                          TooltipsService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
-        callApiSaveImage = 0;
+        callApiSaveImage = 0,
+        isShowingPassiveModal = false;
 
     UserNotificationsService.initialize();
 
@@ -35,10 +41,13 @@
       view: 'tree-screen',
       baseTree: 'base-tree'
     };
+    //init nofitications in passive time
+    if(!localStorage.getItem('advicesOn')){
+      localStorage.setItem('advicesOn', 'true');
+    }
 
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
-
     function preloadAssets(data, storage) {
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
@@ -109,6 +118,7 @@
         'new_login.first_step': false,
         'new_login.second_step': false,
       };
+      TooltipsService.removeAllTooltips();
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled && $auth.user.id) {
         site.loadedImages = false;
@@ -135,11 +145,27 @@
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState){
+      var path = $location.path();
+
+      if (toState.name === 'neuron') {
+        path = '/neuron';
+      } else if (toState.name === 'content') {
+        path = '/neuron/content/';
+      } else if (toState.name === 'profile') {
+        path = '/user/profile';
+      } else if (toState.name === 'tree') {
+        path = '/tree';
+      }
+
+      GAService.track('set', 'page', path);
+      GAService.track('send', 'pageview');
+
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
+      site.advicePage = AdvicesPage[toState.name];
     });
 
     $rootScope.$on('$stateChangeError', function(){
@@ -163,15 +189,51 @@
                     var response = resp || {},
                         user = response.user || {};
                     $auth.user.tree_image = user.tree_image.url;
+                    $rootScope.$broadcast('scanner-started', { any: user });
                   });
               }
             });
           }
-        }, 500);
+        }, 700);
       }else{
         imageSaved = false;
         callApiSaveImage = 0;
       }
     });
+
+    $scope.$on('IdleStart', showPassiveModal);
+
+    function showPassiveModal() {
+      var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
+      if(site.advicePage && !isShowingPassiveModal && $state.current.name !== 'tree' && isActiveMessages){
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-pasive-info.html',
+          animation: 'animated flipInX',
+          backdropClickToClose: true,
+          model: {
+            message: site.advicePage.messages[0],
+            type: 'passive',
+            cssClass: site.advicePage.position || 'modal-bottomRight'
+          },
+          onHide: function() {
+            isShowingPassiveModal = false;
+          }
+        };
+
+        if(site.advicePage.messages.length > 1){
+          var keyAdvice = $state.current.name + '_advice';
+          var lastIndexAdvice = parseInt(localStorage.getItem(keyAdvice)) || 0;
+          dialogOptions.model.message = site.advicePage.messages[lastIndexAdvice];
+          dialogOptions.onHide = function() {
+            var nexIndexAdvice = (lastIndexAdvice < site.advicePage.messages.length-1) ? lastIndexAdvice + 1 : 0;
+            localStorage.setItem(keyAdvice, nexIndexAdvice);
+            isShowingPassiveModal = false;
+          };
+        }
+
+        ModalService.showModel(dialogOptions);
+        isShowingPassiveModal = true;
+      }
+    }
   }
 })();

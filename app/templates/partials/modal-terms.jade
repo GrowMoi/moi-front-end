@@ -1,0 +1,45 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-notification.modal-terms
+      .btn-close-modal-notification(ng-click="::model.closeModal()")
+      .content-terms
+        div
+          .intro.title {{ 'terms.tittleTerms' | translate }}
+          .intro-class.description {{ 'terms.introDescription' | translate}}
+          .content-user.title {{'terms.contentUser' | translate}}
+          .description {{'terms.contentUserDescription' | translate}}
+          .integrity-account.title {{'terms.integrityAccount' | translate}}
+          .description {{'terms.integrityDescription' | translate}}
+          .forbidden-activity.title {{'terms.forbiddenActivity' | translate}}
+          .description {{'terms.forbiddenActivityDescription' | translate}}
+          .law.title {{'terms.law' | translate}}
+          .description {{'terms.lawDescription' | translate}}
+          .license.title {{'terms.license' | translate}}
+          .description {{'terms.licenseDescription' | translate}}
+          .pay.title {{'terms.pay' | translate}}
+          .description {{'terms.payDescription' | translate}}
+          .pay-account {{'terms.payAccount' | translate}}
+          .description {{'terms.payAccountDescription' | translate}}
+          .billing {{'terms.billing' | translate}}
+          .description {{'terms.billingDescription' | translate}}
+          .account-cancellation {{'terms.accountCancellation' | translate}}
+          .description {{'terms.accountCancellationDescription' | translate}}
+          .information.title {{'terms.information' | translate}}
+          .description {{'terms.informationDescription' | translate}}
+          .third-materials.title {{'terms.materials' | translate}}
+          .description {{'terms.materialsDescription' | translate}}
+          .indemnify.title {{'terms.indemnify' | translate}}
+          .description {{'terms.indemnifyDescription' | translate}}
+          .no-guarante.title {{'terms.noGuarante' | translate}}
+          .description {{'terms.noGuaranteDescription' | translate }}
+          .limitation.title {{'terms.limitation' | translate}}
+          .description {{'terms.limitationDescription' | translate}}
+          .notifications.title {{'terms.notifications' | translate}}
+          .description {{'terms.notificationsDescription' | translate}}
+          .block.title {{'terms.block' | translate}}
+          .description{{'terms.blockDescription' | translate}}
+        .content-buttons
+          .button(ng-click="model.acceptTerms()" )
+                  | {{ 'register.accept' | translate }}
+          .button(ng-click="model.refuse()")
+                  | {{ 'register.refuse' | translate }}

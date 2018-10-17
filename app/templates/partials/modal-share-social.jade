@@ -3,8 +3,8 @@
     .modal-share-social
       .btn-close-modal(ng-click="::model.closeModal()")
       .social-network-panel
-        a.btn-facebook(ng-click="model.shareWithFacebook(model.data)")
-        a.btn-twitter(ng-click="model.shareWithTwitter(model.data)")
+        a.btn-facebook(ng-click="model.shareWith(model.data, 'facebook')")
+        a.btn-twitter(ng-click="model.shareWith(model.data, 'twitter')")
         a.btn-mail(ng-click="model.showMailForm()" ng-class="{selected: model.activeEmail}")
       .description-panel
         h2 {{ ::'social.title' | translate}}
