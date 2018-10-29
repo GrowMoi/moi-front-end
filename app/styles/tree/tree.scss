@@ -398,6 +398,13 @@ a {
 @media (max-width: 1400px) {
   .tree-view {
     .tree-section {
+      .tree-content {
+        .flowerpot {
+          &-img {
+            width: 35% !important;
+          }
+        }
+      }
       .tree-draw {
         left: 1%;
         bottom: 0%;
@@ -412,7 +419,7 @@ a {
       .tree-content {
         .flowerpot {
           &-img {
-            width: 35% !important;
+            width: 25% !important;
           }
         }
       }
@@ -439,7 +446,7 @@ a {
       .tree-content {
         .flowerpot {
           &-img {
-            width: 35% !important;
+            width: 25% !important;
           }
         }
       }
@@ -484,7 +491,7 @@ a {
       .tree-content {
         .flowerpot {
           &-img {
-            width: 45% !important;
+            width: 35% !important;
           }
         }
       }
@@ -518,7 +525,7 @@ a {
       .tree-content {
         .flowerpot {
           &-img {
-            width: 42% !important;
+            width: 32% !important;
           }
         }
       }
