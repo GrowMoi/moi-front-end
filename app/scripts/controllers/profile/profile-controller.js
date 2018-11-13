@@ -92,12 +92,13 @@
       var defaultTab = $stateParams.defaultTab || 'lasts-contents';
       vmProfile.changeTab(defaultTab);
     }
-
+    var dialogOptions;
     function showLeaderboard(){
       UserService.getLeaderboard(vmProfile.user.id).then(function(data){
-        var dialogOptions = {
+        dialogOptions = {
           templateUrl: 'templates/partials/modal-show-leaderboard.html',
           model: {
+            goToUser: goToUser,
             leaders: data.leaders,
             /*jshint camelcase: false */
             user: data.meta.user_data,
@@ -118,6 +119,13 @@
     function currentUserIsLeader(leaders){
       var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;}); //jshint ignore:line
       return leader ? true : false;
+    }
+
+    function goToUser(user){
+      dialogOptions.model.closeModal();
+      $state.go('profile', {
+        username: user.username
+      });
     }
 
     function shareProfile() {
