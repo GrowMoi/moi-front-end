@@ -27,6 +27,9 @@
     vmProfile.removeCertificate = UserService.deleteCertificate;
     vmProfile.noMoreItemsAvailable = true;
     vmProfile.currentPage = 2;
+    vmProfile.page = 1;
+    vmProfile.resultsPerPage = 10;
+    vmProfile.enableInfiniteScroll = false;
     vmProfile.frameOptions = {
       type: 'content_max',
       showBackButton: true
@@ -93,17 +96,42 @@
       vmProfile.changeTab(defaultTab);
     }
     var dialogOptions;
+    function nextPage() {
+      if (vmProfile.enableInfiniteScroll) {
+        return;
+      }
+      vmProfile.enableInfiniteScroll = true;
+      UserService.getLeaderboard(vmProfile.user.id, vmProfile.page, vmProfile.resultsPerPage).then(function(data){
+        var items = data.leaders;
+        if( items.length > 0) {
+          vmProfile.notData = false;
+          for (var i = 0; i < items.length; i++) {
+            vmProfile.dataLogRealTime.push(items[i]);
+          }
+          vmProfile.page += 1;
+          vmProfile.enableInfiniteScroll = false;
+        }
+        else {
+          vmProfile.notData = true;
+        }
+      }).catch(function(){
+        console.log('Upss');
+      });
+    }
     function showLeaderboard(){
+      vmProfile.dataLogRealTime =[];
       UserService.getLeaderboard(vmProfile.user.id).then(function(data){
         dialogOptions = {
           templateUrl: 'templates/partials/modal-show-leaderboard.html',
           model: {
             goToUser: goToUser,
-            leaders: data.leaders,
+            nextPage: nextPage,
+            leaders:  vmProfile.dataLogRealTime,
+
             /*jshint camelcase: false */
             user: data.meta.user_data,
             total_contents: data.meta.total_contents,
-            hideFooter: currentUserIsLeader(data.leaders)
+            hideFooter: currentUserIsLeader( vmProfile.dataLogRealTime)
           }
         };
         ModalService.showModel(dialogOptions);

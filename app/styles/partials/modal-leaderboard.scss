@@ -45,7 +45,12 @@
     padding: 8px;
     justify-content: center;
     cursor: pointer;
-
+    .user-leader {
+      opacity: 0.5;
+      &:hover{
+        opacity: 1;
+      }
+    }
     .user-description {
       background: rgba(255, 255, 255, 0.43);
       border-radius: 5px;
