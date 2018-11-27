@@ -21,6 +21,7 @@
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
     vmTest.user = $auth.user;
+    var dataReport = {};
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     init();
 
@@ -134,7 +135,7 @@
     function makeReportToCertificate(data, res) {
       var progressTree = TreeService.progressTree(res.data);
       var percentageTest = getPercentage(data.totalQuestions,data.successAnswers);
-      vmTest.dataReport = {
+      dataReport = {
         user: vmTest.user,
         progressTree: progressTree.percentage,
         resultFinalTest: percentageTest,
@@ -144,7 +145,7 @@
         close: closeCertificate
       };
 
-      if(vmTest.dataReport.resultFinalTest >= 70){
+      if(dataReport.resultFinalTest >= 70){
         vmTest.hideTest = true;
       }else{
         $state.go('inventory');
@@ -153,19 +154,20 @@
 
     function finishedCredits() {
       $state.go('profile', {username: vmTest.user.username, defaultTab: 'certificates'}).then(function(){
-        showCertificate(vmTest.dataReport);
+        showCertificate();
       });
     }
 
     function closeCertificate() {
+      var view = document.querySelector('.background-certificate');
       $ionicLoading.show({
         content: 'Sharing',
         animation: 'fade-in',
         showBackdrop: true,
         showDelay: 0
       });
-      var view = document.querySelector('.background-certificate');
       ScreenshotService.getImage(view).then(function(imageBase64){
+        dataReport.closeModal();
         UploadImageService.uploadFile(imageBase64).then(function(resp) {
           UserService.saveCertificate(resp.data.url).then(function() {
             $ionicLoading.hide();
@@ -211,10 +213,10 @@
       return pieChartData;
     }
 
-    function showCertificate(dataModel){
+    function showCertificate(){
       var dialogOptions = {
         templateUrl: 'templates/partials/modal-finish-certificate.html',
-        model: dataModel
+        model: dataReport
       };
       ModalService.showModel(dialogOptions);
       $timeout(function() {
@@ -222,10 +224,10 @@
           type: 'doughnut',
           data: {
             datasets: [{
-              data: dataModel.pieChart.data,
-              backgroundColor: dataModel.pieChart.colors
+              data: dataReport.pieChart.data,
+              backgroundColor: dataReport.pieChart.colors
             }],
-            labels: dataModel.pieChart.labels
+            labels: dataReport.pieChart.labels
           },
           options: {
             maintainAspectRatio: false,
