@@ -49,7 +49,6 @@
           span.website-info
             | Para más información, visite growmoi.com
       img.certificate-image(ng-if="model.certificate" ng-src="{{::model.certificate}}")
-      .btn-shared-certificate(ng-if="model.certificate"
-                              ng-click="model.sharedCertificate(model.certificate)"
+      .btn-shared-certificate(ng-click="model.sharedCertificate(model.certificate)"
                               tooltip-moi="Compartir"
                               tooltip-position="up")

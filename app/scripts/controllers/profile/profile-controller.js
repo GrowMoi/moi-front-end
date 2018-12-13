@@ -168,11 +168,12 @@
       var dialogOptions = {
         templateUrl: 'templates/partials/modal-finish-certificate.html',
         model: {
-          /*jshint camelcase: false */
-          certificate: url_certificate,
-          sharedCertificate: sharedCertificate,
-          close: function(){ dialogOptions.closeModal();}
+          certificate: url_certificate, //jshint ignore:line
+          sharedCertificate: sharedCertificate
         }
+      };
+      dialogOptions.close = function(){
+        dialogOptions.closeModal();
       };
       ModalService.showModel(dialogOptions);
     }
