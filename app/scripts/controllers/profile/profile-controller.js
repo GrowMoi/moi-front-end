@@ -170,7 +170,8 @@
         model: {
           /*jshint camelcase: false */
           certificate: url_certificate,
-          sharedCertificate: sharedCertificate
+          sharedCertificate: sharedCertificate,
+          close: function(){ dialogOptions.closeModal();}
         }
       };
       ModalService.showModel(dialogOptions);

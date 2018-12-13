@@ -189,6 +189,7 @@
                     var response = resp || {},
                         user = response.user || {};
                     $auth.user.tree_image = user.tree_image.url;
+                    localStorage.setItem('tree_base64Img', img);
                     $rootScope.$broadcast('scanner-started', { any: user });
                   });
               }

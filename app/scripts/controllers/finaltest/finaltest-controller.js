@@ -144,6 +144,7 @@
         totalContentsLearnt: res.data.current_learnt_contents, //jshint ignore:line
         close: closeCertificate
       };
+      dataReport.user.tree_base64Img = localStorage.getItem('tree_base64Img'); //jshint ignore:line
 
       if(dataReport.resultFinalTest >= 70){
         vmTest.hideTest = true;
