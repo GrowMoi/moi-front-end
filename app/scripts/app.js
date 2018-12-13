@@ -16,7 +16,8 @@
     'dragularModule',
     '720kb.socialshare',
     'ngIdle',
-    '720kb.tooltips'
+    '720kb.tooltips',
+    'infinite-scroll'
   ])
 
   .run(function(Idle, $window, $rootScope, GAService, $auth) {

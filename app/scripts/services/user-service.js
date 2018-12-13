@@ -299,13 +299,15 @@
       });
     }
 
-    function getLeaderboard(id){
+    function getLeaderboard(id, page, resultsPerPage){
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/leaderboard',
         params: {
           /*jshint camelcase: false */
-          user_id: id
+          user_id: id,
+          page: page,
+          per_page: resultsPerPage
         }
       }).then(function success(res) {
         return res.data;
