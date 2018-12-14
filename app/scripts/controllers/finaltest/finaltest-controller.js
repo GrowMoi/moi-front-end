@@ -20,7 +20,6 @@
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
     vmTest.user = $auth.user;
-    var saveImgCertificateUser = false;
     var dataReport = {};
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     init();
@@ -142,8 +141,12 @@
         pieChart: getPercentageByBranch(res.data),
         timeOfReading: res.data.time,
         totalContentsLearnt: res.data.current_learnt_contents, //jshint ignore:line
-        close: closeCertificate,
-        sharedCertificate: sharedCertificate
+        close: function(){
+          saveAndSharedCertificate();
+        },
+        sharedCertificate: function(){
+          saveAndSharedCertificate(true);
+        }
       };
 
       if(dataReport.resultFinalTest >= 70){
@@ -159,7 +162,7 @@
       });
     }
 
-    function sharedCertificate(){
+    function saveAndSharedCertificate(actionShared){
       var view = document.querySelector('.background-certificate'),
           image_url = ''; //jshint ignore:line
       $ionicLoading.show({
@@ -174,40 +177,20 @@
           image_url = resp.data.url; //jshint ignore:line
           UserService.saveCertificate(resp.data.url).then(function() {
             $ionicLoading.hide();
-            saveImgCertificateUser = true;
-            var data = {
-              title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
-              description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
-              image_url: image_url, //jshint ignore:line
-              publicUrl: image_url //jshint ignore:line
-            };
-            SocialService.showModal(data);
+            if(actionShared){
+              var data = {
+                title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
+                description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
+                image_url: image_url, //jshint ignore:line
+                publicUrl: image_url //jshint ignore:line
+              };
+              SocialService.showModal(data);
+            }else{
+              $state.reload();
+            }
           });
         });
       });
-    }
-
-    function closeCertificate() {
-      if(saveImgCertificateUser){
-        dataReport.closeModal();
-      }else{
-        var view = document.querySelector('.background-certificate');
-        $ionicLoading.show({
-          content: 'Sharing',
-          animation: 'fade-in',
-          showBackdrop: true,
-          showDelay: 0
-        });
-        ScreenshotService.getImage(view).then(function(imageBase64){
-          dataReport.closeModal();
-          UploadImageService.uploadFile(imageBase64).then(function(resp) {
-            UserService.saveCertificate(resp.data.url).then(function() {
-              $ionicLoading.hide();
-              $state.reload();
-            });
-          });
-        });
-      }
     }
 
     function getPercentage(total, value, decimals) {

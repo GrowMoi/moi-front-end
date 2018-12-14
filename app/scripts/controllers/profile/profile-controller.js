@@ -172,8 +172,8 @@
           sharedCertificate: sharedCertificate
         }
       };
-      dialogOptions.close = function(){
-        dialogOptions.closeModal();
+      dialogOptions.model.close = function(){
+        dialogOptions.model.closeModal();
       };
       ModalService.showModel(dialogOptions);
     }
