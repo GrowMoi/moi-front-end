@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('ScreenshotService', ScreenshotService);
 
-  function ScreenshotService($q) {
+  function ScreenshotService(ENV, $q) {
 
     var service = {
       getImage: getImage,
@@ -14,7 +14,14 @@
 
     function getImage(elm) {
       var deferred = $q.defer();
-      html2canvas(elm, {backgroundColor: null}).then(function(canvas) { // jshint ignore:line
+      var html2canvasOpts = {
+        backgroundColor: null,
+        allowTaint: false,
+        proxy: ENV.imagesProxy,
+        useCORS: true,
+        logging: true
+      };
+      html2canvas(elm, html2canvasOpts).then(function(canvas) { // jshint ignore:line
         deferred.resolve(canvas.toDataURL());
       });
       return deferred.promise;
