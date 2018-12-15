@@ -13,7 +13,7 @@
     return service;
 
     function isAgentChrome() {
-      var appWeb = document.URL.startsWith('http');
+      var appWeb = document.URL.startsWith('http') || document.URL.startsWith('file');
       var chrome = appWeb ? navigator.userAgent.indexOf('Chrome') > -1:false;
       return chrome;
     }
