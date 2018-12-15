@@ -163,7 +163,7 @@
     }
 
     function saveAndSharedCertificate(actionShared){
-      var view = document.querySelector('.background-certificate'),
+      var view = document.querySelector('.modal-certificate'),
           image_url = ''; //jshint ignore:line
       $ionicLoading.show({
         content: 'Sharing',

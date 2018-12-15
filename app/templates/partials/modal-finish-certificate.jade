@@ -3,7 +3,8 @@
     .modal-certificate
       .btn-close-modal(ng-click="model.close(model.resultFinalTest)"
                       tooltip-moi="Cerrar"
-                      tooltip-position="up")
+                      tooltip-position="up"
+                      data-html2canvas-ignore="true")
       .background-certificate(ng-if="!model.certificate")
         .title
           img(src="images/diploma/title.png")
@@ -51,4 +52,5 @@
       img.certificate-image(ng-if="model.certificate" ng-src="{{::model.certificate}}")
       .btn-shared-certificate(ng-click="model.sharedCertificate(model.certificate)"
                               tooltip-moi="Compartir"
-                              tooltip-position="up")
+                              tooltip-position="up"
+                              data-html2canvas-ignore="true")

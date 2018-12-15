@@ -18,8 +18,7 @@
         backgroundColor: null,
         allowTaint: false,
         proxy: ENV.imagesProxy,
-        useCORS: true,
-        logging: true
+        useCORS: true
       };
       html2canvas(elm, html2canvasOpts).then(function(canvas) { // jshint ignore:line
         deferred.resolve(canvas.toDataURL());
