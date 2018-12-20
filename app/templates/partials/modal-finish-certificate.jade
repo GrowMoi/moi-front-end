@@ -1,6 +1,6 @@
 .modal.transparent
   ion-pane.transparent
-    .modal-certificate
+    .modal-certificate(ng-class="{'with-frame': !model.certificate}")
       .btn-close-modal(ng-click="model.close(model.resultFinalTest)"
                       tooltip-moi="Cerrar"
                       tooltip-position="up"
