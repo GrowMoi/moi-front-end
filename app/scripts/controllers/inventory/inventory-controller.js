@@ -26,7 +26,6 @@
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
       var achievements = data.achievements;
-      console.log('esss', achievements);
       var desactiveAchievements = [
   	      {
             desactive: true,
@@ -124,7 +123,6 @@
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
       setMediaIntoAchievements(vmInv.achievements);
-      console.log('estos son los logros', vmInv.achievements, arr1);
       function finishedAnimation(){
         vmInv.showInventory = true;
         $backgroundSound[0].play();
