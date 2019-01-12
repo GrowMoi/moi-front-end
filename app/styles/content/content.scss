@@ -56,6 +56,29 @@
     }
   }
 
+  .link-terms {
+    color: #fef9bf;
+    font-family: FontMoi-Title;
+    position: absolute;
+    top: 90%;
+    cursor: pointer;
+    padding-left: 5px;
+  }
+  .button{
+    background-image: url(../images/btn.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+    background-color: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 47px;
+    font-size: 12px;
+    color: #FDF9BF;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
   .flecha-sidebar {
     top: 45%;
   }

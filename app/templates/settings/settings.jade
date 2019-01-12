@@ -22,6 +22,8 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
                   ng-model="config.level",
                   ng-change="vm.contentSettings(config)")
                 .range-right-border
+            .button(ng-click="vm.changeLanguage()" )
+              | {{ 'content.max.button-translate' | translate }}
             .advices-toggle
               span.content-subtitle-settings
                 | Encender/Apagar tutorial

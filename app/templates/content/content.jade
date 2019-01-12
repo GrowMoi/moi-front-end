@@ -9,6 +9,9 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
           .row.border-bottom.row-content-title(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
             .content-title(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
               {{:: vmContent.content.title}}
+              {{ vmContent.test }}
+              .button(ng-click="vmContent.changeLanguage()" )
+                | {{ 'content.max.button-translate' | translate }}
               img.favorite(ng-if="vmContent.content.favorite" src="images/estrellita.png")
             .corner.title-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row.row-content-text(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")

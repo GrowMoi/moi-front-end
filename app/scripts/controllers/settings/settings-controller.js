@@ -5,12 +5,15 @@
   .controller('SettingsController', function (SettingsService,
                                               user,
                                               dragularService,
+                                              StorageService,
                                               $scope,
+                                              $state,
                                               $filter) {
 
     var vm = this;
     vm.selectInterest = selectInterest;
     vm.contentSettings = contentSettings;
+    vm.changeLanguage = changeLanguage;
     vm.listSelected = [];
     vm.advicesOn = (localStorage.getItem('advicesOn') === 'true') || false;
     vm.updateAdvicesSettings = updateAdvicesSettings;
@@ -93,6 +96,17 @@
         var index = vm.listSelected.indexOf(interest);
         vm.listSelected.splice(index, 1);
       }
+    }
+
+    function changeLanguage() {
+      StorageService.get().then(function(value){
+        console.log(value);
+        var language = value.data.storage.language === 'es'  ? 'en' : 'es';
+        var storage = {language: language};
+        StorageService.update(storage).then(function(){
+          $state.reload();
+        });
+      });
     }
 
     $scope.$on('dragulardrop', function(){
