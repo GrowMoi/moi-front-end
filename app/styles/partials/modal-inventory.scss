@@ -1,0 +1,45 @@
+.modal-image-inventory{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 65%;
+    background-image: url(../images/inventory/popup.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    .btn-close-modal {
+      position: absolute;
+      top: 0.2rem;
+      right: 5%;
+      width: 1.7rem;
+      height: 1.7rem;
+      background-image: url(../images/inventory/cerrar.png);
+      background-repeat: no-repeat;
+      background-size: 1.7rem 1.7rem;
+      cursor: pointer;
+    }
+    .container-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title {
+        font-size: 25px;
+      }
+      .title, .description {
+        color: white;
+        font-weight: bold;
+        font-family: FontMoi-Title;
+      }
+      .description {
+        padding-left: 35px;
+        padding-right: 35px;
+      }
+      .format-image {
+        width: 150px;
+        height: 150px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+    }
+}
