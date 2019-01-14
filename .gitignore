@@ -12,7 +12,9 @@ plugins
 *.log
 *.DS_Store
 .bundle/
+dist
 vendor/
 app/scripts/configuration.js
 app/templates/**/*.html
+app/styles/**/*.css
 app/scripts/templates.js
