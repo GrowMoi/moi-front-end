@@ -22,7 +22,7 @@
       vmContent.readOnly = !!content.read_only;
       vmContent.showAlertExternalLink = showAlertExternalLink;
       vmContent.userAchievements = dataInventory.achievements;
-      vmContent.changeLanguage = changeLanguage;
+      vmContent.changeLanguage = StorageService.changeLanguage;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
@@ -156,17 +156,6 @@
           model: dialogContentModel
         };
         ModalService.showModel(dialogOptions);
-      }
-
-      function changeLanguage() {
-        StorageService.get().then(function(value){
-          console.log(value);
-          var language = value.data.storage.language === 'es'  ? 'en' : 'es';
-          var storage = {language: language};
-          StorageService.update(storage).then(function(){
-            $state.reload();
-          });
-        });
       }
 
       function startsReading() {
