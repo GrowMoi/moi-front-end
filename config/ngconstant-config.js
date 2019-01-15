@@ -35,7 +35,7 @@
       constants: {
         ENV: {
           name: 'staging',
-          apiHost: '//moi-staging.herokuapp.com',
+          apiHost: 'http://moi-staging.herokuapp.com',
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
           cloudinaryName: process.env.CLOUDINARY_NAME,

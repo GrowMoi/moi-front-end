@@ -466,6 +466,24 @@ module.exports = function (grunt) {
     return grunt.task.run(['init']);
   });
 
+  grunt.registerTask('build:prod', function() {
+    return grunt.task.run(['compress']);
+  });
+
+  grunt.registerTask('build:staging', [
+    'clean',
+    'ngconstant:staging',
+    'imagespath:staging',
+    'soundspath:staging',
+    'videospath:staging',
+    'wiredep',
+    'concurrent:server',
+    'autoprefixer',
+    'newer:copy:app',
+    'newer:copy:js',
+    'newer:copy:tmp'
+  ]);
+
   grunt.registerTask('init', [
     'clean',
     'ngconstant:development',
