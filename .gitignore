@@ -13,6 +13,7 @@ plugins
 *.DS_Store
 .bundle/
 dist
+.env.*
 vendor/
 app/scripts/configuration.js
 app/templates/**/*.html

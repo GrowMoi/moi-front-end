@@ -4,7 +4,9 @@
   "private": true,
   "main": "./electron/main.js",
   "scripts": {
-    "electron": "electron .",
+    "electron": "grunt build && electron .",
+    "electron:production": "grunt build:production && electron .",
+    "electron:staging": "grunt build:staging && electron .",
     "postinstall": "bash ./post_install.sh",
     "test": "grunt test:ci",
     "test-precommit": "grunt test:precommit"

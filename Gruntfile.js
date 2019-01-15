@@ -466,7 +466,7 @@ module.exports = function (grunt) {
     return grunt.task.run(['init']);
   });
 
-  grunt.registerTask('build:prod', function() {
+  grunt.registerTask('build:production', function() {
     return grunt.task.run(['compress']);
   });
 
