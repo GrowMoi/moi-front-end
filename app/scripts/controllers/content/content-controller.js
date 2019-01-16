@@ -23,6 +23,10 @@
       vmContent.showAlertExternalLink = showAlertExternalLink;
       vmContent.userAchievements = dataInventory.achievements;
       vmContent.changeLanguage = StorageService.changeLanguage;
+      vmContent.value = StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        vmContent.state = storage.language === 'es' ? false : true;
+      });
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {

@@ -64,6 +64,23 @@
     cursor: pointer;
     padding-left: 5px;
   }
+  .advices-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 4%;
+    padding-top: 5px;
+    .content-subtitle-settings {
+      color: $moiDarkGreen;
+    }
+    .item-toggle {
+      background: transparent;
+      border: none;
+      padding-right: 75px;
+      .toggle {
+        top: 0;
+      }
+    }
+  }
   .button{
     background-image: url(../images/btn.png);
     background-size: contain;
