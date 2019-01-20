@@ -66,6 +66,23 @@ if you're running protractor locally, make sure you are also running the [backen
 
     $ bundle exec cap production deploy
 
+### electron
+  With each task will make a build of app and then serve with electron and it connect accordint environment selected.
+
+    $ npm run electron (dev)
+    $ npm run electron:staging (staging)
+    $ npm run electron:production (production)
+
+### electron-builder
+  For create an installer you need pre-install [`electron-builder`](https://github.com/electron-userland/electron-builder) as a gobal package (npm install -g electron-builder)
+
+  1. Create .env file according to environment in the root
+  2. Run this tasks `grunt build:production` or `grunt build:staging` according to environment (You need use node v4.X) 
+  3. Run `electron-builder build` (You need use current node version)
+
+  Notes: When you run `electron-builder build` the app will create according you OS, if you need for different OS please take a look [here](https://www.electron.build/cli)
+
+
 ### resources
 
 - [guidelines](https://github.com/GrowMoi/moi-front-end/blob/master/guidelines.md)
