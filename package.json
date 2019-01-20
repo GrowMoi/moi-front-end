@@ -75,5 +75,18 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "precommit": "test-precommit"
+  "precommit": "test-precommit",
+  "build": {
+    "appId": "com.growmoi.moi",
+    "copyright": "© Moi Social Learning, from Guayaquil, Ecuador",
+    "productName": "Moi Social Learning",
+    "mac": {
+      "category": "Education",
+      "icon": "app/images/icon.png"
+    },
+    "win": {
+      "icon": "app/images/icon.png",
+      "target": "NSIS"
+    }
+  }
 }
