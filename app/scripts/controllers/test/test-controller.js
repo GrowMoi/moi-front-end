@@ -10,8 +10,8 @@
               $state,
               ModalService,
               MediaAchievements,
-              StorageService,
-              HoverAnimationService) {
+              HoverAnimationService,
+              NeuronsOptions) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -102,8 +102,8 @@
       vmTest.hideTest = true;
       TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
         var data = {
-          totalQuestions: vmTest.totalQuestions,
-          successAnswers: rigthAnswers(res.data.result)
+          questions: questionsMapping(res.data.result),
+          meta: res.data.meta
         };
         if(data.successAnswers > 1 ){
           $backgroundSound[0].pause();
@@ -126,14 +126,23 @@
       });
     }
 
-    function rigthAnswers(results) {
-      var count = 0;
-      angular.forEach(results, function(result){
-        if (result.correct) {
-          count += 1;
-        }
+    function questionsMapping(results) {
+      /*jshint camelcase: false */
+      var NEURON_COLOR = {
+        yellow: 'images/tree/nodos/nodo-amarillo.png',
+        blue: 'images/tree/nodos/nodo-azul.png',
+        red: 'images/tree/nodos/nodo-fuccia.png',
+        green: 'images/tree/nodos/nodo-verde.png'
+      };
+      return angular.forEach(vmTest.questions, function(question){
+        var color = NeuronsOptions[question.content_id]; //jshint ignore:line
+        question.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
+        angular.forEach(results, function(result){
+          if(result.content_id === question.content_id){
+            question.correct = result.correct;
+          }
+        });
       });
-      return count;
     }
 
     function showModalAchievement(recommendations) {

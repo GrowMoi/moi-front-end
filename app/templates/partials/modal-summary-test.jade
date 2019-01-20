@@ -1,0 +1,45 @@
+.modal.transparent
+  ion-pane.transparent
+    moi-sound(ng-if="model.successAnswers > 1"
+              sound="sounds/congratulations_sound.mp3"
+              auto-play="true",
+              only-play="true")
+    .modal-sumary-test
+      .summary-container
+        .container
+          .user-info
+            img.picture(src="images/user.png")
+            span.name
+              | {{::model.userInfo.name}}
+          .questions-container
+            .question(ng-repeat="question in model.questions")
+              .title
+                span.content-question
+                  | {{::question.title}}
+                img.neuron-image(ng-src="{{::question.image}}")
+              .answer
+                .icon(ng-class="{'correct': question.correct, 'incorrect': !question.correct}")
+        .footer
+          .tree-percentage#percentageTree-finalmodal
+            .percentage-container
+              .percentage-progress-bar
+                .label
+                    | {{::model.percentage}} %
+                .percentage-bar(style="width: {{model.percentage}}%")
+              img.widget(src="images/tree-percentage-bar.png")
+          .btn-confirm(ng-click="model.onClick()")
+            | Ok
+          .btn-shared-result(ng-click="model.sharedResult()" data-html2canvas-ignore="true")
+      .level-user#levelUser-finalmodal
+        .level-user-container
+          .level-container
+            .level-progress-bar
+              .level-bar(style="height: {{model.percentageLevel}}%")
+            img.widget(src="images/tree-user-level.png")
+          img.point(src="images/tree-point-level.png")
+          .counter-container
+            .counter
+              span
+                | {{::model.userLevel}}
+              img(src= "images/tree-number-level.png")
+

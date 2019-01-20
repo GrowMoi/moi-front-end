@@ -169,8 +169,8 @@
       if(oldPercentage !== treeModel.percentage){
         TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
         if(!!oldPercentage){
-          var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
-          var levelUserWidget = angular.element(document.querySelector('.level-user'));
+          var percentageTreeWidget = document.querySelector('.tree-percentage');
+          var levelUserWidget = document.querySelector('.level-user');
           var barAnimation = 'pulse';
           animationLevelBadge();
           TreeAnimateService.animateWidget(levelUserWidget, barAnimation).then(function(){
@@ -191,7 +191,7 @@
       if(oldLevel !== treeModel.userLevel){
         TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
         if(!!oldLevel){
-          var levelUserCountWidget = angular.element(document.querySelector('.counter-container'));
+          var levelUserCountWidget = document.querySelector('.counter-container');
           var numberAnimation = 'zoomIn';
           TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
         }

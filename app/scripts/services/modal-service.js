@@ -37,14 +37,12 @@
           var cssClass = modalOptions.model.cssClass || 'my-custom-modal';
           modalInstance.$el.addClass(cssClass);
         }
-        modalInstance.show();
+        modalInstance.show().then(modalOptions.model.shown);
       });
 
       // Execute action on hide modal
       modalMoi.scope.$on('modal.hidden', function() {
-        if(modalOptions.model.type === 'passive'){
-          modalOptions.onHide();
-        }
+        modalOptions.onHide();
       });
     }
 
