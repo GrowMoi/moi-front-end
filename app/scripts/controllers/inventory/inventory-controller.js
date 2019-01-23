@@ -26,7 +26,6 @@
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
       var achievements = data.achievements;
-      console.log('esss', achievements);
       var desactiveAchievements = [
   	      {
             desactive: true,
@@ -65,10 +64,10 @@
           },
           {
             desactive: true,
-            description: 'Despliega 50 pruebas para ganar este item',
-            name: 'Despliega 50 pruebas',
+            description: 'Despliega 25 pruebas para ganar este item',
+            name: 'Despliega 25 pruebas',
             number:6,
-            settings:{badge:'images/inventory/badges/item8.png'}
+            settings:{badge:'images/inventory/badges/item5.png'}
           },
           {
             desactive: true,
@@ -82,7 +81,7 @@
             description: 'Aprende todos los contenidos para ganar este item',
             name: 'Aprende todos los contenidos',
             number:8,
-            settings:{badge:'images/inventory/badges/item5.png'}
+            settings:{badge:'images/inventory/badges/item8.png'}
           },
           {
             desactive: true,
@@ -124,7 +123,6 @@
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
       setMediaIntoAchievements(vmInv.achievements);
-      console.log('estos son los logros', vmInv.achievements, arr1);
       function finishedAnimation(){
         vmInv.showInventory = true;
         $backgroundSound[0].play();
