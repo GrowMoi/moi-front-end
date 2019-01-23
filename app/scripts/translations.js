@@ -8,7 +8,7 @@
       menu: {
         menu: 'Menu',
         neurons: 'Neurons',
-        account: 'Account'
+        account: Account
       },
       dashboard: {
         welcome: 'Welcome'
@@ -16,58 +16,110 @@
       login: {
         'login': 'Login',
         'email': 'Email',
-        'username': 'Username',
         'password': 'Password',
+        'username': 'Username',
         'next': 'Next',
         'new_login': 'New login',
         'old_login': 'Old login'
       },
+      register:{
+        'enter': 'Go',
+        'register': 'Register',
+        'user': 'First & last name',
+        'birthday': 'Birthday',
+        'password': 'Password',
+        'password-required': 'Current password',
+        'city': 'City',
+        'confirm-password': 'Confirm password',
+        'country': 'Country',
+        'email': 'Email',
+        'years': 'Age',
+        'school': 'School',
+        'age': 'Age',
+        'username': 'Username',
+        'accept': 'Accept',
+        'refuse': 'Reject',
+        'terms': 'Terms & Conditions'
+      },
+      user: {
+        'age': 'Age',
+        'city': 'City'
+      },
+      profile: {
+        'edit-profile': 'Edit profile',
+        'last-name': 'Last name',
+        'my-profile': 'My profile',
+        'password' : 'New password',
+        'description-photo': 'Upload a jpg, gif or png image',
+        'logout': 'Logout'
+      },
+      msgs:{
+        error:{
+          'required': 'Empty',
+          'email': 'Enter a valid email',
+          'confirm-password': "Passwords don't match"
+        }
+      },
+      signup: {
+        'signup': 'Sign up'
+      },
       setting: {
         'settings': 'Settings',
-        'interests': 'Interest',
+        'interests': 'Interests',
         'level': 'Level',
-        'choose-interest': 'Choose as many as you want'
+        'choose-interest': 'Select one or more'
       },
       content: {
         kind: {
-          'que-es': 'What?',
-          'por-que-es': 'Why?',
-          'como-funciona': 'How?',
+          'que-es':  'What?',
+          'por-que-es':  'Why?',
+          'como-funciona':  'How?',
           'quien-cuando-donde': 'Who/When/Where?'
         },
         max: {
-          'coments': 'Coments',
+          'coments': 'Notes',
           'media': 'Media',
           'recommended': 'Recommended',
           'links': 'Links',
-          'update': 'Last Update'
+          'update': 'Last update',
+          'button-translate': 'Change language'
         }
       },
       searches: {
         'search': 'Search',
         'friends': 'Friends'
       },
+      buttons: {
+        'edit-profile': 'Edit profile',
+        'add-friend': 'Add friend',
+        'save-changes': 'Save changes',
+        'friends': 'Friends',
+        'choose-photo': 'Choose image',
+        'upload-photo': 'Upload image',
+        'change-password': 'Change password'
+      },
       titles: {
-        'personal-descripcion': 'Personal Description',
-        'current-photo': 'Current Photo',
-        'items': 'items',
+        'personal-descripcion': 'Personal description',
+        'current-photo': 'Image',
+        'items': 'Items',
         'title': 'Title',
         'description': 'Description'
       },
       social: {
-        'title': 'Show and tell your friends!',
-        'description': 'Show your progress on your Facebook timeline or any '+
-                        'social media you like, although you can share via '+
-                        'mail. Spread the good news!',
+        'title': 'Show your friends',
+        'description': 'Share your progress on Fb, Twitter or via Email',
         'send': 'Send'
       },
       tasks: {
-        'my_tasks': 'My Tasks',
+        'my_tasks': 'My tasks',
         'notes': 'Notes',
-        'recomendations': 'Recomendations',
+        'recomendations': 'Recommendations',
         'tasks': 'Tasks',
         'notifications': 'Notifications',
         'favorites': 'Favorites'
+      },
+      browser: {
+        'chrome':  'For a better experience, use this app with Google Chrome'
       },
       quiz: {
         player: 'Player'
