@@ -15,7 +15,8 @@
                                               dataInventory,
                                               SocialService,
                                               StorageService,
-                                              GAService) {
+                                              GAService,
+                                              EventsService) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -32,6 +33,10 @@
         type: 'content_max',
         showBackButton: true
       };
+
+      EventsService.getEvents().then(function(resp){
+        console.log('resp', resp);
+      });
 
       //set default theme
       vmContent.theme = 'moi_verde';
