@@ -5,11 +5,12 @@
       .module('moi.services')
       .factory('StorageService', StorageService);
 
-    function StorageService($http, $ionicPopup, ENV, PopupService) {
+    function StorageService($http, ENV, PopupService, $state) {
 
       var service = {
         get: get,
-        update: update
+        update: update,
+        changeLanguage: changeLanguage
       };
       var popupOptions = { title: 'Error'};
 
@@ -39,6 +40,17 @@
         }, function error(err) {
           errorPopup(err);
           return err;
+        });
+      }
+
+      function changeLanguage() {
+        get().then(function(value){
+          var storage = value.data.storage || {};
+          var language = storage.language === 'es' ? 'en' : 'es';
+          storage.language = language;
+          update(storage).then(function(){
+            $state.reload();
+          });
         });
       }
 

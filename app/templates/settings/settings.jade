@@ -24,6 +24,10 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
                 .range-right-border
             .advices-toggle
               span.content-subtitle-settings
+                | Cambiar idioma
+              ion-toggle(ng-model='vm.state' ng-change="vm.changeLanguage()")
+            .advices-toggle
+              span.content-subtitle-settings
                 | Encender/Apagar tutorial
               ion-toggle(ng-model='vm.advicesOn' ng-change="vm.updateAdvicesSettings()")
           .panel-right.col-45

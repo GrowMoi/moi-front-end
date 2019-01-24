@@ -151,7 +151,8 @@
           'media': 'Galeria',
           'recommended': 'Recomendaciones',
           'links': 'Enlaces',
-          'update': 'Última Actualización: '
+          'update': 'Última Actualización: ',
+          'button-translate': 'Cambiar de Idioma'
         }
       },
       searches: {

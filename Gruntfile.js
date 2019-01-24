@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var spawn = process.platform === 'win32' ? require('win-spawn') : require('child_process').spawn;
 var promise = require('bluebird');
 var fs = promise.promisifyAll(require('fs'));
 var folderImgs = 'app/images/';
@@ -337,44 +336,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-
-    // grunt-protractor-runner
-    protractor: {
-      options: {
-        configFile: '<%= yeoman.test %>/e2e-tests.conf.js'
-      },
-      all: {}
-    }
-
-  });
-
-  grunt.registerTask('protractor:ci', [
-    'protractor:ci:standalone'
-  ]);
-
-  grunt.registerTask('protractor:ci:standalone', function (){
-    var done = this.async(),
-        gruntLog = function (data) { grunt.log.writeln(data); },
-        gruntErr = function (data) { grunt.log.error(data); };
-
-    var express = spawn(
-      'node',
-      ['server.js']
-    );
-    express.stdout.on('data', gruntLog);
-    express.stderr.on('data', gruntErr);
-
-    var protractor = spawn(
-      path.resolve('./node_modules/protractor/bin/', 'protractor'),
-      ['test/e2e-tests.conf.js']
-    );
-    protractor.stdout.on('data', gruntLog);
-    protractor.stderr.on('data', gruntErr);
-    protractor.on('close', function (code) {
-      express.kill();
-      code = code ? false : true;
-      done(code);
-    });
   });
 
   grunt.registerTask('watch:specs', function () {
@@ -382,12 +343,8 @@ module.exports = function (grunt) {
       files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/unit/**/*.js'],
       tasks: ['newer:jshint:test', 'karma:unit:run']
     };
-    var protractor = {
-      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/e2e/**/*.js'],
-      tasks: ['newer:jshint:test', 'protractor:ci']
-    };
 
-    grunt.config.set('watch', [karma, protractor]);
+    grunt.config.set('watch', [karma]);
 
     return grunt.task.run(['watch']);
   });
