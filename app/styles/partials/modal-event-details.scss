@@ -1,0 +1,86 @@
+.transparent {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+
+  .modal-event-details {
+    width: 25rem;
+    height: 35rem;
+    background-image: url(../images/events/eventDetails.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 15px;
+
+    .btn-close-modal {
+      position: absolute;
+      right: 19rem;
+      top: 0rem;
+      width: 3rem;
+      height: 3rem;
+      background-image: url(../images/events/closeBtn.png);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+    }
+
+    .event-content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      height: 100%;
+
+      .event-image {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      .event-description {
+        text-align: justify;
+      }
+
+      .contents-list {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+
+        .content {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border: 1px solid #e1c498;
+          border-radius: 10%;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          padding: .3rem;
+
+          .content-title {
+            font-weight: bold;
+            font-size: 10px;
+          }
+
+          .content-image {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+      }
+    }
+  }
+}
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}

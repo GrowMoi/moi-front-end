@@ -1,0 +1,12 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-event-list
+      .btn-close-modal(ng-click="::model.closeModal()")
+      .event-list
+        .event(ng-repeat='event in model.events')
+          img.event-image(ng-src="{{::event.image}}")
+          h4.event-title
+            | {{::event.title}}
+          span.event-description
+            | {{::event.description}}
+

@@ -36,6 +36,15 @@
 
       EventsService.getEvents().then(function(resp){
         console.log('resp', resp);
+        var modelData = {
+          data: resp.data[0] //details
+          // events: resp.data //list
+        };
+        ModalService.showModel({
+          templateUrl: 'templates/partials/modal-event-details.html', //details
+          // templateUrl: 'templates/partials/modal-event-list.html', //list
+          model: modelData
+        });
       });
 
       //set default theme
