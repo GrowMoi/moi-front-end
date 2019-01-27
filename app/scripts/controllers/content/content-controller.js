@@ -16,7 +16,8 @@
                                               SocialService,
                                               StorageService,
                                               GAService,
-                                              EventsService) {
+                                              EventsService,
+                                              NeuronsOptions) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -35,7 +36,17 @@
       };
 
       EventsService.getEvents().then(function(resp){
-        console.log('resp', resp);
+        var NEURON_COLOR = {
+          yellow: 'images/tree/nodos/nodo-amarillo.png',
+          blue: 'images/tree/nodos/nodo-azul.png',
+          red: 'images/tree/nodos/nodo-fuccia.png',
+          green: 'images/tree/nodos/nodo-verde.png'
+        };
+        //map to get neurons
+        angular.forEach(resp.data[0].neurons, function(neuron){
+          var color = NeuronsOptions[neuron.id];
+          neuron.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
+        });
         var modelData = {
           data: resp.data[0] //details
           // events: resp.data //list
