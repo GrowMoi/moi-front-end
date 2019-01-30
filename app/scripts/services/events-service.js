@@ -36,6 +36,7 @@
                   title: 'Aprender'
                 }
               ],
+              event_date: 1548124776154, //jshint ignore:line
               expiration_date: 1548124776154, //jshint ignore:line
               image: 'https://cdn4.iconfinder.com/data/icons/badges-and-votes-1/128/Badges_Votes_star-512.png',
               for_user_level_greater: 3, //jshint ignore:line
@@ -56,6 +57,7 @@
                   title: 'Ordenar'
                 }
               ],
+              event_date: 1548124776154, //jshint ignore:line
               expiration_date: 1548124776154, //jshint ignore:line
               image: 'https://cdn4.iconfinder.com/data/icons/badges-and-votes-1/128/Badges_Votes_star-512.png',
               for_user_level_greater: 9, //jshint ignore:line
@@ -76,6 +78,7 @@
                   title: 'Artes',
                 },
               ],
+              event_date: 1548124776154, //jshint ignore:line
               expiration_date: 1548124776154, //jshint ignore:line
               image: 'https://cdn4.iconfinder.com/data/icons/badges-and-votes-1/128/Badges_Votes_star-512.png',
               for_user_level_greater: 3, //jshint ignore:line

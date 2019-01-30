@@ -381,6 +381,15 @@
         currentUser: checkIfIsAuthorized
       }
     })
+    .state('tasks.events', {
+      url: '/events',
+      templateUrl: 'templates/tasks/events/events.html',
+      controller: 'EventsController',
+      controllerAs: 'eventsModel',
+      resolve: {
+        currentUser: checkIfIsAuthorized
+      }
+    })
     .state('inventory', {
       url: '/inventory',
       controller: 'InventoryController',
