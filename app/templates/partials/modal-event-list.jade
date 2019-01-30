@@ -3,7 +3,7 @@
     .modal-event-list
       .btn-close-modal(ng-click="::model.closeModal()")
       .event-list
-        .event(ng-repeat='event in model.events')
+        .event(ng-repeat='event in model.events track by $index' ng-click="model.showEventDetails($index)")
           img.event-image(ng-src="{{::event.image}}")
           h4.event-title
             | {{::event.title}}

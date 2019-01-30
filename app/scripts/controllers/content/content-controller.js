@@ -15,9 +15,7 @@
                                               dataInventory,
                                               SocialService,
                                               StorageService,
-                                              GAService,
-                                              EventsService,
-                                              NeuronsOptions) {
+                                              GAService) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -34,29 +32,6 @@
         type: 'content_max',
         showBackButton: true
       };
-
-      EventsService.getEvents().then(function(resp){
-        var NEURON_COLOR = {
-          yellow: 'images/tree/nodos/nodo-amarillo.png',
-          blue: 'images/tree/nodos/nodo-azul.png',
-          red: 'images/tree/nodos/nodo-fuccia.png',
-          green: 'images/tree/nodos/nodo-verde.png'
-        };
-        //map to get neurons
-        angular.forEach(resp.data[0].neurons, function(neuron){
-          var color = NeuronsOptions[neuron.id];
-          neuron.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
-        });
-        var modelData = {
-          data: resp.data[0] //details
-          // events: resp.data //list
-        };
-        ModalService.showModel({
-          templateUrl: 'templates/partials/modal-event-details.html', //details
-          // templateUrl: 'templates/partials/modal-event-list.html', //list
-          model: modelData
-        });
-      });
 
       //set default theme
       vmContent.theme = 'moi_verde';

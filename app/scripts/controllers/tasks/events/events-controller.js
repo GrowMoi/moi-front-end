@@ -5,7 +5,7 @@
     var eventsModel = this;
     eventsModel.noMoreItemsAvailable = true;
     eventsModel.currentPage = 1;
-    eventsModel.showEventDetails = showEventDetails;
+    eventsModel.showSetEvents = showSetEvents;
 
     initData();
 
@@ -20,8 +20,35 @@
       eventsModel.events = data.data;
     }
 
+    function showSetEvents(){
+      var NEURON_COLOR = {
+        yellow: 'images/tree/nodos/nodo-amarillo.png',
+        blue: 'images/tree/nodos/nodo-azul.png',
+        red: 'images/tree/nodos/nodo-fuccia.png',
+        green: 'images/tree/nodos/nodo-verde.png'
+      };
+
+      //map to get neurons
+      angular.forEach(eventsModel.events, function(event){
+        angular.forEach(event.neurons, function(neuron){
+          var color = NeuronsOptions[neuron.id];
+          neuron.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
+        });
+      });
+
+      var modelData = {
+        events: eventsModel.events,
+        showEventDetails: showEventDetails
+      };
+
+      ModalService.showModel({
+        templateUrl: 'templates/partials/modal-event-list.html',
+        model: modelData
+      });
+    }
+
     function showEventDetails(index){
-      var event = formatEvent(eventsModel.events[index]);
+      var event = eventsModel.events[index];
       var modelData = {
         data: event
       };
@@ -29,22 +56,6 @@
         templateUrl: 'templates/partials/modal-event-details.html',
         model: modelData
       });
-    }
-
-    function formatEvent(event) {
-      var NEURON_COLOR = {
-        yellow: 'images/tree/nodos/nodo-amarillo.png',
-        blue: 'images/tree/nodos/nodo-azul.png',
-        red: 'images/tree/nodos/nodo-fuccia.png',
-        green: 'images/tree/nodos/nodo-verde.png'
-      };
-      //map to get neurons
-      angular.forEach(event.neurons, function(neuron){
-        var color = NeuronsOptions[neuron.id];
-        neuron.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
-      });
-
-      return event;
     }
   });
 })();

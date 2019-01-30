@@ -34,6 +34,16 @@
                   id: 2293,
                   state: 'florecida',
                   title: 'Aprender'
+                },
+                {
+                  id: 2293,
+                  state: 'florecida',
+                  title: 'Leer'
+                },
+                {
+                  id: 2293,
+                  state: 'florecida',
+                  title: 'Dibujar'
                 }
               ],
               event_date: 1548124776154, //jshint ignore:line

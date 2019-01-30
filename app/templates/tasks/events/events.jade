@@ -1,6 +1,6 @@
 ion-content.content_tasks
-  .row.note(ng-repeat='event in eventsModel.events track by $index')
-    .text-notes(ng-click="eventsModel.showEventDetails($index)")
+  .row.note(ng-repeat='event in eventsModel.events')
+    .text-notes(ng-click="eventsModel.showSetEvents()")
       | {{event.title}}
       br
       | {{event.event_date | date:'dd-MM-yyyy'}}

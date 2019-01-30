@@ -7,16 +7,19 @@
 
   .modal-event-details {
     width: 25rem;
-    height: 35rem;
+    height: 30rem;
     background-image: url(../images/events/eventDetails.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .btn-close-modal {
       position: absolute;
-      right: 19rem;
-      top: 0rem;
+      right: 18.5rem;
+      top: 2rem;
       width: 3rem;
       height: 3rem;
       background-image: url(../images/events/closeBtn.png);
@@ -30,8 +33,6 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
-      position: relative;
-      height: 100%;
 
       .event-image {
         width: 5rem;
@@ -53,6 +54,7 @@
           flex-direction: column;
           justify-content: center;
           padding: .2rem;
+          position: relative;
 
           .neuron-title {
             font-weight: bold;
@@ -62,6 +64,23 @@
           .neuron-image {
             width: 2rem;
             height: 2rem;
+          }
+
+          &:after{
+            content: '';
+            background-color: white;
+            width: 2rem;
+            height: .2rem;
+            position: absolute;
+            top: 2.2rem;
+            right: -2.1rem;
+          }
+
+          &:last-child {
+
+            &:after {
+              content: none;
+            }
           }
         }
       }
