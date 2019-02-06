@@ -8,7 +8,7 @@ ion-view.inventory-section(view-title='Inventario')
         .frame-container.main-view
           .inventory-wrapper
             .inventory-sign
-              span.sign {{ ::'titles.items' | translate }}
+              span.sign {{ 'titles.items' | translate }}
             .inventory-grid
               .tabs-grid
               .gridWrapper
@@ -17,7 +17,7 @@ ion-view.inventory-section(view-title='Inventario')
                       ng-click="vmInv.activateAchievement(achievement)"
                       ng-mouseover="vmInv.increaseSize(true, vmInv.cssOptions, $index)"
                       ng-mouseleave="vmInv.increaseSize(false, vmInv.cssOptions, $index)"
-                      tooltip-moi="{{::achievement.name}}"
+                      tooltip-moi="{{achievement.name}}"
                       tooltip-position="up")
                   img(
                       ng-src="{{achievement.settings.badge}}"

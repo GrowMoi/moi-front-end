@@ -12,17 +12,17 @@ ion-view.tree-view(view-title='TreeMoi')
             img(src="images/nube3L.png")
         .tree-percentage(data-html2canvas-ignore="true")
           .percentage-container(tooltips
-                                tooltip-template="Has descubierto el {{::treeModel.percentage}}% de tu árbol Moi"
+                                tooltip-template="{{treeModel.percentageTooltip}}"
                                 tooltip-side="left")
             .percentage-progress-bar
               .label
-                  | {{::treeModel.percentage}} %
+                  | {{treeModel.percentage}} %
               .percentage-bar(style="width: {{treeModel.percentage}}%")
             img.widget(src="images/tree-percentage-bar.png")
         .level-user
           .level-user-container(data-html2canvas-ignore="true")
             .level-container(tooltips
-                            tooltip-template="Tu nivel de aprendizaje es {{::treeModel.userLevel}}"
+                            tooltip-template="{{treeModel.learnTooltip}}"
                             tooltip-side="top")
               .level-progress-bar
                 .level-bar(ng-style="treeModel.cssBar" style="height: {{treeModel.percentageLevel}}%")
@@ -32,18 +32,18 @@ ion-view.tree-view(view-title='TreeMoi')
             .counter-container
               .counter
                 span
-                  | {{::treeModel.userLevel}}
+                  | {{treeModel.userLevel}}
                 img(src= "images/tree-number-level.png")
-        .tree-content(ng-if="::treeModel.isBasicLevel")
+        .tree-content(ng-if="treeModel.isBasicLevel")
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
-          moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
-        .tree-section(ng-if="::!treeModel.isBasicLevel")
+          moi-tree(neurons="treeModel.neurons" meta="treeModel.meta")
+        .tree-section(ng-if="!treeModel.isBasicLevel")
           .tree-content
             figure.flowerpot
               img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
           .tree-draw
-            moi-tree(neurons="::treeModel.neurons" meta="::treeModel.meta")
+            moi-tree(neurons="treeModel.neurons" meta="treeModel.meta")
         .btn-shared-tree(ng-click="treeModel.sharedTree()" data-html2canvas-ignore="true")
       moi-frame(options="treeModel.frameOptions")
   .movies-container(ng-if="!treeModel.showTree")

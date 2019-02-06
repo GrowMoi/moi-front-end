@@ -1,3 +1,4 @@
+// jshint ignore: start
 (function(){
   'use strict';
   angular.module('moi')
@@ -5,10 +6,18 @@
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
 
     $translateProvider.translations('en', {
+      tooltip :{
+        tree: 'Back to the tree',
+        close: 'Close',
+        compartir: 'Share',
+        perfil: 'View profile',
+        alternativa: 'Choose this alternative',
+        question: 'Next question'
+      },
       menu: {
         menu: 'Menu',
         neurons: 'Neurons',
-        account: Account
+        account: 'Account'
       },
       dashboard: {
         welcome: 'Welcome'
@@ -51,7 +60,11 @@
         'my-profile': 'My profile',
         'password' : 'New password',
         'description-photo': 'Upload a jpg, gif or png image',
-        'logout': 'Logout'
+        'logout': 'Logout',
+        'logros': 'Achievements',
+        'logro': 'Last 4',
+        'content': 'Contents learned in total:',
+        'test': 'Tests without errors:'
       },
       msgs:{
         error:{
@@ -67,7 +80,7 @@
         'settings': 'Settings',
         'interests': 'Interests',
         'level': 'Level',
-        'choose-interest': 'Select one or more'
+        'choose-interest': 'Select one or more',
       },
       content: {
         kind: {
@@ -83,7 +96,9 @@
           'links': 'Links',
           'update': 'Last update',
           'button-translate': 'Change language'
-        }
+        },
+        language: 'Spanish/English',
+        tutorial: 'Tutorial On/Off'
       },
       searches: {
         'search': 'Search',
@@ -127,6 +142,14 @@
     });
 
     $translateProvider.translations('es', {
+      tooltip :{
+        tree: 'Volver al árbol',
+        close: 'Cerrar',
+        compartir: 'Compartir',
+        perfil: 'Ver perfil',
+        alternativa: 'Elegir esta alternativa',
+        question: 'Continuar con la siguiente pregunta'
+      },
       menu: {
         menu: 'Menú',
         neurons: 'Neuronas',
@@ -173,7 +196,10 @@
         'my-profile': 'Mi  Perfil',
         'password' : 'Nueva Contraseña',
         'description-photo': 'Tu puedes subir una foto jpg, gif, or png file',
-        'logout': 'Cerrar Sesión'
+        'logout': 'Cerrar Sesión',
+        'logro': 'Logros',
+        'content': 'Contenidos aprendidos en total:',
+        'test': 'Tests without errors:'
       },
       msgs:{
         error:{
@@ -205,7 +231,9 @@
           'links': 'Enlaces',
           'update': 'Última Actualización: ',
           'button-translate': 'Cambiar de Idioma'
-        }
+        },
+        language: 'Español/Inglés',
+        tutorial: 'Encender/Apagar tutorial'
       },
       searches: {
         'search': 'Buscar',

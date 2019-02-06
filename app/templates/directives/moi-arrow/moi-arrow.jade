@@ -1,6 +1,6 @@
 .flecha-sidebar(ng-click="arrowVm.onClick()"
-                tooltip-moi="{{::arrowVm.name}}"
-                tooltip-position="up")
+                tooltip-moi="{{arrowVm.name}}"
+                tooltip-position="right")
   img(ng-src='{{arrowVm.urlImg}}'
       ng-style="arrowVm.cssOptions.styles[0]"
       ng-mouseover="arrowVm.increaseSize(true, arrowVm.cssOptions, 0)"

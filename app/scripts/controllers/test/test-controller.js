@@ -10,6 +10,7 @@
               $state,
               ModalService,
               MediaAchievements,
+              StorageService,
               HoverAnimationService) {
 
     var vmTest = this;
@@ -138,14 +139,17 @@
     function showModalAchievement(recommendations) {
 
       var modelData = extractModelData(recommendations) ;
-
-      ModalService.showModel(
-        {
-          parentScope: $scope,
-          templateUrl: 'templates/partials/modal-tutor-achievement.html',
-          model: modelData
-        }
-      );
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var templateModal = storage.language === 'es' ? 'templates/partials/modal-tutor-achievement' : 'templates/partials/modal-tutor-achievement-en.html';
+        ModalService.showModel(
+          {
+            parentScope: $scope,
+            templateUrl: templateModal,
+            model: modelData
+          }
+        );
+      });
     }
 
     function showUserAchievement(achievement){

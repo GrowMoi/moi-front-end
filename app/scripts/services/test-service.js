@@ -10,6 +10,7 @@
                       ENV,
                       ModalService,
                       PopupService,
+                      StorageService,
                       $state,
                       $auth,
                       $q){
@@ -29,34 +30,42 @@
     return service;
 
     function goFinalTest(scope, name) {
-      var modelData = {
-        name: name,
-        createFinalTest: function(){
-          $state.go('finaltest');
-          modelData.closeModal();
-        }
-      };
-      ModalService.showModel(
-        {
-          parentScope: scope,
-          templateUrl: 'templates/partials/modal-launch-final-test.html',
-          model: modelData
-        }
-      );
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var templateModal = storage.language === 'es' ? 'templates/partials/modal-launch-final-test.html' : 'templates/partials/modal-launch-final-test-en.html';
+        var modelData = {
+          name: name,
+          createFinalTest: function(){
+            $state.go('finaltest');
+            modelData.closeModal();
+          }
+        };
+        ModalService.showModel(
+          {
+            parentScope: scope,
+            templateUrl: templateModal,
+            model: modelData
+          }
+        );
+      });
     }
 
     function goTest(scope, test) {
-      var modelData = {};
-      modelData.testId = test.id;
-      modelData.testQuestions = test.questions;
-      modelData.contentsLearnt = modelData.testQuestions.length;
-      ModalService.showModel(
-        {
-          parentScope: scope,
-          templateUrl: 'templates/partials/modal-launch-test.html',
-          model: modelData
-        }
-      );
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var templateModal = storage.language === 'es' ? 'templates/partials/modal-launch-test.html' : 'templates/partials/modal-launch-test-en.html';
+        var modelData = {};
+        modelData.testId = test.id;
+        modelData.testQuestions = test.questions;
+        modelData.contentsLearnt = modelData.testQuestions.length;
+        ModalService.showModel(
+          {
+            parentScope: scope,
+            templateUrl: templateModal,
+            model: modelData
+          }
+        );
+      });
     }
 
     function scoreTest(scope, data) {
@@ -70,16 +79,20 @@
         });
       };
       return $q(function(resolve) {
-        ModalService.showModel(
-          {
-            parentScope: scope,
-            templateUrl: 'templates/partials/modal-score-test.html',
-            onHide: function() {
-              resolve();
-            },
-            model: modelData
-          }
-        );
+        StorageService.get().then(function(value){
+          var storage = value.data.storage || {};
+          var templateModal = storage.language === 'es' ? 'templates/partials/modal-score-test.html' : 'templates/partials/modal-score-test-en.html';
+          ModalService.showModel(
+            {
+              parentScope: scope,
+              templateUrl: templateModal,
+              onHide: function() {
+                resolve();
+              },
+              model: modelData
+            }
+          );
+        });
       });
 
     }

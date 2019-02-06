@@ -6,6 +6,7 @@
         $scope,
         element,
         controller,
+        StorageService,
         $rootScope,
         $window,
         $q;
@@ -20,14 +21,29 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          changeLanguage: function() {
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
-      function(_$compile_, _$rootScope_, _$window_, _$q_) {
+      function(_$compile_, _$rootScope_, _$window_, _$q_,_StorageService_) {
         $compile = _$compile_;
         $scope = _$rootScope_.$new();
         $rootScope = _$rootScope_;
         $window = _$window_;
+        StorageService = _StorageService_;
         $q = _$q_;
       }));
 

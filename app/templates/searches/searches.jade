@@ -10,7 +10,7 @@ ion-view.searches-container.search-view-max(view-title='Content')
               input(type='text',
                     required='required',
                     ng-model='searchesmodel.query',
-                    placeholder="{{ ::'searches.search' | translate }}")
+                    placeholder="{{ 'searches.search' | translate }}")
             input(
                 type='submit',
                 value=''
@@ -19,11 +19,11 @@ ion-view.searches-container.search-view-max(view-title='Content')
             .col.col-25.neuron(ng-repeat='neuron in searchesmodel.neurons track by $index')
               .content-kind-contents(ui-sref="neuron({neuronId: neuron.id})")
                 img.format-image(ng-src='{{neuron.contents[0].media[0]}}')
-                .leyend-bottom(ellipsis-title="neuron.title", height='50', title="{{::neuron.title}}")
+                .leyend-bottom(ellipsis-title="neuron.title", height='50', title="{{neuron.title}}")
             .col.col-25.neuron(ng-repeat='content in searchesmodel.contents track by $index')
               .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
                 img.format-image(ng-src='{{content.media[0]}}')
-                .leyend-bottom(ellipsis-title="content.title", height='50', title="{{::content.title}}")
+                .leyend-bottom(ellipsis-title="content.title", height='50', title="{{content.title}}")
             ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='1%')
     moi-frame(options="searchesmodel.frameOptions")
   moi-sidebar

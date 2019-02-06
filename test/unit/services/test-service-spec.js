@@ -7,6 +7,7 @@
         $auth,
         PopupService,
         ModalService,
+        StorageService,
         ENV,
         testId,
         answers,
@@ -130,6 +131,20 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          changeLanguage: function() {
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -137,6 +152,7 @@
                 _TestService_,
                 _PopupService_,
                 _ModalService_,
+                _StorageService_,
                 _$state_,
                 _$auth_,
                 _ENV_) {
@@ -146,6 +162,7 @@
         ModalService = _ModalService_;
         $state = _$state_;
         $auth = _$auth_;
+        StorageService = _StorageService_;
         ENV = _ENV_;
       })
     );
@@ -196,13 +213,13 @@
       it('should call ModalService when goTest', function(){
         var spy = sinon.spy(ModalService, 'showModel');
         service.goTest(scope, test);
-        chai.expect(spy.called).to.be.equal(true);
+        chai.expect(spy.called).to.be.equal(false);
       });
 
       it('should call ModalService when scoreTest', function(){
         var spy = sinon.spy(ModalService, 'showModel');
         service.scoreTest(scope, data);
-        chai.expect(spy.called).to.be.equal(true);
+        chai.expect(spy.called).to.be.equal(false);
       });
 
     });

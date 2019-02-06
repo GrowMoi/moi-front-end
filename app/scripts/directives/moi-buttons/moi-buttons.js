@@ -28,6 +28,7 @@
                                   $timeout,
                                   $auth,
                                   TestService,
+                                  StorageService,
                                   UserNotificationsService,
                                   GAService) {
       var vm = this;
@@ -331,11 +332,15 @@
       }
 
       function showNotificationModal() {
-        var dialogOptions = {
-          templateUrl: 'templates/partials/modal-notification-join-app.html',
-          model: dialogContentModel
-        };
-        ModalService.showModel(dialogOptions);
+        StorageService.get().then(function(value){
+          var storage = value.data.storage || {};
+          var templateModal = storage.language === 'es' ? 'templates/partials/modal-notification-join-app.html' : 'templates/partials/modal-notification-join-app-en.html';
+          var dialogOptions = {
+            templateUrl: templateModal,
+            model: dialogContentModel
+          };
+          ModalService.showModel(dialogOptions);
+        });
       }
 
       function modalCallbak() {

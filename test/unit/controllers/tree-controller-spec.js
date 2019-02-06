@@ -13,12 +13,18 @@
       ModalService,
       TestService,
       StorageService,
+      AdvicesPageEn,
       AdvicesPage;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
       module('config', function ($provide) {
         $provide.constant('AdvicesPage', {
+          tree: {
+            messages: 'Test'
+          }
+        });
+        $provide.constant('AdvicesPageEn', {
           tree: {
             messages: 'Test'
           }
@@ -69,6 +75,9 @@
           },
           update: function() {
 
+          },
+          changeLanguage: function() {
+            return null;
           }
         };
       });
@@ -99,6 +108,7 @@
                 _ModalService_,
                 _StorageService_,
                 _TestService_,
+                _AdvicesPageEn_,
                 _AdvicesPage_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
@@ -108,6 +118,7 @@
         StorageService = _StorageService_;
         TestService = _TestService_;
         AdvicesPage = _AdvicesPage_;
+        AdvicesPageEn = _AdvicesPageEn_;
         $auth = {
           user: {
             id: 1,

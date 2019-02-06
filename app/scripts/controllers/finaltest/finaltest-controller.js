@@ -10,6 +10,7 @@
               testData,
               ModalService,
               TreeService,
+              StorageService,
               $timeout,
               ScreenshotService,
               UploadImageService,
@@ -230,36 +231,40 @@
     }
 
     function showCertificate(){
-      var dialogOptions = {
-        templateUrl: 'templates/partials/modal-finish-certificate.html',
-        model: dataReport
-      };
-      ModalService.showModel(dialogOptions);
-      $timeout(function() {
-        var config = {
-          type: 'doughnut',
-          data: {
-            datasets: [{
-              data: dataReport.pieChart.data,
-              backgroundColor: dataReport.pieChart.colors
-            }],
-            labels: dataReport.pieChart.labels
-          },
-          options: {
-            maintainAspectRatio: false,
-            legend: false,
-            tooltips: false,
-            pieceLabel: {
-              render: 'percentage',
-              fontSize: 10,
-              arc: true,
-              fontColor: 'white'
-            }
-          }
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var templateModal = storage.language === 'es' ? 'templates/partials/modal-finish-certificate.html' : 'templates/partials/modal-finish-certificate-en.html';
+        var dialogOptions = {
+          templateUrl: templateModal,
+          model: dataReport
         };
-        var ctx = document.getElementById('chart-area').getContext('2d');
-        vmTest.myDoughnut = new Chart(ctx, config); // jshint ignore:line
-      }, 0);
+        ModalService.showModel(dialogOptions);
+        $timeout(function() {
+          var config = {
+            type: 'doughnut',
+            data: {
+              datasets: [{
+                data: dataReport.pieChart.data,
+                backgroundColor: dataReport.pieChart.colors
+              }],
+              labels: dataReport.pieChart.labels
+            },
+            options: {
+              maintainAspectRatio: false,
+              legend: false,
+              tooltips: false,
+              pieceLabel: {
+                render: 'percentage',
+                fontSize: 10,
+                arc: true,
+                fontColor: 'white'
+              }
+            }
+          };
+          var ctx = document.getElementById('chart-area').getContext('2d');
+          vmTest.myDoughnut = new Chart(ctx, config); // jshint ignore:line
+        }, 0);
+      });
     }
 
   });

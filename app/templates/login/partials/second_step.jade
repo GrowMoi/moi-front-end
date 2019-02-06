@@ -11,8 +11,8 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
         input(
           ng-disabled="!vmLogin.isChrome",
           type='submit',
-          value="{{ ::'login.login' | translate }}"
+          value="{{ 'login.login' | translate }}"
         ).button
   a.legend-browser(ng-if='!vmLogin.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
-    | {{ ::'browser.chrome' | translate }}
+    | {{ 'browser.chrome' | translate }}
 

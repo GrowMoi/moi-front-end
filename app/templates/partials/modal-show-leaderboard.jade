@@ -1,11 +1,11 @@
 .modal.transparent
   ion-pane.transparent
     .modal-leaderboard
-      .btn-close-modal-leaderboard(ng-click="::model.closeModal()")
+      .btn-close-modal-leaderboard(ng-click="model.closeModal()")
       .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
         .infinite-scroll(infinite-scroll='model.nextPage()', infinite-scroll-container="'.content-leaderboard'", infinite-scroll-disabled='model.enableInfiniteScroll')
           .user-item.row(ng-repeat="user in model.leaders track by $index"
-                        ng-class="{'user-selected': user.user_id === model.user.user_id}" tooltip-moi="Ver Perfil"
+                        ng-class="{'user-selected': user.user_id === model.user.user_id}" tooltip-moi="{{ 'tooltip.perfil' | translate }}"
                         tooltip-position="up")
             .user-position.content-center.col-10
               | {{$index+1}}.
