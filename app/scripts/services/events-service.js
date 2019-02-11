@@ -5,12 +5,59 @@
       .module('moi.services')
       .factory('EventsService', EventsService);
 
-    function EventsService($q) {
+    function EventsService($http, ENV, PopupService, $q) {
       var service = {
-        getEvents: getEvents
+        getEvents: getEvents, // cambiar por getDailyEvents para probar con el backend
+        getDailyEvents: getDailyEvents,
+        getEventDetails: getEventDetails,
+        takeEvent: takeEvent
       };
+      var popupOptions = { title: 'Error'};
 
       return service;
+
+      function getDailyEvents() {
+        return $http({
+          method: 'GET',
+          url: ENV.apiHost + '/api/events/today'
+        }).then(function success(res) {
+          return res;
+        }, function error(err) {
+          if(err.status !== 404){
+            popupOptions.content = err.statusText;
+            PopupService.showModel('alert', popupOptions);
+          }
+        });
+      }
+
+      function takeEvent(eventId) {
+        return $http({
+          method: 'POST',
+          url: ENV.apiHost + '/api/users/events/' + eventId + '/take',
+          data: {}
+        }).then(function success(res) {
+          return res;
+        }, function error(err) {
+          if(err.status !== 404){
+            popupOptions.content = err.statusText;
+            PopupService.showModel('alert', popupOptions);
+          }
+        });
+      }
+
+      function getEventDetails(eventId) {
+        return $http({
+          method: 'GET',
+          url: ENV.apiHost + '/api/events/' + eventId
+        }).then(function success(res) {
+          return res;
+        }, function error(err) {
+          if(err.status !== 404){
+            popupOptions.content = err.statusText;
+            PopupService.showModel('alert', popupOptions);
+          }
+        });
+      }
 
       function getEvents() {
         var deferred = $q.defer();
