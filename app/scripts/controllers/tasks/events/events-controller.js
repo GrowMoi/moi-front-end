@@ -12,12 +12,12 @@
     function initData() {
       eventsModel.noMoreItemsAvailable = true;
       eventsModel.currentPage = 1;
-      EventsService.getEvents(1).then(resolveEvents);
+      EventsService.getDailyEvents().then(resolveEvents);
     }
 
     function resolveEvents(data) {
       eventsModel.currentPage += 1;
-      eventsModel.events = data.data;
+      eventsModel.events = data.events;
     }
 
     function showSetEvents(){
@@ -30,9 +30,9 @@
 
       //map to get neurons
       angular.forEach(eventsModel.events, function(event){
-        angular.forEach(event.neurons, function(neuron){
-          var color = NeuronsOptions[neuron.id];
-          neuron.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
+        angular.forEach(event.contents, function(element){
+          var color = NeuronsOptions[element.content_id]; //jshint ignore:line
+          element.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
         });
       });
 

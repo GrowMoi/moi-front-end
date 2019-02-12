@@ -9,7 +9,7 @@
           | {{::model.data.description}}
         img.event-image(ng-src="{{::model.data.image}}")
         .neurons-list
-          .neuron(ng-repeat='neuron in model.data.neurons')
+          .neuron(ng-repeat='content in model.data.contents')
             span.neuron-title
-              | {{::neuron.title}}
-            img.neuron-image(ng-src="{{::neuron.image}}")
+              | {{::content.neuron}}
+            img.neuron-image(ng-src="{{::content.image}}")
