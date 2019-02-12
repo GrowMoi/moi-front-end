@@ -44,8 +44,10 @@
       baseTree: 'base-tree'
     };
     //init nofitications in passive time
-    if(!localStorage.getItem('advicesOn')){
+    if(!localStorage.getItem('advicesOn') && $auth.user.level < 6){
       localStorage.setItem('advicesOn', 'true');
+    }else {
+      localStorage.setItem('advicesOn', 'false');
     }
 
     var videos = VIDEOS.paths;
