@@ -7,7 +7,7 @@
 
   .modal-event-details {
     width: 25rem;
-    height: 30rem;
+    height: 100%;
     background-image: url(../images/events/eventDetails.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -19,7 +19,7 @@
     .btn-close-modal {
       position: absolute;
       right: 18.5rem;
-      top: 2rem;
+      top: 0;
       width: 3rem;
       height: 3rem;
       background-image: url(../images/events/closeBtn.png);
@@ -33,6 +33,7 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
+      width: 95%;
 
       .event-image {
         width: 5rem;
@@ -82,6 +83,24 @@
               content: none;
             }
           }
+        }
+      }
+
+      .join-event {
+        align-items: center;
+        background-image: url(../images/events/unirse_btn.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        cursor: pointer;
+        display: flex;
+        height: 2rem;
+        justify-content: center;
+        width: 4rem;
+
+        &.disabled {
+          filter: brightness(0.6) grayscale(0.1) opacity(0.3);
+          pointer-events: none;
+          cursor: default;
         }
       }
     }

@@ -172,7 +172,10 @@
         'recomendations': 'Recommendations',
         'tasks': 'Tasks',
         'notifications': 'Notifications',
-        'favorites': 'Favorites'
+        'favorites': 'Favorites',
+        'events': {
+          'join': 'Join'
+        }
       },
       browser: {
         'chrome':  'For a better experience, use this app with Google Chrome'
@@ -354,7 +357,10 @@
         'recomendations': 'Recomendaciones',
         'tasks': 'Tareas',
         'notifications': 'Notificaciones',
-        'favorites': 'Favoritos'
+        'favorites': 'Favoritos',
+        'events': {
+          'join': 'Unete'
+        }
       },
       browser: {
         'chrome': 'Para una mejor experiencia, utilice esta página con Google Chrome'
