@@ -2,10 +2,13 @@
   ion-pane.transparent
     .modal-event-list
       .btn-close-modal(ng-click="::model.closeModal()")
+      h3.title
+        | {{ ::'tasks.events.title' | translate}}
+        | ({{ ::'tasks.events.week.' + model.title | translate}})
       .event-list(ng-if="model.hasEvents")
         .event(ng-class="{disabled: !event.is_available}"
               ng-repeat='event in model.events track by $index'
-              ng-click="model.showEventDetails($index)")
+              ng-click="model.showEventDetails($index, model.events)")
           img.event-image(ng-src="{{::event.image}}")
           h4.event-title
             | {{::event.title}}

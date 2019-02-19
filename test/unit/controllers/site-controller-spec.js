@@ -134,6 +134,13 @@
           }
         };
       });
+      $provide.factory('EventsService', function(){
+        return {
+          showDailyEvents: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(

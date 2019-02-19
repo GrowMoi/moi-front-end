@@ -27,6 +27,12 @@
       cursor: pointer;
     }
 
+    .title {
+      position: absolute;
+      text-align: center;
+      top: 2%;
+    }
+
     .event-list {
       display: flex;
       width: 95%;

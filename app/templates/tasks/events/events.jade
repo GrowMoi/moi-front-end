@@ -1,4 +1,4 @@
 ion-content.content_tasks
   .row.note(ng-repeat='(key, value) in eventsModel.setEvents')
-    .text-notes(ng-click="eventsModel.showSetEvents(value)")
-      | {{key}}
+    .text-notes(ng-click="eventsModel.showSetEvents(key, value)")
+      | {{ ::'tasks.events.week.' + key | translate}}

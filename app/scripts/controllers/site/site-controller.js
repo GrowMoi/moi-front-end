@@ -26,12 +26,14 @@
                           AdvicesPage,
                           AdvicesPageEn,
                           ModalService,
-                          TooltipsService) {
+                          TooltipsService,
+                          EventsService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
         callApiSaveImage = 0,
-        isShowingPassiveModal = false;
+        isShowingPassiveModal = false,
+        isShowingEvents = false;
 
     UserNotificationsService.initialize();
 
@@ -169,6 +171,13 @@
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
+
+      //load daily events
+      if(!isShowingEvents && toState.name !== 'tasks.events'){
+        EventsService.showDailyEvents();
+        isShowingEvents = true;
+      }
+
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.advicePage = AdvicesPage[toState.name];

@@ -175,7 +175,18 @@
         'favorites': 'Favorites',
         'events': {
           'join': 'Join',
-          'hasEvents': 'Dont have events this day'
+          'hasEvents': 'Dont have events this day',
+          'title': 'Events',
+          'week': {
+            'Sunday': 'Sunday',
+            'Monday': 'Monday',
+            'Tuesday': 'Tuesday',
+            'Wednesday': 'Wednesday',
+            'Thursday': 'Thursday',
+            'Friday': 'Friday',
+            'Saturday': 'Saturday',
+            'Today': 'Today'
+          }
         }
       },
       browser: {
@@ -361,7 +372,18 @@
         'favorites': 'Favoritos',
         'events': {
           'join': 'Unete',
-          'hasEvents': 'No tiene eventos este día'
+          'hasEvents': 'No tiene eventos este día',
+          'title': 'Eventos',
+          'week': {
+            'Sunday': 'Domingo',
+            'Monday': 'Lunes',
+            'Tuesday': 'Martes',
+            'Wednesday': 'Miércoles',
+            'Thursday': 'Jueves',
+            'Friday': 'Viernes',
+            'Saturday': 'Sábado',
+            'Today': 'Hoy'
+          }
         }
       },
       browser: {
