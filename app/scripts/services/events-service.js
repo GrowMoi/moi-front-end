@@ -7,6 +7,7 @@
 
     function EventsService($http, ENV, PopupService) {
       var service = {
+        getWeeklyEvents: getWeeklyEvents,
         getDailyEvents: getDailyEvents,
         getEventDetails: getEventDetails,
         takeEvent: takeEvent
@@ -14,6 +15,20 @@
       var popupOptions = { title: 'Error'};
 
       return service;
+
+      function getWeeklyEvents() {
+        return $http({
+          method: 'GET',
+          url: ENV.apiHost + '/api/events/week'
+        }).then(function success(res) {
+          return res.data;
+        }, function error(err) {
+          if (err.status !== 404) {
+            popupOptions.content = err.statusText;
+            PopupService.showModel('alert', popupOptions);
+          }
+        });
+      }
 
       function getDailyEvents() {
         return $http({

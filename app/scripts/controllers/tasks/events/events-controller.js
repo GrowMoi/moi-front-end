@@ -8,37 +8,32 @@
           model: {
             joinEvent: joinEvent
           }
-        };
-    eventsModel.noMoreItemsAvailable = true;
-    eventsModel.currentPage = 1;
+        },
+        currentEvents = [];
     eventsModel.showSetEvents = showSetEvents;
 
     initData();
 
     function initData() {
-      eventsModel.noMoreItemsAvailable = true;
-      eventsModel.currentPage = 1;
-      EventsService.getDailyEvents().then(resolveEvents);
+      EventsService.getWeeklyEvents().then(function(resp){
+        eventsModel.setEvents = resp;
+      });
     }
 
-    function resolveEvents(data) {
-      eventsModel.currentPage += 1;
-      //just show three first events
-      eventsModel.events = data.events.splice(0,3);
-    }
-
-    function showSetEvents(){
+    function showSetEvents(events){
       var NEURON_COLOR = {
         yellow: 'images/tree/nodos/nodo-amarillo.png',
         blue: 'images/tree/nodos/nodo-azul.png',
         red: 'images/tree/nodos/nodo-fuccia.png',
         green: 'images/tree/nodos/nodo-verde.png'
       };
-
+      //just show three first events
+      currentEvents = angular.copy(events);
+      currentEvents = currentEvents.splice(0,3);
       //map to get neurons
-      angular.forEach(eventsModel.events, function(event){
+      angular.forEach(currentEvents, function(event){
         //just show four first content
-        event.contents = event.contents.splice(0,4);
+        event.contents = (event && event.contents) ? event.contents.splice(0,4) : [];
         angular.forEach(event.contents, function(element){
           var color = NeuronsOptions[element.content_id]; //jshint ignore:line
           element.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
@@ -46,7 +41,8 @@
       });
 
       var modelData = {
-        events: eventsModel.events,
+        events: currentEvents,
+        hasEvents: currentEvents.length > 0,
         showEventDetails: showEventDetails
       };
 
@@ -57,14 +53,14 @@
     }
 
     function showEventDetails(index){
-      modelEvent.model.data = eventsModel.events[index];
+      modelEvent.model.data = currentEvents[index];
       ModalService.showModel(modelEvent);
     }
 
     function joinEvent(event) {
       EventsService.takeEvent(event.id).then(function(){
         modelEvent.model.closeModal();
-        modelEvent.model.data.isAvailable = !event.isAvailable;
+        modelEvent.model.data.is_available = !event.is_available; //jshint ignore:line
       });
     }
   });

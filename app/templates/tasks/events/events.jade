@@ -1,9 +1,4 @@
 ion-content.content_tasks
-  .row.note(ng-repeat='event in eventsModel.events')
-    .text-notes(ng-click="eventsModel.showSetEvents()")
-      | {{event.title}}
-      br
-      | {{event.event_date | date:'dd-MM-yyyy'}}
-  ion-infinite-scroll(ng-if='!eventsModel.noMoreItemsAvailable'
-                      on-infinite='eventsModel.loadMoreEvents()'
-                      distance='10%')
+  .row.note(ng-repeat='(key, value) in eventsModel.setEvents')
+    .text-notes(ng-click="eventsModel.showSetEvents(value)")
+      | {{key}}

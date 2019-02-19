@@ -13,6 +13,6 @@
             span.neuron-title
               | {{::content.neuron}}
             img.neuron-image(ng-src="{{::content.image}}")
-        .join-event(ng-class="{disabled: model.data.isAvailable}"
+        .join-event(ng-class="{disabled: !model.data.is_available}"
                     ng-click="model.joinEvent(model.data)")
           | {{ ::'tasks.events.join' | translate}}

@@ -174,7 +174,8 @@
         'notifications': 'Notifications',
         'favorites': 'Favorites',
         'events': {
-          'join': 'Join'
+          'join': 'Join',
+          'hasEvents': 'Dont have events this day'
         }
       },
       browser: {
@@ -359,7 +360,8 @@
         'notifications': 'Notificaciones',
         'favorites': 'Favoritos',
         'events': {
-          'join': 'Unete'
+          'join': 'Unete',
+          'hasEvents': 'No tiene eventos este día'
         }
       },
       browser: {
