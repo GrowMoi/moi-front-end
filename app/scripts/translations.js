@@ -175,8 +175,9 @@
         'favorites': 'Favorites',
         'events': {
           'join': 'Join',
-          'hasEvents': 'Dont have events this day',
+          'hasEvents': 'Dont have events',
           'title': 'Events',
+          'subtitle': 'Events of week',
           'week': {
             'Sunday': 'Sunday',
             'Monday': 'Monday',
@@ -372,8 +373,9 @@
         'favorites': 'Favoritos',
         'events': {
           'join': 'Unete',
-          'hasEvents': 'No tiene eventos este día',
+          'hasEvents': 'No tiene eventos',
           'title': 'Eventos',
+          'subtitle': 'Eventos de la semana',
           'week': {
             'Sunday': 'Domingo',
             'Monday': 'Lunes',
