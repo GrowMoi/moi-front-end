@@ -30,7 +30,8 @@
                                   TestService,
                                   StorageService,
                                   UserNotificationsService,
-                                  GAService) {
+                                  GAService,
+                                  PopupService) {
       var vm = this;
       var language = $auth.user.language;
       var messageModal = language === 'es' ? 'Para aprender este concepto, aún debes superar algunos conceptos previos' : 'To learn this concept, you still have to overcome some previous concepts';
@@ -268,6 +269,10 @@
         ContentService.readContent(vm.content).then(function(response){
           var data = response.data,
               page = $state.current.name;
+          if(data.event && data.event.completed){
+            var popupOptions = { title: 'Hey', content: 'Haz completado un test.'};
+            PopupService.showModel('alert', popupOptions);
+          }
           if (page === 'neuron') {
             $rootScope.$broadcast('neuron:remove-content');
           }

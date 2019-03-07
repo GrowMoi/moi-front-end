@@ -26,8 +26,8 @@
       animate-sprite(options="vm.addFavoritesOptions")
 
   .btn-learn-wrapper(ng-if="vm.buttons.learn" ng-class="{disabled: vm.emptyContent}")
-    .btn-learn(ng-if="!vm.neuron.neuron_can_read" ng-click="vm.showModalAction()")
-    .btn-learn-gif(ng-if="vm.neuron.neuron_can_read" ng-class="{disabled: !vm.gifLearnActive}")
+    .btn-learn(ng-if="!vm.neuron.belongs_to_event || !vm.neuron.neuron_can_read" ng-click="vm.showModalAction()")
+    .btn-learn-gif(ng-if="vm.neuron.belongs_to_event || vm.neuron.neuron_can_read" ng-class="{disabled: !vm.gifLearnActive}")
       .btn-wrapper
         animate-sprite(options="vm.learnOptions")
         animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'learn'"
