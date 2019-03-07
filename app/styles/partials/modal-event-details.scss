@@ -13,12 +13,13 @@
     background-size: 100% 100%;
     padding-bottom: 15px;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
 
     .btn-close-modal {
       position: absolute;
-      right: 18.5rem;
+      right: 0;
       top: 0;
       width: 3rem;
       height: 3rem;
@@ -42,6 +43,8 @@
 
       .event-description {
         text-align: justify;
+        word-break: break-all;
+        padding: 3%;
       }
 
       .neurons-list {

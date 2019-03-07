@@ -54,12 +54,6 @@
         background: #f9dfb6;
         cursor: pointer;
 
-        &.disabled {
-          filter: brightness(0.6) grayscale(0.1) opacity(0.3);
-          pointer-events: none;
-          cursor: default;
-        }
-
         .event-image {
           width: 40%;
           height: 40%;

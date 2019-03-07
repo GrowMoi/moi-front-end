@@ -4,7 +4,7 @@
       .btn-close-modal(ng-click="::model.closeModal()")
       h3.title
         | {{ ::'tasks.events.subtitle' | translate }}
-        | ({{::model.title}})
+        | ({{::model.title | translate }})
       .event-list(ng-if="model.hasEvents")
         .event(ng-class="{disabled: !event.is_available}"
               ng-repeat='event in model.events track by $index'

@@ -9,7 +9,6 @@
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
-        takeEvent: takeEvent,
         showDailyEvents: showDailyEvents,
         showSetEvents: showSetEvents
       };
@@ -84,7 +83,7 @@
 
       function showDailyEvents() {
         getDailyEvents().then(function(resp){
-          showSetEvents('Today', resp.events);
+          showSetEvents('tasks.events.in_progress', resp);
         });
       }
 
@@ -95,9 +94,7 @@
           red: 'images/tree/nodos/nodo-fuccia.png',
           green: 'images/tree/nodos/nodo-verde.png'
         };
-        //just show three first events
-        currentEvents = angular.copy(events);
-        currentEvents = currentEvents.splice(0,3);
+        currentEvents = events;
         //map to get neurons
         angular.forEach(currentEvents, function(event){
           //just show four first content
@@ -127,7 +124,7 @@
       }
 
       function joinEvent(event) {
-        EventsService.takeEvent(event.id).then(function(){
+        takeEvent(event.id).then(function(){
           modelEvent.model.closeModal();
           modelEvent.model.data.is_available = !event.is_available; //jshint ignore:line
         });

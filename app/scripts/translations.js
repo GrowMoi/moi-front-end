@@ -178,16 +178,7 @@
           'hasEvents': 'Dont have events',
           'title': 'Events',
           'subtitle': 'Events of week',
-          'week': {
-            'Sunday': 'Sunday',
-            'Monday': 'Monday',
-            'Tuesday': 'Tuesday',
-            'Wednesday': 'Wednesday',
-            'Thursday': 'Thursday',
-            'Friday': 'Friday',
-            'Saturday': 'Saturday',
-            'Today': 'Today'
-          }
+          'in_progress': 'In Progress'
         }
       },
       browser: {
@@ -376,16 +367,7 @@
           'hasEvents': 'No tiene eventos',
           'title': 'Eventos',
           'subtitle': 'Eventos de la semana',
-          'week': {
-            'Sunday': 'Domingo',
-            'Monday': 'Lunes',
-            'Tuesday': 'Martes',
-            'Wednesday': 'Miércoles',
-            'Thursday': 'Jueves',
-            'Friday': 'Viernes',
-            'Saturday': 'Sábado',
-            'Today': 'Hoy'
-          }
+          'in_progress': 'En Curso'
         }
       },
       browser: {
