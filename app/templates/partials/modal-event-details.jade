@@ -8,7 +8,7 @@
         img.event-image(ng-src="{{::model.data.image}}")
         span.event-description
           | {{::model.data.description}}
-        .join-event(ng-if="model.data.is_available"
+        .join-event(ng-class="{disabled: !model.data.is_available}"
                     ng-click="model.joinEvent(model.data)")
           | {{ ::'tasks.events.join' | translate}}
         .neurons-list
