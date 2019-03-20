@@ -110,7 +110,8 @@
     };
 
     vm.showDeleteIcon = function(item) {
-      return vm.options.showDeleteIcon && item.learnt;
+      /*jshint camelcase: false */
+      return vm.options.showDeleteIcon && item.learnt && !item.belongs_to_event;
     };
   }
 })();

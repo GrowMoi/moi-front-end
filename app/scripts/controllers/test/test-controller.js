@@ -115,6 +115,15 @@
         TestService.scoreTest($scope, data).then(function() {
           var recommendations = res.data.recommendations || [];
           var achievements = res.data.achievements || [];
+
+          if(res.data.event && res.data.event.completed){
+            var achievement = {
+              name: 'el evento ' + res.data.event.title,
+              bagde: res.data.event.image
+            };
+            showUserAchievement(achievement);
+          }
+
           if (recommendations.length > 0) {
             showModalAchievement(recommendations);
           }
@@ -196,7 +205,7 @@
           btnRight: btnRightLabel,
           btnLeft: 'Ok'
         },
-        image: MediaAchievements[achievement.number].settings.badge,
+        image: achievement.bagde || MediaAchievements[achievement.number].settings.badge,
         addCongratulations: true
       };
 

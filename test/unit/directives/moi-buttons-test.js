@@ -16,8 +16,7 @@
       controller,
       modalSpy,
       UserNotificationsService,
-      StorageService,
-      PopupService;
+      StorageService;
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
@@ -121,13 +120,6 @@
           }
         };
       });
-      $provide.factory('PopupService', function(){
-        return {
-          showModel: function(){
-            return null;
-          }
-        };
-      });
     }));
 
     beforeEach(inject(
@@ -141,8 +133,7 @@
         _$state_,
         _UserNotificationsService_,
         _$auth_,
-        _StorageService_,
-        _PopupService_) {
+        _StorageService_) {
 
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -156,7 +147,6 @@
         UserNotificationsService = _UserNotificationsService_;
         $auth = _$auth_;
         StorageService = _StorageService_;
-        PopupService = _PopupService_;
     }));
 
     beforeEach(function(){

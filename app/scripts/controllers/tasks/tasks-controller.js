@@ -39,7 +39,7 @@
       {
         field:'contents',
         name: 'Tareas',
-        image: 'images/notifications_tasks.png',
+        image: 'images/list_tasks.png',
         selected: false,
         state: 'tasks.contents'
       },
@@ -60,7 +60,7 @@
       {
         field:'events',
         name: 'Eventos',
-        image: 'images/recomendations_tasks.png',
+        image: 'images/events_tasks.png',
         selected: false,
         state: 'tasks.events'
       }

@@ -30,8 +30,7 @@
                                   TestService,
                                   StorageService,
                                   UserNotificationsService,
-                                  GAService,
-                                  PopupService) {
+                                  GAService) {
       var vm = this;
       var language = $auth.user.language;
       var messageModal = language === 'es' ? 'Para aprender este concepto, aún debes superar algunos conceptos previos' : 'To learn this concept, you still have to overcome some previous concepts';
@@ -60,6 +59,7 @@
       function init(){
         var options = vm.options || {};
         vm.neuron = options.neuron || {};
+        vm.neuron.neuron_can_read = (vm.neuron.belongs_to_event) ? false : vm.neuron.neuron_can_read;
         vm.content = options.content || {};
         vm.buttons = options.buttons || {};
         vm.readOnly = !!options.readOnly;
@@ -269,10 +269,6 @@
         ContentService.readContent(vm.content).then(function(response){
           var data = response.data,
               page = $state.current.name;
-          if(data.event && data.event.completed){
-            var popupOptions = { title: 'Hey', content: 'Haz completado un test.'};
-            PopupService.showModel('alert', popupOptions);
-          }
           if (page === 'neuron') {
             $rootScope.$broadcast('neuron:remove-content');
           }
