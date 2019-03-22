@@ -7,6 +7,7 @@
                                                 MediaAchievements,
                                                 HoverAnimationService,
                                                 ModalService,
+                                                StorageService,
                                                 TestService,
                                                 $auth) {
       var vmInv = this;
@@ -22,9 +23,9 @@
         }
       };
       vmInv.showInventory = true;
-      vmInv.finishedAnimation = finishedAnimation;
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
+      var $backgroundSound;
       var achievements = data.achievements;
       var desactiveAchievements = [
   	      {
@@ -98,46 +99,121 @@
             settings:{badge:'images/inventory/badges/item10.png'}
           }
       ];
+      var desactiveAchievementsEn = [
+        {
+          desactive: true,
+          description: 'Learn your first 4 contents to win this item',
+          name: 'Learned 4 contents',
+          number:1,
+          settings:{badge:'images/inventory/badges/item1.png'}
+        },
+        {
+          desactive: true,
+          description: 'Learn 20 yellow contents to win this item',
+          name: 'Learned yellow contents',
+          number:2,
+          settings:{badge:'images/inventory/badges/item2.png'}
+        },
+        {
+          desactive: true,
+          description: 'Learn 20 red contents to win this item,',
+          name: 'Learned red contents',
+          number:3,
+          settings:{badge:'images/inventory/badges/item3.png'}
+        },
+        {
+          desactive: true,
+          description: 'Learn 20 blue contents to win this item',
+          name: 'Learned blue contents',
+          number:4,
+          settings:{badge:'images/inventory/badges/item4.png'}
+        },
+        {
+          desactive: true,
+          description: 'Learn 20 green contents to win this item',
+          name: 'Learned green contents',
+          number:5,
+          settings:{badge:'images/inventory/badges/item9.png'}
+        },
+        {
+          desactive: true,
+          description: 'Deploy 25 tests to win this item',
+          name: 'Deploy 25 tests',
+          number:6,
+          settings:{badge:'images/inventory/badges/item5.png'}
+        },
+        {
+          desactive: true,
+          description: 'Learn at least one content in each fruit in the Moi tree to win this item',
+          name: 'One content in each fruit',
+          number:7,
+          settings:{badge:'images/inventory/badges/item7.png'}
+        },
+        {
+          desactive: true,
+          description: 'Learn every content in the Moi tree to win this item',
+          name: 'Learn every content in the tree',
+          number:8,
+          settings:{badge:'images/inventory/badges/item8.png'}
+        },
+        {
+          desactive: true,
+          description: 'Finish 4 tests without mistakes to win this item',
+          name: 'Four tests',
+          number:9,
+          settings:{badge:'images/inventory/badges/item6.png'}
+        },
+        {
+          desactive: true,
+          description: 'Reach the last level of the tree to win this item',
+          name: 'Final test',
+          number:10,
+          settings:{badge:'images/inventory/badges/item10.png'}
+        }
+      ];
       var arr1=[];
-      desactiveAchievements.map(function(obj){
-        var findAchievement = achievements.find(function(acc){
-          return obj.number === acc.number;
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var arrAchievements = storage.language === 'es' ? desactiveAchievements : desactiveAchievementsEn;
+        arrAchievements.map(function(obj){
+          var findAchievement = achievements.find(function(acc){
+            return obj.number === acc.number;
+          });
+          if (!findAchievement) {
+            arr1.push(obj);
+          }
         });
-        if (!findAchievement) {
-          arr1.push(obj);
+        arr1.map(function(obj){
+          achievements.push(obj);
+        });
+        vmInv.achievements = achievements;
+        vmInv.increaseSize = HoverAnimationService.increaseSize;
+        vmInv.cssOptions = {
+          styles: []
+        };
+        $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+
+        setMediaIntoAchievements(vmInv.achievements);
+        vmInv.finishedAnimation= function(){
+          vmInv.showInventory = true;
+          $backgroundSound[0].play();
+          $backgroundSound[0].autoplay = true;
+        };
+        function setMediaIntoAchievements(achievements){
+          if(achievements.length > 0){
+            angular.forEach(achievements, function(achievement, index){
+              if(!achievement.desactive) {
+                achievements[index].settings = MediaAchievements[achievement.number].settings;
+              }
+            });
+          }
         }
       });
-      arr1.map(function(obj){
-        achievements.push(obj);
-      });
 
-      vmInv.achievements = achievements;
-      vmInv.increaseSize = HoverAnimationService.increaseSize;
-      vmInv.cssOptions = {
-        styles: []
-      };
       vmInv.frameOptions = {
         type: 'content_max',
         showBackButton: true
       };
-      var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
-
-      setMediaIntoAchievements(vmInv.achievements);
-      function finishedAnimation(){
-        vmInv.showInventory = true;
-        $backgroundSound[0].play();
-        $backgroundSound[0].autoplay = true;
-      }
-
-      function setMediaIntoAchievements(achievements){
-        if(achievements.length > 0){
-          angular.forEach(achievements, function(achievement, index){
-            if(!achievement.desactive) {
-              achievements[index].settings = MediaAchievements[achievement.number].settings;
-            }
-          });
-        }
-      }
 
       function activateAchievement(achievement){
         if(achievement.settings.theme){

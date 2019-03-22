@@ -37,11 +37,14 @@ options directive
     return directive;
   }
 
-  function animateController($window, $scope, $q) {
+  function animateController($window, $scope, $q, StorageService) {
 
     var vm = this;
     vm.activeIdle = false;
-
+    StorageService.get().then(function(value){
+      vm.storage = value.data.storage || {};
+      vm.tooltip = vm.storage.language === 'es' ? vm.options.name : vm.options.nameEn;
+    });
     var options,
       src,
       frameWidth,
@@ -97,7 +100,6 @@ options directive
         'background-size': initialSize,
         'background-repeat': 'no-repeat'
       };
-
       if (options.onRegisterApi) {
         var api = createPublicApi();
         options.onRegisterApi(api);

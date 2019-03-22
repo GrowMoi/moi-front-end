@@ -7,6 +7,7 @@
         $scope,
         dependencies,
         SettingsService,
+        StorageService,
         dragularService,
         ENV,
         $state,
@@ -23,6 +24,20 @@
                 return null;
               }
             };
+          }
+        };
+      });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          changeLanguage: function() {
+            return null;
           }
         };
       });
@@ -63,6 +78,7 @@
       function (_$controller_,
                 _$rootScope_,
                 _ENV_,
+                _StorageService_,
                 _$state_,
                 _SettingsService_,
                 _dragularService_) {
@@ -73,11 +89,13 @@
         $state = _$state_;
         SettingsService = _SettingsService_;
         dragularService = _dragularService_;
+        StorageService = _StorageService_;
 
         dependencies = {
           SettingsService: SettingsService,
           $scope: $scope,
           dragularService: dragularService,
+          StorageService: StorageService,
           user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
         };
 

@@ -13,6 +13,7 @@
                                             ModalService,
                                             UserService,
                                             SocialService,
+                                            StorageService,
                                             GAService) {
 
     var vmProfile = this,
@@ -46,27 +47,50 @@
       },
       shareCallback: shareProfile
     };
-
-    vmProfile.tabs = [
-      {
-        field:'lasts-contents',
-        name: 'Ultimos 4',
-        partial: 'templates/profile/partials/lasts-contents.html',
-        selected: false
-      },
-      {
-        field:'awards',
-        name: 'Logros',
-        partial: 'templates/profile/partials/awards.html',
-        selected: false
-      },
-      {
-        field:'certificates',
-        name: 'Premios',
-        partial: 'templates/profile/partials/certificates.html',
-        selected: false
-      }
-    ];
+    StorageService.get().then(function(value){
+      var storage = value.data.storage || {};
+      vmProfile.tabs = storage.language === 'es' ?
+      [
+        {
+          field:'lasts-contents',
+          name: 'Ultimos 4',
+          partial: 'templates/profile/partials/lasts-contents.html',
+          selected: false
+        },
+        {
+          field:'awards',
+          name: 'Logros',
+          partial: 'templates/profile/partials/awards.html',
+          selected: false
+        },
+        {
+          field:'certificates',
+          name: 'Premios',
+          partial: 'templates/profile/partials/certificates.html',
+          selected: false
+        }
+      ]:
+      [
+        {
+          field:'lasts-contents',
+          name: 'Lasts 4',
+          partial: 'templates/profile/partials/lasts-contents.html',
+          selected: false
+        },
+        {
+          field:'awards',
+          name: 'Awards',
+          partial: 'templates/profile/partials/awards.html',
+          selected: false
+        },
+        {
+          field:'certificates',
+          name: 'Certificates',
+          partial: 'templates/profile/partials/certificates.html',
+          selected: false
+        }
+      ];
+    });
     vmProfile.goToTree = goToTree;
     vmProfile.changeTab = function(field) {
       angular.forEach(vmProfile.tabs, function(tab) {
@@ -157,25 +181,38 @@
     }
 
     function shareProfile() {
-      var data = {
-        title: 'Mira todos mis avances en mi perfil Moi',
-        description: 'Conoce todo mi progreso y empieza a crecer tú también con Moi Aprendizaje Social'
-      };
-      SocialService.showModal(data);
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var data = storage.language === 'es' ?
+        {
+          title: 'Mira todos mis avances en mi perfil Moi',
+          description: 'Conoce todo mi progreso y empieza a crecer tú también con Moi Aprendizaje Social'
+        } :
+        {
+          title: 'See all my progress in my profile Moi',
+          description: 'Know all my progress and start to grow you too with Moi Social Learning'
+        };
+        SocialService.showModal(data);
+      });
     }
 
     function showCertificate(url_certificate){ //jshint ignore:line
-      var dialogOptions = {
-        templateUrl: 'templates/partials/modal-finish-certificate.html',
-        model: {
-          certificate: url_certificate, //jshint ignore:line
-          sharedCertificate: sharedCertificate
-        }
-      };
-      dialogOptions.model.close = function(){
-        dialogOptions.model.closeModal();
-      };
-      ModalService.showModel(dialogOptions);
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var templateModal = storage.language === 'es' ? 'templates/partials/modal-finish-certificate.html' : 'templates/partials/modal-finish-certificate-en.html';
+        var dialogOptions = {
+          templateUrl: templateModal,
+          model: {
+            /*jshint camelcase: false */
+            certificate: url_certificate,
+            sharedCertificate: sharedCertificate
+          }
+        };
+        dialogOptions.model.close = function(){
+          dialogOptions.model.closeModal();
+        };
+        ModalService.showModel(dialogOptions);
+      });
     }
 
     function loadMoreCertificates() {
@@ -191,13 +228,23 @@
     }
 
     function sharedCertificate(image_url){//jshint ignore:line
-      var data = {
-        title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
-        description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
-        image_url: image_url, //jshint ignore:line
-        publicUrl: image_url //jshint ignore:line
-      };
-      SocialService.showModal(data);
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var data = storage.language === 'es' ?
+        {
+          title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
+          description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
+          image_url: image_url, //jshint ignore:line
+          publicUrl: image_url //jshint ignore:line
+        } :
+        {
+          title: 'See everything I learned playing Moi Social Learning',
+          description: 'Get school credit for your performance with Moi Social Learning',
+          image_url: image_url, //jshint ignore:line
+          publicUrl: image_url //jshint ignore:line
+        };
+        SocialService.showModal(data);
+      });
     }
 
     function goToTree() {

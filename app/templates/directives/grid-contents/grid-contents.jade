@@ -19,7 +19,7 @@
       .leyend-bottom-grid(ng-class="[vm.options.theme, {'moi_theme': vm.options.isMoitheme}]"
                           ellipsis-title="content.title"
                           height='95'
-                          title="{{::content.title}}")
+                          title="{{content.title}}")
       img.favorite(ng-if="content.favorite" src="images/estrellita.png")
       .overlay(ng-if="vm.activeIdle && content.animated")
         animate-sprite(options="vm.overlayOptions")

@@ -5,7 +5,7 @@ ion-view.tasks(view-title='Tasks')
     .frame.panel-tasks
       .frame-container
         .content-title
-          | {{ ::'tasks.my_tasks' | translate }}
+          | {{ 'tasks.my_tasks' | translate }}
         .divider-line
         .row.content-tasks
           .col-50.tasks-tabs
@@ -16,7 +16,7 @@ ion-view.tasks(view-title='Tasks')
                           ui-sref="{{tab.state}}")
                   img(ng-src="{{tab.image}}")
                   span
-                    | {{::tab.name}}
+                    | {{tab.name}}
                   .counter-badget(ng-if="tab.field === 'notifications' && tasksmodel.totalNotifications")
                     | {{tasksmodel.totalNotifications}}
                   .counter-badget(ng-if="tab.field === 'recommendations' && tasksmodel.totalRecommendationContents")

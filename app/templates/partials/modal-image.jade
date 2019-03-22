@@ -1,10 +1,10 @@
 .modal.transparent
   ion-pane.transparent
-    .modal-image(ng-class="::model.frameColor")
-      .btn-close-modal(ng-class="::model.frameColor" ng-click="::model.closeModal()")
-      img.content-image(ng-if='::model.isImage' ng-src='{{::model.contentSrc}}')
-      embed-video(ng-if='::!model.isImage'
-                data-ng-href='{{::model.contentSrc}}'
+    .modal-image(ng-class="model.frameColor")
+      .btn-close-modal(ng-class="model.frameColor" ng-click="model.closeModal()")
+      img.content-image(ng-if='model.isImage' ng-src='{{model.contentSrc}}')
+      embed-video(ng-if='!model.isImage'
+                data-ng-href='{{model.contentSrc}}'
                 controls='1'
                 width='100%'
                 height='100%')

@@ -21,14 +21,19 @@
       return directive;
     }
 
-    function MoiArrowController(HoverAnimationService){
+    function MoiArrowController(HoverAnimationService, StorageService){
       var arrowVm = this;
-      arrowVm.urlImg = arrowVm.orientation === 'right' ? 'images/flecha_1.png': 'images/flecha_2.png';
-      arrowVm.name = arrowVm.orientation === 'right' ? 'Desplegar Menú': 'Colapsar Menú';
-      arrowVm.increaseSize = HoverAnimationService.increaseSize;
-      arrowVm.cssOptions = {
-        scale: '1.15',
-        styles: []
-      };
+      StorageService.get().then(function(value){
+        arrowVm.storage = value.data.storage || {};
+        var arrowEn = arrowVm.orientation === 'right' ? 'Display Menu': 'Collapse Menu';
+        var arrowEs = arrowVm.orientation === 'right' ? 'Desplegar Menú': 'Colapsar Menú';
+        arrowVm.urlImg = arrowVm.orientation === 'right' ? 'images/flecha_1.png': 'images/flecha_2.png';
+        arrowVm.name = arrowVm.storage.language === 'es' ? arrowEs: arrowEn;
+        arrowVm.increaseSize = HoverAnimationService.increaseSize;
+        arrowVm.cssOptions = {
+          scale: '1.15',
+          styles: []
+        };
+      });
     }
   })();

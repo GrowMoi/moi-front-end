@@ -1,0 +1,17 @@
+.modal.transparent
+  ion-pane.transparent
+    moi-sound(ng-if="model.successAnswers > 1"
+              sound="sounds/congratulations_sound.mp3"
+              auto-play="true",
+              only-play="true")
+    .score-container.row
+      .main-image.col
+        img(src="images/user.png")
+      .col-50
+        h1#title Results
+        .points
+          p#content You got {{model.successAnswers}} of {{model.totalQuestions}} right
+      .col
+    .controls-score
+      span.btn-score.button(ng-click="model.onClick()")
+        | Continue

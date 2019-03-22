@@ -3,6 +3,9 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+.test-content {
+  height: 30px;
+}
 .content-view-max {
   color: $titlesColor;
   a, textarea {
@@ -276,7 +279,6 @@
   .row-content-text {
     &.moi_theme {
       color: white;
-      overflow: auto;
       &.moi_amarillo{
         text-shadow: 2px 2px 4px #4C3F02;
       }
@@ -288,7 +290,7 @@
       margin-bottom: 5px;
       font-family: FontMoi-Content;
       line-height: 30px;
-      overflow: auto;
+      overflow: hidden;
       margin-right: -18px;
       padding-right: 20px;
       width: 100%;
@@ -297,34 +299,34 @@
       &.moi_theme {
         padding: 15px;
         border-radius: 10px;
-        overflow: unset;
-        height: 100%;
+        overflow: auto;
+        height: 90%;
         margin-right: 1%;
 
         &.moi_violeta {
           background: url(../images/themes/violeta/cont_max_caja.png);
           background-repeat: no-repeat;
-          background-size: cover;
+          background-size: 98%;
         }
         &.moi_azul {
           background: url(../images/themes/azul/cont_max_caja.png);
           background-repeat: no-repeat;
-          background-size: cover;
+          background-size: 98%;
         }
         &.moi_rojo {
           background: url(../images/themes/rojo/cont_max_caja.png);
           background-repeat: no-repeat;
-          background-size: cover;
+          background-size: 98%;
         }
         &.moi_amarillo {
           background: url(../images/themes/amarillo/cont_max_caja.png);
           background-repeat: no-repeat;
-          background-size: cover;
+          background-size: 98%;
         }
         &.moi_verde {
           background: url(../images/themes/verde/cont_max_caja.png);
           background-repeat: no-repeat;
-          background-size: cover;
+          background-size: 98%;
         }
       }
 

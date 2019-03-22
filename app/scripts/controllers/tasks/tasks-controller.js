@@ -3,6 +3,7 @@
   angular.module('moi.controllers')
   .controller('TasksController', function($state,
                                           $rootScope,
+                                          StorageService,
                                           UserNotificationsService,
                                           GAService){
     var tasksmodel = this;
@@ -19,7 +20,7 @@
       }
     };
 
-    tasksmodel.tabs = [
+    var tabs = [
       {
         field:'notes',
         name: 'Notas',
@@ -56,6 +57,48 @@
         state: 'tasks.favorites'
       }
     ];
+
+    var tabsEn = [
+      {
+        field:'notes',
+        name: 'Notes',
+        image: 'images/notes_tasks.png',
+        selected: false,
+        state: 'tasks.notes'
+      },
+      {
+        field:'recommendations',
+        name: 'Recommendations',
+        image: 'images/recomendations_tasks.png',
+        selected: false,
+        state: 'tasks.recommendations'
+      },
+      {
+        field:'contents',
+        name: 'Contents',
+        image: 'images/notifications_tasks.png',
+        selected: false,
+        state: 'tasks.contents'
+      },
+      {
+        field:'notifications',
+        name: 'Notifications',
+        image: 'images/notifications_tasks.png',
+        selected: false,
+        state: 'tasks.notifications'
+      },
+      {
+        field:'favorites',
+        name: 'Favorites',
+        image: 'images/favorites_tasks.png',
+        selected: false,
+        state: 'tasks.favorites'
+      }
+    ];
+    StorageService.get().then(function(value){
+      var storage = value.data.storage || {};
+      tasksmodel.tabs = storage.language === 'es' ? tabs : tabsEn;
+    });
 
     tasksmodel.changeTab = function(field) {
       GAService.track('send', 'event', 'Seleccionar tab ' + field, 'Click');

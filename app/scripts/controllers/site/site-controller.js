@@ -16,6 +16,7 @@
                           $timeout,
                           $state,
                           $scope,
+                          $translate,
                           SoundsPage,
                           TreeService,
                           $location,
@@ -23,6 +24,7 @@
                           IMAGES,
                           VIDEOS,
                           AdvicesPage,
+                          AdvicesPageEn,
                           ModalService,
                           TooltipsService) {
     var site = this,
@@ -166,6 +168,16 @@
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.advicePage = AdvicesPage[toState.name];
+      if(toState.name === 'new_login.first_step' || toState.name === 'new_login.second_step'){
+        site.advicePage = AdvicesPage[toState.name];
+      }
+      else {
+        StorageService.get().then(function(value){
+          var storage = value.data.storage || {};
+          site.advicePage = storage.language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
+          $translate.use(storage.language);
+        });
+      }
     });
 
     $rootScope.$on('$stateChangeError', function(){

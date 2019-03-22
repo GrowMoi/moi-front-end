@@ -12,6 +12,7 @@
       $ionicPopup,
       AnimationService,
       UserService,
+      StorageService,
       ModalService;
 
     beforeEach(module('moi.controllers'));
@@ -31,6 +32,20 @@
       $provide.factory('ModalService', function(){
         return {
           showModel: function(){
+            return null;
+          }
+        };
+      });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          changeLanguage: function() {
             return null;
           }
         };
@@ -66,6 +81,7 @@
               $q,
               _$stateParams_,
               _AnimationService_,
+              _StorageService_,
               _UserService_,
               _ModalService_) {
 
@@ -87,6 +103,7 @@
         AnimationService = _AnimationService_;
         UserService = _UserService_;
         UserService = _ModalService_;
+        StorageService = _StorageService_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
@@ -116,7 +133,8 @@
           AnimationService: AnimationService,
           UserService: UserService,
           ModalService: ModalService,
-          $scope: $scope
+          $scope: $scope,
+          StorageService: StorageService
         };
 
         controller = $controller('ProfileController', dependencies);

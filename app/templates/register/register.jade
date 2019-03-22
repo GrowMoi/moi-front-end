@@ -7,7 +7,7 @@ ion-view(
     .row.form-container.form-register
       form(ng-submit='registerModel.register(registerForm)', name='registerForm', novalidate)
         .login-title
-          | {{ ::'register' | translate }}
+          | {{ 'register' | translate }}
         .list.list-inset
           label.item.item-input
             input(
@@ -15,16 +15,16 @@ ion-view(
               ng-model='registerModel.registerForm.username',
               required='required',
               name='username',
-              placeholder="{{ ::'register.username' | translate }}"
+              placeholder="{{ 'register.username' | translate }}"
             )
             span.error-msg(ng-if='registerForm.username.$error.required && registerForm.username.$touched')
-              | {{ :: 'msgs.error.required' | translate}}
+              | {{  'msgs.error.required' | translate}}
           label.item.item-input
             input(
               type='number',
               min='1',
               ng-model='registerModel.registerForm.age',
-              placeholder="{{ ::'register.age' | translate }}"
+              placeholder="{{ 'register.age' | translate }}"
             )
 
         .list.list-inset
@@ -35,18 +35,18 @@ ion-view(
               required='required',
               name='email',
               autocomplete='off',
-              placeholder="{{ ::'register.email' | translate }}"
+              placeholder="{{ 'register.email' | translate }}"
             )
             span.error-msg(ng-if='registerForm.email.$error.email')
-              | {{ :: 'msgs.error.email' | translate}}
+              | {{  'msgs.error.email' | translate}}
             span.error-msg(ng-if='registerForm.email.$error.required && registerForm.email.$touched')
-              | {{ :: 'msgs.error.required' | translate}}
+              | {{  'msgs.error.required' | translate}}
           label.item.item-input
             input(
               type='text',
               ng-model='registerModel.registerForm.city',
               autocomplete='off',
-              placeholder="{{ ::'register.city' | translate }}"
+              placeholder="{{ 'register.city' | translate }}"
             )
 
         .list.list-inset
@@ -57,18 +57,18 @@ ion-view(
               required='required',
               name='school',
               autocomplete='off',
-              placeholder="{{ ::'register.school' | translate }}"
+              placeholder="{{ 'register.school' | translate }}"
             )
             span.error-msg(ng-if='registerForm.school.$error.school')
-              | {{ :: 'msgs.error.school' | translate}}
+              | {{  'msgs.error.school' | translate}}
             span.error-msg(ng-if='registerForm.school.$error.required && registerForm.school.$touched')
-              | {{ :: 'msgs.error.required' | translate}}
+              | {{  'msgs.error.required' | translate}}
           label.item.item-input
             input(
               type='text',
               ng-model='registerModel.registerForm.country',
               autocomplete='off',
-              placeholder="{{ ::'register.country' | translate }}"
+              placeholder="{{ 'register.country' | translate }}"
             )
 
         .row
@@ -81,5 +81,5 @@ ion-view(
             input(
               ng-disabled="!registerForm.$valid && !registerModel.registerForm.authorization_key",
               type='submit',
-              value="{{ ::'register.enter' | translate }}"
+              value="{{ 'register.enter' | translate }}"
             ).button.action-button

@@ -11,8 +11,8 @@
             p Tu tiempo fue: {{vmTest.timeQuiz}}
         .answers
           ul
-            li(ng-repeat="answer in ::vmTest.answersQuiz")
+            li(ng-repeat="answer in vmTest.answersQuiz")
               | {{answer.question}} {{answer.correct ? '✓' : 'x'}}
     .btn
-      .btn-score.button(ng-click="::model.closeModal()"
+      .btn-score.button(ng-click="model.closeModal()"
                           ui-sref="tree") Ir al Árbol

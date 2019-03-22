@@ -19,7 +19,8 @@
         speed: 50,
         sound: 'sounds/btn_search.mp3',
         playOnClick: true,
-        name: 'Buscar'
+        name: 'Buscar',
+        nameEn: 'Search'
       },
       recomendation: {
         src: 'images/sprites/btn-recomendation-sprite.png',
@@ -28,7 +29,8 @@
         speed: 50,
         sound: 'sounds/btn_recomendation.mp3',
         playOnClick: true,
-        name: 'Recomendación Aleatoria'
+        name: 'Recomendación Aleatoria',
+        nameEn: 'Random'
       },
       learn: {
         src: 'images/sprites/btn-learn-sprite.png',
@@ -37,7 +39,8 @@
         speed: 30,
         sound: 'sounds/btn_read.mp3',
         playOnClick: true,
-        name: 'Leer Contenido'
+        name: 'Leer Contenido',
+        nameEn: 'Read Content'
       },
       settings: {
         src: 'images/sprites/btn-settings-sprite.png',
@@ -46,7 +49,8 @@
         speed: 50,
         sound: 'sounds/btn_settings.mp3',
         playOnClick: true,
-        name: 'Configuración'
+        name: 'Configuración',
+        nameEn: 'Settings'
       },
       profile: {
         src: 'images/sprites/btn-amigos-sprite.png',
@@ -55,7 +59,8 @@
         speed: 50,
         sound: 'sounds/btn_amigos.mp3',
         playOnClick: true,
-        name: 'Mi Perfil'
+        name: 'Mi Perfil',
+        nameEn: 'Profile'
       },
       share: {
         src: 'images/sprites/btn-compartir-sprite.png',
@@ -64,7 +69,8 @@
         speed: 60,
         sound: 'sounds/btn_share.mp3',
         playOnClick: true,
-        name: 'Compartir'
+        name: 'Compartir',
+        nameEn: 'Share'
       },
       saveTasks: {
         src: 'images/sprites/btn-save-tasks-sprite.png',
@@ -73,7 +79,8 @@
         speed: 60,
         sound: 'sounds/btn_save_tasks.mp3',
         playOnClick: true,
-        name: 'Guardar Tarea'
+        name: 'Guardar Tarea',
+        nameEn: 'Save'
       },
       showTasks: {
         src: 'images/sprites/btn-show-tasks-sprite.png',
@@ -82,7 +89,8 @@
         speed: 60,
         sound: 'sounds/btn_show_tasks.mp3',
         playOnClick: true,
-        name: 'Tareas'
+        name: 'Tareas',
+        nameEn: 'Tasks'
       },
       searchIdle: {
         src: 'images/sprites/btn-search-idle-sprite.png',
@@ -119,7 +127,8 @@
         speed: 50,
         sound: 'sounds/btn_inventory.mp3',
         playOnClick: true,
-        name: 'Inventario'
+        name: 'Inventario',
+        nameEn: 'Inventory'
       },
       addFavorites: {
         src: 'images/sprites/btn-favoritos-sprite.png',
@@ -128,7 +137,8 @@
         speed: 50,
         sound: 'sounds/btn_favorites.mp3',
         playOnClick: true,
-        name: 'Marcar como Favorito'
+        name: 'Marcar como Favorito',
+        nameEn: 'Favorite'
       }
     };
 

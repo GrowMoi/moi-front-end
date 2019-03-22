@@ -10,6 +10,7 @@
                       $window,
                       ENV,
                       ModalService,
+                      StorageService,
                       PopupService){
 
     var service = {
@@ -28,13 +29,17 @@
       modelData.totalQuestions = data.totalQuestions;
       modelData.onClick = reloadPage;
       modelData.isQuiz = true;
-      ModalService.showModel(
-        {
-          parentScope: scope,
-          templateUrl: 'templates/partials/modal-score-test.html',
-          model: modelData
-        }
-      );
+      StorageService.get().then(function(value){
+        var storage = value.data.storage || {};
+        var templateModal = storage.language === 'es' ? 'templates/partials/modal-score-test.html' : 'templates/partials/modal-score-test-en.html';
+        ModalService.showModel(
+          {
+            parentScope: scope,
+            templateUrl: templateModal,
+            model: modelData
+          }
+        );
+      });
     }
 
     function reloadPage() {

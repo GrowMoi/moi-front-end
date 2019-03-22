@@ -54,7 +54,7 @@
         src:'images/sports-interest.png'
       },
       {
-        interest:'Comunication',
+        interest:'Communication',
         src:'images/comunication-interest.png'
       },
       {
