@@ -100,11 +100,16 @@
     }
 
     function showWelcomeModal(){
+      var language = $auth.user.language;
+      var messageWelcome = language === 'es' ?'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
+      'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
+      'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
+      'máxima expresión.': 'Welcome '+currentUser.username+ '. Este es tu árbol Moi. '+
+      'It contains great knowledge and only your growth depends on you. '+
+      'Follow your curiosity and discover how to make it develop until your'+
+      'full expression.';
       var dialogContentModel = {
-        message:'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
-                'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
-                'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
-                'máxima expresión.',
+        message: messageWelcome,
         callbacks: {
           btnCenter: function(){
             dialogContentModel.closeModal();
@@ -124,9 +129,13 @@
 
     function sharedTree(){
       var learntContents = treeModel.meta.current_learnt_contents; //jshint ignore:line
-      var data = {
+      var language = $auth.user.language;
+      var data = language ==='es'? {
         title: 'Así se ve mi árbol Moi',
         description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
+      }:{
+        title: 'ThHasta aquí descubrí is is how my Moi tree looks',
+        description: 'So far I discovered '+learntContents+' contents You can also grow your knowledge with Moi Social Learning'
       };
       SocialService.showModal(data);
     }

@@ -72,7 +72,7 @@
     [
       {
         field:'lasts-contents',
-        name: 'Lasts 4',
+        name: 'Last 4',
         partial: 'templates/profile/partials/lasts-contents.html',
         selected: false
       },

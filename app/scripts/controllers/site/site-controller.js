@@ -168,13 +168,18 @@
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.advicePage = AdvicesPage[toState.name];
-      if(toState.name === 'new_login.first_step' || toState.name === 'new_login.second_step'){
-        site.advicePage = AdvicesPage[toState.name];
+      if(toState.name === 'new_login.first_step' || toState.name === 'new_login.second_step' || toState.name === 'register'){
+        var lang = navigator.language || navigator.userLanguage;
+        var languageBrowser = lang.slice(0,2);
+        site.advicePage = languageBrowser === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
+        $translate.use(languageBrowser);
       }
       else {
-        var language = $auth.user.language;
-        site.advicePage = language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
-        $translate.use(language);
+        StorageService.get().then(function(value){
+          var storage = value.data.storage || {};
+          site.advicePage = storage.language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
+          $translate.use(storage.language);
+        });
       }
     });
 
