@@ -332,15 +332,13 @@
       }
 
       function showNotificationModal() {
-        StorageService.get().then(function(value){
-          var storage = value.data.storage || {};
-          var templateModal = storage.language === 'es' ? 'templates/partials/modal-notification-join-app.html' : 'templates/partials/modal-notification-join-app-en.html';
-          var dialogOptions = {
-            templateUrl: templateModal,
-            model: dialogContentModel
-          };
-          ModalService.showModel(dialogOptions);
-        });
+        var language = $auth.user.language;
+        var templateModal = language === 'es' ? 'templates/partials/modal-notification-join-app.html' : 'templates/partials/modal-notification-join-app-en.html';
+        var dialogOptions = {
+          templateUrl: templateModal,
+          model: dialogContentModel
+        };
+        ModalService.showModel(dialogOptions);
       }
 
       function modalCallbak() {

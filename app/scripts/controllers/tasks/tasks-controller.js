@@ -3,6 +3,7 @@
   angular.module('moi.controllers')
   .controller('TasksController', function($state,
                                           $rootScope,
+                                          $auth,
                                           StorageService,
                                           UserNotificationsService,
                                           GAService){
@@ -95,10 +96,8 @@
         state: 'tasks.favorites'
       }
     ];
-    StorageService.get().then(function(value){
-      var storage = value.data.storage || {};
-      tasksmodel.tabs = storage.language === 'es' ? tabs : tabsEn;
-    });
+    var language = $auth.user.language;
+    tasksmodel.tabs = language === 'es' ? tabs : tabsEn;
 
     tasksmodel.changeTab = function(field) {
       GAService.track('send', 'event', 'Seleccionar tab ' + field, 'Click');

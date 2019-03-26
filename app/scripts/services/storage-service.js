@@ -5,7 +5,7 @@
       .module('moi.services')
       .factory('StorageService', StorageService);
 
-    function StorageService($http, ENV, PopupService, $state, $translate) {
+    function StorageService($http, $auth, ENV, PopupService, $state, $translate) {
 
       var service = {
         get: get,
@@ -49,6 +49,7 @@
           var language = storage.language === 'es' ? 'en' : 'es';
           storage.language = language;
           $translate.use(language);
+          $auth.user.language = language;
           update(storage).then(function(){
             $state.reload();
           });

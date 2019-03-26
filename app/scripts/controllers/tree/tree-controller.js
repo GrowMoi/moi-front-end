@@ -28,11 +28,9 @@
     treeModel.isBasicLevel = data.meta.depth < 5;
     treeModel.sharedTree = sharedTree;
     treeModel.randomPositionsCss = getRandomPositionCss();
-    StorageService.get().then(function(value){
-      var storage = value.data.storage || {};
-      treeModel.percentageTooltip = storage.language === 'es' ? 'Has descubierto el ' +treeModel.percentage+ '% de tu árbol Moi': 'You have discovered the ' +treeModel.percentage+ '% of your tree Moi';
-      treeModel.learnTooltip = storage.language === 'es' ? 'Tu nivel de aprendizaje es ' +treeModel.userLevel: 'Your level of learning is ' + treeModel.userLevel;
-    });
+    var language = $auth.user.language;
+    treeModel.percentageTooltip = language === 'es' ? 'Has descubierto el ' +treeModel.percentage+ '% de tu árbol Moi': 'You have discovered the ' +treeModel.percentage+ '% of your tree Moi';
+    treeModel.learnTooltip = language === 'es' ? 'Tu nivel de aprendizaje es ' +treeModel.userLevel: 'Your level of learning is ' + treeModel.userLevel;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
@@ -137,27 +135,24 @@
 
     function showPassiveModal() {
       var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
-      StorageService.get().then(function(value){
-        var storage = value.data.storage || {};
-        var message = storage.language === 'es' ? AdvicesPage.tree.messages[0] : AdvicesPageEn.tree.messages[0];
-        if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages && finishedAnimations){
-          var dialogOptions = {
-            templateUrl: 'templates/partials/modal-pasive-info.html',
-            animation: 'animated flipInX',
-            backdropClickToClose: true,
-            model: {
-              message: message,
-              type: 'passive',
-              cssClass: 'modal-bottomRight'
-            },
-            onHide: function() {
-              isShowingPassiveModal = false;
-            }
-          };
-          ModalService.showModel(dialogOptions);
-          isShowingPassiveModal = true;
-        }
-      });
+      var message = language === 'es' ? AdvicesPage.tree.messages[0] : AdvicesPageEn.tree.messages[0];
+      if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages && finishedAnimations){
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-pasive-info.html',
+          animation: 'animated flipInX',
+          backdropClickToClose: true,
+          model: {
+            message: message,
+            type: 'passive',
+            cssClass: 'modal-bottomRight'
+          },
+          onHide: function() {
+            isShowingPassiveModal = false;
+          }
+        };
+        ModalService.showModel(dialogOptions);
+        isShowingPassiveModal = true;
+      }
     }
 
     function animateWidgets() {

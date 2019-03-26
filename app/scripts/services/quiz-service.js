@@ -9,6 +9,7 @@
                       $ionicPopup,
                       $window,
                       ENV,
+                      $auth,
                       ModalService,
                       StorageService,
                       PopupService){
@@ -29,17 +30,15 @@
       modelData.totalQuestions = data.totalQuestions;
       modelData.onClick = reloadPage;
       modelData.isQuiz = true;
-      StorageService.get().then(function(value){
-        var storage = value.data.storage || {};
-        var templateModal = storage.language === 'es' ? 'templates/partials/modal-score-test.html' : 'templates/partials/modal-score-test-en.html';
-        ModalService.showModel(
-          {
-            parentScope: scope,
-            templateUrl: templateModal,
-            model: modelData
-          }
-        );
-      });
+      var language = $auth.user.language;
+      var templateModal = language === 'es' ? 'templates/partials/modal-score-test.html' : 'templates/partials/modal-score-test-en.html';
+      ModalService.showModel(
+        {
+          parentScope: scope,
+          templateUrl: templateModal,
+          model: modelData
+        }
+      );
     }
 
     function reloadPage() {

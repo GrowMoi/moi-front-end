@@ -37,14 +37,14 @@ options directive
     return directive;
   }
 
-  function animateController($window, $scope, $q, StorageService) {
+  function animateController($window, $scope, $q, $auth) {
 
     var vm = this;
     vm.activeIdle = false;
-    StorageService.get().then(function(value){
-      vm.storage = value.data.storage || {};
-      vm.tooltip = vm.storage.language === 'es' ? vm.options.name : vm.options.nameEn;
-    });
+    var language = $auth.user.language;
+    if(vm.options){
+      vm.tooltip = language === 'es' ? vm.options.name : vm.options.nameEn;
+    }
     var options,
       src,
       frameWidth,

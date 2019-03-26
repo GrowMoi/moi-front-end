@@ -213,7 +213,7 @@
       it('should call ModalService when goTest', function(){
         var spy = sinon.spy(ModalService, 'showModel');
         service.goTest(scope, test);
-        chai.expect(spy.called).to.be.equal(false);
+        chai.expect(spy.called).to.be.equal(true);
       });
 
       it('should call ModalService when scoreTest', function(){

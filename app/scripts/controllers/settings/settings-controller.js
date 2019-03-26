@@ -6,6 +6,7 @@
                                               user,
                                               dragularService,
                                               StorageService,
+                                              $auth,
                                               $scope,
                                               $state,
                                               $filter) {
@@ -14,10 +15,8 @@
     vm.selectInterest = selectInterest;
     vm.contentSettings = contentSettings;
     vm.changeLanguage = StorageService.changeLanguage;
-    vm.value = StorageService.get().then(function(value){
-      var storage = value.data.storage || {};
-      vm.state = storage.language === 'es' ? false : true;
-    });
+    var language = $auth.user.language;
+    vm.state = language === 'es' ? false : true;
     vm.listSelected = [];
     vm.advicesOn = (localStorage.getItem('advicesOn') === 'true') || false;
     vm.updateAdvicesSettings = updateAdvicesSettings;
