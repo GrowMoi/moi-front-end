@@ -5,6 +5,7 @@
     var ctrl,
         $controller,
         $scope,
+        $auth,
         dependencies,
         SettingsService,
         StorageService,
@@ -90,12 +91,23 @@
         SettingsService = _SettingsService_;
         dragularService = _dragularService_;
         StorageService = _StorageService_;
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {},//jshint ignore:line
+            achievements: []
+          }
+        };
 
         dependencies = {
           SettingsService: SettingsService,
           $scope: $scope,
           dragularService: dragularService,
           StorageService: StorageService,
+          $auth: $auth,
           user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
         };
 

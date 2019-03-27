@@ -4,6 +4,7 @@
   describe('animateSprite', function() {
     var $compile,
         $scope,
+        $auth,
         element,
         controller,
         StorageService,
@@ -35,16 +36,28 @@
           }
         };
       });
+      $provide.service('$auth', function() {
+        return {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            username: 'admin'
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
-      function(_$compile_, _$rootScope_, _$window_, _$q_,_StorageService_) {
+      function(_$compile_, _$rootScope_, _$window_, _$q_,_StorageService_, _$auth_) {
         $compile = _$compile_;
         $scope = _$rootScope_.$new();
         $rootScope = _$rootScope_;
         $window = _$window_;
         StorageService = _StorageService_;
         $q = _$q_;
+        $auth = _$auth_;
       }));
 
     describe('init methods', function() {
@@ -56,6 +69,8 @@
           speed: 50,
           sound: 'sounds/example.mp3',
           playOnClick: true,
+          name: 'Inventario',
+          nameEn: 'Inventory'
         };
         element = $compile('<animate-sprite options="options"></animate-sprite>')($scope);
         $scope.$digest();

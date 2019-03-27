@@ -172,11 +172,9 @@
         site.advicePage = AdvicesPage[toState.name];
       }
       else {
-        StorageService.get().then(function(value){
-          var storage = value.data.storage || {};
-          site.advicePage = storage.language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
-          $translate.use(storage.language);
-        });
+        var language = $auth.user.language;
+        site.advicePage = language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
+        $translate.use(language);
       }
     });
 

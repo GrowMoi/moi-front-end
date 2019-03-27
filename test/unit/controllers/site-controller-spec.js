@@ -165,7 +165,10 @@
     describe('#listeners', function(){
       beforeEach(function(){
         $auth = { user: {id: 1}};
-
+        $translate ={
+          use:function(){
+          }
+        };
         dependencies = {
           $ionicLoading: $ionicLoading,
           $scope: $scope,

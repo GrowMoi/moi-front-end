@@ -26,46 +26,40 @@
     };
 
     var popupOptions = { title: 'Error'};
-
+    var language = $auth.user.language;
     return service;
 
     function goFinalTest(scope, name) {
-      StorageService.get().then(function(value){
-        var storage = value.data.storage || {};
-        var templateModal = storage.language === 'es' ? 'templates/partials/modal-launch-final-test.html' : 'templates/partials/modal-launch-final-test-en.html';
-        var modelData = {
-          name: name,
-          createFinalTest: function(){
-            $state.go('finaltest');
-            modelData.closeModal();
-          }
-        };
-        ModalService.showModel(
-          {
-            parentScope: scope,
-            templateUrl: templateModal,
-            model: modelData
-          }
-        );
-      });
+      var templateModal = language === 'es' ? 'templates/partials/modal-launch-final-test.html' : 'templates/partials/modal-launch-final-test-en.html';
+      var modelData = {
+        name: name,
+        createFinalTest: function(){
+          $state.go('finaltest');
+          modelData.closeModal();
+        }
+      };
+      ModalService.showModel(
+        {
+          parentScope: scope,
+          templateUrl: templateModal,
+          model: modelData
+        }
+      );
     }
 
     function goTest(scope, test) {
-      StorageService.get().then(function(value){
-        var storage = value.data.storage || {};
-        var templateModal = storage.language === 'es' ? 'templates/partials/modal-launch-test.html' : 'templates/partials/modal-launch-test-en.html';
-        var modelData = {};
-        modelData.testId = test.id;
-        modelData.testQuestions = test.questions;
-        modelData.contentsLearnt = modelData.testQuestions.length;
-        ModalService.showModel(
-          {
-            parentScope: scope,
-            templateUrl: templateModal,
-            model: modelData
-          }
-        );
-      });
+      var templateModal = language === 'es' ? 'templates/partials/modal-launch-test.html' : 'templates/partials/modal-launch-test-en.html';
+      var modelData = {};
+      modelData.testId = test.id;
+      modelData.testQuestions = test.questions;
+      modelData.contentsLearnt = modelData.testQuestions.length;
+      ModalService.showModel(
+        {
+          parentScope: scope,
+          templateUrl: templateModal,
+          model: modelData
+        }
+      );
     }
 
     function scoreTest(scope, data) {

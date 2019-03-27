@@ -16,7 +16,7 @@
       bindToController: true,
     };
 
-    function sidebarController($scope, $state, $auth, AnimationService, ModalService, StorageService) {
+    function sidebarController($scope, $state, $auth, AnimationService, ModalService) {
       var vm = this;
       vm.user = $auth.user;
       vm.goToTree = goToTree;
@@ -71,15 +71,13 @@
       }
 
       function showNotificationModal() {
-        StorageService.get().then(function(value){
-          var storage = value.data.storage || {};
-          var templateModal = storage.language === 'es' ? 'templates/partials/modal-notification-join-app.html' : 'templates/partials/modal-notification-join-app-en.html';
-          var dialogOptions = {
-            templateUrl: templateModal,
-            model: {}
-          };
-          ModalService.showModel(dialogOptions);
-        });
+        var language = $auth.user.language;
+        var templateModal = language === 'es' ? 'templates/partials/modal-notification-join-app.html' : 'templates/partials/modal-notification-join-app-en.html';
+        var dialogOptions = {
+          templateUrl: templateModal,
+          model: {}
+        };
+        ModalService.showModel(dialogOptions);
       }
       $scope.$on('scanner-started', function(event, args) {
         vm.user.tree_image = args.any.tree_image.url; //jshint ignore:line

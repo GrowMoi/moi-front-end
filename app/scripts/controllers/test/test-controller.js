@@ -139,17 +139,15 @@
     function showModalAchievement(recommendations) {
 
       var modelData = extractModelData(recommendations) ;
-      StorageService.get().then(function(value){
-        var storage = value.data.storage || {};
-        var templateModal = storage.language === 'es' ? 'templates/partials/modal-tutor-achievement' : 'templates/partials/modal-tutor-achievement-en.html';
-        ModalService.showModel(
-          {
-            parentScope: $scope,
-            templateUrl: templateModal,
-            model: modelData
-          }
-        );
-      });
+      var language = $auth.user.language;
+      var templateModal = language === 'es' ? 'templates/partials/modal-tutor-achievement' : 'templates/partials/modal-tutor-achievement-en.html';
+      ModalService.showModel(
+        {
+          parentScope: $scope,
+          templateUrl: templateModal,
+          model: modelData
+        }
+      );
     }
 
     function showUserAchievement(achievement){

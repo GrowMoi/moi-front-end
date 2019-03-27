@@ -172,43 +172,41 @@
         }
       ];
       var arr1=[];
-      StorageService.get().then(function(value){
-        var storage = value.data.storage || {};
-        var arrAchievements = storage.language === 'es' ? desactiveAchievements : desactiveAchievementsEn;
-        arrAchievements.map(function(obj){
-          var findAchievement = achievements.find(function(acc){
-            return obj.number === acc.number;
-          });
-          if (!findAchievement) {
-            arr1.push(obj);
-          }
+      var language = $auth.user.language;
+      var arrAchievements = language === 'es' ? desactiveAchievements : desactiveAchievementsEn;
+      arrAchievements.map(function(obj){
+        var findAchievement = achievements.find(function(acc){
+          return obj.number === acc.number;
         });
-        arr1.map(function(obj){
-          achievements.push(obj);
-        });
-        vmInv.achievements = achievements;
-        vmInv.increaseSize = HoverAnimationService.increaseSize;
-        vmInv.cssOptions = {
-          styles: []
-        };
-        $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
-
-        setMediaIntoAchievements(vmInv.achievements);
-        vmInv.finishedAnimation= function(){
-          vmInv.showInventory = true;
-          $backgroundSound[0].play();
-          $backgroundSound[0].autoplay = true;
-        };
-        function setMediaIntoAchievements(achievements){
-          if(achievements.length > 0){
-            angular.forEach(achievements, function(achievement, index){
-              if(!achievement.desactive) {
-                achievements[index].settings = MediaAchievements[achievement.number].settings;
-              }
-            });
-          }
+        if (!findAchievement) {
+          arr1.push(obj);
         }
       });
+      arr1.map(function(obj){
+        achievements.push(obj);
+      });
+      vmInv.achievements = achievements;
+      vmInv.increaseSize = HoverAnimationService.increaseSize;
+      vmInv.cssOptions = {
+        styles: []
+      };
+      $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+
+      setMediaIntoAchievements(vmInv.achievements);
+      vmInv.finishedAnimation= function(){
+        vmInv.showInventory = true;
+        $backgroundSound[0].play();
+        $backgroundSound[0].autoplay = true;
+      };
+      function setMediaIntoAchievements(achievements){
+        if(achievements.length > 0){
+          angular.forEach(achievements, function(achievement, index){
+            if(!achievement.desactive) {
+              achievements[index].settings = MediaAchievements[achievement.number].settings;
+            }
+          });
+        }
+      }
 
       vmInv.frameOptions = {
         type: 'content_max',
