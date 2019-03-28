@@ -11,11 +11,14 @@
                               $state,
                               $scope,
                               ModalService,
+                              ImagesLoginEn,
                               ImagesLogin) {
     var registerModel = this;
+    var lang = navigator.language || navigator.userLanguage;
+    var languageBrowser = lang.slice(0,2);
     registerModel.register = register;
     registerModel.registerForm = {};
-    registerModel.images = ImagesLogin.paths;
+    registerModel.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;
     registerModel.term = false;
 
     function register() {

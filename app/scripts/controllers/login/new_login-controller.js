@@ -11,17 +11,19 @@
               $auth,
               UtilityService,
               ImagesLogin,
+              ImagesLoginEn,
               GAService) {
     var vmLogin = this;
     var moiSound;
-
+    var lang = navigator.language || navigator.userLanguage;
+    var languageBrowser = lang.slice(0,2);
     vmLogin.form = {};
     vmLogin.finishedSound = finishedSound;
 
     var successState = 'tree';
     vmLogin.isChrome = UtilityService.isAgentChrome();
 
-    vmLogin.images = ImagesLogin.paths;
+    vmLogin.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;
 
     vmLogin.submit = function() {
       if(moiSound){

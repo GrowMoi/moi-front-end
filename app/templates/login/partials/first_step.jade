@@ -13,14 +13,14 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
         )
     .row.button-actions
       .col
-        .button(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
+        .button.button-login(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
           | {{ 'signup' | translate }}
       .col
         input(
           ng-disabled="!vmLogin.isChrome",
           type='submit',
           value="{{ 'login.next' | translate }}"
-        ).button
+        ).button.button-login
     .login-option
       span(ui-sref="login")
         | {{ 'login.old_login' | translate }}
