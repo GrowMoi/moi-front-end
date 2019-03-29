@@ -134,8 +134,8 @@
         title: 'Así se ve mi árbol Moi',
         description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
       }:{
-        title: 'ThHasta aquí descubrí is is how my Moi tree looks',
-        description: 'So far I discovered '+learntContents+' contents You can also grow your knowledge with Moi Social Learning'
+        title: 'This is how my Moi tree looks',
+        description: 'So far I discovered '+learntContents+' contents. You can also grow your knowledge with Moi Social Learning'
       };
       SocialService.showModal(data);
     }
