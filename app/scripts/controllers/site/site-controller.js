@@ -32,8 +32,7 @@
         images = IMAGES.paths,
         imageSaved = false,
         callApiSaveImage = 0,
-        isShowingPassiveModal = false,
-        isShowingEvents = false;
+        isShowingPassiveModal = false;
 
     UserNotificationsService.initialize();
 
@@ -173,9 +172,8 @@
       }
 
       //load daily events
-      if(!isShowingEvents && toState.name !== 'tasks.events'){
+      if(toState.name === 'neuron'){
         EventsService.showDailyEvents();
-        isShowingEvents = true;
       }
 
       site.soundPage =  SoundsPage[toState.name] || {};

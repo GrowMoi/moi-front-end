@@ -5,7 +5,7 @@
       .event-content
         h2.event-title
           | {{::model.data.title}}
-        img.event-image(ng-src="{{::model.data.image}}")
+        .event-image(style="background-image: url('{{model.data.image}}')")
         span.event-description
           | {{::model.data.description}}
         .join-event(ng-class="{disabled: !model.data.is_available}"

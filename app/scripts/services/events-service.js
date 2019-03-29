@@ -127,6 +127,35 @@
         takeEvent(event.id).then(function(){
           modelEvent.model.closeModal();
           modelEvent.model.data.is_available = !event.is_available; //jshint ignore:line
+          showEventNotification();
+        });
+      }
+
+      function showEventNotification() {
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-alert-content.html',
+          model: {
+            message: 'Te uniste al evento con éxito, los contenidos que debes aprender están en la pestaña Tareas',
+            callbacks: {
+              btnRight: function() {
+                dialogOptions.model.closeModal();
+                animateEvent();
+              }
+            },
+            labels: {
+              btnRight: 'Ok',
+            }
+          }
+        };
+        ModalService.showModel(dialogOptions);
+      }
+
+      function animateEvent(){
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        var $eventContainer = angular.element(document.querySelector('.event.disabled'));
+        var cssClass = 'animated zoomOutDown';
+        $eventContainer.addClass(cssClass).one(animationEnd, function(){
+          $eventContainer.remove();
         });
       }
     }
