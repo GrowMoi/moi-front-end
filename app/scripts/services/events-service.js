@@ -5,7 +5,7 @@
       .module('moi.services')
       .factory('EventsService', EventsService);
 
-    function EventsService($http, ENV, PopupService, ModalService, NeuronsOptions) {
+    function EventsService($http, $auth, ENV, PopupService, ModalService, NeuronsOptions) {
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
@@ -20,7 +20,8 @@
               joinEvent: joinEvent
             }
           },
-          currentEvents = [];
+          currentEvents = [],
+          language = $auth.user.language;
 
       return service;
 
@@ -132,10 +133,13 @@
       }
 
       function showEventNotification() {
+        var enMessage = 'You joined the event successfully, the contents you must learn are in the Tasks tab.';
+        var esMessage = 'Te uniste al evento con éxito, los contenidos que debes aprender están en la pestaña Tareas';
+        var message = language === 'es' ? esMessage : enMessage;
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-alert-content.html',
           model: {
-            message: 'Te uniste al evento con éxito, los contenidos que debes aprender están en la pestaña Tareas',
+            message: message,
             callbacks: {
               btnRight: function() {
                 dialogOptions.model.closeModal();

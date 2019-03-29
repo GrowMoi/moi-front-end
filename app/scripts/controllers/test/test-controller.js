@@ -17,6 +17,7 @@
     vmTest.next = next;
     var currentUser = $auth.user;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+    var language = $auth.user.language;
 
     init();
 
@@ -117,8 +118,9 @@
           var achievements = res.data.achievements || [];
 
           if(res.data.event && res.data.event.completed){
+            var beginningName = language === 'es' ?  'el evento ' : 'the event';
             var achievement = {
-              name: 'el evento ' + res.data.event.title,
+              name: beginningName + res.data.event.title,
               bagde: res.data.event.image
             };
             showUserAchievement(achievement);
@@ -169,7 +171,6 @@
     }
 
     function showModalAchievement(recommendations) {
-
       var modelData = extractModelData(recommendations) ;
       var templateModal = 'templates/partials/modal-tutor-achievement';
       ModalService.showModel(

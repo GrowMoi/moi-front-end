@@ -101,6 +101,13 @@
         image: 'images/favorites_tasks.png',
         selected: false,
         state: 'tasks.favorites'
+      },
+      {
+        field:'events',
+        name: 'Events',
+        image: 'images/events_tasks.png',
+        selected: false,
+        state: 'tasks.events'
       }
     ];
     var language = $auth.user.language;
