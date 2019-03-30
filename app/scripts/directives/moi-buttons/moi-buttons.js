@@ -59,7 +59,7 @@
       function init(){
         var options = vm.options || {};
         vm.neuron = options.neuron || {};
-        vm.neuron.neuron_can_read = (vm.neuron.belongs_to_event) ? false : vm.neuron.neuron_can_read;
+        vm.neuron.neuron_can_read = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : vm.neuron.neuron_can_read;
         vm.content = options.content || {};
         vm.buttons = options.buttons || {};
         vm.readOnly = !!options.readOnly;
@@ -72,9 +72,9 @@
                                 UserNotificationsService.totalRecommendations;
 
         if (vm.content.read === undefined) {
-          vm.gifLearnActive = false;
+          vm.gifLearnActive = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : false;
         }else{
-          vm.gifLearnActive = !vm.content.read;
+          vm.gifLearnActive = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : !vm.content.read;
         }
 
         if (vm.options.onRegisterApi) {
