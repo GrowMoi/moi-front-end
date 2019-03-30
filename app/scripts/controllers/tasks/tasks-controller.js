@@ -84,7 +84,7 @@
       {
         field:'contents',
         name: 'Contents',
-        image: 'images/notifications_tasks.png',
+        image: 'images/list_tasks.png',
         selected: false,
         state: 'tasks.contents'
       },

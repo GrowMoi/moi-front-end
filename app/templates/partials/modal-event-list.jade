@@ -6,8 +6,9 @@
         | {{ ::'tasks.events.subtitle' | translate }}
         | ({{::model.title | translate }})
       .event-list(ng-if="model.hasEvents")
-        .event(ng-class="{disabled: !event.is_available}"
-              ng-repeat='event in model.events track by $index'
+        .event(ng-class="{taken: event.taken}"
+              ng-repeat="event in model.events track by $index"
+              ng-if="event.is_available"
               ng-click="model.showEventDetails($index, model.events)")
           img.event-image(style="background-image: url('{{event.image}}')")
           h4.event-title

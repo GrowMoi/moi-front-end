@@ -172,7 +172,7 @@
       }
 
       //load daily events
-      if(toState.name === 'neuron'){
+      if(!localStorage.getItem('seenDailyEvents') && toState.name === 'neuron'){
         EventsService.showDailyEvents();
       }
 

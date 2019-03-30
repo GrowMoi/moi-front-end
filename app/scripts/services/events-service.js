@@ -84,7 +84,10 @@
 
       function showDailyEvents() {
         getDailyEvents().then(function(resp){
-          showSetEvents('tasks.events.in_progress', resp);
+          if(resp.length > 0){
+            showSetEvents('tasks.events.in_progress', resp);
+            localStorage.setItem('seenDailyEvents', true);
+          }
         });
       }
 
@@ -127,7 +130,7 @@
       function joinEvent(event) {
         takeEvent(event.id).then(function(){
           modelEvent.model.closeModal();
-          modelEvent.model.data.is_available = !event.is_available; //jshint ignore:line
+          modelEvent.model.data.taken = !event.taken; //jshint ignore:line
           showEventNotification();
         });
       }
@@ -156,7 +159,7 @@
 
       function animateEvent(){
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        var $eventContainer = angular.element(document.querySelector('.event.disabled'));
+        var $eventContainer = angular.element(document.querySelector('.event.taken'));
         var cssClass = 'animated zoomOutDown';
         $eventContainer.addClass(cssClass).one(animationEnd, function(){
           $eventContainer.remove();

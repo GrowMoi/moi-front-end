@@ -67,10 +67,6 @@
         &:hover {
           transform: scale(1.05);
         }
-
-        &.disabled {
-          filter: brightness(0.6) grayscale(0.1) opacity(0.3);
-        }
       }
     }
   }
