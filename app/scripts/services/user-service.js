@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('UserService', UserService);
 
-  function UserService($http, ENV, PopupService, $state, ModalService) {
+  function UserService($http, ENV, PopupService, $state, ModalService, $auth) {
     var service = {
       profile: profile,
       updateProfile: updateProfile,
@@ -179,12 +179,17 @@
 
     function recommendedNeuron(neuronId) {
       recommendedNeurons().then(function(data) {
+        var languageModal = $auth.user.language;
+        var msgObj = languageModal === 'es' ? {
+          '0': 'Todos los contenidos ya han sido aprendidos.',
+          '1': 'Debes leer y aprobar estos contenidos para recibir una nueva recomendación.'
+        } : {
+          '0': 'All the contents have already been learned.',
+          '1': 'You must read and approve these contents to receive a new recommendation.'
+        };
         var resp = randomRecommendation(data.neurons, neuronId),
             totalRecomendations = resp.totalRecomendations,
-            msg = {
-              '0': 'Todos los contenidos ya han sido aprendidos.',
-              '1': 'Debes leer y aprobar estos contenidos para recibir una nueva recomendación.'
-            };
+            msg = msgObj;
         if (totalRecomendations > 1) {
           goToNeuron(resp.neuron);
         }else{
@@ -223,15 +228,17 @@
     }
 
     function showRecomendationModal(msg) {
+      var languageBtn = $auth.user.language;
+      var btnText = languageBtn === 'es' ? 'Seguir leyendo' : 'Keep reading';
       var dialogOptions = {
         templateUrl: 'templates/partials/modal-alert-content.html',
         model: {
           message: msg,
           callbacks: {
-            btnCenter: function(){dialogOptions.closeModal();}
+            btnCenter: function(){dialogOptions.model.closeModal();}
           },
           labels: {
-            btnCenter: 'Seguir leyendo'
+            btnCenter: btnText
           }
         }
       };

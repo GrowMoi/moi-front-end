@@ -104,7 +104,7 @@
       var messageWelcome = language === 'es' ?'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
       'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
       'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
-      'máxima expresión.': 'Welcome '+currentUser.username+ '. Este es tu árbol Moi. '+
+      'máxima expresión.': 'Welcome '+currentUser.username+ '. This is your Moi tree. '+
       'It contains great knowledge and only your growth depends on you. '+
       'Follow your curiosity and discover how to make it develop until your'+
       'full expression.';

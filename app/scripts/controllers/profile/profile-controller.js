@@ -79,7 +79,7 @@
       {
         field:'awards',
         name: 'Awards',
-        partial: 'templates/profile/partials/awards.html',
+        partial: 'templates/profile/partials/awardsEn.html',
         selected: false
       },
       {

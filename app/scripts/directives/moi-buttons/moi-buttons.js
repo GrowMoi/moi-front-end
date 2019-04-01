@@ -32,16 +32,19 @@
                                   UserNotificationsService,
                                   GAService) {
       var vm = this;
-
+      var language = $auth.user.language;
+      var messageModal = language === 'es' ? 'Para aprender este concepto, aún debes superar algunos conceptos previos' : 'To learn this concept, you still have to overcome some previous concepts';
+      var lblbtnRight = language === 'es' ? 'Seguir Leyendo' : 'Keep reading';
+      var lblbtnLeft = language === 'es' ? 'Regresar a mi arbol' : 'Return to my tree';
       var dialogContentModel = {
-        message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
+        message: messageModal,
         callbacks: {
           btnRight: function(){dialogContentModel.closeModal();},
           btnLeft: modalCallbak
         },
         labels: {
-          btnRight: 'Seguir leyendo',
-          btnLeft: 'Regresar a mi arbol'
+          btnRight: lblbtnRight,
+          btnLeft: lblbtnLeft
         }
       };
 
