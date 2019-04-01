@@ -30,6 +30,9 @@
         $provide.constant('ImagesLogin', {
           paths: ['image/image1', 'image/image2']
         });
+        $provide.constant('ImagesLoginEn', {
+          paths: ['image/image1', 'image/image2']
+        });
       });
     });
 
