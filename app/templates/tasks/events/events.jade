@@ -1,7 +1,1 @@
-ion-content.content_tasks
-  .row.note(ng-repeat="(key, value) in eventsModel.setEvents"
-            ng-if="value.length > 0")
-    .text-notes(ng-click="eventsModel.showSetEvents(key, value)")
-      | {{ ::'tasks.events.subtitle' | translate}}
-      br
-      | ({{key}})
+moi-infinite-grid-contents(options="eventsModel.gridContentsOptions")

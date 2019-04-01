@@ -1,16 +1,25 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('EventsController', function(EventsService){
+  .controller('EventsController', function(gridParams){
     var eventsModel = this;
-    eventsModel.showSetEvents = EventsService.showSetEvents;
+    var gridContentsApi = null;
 
-    initData();
+    eventsModel.gridContentsOptions = {
+      itemsPerPage: 4,
+      showDeleteIcon: gridParams.showDeleteIcon,
+      onRegisterApi: onRegisterApi,
+      apiCallHandler: gridParams.apiCallHandler,
+      promiseDataAccessor: gridParams.promiseDataAccessor
+    };
 
-    function initData() {
-      EventsService.getWeeklyEvents().then(function(resp){
-        eventsModel.setEvents = resp;
+    function onRegisterApi(api) {
+      gridContentsApi = api;
+
+      gridContentsApi.onSelectDelete(function (content, contents) {
+        gridParams.onSelectDelete(content, contents);
       });
     }
+
   });
 })();

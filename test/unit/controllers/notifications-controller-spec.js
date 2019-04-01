@@ -39,6 +39,14 @@
           go: function(){}
         };
       });
+
+      $provide.factory('EventsService', function($q){
+        return {
+          getWeeklyEvents: function(){
+            return $q.defer().promise;
+          }
+        };
+      });
     }));
     beforeEach(inject(
       function (_$controller_, _$rootScope_, _UserService_, _ModalService_,

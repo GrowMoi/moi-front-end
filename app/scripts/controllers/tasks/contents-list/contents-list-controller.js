@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('ContentsListController', function($scope, $state, UserService, gridParams){
+  .controller('ContentsListController', function(gridParams){
     var contentsList = this;
     var gridContentsApi = null;
     contentsList.gridContentsOptions = {

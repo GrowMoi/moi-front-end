@@ -387,7 +387,22 @@
       controller: 'EventsController',
       controllerAs: 'eventsModel',
       resolve: {
-        currentUser: checkIfIsAuthorized
+        currentUser: checkIfIsAuthorized,
+        gridParams: function(EventsService, $q) {
+          return {
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                EventsService.showContentEvents(currentPage).then(function(contentsData){
+                  resolve({
+                    items: contentsData,
+                    totalItems: contentsData.length
+                  });
+                });
+              });
+            },
+            showDeleteIcon: false
+          };
+        }
       }
     })
     .state('inventory', {

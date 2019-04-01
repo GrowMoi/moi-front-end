@@ -10,7 +10,8 @@
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
         showDailyEvents: showDailyEvents,
-        showSetEvents: showSetEvents
+        showSetEvents: showSetEvents,
+        showContentEvents: showContentEvents,
       };
 
       var popupOptions = { title: 'Error' },
@@ -45,6 +46,20 @@
           url: ENV.apiHost + '/api/events/today'
         }).then(function success(res) {
           return res.data;
+        }, function error(err) {
+          if(err.status !== 404){
+            popupOptions.content = err.statusText;
+            PopupService.showModel('alert', popupOptions);
+          }
+        });
+      }
+
+      function showContentEvents() {
+        return $http({
+          method: 'GET',
+          url: ENV.apiHost + '/api/users/event_in_progress'
+        }).then(function success(res) {
+          return res.data.contents;
         }, function error(err) {
           if(err.status !== 404){
             popupOptions.content = err.statusText;
