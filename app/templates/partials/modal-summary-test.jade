@@ -25,9 +25,11 @@
           span.name
             | {{::model.userInfo.name}}
       .questions-container.col-50
-        .question(ng-repeat="question in model.questions")
-          .title
-            span.content-question
+        .question(ng-repeat="question in model.questions track by $index")
+          .title(ng-style="model.cssOptions.styles[$index+1]"
+                ng-mouseover="model.increaseSize(true, model.cssOptions, $index+1)"
+                ng-mouseleave="model.increaseSize(false, model.cssOptions, $index+1)")
+            h4.content-question
               | {{::question.title}}
             img.neuron-image(ng-src="{{::question.image}}")
           .answer
@@ -41,6 +43,7 @@
               .percentage-bar(style="width: {{model.percentage}}%")
             img.widget(src="images/tree-percentage-bar.png")
         .btn-shared-result(ng-click="model.sharedResult()" data-html2canvas-ignore="true")
-    .summary-footer-test
+    .summary-footer-test(ng-style="model.cssOptions.styles[0]"
+                        ng-mouseover="model.increaseSize(true, model.cssOptions, 0)"
+                        ng-mouseleave="model.increaseSize(false, model.cssOptions, 0)")
       span.btn-confirm(ng-click="model.onClick()")
-        {{ 'buttons.confirm' | translate }}

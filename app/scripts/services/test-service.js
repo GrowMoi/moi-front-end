@@ -15,7 +15,8 @@
                       $auth,
                       $q,
                       $timeout,
-                      TreeAnimateService){
+                      TreeAnimateService,
+                      HoverAnimationService){
 
     var service = {
       goTest: goTest,
@@ -73,6 +74,10 @@
       modelData.questions = data.questions;
       modelData.userInfo = $auth.user;
       modelData.successAnswers = data.successAnswers;
+      modelData.cssOptions = {
+        styles: []
+      };
+      modelData.increaseSize = HoverAnimationService.increaseSize;
 
       modelData.onClick = function(){
         modelData.closeModal();
@@ -103,7 +108,7 @@
     function animateModalWidgets(){
       var percentageTreeWidget = document.querySelector('#percentageTree-finalmodal');
       var levelUserWidget = document.querySelector('#levelUser-finalmodal');
-      var elementList = angular.element(document.querySelectorAll('.question .answer')).toArray();
+      var elementList = angular.element(document.querySelectorAll('.question .answer .icon')).toArray();
       elementList.push(levelUserWidget);
       elementList.push(percentageTreeWidget);
       animateElements(elementList);

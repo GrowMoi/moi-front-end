@@ -111,8 +111,7 @@
         'friends': 'Friends',
         'choose-photo': 'Choose image',
         'upload-photo': 'Upload image',
-        'change-password': 'Change password',
-        'confirm': 'Ok'
+        'change-password': 'Change password'
       },
       titles: {
         'personal-descripcion': 'Personal description',
@@ -120,7 +119,7 @@
         'items': 'Items',
         'title': 'Title',
         'description': 'Description',
-        'result': 'Result'
+        'result': 'RESULT'
       },
       social: {
         'title': 'Show your friends',
@@ -249,7 +248,6 @@
         'choose-photo': 'Escoger foto',
         'upload-photo': 'Cargar foto',
         'change-password': 'Cambiar contraseña',
-        'confirm': 'Aceptar'
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',
@@ -257,7 +255,7 @@
         'items': 'items',
         'title': 'Título',
         'description': 'Descripción',
-        'result': 'Resultado'
+        'result': 'RESULTADO'
       },
       social: {
         'title': 'Muestrale a tus amigos!',
