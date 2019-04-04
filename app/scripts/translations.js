@@ -176,9 +176,7 @@
         'events': {
           'join': 'Join',
           'hasEvents': 'Dont have events',
-          'title': 'Events',
-          'subtitle': 'Events of week',
-          'in_progress': 'In Progress'
+          'title': 'Events'
         }
       },
       browser: {
@@ -365,9 +363,7 @@
         'events': {
           'join': 'Unete',
           'hasEvents': 'No tiene eventos',
-          'title': 'Eventos',
-          'subtitle': 'Eventos de la semana',
-          'in_progress': 'En Curso'
+          'title': 'Eventos'
         }
       },
       browser: {

@@ -275,10 +275,12 @@
           if (data.perform_test) {
             TestService.goTest($scope, data.test);
           }
-          if (page === 'content' && !data.perform_test) {
+          if (page === 'content' && !data.perform_test && !vm.content.belongs_to_event) {
             $state.go('neuron', {
               neuronId: vm.content.neuron_id
             });
+          } else {
+            $state.go('tasks.events');
           }
         });
       }

@@ -5,7 +5,7 @@
       .module('moi.services')
       .factory('EventsService', EventsService);
 
-    function EventsService($http, $auth, ENV, PopupService, ModalService, NeuronsOptions) {
+    function EventsService($http, $auth, $q, ENV, PopupService, ModalService, NeuronsOptions) {
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
@@ -77,9 +77,10 @@
           return res;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.statusText;
+            popupOptions.content = err.data.errors[0];
             PopupService.showModel('alert', popupOptions);
           }
+          return $q.reject(err);
         });
       }
 
@@ -100,13 +101,13 @@
       function showDailyEvents() {
         getDailyEvents().then(function(resp){
           if(resp.length > 0){
-            showSetEvents('tasks.events.in_progress', resp);
+            showSetEvents(resp);
             localStorage.setItem('seenDailyEvents', true);
           }
         });
       }
 
-      function showSetEvents(title, events){
+      function showSetEvents(events){
         var NEURON_COLOR = {
           yellow: 'images/tree/nodos/nodo-amarillo.png',
           blue: 'images/tree/nodos/nodo-azul.png',
@@ -125,7 +126,6 @@
         });
 
         var modelData = {
-          title: title,
           events: currentEvents,
           hasEvents: currentEvents.length > 0,
           showEventDetails: showEventDetails

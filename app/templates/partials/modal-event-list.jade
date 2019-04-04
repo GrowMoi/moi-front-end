@@ -1,10 +1,9 @@
 .modal.transparent
-  ion-pane.transparent
+  ion-pane.transparent.event-modal-list
+    h1.title
+      | {{ ::'tasks.events.title' | translate }}
     .modal-event-list
       .btn-close-modal(ng-click="::model.closeModal()")
-      h3.title
-        | {{ ::'tasks.events.subtitle' | translate }}
-        | ({{::model.title | translate }})
       .event-list(ng-if="model.hasEvents")
         .event(ng-class="{taken: event.taken}"
               ng-repeat="event in model.events track by $index"

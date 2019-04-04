@@ -5,6 +5,12 @@
   flex-flow: column;
   align-items: center;
 
+  &.event-modal-list {
+    .title {
+      color: white;
+    }
+  }
+
   .modal-event-list {
     display: flex;
     align-items: center;
@@ -25,12 +31,6 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
       cursor: pointer;
-    }
-
-    .title {
-      position: absolute;
-      text-align: center;
-      top: 2%;
     }
 
     .event-list {

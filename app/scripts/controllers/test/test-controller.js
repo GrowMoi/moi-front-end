@@ -120,8 +120,8 @@
           if(res.data.event && res.data.event.completed){
             var beginningName = language === 'es' ?  'el evento ' : 'the event';
             var achievement = {
-              name: beginningName + res.data.event.title,
-              bagde: res.data.event.image
+              name: beginningName + res.data.event.info.title,
+              bagde: res.data.event.info.image
             };
             showUserAchievement(achievement);
           }
