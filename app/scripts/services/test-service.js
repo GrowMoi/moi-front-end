@@ -29,11 +29,10 @@
     };
 
     var popupOptions = { title: 'Error'};
-    var language = $auth.user.language;
     return service;
 
     function goFinalTest(scope, name) {
-      var templateModal = language === 'es' ? 'templates/partials/modal-launch-final-test.html' : 'templates/partials/modal-launch-final-test-en.html';
+      var templateModal = 'templates/partials/modal-launch-final-test.html';
       var modelData = {
         name: name,
         createFinalTest: function(){
@@ -51,7 +50,7 @@
     }
 
     function goTest(scope, test) {
-      var templateModal = language === 'es' ? 'templates/partials/modal-launch-test.html' : 'templates/partials/modal-launch-test-en.html';
+      var templateModal = 'templates/partials/modal-launch-test.html';
       var modelData = {};
       modelData.testId = test.id;
       modelData.testQuestions = test.questions;
@@ -106,7 +105,6 @@
           }
         );
       });
-
     }
 
     function animateModalWidgets(){

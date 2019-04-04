@@ -4,13 +4,13 @@
       .main-image.col
         img(src="images/user.png")
       .col-50.column-details
-        h1#title Recompensa
+        h1#title {{ 'modal_tutor.title' | translate }}
         .points
           p.content-details
-            | Felicidades! Completaste todas las recomendaciones {{model.tutorAuthors}}.
-            | Acabas de ganar {{model.achievements}}!
-            | Hemos enviado una notificación de tus aprendizajes a {{model.tutorAuthorNames}}
-            | para que te entregue {{model.achievementNames}}.
+            | {{ 'modal_tutor.content' | translate }} {{model.tutorAuthors}}.
+            | {{ 'modal_tutor.content_next' | translate }} {{model.achievements}}!
+            | {{ 'modal_tutor.content_middle' | translate }} {{model.tutorAuthorNames}}
+            | {{ 'modal_tutor.content_end' | translate }} {{model.achievementNames}}.
       .col
     .controls
       .btn-score.button(ng-click="model.closeModal()") OK

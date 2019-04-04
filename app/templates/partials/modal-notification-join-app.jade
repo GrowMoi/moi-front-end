@@ -6,7 +6,7 @@
     .options(ng-click="model.closeModal()")
       .btn-basic.play
         a(ui-sref='new_login.first_step')
-          | Jugar!
+          | {{ 'modal_join.play' | translate }}
       .btn-basic.parents
         a(ng-href="http://moi-backend.growmoi.com/users/sign_in")
-          | Padres y tutores
+          | {{ 'modal_join.parents' | translate }}

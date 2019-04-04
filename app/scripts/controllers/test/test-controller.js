@@ -162,8 +162,7 @@
     function showModalAchievement(recommendations) {
 
       var modelData = extractModelData(recommendations) ;
-      var language = $auth.user.language;
-      var templateModal = language === 'es' ? 'templates/partials/modal-tutor-achievement' : 'templates/partials/modal-tutor-achievement-en.html';
+      var templateModal = 'templates/partials/modal-tutor-achievement';
       ModalService.showModel(
         {
           parentScope: $scope,
@@ -176,8 +175,9 @@
     function showUserAchievement(achievement){
       var language = $auth.user.language;
       var messageModal = language === 'es' ? 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
-      'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi': 'Congratulations' + currentUser.username +
+      'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi': 'Congratulations ' + currentUser.username +
       '! You have just completed '+ achievement.name +'. '+ 'Activate this item in the inventory and enjoy your achievements learning with Moi';
+      var btnRightLabel = language === 'es' ? 'Ir al inventario' : 'Go to inventory';
       var dialogContentModel = {
         message: messageModal,
         callbacks: {
@@ -193,7 +193,7 @@
           }
         },
         labels: {
-          btnRight: 'Ir al inventario',
+          btnRight: btnRightLabel,
           btnLeft: 'Ok'
         },
         image: MediaAchievements[achievement.number].settings.badge,

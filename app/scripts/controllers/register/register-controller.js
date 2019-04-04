@@ -10,6 +10,8 @@
                               $ionicPopup,
                               $state,
                               $scope,
+                              $translate,
+                              StorageService,
                               ModalService,
                               ImagesLoginEn,
                               ImagesLogin) {
@@ -28,9 +30,11 @@
       $auth.submitRegistration(registerModel.registerForm)
         .then(function() {
           $auth.validateUser().then(function(user){
-            $state.go('tree', {
-              username: user.username
-            });
+            var route={
+              state:'tree',
+              user: user.username
+            };
+            StorageService.setLanguage(route);
           });
         })
         .catch(function (resp) {

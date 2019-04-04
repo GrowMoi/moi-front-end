@@ -14,7 +14,7 @@
           tree: {
             messages: [
               /*jshint camelcase: false */
-              "The world of knowledge awaits. Clic a gray fruit to explore it's contents"]
+              "The world of knowledge awaits. Clic a gray fruit to explore its contents"]
           },
           neuron: {
             messages: [

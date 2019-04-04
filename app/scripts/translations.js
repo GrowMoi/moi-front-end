@@ -6,6 +6,45 @@
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
 
     $translateProvider.translations('en', {
+      modal_launch_test : {
+        'title' : 'You have read ',
+        'title_next': ' articles',
+        'content': 'Why dont we see if you really learned?',
+        'next': 'Next'
+      },
+      modal_end_test : {
+        'title': 'Congratulations ',
+        'content': 'Answer 21 questions to receive your results & reward',
+        'ok': 'OK',
+        'cancel': 'Cancel'
+      },
+      modal_join : {
+        play: 'Play',
+        parents: 'Parents y Tutors'
+      },
+      modal_score : {
+        title: 'Results',
+        content: 'You got ',
+        content_next: ' of ',
+        content_end:' right'
+      },
+      modal_tutor : {
+        title: 'Achievement',
+        content: 'Congratulations! You completed all your recommended contents ',
+        content_next: 'You just won  ',
+        content_middle: 'We sent a notification of your achievement to ',
+        content_end: 'so he/she gives you your reward '
+      },
+      modal_certificate:{
+        contents: ' Content Learned',
+        progress: ' Progress Tree',
+        test: ' Final Test',
+        tiempo: ' Average read time',
+        informacion: ' For more, visit growmoi.com'
+      },
+      image : {
+        secret: 'Select your secret image:'
+      },
       tooltip :{
         tree: 'Back to the tree',
         close: 'Close',
@@ -149,6 +188,45 @@
     });
 
     $translateProvider.translations('es', {
+      modal_launch_test : {
+        'title' : 'Has leído ',
+        'title_next': ' contenidos',
+        'content': '¿Porqué no probamos si de verdad has aprendido?',
+        'next': 'Continuar'
+      },
+      modal_end_test : {
+        'title': 'Felicidades ',
+        'content': 'Responderás 21 preguntas y al final recibirás tus resultados y recompensa inmediatamente',
+        'ok': 'OK',
+        'cancel': 'Cancelar'
+      },
+      modal_join : {
+        play: 'Jugar',
+        parents: 'Padres y Tutores'
+      },
+      modal_score : {
+        title: 'Resultado',
+        content: 'Respondiste ',
+        content_next: ' de ',
+        content_end:' preguntas correctamente'
+      },
+      modal_tutor : {
+        title: 'Recompensa',
+        content: 'Felicidades! Completaste todas las recomendaciones  ',
+        content_next: 'Acabas de ganar ',
+        content_middle: 'Hemos enviado una notificación de tus aprendizajes a ',
+        content_end: 'para que te entregue '
+      },
+      modal_certificate:{
+        contents: ' contenidos aprendidos',
+        progress: ' crecimiento arbol',
+        test: ' ultimo test',
+        tiempo: ' tiempo de lectura promedio',
+        informacion: ' Para más información, visite growmoi.com'
+      },
+      image : {
+        secret: 'Selecciona tu imagen secreta:'
+      },
       tooltip :{
         tree: 'Volver al árbol',
         close: 'Cerrar',

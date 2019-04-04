@@ -71,8 +71,7 @@
       }
 
       function showNotificationModal() {
-        var language = $auth.user.language;
-        var templateModal = language === 'es' ? 'templates/partials/modal-notification-join-app.html' : 'templates/partials/modal-notification-join-app-en.html';
+        var templateModal = 'templates/partials/modal-notification-join-app.html';
         var dialogOptions = {
           templateUrl: templateModal,
           model: {}

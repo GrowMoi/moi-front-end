@@ -10,7 +10,8 @@
       var service = {
         get: get,
         update: update,
-        changeLanguage: changeLanguage
+        changeLanguage: changeLanguage,
+        setLanguage: setLanguage
       };
       var popupOptions = { title: 'Error'};
 
@@ -53,6 +54,22 @@
           update(storage).then(function(){
             $auth.user.language = language;
             $window.location.reload();
+          });
+        });
+      }
+
+      function setLanguage(route){
+        var lang = navigator.language || navigator.userLanguage;
+        var languageBrowser = lang.slice(0,2);
+        get().then(function(value){
+          var storage = value.data.storage || {};
+          storage.language = languageBrowser;
+          $translate.use(languageBrowser);
+          update(storage).then(function(){
+            $auth.user.language = languageBrowser;
+            $state.go(route.state, {
+              username: route.user
+            });
           });
         });
       }

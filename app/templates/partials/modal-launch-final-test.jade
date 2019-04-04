@@ -5,9 +5,9 @@
         img(src="images/user.png")
       .col-50
         .text-container
-          h2#title Felicidades {{model.name}}!
-          h2#content Responderás 21 preguntas y al final recibirás tus resultados y recompensa inmediatamente
+          h2#title {{ 'modal_end_test.title' | translate }} {{model.name}}!
+          h2#content {{ 'modal_end_test.content' | translate }}
       .pista.col
     .controls-score
-      span.btn-score.button.button-right(ng-click="model.createFinalTest()") OK
-      span.btn-score.button.button-left(ng-click="model.closeModal()") Cancelar
+      span.btn-score.button.button-right(ng-click="model.createFinalTest()") {{ 'modal_end_test.ok' | translate }}
+      span.btn-score.button.button-left(ng-click="model.closeModal()") {{ 'modal_end_test.cancel' | translate }}
