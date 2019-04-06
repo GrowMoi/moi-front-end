@@ -74,6 +74,7 @@
       modelData.questions = data.questions;
       modelData.userInfo = $auth.user;
       modelData.successAnswers = data.successAnswers;
+      modelData.totalQuestions = data.totalQuestions;
       modelData.cssOptions = {
         styles: []
       };

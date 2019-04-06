@@ -139,6 +139,11 @@
       },
       quiz: {
         player: 'Player'
+      },
+      test: {
+        first_description: 'You got ',
+        second_description: ' of ',
+        third_description:' right'
       }
     });
 
@@ -276,6 +281,11 @@
       },
       quiz: {
         player: 'Jugador'
+      },
+      test: {
+        first_description: 'Respondiste ',
+        second_description: ' de ',
+        third_description:' preguntas correctamente'
       },
       terms:{
         tittleTerms: 'Términos de Servicio Moi Aprendizaje Social',

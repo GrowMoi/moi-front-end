@@ -7,10 +7,20 @@
   bottom: 0;
 }
 
+.label-info {
+  color: white;
+  font-weight: bold;
+  font-family: FontMoi-Title;
+  font-size: 16px;
+}
+
 .transparent {
   background-color: transparent;
-  width: 97.5%;
-  left: 1.5%;
+
+  &.summary-test {
+    width: 97.5%;
+    left: 1.5%;
+  }
 
   .summary-title-test {
     color: #d1d7ac;
@@ -19,6 +29,11 @@
     font-family: FontMoi-Title;
     text-shadow: 2px 2px 4px #3D0242;
     width: auto;
+    margin-bottom: 1%;
+  }
+
+  .summary-description-test {
+    @extend .label-info;
   }
 
   .summary-footer-test {
@@ -33,7 +48,7 @@
       background-size: 100% 100%;
       cursor: pointer;
       display: flex;
-      height: 2.5rem;
+      height: 3rem;
       justify-content: center;
       width: 3rem;
       font-size: 18px;
@@ -67,8 +82,8 @@
         }
 
         .name {
-          font-size: 12px;
-          margin-top: 5%;
+          @extend .label-info;
+          margin-top: 1%;
         }
       }
 

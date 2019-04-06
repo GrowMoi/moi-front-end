@@ -1,4 +1,4 @@
-.modal.transparent
+.modal.transparent.summary-test
   ion-pane.transparent
     moi-sound(ng-if="model.successAnswers > 1"
               sound="sounds/congratulations_sound.mp3"
@@ -6,6 +6,12 @@
               only-play="true")
     .summary-title-test
       {{ 'titles.result' | translate }}
+    .summary-description-test
+      | {{ 'test.first_description' | translate }}
+      | {{model.successAnswers}}
+      | {{ 'test.second_description' | translate }}
+      | {{model.totalQuestions}}
+      | {{ 'test.third_description' | translate }}
     .summary-score-container.row
       .left-panel.col
         .level-user#levelUser-finalmodal
@@ -23,7 +29,7 @@
         .user-info
           img.picture(src="images/user.png")
           span.name
-            | {{::model.userInfo.name}}
+            | {{::model.userInfo.username}}
       .questions-container.col-50
         .question(ng-repeat="question in model.questions track by $index")
           .title(ng-style="model.cssOptions.styles[$index+1]"

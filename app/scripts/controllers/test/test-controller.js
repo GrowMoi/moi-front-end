@@ -101,8 +101,11 @@
     function scoreTest() {
       vmTest.hideTest = true;
       TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
+        var questionsData = questionsMapping(res.data.result);
         var data = {
-          questions: questionsMapping(res.data.result),
+          questions: questionsData.questions,
+          totalQuestions: vmTest.totalQuestions,
+          successAnswers: questionsData.rigthAnswers,
           meta: res.data.meta
         };
         if(data.successAnswers > 1 ){
@@ -134,15 +137,21 @@
         red: 'images/tree/nodos/nodo-fuccia.png',
         green: 'images/tree/nodos/nodo-verde.png'
       };
-      return angular.forEach(vmTest.questions, function(question){
+      var rigthAnswersCount = 0;
+      var questions = angular.forEach(vmTest.questions, function(question){
         var color = NeuronsOptions[question.content_id]; //jshint ignore:line
         question.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
         angular.forEach(results, function(result){
           if(result.content_id === question.content_id){
             question.correct = result.correct;
+            rigthAnswersCount++;
           }
         });
       });
+      return {
+        questions: questions,
+        rigthAnswers: rigthAnswersCount
+      };
     }
 
     function showModalAchievement(recommendations) {
