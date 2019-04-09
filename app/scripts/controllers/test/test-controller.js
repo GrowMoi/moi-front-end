@@ -54,7 +54,8 @@
     function selectAnswer(contentId, answer) {
       vmTest.answerBackend = {
         'content_id' : contentId,
-        'answer_id' : answer.id
+        'answer_id' : answer.id,
+        'answer_text': answer.text
       };
       vmTest.selectedAnswer.selected = false;
       vmTest.selectedAnswer = answer;
@@ -144,7 +145,13 @@
         angular.forEach(results, function(result){
           if(result.content_id === question.content_id){
             question.correct = result.correct;
-            rigthAnswersCount++;
+            var selectedAnswerByUser = vmTest.answers.find(function(answer){
+              return answer.content_id === result.content_id;
+            });
+            question.selectedAnswer = selectedAnswerByUser && selectedAnswerByUser.answer_text;
+            if(result.correct) {
+              rigthAnswersCount++;
+            }
           }
         });
       });

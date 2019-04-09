@@ -36,7 +36,7 @@
                 ng-mouseover="model.increaseSize(true, model.cssOptions, $index+1)"
                 ng-mouseleave="model.increaseSize(false, model.cssOptions, $index+1)")
             h4.content-question
-              | {{::question.title}}
+              | {{::question.selectedAnswer}}
             img.neuron-image(ng-src="{{::question.image}}")
           .answer
             .icon(ng-class="{'correct': question.correct, 'incorrect': !question.correct}")
