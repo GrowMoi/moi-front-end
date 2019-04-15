@@ -14,7 +14,8 @@
         autoPlay: '=',
         callback: '&',
         volume: '=',
-        onlyPlay: '='
+        onlyPlay: '=',
+        speed: '='
       },
       controller: moiSoundController,
       controllerAs: 'vmSound',
@@ -70,6 +71,8 @@
 
     function play() {
       vmSound.$audio[0].volume = vmSound.volume || 1;
+      // NOTE: 1.0 is normal speed, 0.5 is half speed (slower), 2.0 is double speed (faster)
+      vmSound.$audio[0].playbackRate = vmSound.speed || 1;
       vmSound.$audio[0].play();
       if(!vmSound.onlyPlay){
         vmSound.$audio[0].onended = vmSound.callback;
