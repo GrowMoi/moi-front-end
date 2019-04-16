@@ -36,7 +36,8 @@
         src: 'images/sprites/btn-learn-sprite.png',
         frames: 158,
         repeat: false,
-        speed: 30,
+        speed: 20,
+        speedSound: 1.5, // NOTE: 1.0 is normal speed, 0.5 is half speed (slower), 2.0 is double speed (faster)
         sound: 'sounds/btn_read.mp3',
         playOnClick: true,
         name: 'Leer Contenido',

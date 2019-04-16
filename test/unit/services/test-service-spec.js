@@ -219,7 +219,7 @@
       it('should call ModalService when scoreTest', function(){
         var spy = sinon.spy(ModalService, 'showModel');
         service.scoreTest(scope, data);
-        chai.expect(spy.called).to.be.equal(false);
+        chai.expect(spy.called).to.be.equal(true);
       });
 
     });
