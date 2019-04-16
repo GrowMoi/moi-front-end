@@ -90,7 +90,7 @@ options directive
       framesPerRow = options.framesPerRow;
       playOnClick = options.playOnClick ? options.playOnClick : false;
       initialSize = (frames * 100) + '%';
-      percentage = (100/(frames-1)).toFixed(5);
+      percentage = (100/(frames-1));
       percentage = parseFloat(percentage);
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
