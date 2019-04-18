@@ -5,7 +5,7 @@
       .module('moi.services')
       .factory('EventsService', EventsService);
 
-    function EventsService($http, $auth, $q, ENV, PopupService, ModalService, NeuronsOptions) {
+    function EventsService($http, $auth, $q, ENV, PopupService, ModalService) {
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
@@ -120,8 +120,7 @@
           //just show four first content
           event.contents = (event && event.contents) ? event.contents.splice(0,4) : [];
           angular.forEach(event.contents, function(element){
-            var color = NeuronsOptions[element.content_id]; //jshint ignore:line
-            element.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
+            element.image = NEURON_COLOR[element.neuron_color]; //jshint ignore:line
           });
         });
 
