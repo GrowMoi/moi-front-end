@@ -118,7 +118,7 @@
           var achievements = res.data.achievements || [];
 
           if(res.data.event && res.data.event.completed){
-            var beginningName = language === 'es' ?  'el evento ' : 'the event';
+            var beginningName = language === 'es' ?  'el evento: ' : 'the event: ';
             var achievement = {
               name: beginningName + res.data.event.info.title,
               bagde: res.data.event.info.image

@@ -21,6 +21,12 @@
               joinEvent: joinEvent
             }
           },
+          modelEvents = {
+            templateUrl: 'templates/partials/modal-event-list.html',
+            model: {
+              showEventDetails: showEventDetails
+            }
+          },
           currentEvents = [],
           language = $auth.user.language;
 
@@ -124,16 +130,10 @@
           });
         });
 
-        var modelData = {
-          events: currentEvents,
-          hasEvents: currentEvents.length > 0,
-          showEventDetails: showEventDetails
-        };
+        modelEvents.model.events = currentEvents;
+        modelEvents.model.hasEvents = currentEvents.length > 0;
 
-        ModalService.showModel({
-          templateUrl: 'templates/partials/modal-event-list.html',
-          model: modelData
-        });
+        ModalService.showModel(modelEvents);
       }
 
       function showEventDetails(index, events){
@@ -177,6 +177,9 @@
         var cssClass = 'animated zoomOutDown';
         $eventContainer.addClass(cssClass).one(animationEnd, function(){
           $eventContainer.remove();
+          if(modelEvents.model.events.length === 1){
+            modelEvents.model.closeModal();
+          }
         });
       }
     }
