@@ -10,8 +10,7 @@
               $state,
               ModalService,
               MediaAchievements,
-              HoverAnimationService,
-              NeuronsOptions) {
+              HoverAnimationService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -140,10 +139,9 @@
       };
       var rigthAnswersCount = 0;
       var questions = angular.forEach(vmTest.questions, function(question){
-        var color = NeuronsOptions[question.content_id]; //jshint ignore:line
-        question.image = NEURON_COLOR[color] || 'images/tree/nodos/nodo-azul.png';
         angular.forEach(results, function(result){
           if(result.content_id === question.content_id){
+            question.image = NEURON_COLOR[result.neuron_color];
             question.correct = result.correct;
             var selectedAnswerByUser = vmTest.answers.find(function(answer){
               return answer.content_id === result.content_id;
