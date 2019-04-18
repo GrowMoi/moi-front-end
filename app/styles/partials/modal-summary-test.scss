@@ -80,6 +80,7 @@
 
         .picture {
           width: 75%;
+          cursor: pointer;
         }
 
         .name {
@@ -259,11 +260,15 @@
 
           .percentage-progress-bar {
             z-index: 0;
-            top: 0.6rem;
-            left: 0.25rem;
+            top: 0.65rem;
+            left: 0.3rem;
             width: 5rem;
-            height: 1.8rem;
-            border-top-left-radius: 18px;
+            height: 1.7rem;
+            border-top-left-radius: 25%;
+
+            .percentage-bar {
+              border-top-left-radius: 40%;
+            }
           }
         }
       }

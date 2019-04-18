@@ -29,7 +29,10 @@
                   | {{::model.userLevel}}
                 img(src= "images/tree-number-level.png")
         .user-info
-          img.picture(src="images/user.png")
+          img.picture(src="{{model.userInfo.image || 'images/user.png'}}"
+                      ng-style="model.cssOptions.styles['image_user']"
+                      ng-mouseover="model.increaseSize(true, model.cssOptions, 'image_user')"
+                      ng-mouseleave="model.increaseSize(false, model.cssOptions, 'image_user')")
           span.name
             | {{::model.userInfo.username}}
       .questions-container.col-50

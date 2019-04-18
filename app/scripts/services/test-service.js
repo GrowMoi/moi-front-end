@@ -79,7 +79,7 @@
         styles: []
       };
       modelData.increaseSize = function(increase, cssOpts, id){
-        cssOpts.scale = id.includes('answer') ? '1.3' : null;
+        cssOpts.scale = (id.includes('answer') || id.includes('btn_ok')) ? '1.3' : null;
         HoverAnimationService.increaseSize(increase, cssOpts, id);
       };
 
