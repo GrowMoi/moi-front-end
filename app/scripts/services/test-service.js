@@ -78,7 +78,10 @@
       modelData.cssOptions = {
         styles: []
       };
-      modelData.increaseSize = HoverAnimationService.increaseSize;
+      modelData.increaseSize = function(increase, cssOpts, id){
+        cssOpts.scale = id.includes('answer') ? '1.3' : null;
+        HoverAnimationService.increaseSize(increase, cssOpts, id);
+      };
 
       modelData.onClick = function(){
         modelData.closeModal();

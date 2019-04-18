@@ -108,6 +108,18 @@
             }
           }
 
+          .counter-container {
+            top: -30%;
+            left: 20%;
+
+            .counter {
+
+              span {
+                left: 61%;
+              }
+            }
+          }
+
           .point {
             width: 70%;
           }
@@ -214,6 +226,7 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
             visibility: hidden;
+            cursor: pointer;
 
             &.correct {
               background-image: url(../images/check.png);
@@ -241,6 +254,7 @@
         -webkit-animation-iteration-count: 1;
 
         .percentage-container {
+          cursor: pointer;
           width: 8rem;
 
           .percentage-progress-bar {
