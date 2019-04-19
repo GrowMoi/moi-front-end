@@ -12,7 +12,8 @@
         compartir: 'Share',
         perfil: 'View profile',
         alternativa: 'Choose this alternative',
-        question: 'Next question'
+        question: 'Next question',
+        continue: 'Next',
       },
       menu: {
         menu: 'Menu',
@@ -154,7 +155,8 @@
         compartir: 'Compartir',
         perfil: 'Ver perfil',
         alternativa: 'Elegir esta alternativa',
-        question: 'Continuar con la siguiente pregunta'
+        question: 'Continuar con la siguiente pregunta',
+        continue: 'Continuar',
       },
       menu: {
         menu: 'Menú',

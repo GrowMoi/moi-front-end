@@ -66,4 +66,7 @@
     .summary-footer-test(ng-style="model.cssOptions.styles['btn_ok']"
                         ng-mouseover="model.increaseSize(true, model.cssOptions, 'btn_ok')"
                         ng-mouseleave="model.increaseSize(false, model.cssOptions, 'btn_ok')")
-      span.btn-confirm(ng-click="model.onClick()")
+      span.btn-confirm(tooltips
+                tooltip-template="{{ 'tooltip.continue' | translate }}"
+                tooltip-side="up"
+                ng-click="model.onClick()")

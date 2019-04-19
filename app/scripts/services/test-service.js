@@ -133,7 +133,6 @@
             animateElements(elements);
           });
         }
-
       }
     }
 
