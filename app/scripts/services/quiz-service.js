@@ -30,8 +30,7 @@
       modelData.totalQuestions = data.totalQuestions;
       modelData.onClick = reloadPage;
       modelData.isQuiz = true;
-      var language = $auth.user.language;
-      var templateModal = language === 'es' ? 'templates/partials/modal-score-test.html' : 'templates/partials/modal-score-test-en.html';
+      var templateModal = 'templates/partials/modal-score-test.html';
       ModalService.showModel(
         {
           parentScope: scope,

@@ -5,12 +5,13 @@
       .module('moi.services')
       .factory('StorageService', StorageService);
 
-    function StorageService($http, $auth, ENV, PopupService, $state, $translate) {
+    function StorageService($http, $auth, ENV, PopupService, $state, $translate,$window) {
 
       var service = {
         get: get,
         update: update,
-        changeLanguage: changeLanguage
+        changeLanguage: changeLanguage,
+        setLanguage: setLanguage
       };
       var popupOptions = { title: 'Error'};
 
@@ -46,12 +47,29 @@
       function changeLanguage() {
         get().then(function(value){
           var storage = value.data.storage || {};
-          var language = storage.language === 'es' ? 'en' : 'es';
+          var languageUser = storage.language || $auth.user.language;
+          var language = languageUser === 'es' ? 'en' : 'es';
           storage.language = language;
           $translate.use(language);
-          $auth.user.language = language;
           update(storage).then(function(){
-            $state.reload();
+            $auth.user.language = language;
+            $window.location.reload();
+          });
+        });
+      }
+
+      function setLanguage(route){
+        var lang = navigator.language || navigator.userLanguage;
+        var languageBrowser = lang.slice(0,2);
+        get().then(function(value){
+          var storage = value.data.storage || {};
+          storage.language = languageBrowser;
+          $translate.use(languageBrowser);
+          update(storage).then(function(){
+            $auth.user.language = languageBrowser;
+            $state.go(route.state, {
+              username: route.user
+            });
           });
         });
       }

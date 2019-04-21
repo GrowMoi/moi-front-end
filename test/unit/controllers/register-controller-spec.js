@@ -13,6 +13,7 @@
         ModalService,
         $scope,
         $ionicLoading,
+        ImagesLoginEn,
         ImagesLogin;
 
     beforeEach(module('moi.controllers'));
@@ -41,6 +42,7 @@
                 _$rootScope_,
                 _ModalService_,
                 $controller,
+                _ImagesLoginEn_,
                 _ImagesLogin_) {
 
       deferredRegister  = $q.defer();
@@ -59,6 +61,7 @@
       $rootScope = _$rootScope_;
       $scope            = $rootScope.$new();
       ImagesLogin = _ImagesLogin_;
+      ImagesLoginEn = _ImagesLoginEn_;
 
       controller = $controller('RegisterController', {
         '$ionicPopup': $ionicPopup,
@@ -66,7 +69,8 @@
         '$state': $state,
         '$auth': $auth,
         '$scope': $scope,
-        'ImagesLogin': ImagesLogin
+        'ImagesLogin': ImagesLogin,
+        'ImagesLoginEn': ImagesLoginEn
       });
     }));
 

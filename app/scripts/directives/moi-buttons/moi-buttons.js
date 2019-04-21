@@ -32,16 +32,19 @@
                                   UserNotificationsService,
                                   GAService) {
       var vm = this;
-
+      var language = $auth.user.language;
+      var messageModal = language === 'es' ? 'Para aprender este concepto, aún debes superar algunos conceptos previos' : 'To learn this concept, you still have to overcome some previous concepts';
+      var lblbtnRight = language === 'es' ? 'Seguir Leyendo' : 'Keep reading';
+      var lblbtnLeft = language === 'es' ? 'Regresar a mi arbol' : 'Back to tree';
       var dialogContentModel = {
-        message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
+        message: messageModal,
         callbacks: {
           btnRight: function(){dialogContentModel.closeModal();},
           btnLeft: modalCallbak
         },
         labels: {
-          btnRight: 'Seguir leyendo',
-          btnLeft: 'Regresar a mi arbol'
+          btnRight: lblbtnRight,
+          btnLeft: lblbtnLeft
         }
       };
 
@@ -332,8 +335,7 @@
       }
 
       function showNotificationModal() {
-        var language = $auth.user.language;
-        var templateModal = language === 'es' ? 'templates/partials/modal-notification-join-app.html' : 'templates/partials/modal-notification-join-app-en.html';
+        var templateModal = 'templates/partials/modal-notification-join-app.html';
         var dialogOptions = {
           templateUrl: templateModal,
           model: dialogContentModel

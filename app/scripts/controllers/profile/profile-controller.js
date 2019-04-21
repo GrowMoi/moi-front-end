@@ -79,7 +79,7 @@
       {
         field:'awards',
         name: 'Awards',
-        partial: 'templates/profile/partials/awards.html',
+        partial: 'templates/profile/partials/awardsEn.html',
         selected: false
       },
       {
@@ -192,7 +192,7 @@
     }
 
     function showCertificate(url_certificate){ //jshint ignore:line
-      var templateModal = language === 'es' ? 'templates/partials/modal-finish-certificate.html' : 'templates/partials/modal-finish-certificate-en.html';
+      var templateModal = 'templates/partials/modal-finish-certificate.html';
       var dialogOptions = {
         templateUrl: templateModal,
         model: {

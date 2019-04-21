@@ -9,6 +9,8 @@
               $ionicLoading,
               $state,
               $auth,
+              StorageService,
+              $translate,
               UtilityService,
               ImagesLogin,
               ImagesLoginEn,
@@ -71,9 +73,11 @@
     function redirectUser(user) {
       GAService.track('set', 'userId', user.username);
       GAService.track('set', 'dimension1', user.id);
-      $state.go(successState, {
-        username: user.username
-      });
+      var route={
+        state:successState,
+        user: user.username
+      };
+      StorageService.setLanguage(route);
     }
   });
 })();

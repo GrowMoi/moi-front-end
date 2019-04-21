@@ -138,9 +138,11 @@
       if (!activePreload && $auth.user.id) {
         event.preventDefault();
       }else{
+        var language = $auth.user.language;
+        var languageTemplate = language === 'es' ? 'cargando ...' : 'loading...'; 
         if (site.loadedImages && $auth.user.id) {
           $ionicLoading.show({
-            template: 'cargando...'
+            template: languageTemplate
           });
         }
       }
@@ -168,7 +170,7 @@
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.advicePage = AdvicesPage[toState.name];
-      if(toState.name === 'new_login.first_step' || toState.name === 'new_login.second_step' || toState.name === 'register'){
+      if(toState.name === 'new_login.first_step' || toState.name === 'new_login.second_step' || toState.name === 'register' || toState.name ==='login'){
         var lang = navigator.language || navigator.userLanguage;
         var languageBrowser = lang.slice(0,2);
         site.advicePage = languageBrowser === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
