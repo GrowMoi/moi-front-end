@@ -10,7 +10,6 @@
               $state,
               ModalService,
               MediaAchievements,
-              StorageService,
               HoverAnimationService) {
 
     var vmTest = this;
@@ -54,7 +53,8 @@
     function selectAnswer(contentId, answer) {
       vmTest.answerBackend = {
         'content_id' : contentId,
-        'answer_id' : answer.id
+        'answer_id' : answer.id,
+        'answer_text': answer.text
       };
       vmTest.selectedAnswer.selected = false;
       vmTest.selectedAnswer = answer;
@@ -101,9 +101,12 @@
     function scoreTest() {
       vmTest.hideTest = true;
       TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
+        var questionsData = questionsMapping(res.data.result);
         var data = {
+          questions: questionsData.questions,
           totalQuestions: vmTest.totalQuestions,
-          successAnswers: rigthAnswers(res.data.result)
+          successAnswers: questionsData.rigthAnswers,
+          meta: res.data.meta
         };
         if(data.successAnswers > 1 ){
           $backgroundSound[0].pause();
@@ -126,14 +129,34 @@
       });
     }
 
-    function rigthAnswers(results) {
-      var count = 0;
-      angular.forEach(results, function(result){
-        if (result.correct) {
-          count += 1;
-        }
+    function questionsMapping(results) {
+      /*jshint camelcase: false */
+      var NEURON_COLOR = {
+        yellow: 'images/tree/nodos/nodo-amarillo.png',
+        blue: 'images/tree/nodos/nodo-azul.png',
+        red: 'images/tree/nodos/nodo-fuccia.png',
+        green: 'images/tree/nodos/nodo-verde.png'
+      };
+      var rigthAnswersCount = 0;
+      var questions = angular.forEach(vmTest.questions, function(question){
+        angular.forEach(results, function(result){
+          if(result.content_id === question.content_id){
+            question.image = NEURON_COLOR[result.neuron_color];
+            question.correct = result.correct;
+            var selectedAnswerByUser = vmTest.answers.find(function(answer){
+              return answer.content_id === result.content_id;
+            });
+            question.selectedAnswer = selectedAnswerByUser && selectedAnswerByUser.answer_text;
+            if(result.correct) {
+              rigthAnswersCount++;
+            }
+          }
+        });
       });
-      return count;
+      return {
+        questions: questions,
+        rigthAnswers: rigthAnswersCount
+      };
     }
 
     function showModalAchievement(recommendations) {

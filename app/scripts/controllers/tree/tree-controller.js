@@ -134,8 +134,8 @@
         title: 'Así se ve mi árbol Moi',
         description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
       }:{
-        title: 'ThHasta aquí descubrí is is how my Moi tree looks',
-        description: 'So far I discovered '+learntContents+' contents You can also grow your knowledge with Moi Social Learning'
+        title: 'This is how my Moi tree looks',
+        description: 'So far I discovered '+learntContents+' contents. You can also grow your knowledge with Moi Social Learning'
       };
       SocialService.showModal(data);
     }
@@ -169,8 +169,8 @@
       if(oldPercentage !== treeModel.percentage){
         TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
         if(!!oldPercentage){
-          var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
-          var levelUserWidget = angular.element(document.querySelector('.level-user'));
+          var percentageTreeWidget = document.querySelector('.tree-percentage');
+          var levelUserWidget = document.querySelector('.level-user');
           var barAnimation = 'pulse';
           animationLevelBadge();
           TreeAnimateService.animateWidget(levelUserWidget, barAnimation).then(function(){
@@ -191,7 +191,7 @@
       if(oldLevel !== treeModel.userLevel){
         TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
         if(!!oldLevel){
-          var levelUserCountWidget = angular.element(document.querySelector('.counter-container'));
+          var levelUserCountWidget = document.querySelector('.counter-container');
           var numberAnimation = 'zoomIn';
           TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
         }

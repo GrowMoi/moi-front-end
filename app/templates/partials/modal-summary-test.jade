@@ -1,0 +1,72 @@
+.modal.transparent.summary-test
+  ion-pane.transparent
+    moi-sound(ng-if="model.successAnswers > 1"
+              sound="sounds/congratulations_sound.mp3"
+              auto-play="true",
+              only-play="true")
+    .summary-title-test
+      {{ 'titles.result' | translate }}
+    .summary-description-test
+      | {{ 'test.first_description' | translate }}
+      | {{model.successAnswers}}
+      | {{ 'test.second_description' | translate }}
+      | {{model.totalQuestions}}
+      | {{ 'test.third_description' | translate }}
+    .summary-score-container.row
+      .left-panel.col
+        .level-user#levelUser-finalmodal
+          .level-user-container(ng-style="model.cssOptions.styles['level_user']"
+                        ng-mouseover="model.increaseSize(true, model.cssOptions, 'level_user')"
+                        ng-mouseleave="model.increaseSize(false, model.cssOptions, 'level_user')")
+            .level-container
+              .level-progress-bar
+                .level-bar(style="height: {{model.percentageLevel}}%")
+              img.widget(src="images/tree-user-level.png")
+            img.point(src="images/tree-point-level.png")
+            .counter-container
+              .counter
+                span
+                  | {{::model.userLevel}}
+                img(src= "images/tree-number-level.png")
+        .user-info
+          img.picture(src="{{model.userInfo.image || 'images/user.png'}}"
+                      ng-style="model.cssOptions.styles['image_user']"
+                      ng-mouseover="model.increaseSize(true, model.cssOptions, 'image_user')"
+                      ng-mouseleave="model.increaseSize(false, model.cssOptions, 'image_user')")
+          span.name
+            | {{::model.userInfo.username}}
+      .questions-container.col-50
+        .question(ng-repeat="question in model.questions track by $index")
+          .title(ng-style="model.cssOptions.styles['question_'+$index]"
+                ng-mouseover="model.increaseSize(true, model.cssOptions, 'question_'+$index)"
+                ng-mouseleave="model.increaseSize(false, model.cssOptions, 'question_'+$index)")
+            h4.content-question
+              | {{::question.selectedAnswer}}
+            img.neuron-image(ng-src="{{::question.image}}")
+          .answer
+            .icon(ng-style="model.cssOptions.styles['answer_'+$index]"
+                ng-mouseover="model.increaseSize(true, model.cssOptions, 'answer_'+$index)"
+                ng-mouseleave="model.increaseSize(false, model.cssOptions, 'answer_'+$index)"
+                ng-class="{'correct': question.correct, 'incorrect': !question.correct}")
+      .right-panel.col
+        .tree-percentage#percentageTree-finalmodal
+          .percentage-container(ng-style="model.cssOptions.styles['tree_percentage']"
+                        ng-mouseover="model.increaseSize(true, model.cssOptions, 'tree_percentage')"
+                        ng-mouseleave="model.increaseSize(false, model.cssOptions, 'tree_percentage')")
+            .percentage-progress-bar
+              .label
+                  | {{::model.percentage}} %
+              .percentage-bar(style="width: {{model.percentage}}%")
+            img.widget(src="images/tree-percentage-bar.png")
+        .btn-shared-result(ng-click="model.sharedResult()"
+                        ng-style="model.cssOptions.styles['btn_shared']"
+                        ng-mouseover="model.increaseSize(true, model.cssOptions, 'btn_shared')"
+                        ng-mouseleave="model.increaseSize(false, model.cssOptions, 'btn_shared')"
+                          data-html2canvas-ignore="true")
+    .summary-footer-test(ng-style="model.cssOptions.styles['btn_ok']"
+                        ng-mouseover="model.increaseSize(true, model.cssOptions, 'btn_ok')"
+                        ng-mouseleave="model.increaseSize(false, model.cssOptions, 'btn_ok')")
+      span.btn-confirm(tooltips
+                tooltip-template="{{ 'tooltip.continue' | translate }}"
+                tooltip-side="up"
+                ng-click="model.onClick()")

@@ -22,9 +22,10 @@
 
       function animateWidget(element, animationType){
         var cssClass = 'animated '+ animationType;
-        var $widgetToAnimate = element;
+        var $widgetToAnimate = angular.element(element);
         var animationDeferred = $q.defer();
         $widgetToAnimate.addClass(cssClass).one(animationEnd, function() {
+          $widgetToAnimate.removeClass(cssClass);
           animationDeferred.resolve();
         });
         return animationDeferred.promise;

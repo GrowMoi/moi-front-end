@@ -15,7 +15,8 @@
         contentId,
         answer,
         MediaAchievements,
-        StorageService;
+        StorageService,
+        NeuronsOptions;
 
     beforeEach(module('moi.controllers'));
 
@@ -78,6 +79,14 @@
               badge:'images/inventory/badges/badge1.png',
               video: 'videos/vineta_1.mp4'
             }
+          }
+        });
+        $provide.constant('NeuronsOptions', {
+          'root': {
+            color: 'yellow'
+          },
+          'second-level-0': {
+            color: 'blue'
           }
         });
       });
@@ -144,7 +153,8 @@
                 _$rootScope_,
                 _$state_,
                 _MediaAchievements_,
-                _StorageService_) {
+                _StorageService_,
+                _NeuronsOptions_) {
         $controller = _$controller_;
         $stateParams = _$stateParams_;
         $rootScope = _$rootScope_;
@@ -153,6 +163,7 @@
         TestService = _TestService_;
         MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
+        NeuronsOptions = _NeuronsOptions_;
         $auth = {
           user: {
             id: 1,
@@ -170,6 +181,7 @@
           $auth: $auth,
           $state: $state,
           MediaAchievements: MediaAchievements,
+          NeuronsOptions: NeuronsOptions,
           StorageService: StorageService,
           storage: {test: {'advices': ['advice0']}}
         };

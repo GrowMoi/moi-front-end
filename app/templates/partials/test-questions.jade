@@ -11,8 +11,9 @@
                 ng-class="{'answer-selected': answer.selected}",
                 ng-style="vmTest.cssOptions.styles[$index+1]"
                 ng-click="vmTest.selectAnswer(question.content_id, answer)"
-                tooltip-moi="{{ 'tooltip.alternativa' | translate }}"
-                tooltip-position="up"
+                tooltips
+                tooltip-template="{{ 'tooltip.alternativa' | translate }}"
+                tooltip-side="up"
                 ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, $index+1)"
                 ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, $index+1)")
           h4 {{answer.text}}

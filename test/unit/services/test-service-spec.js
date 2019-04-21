@@ -75,7 +75,11 @@
       };
       data = {
         successAnswers: 3,
-        totalQuestions: 4
+        totalQuestions: 4,
+        meta: {
+          current_learnt_contents: 10,
+          total_approved_contents: 20
+        }
       };
     });
 

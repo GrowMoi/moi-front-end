@@ -12,7 +12,8 @@
         compartir: 'Share',
         perfil: 'View profile',
         alternativa: 'Choose this alternative',
-        question: 'Next question'
+        question: 'Next question',
+        continue: 'Next',
       },
       menu: {
         menu: 'Menu',
@@ -118,7 +119,8 @@
         'current-photo': 'Image',
         'items': 'Items',
         'title': 'Title',
-        'description': 'Description'
+        'description': 'Description',
+        'result': 'RESULT'
       },
       social: {
         'title': 'Show your friends',
@@ -138,6 +140,11 @@
       },
       quiz: {
         player: 'Player'
+      },
+      test: {
+        first_description: 'You got ',
+        second_description: ' of ',
+        third_description:' right'
       }
     });
 
@@ -148,7 +155,8 @@
         compartir: 'Compartir',
         perfil: 'Ver perfil',
         alternativa: 'Elegir esta alternativa',
-        question: 'Continuar con la siguiente pregunta'
+        question: 'Continuar con la siguiente pregunta',
+        continue: 'Continuar',
       },
       menu: {
         menu: 'Menú',
@@ -246,14 +254,15 @@
         'friends': 'Amigos',
         'choose-photo': 'Escoger foto',
         'upload-photo': 'Cargar foto',
-        'change-password': 'Cambiar contraseña'
+        'change-password': 'Cambiar contraseña',
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',
         'current-photo': 'Foto Actual',
         'items': 'items',
         'title': 'Título',
-        'description': 'Descripción'
+        'description': 'Descripción',
+        'result': 'RESULTADO'
       },
       social: {
         'title': 'Muestrale a tus amigos!',
@@ -274,6 +283,11 @@
       },
       quiz: {
         player: 'Jugador'
+      },
+      test: {
+        first_description: 'Respondiste ',
+        second_description: ' de ',
+        third_description:' preguntas correctamente'
       },
       terms:{
         tittleTerms: 'Términos de Servicio Moi Aprendizaje Social',
