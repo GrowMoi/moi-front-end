@@ -9,7 +9,8 @@
       ENV,
       PopupService,
       ModalService,
-      $state;
+      $state,
+      $auth;
 
     beforeEach(module('moi.services', function($provide) {
       $provide.factory('PopupService', function() {
@@ -23,6 +24,16 @@
         return {
           showModel: function(){
             return null;
+          }
+        };
+      });
+      $provide.service('$auth', function() {
+        return {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin'
           }
         };
       });
@@ -56,13 +67,14 @@
 
     beforeEach(inject(
       function(_$httpBackend_, _UserService_, _ENV_, _PopupService_, _$state_,
-        _ModalService_) {
+        _ModalService_, _$auth_) {
         $httpBackend = _$httpBackend_;
         service = _UserService_;
         ENV = _ENV_;
         PopupService = _PopupService_;
         $state = _$state_;
         ModalService = _ModalService_;
+        $auth = _$auth_;
       }));
 
     afterEach(function() {
