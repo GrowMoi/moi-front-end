@@ -58,11 +58,6 @@
                   | {{::model.percentage}} %
               .percentage-bar(style="width: {{model.percentage}}%")
             img.widget(src="images/tree-percentage-bar.png")
-        .btn-shared-result(ng-click="model.sharedResult()"
-                        ng-style="model.cssOptions.styles['btn_shared']"
-                        ng-mouseover="model.increaseSize(true, model.cssOptions, 'btn_shared')"
-                        ng-mouseleave="model.increaseSize(false, model.cssOptions, 'btn_shared')"
-                          data-html2canvas-ignore="true")
     .summary-footer-test(ng-style="model.cssOptions.styles['btn_ok']"
                         ng-mouseover="model.increaseSize(true, model.cssOptions, 'btn_ok')"
                         ng-mouseleave="model.increaseSize(false, model.cssOptions, 'btn_ok')")
