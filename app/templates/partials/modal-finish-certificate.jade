@@ -7,7 +7,7 @@
                       data-html2canvas-ignore="true")
       .background-certificate(ng-if="!model.certificate")
         .title
-          img(src="images/diploma/title.png")
+          img(ng-src="{{model.image}}")
         .container
           .info-user
             .table

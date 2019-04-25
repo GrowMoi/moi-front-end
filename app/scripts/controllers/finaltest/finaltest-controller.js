@@ -133,14 +133,18 @@
     }
 
     function makeReportToCertificate(data, res) {
+      var language = $auth.user.language;
+      var dirImage = language === 'es' ? 'images/diploma/title.png' : 'images/diploma/title_ingles.png';
       var progressTree = TreeService.progressTree(res.data);
       var percentageTest = getPercentage(data.totalQuestions,data.successAnswers);
+      var time = (res.data.time).replace(/\s/g, '');
       dataReport = {
         user: vmTest.user,
         progressTree: progressTree.percentage,
         resultFinalTest: percentageTest,
         pieChart: getPercentageByBranch(res.data),
-        timeOfReading: res.data.time,
+        image: dirImage,
+        timeOfReading: time,
         totalContentsLearnt: res.data.current_learnt_contents, //jshint ignore:line
         close: function(){
           saveAndSharedCertificate();

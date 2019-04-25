@@ -5,14 +5,14 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
                       on-change="vmLogin.onSelectImage(image)")
     .row.button-actions
       .col
-        .button.button-login-second(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
+        .button.button-translate(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
           | {{ 'signup' | translate }}
       .col
         input(
           ng-disabled="!vmLogin.isChrome",
           type='submit',
           value="{{ 'login.login' | translate }}"
-        ).button.button-login-second
+        ).button.button-translate
   a.legend-browser(ng-if='!vmLogin.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
     | {{ 'browser.chrome' | translate }}
 

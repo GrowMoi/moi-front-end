@@ -9,5 +9,5 @@
           h2#content {{ 'modal_launch_test.content' | translate }}
       .pista.col
     .controls-score
-      span.btn-score.button(ng-click="model.closeModal()"
+      span.btn-score.button.button-translate(ng-click="model.closeModal()"
                             ui-sref="test({ testId: model.testId, testData: model} )") {{ 'modal_launch_test.next' | translate }}
