@@ -278,9 +278,7 @@
 
           if(vm.content.belongs_to_event){
             $state.go('tasks.events');
-          }
-
-          if (page === 'content' && !data.perform_test) {
+          }else if (page === 'content' && !data.perform_test) {
             $state.go('neuron', {
               neuronId: vm.content.neuron_id
             });
