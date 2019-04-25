@@ -71,7 +71,7 @@
       notificationsModel.showSetEvents = EventsService.showSetEvents;
       EventsService.getWeeklyEvents().then(function(resp){
         Object.keys(resp).map(function(week){
-          if(resp[week].length > 1){
+          if(resp[week].length > 0){
             var eventNotification = {
               type: 'event',
               title: week,

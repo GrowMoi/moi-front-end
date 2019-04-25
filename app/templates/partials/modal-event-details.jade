@@ -10,9 +10,9 @@
           | {{::model.data.description}}
         .neurons-list
           .neuron(ng-repeat='content in model.data.contents')
+            img.neuron-image(ng-src="{{::content.image}}")
             span.neuron-title
               | {{::content.neuron}}
-            img.neuron-image(ng-src="{{::content.image}}")
         .join-event(ng-class="{disabled: !model.data.is_available}"
                     ng-click="model.joinEvent(model.data)")
           | {{ ::'tasks.events.join' | translate}}
