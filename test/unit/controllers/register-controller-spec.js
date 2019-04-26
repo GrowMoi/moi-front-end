@@ -14,7 +14,17 @@
         $scope,
         $ionicLoading,
         ImagesLoginEn,
-        ImagesLogin;
+        ImagesLogin,
+        $translate,
+        StorageService;
+
+    beforeEach(module('moi.services', function($provide){
+      $provide.factory('StorageService', function(){
+        return {
+          setLanguage: function(){}
+        };
+      });
+    }));
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -43,7 +53,8 @@
                 _ModalService_,
                 $controller,
                 _ImagesLoginEn_,
-                _ImagesLogin_) {
+                _ImagesLogin_,
+                _StorageService_) {
 
       deferredRegister  = $q.defer();
       deferredStateGo   = $q.defer();
@@ -62,6 +73,11 @@
       $scope            = $rootScope.$new();
       ImagesLogin = _ImagesLogin_;
       ImagesLoginEn = _ImagesLoginEn_;
+      StorageService = _StorageService_;
+      $translate ={
+        use:function(){
+        }
+      };
 
       controller = $controller('RegisterController', {
         '$ionicPopup': $ionicPopup,
@@ -70,7 +86,9 @@
         '$auth': $auth,
         '$scope': $scope,
         'ImagesLogin': ImagesLogin,
-        'ImagesLoginEn': ImagesLoginEn
+        'ImagesLoginEn': ImagesLoginEn,
+        '$translate': $translate,
+        'StorageService': StorageService,
       });
     }));
 
@@ -91,15 +109,16 @@
           chai.expect($auth.validateUser.called).to.be.equal(true);
         });
 
-        it('if successful validateUser, should got to successState', function() {
+        it('if successful validateUser, should setLanguage and redirect to tree page', function() {
           var user = {
             id: 1,
             username: 'test'
           };
+          var spy = sinon.spy(StorageService, 'setLanguage');
           deferredRegister.resolve();
           deferredValidateUser.resolve(user);
           $rootScope.$digest();
-          sinon.assert.alwaysCalledWithExactly($state.go, 'tree', {username: user.username});
+          chai.expect(spy.called).to.be.equal(true);
         });
       });
     });
