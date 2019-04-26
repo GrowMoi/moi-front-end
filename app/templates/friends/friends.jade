@@ -20,11 +20,8 @@ ion-view.friends-container.search-view-max(view-title='Friends')
             | {{ 'searches.friends' | translate }}
           .divider-line-search
           ion-content.result-searches
-            .col.col-25.user(ng-repeat='friend in friendsmodel.users track by $index')
-              .content-kind-contents(ui-sref="profile({username: friend.username})")
-                  img(ng-src="{{friend.image || 'images/user.png'}}")
-                  .user-name
-                    | {{friend.username}}
+            .col.col-25.friend-container(ng-repeat='friend in friendsmodel.users track by $index')
+              moi-frame-user.friend-frame(options="friend" ui-sref="profile({username: friend.username})")
             ion-infinite-scroll(ng-if='!friendsmodel.noMoreItemsAvailable', on-infinite='friendsmodel.loadMore()', distance='10%')
       moi-frame(options="friendsmodel.frameOptions")
   moi-sidebar
