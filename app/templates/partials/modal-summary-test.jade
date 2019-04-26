@@ -28,13 +28,10 @@
                 span
                   | {{::model.userLevel}}
                 img(src= "images/tree-number-level.png")
-        .user-info
-          img.picture(src="{{model.userInfo.image || 'images/user.png'}}"
+        moi-frame-user.user-info(options="model.userInfo"
                       ng-style="model.cssOptions.styles['image_user']"
                       ng-mouseover="model.increaseSize(true, model.cssOptions, 'image_user')"
                       ng-mouseleave="model.increaseSize(false, model.cssOptions, 'image_user')")
-          span.name
-            | {{::model.userInfo.username}}
       .questions-container.col-50
         .question(ng-repeat="question in model.questions track by $index")
           .title(ng-style="model.cssOptions.styles['question_'+$index]"

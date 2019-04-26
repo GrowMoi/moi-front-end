@@ -72,6 +72,7 @@
       modelData.percentage = progressTree.percentage;
       modelData.questions = data.questions;
       modelData.userInfo = $auth.user;
+      modelData.userInfo.content_summary = data.meta; //jshint ignore:line
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
       modelData.cssOptions = {
