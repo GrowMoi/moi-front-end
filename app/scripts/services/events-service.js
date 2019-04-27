@@ -27,8 +27,7 @@
               showEventDetails: showEventDetails
             }
           },
-          currentEvents = [],
-          language = $auth.user.language;
+          currentEvents = [];
 
       return service;
 
@@ -152,7 +151,7 @@
       function showEventNotification() {
         var enMessage = 'You joined the event successfully, the contents you must learn are in the Tasks tab.';
         var esMessage = 'Te uniste al evento con éxito, los contenidos que debes aprender están en la pestaña Tareas';
-        var message = language === 'es' ? esMessage : enMessage;
+        var message = ($auth.user.language === 'es') ? esMessage : enMessage;
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-alert-content.html',
           model: {
