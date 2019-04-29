@@ -1,10 +1,17 @@
 ion-list(no-lines)
   ion-item
     .item-award
-      span.description-content-learned
-        | Contenidos aprendidos en total: {{vmProfile.user.content_summary.current_learnt_contents}}/{{vmProfile.user.content_summary.total_approved_contents}}
-      br
+      span.description-item-award
+        | {{ ::'profile.awardsTab.contents.title' | translate}} {{vmProfile.user.content_summary.current_learnt_contents}}/{{vmProfile.user.content_summary.total_approved_contents}}
       span
-        | Tests sin errores: {{vmProfile.user.successful_tests}}
+        | {{ ::'profile.awardsTab.contents.description' | translate}} {{vmProfile.user.successful_tests}}
       span.btn-view-table(ng-if="!vmProfile.buttonsOptions.readOnly" ng-click="vmProfile.showLeaderboard()")
-        | Ver tabla
+        | {{ ::'profile.awardsTab.show_more' | translate}}
+    .item-award
+      span.description-item-award
+        | {{ ::'profile.awardsTab.events.title' | translate}} {{vmProfile.myEvents.meta.events_completed}}/{{vmProfile.myEvents.meta.total_events}}
+      span(ng-repeat="event in vmProfile.myEvents.events track by $index"
+          ng-if="vmProfile.myEvents.events.length > 0 && $index < 2")
+        | {{ ::event.title }} {{::'profile.awardsTab.events.divider' | translate}} {{ ::event.completed_at | date: "dd/MM/yyyy"}}
+      span.btn-view-table(ng-if="!vmProfile.buttonsOptions.readOnly" ng-click="vmProfile.showEventsboard()")
+        | {{ ::'profile.awardsTab.show_more' | translate}}

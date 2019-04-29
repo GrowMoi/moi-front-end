@@ -13,16 +13,18 @@
                                             ModalService,
                                             UserService,
                                             SocialService,
-                                            StorageService,
+                                            myEvents,
                                             GAService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
     var language = $auth.user.language;
     vmProfile.user = user;
+    vmProfile.myEvents = myEvents;
     vmProfile.imageUser = vmProfile.user.image || 'images/edit-profile/userphoto.png';
     vmProfile.isCurrentUser = user.id === currentUser.id;
     vmProfile.showLeaderboard = showLeaderboard;
+    vmProfile.showEventsboard = showEventsboard;
     vmProfile.logout = logout;
     vmProfile.certificates = certificates.certificates;
     vmProfile.showCertificate = showCertificate;
@@ -79,7 +81,7 @@
       {
         field:'awards',
         name: 'Awards',
-        partial: 'templates/profile/partials/awardsEn.html',
+        partial: 'templates/profile/partials/awards.html',
         selected: false
       },
       {
@@ -117,6 +119,7 @@
       var defaultTab = $stateParams.defaultTab || 'lasts-contents';
       vmProfile.changeTab(defaultTab);
     }
+
     var dialogOptions;
     function nextPage() {
       if (vmProfile.enableInfiniteScroll) {
@@ -140,6 +143,7 @@
         console.log('Upss');
       });
     }
+
     function showLeaderboard(){
       vmProfile.dataLogRealTime =[];
       UserService.getLeaderboard(vmProfile.user.id).then(function(data){
@@ -159,6 +163,17 @@
         ModalService.showModel(dialogOptions);
       });
     }
+
+    function showEventsboard(){
+      var dialogEventsOpts = {
+        templateUrl: 'templates/partials/modal-show-events-completed.html',
+        model: {
+          events: vmProfile.myEvents.events
+        }
+      };
+      ModalService.showModel(dialogEventsOpts);
+    }
+
     function logout(){
       GAService.track('set', 'userId', null);
       GAService.track('set', 'dimension1', user.id);

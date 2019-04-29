@@ -29,7 +29,8 @@
       saveCertificate: saveCertificate,
       getCertificates: getCertificates,
       deleteCertificate: deleteCertificate,
-      sharingContent: sharingContent
+      sharingContent: sharingContent,
+      getMyEvents: getMyEvents
     };
 
     var popupOptions = { title: 'Error'};
@@ -435,6 +436,20 @@
         data: params
       }).then(function success(res) {
         return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function getMyEvents() {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/events/my_events'
+      }).then(function success(res) {
+        return res.data;
       }, function error(err) {
         if(err.status !== 404){
           popupOptions.content = err.statusText;

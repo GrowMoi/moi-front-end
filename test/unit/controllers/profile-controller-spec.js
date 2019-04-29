@@ -117,6 +117,20 @@
             age: '15',
             last_contents_learnt: []
           },
+          myEvents: {
+            'status': 'accepted',
+            'events': [
+              {
+                'title': '4 Eventos',
+                'image': 'http://localhost:5000/uploads/event/image/2/1556381470-Captura_de_pantalla_2019-02-18_a_la_s__11.29.57.png',
+                'completed_at': 1556466459164
+              }
+            ],
+            'meta': {
+              'total_events': 4,
+              'events_completed': 1
+            }
+          },
           certificates: {
             certificates: [
               {

@@ -104,7 +104,19 @@
         'logros': 'Achievements',
         'logro': 'Last 4',
         'content': 'Contents learned in total:',
-        'test': 'Tests without errors:'
+        'test': 'Tests without errors:',
+        'awardsTab': {
+          'events': {
+            'title': 'Tests completed in total:',
+            'divider': 'completed on'
+          },
+          'contents': {
+            'title': 'Contents learned in total:',
+            'description': 'Tests without errors:',
+          },
+
+          'show_more': 'See table'
+        }
       },
       msgs:{
         error:{
@@ -290,7 +302,18 @@
         'logout': 'Cerrar Sesión',
         'logro': 'Logros',
         'content': 'Contenidos aprendidos en total:',
-        'test': 'Tests sin errores:'
+        'test': 'Tests sin errores:',
+        'awardsTab': {
+          'events': {
+            'title': 'Tests completados en total:',
+            'divider': 'completado el'
+          },
+          'contents': {
+            'title': 'Contenidos aprendidos en total:',
+            'description': 'Tests sin errores:'
+          },
+          'show_more': 'Ver tabla'
+        }
       },
       msgs:{
         error:{

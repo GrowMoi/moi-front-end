@@ -1,0 +1,14 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-leaderboard
+      .btn-close-modal-leaderboard(ng-click="model.closeModal()")
+      .content-leaderboard
+          .user-item.row(ng-repeat="event in model.events track by $index")
+            .user-description.row.user-leader
+              .content-center.col-10
+                img.user-image(ng-src="{{::event.image}}")
+              .content-center.col-50.user-name-container
+                span.user-name
+                  | {{::event.title}}
+              .content-center.col-40
+                | {{ ::event.completed_at | date: "dd/MM/yyyy"}}

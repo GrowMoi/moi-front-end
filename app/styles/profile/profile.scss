@@ -240,13 +240,18 @@
                       font-size: 15px;
                       font-family: FontMoi-Title;
                       padding: 10px;
+                      margin: 5px;
+                      display: flex;
+                      flex-direction: column;
+                      position: relative;
 
                       .btn-view-table {
                         right: 15px;
+                        bottom: 5px;
                         position: absolute;
                         cursor: pointer;
                       }
-                      .description-content-learned {
+                      .description-item-award {
                         white-space: pre-wrap;
                       }
                     }

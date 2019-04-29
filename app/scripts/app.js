@@ -242,6 +242,12 @@
             return data;
           });
         },
+        myEvents: function (UserService){
+          return UserService.getMyEvents().then(function(data){
+            return data;
+          });
+        },
+
       }
     })
     .state('profileEdit', {
