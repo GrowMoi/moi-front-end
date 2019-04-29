@@ -63,6 +63,18 @@
         display: flex;
         width: 100%;
         justify-content: space-around;
+        position: relative;
+
+        &:after{
+          content: '';
+          background-color: white;
+          width: 70%;
+          height: .2rem;
+          position: absolute;
+          left: 15%;
+          bottom: 67%;
+          z-index: 0;
+        }
 
         .neuron {
           align-items: center;
@@ -71,33 +83,24 @@
           justify-content: center;
           padding: .2rem;
           position: relative;
+          width: 25%;
+          z-index: 1;
 
           .neuron-title {
             font-weight: bold;
             font-size: 10px;
             color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            text-align: center;
           }
 
           .neuron-image {
-            width: 2rem;
-            height: 2rem;
-          }
-
-          &:after{
-            content: '';
-            background-color: white;
-            width: 2rem;
-            height: .2rem;
-            position: absolute;
-            bottom: 65%;
-            left: 3rem;
-          }
-
-          &:last-child {
-
-            &:after {
-              content: none;
-            }
+            height: 2.1rem;
+            background: #e9c477;
+            padding: 0px 10%;
           }
         }
       }
