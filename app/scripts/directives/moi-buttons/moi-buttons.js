@@ -59,6 +59,7 @@
       function init(){
         var options = vm.options || {};
         vm.neuron = options.neuron || {};
+        vm.neuron.neuron_can_read = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : vm.neuron.neuron_can_read;
         vm.content = options.content || {};
         vm.buttons = options.buttons || {};
         vm.readOnly = !!options.readOnly;
@@ -71,9 +72,9 @@
                                 UserNotificationsService.totalRecommendations;
 
         if (vm.content.read === undefined) {
-          vm.gifLearnActive = false;
+          vm.gifLearnActive = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : false;
         }else{
-          vm.gifLearnActive = !vm.content.read;
+          vm.gifLearnActive = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : !vm.content.read;
         }
 
         if (vm.options.onRegisterApi) {
@@ -274,7 +275,10 @@
           if (data.perform_test) {
             TestService.goTest($scope, data.test);
           }
-          if (page === 'content' && !data.perform_test) {
+
+          if(vm.content.belongs_to_event){
+            $state.go('tasks.events');
+          }else if (page === 'content' && !data.perform_test) {
             $state.go('neuron', {
               neuronId: vm.content.neuron_id
             });

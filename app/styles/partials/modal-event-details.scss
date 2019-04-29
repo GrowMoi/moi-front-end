@@ -1,0 +1,142 @@
+.generic-font-event {
+  color: #675225;
+  font-family: FontMoi-Title;
+}
+
+.transparent {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+
+  .modal-event-details {
+    width: 25rem;
+    height: 100%;
+    background-image: url(../images/events/eventDetails.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 15px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    .btn-close-modal {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 3rem;
+      height: 3rem;
+      background-image: url(../images/events/closeBtn.png);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+    }
+
+    .event-content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      width: 95%;
+      @extend .generic-font-event;
+
+      .event-title {
+        @extend .generic-font-event;
+        font-weight: bold;
+      }
+
+      .event-image {
+        width: 5rem;
+        height: 5rem;
+        background-size: cover;
+      }
+
+      .event-description {
+        text-align: justify;
+        word-break: break-all;
+        padding: 3%;
+      }
+
+      .neurons-list {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        position: relative;
+
+        &:after{
+          content: '';
+          background-color: white;
+          width: 70%;
+          height: .2rem;
+          position: absolute;
+          left: 15%;
+          bottom: 67%;
+          z-index: 0;
+        }
+
+        .neuron {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: .2rem;
+          position: relative;
+          width: 25%;
+          z-index: 1;
+
+          .neuron-title {
+            font-weight: bold;
+            font-size: 10px;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            text-align: center;
+          }
+
+          .neuron-image {
+            height: 2.1rem;
+            background: #e9c477;
+            padding: 0px 10%;
+          }
+        }
+      }
+
+      .join-event {
+        align-items: center;
+        background-image: url(../images/btn_new.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        cursor: pointer;
+        display: flex;
+        height: 2rem;
+        justify-content: center;
+        width: 4rem;
+        text-transform: uppercase;
+        color: white;
+
+        &.disabled {
+          filter: brightness(0.6) grayscale(0.1) opacity(0.3);
+          pointer-events: none;
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}

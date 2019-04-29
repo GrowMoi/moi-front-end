@@ -242,6 +242,12 @@
             return data;
           });
         },
+        myEvents: function (UserService){
+          return UserService.getMyEvents().then(function(data){
+            return data;
+          });
+        },
+
       }
     })
     .state('profileEdit', {
@@ -379,6 +385,30 @@
       controllerAs: 'notificationsModel',
       resolve: {
         currentUser: checkIfIsAuthorized
+      }
+    })
+    .state('tasks.events', {
+      url: '/events',
+      templateUrl: 'templates/tasks/events/events.html',
+      controller: 'EventsController',
+      controllerAs: 'eventsModel',
+      resolve: {
+        currentUser: checkIfIsAuthorized,
+        gridParams: function(EventsService, $q) {
+          return {
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                EventsService.showContentEvents(currentPage).then(function(contentsData){
+                  resolve({
+                    items: contentsData,
+                    totalItems: contentsData.length
+                  });
+                });
+              });
+            },
+            showDeleteIcon: false
+          };
+        }
       }
     })
     .state('inventory', {

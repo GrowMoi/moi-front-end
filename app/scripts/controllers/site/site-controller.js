@@ -26,7 +26,8 @@
                           AdvicesPage,
                           AdvicesPageEn,
                           ModalService,
-                          TooltipsService) {
+                          TooltipsService,
+                          EventsService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
@@ -44,8 +45,10 @@
       baseTree: 'base-tree'
     };
     //init nofitications in passive time
-    if(!localStorage.getItem('advicesOn')){
+    if(!localStorage.getItem('advicesOn') && $auth.user.level < 6){
       localStorage.setItem('advicesOn', 'true');
+    }else {
+      localStorage.setItem('advicesOn', 'false');
     }
 
     var videos = VIDEOS.paths;
@@ -167,6 +170,12 @@
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
+
+      //load daily events
+      if(!localStorage.getItem('seenDailyEvents') && toState.name === 'neuron'){
+        EventsService.showDailyEvents();
+      }
+
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.advicePage = AdvicesPage[toState.name];

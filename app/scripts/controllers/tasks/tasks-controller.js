@@ -39,7 +39,7 @@
       {
         field:'contents',
         name: 'Tareas',
-        image: 'images/notifications_tasks.png',
+        image: 'images/list_tasks.png',
         selected: false,
         state: 'tasks.contents'
       },
@@ -56,6 +56,13 @@
         image: 'images/favorites_tasks.png',
         selected: false,
         state: 'tasks.favorites'
+      },
+      {
+        field:'events',
+        name: 'Eventos',
+        image: 'images/events_tasks.png',
+        selected: false,
+        state: 'tasks.events'
       }
     ];
 
@@ -77,7 +84,7 @@
       {
         field:'contents',
         name: 'Contents',
-        image: 'images/notifications_tasks.png',
+        image: 'images/list_tasks.png',
         selected: false,
         state: 'tasks.contents'
       },
@@ -94,6 +101,13 @@
         image: 'images/favorites_tasks.png',
         selected: false,
         state: 'tasks.favorites'
+      },
+      {
+        field:'events',
+        name: 'Events',
+        image: 'images/events_tasks.png',
+        selected: false,
+        state: 'tasks.events'
       }
     ];
     var language = $auth.user.language;

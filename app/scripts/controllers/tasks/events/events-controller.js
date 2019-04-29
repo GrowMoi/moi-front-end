@@ -1,10 +1,11 @@
 (function(){
   'use strict';
   angular.module('moi.controllers')
-  .controller('ContentsListController', function(gridParams){
-    var contentsList = this;
+  .controller('EventsController', function(gridParams){
+    var eventsModel = this;
     var gridContentsApi = null;
-    contentsList.gridContentsOptions = {
+
+    eventsModel.gridContentsOptions = {
       itemsPerPage: 4,
       showDeleteIcon: gridParams.showDeleteIcon,
       onRegisterApi: onRegisterApi,

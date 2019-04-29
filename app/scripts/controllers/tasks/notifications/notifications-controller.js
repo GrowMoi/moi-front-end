@@ -6,6 +6,7 @@
                                                   UserService,
                                                   ModalService,
                                                   UserNotificationsService,
+                                                  EventsService,
                                                   $state){
     var notificationsModel = this;
     var notificationSelected,
@@ -47,7 +48,10 @@
       'tutor_generic': {
         template: 'templates/tasks/notifications/partials/generic.html',
         actionRemove: deleteNotification
-      }
+      },
+      'event': {
+        template: 'templates/tasks/notifications/partials/event.html'
+      },
     };
 
     notificationsModel.noMoreItemsAvailable = true;
@@ -63,13 +67,27 @@
     function initData() {
       notificationsModel.noMoreItemsAvailable = true;
       notificationsModel.currentPage = 1;
-      UserService.getNotifications(1).then(resolveNotifications);
+      notificationsModel.eventsLikeNotification = [];
+      notificationsModel.showSetEvents = EventsService.showSetEvents;
+      EventsService.getWeeklyEvents().then(function(resp){
+        Object.keys(resp).map(function(week){
+          if(resp[week].length > 0){
+            var eventNotification = {
+              type: 'event',
+              title: week,
+              events: resp[week]
+            };
+            notificationsModel.eventsLikeNotification.push(eventNotification);
+          }
+        });
+        UserService.getNotifications(1).then(resolveNotifications);
+      });
     }
 
     function resolveNotifications(data) {
       notificationsModel.currentPage += 1;
       /*jshint camelcase: false */
-      notificationsModel.notifications = data.notifications;
+      notificationsModel.notifications = notificationsModel.eventsLikeNotification.concat(data.notifications);
       /*jshint camelcase: false */
       notificationsModel.totalItems = data.meta.total_count;
       if(notificationsModel.totalItems > 2){

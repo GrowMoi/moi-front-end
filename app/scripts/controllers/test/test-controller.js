@@ -17,6 +17,7 @@
     vmTest.next = next;
     var currentUser = $auth.user;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+    var language = $auth.user.language;
 
     init();
 
@@ -115,6 +116,16 @@
         TestService.scoreTest($scope, data).then(function() {
           var recommendations = res.data.recommendations || [];
           var achievements = res.data.achievements || [];
+
+          if(res.data.event && res.data.event.completed){
+            var beginningName = language === 'es' ?  'el evento: ' : 'the event: ';
+            var achievement = {
+              name: beginningName + res.data.event.info.title,
+              bagde: res.data.event.info.image
+            };
+            showUserAchievement(achievement);
+          }
+
           if (recommendations.length > 0) {
             showModalAchievement(recommendations);
           }
@@ -160,7 +171,6 @@
     }
 
     function showModalAchievement(recommendations) {
-
       var modelData = extractModelData(recommendations) ;
       var templateModal = 'templates/partials/modal-tutor-achievement';
       ModalService.showModel(
@@ -196,7 +206,7 @@
           btnRight: btnRightLabel,
           btnLeft: 'Ok'
         },
-        image: MediaAchievements[achievement.number].settings.badge,
+        image: achievement.bagde || MediaAchievements[achievement.number].settings.badge,
         addCongratulations: true
       };
 
