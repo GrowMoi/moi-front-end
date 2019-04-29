@@ -19,8 +19,8 @@ ion-view.friends-container.search-view-max(view-title='Friends')
           .content-title
             | {{ 'searches.friends' | translate }}
           .divider-line-search
-          ion-content.result-searches
-            .col.col-25.friend-container(ng-repeat='friend in friendsmodel.users track by $index')
+          ion-content.result-searches-friends
+            .friend-container(ng-repeat='friend in friendsmodel.users track by $index')
               moi-frame-user.friend-frame(options="friend" ui-sref="profile({username: friend.username})")
             ion-infinite-scroll(ng-if='!friendsmodel.noMoreItemsAvailable', on-infinite='friendsmodel.loadMore()', distance='10%')
       moi-frame(options="friendsmodel.frameOptions")

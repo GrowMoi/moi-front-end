@@ -62,9 +62,29 @@
     background-color: rgba(123, 121, 76, 0.62);
   }
 
-  .result-searches {
+  .result-searches-friends {
+    position: absolute;
+    width: 92%;
+    top: 135px;
+    left: 35px;
+    bottom: 130px;
+    height: 65%;
+
+    .scroll {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &.overflow-scroll {
+      overflow-y: visible;
+    }
+
     .friend-container {
-      height: 200px;
+      height: 17rem;
+      flex-grow: 1;
+      flex: 0 0 21%;
+      margin: 0 1%;
 
       .friend-frame {
         position: relative;
