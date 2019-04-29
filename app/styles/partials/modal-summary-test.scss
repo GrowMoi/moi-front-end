@@ -71,21 +71,21 @@
       align-items: center;
 
       .user-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: white;
         width: 50%;
         height: 55%;
+        cursor: pointer;
 
-        .picture {
-          width: 75%;
-          cursor: pointer;
-        }
+        .moi-frame-user-image {
 
-        .name {
-          @extend .label-info;
-          margin-top: 1%;
+          .level {
+            font-size: 16px;
+            right: 12%;
+            top: 12%;
+          }
+          .name {
+            font-size: 18px;
+            bottom: 8%;
+          }
         }
       }
 
@@ -261,14 +261,9 @@
           .percentage-progress-bar {
             z-index: 0;
             top: 0.65rem;
-            left: 0.3rem;
+            left: 0.25rem;
             width: 5rem;
             height: 1.7rem;
-            border-top-left-radius: 25%;
-
-            .percentage-bar {
-              border-top-left-radius: 40%;
-            }
           }
         }
       }

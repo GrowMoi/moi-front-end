@@ -47,23 +47,24 @@
 
         .header-wrapper {
           padding-top: 20px;
+          padding-left: 30px;
           border-bottom: 3px solid $moiDarkGreen;
 
-          .user-image {
-            img {
-              width: 80px;
-            }
+          .user-frame {
+            width: 100px;
+            height: 100px;
           }
 
           .user-name {
             color: $moiDarkGreen;
             font-size: 45px;
             font-weight: bold;
-            margin-top: 15px;
             font-family: FontMoi-Title;
             line-height: 45px;
             margin-right: 10px;
             margin-left: 10px;
+            display: flex;
+            align-items: center;
           }
 
           .btns {
