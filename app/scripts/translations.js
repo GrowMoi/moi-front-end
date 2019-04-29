@@ -36,9 +36,9 @@
         content_end: 'so he/she gives you your reward '
       },
       modal_certificate:{
-        contents: ' Content Learned',
-        progress: ' Progress Tree',
-        test: ' Final Test',
+        contents: ' Contents Learned',
+        progress: ' Moi tree development',
+        test: ' Final test score',
         tiempo: ' Average read time',
         informacion: ' For more, visit growmoi.com'
       },
@@ -285,7 +285,7 @@
         'logout': 'Cerrar Sesión',
         'logro': 'Logros',
         'content': 'Contenidos aprendidos en total:',
-        'test': 'Tests without errors:'
+        'test': 'Tests sin errores:'
       },
       msgs:{
         error:{
