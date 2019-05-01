@@ -1,4 +1,4 @@
-ion-content.content_tasks(ng-if="vm.items.length !== 0")
+ion-content.content_tasks(ng-if="vm.items.length !== 0 && vm.loaded" )
   .col.col-50.content(ng-repeat='item in vm.items track by $index')
     .remove-task(ng-if='::vm.showDeleteIcon(item)' ng-click='vm.onClickDelete(item)')
     .content-kind-contents(ui-sref='content({neuronId: item.neuron_id, contentId: item.id})')
@@ -8,6 +8,10 @@ ion-content.content_tasks(ng-if="vm.items.length !== 0")
   ion-infinite-scroll(ng-if='!vm.noMoreItemsAvailable'
                       on-infinite='vm.loadMoreItems()'
                       distance='10%')
-.empty-state(ng-if="vm.items.length === 0")
+.empty-state(ng-if="vm.items.length === 0 && vm.loaded")
   | {{::'tasks.content_empty_state' | translate}}
   img(src="images/placeholder_content.png")
+  
+.loading.loading-gif(
+  ng-if="!vm.loaded"
+)

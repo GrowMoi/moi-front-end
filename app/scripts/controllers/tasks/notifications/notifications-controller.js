@@ -12,6 +12,7 @@
     var notificationSelected,
         requestData = {};
 
+    notificationsModel.loaded = false;
 
     var dialogContentModel = {
       callbacks: {
@@ -94,6 +95,7 @@
         notificationsModel.noMoreItemsAvailable = false;
         notificationsModel.loadMoreNotifications = loadMoreNotifications;
       }
+      notificationsModel.loaded = true;
     }
 
     function loadMoreNotifications() {

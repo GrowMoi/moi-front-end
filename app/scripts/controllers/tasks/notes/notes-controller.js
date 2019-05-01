@@ -5,6 +5,7 @@
     var notesModel = this;
     notesModel.noMoreItemsAvailable = true;
     notesModel.currentPage = 1;
+    notesModel.loaded = false;
 
     initData();
 
@@ -24,6 +25,7 @@
         notesModel.noMoreItemsAvailable = false;
         notesModel.loadMoreNotes = loadMoreNotes;
       }
+      notesModel.loaded = true;
     }
 
     function loadMoreNotes() {

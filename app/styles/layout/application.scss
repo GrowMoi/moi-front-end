@@ -42,4 +42,16 @@ body {
       }
     }
   }
+
+  .loading-gif {
+    background-image: url(../images/spiner-moi.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 3.5em;
+    height: 3.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

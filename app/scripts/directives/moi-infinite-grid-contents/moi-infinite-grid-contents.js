@@ -34,6 +34,7 @@
 
     vm.options = angular.extend({}, defaultOptions, vm.options);
     vm.items = [];
+    vm.loaded = false;
 
     init();
 
@@ -60,6 +61,7 @@
         vm.noMoreItemsAvailable = false;
         vm.loadMoreItems = loadMoreItems;
       }
+      vm.loaded = true;
     }
 
     function resolveNextApiCall(data) {
