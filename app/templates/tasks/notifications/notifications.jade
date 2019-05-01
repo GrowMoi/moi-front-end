@@ -1,4 +1,4 @@
-ion-content.content_tasks
+ion-content.content_tasks(ng-if="notificationsModel.notifications.length !== 0")
   .row.note(ng-repeat='notification in notificationsModel.notifications')
     .remove-task(ng-if="notification.type !== 'event'"
                 ng-click='notificationsModel.removeItem(notification, $index)')
@@ -6,3 +6,5 @@ ion-content.content_tasks
   ion-infinite-scroll(ng-if='!notificationsModel.noMoreItemsAvailable'
                       on-infinite='notificationsModel.loadMoreNotifications()'
                       distance='10%')
+.empty-state(ng-if="notificationsModel.notifications.length === 0")
+  | {{::'tasks.notification_empty_state' | translate}}

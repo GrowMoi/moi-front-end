@@ -1,5 +1,5 @@
 .moi-frame-user-image
-  img.user-image(ng-src="{{frameVm.options.image}}")
+  img.user-image(ng-src="{{frameVm.options.image || 'images/placeholder_profile.png'}}")
   .frame-user-image
   span.level
     | {{frameVm.userLevel}}

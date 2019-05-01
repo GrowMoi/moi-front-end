@@ -281,13 +281,6 @@
       templateUrl: 'templates/tasks/tasks.html',
       abstract: true
     })
-    .state('tasks.default', {
-      url: '/default',
-      templateUrl: 'templates/tasks/default-section.html',
-      resolve: {
-        currentUser: checkIfIsAuthorized
-      }
-    })
     .state('tasks.contents', {
       url: '/contents',
       templateUrl: 'templates/tasks/contents-list/contents-list.html',
