@@ -163,7 +163,8 @@
         'friends': 'Friends',
         'choose-photo': 'Choose image',
         'upload-photo': 'Upload image',
-        'change-password': 'Change password'
+        'change-password': 'Change password',
+        'skip': 'Skip',
       },
       titles: {
         'personal-descripcion': 'Personal description',
@@ -189,7 +190,11 @@
           'join': 'Join',
           'hasEvents': 'Dont have events',
           'title': 'Events'
-        }
+        },
+        'content_empty_state': 'You don’t have contents in this tab',
+        'award_empty_state': 'You don’t have awards in this tab',
+        'note_empty_state': 'You don’t have notes in this tab',
+        'notification_empty_state': 'You don’t have notification in this tab',
       },
       browser: {
         'chrome':  'For a better experience, use this app with Google Chrome'
@@ -361,6 +366,7 @@
         'choose-photo': 'Escoger foto',
         'upload-photo': 'Cargar foto',
         'change-password': 'Cambiar contraseña',
+        'skip': 'Saltar',
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',
@@ -387,7 +393,11 @@
           'join': 'Unete',
           'hasEvents': 'No tiene eventos',
           'title': 'Eventos'
-        }
+        },
+        'content_empty_state': 'Todavía no tienes contenidos aquí',
+        'award_empty_state': 'Todavía no tienes premios aquí',
+        'note_empty_state': 'Todavía no tienes notas aquí',
+        'notification_empty_state': 'Todavía no tienes notificaciones aquí',
       },
       browser: {
         'chrome': 'Para una mejor experiencia, utilice esta página con Google Chrome'
