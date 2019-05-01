@@ -163,7 +163,8 @@
         'friends': 'Friends',
         'choose-photo': 'Choose image',
         'upload-photo': 'Upload image',
-        'change-password': 'Change password'
+        'change-password': 'Change password',
+        'skip': 'Skip',
       },
       titles: {
         'personal-descripcion': 'Personal description',
@@ -365,6 +366,7 @@
         'choose-photo': 'Escoger foto',
         'upload-photo': 'Cargar foto',
         'change-password': 'Cambiar contraseña',
+        'skip': 'Saltar',
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',
