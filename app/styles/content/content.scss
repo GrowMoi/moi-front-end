@@ -460,13 +460,6 @@
     }
   }
 
-  .format-image-gallery {
-    height: 60px;
-    width: 100%;
-    box-shadow: 2px 1px 2px 1px;
-    object-fit: cover;
-  }
-
   .content-scroll {
     overflow: auto;
   }
@@ -487,9 +480,11 @@
     }
   }
 
-  .border-third-column{
+  .border-third-column {
     margin-bottom: 20px;
+    margin-top: 20px;
     border-bottom: 1px solid $linesColor;
+
     &.moi_theme {
       border-color: #B5A88F;
     }
@@ -510,9 +505,14 @@
     }
   }
 
+  .slider-gallery-content {
+    width: 100%;
+  }
+
   @media (max-height: 635px) {
     .border-third-column{
       margin-bottom: 10px;
+      margin-top: 10px;
     }
   }
 

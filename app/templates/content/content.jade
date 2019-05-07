@@ -54,7 +54,9 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                 .content-subtitle.content-subtitle-gallery(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                   | {{ 'content.max.media' | translate }}
               .row
-                slide-gallery(images='vmContent.media', options="vmContent.slideGalleryOptions" item-per-slide='4')
+                slide-gallery.slider-gallery-content(images='vmContent.media'
+                                                    options="vmContent.slideGalleryOptions"
+                                                    item-per-slide='4')
             .corner.gallery-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row
             .col.recomended-margin-top.content-max-third
