@@ -71,9 +71,10 @@
       align-items: center;
 
       .user-info {
-        width: 50%;
-        height: 55%;
+        width: 40%;
+        height: 50%;
         cursor: pointer;
+        margin-left: 7%;
 
         .moi-frame-user-image {
 
@@ -91,21 +92,22 @@
 
       .level-user {
         position: relative;
-        top: 10%;
+        top: 1%;
         left: unset;
         height: 57%;
         width: unset;
         -webkit-animation-iteration-count: 1;
 
         .level-user-container {
+          left: 25%;
 
           .level-container {
 
             .level-progress-bar {
-              height: 7rem;
-              width: 3rem;
-              mask-size: 1.5rem 6rem;
-              -webkit-mask-size: 1.5rem 6rem;
+              height: 9rem;
+              width: 4rem;
+              mask-size: 2rem 7.2rem;
+              -webkit-mask-size: 2rem 7.2rem;
             }
           }
 
