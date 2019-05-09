@@ -94,7 +94,7 @@ drawer.left {
     height: 25.375rem;
     .tree{
       width: 16rem;
-      height: 26.4rem;
+      height: 100%;
     }
   }
   .settings-img-background{
@@ -147,11 +147,6 @@ drawer.left {
     .settings-arbol, .settings-img-background {
       bottom: 2.5%;
     }
-    .view-tree{
-      .tree{
-        height: 28rem;
-      }
-    }
   }
 
   .flecha-sidebar {
@@ -186,11 +181,6 @@ drawer.left {
     }
     .settings-arbol, .settings-img-background {
       bottom: 1.5%;
-    }
-    .view-tree{
-      .tree{
-        height: 26.8rem;
-      }
     }
   }
 
@@ -227,11 +217,6 @@ drawer.left {
     .settings-arbol, .settings-img-background {
       bottom: 2%;
     }
-    .view-tree{
-      .tree{
-        height: 26.7rem;
-      }
-    }
   }
 
   .flecha-sidebar {
@@ -265,12 +250,7 @@ drawer.left {
       }
     }
     .settings-arbol, .settings-img-background {
-      bottom: 5.5%;
-    }
-    .view-tree{
-      .tree{
-        height: 28.5rem;
-      }
+      bottom: 3.5%;
     }
   }
 
