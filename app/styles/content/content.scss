@@ -84,21 +84,7 @@
       }
     }
   }
-  .button{
-    background-image: url(../images/btn.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 0;
-    background-color: transparent;
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 47px;
-    font-size: 12px;
-    color: #FDF9BF;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
+
   .flecha-sidebar {
     top: 45%;
   }
@@ -474,13 +460,6 @@
     }
   }
 
-  .format-image-gallery {
-    height: 60px;
-    width: 100%;
-    box-shadow: 2px 1px 2px 1px;
-    object-fit: cover;
-  }
-
   .content-scroll {
     overflow: auto;
   }
@@ -501,9 +480,11 @@
     }
   }
 
-  .border-third-column{
+  .border-third-column {
     margin-bottom: 20px;
+    margin-top: 20px;
     border-bottom: 1px solid $linesColor;
+
     &.moi_theme {
       border-color: #B5A88F;
     }
@@ -524,9 +505,17 @@
     }
   }
 
+  .slider-gallery-content {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
   @media (max-height: 635px) {
     .border-third-column{
       margin-bottom: 10px;
+      margin-top: 10px;
     }
   }
 

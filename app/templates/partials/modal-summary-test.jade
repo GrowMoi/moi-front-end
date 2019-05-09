@@ -23,11 +23,6 @@
                 .level-bar(style="height: {{model.percentageLevel}}%")
               img.widget(src="images/tree-user-level.png")
             img.point(src="images/tree-point-level.png")
-            .counter-container
-              .counter
-                span
-                  | {{::model.userLevel}}
-                img(src= "images/tree-number-level.png")
         moi-frame-user.user-info(options="model.userInfo"
                       ng-style="model.cssOptions.styles['image_user']"
                       ng-mouseover="model.increaseSize(true, model.cssOptions, 'image_user')"

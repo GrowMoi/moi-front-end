@@ -57,7 +57,7 @@
     initVineta();
 
     treeModel.finishedAnimation = function() {
-      $scope.$apply(function(){treeModel.showTree = true;});
+      $timeout(function(){treeModel.showTree = true;});
       $backgroundSound[0].play();
       $backgroundSound[0].autoplay = true;
       if(storage.tree){
