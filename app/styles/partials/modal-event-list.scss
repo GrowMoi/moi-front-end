@@ -64,7 +64,8 @@
         .event-image {
           width: 7rem;
           height: 7rem;
-          background-size: cover;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
         }
 
         .event-title {
