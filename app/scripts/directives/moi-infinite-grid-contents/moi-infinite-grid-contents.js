@@ -30,7 +30,7 @@
     };
 
     var currentPage = 1;
-    var itemsPerPage = 4;
+    var itemsPerPage = vm.options.itemsPerPage || 4;
 
     vm.options = angular.extend({}, defaultOptions, vm.options);
     vm.items = [];
@@ -57,7 +57,7 @@
 
     function resolveFirstApiCall(data) {
       var totalItems = extractAndConcatData(data);
-      if(totalItems > itemsPerPage){
+      if(totalItems > itemsPerPage && !vm.options.disabledInfiniteScroll){
         vm.noMoreItemsAvailable = false;
         vm.loadMoreItems = loadMoreItems;
       }
