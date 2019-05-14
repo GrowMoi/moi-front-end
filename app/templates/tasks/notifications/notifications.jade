@@ -1,4 +1,4 @@
-ion-content.content_tasks(ng-if="notificationsModel.notifications.length !== 0 && notificationsModel.loaded")
+ion-content.content_tasks(ng-show="notificationsModel.notifications.length !== 0 && notificationsModel.loaded")
   .row.note(ng-repeat='notification in notificationsModel.notifications')
     .remove-task(ng-if="notification.type !== 'event'"
                 ng-click='notificationsModel.removeItem(notification, $index)')
@@ -8,7 +8,7 @@ ion-content.content_tasks(ng-if="notificationsModel.notifications.length !== 0 &
                       distance='10%')
 .empty-state(ng-if="notificationsModel.notifications.length === 0 && notificationsModel.loaded")
   | {{::'tasks.notification_empty_state' | translate}}
-  
+
 .loading.loading-gif(
   ng-if="!notificationsModel.loaded"
 )

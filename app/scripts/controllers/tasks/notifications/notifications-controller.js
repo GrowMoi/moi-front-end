@@ -69,13 +69,16 @@
       notificationsModel.noMoreItemsAvailable = true;
       notificationsModel.currentPage = 1;
       notificationsModel.eventsLikeNotification = [];
-      notificationsModel.showSetEvents = EventsService.showSetEvents;
+      notificationsModel.showSetEvents = showModalEvents;
       EventsService.getWeeklyEvents().then(function(resp){
         Object.keys(resp).map(function(week){
           if(resp[week].length > 0){
+            var isSuperEvent = (week === 'super_event');
             var eventNotification = {
               type: 'event',
-              title: week,
+              title: isSuperEvent ? 'tasks.events.super' : 'tasks.events.title',
+              subtitle: isSuperEvent ? '' : '('+week+')',
+              isSuperEvent: isSuperEvent,
               events: resp[week]
             };
             notificationsModel.eventsLikeNotification.push(eventNotification);
@@ -218,6 +221,43 @@
       };
 
       ModalService.showModel(dialogOptions);
+    }
+
+    function showModalEvents(data){
+      if(!data.isSuperEvent) {
+        EventsService.showSetEvents(data.events);
+      }else {
+        var mappingAchievements = {
+          1: 'images/inventory/badges/item1.png',
+          2: 'images/inventory/badges/item2.png',
+          3: 'images/inventory/badges/item3.png',
+          4: 'images/inventory/badges/item4.png',
+          5: 'images/inventory/badges/item9.png',
+          6: 'images/inventory/badges/item5.png',
+          7: 'images/inventory/badges/item7.png',
+          8: 'images/inventory/badges/item8.png',
+          9: 'images/inventory/badges/item6.png',
+          10: 'images/inventory/badges/item10.png'
+        };
+
+        var modelSuperEvent = {
+          templateUrl: 'templates/partials/modal-super-event.html',
+          model: {
+            data: data.events[0],
+            joinSuperEvent: joinSuperEvent
+          }
+        };
+
+        modelSuperEvent.model.data.achievements.forEach(function(achievement) {
+          achievement.badget = mappingAchievements[achievement.number];
+        });
+
+        ModalService.showModel(modelSuperEvent);
+      }
+    }
+
+    function joinSuperEvent() {
+
     }
   });
 })();

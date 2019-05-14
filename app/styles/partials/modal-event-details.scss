@@ -111,6 +111,18 @@
         }
       }
 
+      .achievements-list {
+
+        .achievement {
+          display: flex;
+          align-items: center;
+          img {
+            height: 3rem;
+            width: 3rem;
+          }
+        }
+      }
+
       .join-event {
         align-items: center;
         background-image: url(../images/btn_new.png);

@@ -189,7 +189,8 @@
         'events': {
           'join': 'Join',
           'hasEvents': 'Dont have events',
-          'title': 'Events'
+          'title': 'Events',
+          'super': 'Super Event'
         },
         'content_empty_state': 'You don’t have contents in this tab',
         'award_empty_state': 'You don’t have awards in this tab',
@@ -392,7 +393,8 @@
         'events': {
           'join': 'Unete',
           'hasEvents': 'No tiene eventos',
-          'title': 'Eventos'
+          'title': 'Eventos',
+          'super': 'Super Evento'
         },
         'content_empty_state': 'Todavía no tienes contenidos aquí',
         'award_empty_state': 'Todavía no tienes premios aquí',
