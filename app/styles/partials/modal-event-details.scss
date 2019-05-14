@@ -49,6 +49,10 @@
         font-weight: bold;
       }
 
+      .event-subtitle {
+        @extend .generic-font-event;
+      }
+
       .event-image {
         width: 5rem;
         height: 5rem;
@@ -61,13 +65,13 @@
         padding: 3% 0;
       }
 
-      .neurons-list {
+      .neurons-list, .achievement-list {
         display: flex;
         width: 100%;
         justify-content: center;
         position: relative;
 
-        .container-neuron {
+        .container-neuron, .container-achievement {
           display: flex;
           width: 25%;
 
@@ -111,14 +115,18 @@
         }
       }
 
-      .achievements-list {
+      .achievement-list {
+        .container-achievement {
+          &.last-achievement {
+            width: auto;
+          }
 
-        .achievement {
-          display: flex;
-          align-items: center;
-          img {
-            height: 3rem;
-            width: 3rem;
+          .achievement {
+            .achievement-image {
+              height: 2.1rem;
+              padding: 0;
+            }
+
           }
         }
       }

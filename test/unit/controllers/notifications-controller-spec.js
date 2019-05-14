@@ -5,6 +5,7 @@
     var ctrl,
       $controller,
       $scope,
+      $auth,
       dependencies,
       $rootScope,
       deferGetNotifications,
@@ -54,6 +55,16 @@
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {},//jshint ignore:line
+            achievements: []
+          }
+        };
 
         $state = _$state_;
 
@@ -65,7 +76,8 @@
           UserService: _UserService_,
           ModalService: ModalService,
           UserNotificationsService: _UserNotificationsService_,
-          $state: $state
+          $state: $state,
+          $auth: $auth
         };
 
         ctrl = $controller('NotificationsController', dependencies);

@@ -12,7 +12,8 @@
         showDailyEvents: showDailyEvents,
         showSetEvents: showSetEvents,
         showContentEvents: showContentEvents,
-        getEventsItem: getEventsItem
+        getEventsItem: getEventsItem,
+        takeSuperEvent: takeSuperEvent
       };
 
       var popupOptions = { title: 'Error' },
@@ -78,6 +79,22 @@
         return $http({
           method: 'POST',
           url: ENV.apiHost + '/api/users/events/' + eventId + '/take',
+          data: {}
+        }).then(function success(res) {
+          return res;
+        }, function error(err) {
+          if(err.status !== 404){
+            popupOptions.content = err.data.errors[0];
+            PopupService.showModel('alert', popupOptions);
+          }
+          return $q.reject(err);
+        });
+      }
+
+      function takeSuperEvent(eventId) {
+        return $http({
+          method: 'POST',
+          url: ENV.apiHost + '/api/users/events/' + eventId + '/take_super_event',
           data: {}
         }).then(function success(res) {
           return res;

@@ -3,6 +3,7 @@
   angular.module('moi.controllers')
   .controller('NotificationsController', function($scope,
                                                   $rootScope,
+                                                  $auth,
                                                   UserService,
                                                   ModalService,
                                                   UserNotificationsService,
@@ -10,7 +11,13 @@
                                                   $state){
     var notificationsModel = this;
     var notificationSelected,
-        requestData = {};
+        requestData = {},
+        modelSuperEvent = {
+          templateUrl: 'templates/partials/modal-super-event.html',
+          model: {
+            joinSuperEvent: joinSuperEvent
+          }
+        };
 
     notificationsModel.loaded = false;
 
@@ -228,36 +235,55 @@
         EventsService.showSetEvents(data.events);
       }else {
         var mappingAchievements = {
-          1: 'images/inventory/badges/item1.png',
-          2: 'images/inventory/badges/item2.png',
-          3: 'images/inventory/badges/item3.png',
-          4: 'images/inventory/badges/item4.png',
-          5: 'images/inventory/badges/item9.png',
-          6: 'images/inventory/badges/item5.png',
-          7: 'images/inventory/badges/item7.png',
-          8: 'images/inventory/badges/item8.png',
-          9: 'images/inventory/badges/item6.png',
-          10: 'images/inventory/badges/item10.png'
+          1: 'images/inventory/badges/badge1.png',
+          2: 'images/inventory/badges/badge2.png',
+          3: 'images/inventory/badges/badge3.png',
+          4: 'images/inventory/badges/badge4.png',
+          5: 'images/inventory/badges/badge9.png',
+          6: 'images/inventory/badges/badge5.png',
+          7: 'images/inventory/badges/badge7.png',
+          8: 'images/inventory/badges/badge8.png',
+          9: 'images/inventory/badges/badge6.png',
+          10: 'images/inventory/badges/badge10.png'
         };
 
-        var modelSuperEvent = {
-          templateUrl: 'templates/partials/modal-super-event.html',
-          model: {
-            data: data.events[0],
-            joinSuperEvent: joinSuperEvent
-          }
-        };
-
+        modelSuperEvent.model.data = data.events[0];
         modelSuperEvent.model.data.achievements.forEach(function(achievement) {
-          achievement.badget = mappingAchievements[achievement.number];
+          achievement.image = mappingAchievements[achievement.number];
         });
 
         ModalService.showModel(modelSuperEvent);
       }
     }
 
-    function joinSuperEvent() {
-
+    function joinSuperEvent(event) {
+      EventsService.takeSuperEvent(event.id).then(function(){
+        modelSuperEvent.model.closeModal();
+        showConfirmSuperEvent();
+      });
     }
+
+    function showConfirmSuperEvent() {
+      var enMessage = 'You joined the super event successfully.';
+      var esMessage = 'Te uniste al super evento con éxito.';
+      var message = ($auth.user.language === 'es') ? esMessage : enMessage;
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: {
+          message: message,
+          callbacks: {
+            btnRight: function() {
+              dialogOptions.model.closeModal();
+              notificationsModel.notifications.shift();
+            }
+          },
+          labels: {
+            btnRight: 'Ok',
+          }
+        }
+      };
+      ModalService.showModel(dialogOptions);
+    }
+
   });
 })();
