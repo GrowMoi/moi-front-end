@@ -52,7 +52,8 @@
       .event-image {
         width: 5rem;
         height: 5rem;
-        background-size: cover;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
       }
 
       .event-description {

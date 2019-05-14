@@ -6,6 +6,7 @@
     var gridContentsApi = null;
 
     eventsModel.gridContentsOptions = {
+      disabledInfiniteScroll: true,
       itemsPerPage: 4,
       showDeleteIcon: gridParams.showDeleteIcon,
       onRegisterApi: onRegisterApi,
