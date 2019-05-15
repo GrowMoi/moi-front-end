@@ -30,7 +30,8 @@
       getCertificates: getCertificates,
       deleteCertificate: deleteCertificate,
       sharingContent: sharingContent,
-      getMyEvents: getMyEvents
+      getMyEvents: getMyEvents,
+      getDetailsNotifications: getDetailsNotifications
     };
 
     var popupOptions = { title: 'Error'};
@@ -149,6 +150,15 @@
        }).then(function success(res) {
          return res.data;
        });
+    }
+
+    function getDetailsNotifications(){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/notifications/details'
+      }).then(function success(res) {
+        return res.data;
+      });
     }
 
     function respondNotification(res) {
