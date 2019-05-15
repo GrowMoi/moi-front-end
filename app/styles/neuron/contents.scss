@@ -134,9 +134,13 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
   font-family: FontMoi-Content;
   font-weight: bold;
   padding-top: 6px;
+  height: 95px;
   overflow: hidden;
-  line-height: 40px;
+  line-height: 42px;
   position: relative;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   &.moi_theme {
     font-family: FontMoi-Grid;
     background-size: 100% 100%;
