@@ -274,7 +274,6 @@
           callbacks: {
             btnRight: function() {
               dialogOptions.model.closeModal();
-              notificationsModel.notifications.shift();
             }
           },
           labels: {

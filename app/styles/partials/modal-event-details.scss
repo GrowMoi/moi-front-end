@@ -47,10 +47,7 @@
       .event-title {
         @extend .generic-font-event;
         font-weight: bold;
-      }
-
-      .event-subtitle {
-        @extend .generic-font-event;
+        text-align: center;
       }
 
       .event-image {
