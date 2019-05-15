@@ -30,7 +30,6 @@
       channelsToNotifications.push('usernotifications.general');
 
       UserService.getDetailsNotifications().then(function(data) {
-        data.events = 4; //mock data
         service.totalNotifications = data.notifications;
         service.totalRecommendations = data.recommendations;
         service.totalContentEvents = data.events;
