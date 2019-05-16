@@ -68,7 +68,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})"
                     ng-click="vmContent.registerClick(content.title)")
                    img.format-image(ng-src='{{content.media[0]}}')
-                   .leyend-bottom(ellipsis-title="content.title" height="50" title="{ content.title}}")
+                   .leyend-bottom(ellipsis-title="content.title" height="50" title="content.title")
             .corner.recomended-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row
             .col.links-margin-top.content-max-third
