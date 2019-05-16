@@ -5,7 +5,14 @@
       .module('moi.services')
       .factory('EventsService', EventsService);
 
-    function EventsService($http, $auth, $q, ENV, PopupService, ModalService) {
+    function EventsService($http,
+                          $auth,
+                          $q,
+                          $rootScope,
+                          ENV,
+                          PopupService,
+                          ModalService,
+                          UserNotificationsService) {
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
@@ -208,10 +215,16 @@
         var cssClass = 'animated zoomOutDown';
         $eventContainer.addClass(cssClass).one(animationEnd, function(){
           $eventContainer.remove();
+          updateEventsCounter();
           if(modelEvents.model.events.length === 1){
             modelEvents.model.closeModal();
           }
         });
+      }
+
+      function updateEventsCounter(){
+        UserNotificationsService.totalContentEvents += modelEvent.model.data.contents.length;
+        $rootScope.$broadcast('notifications.updateCount');
       }
     }
   })();
