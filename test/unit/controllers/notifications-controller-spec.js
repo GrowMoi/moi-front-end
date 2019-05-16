@@ -10,9 +10,24 @@
       $rootScope,
       deferGetNotifications,
       ModalService,
+      MediaAchievements,
       $state;
 
     beforeEach(module('moi.controllers'));
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('MediaAchievements', {
+          1: {
+            name: 'Contenidos aprendidos',
+            description: 'Han sido aprendidos los primeros 4 contenidos',
+            settings: {
+              badge:'images/inventory/badges/badge1.png',
+              video: 'videos/vineta_1.mp4'
+            }
+          }
+        });
+      });
+    });
     beforeEach(angular.mock.module(function ($provide) {
       $provide.factory('UserService', function ($q) {
         return {
@@ -50,8 +65,13 @@
       });
     }));
     beforeEach(inject(
-      function (_$controller_, _$rootScope_, _UserService_, _ModalService_,
-        _UserNotificationsService_, _$state_) {
+      function (_$controller_,
+                _$rootScope_,
+                _UserService_,
+                _ModalService_,
+                _UserNotificationsService_,
+                _$state_,
+                _MediaAchievements_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -69,6 +89,7 @@
         $state = _$state_;
 
         ModalService = _ModalService_;
+        MediaAchievements = _MediaAchievements_;
 
         dependencies = {
           $scope: $scope,
@@ -77,7 +98,8 @@
           ModalService: ModalService,
           UserNotificationsService: _UserNotificationsService_,
           $state: $state,
-          $auth: $auth
+          $auth: $auth,
+          MediaAchievements: MediaAchievements
         };
 
         ctrl = $controller('NotificationsController', dependencies);

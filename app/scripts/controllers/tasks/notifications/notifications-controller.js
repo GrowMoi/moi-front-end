@@ -8,6 +8,7 @@
                                                   ModalService,
                                                   UserNotificationsService,
                                                   EventsService,
+                                                  MediaAchievements,
                                                   $state){
     var notificationsModel = this;
     var notificationSelected,
@@ -234,26 +235,21 @@
       if(!data.isSuperEvent) {
         EventsService.showSetEvents(data.events);
       }else {
-        var mappingAchievements = {
-          1: 'images/inventory/badges/badge1.png',
-          2: 'images/inventory/badges/badge2.png',
-          3: 'images/inventory/badges/badge3.png',
-          4: 'images/inventory/badges/badge4.png',
-          5: 'images/inventory/badges/badge9.png',
-          6: 'images/inventory/badges/badge5.png',
-          7: 'images/inventory/badges/badge7.png',
-          8: 'images/inventory/badges/badge8.png',
-          9: 'images/inventory/badges/badge6.png',
-          10: 'images/inventory/badges/badge10.png'
-        };
-
-        modelSuperEvent.model.data = data.events[0];
-        modelSuperEvent.model.data.achievements.forEach(function(achievement) {
-          achievement.image = mappingAchievements[achievement.number];
-        });
-
-        ModalService.showModel(modelSuperEvent);
+        var superEvent = data.events[0];
+        if(superEvent.isTaken) {
+          showLeaderboardToSuperEvent();
+        } else {
+          modelSuperEvent.model.data = superEvent;
+          modelSuperEvent.model.data.achievements.forEach(function(achievement) {
+            achievement.image = MediaAchievements[achievement.number].settings.badge;
+          });
+          ModalService.showModel(modelSuperEvent);
+        }
       }
+    }
+
+    function showLeaderboardToSuperEvent(){
+      console.log('show leaderboard');
     }
 
     function joinSuperEvent(event) {
