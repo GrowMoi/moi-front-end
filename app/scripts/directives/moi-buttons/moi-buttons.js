@@ -278,6 +278,7 @@
           }
 
           if(vm.content.belongs_to_event){
+            updateEventsCounter();
             $state.go('tasks.events');
           }else if (page === 'content' && !data.perform_test) {
             $state.go('neuron', {
@@ -285,6 +286,11 @@
             });
           }
         });
+      }
+
+      function updateEventsCounter(){
+        UserNotificationsService.totalContentEvents--;
+        $rootScope.$broadcast('notifications.updateCount');
       }
 
       function finishedAnimationsaveTasks() {
