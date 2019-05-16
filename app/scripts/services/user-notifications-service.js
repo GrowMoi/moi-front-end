@@ -52,10 +52,11 @@
       });
     }
 
-    function notificationReceived(){
-      // TODO toasty? we can test a notificacion in this method
-      service.totalNotifications ++;
-      updateNotificationsCount();
+    function notificationReceived(data){
+      if(data && data.label === 'notifications'){
+        service.totalNotifications ++;
+        updateNotificationsCount();
+      }
     }
 
     function updateNotificationsCount(){
