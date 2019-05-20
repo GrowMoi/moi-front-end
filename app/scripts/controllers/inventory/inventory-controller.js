@@ -3,6 +3,7 @@
   angular.module('moi.controllers')
     .controller('InventoryController', function($ionicPopup,
                                                 data,
+                                                eventsItem,
                                                 UserService,
                                                 MediaAchievements,
                                                 MediaAchievementsEn,
@@ -27,6 +28,7 @@
       vmInv.showInventory = true;
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
+      console.log('eventsItem', eventsItem);
       var $backgroundSound;
       var achievements = data.achievements;
       var language = $auth.user.language;

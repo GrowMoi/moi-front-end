@@ -416,6 +416,11 @@
           return UserService.getUserAchievements().then(function(data){
             return data;
           });
+        },
+        eventsItem: function(EventsService) {
+          return EventsService.getEventsItem().then(function(data){
+            return data;
+          });
         }
       }
     })
