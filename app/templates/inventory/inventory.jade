@@ -11,6 +11,11 @@ ion-view.inventory-section(view-title='Inventario')
               span.sign {{ 'titles.items' | translate }}
             .inventory-grid
               .tabs-grid
+                .tab.col-33(ng-repeat='tab in vmInv.tabs'
+                          ng-class="{'selected': tab.selected }"
+                          ng-click="vmInv.changeTab(tab.field)")
+                  span
+                    | {{tab.name}}
               .gridWrapper
                 .cell(ng-style="vmInv.cssOptions.styles[$index]"
                       ng-repeat="(key, achievement) in vmInv.achievements track by $index"

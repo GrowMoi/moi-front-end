@@ -417,7 +417,7 @@
             return data;
           });
         },
-        eventsItem: function(EventsService) {
+        events: function(EventsService) {
           return EventsService.getEventsItem().then(function(data){
             return data;
           });

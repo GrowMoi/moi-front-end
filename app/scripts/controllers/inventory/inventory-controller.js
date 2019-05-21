@@ -3,7 +3,7 @@
   angular.module('moi.controllers')
     .controller('InventoryController', function($ionicPopup,
                                                 data,
-                                                eventsItem,
+                                                events,
                                                 UserService,
                                                 MediaAchievements,
                                                 MediaAchievementsEn,
@@ -13,7 +13,13 @@
                                                 DesactiveAchievementsEn,
                                                 TestService,
                                                 $auth) {
-      var vmInv = this;
+      var vmInv = this,
+          $backgroundSound,
+          achievements = data.achievements,
+          language = $auth.user.language,
+          allEventItems = {},
+          allAchievements = {};
+
       vmInv.user = $auth.user;
       vmInv.buttonsOptions = {
         neuron: null,
@@ -28,24 +34,22 @@
       vmInv.showInventory = true;
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
-      console.log('eventsItem', eventsItem);
-      var $backgroundSound;
-      var achievements = data.achievements;
-      var language = $auth.user.language;
-      var arrAchievements = language === 'es' ? DesactiveAchievements : DesactiveAchievementsEn;
-      achievements.map(function(achievement) {
-        var currentAchievement = arrAchievements[achievement.number];
-        if(currentAchievement) {
-          arrAchievements[achievement.number] =  achievement;
-          if(!achievement.desactive) {
-            arrAchievements[achievement.number].settings = MediaAchievements[achievement.number].settings;
-          }
-          if(language === 'en'){
-            arrAchievements[achievement.number].name = MediaAchievementsEn[achievement.number].name;
-          }
-        }
-      });
-      vmInv.achievements = arrAchievements;
+      vmInv.tabs = [
+        {
+          field: 'achievements',
+          name: '1',
+          selected: true
+        },
+        {
+          field: 'event_items',
+          name: '2',
+          selected: false
+        },
+      ];
+      vmInv.changeTab = changeTab;
+      allEventItems = formatEvents();
+      allAchievements = formatAchievements();
+      vmInv.achievements = allAchievements;
       vmInv.increaseSize = HoverAnimationService.increaseSize;
       vmInv.cssOptions = {
         styles: []
@@ -61,6 +65,40 @@
         type: 'content_max',
         showBackButton: true
       };
+
+      function formatAchievements() {
+        var achievementsList = language === 'es' ? DesactiveAchievements : DesactiveAchievementsEn;
+        achievements.map(function(achievement) {
+          var currentAchievement = achievementsList[achievement.number];
+          if(currentAchievement) {
+            achievementsList[achievement.number] =  achievement;
+            if(!achievement.desactive) {
+              achievementsList[achievement.number].settings = MediaAchievements[achievement.number].settings;
+            }
+            if(language === 'en'){
+              achievementsList[achievement.number].name = MediaAchievementsEn[achievement.number].name;
+            }
+          }
+        });
+        return achievementsList;
+      }
+
+      function formatEvents() {
+        var eventsItems = {};
+        events.map(function(event, index){
+          var eventItem = {
+            desactive: !event.completed,
+            description: event.description,
+            name: event.title,
+            settings: {
+              badge: event.completed ? event.image : event.inactive_image //jshint ignore:line
+            }
+          };
+          eventsItems[index+1] = eventItem;
+        });
+        return eventsItems;
+      }
+
 
       function activateAchievement(achievement){
         if(achievement.settings.theme){
@@ -99,6 +137,13 @@
           }else{
             vmInv.achievements[index].active = false;
           }
+        });
+      }
+
+      function changeTab(field) {
+        vmInv.achievements = (field === 'achievements') ? allAchievements : allEventItems;
+        angular.forEach(vmInv.tabs, function(tab) {
+          tab.selected = tab.field === field;
         });
       }
 
