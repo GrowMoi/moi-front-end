@@ -118,7 +118,7 @@
           if(achievement.active){
             var currentTheme = MediaAchievements[vmNeuron.userAchievements[index].number].settings.theme;
             vmNeuron.contentsOptions.theme = currentTheme;
-            vmNeuron.contentsOptions.isMoitheme = currentTheme.includes('moi');
+            vmNeuron.contentsOptions.isMoitheme = currentTheme && currentTheme.includes('moi');
           }
         });
       }

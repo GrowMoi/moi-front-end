@@ -43,6 +43,32 @@
         display: flex;
         align-items: flex-end;
         justify-content: center;
+        flex-direction: column;
+
+        .tabs-grid {
+          display: flex;
+          width: 75%;
+          text-align: center;
+          margin-top: 5%;
+          justify-content: flex-end;
+          margin-right: 4%;
+
+          .tab {
+            padding: 5px;
+            background-image: url("../images/inventory/tab-unselect.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            color: #7fb25b;
+            cursor: pointer;
+            font-size: 24px;
+            font-family: FontMoi-Title;
+            font-weight: bold;
+
+            &.selected {
+              background-image: url("../images/inventory/tab-select.png");
+            }
+          }
+        }
 
         .gridWrapper {
           background: url("../images/inventory/grid.png");

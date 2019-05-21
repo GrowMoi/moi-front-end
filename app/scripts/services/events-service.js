@@ -12,6 +12,7 @@
         showDailyEvents: showDailyEvents,
         showSetEvents: showSetEvents,
         showContentEvents: showContentEvents,
+        getEventsItem: getEventsItem
       };
 
       var popupOptions = { title: 'Error' },
@@ -97,6 +98,20 @@
           return res;
         }, function error(err) {
           if(err.status !== 404){
+            popupOptions.content = err.statusText;
+            PopupService.showModel('alert', popupOptions);
+          }
+        });
+      }
+
+      function getEventsItem() {
+        return $http({
+          method: 'GET',
+          url: ENV.apiHost + '/api/events'
+        }).then(function success(res) {
+          return res.data;
+        }, function error(err) {
+          if (err.status !== 404) {
             popupOptions.content = err.statusText;
             PopupService.showModel('alert', popupOptions);
           }
