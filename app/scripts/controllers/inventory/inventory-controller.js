@@ -92,6 +92,9 @@
             name: event.title,
             settings: {
               badge: event.completed ? event.image : event.inactive_image //jshint ignore:line
+            },
+            eventData : {
+              generalImg : event.image
             }
           };
           eventsItems[index+1] = eventItem;
@@ -114,7 +117,8 @@
           TestService.goFinalTest(null, vmInv.user.name);
         }
         if(achievement.desactive) {
-          achievement.badgeFull = achievement.settings.badge .replace('item', 'badge');
+          var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.settings.badge.replace('item', 'badge');
+          achievement.badgeFull = currentImage;
           var dialogContentModel = {
             templateUrl: 'templates/partials/modal-inventory.html',
             model: achievement
