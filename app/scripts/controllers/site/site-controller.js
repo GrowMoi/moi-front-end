@@ -45,10 +45,13 @@
       baseTree: 'base-tree'
     };
     //init nofitications in passive time
-    if(!localStorage.getItem('advicesOn') && $auth.user.level < 6){
+    if(!localStorage.getItem('advicesOn')){
       localStorage.setItem('advicesOn', 'true');
-    }else {
-      localStorage.setItem('advicesOn', 'false');
+    }
+
+    //init pagesViewed for passive messages
+    if(!localStorage.getItem('pagesViewed')){
+      localStorage.setItem('pagesViewed', JSON.stringify({}));
     }
 
     var videos = VIDEOS.paths;
@@ -129,6 +132,9 @@
         site.loadedImages = false;
         if(toState.name === 'tree'){
           var username = $auth.user.username;
+          if ($auth && $auth.user.level > 4) {
+            localStorage.setItem('advicesOn', 'false');
+          }
           TreeService.getNeuronsUser(username).then(function(data) {
             StorageService.get().then(function(resp) {
               preloadAssets(data, resp.data.storage);
@@ -142,7 +148,7 @@
         event.preventDefault();
       }else{
         var language = $auth.user.language;
-        var languageTemplate = language === 'es' ? 'cargando ...' : 'loading...'; 
+        var languageTemplate = language === 'es' ? 'cargando ...' : 'loading...';
         if (site.loadedImages && $auth.user.id) {
           $ionicLoading.show({
             template: languageTemplate
@@ -179,6 +185,7 @@
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.advicePage = AdvicesPage[toState.name];
+      handlePagesViewed(toState);
       if(toState.name === 'new_login.first_step' || toState.name === 'new_login.second_step' || toState.name === 'register' || toState.name ==='login'){
         var lang = navigator.language || navigator.userLanguage;
         var languageBrowser = lang.slice(0,2);
@@ -259,6 +266,19 @@
 
         ModalService.showModel(dialogOptions);
         isShowingPassiveModal = true;
+      }
+    }
+
+    function handlePagesViewed(state) {
+      var currentPage = state.name;
+      if(currentPage !== 'tree') {
+        var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed'));
+        if(!pagesViewed[currentPage]){
+          //show passive model messages when enter for first time into the page
+          $timeout(showPassiveModal);
+        }
+        pagesViewed[currentPage] = true;
+        localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
       }
     }
   }

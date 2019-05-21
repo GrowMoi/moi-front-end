@@ -184,6 +184,7 @@
       }else {
         animateNeurons();
       }
+      handlePagesViewed();
     }
 
     function animationLevelBadge(){
@@ -217,6 +218,17 @@
         randomPositionsCss.push(cssPosition);
       }
       return randomPositionsCss;
+    }
+
+    function handlePagesViewed(){
+      var currentPage = 'tree';
+      var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed'));
+      if(!pagesViewed[currentPage]){
+        //show passive model messages when enter for first time into the page
+        showPassiveModal();
+      }
+      pagesViewed[currentPage] = true;
+      localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
     }
 
   });
