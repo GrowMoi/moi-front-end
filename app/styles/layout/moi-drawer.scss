@@ -104,19 +104,6 @@ drawer.left {
     bottom: 9%;
     height: 37%;
   }
-
-  .settings-default-tree {
-    bottom: 5.5%;
-    width: 15rem;
-    height: 24.375rem;
-  }
-
-  .default-tree {
-    background-image: url("../images/arbolito_despH.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    z-index: -1;
-  }
 }
 
 @media (min-height: 400px) {
