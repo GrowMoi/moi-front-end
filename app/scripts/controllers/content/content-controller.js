@@ -186,9 +186,9 @@
             if(achievement.active){
               var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
               vmContent.theme = currentTheme;
-              vmContent.isMoitheme = currentTheme.includes('moi');
-              modelData.frameColor = currentTheme.replace('moi_', '');
-              vmContent.slideGalleryOptions.modalFrameColor = currentTheme.replace('moi_', '');
+              vmContent.isMoitheme = currentTheme && currentTheme.includes('moi');
+              modelData.frameColor = currentTheme && currentTheme.replace('moi_', '');
+              vmContent.slideGalleryOptions.modalFrameColor = modelData.frameColor;
             }
           });
         }
