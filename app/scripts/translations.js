@@ -146,7 +146,7 @@
           'media': 'Media',
           'recommended': 'Recommended',
           'links': 'Links',
-          'update': 'Last update',
+          'update': 'Last update: ',
           'button-translate': 'Change language'
         },
         language: 'Spanish/English',
