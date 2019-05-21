@@ -20,6 +20,7 @@
         currentUser = $auth.user;
     var language = $auth.user.language;
     vmProfile.user = user;
+    vmProfile.user.tree_image = vmProfile.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
     vmProfile.myEvents = myEvents;
     vmProfile.imageUser = vmProfile.user.image || 'images/edit-profile/userphoto.png';
     vmProfile.isCurrentUser = user.id === currentUser.id;
