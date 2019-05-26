@@ -9,7 +9,8 @@
                                                   UserNotificationsService,
                                                   EventsService,
                                                   MediaAchievements,
-                                                  $state){
+                                                  $state,
+                                                  LeaderboardService){
     var notificationsModel = this;
     var notificationSelected,
         requestData = {},
@@ -236,8 +237,8 @@
         EventsService.showSetEvents(data.events);
       }else {
         var superEvent = data.events[0];
-        if(superEvent.isTaken) {
-          showLeaderboardToSuperEvent();
+        if(superEvent.taken) {
+          showLeaderboardToSuperEvent(superEvent);
         } else {
           modelSuperEvent.model.data = superEvent;
           modelSuperEvent.model.data.achievements.forEach(function(achievement) {
@@ -248,8 +249,11 @@
       }
     }
 
-    function showLeaderboardToSuperEvent(){
-      console.log('show leaderboard');
+    function showLeaderboardToSuperEvent(superEvent){
+      var paramsToLeaderboard = {
+        event_id: superEvent.id //jshint ignore:line
+      };
+      LeaderboardService.showLeaderboard(paramsToLeaderboard);
     }
 
     function joinSuperEvent(event) {

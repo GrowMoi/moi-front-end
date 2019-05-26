@@ -11,7 +11,8 @@
       deferGetNotifications,
       ModalService,
       MediaAchievements,
-      $state;
+      $state,
+      LeaderboardService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
@@ -63,6 +64,13 @@
           }
         };
       });
+      $provide.factory('LeaderboardService', function(){
+        return {
+          showLeaderboard: function(){
+            return null;
+          }
+        };
+      });
     }));
     beforeEach(inject(
       function (_$controller_,
@@ -71,7 +79,8 @@
                 _ModalService_,
                 _UserNotificationsService_,
                 _$state_,
-                _MediaAchievements_) {
+                _MediaAchievements_,
+                _LeaderboardService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -90,6 +99,7 @@
 
         ModalService = _ModalService_;
         MediaAchievements = _MediaAchievements_;
+        LeaderboardService = _LeaderboardService_;
 
         dependencies = {
           $scope: $scope,
@@ -99,7 +109,8 @@
           UserNotificationsService: _UserNotificationsService_,
           $state: $state,
           $auth: $auth,
-          MediaAchievements: MediaAchievements
+          MediaAchievements: MediaAchievements,
+          LeaderboardService: LeaderboardService
         };
 
         ctrl = $controller('NotificationsController', dependencies);
