@@ -13,7 +13,8 @@
       AnimationService,
       UserService,
       StorageService,
-      ModalService;
+      ModalService,
+      LeaderboardService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function($provide){
@@ -73,6 +74,13 @@
           }
         };
       });
+      $provide.factory('LeaderboardService', function(){
+        return {
+          showLeaderboard: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -83,7 +91,8 @@
               _AnimationService_,
               _StorageService_,
               _UserService_,
-              _ModalService_) {
+              _ModalService_,
+              _LeaderboardService_) {
 
         $state = {
           go: sinon.stub()
@@ -104,6 +113,7 @@
         UserService = _UserService_;
         UserService = _ModalService_;
         StorageService = _StorageService_;
+        LeaderboardService = _LeaderboardService_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
@@ -148,7 +158,8 @@
           UserService: UserService,
           ModalService: ModalService,
           $scope: $scope,
-          StorageService: StorageService
+          StorageService: StorageService,
+          LeaderboardService: LeaderboardService
         };
 
         controller = $controller('ProfileController', dependencies);
