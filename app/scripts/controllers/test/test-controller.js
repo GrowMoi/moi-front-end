@@ -117,13 +117,22 @@
           var recommendations = res.data.recommendations || [];
           var achievements = res.data.achievements || [];
 
+          if(res.data.super_event && res.data.super_event.completed){//jshint ignore:line
+            var beginningNameSuperEvent = language === 'es' ?  'el super evento: ' : 'the super event: ';
+            var achievementSuperEvent = {
+              name: beginningNameSuperEvent + res.data.super_event.info.title,//jshint ignore:line
+              bagde: res.data.super_event.info.image//jshint ignore:line
+            };
+            showUserAchievement(achievementSuperEvent);
+          }
+
           if(res.data.event && res.data.event.completed){
-            var beginningName = language === 'es' ?  'el evento: ' : 'the event: ';
-            var achievement = {
-              name: beginningName + res.data.event.info.title,
+            var beginningNameEvent = language === 'es' ?  'el evento: ' : 'the event: ';
+            var achievementEvent = {
+              name: beginningNameEvent + res.data.event.info.title,
               bagde: res.data.event.info.image
             };
-            showUserAchievement(achievement);
+            showUserAchievement(achievementEvent);
           }
 
           if (recommendations.length > 0) {
