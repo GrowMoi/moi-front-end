@@ -259,29 +259,8 @@
     function joinSuperEvent(event) {
       EventsService.takeSuperEvent(event.id).then(function(){
         modelSuperEvent.model.closeModal();
-        showConfirmSuperEvent();
+        EventsService.showConfirmSuperEvent();
       });
-    }
-
-    function showConfirmSuperEvent() {
-      var enMessage = 'You joined the super event successfully.';
-      var esMessage = 'Te uniste al super evento con éxito.';
-      var message = ($auth.user.language === 'es') ? esMessage : enMessage;
-      var dialogOptions = {
-        templateUrl: 'templates/partials/modal-alert-content.html',
-        model: {
-          message: message,
-          callbacks: {
-            btnRight: function() {
-              dialogOptions.model.closeModal();
-            }
-          },
-          labels: {
-            btnRight: 'Ok',
-          }
-        }
-      };
-      ModalService.showModel(dialogOptions);
     }
 
   });
