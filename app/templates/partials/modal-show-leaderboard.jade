@@ -1,7 +1,7 @@
 .modal.transparent
   ion-pane.transparent
     .modal-leaderboard
-      .btn-close-modal-leaderboard(ng-click="model.closeModal()")
+      .btn-close-modal-leaderboard(ng-click="model.close()")
       .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
         .infinite-scroll(infinite-scroll='model.nextPage()', infinite-scroll-container="'.content-leaderboard'", infinite-scroll-disabled='model.noMoreItemsAvailable')
           .user-item.row(ng-repeat="user in model.leaders track by $index"
@@ -17,12 +17,10 @@
                   | {{user.username}}
               .content-center.col-20
                 | {{user.contents_learnt}}/{{model.total_contents}}
-              .content-center.col-50.time-elapsed(ng-if="!model.fromEvent")
-                | {{model.user.time_elapsed | milliseconds}}
-              .content-center.col-40.time-elapsed(ng-if="model.fromEvent")
-                | {{model.user.time_elapsed | milliseconds}}
-              .content-center.col-10(ng-if="model.fromEvent")
-                | {{model.user.achievements}}/10
+              .content-center.time-elapsed-col
+                | {{user.time_elapsed | milliseconds}}
+              .content-center.achievements-col(ng-if="model.fromEvent")
+                  | {{user.achievements}}/{{model.total_super_event_achievements}}
       .user-item-container(ng-if="!model.hideFooter && model.user")
         .user-item.row
           img(src="images/3puntoM.png")
@@ -35,12 +33,10 @@
             .content-center.col-25
               .user-name-container
                 span.user-name
-                  | {{model.user.name || model.user.username}}
+                  | {{model.user.username}}
             .content-center.col-20
               | {{model.user.contents_learnt}}/{{model.total_contents}}
-            .content-center.col-50.time-elapsed(ng-if="!model.fromEvent")
-              | {{model.user.time_elapsed | milliseconds}}
-            .content-center.col-40.time-elapsed(ng-if="model.fromEvent")
-              | {{model.user.time_elapsed | milliseconds}}
-            .content-center.col-10(ng-if="model.fromEvent")
-              | {{model.user.achievements}}/10
+            .content-center.time-elapsed-col
+                | {{model.user.time_elapsed | milliseconds}}
+              .content-center.achievements-col(ng-if="model.fromEvent")
+                | {{model.user.achievements}}/{{model.total_super_event_achievements}}
