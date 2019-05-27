@@ -120,8 +120,8 @@
           if(res.data.super_event && res.data.super_event.completed){//jshint ignore:line
             var beginningNameSuperEvent = language === 'es' ?  'el super evento: ' : 'the super event: ';
             var achievementSuperEvent = {
-              name: beginningNameSuperEvent + res.data.super_event.info.title,//jshint ignore:line
-              bagde: res.data.super_event.info.image//jshint ignore:line
+              name: beginningNameSuperEvent + res.data.super_event.info.event_achievement.title,//jshint ignore:line
+              bagde: res.data.super_event.info.event_achievement.image//jshint ignore:line
             };
             showUserAchievement(achievementSuperEvent);
           }

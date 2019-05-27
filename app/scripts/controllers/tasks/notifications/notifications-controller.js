@@ -251,14 +251,16 @@
 
     function showLeaderboardToSuperEvent(superEvent){
       var paramsToLeaderboard = {
+        user_id: $auth.user.id, //jshint ignore:line
         event_id: superEvent.id //jshint ignore:line
       };
       LeaderboardService.showLeaderboard(paramsToLeaderboard);
     }
 
-    function joinSuperEvent(event) {
-      EventsService.takeSuperEvent(event.id).then(function(){
+    function joinSuperEvent(superevent) {
+      EventsService.takeSuperEvent(superevent.id).then(function(){
         modelSuperEvent.model.closeModal();
+        superevent.taken = true;
         EventsService.showConfirmSuperEvent();
       });
     }
