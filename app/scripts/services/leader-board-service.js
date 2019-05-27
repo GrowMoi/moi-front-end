@@ -28,7 +28,7 @@
 
       return service;
 
-      function showLeaderboard(entity){
+      function showLeaderboard(entity, fromEvent){
         UserService.getLeaderboard(entity, currentPage, itemsPerPage).then(function(data) {
             dialogOptions.model.leaders = data.leaders;
             dialogOptions.model.user = data.meta.user_data; //jshint ignore:line
@@ -36,6 +36,7 @@
             dialogOptions.model.hideFooter = isCurrentUserLeader(data.leaders);
             dialogOptions.model.noMoreItemsAvailable = false;
             dialogOptions.model.nextPage = loadMoreItems;
+            dialogOptions.model.fromEvent = fromEvent;
             ModalService.showModel(dialogOptions);
             currentPage += 1;
             entity = entity;

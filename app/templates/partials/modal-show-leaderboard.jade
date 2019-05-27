@@ -17,8 +17,12 @@
                   | {{user.username}}
               .content-center.col-20
                 | {{user.contents_learnt}}/{{model.total_contents}}
-              .content-center.col-50.time-elapsed
-                | {{user.time_elapsed | milliseconds}}
+              .content-center.col-50.time-elapsed(ng-if="!model.fromEvent")
+                | {{model.user.time_elapsed | milliseconds}}
+              .content-center.col-40.time-elapsed(ng-if="model.fromEvent")
+                | {{model.user.time_elapsed | milliseconds}}
+              .content-center.col-10(ng-if="model.fromEvent")
+                | {{model.user.achievements}}/10
       .user-item-container(ng-if="!model.hideFooter && model.user")
         .user-item.row
           img(src="images/3puntoM.png")
@@ -31,8 +35,12 @@
             .content-center.col-25
               .user-name-container
                 span.user-name
-                  | {{model.user.name}}
+                  | {{model.user.name || model.user.username}}
             .content-center.col-20
               | {{model.user.contents_learnt}}/{{model.total_contents}}
-            .content-center.col-50.time-elapsed
+            .content-center.col-50.time-elapsed(ng-if="!model.fromEvent")
               | {{model.user.time_elapsed | milliseconds}}
+            .content-center.col-40.time-elapsed(ng-if="model.fromEvent")
+              | {{model.user.time_elapsed | milliseconds}}
+            .content-center.col-10(ng-if="model.fromEvent")
+              | {{model.user.achievements}}/10

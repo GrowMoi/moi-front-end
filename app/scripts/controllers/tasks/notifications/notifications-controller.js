@@ -254,7 +254,8 @@
         user_id: $auth.user.id, //jshint ignore:line
         event_id: superEvent.id //jshint ignore:line
       };
-      LeaderboardService.showLeaderboard(paramsToLeaderboard);
+      var fromEvent = true;
+      LeaderboardService.showLeaderboard(paramsToLeaderboard, fromEvent);
     }
 
     function joinSuperEvent(superevent) {
