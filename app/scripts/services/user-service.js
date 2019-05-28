@@ -333,11 +333,12 @@
       });
     }
 
-    function deleteNotification(notification){
+    function deleteNotification(notification, isSuperEventNotification){
+      var params = isSuperEventNotification ? { data_type: notification.data_type } : {}; //jshint ignore:line
       return $http({
-        method: 'POST',
+        method: 'GET',
         url: ENV.apiHost + '/api/notifications/' + notification.id + '/read_notifications',
-        data: {}
+        params: params
       }).then(function success(res) {
         return res;
       }, function error(err) {

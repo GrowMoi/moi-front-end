@@ -59,6 +59,10 @@
         template: 'templates/tasks/notifications/partials/generic.html',
         actionRemove: deleteNotification
       },
+      'super_event_notification': {
+        template: 'templates/tasks/notifications/partials/generic.html',
+        actionRemove: deleteSupereventNotification
+      },
       'event': {
         template: 'templates/tasks/notifications/partials/event.html'
       },
@@ -169,6 +173,14 @@
 
     function deleteNotification(notification, index) {
       UserService.deleteNotification(notification).then(function(resp) {
+        if(resp.data.deleted){
+          updateNotifications(index);
+        }
+      });
+    }
+
+    function deleteSupereventNotification(notification, index) {
+      UserService.deleteNotification(notification, true).then(function(resp) {
         if(resp.data.deleted){
           updateNotifications(index);
         }
