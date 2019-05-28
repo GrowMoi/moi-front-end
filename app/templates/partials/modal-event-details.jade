@@ -12,7 +12,7 @@
           .container-neuron(ng-repeat='content in model.data.contents'
                             ng-class="{'last-neuron': $last}")
             .neuron
-              img.neuron-image(ng-src="{{::content.image}}")
+              div.neuron-image(ng-src="{{::content.image}}")
               span.neuron-title
                 | {{::content.neuron}}
             .line(ng-if="!$last")
