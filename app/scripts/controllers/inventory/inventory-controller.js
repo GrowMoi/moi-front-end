@@ -86,11 +86,11 @@
       function formatEventsItems() {
         var eventsItems = {};
         if(events) {
-          events.events.map(function(event, index){
-            formatEventAchievement(eventsItems, event, index);
-          });
           events.superevents.map(function(event, index){
             formatEventAchievement(eventsItems, event, index);
+          });
+          events.events.map(function(event, index){
+            formatEventAchievement(eventsItems, event, index+1);
           });
         }
         return eventsItems;
