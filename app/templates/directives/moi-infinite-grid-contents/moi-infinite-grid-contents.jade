@@ -9,7 +9,7 @@ ion-content.content_tasks(ng-show="vm.items.length !== 0 && vm.loaded")
                       on-infinite='vm.loadMoreItems()'
                       distance='10%')
 .empty-state(ng-if="vm.items.length === 0 && vm.loaded")
-  | {{::'tasks.content_empty_state' | translate}}
+  | {{'tasks.content_empty_state' | translate}}
   img(src="images/placeholder_content.png")
 
 .loading.loading-gif(
