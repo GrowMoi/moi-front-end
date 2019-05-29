@@ -14,7 +14,8 @@
           itemsPerPage = 10,
           total_pages = 0, //jshint ignore:line
           isGettingItems = false,
-          entity = {},
+          preventClickEvent = false,
+          entityParams = {},
           dialogOptions = {
             templateUrl: 'templates/partials/modal-show-leaderboard.html',
             model: {
@@ -30,8 +31,12 @@
       return service;
 
       function showLeaderboard(entity, fromEvent){
-        entity = entity;
-        UserService.getLeaderboard(entity, currentPage, itemsPerPage).then(function(data) {
+        if (preventClickEvent) {
+          return;
+        }
+        entityParams = entity;
+        preventClickEvent = true;
+        UserService.getLeaderboard(entityParams, currentPage, itemsPerPage).then(function(data) {
             dialogOptions.model.leaders = data.leaders;
             dialogOptions.model.user = data.meta.user_data; //jshint ignore:line
             dialogOptions.model.total_contents = data.meta.total_contents; //jshint ignore:line
@@ -42,6 +47,7 @@
             total_pages =  data.meta.total_pages; //jshint ignore:line
             dialogOptions.model.noMoreItemsAvailable = currentPage === total_pages;//jshint ignore:line
             ModalService.showModel(dialogOptions);
+            preventClickEvent = false;
             currentPage += 1;
         });
       }
@@ -52,7 +58,7 @@
           return;
         }
         isGettingItems = true;
-        UserService.getLeaderboard(entity, currentPage, itemsPerPage).then(function(data) {
+        UserService.getLeaderboard(entityParams, currentPage, itemsPerPage).then(function(data) {
           dialogOptions.model.leaders = dialogOptions.model.leaders.concat(data.leaders);
           dialogOptions.model.hideFooter = isCurrentUserLeader(data.leaders);
           dialogOptions.model.noMoreItemsAvailable = currentPage === total_pages;//jshint ignore:line
@@ -66,7 +72,8 @@
         itemsPerPage = 10;
         total_pages = 0; //jshint ignore:line
         isGettingItems = false;
-        entity = {};
+        preventClickEvent = false;
+        entityParams = {};
       }
 
       function isCurrentUserLeader(leaders){
