@@ -106,7 +106,7 @@
       'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
       'máxima expresión.': 'Welcome '+currentUser.username+ '. This is your Moi tree. '+
       'It contains great knowledge and its growth depends on you. '+
-      'Follow your curiousity and discover how to make it develop to its '+
+      'Follow your curiosity and discover how to make it develop to its '+
       'full expression.';
       var dialogContentModel = {
         message: messageWelcome,

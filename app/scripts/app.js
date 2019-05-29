@@ -62,31 +62,21 @@
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
     $stateProvider
-
     .state('login', {
       url: '/login',
-      controller: 'LoginController',
-      controllerAs: 'vm',
-      templateUrl: 'templates/login/login.html',
-      resolve: {
-        checkIfIsLogin: redirectTree
-      }
-    })
-    .state('new_login', {
-      url: '/new_login',
       abstract: true,
-      controller: 'NewLoginController',
+      controller: 'LoginController',
       controllerAs: 'vmLogin',
-      templateUrl: 'templates/login/new_login.html'
+      templateUrl: 'templates/login/login.html'
     })
-    .state('new_login.first_step', {
+    .state('login.first_step', {
       url: '/first_step',
       templateUrl: 'templates/login/partials/first_step.html',
       resolve: {
         checkIfIsLogin: redirectTree
       }
     })
-    .state('new_login.second_step', {
+    .state('login.second_step', {
       url: '/second_step',
       templateUrl: 'templates/login/partials/second_step.html',
       resolve: {
@@ -464,7 +454,7 @@
       }
     });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/new_login/first_step');
+    $urlRouterProvider.otherwise('/login/first_step');
 
   });
 
@@ -486,7 +476,7 @@
         GAService.track('set', 'userId', null);
         GAService.track('set', 'dimension1', null);
         GAService.track('send', 'pageview');
-        $state.go('new_login.first_step');
+        $state.go('login.first_step');
       });
   }
 
