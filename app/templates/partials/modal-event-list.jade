@@ -8,7 +8,7 @@
         .event.superevent(ng-if="!superevent.taken"
               ng-repeat="superevent in model.superevent track by $index"
               ng-click="model.showSuperEventDetails(superevent)")
-          div.event-image(style="background-image: url('{{superevent.image}}')")
+          .event-image(style="background-image: url('{{superevent.image}}')")
           h4.event-title
             | {{::superevent.title}}
           span.event-description
