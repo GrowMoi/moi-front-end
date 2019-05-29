@@ -67,6 +67,7 @@
     function scoreTest(scope, data) {
       var modelData = {};
       var progressTree = TreeService.progressTree(data.meta);
+      $timeout(function(){scope.vmTest.isCheckingResultTest = false;});
       modelData.percentageLevel = progressTree.userLevel.percentage;
       modelData.userLevel = progressTree.userLevel.level;
       modelData.percentage = progressTree.percentage;

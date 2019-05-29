@@ -8,6 +8,7 @@
               $scope,
               $auth,
               $state,
+              $timeout,
               ModalService,
               MediaAchievements,
               HoverAnimationService) {
@@ -40,6 +41,7 @@
       vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
       vmTest.hideTest = false;
+      vmTest.isCheckingResultTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
@@ -101,6 +103,7 @@
 
     function scoreTest() {
       vmTest.hideTest = true;
+      $timeout(function(){vmTest.isCheckingResultTest = true;});
       TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
         var questionsData = questionsMapping(res.data.result);
         var data = {

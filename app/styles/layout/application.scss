@@ -53,5 +53,10 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    &.big {
+      width: 6rem;
+      height: 6rem;
+    }
   }
 }
