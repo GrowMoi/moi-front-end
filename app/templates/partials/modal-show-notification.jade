@@ -4,10 +4,9 @@
       .btn-close-modal-notification(ng-click="model.closeModal()")
       .notification-description
         .title {{ 'titles.title' | translate }}
-        .info {{  model.title}}
-
+        .info {{ model.title }}
         .title {{ 'titles.description' | translate }}
-        .info {{  model.description}}
+        .info {{ model.description }}
         img.content-image(ng-if='model.media[0]'
                           ng-src='{{model.media[0]}}')
         embed-video.content-video(ng-if='model.videos[0]'
