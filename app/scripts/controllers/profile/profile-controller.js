@@ -14,17 +14,21 @@
                                             UserService,
                                             SocialService,
                                             myEvents,
-                                            GAService) {
+                                            GAService,
+                                            LeaderboardService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
     var language = $auth.user.language;
+    vmProfile.paramsToLeaderboard = {
+      user_id: user.id //jshint ignore:line
+    };
     vmProfile.user = user;
     vmProfile.user.tree_image = vmProfile.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
     vmProfile.myEvents = myEvents;
     vmProfile.imageUser = vmProfile.user.image || 'images/edit-profile/userphoto.png';
     vmProfile.isCurrentUser = user.id === currentUser.id;
-    vmProfile.showLeaderboard = showLeaderboard;
+    vmProfile.showLeaderboard = LeaderboardService.showLeaderboard;
     vmProfile.showEventsboard = showEventsboard;
     vmProfile.logout = logout;
     vmProfile.certificates = certificates.certificates;
@@ -121,50 +125,6 @@
       vmProfile.changeTab(defaultTab);
     }
 
-    var dialogOptions;
-    function nextPage() {
-      if (vmProfile.enableInfiniteScroll) {
-        return;
-      }
-      vmProfile.enableInfiniteScroll = true;
-      UserService.getLeaderboard(vmProfile.user.id, vmProfile.page, vmProfile.resultsPerPage).then(function(data){
-        var items = data.leaders;
-        if( items.length > 0) {
-          vmProfile.notData = false;
-          for (var i = 0; i < items.length; i++) {
-            vmProfile.dataLogRealTime.push(items[i]);
-          }
-          vmProfile.page += 1;
-          vmProfile.enableInfiniteScroll = false;
-        }
-        else {
-          vmProfile.notData = true;
-        }
-      }).catch(function(){
-        console.log('Upss');
-      });
-    }
-
-    function showLeaderboard(){
-      vmProfile.dataLogRealTime =[];
-      UserService.getLeaderboard(vmProfile.user.id).then(function(data){
-        dialogOptions = {
-          templateUrl: 'templates/partials/modal-show-leaderboard.html',
-          model: {
-            goToUser: goToUser,
-            nextPage: nextPage,
-            leaders:  vmProfile.dataLogRealTime,
-
-            /*jshint camelcase: false */
-            user: data.meta.user_data,
-            total_contents: data.meta.total_contents,
-            hideFooter: currentUserIsLeader( vmProfile.dataLogRealTime)
-          }
-        };
-        ModalService.showModel(dialogOptions);
-      });
-    }
-
     function showEventsboard(){
       var dialogEventsOpts = {
         templateUrl: 'templates/partials/modal-show-events-completed.html',
@@ -180,18 +140,6 @@
       GAService.track('set', 'dimension1', user.id);
       $window.localStorage.clear();
       $window.location='/';
-    }
-
-    function currentUserIsLeader(leaders){
-      var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;}); //jshint ignore:line
-      return leader ? true : false;
-    }
-
-    function goToUser(user){
-      dialogOptions.model.closeModal();
-      $state.go('profile', {
-        username: user.username
-      });
     }
 
     function shareProfile() {

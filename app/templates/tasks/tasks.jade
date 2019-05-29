@@ -19,8 +19,10 @@ ion-view.tasks(view-title='Tasks')
                     | {{tab.name}}
                   .counter-badget(ng-if="tab.field === 'notifications' && tasksmodel.totalNotifications")
                     | {{tasksmodel.totalNotifications}}
-                  .counter-badget(ng-if="tab.field === 'recommendations' && tasksmodel.totalRecommendationContents")
-                    | {{tasksmodel.totalRecommendationContents}}
+                  .counter-badget(ng-if="tab.field === 'recommendations' && tasksmodel.totalRecommendations")
+                    | {{tasksmodel.totalRecommendations}}
+                  .counter-badget(ng-if="tab.field === 'events' && tasksmodel.totalContentEvents")
+                    | {{tasksmodel.totalContentEvents}}
           .col-50.tasks-view
             ui-view
     moi-frame(options="{type: 'content_max', showBackButton: true}")

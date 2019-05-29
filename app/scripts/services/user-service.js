@@ -30,7 +30,8 @@
       getCertificates: getCertificates,
       deleteCertificate: deleteCertificate,
       sharingContent: sharingContent,
-      getMyEvents: getMyEvents
+      getMyEvents: getMyEvents,
+      getDetailsNotifications: getDetailsNotifications
     };
 
     var popupOptions = { title: 'Error'};
@@ -149,6 +150,15 @@
        }).then(function success(res) {
          return res.data;
        });
+    }
+
+    function getDetailsNotifications(){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/notifications/details'
+      }).then(function success(res) {
+        return res.data;
+      });
     }
 
     function respondNotification(res) {
@@ -307,26 +317,28 @@
       });
     }
 
-    function getLeaderboard(id, page, resultsPerPage){
+    function getLeaderboard(entityParams, currentPage, itemsPerPage){
+      var defaultParams = {
+        page: currentPage,
+        per_page: itemsPerPage //jshint ignore:line
+      };
+      //mege default params with entity params
+      Object.assign(defaultParams, entityParams);
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/leaderboard',
-        params: {
-          /*jshint camelcase: false */
-          user_id: id,
-          page: page,
-          per_page: resultsPerPage
-        }
+        params: defaultParams
       }).then(function success(res) {
         return res.data;
       });
     }
 
-    function deleteNotification(notification){
+    function deleteNotification(notification, isSuperEventNotification){
+      var params = isSuperEventNotification ? { data_type: notification.data_type } : {}; //jshint ignore:line
       return $http({
-        method: 'POST',
+        method: 'GET',
         url: ENV.apiHost + '/api/notifications/' + notification.id + '/read_notifications',
-        data: {}
+        params: params
       }).then(function success(res) {
         return res;
       }, function error(err) {

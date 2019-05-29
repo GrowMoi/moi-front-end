@@ -47,7 +47,7 @@
         },
       ];
       vmInv.changeTab = changeTab;
-      allEventItems = formatEvents();
+      allEventItems = formatEventsItems();
       allAchievements = formatAchievements();
       vmInv.achievements = allAchievements;
       vmInv.increaseSize = HoverAnimationService.increaseSize;
@@ -83,25 +83,33 @@
         return achievementsList;
       }
 
-      function formatEvents() {
+      function formatEventsItems() {
         var eventsItems = {};
-        events.map(function(event, index){
-          var eventItem = {
-            desactive: !event.completed,
-            description: event.description,
-            name: event.title,
-            settings: {
-              badge: event.completed ? event.image : event.inactive_image //jshint ignore:line
-            },
-            eventData : {
-              generalImg : event.image
-            }
-          };
-          eventsItems[index+1] = eventItem;
-        });
+        if(events) {
+          events.superevents.map(function(event, index){
+            formatEventAchievement(eventsItems, event, index);
+          });
+          events.events.map(function(event, index){
+            formatEventAchievement(eventsItems, event, index+1);
+          });
+        }
         return eventsItems;
       }
 
+      function formatEventAchievement(finalObj, event, index){
+        var eventItem = {
+          desactive: !event.completed,
+          description: event.description,
+          name: event.title,
+          settings: {
+            badge: event.completed ? event.image : event.inactive_image //jshint ignore:line
+          },
+          eventData : {
+            generalImg : event.image
+          }
+        };
+        finalObj[index+1] = eventItem;
+      }
 
       function activateAchievement(achievement){
         if(achievement.settings.theme){

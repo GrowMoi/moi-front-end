@@ -47,6 +47,7 @@
       .event-title {
         @extend .generic-font-event;
         font-weight: bold;
+        text-align: center;
       }
 
       .event-image {
@@ -61,13 +62,13 @@
         padding: 3% 0;
       }
 
-      .neurons-list {
+      .neurons-list, .achievement-list {
         display: flex;
         width: 100%;
         justify-content: center;
         position: relative;
 
-        .container-neuron {
+        .container-neuron, .container-achievement {
           display: flex;
           width: 25%;
 
@@ -107,6 +108,22 @@
             height: .2rem;
             position: relative;
             top: 30%;
+          }
+        }
+      }
+
+      .achievement-list {
+        .container-achievement {
+          &.last-achievement {
+            width: auto;
+          }
+
+          .achievement {
+            .achievement-image {
+              height: 2.1rem;
+              padding: 0;
+            }
+
           }
         }
       }

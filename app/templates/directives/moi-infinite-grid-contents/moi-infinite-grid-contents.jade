@@ -3,8 +3,8 @@ ion-content.content_tasks(ng-show="vm.items.length !== 0 && vm.loaded")
     .remove-task(ng-if='::vm.showDeleteIcon(item)' ng-click='vm.onClickDelete(item)')
     .content-kind-contents(ui-sref='content({neuronId: item.neuron_id, contentId: item.id})')
       img.format-image(ng-src='{{item.media[0]}}')
-      .leyend-bottom(title='{{item.title}}', ellipsis-title='item.title', height='45')
-
+      .leyend-bottom
+        | {{::item.title}}
   ion-infinite-scroll(ng-if='!vm.noMoreItemsAvailable'
                       on-infinite='vm.loadMoreItems()'
                       distance='10%')

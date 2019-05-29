@@ -5,7 +5,7 @@ ion-list(no-lines)
         | {{ ::'profile.awardsTab.contents.title' | translate}} {{vmProfile.user.content_summary.current_learnt_contents}}/{{vmProfile.user.content_summary.total_approved_contents}}
       span
         | {{ ::'profile.awardsTab.contents.description' | translate}} {{vmProfile.user.successful_tests}}
-      span.btn-view-table(ng-if="!vmProfile.buttonsOptions.readOnly" ng-click="vmProfile.showLeaderboard()")
+      span.btn-view-table(ng-if="!vmProfile.buttonsOptions.readOnly" ng-click="vmProfile.showLeaderboard(vmProfile.paramsToLeaderboard)")
         | {{ ::'profile.awardsTab.show_more' | translate}}
     .item-award
       span.description-item-award

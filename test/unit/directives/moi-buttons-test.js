@@ -92,8 +92,8 @@
             return null;
           },
           totalNotifications: 0,
-          totalRecommendationContents: 0,
-          totalRecommendations: 0
+          totalRecommendations: 0,
+          totalContentEvents: 0
         };
       });
       $provide.service('$auth', function() {

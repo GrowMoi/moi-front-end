@@ -8,6 +8,7 @@
               $scope,
               $auth,
               $state,
+              $timeout,
               ModalService,
               MediaAchievements,
               HoverAnimationService) {
@@ -40,6 +41,7 @@
       vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
       vmTest.hideTest = false;
+      vmTest.isCheckingResultTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
@@ -101,6 +103,7 @@
 
     function scoreTest() {
       vmTest.hideTest = true;
+      $timeout(function(){vmTest.isCheckingResultTest = true;});
       TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
         var questionsData = questionsMapping(res.data.result);
         var data = {
@@ -117,13 +120,22 @@
           var recommendations = res.data.recommendations || [];
           var achievements = res.data.achievements || [];
 
+          if(res.data.super_event && res.data.super_event.completed){//jshint ignore:line
+            var beginningNameSuperEvent = language === 'es' ?  'el super evento: ' : 'the super event: ';
+            var achievementSuperEvent = {
+              name: beginningNameSuperEvent + res.data.super_event.info.event_achievement.title,//jshint ignore:line
+              bagde: res.data.super_event.info.event_achievement.image//jshint ignore:line
+            };
+            showUserAchievement(achievementSuperEvent);
+          }
+
           if(res.data.event && res.data.event.completed){
-            var beginningName = language === 'es' ?  'el evento: ' : 'the event: ';
-            var achievement = {
-              name: beginningName + res.data.event.info.title,
+            var beginningNameEvent = language === 'es' ?  'el evento: ' : 'the event: ';
+            var achievementEvent = {
+              name: beginningNameEvent + res.data.event.info.title,
               bagde: res.data.event.info.image
             };
-            showUserAchievement(achievement);
+            showUserAchievement(achievementEvent);
           }
 
           if (recommendations.length > 0) {

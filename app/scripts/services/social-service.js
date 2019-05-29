@@ -7,6 +7,7 @@
 
   function SocialService($location,
                         $ionicLoading,
+                        $auth,
                         Socialshare,
                         ModalService,
                         ENV,
@@ -95,6 +96,7 @@
         emailParams.image_url = modelData.data.image_url; //jshint ignore:line
         UserService.sharedEmailContent(emailParams).then(function() {
           $ionicLoading.hide();
+          showConfirmEmail();
         });
       }else {
         var view = document.querySelector('#screenCapture');
@@ -103,6 +105,7 @@
             emailParams.image_url = resp.data.url; //jshint ignore:line
             UserService.sharedEmailContent(emailParams).then(function() {
               $ionicLoading.hide();
+              showConfirmEmail();
             });
           });
         });
@@ -131,6 +134,27 @@
         shortDescription = previewDescription.concat(', Visítanos');
       }
       return shortDescription;
+    }
+
+    function showConfirmEmail() {
+      var enMessage = 'You sent the email successfully.';
+      var esMessage = 'Enviaste el correo con éxito.';
+      var message = ($auth.user.language === 'es') ? esMessage : enMessage;
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: {
+          message: message,
+          callbacks: {
+            btnRight: function() {
+              dialogOptions.model.closeModal();
+            }
+          },
+          labels: {
+            btnRight: 'Ok',
+          }
+        }
+      };
+      ModalService.showModel(dialogOptions);
     }
   }
 })();

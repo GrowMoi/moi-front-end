@@ -6,7 +6,6 @@
                 only-play="true")
     .score-container.row
       .main-image.col
-        img(ng-if="!model.image" src="images/user.png")
         img(ng-if="model.image" ng-src="{{model.image}}")
       .col-50
         .text-container

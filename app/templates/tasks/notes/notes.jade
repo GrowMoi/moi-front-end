@@ -1,4 +1,4 @@
-ion-content.content_tasks(ng-if="notesModel.notes.length !== 0 && notesModel.loaded")
+ion-content.content_tasks(ng-show="notesModel.notes.length !== 0 && notesModel.loaded")
   .row.note(ng-repeat='note in notesModel.notes')
     .text-notes(ui-sref="content({neuronId: note.neuron_id, contentId: note.content_id})")
       | {{note.note}}
@@ -7,7 +7,7 @@ ion-content.content_tasks(ng-if="notesModel.notes.length !== 0 && notesModel.loa
                       distance='10%')
 .empty-state(ng-if="notesModel.notes.length === 0 && notesModel.loaded")
   | {{::'tasks.note_empty_state' | translate}}
-  
+
 .loading.loading-gif(
   ng-if="!notesModel.loaded"
 )
