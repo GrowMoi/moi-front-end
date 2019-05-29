@@ -5,7 +5,7 @@
   angular.module('moi')
     .value('AdvicesPageEn', {
       /*jshint camelcase: false */
-      'new_login.first_step': {
+      'login.first_step': {
         messages: [
           /*jshint camelcase: false */
           "Hello! Enter your username and password and clic next. If you don't have one yet, clic register."],

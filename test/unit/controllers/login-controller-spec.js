@@ -9,8 +9,11 @@
         authMock,
         stateMock,
         ionicPopupMock,
+        StorageService,
         UtilityService,
         ionicLoadingMock,
+        ImagesLoginEn,
+        ImagesLogin,
         ModalService;
 
     beforeEach(module('moi.controllers'));
@@ -27,6 +30,11 @@
           showModel: sinon.stub()
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          setLanguage: function(){}
+        };
+      });
       $provide.factory('GAService', function(){
         return {
           track: function(){
@@ -35,11 +43,24 @@
         };
       });
     }));
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('ImagesLogin', {
+          paths: ['image/image1', 'image/image2']
+        });
+        $provide.constant('ImagesLoginEn', {
+          paths: ['image/image1', 'image/image2']
+        });
+      });
+    });
     beforeEach(inject(
       function ($q,
                 $rootScope,
                 $controller,
                 _UtilityService_,
+                _StorageService_,
+                _ImagesLoginEn_,
+                _ImagesLogin_,
                 _ModalService_) {
 
       deferredLogin     = $q.defer();
@@ -53,6 +74,9 @@
       };
       UtilityService    = _UtilityService_;
       ModalService = _ModalService_;
+      StorageService = _StorageService_;
+      ImagesLogin = _ImagesLogin_;
+      ImagesLoginEn = _ImagesLoginEn_;
       controller = $controller('LoginController', {
         '$ionicPopup': ionicPopupMock,
         '$ionicLoading': ionicLoadingMock,
@@ -60,6 +84,7 @@
         '$auth': authMock,
         '$scope': $scope,
         'UtilityService': UtilityService,
+        'StorageService': StorageService,
         'ModalService': ModalService
       });
     }));
@@ -69,8 +94,8 @@
       beforeEach(inject(function(_$rootScope_) {
         $rootScope = _$rootScope_;
         controller.isChrome = UtilityService.isAgentChrome();
-        controller.loginForm.login = 'test1';
-        controller.loginForm.password = 'password1';
+        controller.form.login = 'test1';
+        controller.form.password = 'password1';
         controller.finishedSound();
       }));
 
@@ -82,16 +107,15 @@
       });
 
       describe('when the login is executed,', function() {
-        var successState = 'tree';
-
-        it('if successful, should change state', function() {
+        it('shoul call setLanguage', function() {
           var user = {
             id: 1,
             username: 'test'
           };
+          var spy = sinon.spy(StorageService, 'setLanguage');
           deferredLogin.resolve(user);
           $rootScope.$digest();
-          sinon.assert.alwaysCalledWithExactly(stateMock.go, successState, {username: user.username});
+          chai.expect(spy.called).to.be.equal(true);
         });
 
         it('if unsuccessful, should show a popup', function() {

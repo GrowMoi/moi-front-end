@@ -9,23 +9,38 @@
               $ionicLoading,
               $state,
               $auth,
+              StorageService,
               UtilityService,
+              ImagesLogin,
+              ImagesLoginEn,
               GAService) {
-    var vm = this;
+    var vmLogin = this;
     var moiSound;
-
-    vm.loginForm = {};
-    vm.finishedSound = finishedSound;
+    var lang = navigator.language || navigator.userLanguage;
+    var languageBrowser = lang.slice(0,2);
+    vmLogin.form = {};
+    vmLogin.finishedSound = finishedSound;
 
     var successState = 'tree';
-    vm.isChrome = UtilityService.isAgentChrome();
+    vmLogin.isChrome = UtilityService.isAgentChrome();
 
-    vm.login = function() {
+    vmLogin.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;
+
+    vmLogin.submit = function() {
       if(moiSound){
         moiSound.play();
       }else{
-        vm.finishedSound();
+        finishedSound();
       }
+    };
+
+    vmLogin.nexStep = function(){
+      $state.go('login.second_step');
+    };
+
+    vmLogin.onSelectImage = function(image){
+      /*jshint camelcase: false */
+      vmLogin.form.authorization_key = image.key;
     };
 
     $scope.$on('audioLoaded', function (e, moiSoundInstance) {
@@ -38,13 +53,16 @@
       $ionicLoading.show({
         template: 'cargando...'
       });
-      $auth.submitLogin(vm.loginForm)
+      $auth.submitLogin(vmLogin.form)
         .then(redirectUser)
         .catch(function (resp) {
           $ionicPopup.alert({
             title: 'Ups!',
             template: resp.errors.join(', ')
           });
+          vmLogin.step = 1;
+          /*jshint camelcase: false */
+          vmLogin.form.authorization_key = '';
         })
         .finally(function(){
           $ionicLoading.hide();
@@ -54,9 +72,11 @@
     function redirectUser(user) {
       GAService.track('set', 'userId', user.username);
       GAService.track('set', 'dimension1', user.id);
-      $state.go(successState, {
-        username: user.username
-      });
+      var route={
+        state:successState,
+        user: user.username
+      };
+      StorageService.setLanguage(route);
     }
   });
 })();

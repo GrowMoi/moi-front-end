@@ -21,9 +21,6 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
           type='submit',
           value="{{ 'login.next' | translate }}"
         ).button.button-login
-    .login-option
-      span(ui-sref="login")
-        | {{ 'login.old_login' | translate }}
   a.legend-browser(ng-if='!vmLogin.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
     | {{ 'browser.chrome' | translate }}
 

@@ -18,8 +18,8 @@
 
     function responseError(rejection) {
       var stateName = $injector.get('$state').current.name;
-      if (rejection.status === 401 && (stateName !== 'new_login.first_step' && stateName !== 'login')) {
-        $injector.get('$state').go('new_login.first_step');
+      if (rejection.status === 401 && (stateName !== 'login.first_step' && stateName !== 'login')) {
+        $injector.get('$state').go('login.first_step');
         $injector.get('$ionicLoading').hide();
       } else if (rejection.status === 404) {
         var PopupService = $injector.get('PopupService'),
