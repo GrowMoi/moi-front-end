@@ -10,6 +10,8 @@
         SettingsService,
         StorageService,
         dragularService,
+        InterestsEn,
+        Interests,
         ENV,
         $state,
         $rootScope;
@@ -75,12 +77,25 @@
       });
     }));
 
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('Interests',  [
+          { interest:'Animales', src:'images/animal-interest.png'}]
+        );
+        $provide.constant('InterestsEn',  [
+          { interest:'Animals', src:'images/animal-interest.png'}]
+        );
+      });
+    });
+
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
                 _ENV_,
                 _StorageService_,
                 _$state_,
+                _Interests_,
+                _InterestsEn_,
                 _SettingsService_,
                 _dragularService_) {
         $controller = _$controller_;
@@ -90,6 +105,8 @@
         $state = _$state_;
         SettingsService = _SettingsService_;
         dragularService = _dragularService_;
+        Interests = _Interests_;
+        InterestsEn = _InterestsEn_;
         StorageService = _StorageService_;
         $auth = {
           user: {
