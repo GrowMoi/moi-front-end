@@ -54,6 +54,12 @@
       localStorage.setItem('pagesViewed', JSON.stringify({}));
     }
 
+    //init control to internet conection
+    site.isOnline = navigator.onLine;
+    //add listener to internet conection
+    window.addEventListener('online', conectionStateChanged);
+    window.addEventListener('offline', conectionStateChanged);
+
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
     function preloadAssets(data, storage) {
@@ -279,6 +285,10 @@
         pagesViewed[currentPage] = true;
         localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
       }
+    }
+
+    function conectionStateChanged() {
+      site.isOnline = navigator.onLine;
     }
   }
 })();

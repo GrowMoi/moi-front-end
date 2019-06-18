@@ -13,7 +13,6 @@
       response: response
     };
     var loadingCount = 0;
-    var isConectionPopupVisible = false;
 
     return service;
 
@@ -37,17 +36,6 @@
     }
 
     function request(config) {
-      var isOnline = navigator.onLine;
-
-      if(!isOnline && !isConectionPopupVisible){
-        var title = 'Conection Error';
-        var content = 'You dont have internet conection';
-        isConectionPopupVisible = true;
-        showPopup(title, content, function(){
-          isConectionPopupVisible = false;
-        });
-      }
-
       if (++loadingCount === 1) {
         $rootScope.$broadcast('loading:progress');
       }
