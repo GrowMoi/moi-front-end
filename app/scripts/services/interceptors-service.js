@@ -13,6 +13,7 @@
       response: response
     };
     var loadingCount = 0;
+    var isConectionPopupVisible = false;
 
     return service;
 
@@ -22,13 +23,11 @@
         $injector.get('$state').go('login.first_step');
         $injector.get('$ionicLoading').hide();
       } else if (rejection.status === 404) {
-        var PopupService = $injector.get('PopupService'),
-            auth = $injector.get('$auth'),
-            popupOptions = {
-              title: 'Error',
-              content: rejection.statusText
-            };
-        PopupService.showModel('alert', popupOptions, function() {
+        var auth = $injector.get('$auth');
+        var title = 'Error';
+        var content = rejection.statusText;
+
+        showPopup(title, content, function(){
           $injector.get('$state').go('tree', {
             username: auth.user.username
           });
@@ -38,6 +37,17 @@
     }
 
     function request(config) {
+      var isOnline = navigator.onLine;
+
+      if(!isOnline && !isConectionPopupVisible){
+        var title = 'Conection Error';
+        var content = 'You dont have internet conection';
+        isConectionPopupVisible = true;
+        showPopup(title, content, function(){
+          isConectionPopupVisible = false;
+        });
+      }
+
       if (++loadingCount === 1) {
         $rootScope.$broadcast('loading:progress');
       }
@@ -49,6 +59,15 @@
         $rootScope.$broadcast('loading:finish');
       }
       return resp || $q.when(resp);
+    }
+
+    function showPopup(title, content, callback) {
+      var PopupService = $injector.get('PopupService');
+      var popupOptions = {
+        title: title,
+        content: content
+      };
+      PopupService.showModel('alert', popupOptions, callback);
     }
   }
 
