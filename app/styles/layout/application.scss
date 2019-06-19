@@ -31,6 +31,16 @@ body {
     cursor: not-allowed;
   }
 
+  .bad-connection {
+    position: absolute;
+    z-index: 99999;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    width: 10rem;
+    height: 10rem;
+  }
+
   .loading-app {
     @include background-size(cover);
     background-image: url(../images/landscape_a.png);

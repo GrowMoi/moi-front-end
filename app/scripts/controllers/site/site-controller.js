@@ -56,9 +56,17 @@
 
     //init control to internet conection
     site.isOnline = navigator.onLine;
+    site.hasBadConnection = false;
     //add listener to internet conection
     window.addEventListener('online', conectionStateChanged);
     window.addEventListener('offline', conectionStateChanged);
+
+    if(navigator && navigator.connection) {
+      site.hasBadConnection = navigator.connection.effectiveType.includes('2g');
+      navigator.connection.onchange = function() {
+        site.hasBadConnection = navigator.connection.effectiveType.includes('2g');
+      };
+    }
 
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';

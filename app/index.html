@@ -151,6 +151,10 @@
       <img src="images/not-internet.png" alt="not-internet">
       <span>{{ 'not_internet' | translate }}</span>
     </div>
+    <img class="bad-connection"
+      ng-if="site.hasBadConnection && site.isOnline"
+      src="images/slow-internet.png">
+    </img>
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application" id="screenCapture"></ion-nav-view>
       <audio id="backgroundSound"
