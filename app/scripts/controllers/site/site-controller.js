@@ -55,16 +55,16 @@
     }
 
     //init control to internet conection
-    site.isOnline = navigator.onLine;
-    site.hasBadConnection = false;
+    site.offline = !navigator.onLine;
+    site.badConnection = false;
     //add listener to internet conection
     window.addEventListener('online', conectionStateChanged);
     window.addEventListener('offline', conectionStateChanged);
 
     if(navigator && navigator.connection) {
-      site.hasBadConnection = navigator.connection.effectiveType.includes('2g');
+      site.badConnection = navigator.connection.downlink <= 0.1;
       navigator.connection.onchange = function() {
-        site.hasBadConnection = navigator.connection.effectiveType.includes('2g');
+        site.badConnection = navigator.connection.downlink <= 0.1;
       };
     }
 
@@ -296,7 +296,7 @@
     }
 
     function conectionStateChanged() {
-      site.isOnline = navigator.onLine;
+      site.offline = !navigator.onLine;
     }
   }
 })();
