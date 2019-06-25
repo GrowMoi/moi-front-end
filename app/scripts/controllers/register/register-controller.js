@@ -12,7 +12,8 @@
                               StorageService,
                               ModalService,
                               ImagesLoginEn,
-                              ImagesLogin) {
+                              ImagesLogin,
+                              GAService) {
     var registerModel = this;
     var lang = navigator.language || navigator.userLanguage;
     var languageBrowser = lang.slice(0,2);
@@ -28,6 +29,9 @@
       $auth.submitRegistration(registerModel.registerForm)
         .then(function() {
           $auth.validateUser().then(function(user){
+            GAService.track('set', 'userId', user.username);
+            GAService.track('set', 'dimension1', user.id);
+            GAService.track('send', 'event', 'Crear cuenta', 'Click');
             var route={
               state:'tree',
               user: user.username
