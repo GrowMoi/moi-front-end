@@ -32,7 +32,8 @@
         images = IMAGES.paths,
         imageSaved = false,
         callApiSaveImage = 0,
-        isShowingPassiveModal = false;
+        isShowingPassiveModal = false,
+        normalSpeed = 0.2; // 200kbs/s
 
     UserNotificationsService.initialize();
 
@@ -62,9 +63,9 @@
     window.addEventListener('offline', conectionStateChanged);
 
     if(navigator && navigator.connection) {
-      site.badConnection = navigator.connection.downlink <= 0.1;
+      site.badConnection = navigator.connection.downlink <= normalSpeed;
       navigator.connection.onchange = function() {
-        site.badConnection = navigator.connection.downlink <= 0.1;
+        site.badConnection = navigator.connection.downlink <= normalSpeed;
       };
     }
 

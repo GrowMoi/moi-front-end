@@ -148,7 +148,7 @@
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
     <div ng-if="site.offline || site.badConnection" class="offline-panel">
-      <img src="images/no_connection_moi.png" alt="no_connection_moi">
+      <img class="animated flash" src="images/no_connection_moi.png" alt="no_connection_moi">
     </div>
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application" id="screenCapture"></ion-nav-view>
