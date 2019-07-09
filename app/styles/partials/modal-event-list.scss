@@ -97,3 +97,26 @@
     opacity: 0;
   }
 }
+
+@media (max-height: 650px) {
+  .transparent {
+    .modal-event-list {
+      .event-list {
+        .event {
+          .event-title {
+            font-size: 12px;
+          }
+
+          .event-description {
+            font-size: 10px;
+          }
+
+          .event-image{
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+      }
+    }
+  }
+}
