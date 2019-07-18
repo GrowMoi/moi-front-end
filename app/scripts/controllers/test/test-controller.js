@@ -18,6 +18,7 @@
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
     var currentUser = $auth.user;
+    var countModalsActived = 0;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var language = $auth.user.language;
 
@@ -148,9 +149,11 @@
           if (achievements.length > 0) {
             showUserAchievement(achievements[0]);
           }else{
-            $state.go('tree', {
-              username: currentUser.username
-            });
+            if(countModalsActived === 0){
+              $state.go('tree', {
+                username: currentUser.username
+              });
+            }
           }
         });
       });
@@ -213,9 +216,12 @@
           },
           btnLeft: function(){
             dialogContentModel.closeModal();
-            $state.go('tree', {
-              username: currentUser.username
-            });
+            countModalsActived--;
+            if(countModalsActived === 0){
+              $state.go('tree', {
+                username: currentUser.username
+              });
+            }
           }
         },
         labels: {
@@ -230,6 +236,7 @@
         templateUrl: 'templates/partials/modal-alert-content.html',
         model: dialogContentModel
       };
+      countModalsActived++;
       ModalService.showModel(dialogOptions);
     }
 
