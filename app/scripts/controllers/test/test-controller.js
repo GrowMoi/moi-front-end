@@ -11,7 +11,8 @@
               $timeout,
               ModalService,
               MediaAchievements,
-              HoverAnimationService) {
+              HoverAnimationService,
+              UserNotificationsService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -116,6 +117,9 @@
           $backgroundSound[0].pause();
         }
         localStorage.setItem('successAnswers', data.successAnswers);
+
+        UserNotificationsService.getNewDetailsNotifications();
+
         TestService.scoreTest($scope, data).then(function() {
           var recommendations = res.data.recommendations || [];
           var achievements = res.data.achievements || [];
