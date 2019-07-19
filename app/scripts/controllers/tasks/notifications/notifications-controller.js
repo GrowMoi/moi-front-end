@@ -22,6 +22,7 @@
         };
 
     notificationsModel.loaded = false;
+    notificationsModel.showLoadingOverlay = false;
 
     var dialogContentModel = {
       callbacks: {
@@ -267,7 +268,12 @@
         event_id: superEvent.id //jshint ignore:line
       };
       var fromEvent = true;
-      LeaderboardService.showLeaderboard(paramsToLeaderboard, fromEvent);
+      notificationsModel.showLoadingOverlay = true;
+      LeaderboardService.showLeaderboard(paramsToLeaderboard, fromEvent, function onSuccess() {
+        notificationsModel.showLoadingOverlay = false;
+      }, function onError() {
+        notificationsModel.showLoadingOverlay = false;
+      });
     }
 
     function joinSuperEvent(superevent) {
