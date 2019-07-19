@@ -86,9 +86,6 @@
 
       modelData.onClick = function(){
         modelData.closeModal();
-        $state.go('tree', {
-          username: $auth.user.username
-        });
       };
 
       modelData.shown = function(){
