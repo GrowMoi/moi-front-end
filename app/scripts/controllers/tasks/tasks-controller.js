@@ -30,18 +30,18 @@
         state: 'tasks.notes'
       },
       {
-        field:'recommendations',
-        name: 'Recomendaciones',
+        field: 'contentsToLearn',
+        name: 'Contenidos por Aprender',
         image: 'images/recomendations_tasks.png',
         selected: false,
-        state: 'tasks.recommendations'
+        state: 'tasks.contentsToLearn'
       },
       {
-        field:'contents',
-        name: 'Tareas',
+        field: 'savedContents',
+        name: 'Contenidos Guardados',
         image: 'images/list_tasks.png',
         selected: false,
-        state: 'tasks.contents'
+        state: 'tasks.savedContents'
       },
       {
         field:'notifications',
@@ -57,13 +57,6 @@
         selected: false,
         state: 'tasks.favorites'
       },
-      {
-        field:'events',
-        name: 'Eventos',
-        image: 'images/events_tasks.png',
-        selected: false,
-        state: 'tasks.events'
-      }
     ];
 
     var tabsEn = [
@@ -75,18 +68,18 @@
         state: 'tasks.notes'
       },
       {
-        field:'recommendations',
-        name: 'Recommendations',
+        field: 'contentsToLearn',
+        name: 'Contents to Learn',
         image: 'images/recomendations_tasks.png',
         selected: false,
-        state: 'tasks.recommendations'
+        state: 'tasks.contentsToLearn'
       },
       {
-        field:'contents',
-        name: 'Contents',
+        field: 'savedContents',
+        name: 'Saved Contents',
         image: 'images/list_tasks.png',
         selected: false,
-        state: 'tasks.contents'
+        state: 'tasks.savedContents'
       },
       {
         field:'notifications',
@@ -102,13 +95,6 @@
         selected: false,
         state: 'tasks.favorites'
       },
-      {
-        field:'events',
-        name: 'Events',
-        image: 'images/events_tasks.png',
-        selected: false,
-        state: 'tasks.events'
-      }
     ];
     var language = $auth.user.language;
     tasksmodel.tabs = language === 'es' ? tabs : tabsEn;

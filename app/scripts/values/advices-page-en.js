@@ -38,12 +38,12 @@
             messages: [
               'Check and complete your tasks to receive different rewards']
           },
-          'tasks.recommendations': {
+          'tasks.contentsToLearn': {
             messages: [
               'Check and complete your tasks to receive different rewards'
             ]
           },
-          'tasks.contents': {
+          'tasks.savedContents': {
             messages: [
               'Check and complete your tasks to receive different rewards'
             ]

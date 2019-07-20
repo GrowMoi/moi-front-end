@@ -279,7 +279,7 @@
 
           if(vm.content.belongs_to_event){
             updateEventsCounter();
-            $state.go('tasks.events');
+            $state.go('tasks.contentsToLearn');
           }else if (page === 'content' && !data.perform_test) {
             $state.go('neuron', {
               neuronId: vm.content.neuron_id

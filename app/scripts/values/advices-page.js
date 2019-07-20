@@ -43,12 +43,12 @@
           'Revisa y completa tus tareas para recibir distintas recompensas'
         ]
       },
-      'tasks.recommendations': {
+      'tasks.contentsToLearn': {
         messages: [
           'Revisa y completa tus tareas para recibir distintas recompensas'
         ]
       },
-      'tasks.contents': {
+      'tasks.savedContents': {
         messages: [
           'Revisa y completa tus tareas para recibir distintas recompensas'
         ]
