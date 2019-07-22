@@ -471,10 +471,13 @@
       });
     }
 
-    function getContentsToLearn() {
+    function getContentsToLearn(page) {
       return $http({
         method: 'GET',
-        url: ENV.apiHost + '/api/users/contents_to_approve'
+        url: ENV.apiHost + '/api/users/contents_to_approve',
+        params: {
+          page: page
+        }
       }).then(function success(res) {
         return res.data;
       }, function error(err) {
