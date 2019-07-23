@@ -474,7 +474,7 @@
     function getContentsToLearn(page) {
       return $http({
         method: 'GET',
-        url: ENV.apiHost + '/api/users/contents_to_approve',
+        url: ENV.apiHost + '/api/users/contents_to_learn',
         params: {
           page: page
         }
