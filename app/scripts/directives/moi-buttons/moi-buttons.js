@@ -69,8 +69,7 @@
         vm.shareCallback = options.shareCallback;
         vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
         vm.totalNotifications = UserNotificationsService.totalNotifications +
-                                UserNotificationsService.totalRecommendations +
-                                UserNotificationsService.totalContentEvents;
+                                UserNotificationsService.totalContentsToLearn;
 
         if (vm.content.read === undefined) {
           vm.gifLearnActive = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : false;
@@ -289,7 +288,7 @@
       }
 
       function updateEventsCounter(){
-        UserNotificationsService.totalContentEvents--;
+        UserNotificationsService.totalContentsToLearn--;
         $rootScope.$broadcast('notifications.updateCount');
       }
 
@@ -388,8 +387,7 @@
 
       $rootScope.$on('notifications.updateCount', function(){
         vm.totalNotifications = UserNotificationsService.totalNotifications +
-                                UserNotificationsService.totalRecommendations +
-                                UserNotificationsService.totalContentEvents;
+                                UserNotificationsService.totalContentsToLearn;
       });
     }
 

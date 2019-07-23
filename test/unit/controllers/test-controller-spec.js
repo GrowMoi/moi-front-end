@@ -128,8 +128,7 @@
             return null;
           },
           totalNotifications: 0,
-          totalRecommendations: 0,
-          totalContentEvents: 0
+          totalContentsToLearn: 0
         };
       });
     }));

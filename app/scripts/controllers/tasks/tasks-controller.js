@@ -113,8 +113,7 @@
 
     initTab();
     tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
-    tasksmodel.totalRecommendations = UserNotificationsService.totalRecommendations;
-    tasksmodel.totalContentEvents = UserNotificationsService.totalContentEvents;
+    tasksmodel.totalContentsToLearn = UserNotificationsService.totalContentsToLearn;
 
     function initTab() {
       var stateField = $state.current.name.replace('tasks.', '');
@@ -123,8 +122,7 @@
 
     $rootScope.$on('notifications.updateCount', function(){
       tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
-      tasksmodel.totalRecommendations = UserNotificationsService.totalRecommendations;
-      tasksmodel.totalContentEvents = UserNotificationsService.totalContentEvents;
+      tasksmodel.totalContentsToLearn = UserNotificationsService.totalContentsToLearn;
     });
   });
 })();

@@ -253,7 +253,7 @@
       }
 
       function updateEventsCounter(){
-        UserNotificationsService.totalContentEvents += modelEvent.model.data.contents.length;
+        UserNotificationsService.totalContentsToLearn += modelEvent.model.data.contents.length;
         $rootScope.$broadcast('notifications.updateCount');
       }
 
