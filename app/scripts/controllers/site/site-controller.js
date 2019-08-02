@@ -16,6 +16,7 @@
                           $timeout,
                           $state,
                           $scope,
+                          $translate,
                           SoundsPage,
                           TreeService,
                           $location,
@@ -23,13 +24,16 @@
                           IMAGES,
                           VIDEOS,
                           AdvicesPage,
+                          AdvicesPageEn,
                           ModalService,
-                          TooltipsService) {
+                          TooltipsService,
+                          EventsService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
         callApiSaveImage = 0,
-        isShowingPassiveModal = false;
+        isShowingPassiveModal = false,
+        normalSpeed = 0.2; // 200kbs/s
 
     UserNotificationsService.initialize();
 
@@ -44,6 +48,25 @@
     //init nofitications in passive time
     if(!localStorage.getItem('advicesOn')){
       localStorage.setItem('advicesOn', 'true');
+    }
+
+    //init pagesViewed for passive messages
+    if(!localStorage.getItem('pagesViewed')){
+      localStorage.setItem('pagesViewed', JSON.stringify({}));
+    }
+
+    //init control to internet conection
+    site.offline = !navigator.onLine;
+    site.badConnection = false;
+    //add listener to internet conection
+    window.addEventListener('online', conectionStateChanged);
+    window.addEventListener('offline', conectionStateChanged);
+
+    if(navigator && navigator.connection) {
+      site.badConnection = navigator.connection.downlink <= normalSpeed;
+      navigator.connection.onchange = function() {
+        site.badConnection = navigator.connection.downlink <= normalSpeed;
+      };
     }
 
     var videos = VIDEOS.paths;
@@ -115,8 +138,8 @@
         'login': false,
         'register': false,
         /*jshint camelcase: false */
-        'new_login.first_step': false,
-        'new_login.second_step': false,
+        'login.first_step': false,
+        'login.second_step': false,
       };
       TooltipsService.removeAllTooltips();
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
@@ -124,6 +147,9 @@
         site.loadedImages = false;
         if(toState.name === 'tree'){
           var username = $auth.user.username;
+          if ($auth && $auth.user.level > 4) {
+            localStorage.setItem('advicesOn', 'false');
+          }
           TreeService.getNeuronsUser(username).then(function(data) {
             StorageService.get().then(function(resp) {
               preloadAssets(data, resp.data.storage);
@@ -136,9 +162,11 @@
       if (!activePreload && $auth.user.id) {
         event.preventDefault();
       }else{
+        var language = $auth.user.language;
+        var languageTemplate = language === 'es' ? 'cargando ...' : 'loading...';
         if (site.loadedImages && $auth.user.id) {
           $ionicLoading.show({
-            template: 'cargando...'
+            template: languageTemplate
           });
         }
       }
@@ -163,9 +191,28 @@
       if (site.loadedImages) {
         $ionicLoading.hide();
       }
+
+      //load daily events
+      if(!localStorage.getItem('seenDailyEvents') && toState.name === 'neuron'){
+        EventsService.showDailyEvents();
+      }
+
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
-      site.advicePage = AdvicesPage[toState.name];
+      handlePagesViewed(toState);
+      if(toState.name === 'login.first_step' || toState.name === 'login.second_step' || toState.name === 'register' || toState.name ==='login'){
+        var lang = navigator.language || navigator.userLanguage;
+        var languageBrowser = lang.slice(0,2);
+        site.advicePage = languageBrowser === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
+        $translate.use(languageBrowser);
+      }
+      else {
+        StorageService.get().then(function(value){
+          var storage = value.data.storage || {};
+          site.advicePage = storage.language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
+          $translate.use(storage.language);
+        });
+      }
     });
 
     $rootScope.$on('$stateChangeError', function(){
@@ -234,6 +281,23 @@
         ModalService.showModel(dialogOptions);
         isShowingPassiveModal = true;
       }
+    }
+
+    function handlePagesViewed(state) {
+      var currentPage = state.name;
+      if(currentPage !== 'tree') {
+        var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed'));
+        if(!pagesViewed[currentPage]){
+          //show passive model messages when enter for first time into the page
+          $timeout(showPassiveModal);
+        }
+        pagesViewed[currentPage] = true;
+        localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
+      }
+    }
+
+    function conectionStateChanged() {
+      site.offline = !navigator.onLine;
     }
   }
 })();

@@ -37,11 +37,14 @@ options directive
     return directive;
   }
 
-  function animateController($window, $scope, $q) {
+  function animateController($window, $scope, $q, $auth) {
 
     var vm = this;
     vm.activeIdle = false;
-
+    var language = $auth.user.language;
+    if(vm.options){
+      vm.tooltip = language === 'es' ? vm.options.name : vm.options.nameEn;
+    }
     var options,
       src,
       frameWidth,
@@ -87,7 +90,7 @@ options directive
       framesPerRow = options.framesPerRow;
       playOnClick = options.playOnClick ? options.playOnClick : false;
       initialSize = (frames * 100) + '%';
-      percentage = (100/(frames-1)).toFixed(5);
+      percentage = (100/(frames-1));
       percentage = parseFloat(percentage);
       vm.playAnimateSprite = playAnimateSprite;
       vm.endSound = endSound;
@@ -97,7 +100,6 @@ options directive
         'background-size': initialSize,
         'background-repeat': 'no-repeat'
       };
-
       if (options.onRegisterApi) {
         var api = createPublicApi();
         options.onRegisterApi(api);

@@ -8,14 +8,17 @@
   function RegisterController($ionicLoading,
                               $auth,
                               $ionicPopup,
-                              $state,
                               $scope,
+                              StorageService,
                               ModalService,
+                              ImagesLoginEn,
                               ImagesLogin) {
     var registerModel = this;
+    var lang = navigator.language || navigator.userLanguage;
+    var languageBrowser = lang.slice(0,2);
     registerModel.register = register;
     registerModel.registerForm = {};
-    registerModel.images = ImagesLogin.paths;
+    registerModel.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;
     registerModel.term = false;
 
     function register() {
@@ -25,9 +28,11 @@
       $auth.submitRegistration(registerModel.registerForm)
         .then(function() {
           $auth.validateUser().then(function(user){
-            $state.go('tree', {
-              username: user.username
-            });
+            var route={
+              state:'tree',
+              user: user.username
+            };
+            StorageService.setLanguage(route);
           });
         })
         .catch(function (resp) {

@@ -27,5 +27,9 @@
     var $video = $element.find('video')[0];
     $video.currentTime = 1;
     $video.onended = vinetasVm.callback;
+    vinetasVm.skipVideo = function(){
+      $video.pause();
+      vinetasVm.callback();
+    };
   }
 })();

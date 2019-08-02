@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport">
-    <title>moi</title>
+    <title>Moi</title>
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="bower_components/ionic-ion-drawer/ionic.contrib.drawer.css"></script>
     <!-- endbuild -->
     <link href="styles/main.css" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png"/>
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="styles/ionic.app.css" rel="stylesheet">
@@ -49,7 +50,7 @@
 
     <!-- your app's js -->
     <script src="scripts/configuration.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/templates.js"></script>
@@ -59,12 +60,16 @@
     <script src="scripts/values/sounds-page.js"></script>
     <script src="scripts/values/neurons-options.js"></script>
     <script src="scripts/values/images_login.js"></script>
+    <script src="scripts/values/images_loginEn.js"></script>
     <script src="scripts/values/media_achievements.js"></script>
+    <script src="scripts/values/media_achievementsEn.js"></script>
+    <script src="scripts/values/desactive_achievements.js"></script>
+    <script src="scripts/values/desactive_achievementsEn.js"></script>
     <script src="scripts/values/advices-page.js"></script>
+    <script src="scripts/values/advices-page-en.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers/site/site-controller.js"></script>
     <script src="scripts/controllers/login/login-controller.js"></script>
-    <script src="scripts/controllers/login/new_login-controller.js"></script>
     <script src="scripts/controllers/register/register-controller.js"></script>
     <script src="scripts/controllers/tree/tree-controller.js"></script>
     <script src="scripts/controllers/neuron/neuron-controller.js"></script>
@@ -83,6 +88,7 @@
     <script src="scripts/controllers/tasks/contents-list/contents-list-controller.js"></script>
     <script src="scripts/controllers/quiz/quiz-controller.js"></script>
     <script src="scripts/controllers/finaltest/finaltest-controller.js"></script>
+    <script src="scripts/controllers/tasks/events/events-controller.js"></script>
     <!-- services -->
     <script src="scripts/services/neuron-service.js"></script>
     <script src="scripts/services/tree-service.js"></script>
@@ -111,6 +117,8 @@
     <script src="scripts/services/upload-image-service.js"></script>
     <script src="scripts/services/ga-service.js"></script>
     <script src="scripts/services/tooltips-service.js"></script>
+    <script src="scripts/services/events-service.js"></script>
+    <script src="scripts/services/leader-board-service.js"></script>
     <!-- directives -->
     <script src="scripts/directives/grid-contents/grid-contents.js"></script>
     <script src="scripts/directives/moi-sound/moi-sound.js"></script>
@@ -131,6 +139,7 @@
     <script src="scripts/directives/moi-infinite-grid-contents/moi-infinite-grid-contents.js"></script>
     <script src="scripts/directives/moi-arrow/moi-arrow.js"></script>
     <script src="scripts/directives/input-file/input-file.js"></script>
+    <script src="scripts/directives/moi-frame-user/moi-frame-user.js"></script>
     <!-- filters -->
     <script src="scripts/filters/moment-duration.js"></script>
     <!-- endbuild -->
@@ -138,6 +147,9 @@
 
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
+    <div ng-if="site.offline || site.badConnection" class="offline-panel">
+      <img class="animated flash" src="images/no_connection_moi.png" alt="no_connection_moi">
+    </div>
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application" id="screenCapture"></ion-nav-view>
       <audio id="backgroundSound"

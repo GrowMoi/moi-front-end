@@ -15,6 +15,7 @@
                                           SocialService,
                                           TestService,
                                           AdvicesPage,
+                                          AdvicesPageEn,
                                           TreeAnimateService) {
 
     var treeModel = this;
@@ -27,6 +28,9 @@
     treeModel.isBasicLevel = data.meta.depth < 5;
     treeModel.sharedTree = sharedTree;
     treeModel.randomPositionsCss = getRandomPositionCss();
+    var language = $auth.user.language;
+    treeModel.percentageTooltip = language === 'es' ? 'Has descubierto el ' +treeModel.percentage+ '% de tu árbol Moi': 'You have discovered the ' +treeModel.percentage+ '% of your tree Moi';
+    treeModel.learnTooltip = language === 'es' ? 'Tu nivel de aprendizaje es ' +treeModel.userLevel: 'Your level of learning is ' + treeModel.userLevel;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
@@ -53,7 +57,7 @@
     initVineta();
 
     treeModel.finishedAnimation = function() {
-      $scope.$apply(function(){treeModel.showTree = true;});
+      $timeout(function(){treeModel.showTree = true;});
       $backgroundSound[0].play();
       $backgroundSound[0].autoplay = true;
       if(storage.tree){
@@ -96,11 +100,16 @@
     }
 
     function showWelcomeModal(){
+      var language = $auth.user.language;
+      var messageWelcome = language === 'es' ?'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
+      'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
+      'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
+      'máxima expresión.': 'Welcome '+currentUser.username+ '. This is your Moi tree. '+
+      'It contains great knowledge and its growth depends on you. '+
+      'Follow your curiosity and discover how to make it develop to its '+
+      'full expression.';
       var dialogContentModel = {
-        message:'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
-                'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
-                'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
-                'máxima expresión.',
+        message: messageWelcome,
         callbacks: {
           btnCenter: function(){
             dialogContentModel.closeModal();
@@ -120,9 +129,13 @@
 
     function sharedTree(){
       var learntContents = treeModel.meta.current_learnt_contents; //jshint ignore:line
-      var data = {
+      var language = $auth.user.language;
+      var data = language ==='es'? {
         title: 'Así se ve mi árbol Moi',
         description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
+      }:{
+        title: 'This is how my Moi tree looks',
+        description: 'So far I discovered '+learntContents+' contents. You can also grow your knowledge with Moi Social Learning'
       };
       SocialService.showModal(data);
     }
@@ -131,13 +144,14 @@
 
     function showPassiveModal() {
       var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
+      var message = language === 'es' ? AdvicesPage.tree.messages[0] : AdvicesPageEn.tree.messages[0];
       if(!isShowingPassiveModal && treeModel.showTree && isActiveMessages && finishedAnimations){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-pasive-info.html',
           animation: 'animated flipInX',
           backdropClickToClose: true,
           model: {
-            message: AdvicesPage.tree.messages[0],
+            message: message,
             type: 'passive',
             cssClass: 'modal-bottomRight'
           },
@@ -145,7 +159,6 @@
             isShowingPassiveModal = false;
           }
         };
-
         ModalService.showModel(dialogOptions);
         isShowingPassiveModal = true;
       }
@@ -156,8 +169,8 @@
       if(oldPercentage !== treeModel.percentage){
         TreeAnimateService.setTempData('percentageTree', treeModel.percentage);
         if(!!oldPercentage){
-          var percentageTreeWidget = angular.element(document.querySelector('.tree-percentage'));
-          var levelUserWidget = angular.element(document.querySelector('.level-user'));
+          var percentageTreeWidget = document.querySelector('.tree-percentage');
+          var levelUserWidget = document.querySelector('.level-user');
           var barAnimation = 'pulse';
           animationLevelBadge();
           TreeAnimateService.animateWidget(levelUserWidget, barAnimation).then(function(){
@@ -166,11 +179,12 @@
             });
           });
         }else{
-          animateNeurons();  
+          animateNeurons();
         }
       }else {
         animateNeurons();
       }
+      handlePagesViewed();
     }
 
     function animationLevelBadge(){
@@ -178,7 +192,7 @@
       if(oldLevel !== treeModel.userLevel){
         TreeAnimateService.setTempData('levelUser', treeModel.userLevel);
         if(!!oldLevel){
-          var levelUserCountWidget = angular.element(document.querySelector('.counter-container'));
+          var levelUserCountWidget = document.querySelector('.counter-container');
           var numberAnimation = 'zoomIn';
           TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
         }
@@ -204,6 +218,17 @@
         randomPositionsCss.push(cssPosition);
       }
       return randomPositionsCss;
+    }
+
+    function handlePagesViewed(){
+      var currentPage = 'tree';
+      var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed'));
+      if(!pagesViewed[currentPage]){
+        //show passive model messages when enter for first time into the page
+        showPassiveModal();
+      }
+      pagesViewed[currentPage] = true;
+      localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
     }
 
   });

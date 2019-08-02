@@ -1,0 +1,50 @@
+.moi-frame-user-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: FontMoi-Title;
+  font-weight: bold;
+
+  .frame-user-image {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-image: url("../images/marcoperfil.png");
+    background-size: 100% 100%;
+  }
+
+  .user-image {
+    position: absolute;
+    top: 6.5%;
+    left: 5.5%;
+    width: 88%;
+    height: 80%;
+    border-top-left-radius: 12%;
+    border-bottom-left-radius: 40%;
+    border-top-right-radius: 33%;
+    border-bottom-right-radius: 47%;
+  }
+
+  .level {
+    position: absolute;
+    right: 9%;
+    top: 7%;
+    font-size: 12px;
+    color: #4A4B21;
+  }
+
+  .name {
+    position: absolute;
+    left: 10%;
+    bottom: 4%;
+    font-size: 16px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+  }
+}

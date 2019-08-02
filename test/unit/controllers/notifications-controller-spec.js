@@ -5,13 +5,30 @@
     var ctrl,
       $controller,
       $scope,
+      $auth,
       dependencies,
       $rootScope,
       deferGetNotifications,
       ModalService,
-      $state;
+      MediaAchievements,
+      $state,
+      LeaderboardService;
 
     beforeEach(module('moi.controllers'));
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('MediaAchievements', {
+          1: {
+            name: 'Contenidos aprendidos',
+            description: 'Han sido aprendidos los primeros 4 contenidos',
+            settings: {
+              badge:'images/inventory/badges/badge1.png',
+              video: 'videos/vineta_1.mp4'
+            }
+          }
+        });
+      });
+    });
     beforeEach(angular.mock.module(function ($provide) {
       $provide.factory('UserService', function ($q) {
         return {
@@ -39,17 +56,50 @@
           go: function(){}
         };
       });
+
+      $provide.factory('EventsService', function($q){
+        return {
+          getWeeklyEvents: function(){
+            return $q.defer().promise;
+          }
+        };
+      });
+      $provide.factory('LeaderboardService', function(){
+        return {
+          showLeaderboard: function(){
+            return null;
+          }
+        };
+      });
     }));
     beforeEach(inject(
-      function (_$controller_, _$rootScope_, _UserService_, _ModalService_,
-        _UserNotificationsService_, _$state_) {
+      function (_$controller_,
+                _$rootScope_,
+                _UserService_,
+                _ModalService_,
+                _UserNotificationsService_,
+                _$state_,
+                _MediaAchievements_,
+                _LeaderboardService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {},//jshint ignore:line
+            achievements: []
+          }
+        };
 
         $state = _$state_;
 
         ModalService = _ModalService_;
+        MediaAchievements = _MediaAchievements_;
+        LeaderboardService = _LeaderboardService_;
 
         dependencies = {
           $scope: $scope,
@@ -57,7 +107,10 @@
           UserService: _UserService_,
           ModalService: ModalService,
           UserNotificationsService: _UserNotificationsService_,
-          $state: $state
+          $state: $state,
+          $auth: $auth,
+          MediaAchievements: MediaAchievements,
+          LeaderboardService: LeaderboardService
         };
 
         ctrl = $controller('NotificationsController', dependencies);

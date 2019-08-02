@@ -7,8 +7,10 @@
         dependencies,
         $rootScope,
         $ionicLoading,
+        AdvicesPageEn,
         $auth,
         $scope,
+        $translate,
         IMAGES,
         VIDEOS,
         PreloadAssets,
@@ -36,6 +38,11 @@
           }
         });
         $provide.constant('AdvicesPage', {
+          tree: {
+            messages: 'Test'
+          }
+        });
+        $provide.constant('AdvicesPageEn', {
           tree: {
             messages: 'Test'
           }
@@ -127,6 +134,13 @@
           }
         };
       });
+      $provide.factory('EventsService', function(){
+        return {
+          showDailyEvents: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -138,6 +152,7 @@
                 _VIDEOS_,
                 _TreeService_,
                 _AdvicesPage_,
+                _AdvicesPageEn_,
                 _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
@@ -149,6 +164,7 @@
         VIDEOS = _VIDEOS_;
         TreeService = _TreeService_;
         AdvicesPage = _AdvicesPage_;
+        AdvicesPageEn = _AdvicesPageEn_;
         ModalService = _ModalService_;
       })
     );
@@ -156,12 +172,17 @@
     describe('#listeners', function(){
       beforeEach(function(){
         $auth = { user: {id: 1}};
-
+        $translate ={
+          use:function(){
+          }
+        };
         dependencies = {
           $ionicLoading: $ionicLoading,
           $scope: $scope,
           $auth: $auth,
+          $translate: $translate,
           AdvicesPage: AdvicesPage,
+          AdvicesPageEn: AdvicesPageEn,
           ModalService: ModalService
         };
 

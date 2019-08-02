@@ -1,2 +1,4 @@
 video(autoplay preload='auto')
   source(src='{{vinetasVm.videoUrl}}' type='{{vinetasVm.videoType}}')
+.skip-button(ng-click="vinetasVm.skipVideo()")
+  | {{::'buttons.skip' | translate}}

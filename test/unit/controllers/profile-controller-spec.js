@@ -12,7 +12,9 @@
       $ionicPopup,
       AnimationService,
       UserService,
-      ModalService;
+      StorageService,
+      ModalService,
+      LeaderboardService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(angular.mock.module(function($provide){
@@ -31,6 +33,20 @@
       $provide.factory('ModalService', function(){
         return {
           showModel: function(){
+            return null;
+          }
+        };
+      });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          changeLanguage: function() {
             return null;
           }
         };
@@ -58,6 +74,13 @@
           }
         };
       });
+      $provide.factory('LeaderboardService', function(){
+        return {
+          showLeaderboard: function(){
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -66,8 +89,10 @@
               $q,
               _$stateParams_,
               _AnimationService_,
+              _StorageService_,
               _UserService_,
-              _ModalService_) {
+              _ModalService_,
+              _LeaderboardService_) {
 
         $state = {
           go: sinon.stub()
@@ -87,6 +112,8 @@
         AnimationService = _AnimationService_;
         UserService = _UserService_;
         UserService = _ModalService_;
+        StorageService = _StorageService_;
+        LeaderboardService = _LeaderboardService_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
@@ -99,6 +126,20 @@
             name: 'admin',
             age: '15',
             last_contents_learnt: []
+          },
+          myEvents: {
+            'status': 'accepted',
+            'events': [
+              {
+                'title': '4 Eventos',
+                'image': 'http://localhost:5000/uploads/event/image/2/1556381470-Captura_de_pantalla_2019-02-18_a_la_s__11.29.57.png',
+                'completed_at': 1556466459164
+              }
+            ],
+            'meta': {
+              'total_events': 4,
+              'events_completed': 1
+            }
           },
           certificates: {
             certificates: [
@@ -116,7 +157,9 @@
           AnimationService: AnimationService,
           UserService: UserService,
           ModalService: ModalService,
-          $scope: $scope
+          $scope: $scope,
+          StorageService: StorageService,
+          LeaderboardService: LeaderboardService
         };
 
         controller = $controller('ProfileController', dependencies);

@@ -1,31 +1,32 @@
 .modal.transparent
   ion-pane.transparent
-    .modal-certificate
-      .btn-close-modal(ng-click="model.closeModal(); model.close(model.resultFinalTest)"
-                      tooltip-moi="Cerrar"
-                      tooltip-position="up")
+    .modal-certificate(ng-class="{'with-frame': !model.certificate}")
+      .btn-close-modal(ng-click="model.close(model.resultFinalTest)"
+                      tooltip-moi="{{ 'tooltip.close' | translate }}"
+                      tooltip-position="up"
+                      data-html2canvas-ignore="true")
       .background-certificate(ng-if="!model.certificate")
         .title
-          img(src="images/diploma/title.png")
+          img(ng-src="{{model.image}}")
         .container
           .info-user
             .table
               .row
-                | {{::model.user.username}}
+                | {{model.user.username}}
               .row
                 .column.space-btwn
-                  | {{::model.user.age}}
+                  | {{model.user.age}}
                   span
-                    | edad
+                    | {{ 'register.age' | translate }}
                 .column.space-btwn
-                  | {{::model.user.country}}
+                  | {{model.user.country}}
                   span
-                    | pais
+                    | {{ 'register.country' | translate }}
               .row
                 .column
-                  | {{::model.user.school}}
+                  | {{model.user.school}}
                   span
-                    | escuela
+                    | {{ 'register.school' | translate }}
             .tree-preview
               img.marco(src="images/view-elements/marco.png")
               img(ng-src="{{model.user.tree_image}}")
@@ -35,21 +36,21 @@
               canvas#chart-area
             .advance
               .title
-                | {{::model.totalContentsLearnt}} contenidos aprendidos
+                | {{model.totalContentsLearnt}} {{ 'modal_certificate.contents' | translate }}
               .subtitle
-                | {{::model.progressTree}}% crecimiento arbol
+                | {{model.progressTree}}% {{ 'modal_certificate.progress' | translate }}
             .grade
               .percentage
-                | {{::model.resultFinalTest}}% ultimo test
+                | {{model.resultFinalTest}}% {{ 'modal_certificate.test' | translate }}
               .timeContainer
                 .time
-                  | {{::model.timeOfReading}}
+                  | {{model.timeOfReading}}
                 .label
-                  | tiempo de lectura promedio
+                  | {{ 'modal_certificate.tiempo' | translate }}
           span.website-info
-            | Para más información, visite growmoi.com
+            | {{ 'modal_certificate.informacion' | translate }}
       img.certificate-image(ng-if="model.certificate" ng-src="{{::model.certificate}}")
-      .btn-shared-certificate(ng-if="model.certificate"
-                              ng-click="model.sharedCertificate(model.certificate)"
-                              tooltip-moi="Compartir"
-                              tooltip-position="up")
+      .btn-shared-certificate(ng-click="model.sharedCertificate(model.certificate)"
+                              tooltip-moi="{{ 'tooltip.compartir' | translate }}"
+                              tooltip-position="up"
+                              data-html2canvas-ignore="true")

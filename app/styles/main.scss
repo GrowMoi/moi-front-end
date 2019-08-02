@@ -9,6 +9,7 @@
 @import "shared/common";
 @import "shared/forms";
 @import "shared/buttons";
+@import "shared/widgets-tree";
 @import "login/login";
 @import "register/register";
 @import "tree/tree";
@@ -35,6 +36,9 @@
 @import "partials/modal-finish-certificate";
 @import "partials/modal-pasive-info";
 @import "partials/modal-inventory";
+@import "partials/modal-summary-test";
+@import "partials/modal-event-details";
+@import "partials/modal-event-list";
 @import "slide-gallery/slide-gallery";
 @import "settings/views";
 @import "settings/settings";
@@ -56,6 +60,8 @@
 @import "directives/moi-tooltip";
 @import "directives/moi-select-images";
 @import "directives/moi-buttons.scss";
+@import "directives/moi-frame-user.scss";
+@import "directives/moi-video.scss";
 @import "friends/friends";
 @import "tasks/tasks";
 @import "inventory/inventory";

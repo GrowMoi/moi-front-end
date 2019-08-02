@@ -8,7 +8,8 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
         .col.first-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row.border-bottom.row-content-title(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
             .content-title(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-              {{:: vmContent.content.title}}
+              {{  vmContent.content.title}}
+              {{ vmContent.test }}
               img.favorite(ng-if="vmContent.content.favorite" src="images/estrellita.png")
             .corner.title-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row.row-content-text(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
@@ -18,8 +19,13 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
               .content-source
                 {{vmContent.content.source}}
               .content-update
-                .legend-update{{ ::'content.max.update' | translate }}
+                .legend-update{{ 'content.max.update' | translate }}
                 .update-date{{vmContent.content.updated_at | date:'dd-MM-yyyy'}}
+              .advices-toggle
+                span.content-subtitle-settings
+                  | {{ 'content.language' | translate }}
+                ion-toggle(ng-model='vmContent.state' ng-change="vmContent.changeLanguage()")
+              .test-content
             .corner.description-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
         .col.second-col-content.border-right.border-left.middle-column-margin-bottom.col-contents(ng-class="[vmContent.theme,"+
                                                                                                 "{'moi_theme': vmContent.isMoitheme}]")
@@ -35,7 +41,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
             .col
               .row.text-notes
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                  | {{ ::'content.max.coments' | translate }}
+                  | {{ 'content.max.coments' | translate }}
               .row.container-comments
                 textarea.content-comments(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]"
                                           ng-model='vmContent.content.user_notes'
@@ -46,30 +52,32 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
             .col.content-max-third
               .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                 .content-subtitle.content-subtitle-gallery(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                  | {{ ::'content.max.media' | translate }}
+                  | {{ 'content.max.media' | translate }}
               .row
-                slide-gallery(images='vmContent.media', options="vmContent.slideGalleryOptions" item-per-slide='4')
+                slide-gallery.slider-gallery-content(images='vmContent.media'
+                                                    options="vmContent.slideGalleryOptions"
+                                                    item-per-slide='4')
             .corner.gallery-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row
             .col.recomended-margin-top.content-max-third
               .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                  | {{ ::'content.max.recommended ' | translate }}
+                  | {{ 'content.max.recommended ' | translate }}
               .row.recommended-contents(ng-class="{'moi_theme': vmContent.isMoitheme}")
                 .col.col-50(ng-repeat='content in vmContent.content.recommended')
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})"
                     ng-click="vmContent.registerClick(content.title)")
                    img.format-image(ng-src='{{content.media[0]}}')
-                   .leyend-bottom(ellipsis-title="content.title" height="50" title="{{::content.title}}")
+                   .leyend-bottom(ellipsis-title="content.title" height="50" title="content.title")
             .corner.recomended-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row
             .col.links-margin-top.content-max-third
               .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                  | {{ ::'content.max.links ' | translate }}
+                  | {{ 'content.max.links ' | translate }}
               .row(ng-repeat="link in vmContent.content.links")
                 a(ng-click="vmContent.showAlertExternalLink(link)" ng-class="{'moi_theme': vmContent.isMoitheme}")
-                  | {{::link}}
+                  | {{ link}}
             .corner.links-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
     moi-frame(options="vmContent.frameOptions")
     moi-buttons(options="vmContent.buttonsOptions")

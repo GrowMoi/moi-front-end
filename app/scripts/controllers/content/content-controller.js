@@ -5,6 +5,8 @@
                                               $window,
                                               $timeout,
                                               $interval,
+                                              $state,
+                                              $auth,
                                               content,
                                               ContentService,
                                               ModalService,
@@ -12,6 +14,7 @@
                                               MediaAchievements,
                                               dataInventory,
                                               SocialService,
+                                              StorageService,
                                               GAService) {
       /*jshint camelcase: false */
       var vmContent = this;
@@ -20,6 +23,9 @@
       vmContent.readOnly = !!content.read_only;
       vmContent.showAlertExternalLink = showAlertExternalLink;
       vmContent.userAchievements = dataInventory.achievements;
+      vmContent.changeLanguage = StorageService.changeLanguage;
+      var language = $auth.user.language;
+      vmContent.state = language === 'es' ? false : true;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
@@ -180,9 +186,9 @@
             if(achievement.active){
               var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
               vmContent.theme = currentTheme;
-              vmContent.isMoitheme = currentTheme.includes('moi');
-              modelData.frameColor = currentTheme.replace('moi_', '');
-              vmContent.slideGalleryOptions.modalFrameColor = currentTheme.replace('moi_', '');
+              vmContent.isMoitheme = currentTheme && currentTheme.includes('moi');
+              modelData.frameColor = currentTheme && currentTheme.replace('moi_', '');
+              vmContent.slideGalleryOptions.modalFrameColor = modelData.frameColor;
             }
           });
         }

@@ -13,14 +13,23 @@
                                             ModalService,
                                             UserService,
                                             SocialService,
-                                            GAService) {
+                                            myEvents,
+                                            GAService,
+                                            LeaderboardService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
+    var language = $auth.user.language;
+    vmProfile.paramsToLeaderboard = {
+      user_id: user.id //jshint ignore:line
+    };
     vmProfile.user = user;
+    vmProfile.user.tree_image = vmProfile.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
+    vmProfile.myEvents = myEvents;
     vmProfile.imageUser = vmProfile.user.image || 'images/edit-profile/userphoto.png';
     vmProfile.isCurrentUser = user.id === currentUser.id;
-    vmProfile.showLeaderboard = showLeaderboard;
+    vmProfile.showLeaderboard = LeaderboardService.showLeaderboard;
+    vmProfile.showEventsboard = showEventsboard;
     vmProfile.logout = logout;
     vmProfile.certificates = certificates.certificates;
     vmProfile.showCertificate = showCertificate;
@@ -46,8 +55,8 @@
       },
       shareCallback: shareProfile
     };
-
-    vmProfile.tabs = [
+    vmProfile.tabs = language === 'es' ?
+    [
       {
         field:'lasts-contents',
         name: 'Ultimos 4',
@@ -63,6 +72,26 @@
       {
         field:'certificates',
         name: 'Premios',
+        partial: 'templates/profile/partials/certificates.html',
+        selected: false
+      }
+    ]:
+    [
+      {
+        field:'lasts-contents',
+        name: 'Last 4',
+        partial: 'templates/profile/partials/lasts-contents.html',
+        selected: false
+      },
+      {
+        field:'awards',
+        name: 'Awards',
+        partial: 'templates/profile/partials/awards.html',
+        selected: false
+      },
+      {
+        field:'certificates',
+        name: 'Certificates',
         partial: 'templates/profile/partials/certificates.html',
         selected: false
       }
@@ -95,48 +124,17 @@
       var defaultTab = $stateParams.defaultTab || 'lasts-contents';
       vmProfile.changeTab(defaultTab);
     }
-    var dialogOptions;
-    function nextPage() {
-      if (vmProfile.enableInfiniteScroll) {
-        return;
-      }
-      vmProfile.enableInfiniteScroll = true;
-      UserService.getLeaderboard(vmProfile.user.id, vmProfile.page, vmProfile.resultsPerPage).then(function(data){
-        var items = data.leaders;
-        if( items.length > 0) {
-          vmProfile.notData = false;
-          for (var i = 0; i < items.length; i++) {
-            vmProfile.dataLogRealTime.push(items[i]);
-          }
-          vmProfile.page += 1;
-          vmProfile.enableInfiniteScroll = false;
-        }
-        else {
-          vmProfile.notData = true;
-        }
-      }).catch(function(){
-        console.log('Upss');
-      });
-    }
-    function showLeaderboard(){
-      vmProfile.dataLogRealTime =[];
-      UserService.getLeaderboard(vmProfile.user.id).then(function(data){
-        dialogOptions = {
-          templateUrl: 'templates/partials/modal-show-leaderboard.html',
-          model: {
-            goToUser: goToUser,
-            nextPage: nextPage,
-            leaders:  vmProfile.dataLogRealTime,
 
-            /*jshint camelcase: false */
-            user: data.meta.user_data,
-            total_contents: data.meta.total_contents,
-            hideFooter: currentUserIsLeader( vmProfile.dataLogRealTime)
-          }
-        };
-        ModalService.showModel(dialogOptions);
-      });
+    function showEventsboard(){
+      var dialogEventsOpts = {
+        templateUrl: 'templates/partials/modal-show-events-completed.html',
+        model: {
+          events: vmProfile.myEvents.events
+        }
+      };
+      ModalService.showModel(dialogEventsOpts);
     }
+
     function logout(){
       GAService.track('set', 'userId', null);
       GAService.track('set', 'dimension1', user.id);
@@ -144,34 +142,31 @@
       $window.location='/';
     }
 
-    function currentUserIsLeader(leaders){
-      var leader = leaders.find(function(leader){return leader.user_id === vmProfile.user.id;}); //jshint ignore:line
-      return leader ? true : false;
-    }
-
-    function goToUser(user){
-      dialogOptions.model.closeModal();
-      $state.go('profile', {
-        username: user.username
-      });
-    }
-
     function shareProfile() {
-      var data = {
+      var data = language === 'es' ?
+      {
         title: 'Mira todos mis avances en mi perfil Moi',
         description: 'Conoce todo mi progreso y empieza a crecer tú también con Moi Aprendizaje Social'
+      } :
+      {
+        title: 'See all my progress in my profile Moi',
+        description: 'Know all my progress and start to grow you too with Moi Social Learning'
       };
       SocialService.showModal(data);
     }
 
     function showCertificate(url_certificate){ //jshint ignore:line
+      var templateModal = 'templates/partials/modal-finish-certificate.html';
       var dialogOptions = {
-        templateUrl: 'templates/partials/modal-finish-certificate.html',
+        templateUrl: templateModal,
         model: {
           /*jshint camelcase: false */
           certificate: url_certificate,
           sharedCertificate: sharedCertificate
         }
+      };
+      dialogOptions.model.close = function(){
+        dialogOptions.model.closeModal();
       };
       ModalService.showModel(dialogOptions);
     }
@@ -189,9 +184,16 @@
     }
 
     function sharedCertificate(image_url){//jshint ignore:line
-      var data = {
+      var data = language === 'es' ?
+      {
         title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
         description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
+        image_url: image_url, //jshint ignore:line
+        publicUrl: image_url //jshint ignore:line
+      } :
+      {
+        title: 'See everything I learned playing Moi Social Learning',
+        description: 'Get school credit for your performance with Moi Social Learning',
         image_url: image_url, //jshint ignore:line
         publicUrl: image_url //jshint ignore:line
       };

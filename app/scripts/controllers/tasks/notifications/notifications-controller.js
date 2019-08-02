@@ -3,14 +3,25 @@
   angular.module('moi.controllers')
   .controller('NotificationsController', function($scope,
                                                   $rootScope,
+                                                  $auth,
                                                   UserService,
                                                   ModalService,
                                                   UserNotificationsService,
-                                                  $state){
+                                                  EventsService,
+                                                  MediaAchievements,
+                                                  $state,
+                                                  LeaderboardService){
     var notificationsModel = this;
     var notificationSelected,
-        requestData = {};
+        requestData = {},
+        modelSuperEvent = {
+          templateUrl: 'templates/partials/modal-super-event.html',
+          model: {
+            joinSuperEvent: joinSuperEvent
+          }
+        };
 
+    notificationsModel.loaded = false;
 
     var dialogContentModel = {
       callbacks: {
@@ -47,7 +58,14 @@
       'tutor_generic': {
         template: 'templates/tasks/notifications/partials/generic.html',
         actionRemove: deleteNotification
-      }
+      },
+      'super_event_notification': {
+        template: 'templates/tasks/notifications/partials/generic.html',
+        actionRemove: deleteSupereventNotification
+      },
+      'event': {
+        template: 'templates/tasks/notifications/partials/event.html'
+      },
     };
 
     notificationsModel.noMoreItemsAvailable = true;
@@ -63,19 +81,37 @@
     function initData() {
       notificationsModel.noMoreItemsAvailable = true;
       notificationsModel.currentPage = 1;
-      UserService.getNotifications(1).then(resolveNotifications);
+      notificationsModel.eventsLikeNotification = [];
+      notificationsModel.showSetEvents = showModalEvents;
+      EventsService.getWeeklyEvents().then(function(resp){
+        Object.keys(resp).map(function(week){
+          if(resp[week].length > 0){
+            var isSuperEvent = (week === 'super_event');
+            var eventNotification = {
+              type: 'event',
+              title: isSuperEvent ? 'tasks.events.super' : 'tasks.events.title',
+              subtitle: isSuperEvent ? '' : '('+week+')',
+              isSuperEvent: isSuperEvent,
+              events: resp[week]
+            };
+            notificationsModel.eventsLikeNotification.push(eventNotification);
+          }
+        });
+        UserService.getNotifications(1).then(resolveNotifications);
+      });
     }
 
     function resolveNotifications(data) {
       notificationsModel.currentPage += 1;
       /*jshint camelcase: false */
-      notificationsModel.notifications = data.notifications;
+      notificationsModel.notifications = notificationsModel.eventsLikeNotification.concat(data.notifications);
       /*jshint camelcase: false */
       notificationsModel.totalItems = data.meta.total_count;
       if(notificationsModel.totalItems > 2){
         notificationsModel.noMoreItemsAvailable = false;
         notificationsModel.loadMoreNotifications = loadMoreNotifications;
       }
+      notificationsModel.loaded = true;
     }
 
     function loadMoreNotifications() {
@@ -143,6 +179,14 @@
       });
     }
 
+    function deleteSupereventNotification(notification, index) {
+      UserService.deleteNotification(notification, true).then(function(resp) {
+        if(resp.data.deleted){
+          updateNotifications(index);
+        }
+      });
+    }
+
     function rejectRequest(notification) {
       var data = {
         id: notification.id,
@@ -199,5 +243,40 @@
 
       ModalService.showModel(dialogOptions);
     }
+
+    function showModalEvents(data){
+      if(!data.isSuperEvent) {
+        EventsService.showSetEvents(data.events);
+      }else {
+        var superEvent = data.events[0];
+        if(superEvent.taken) {
+          showLeaderboardToSuperEvent(superEvent);
+        } else {
+          modelSuperEvent.model.data = superEvent;
+          modelSuperEvent.model.data.achievements.forEach(function(achievement) {
+            achievement.image = MediaAchievements[achievement.number].settings.badge;
+          });
+          ModalService.showModel(modelSuperEvent);
+        }
+      }
+    }
+
+    function showLeaderboardToSuperEvent(superEvent){
+      var paramsToLeaderboard = {
+        user_id: $auth.user.id, //jshint ignore:line
+        event_id: superEvent.id //jshint ignore:line
+      };
+      var fromEvent = true;
+      LeaderboardService.showLeaderboard(paramsToLeaderboard, fromEvent);
+    }
+
+    function joinSuperEvent(superevent) {
+      EventsService.takeSuperEvent(superevent.id).then(function(){
+        modelSuperEvent.model.closeModal();
+        superevent.taken = true;
+        EventsService.showConfirmSuperEvent();
+      });
+    }
+
   });
 })();

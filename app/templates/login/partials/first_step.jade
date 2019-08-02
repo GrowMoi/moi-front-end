@@ -2,28 +2,25 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
 .row.form-container
   form(ng-submit='vmLogin.nexStep()')
     .login-title
-      | {{ ::'login' | translate }}
+      | {{ 'login' | translate }}
     .list.list-inset
       label.item.item-input
         input(
           type='text',
           ng-model='vmLogin.form.login',
           required='required',
-          placeholder="{{ ::'login.username' | translate }}"
+          placeholder="{{ 'login.username' | translate }}"
         )
     .row.button-actions
       .col
-        .button(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
+        .button.button-login(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
           | {{ 'signup' | translate }}
       .col
         input(
           ng-disabled="!vmLogin.isChrome",
           type='submit',
-          value="{{ ::'login.next' | translate }}"
-        ).button
-    .login-option
-      span(ui-sref="login")
-        | {{ ::'login.old_login' | translate }}
+          value="{{ 'login.next' | translate }}"
+        ).button.button-login
   a.legend-browser(ng-if='!vmLogin.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
-    | {{ ::'browser.chrome' | translate }}
+    | {{ 'browser.chrome' | translate }}
 

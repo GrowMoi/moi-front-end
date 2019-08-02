@@ -3,6 +3,8 @@
   angular.module('moi.controllers')
   .controller('TasksController', function($state,
                                           $rootScope,
+                                          $auth,
+                                          StorageService,
                                           UserNotificationsService,
                                           GAService){
     var tasksmodel = this;
@@ -19,7 +21,7 @@
       }
     };
 
-    tasksmodel.tabs = [
+    var tabs = [
       {
         field:'notes',
         name: 'Notas',
@@ -37,7 +39,7 @@
       {
         field:'contents',
         name: 'Tareas',
-        image: 'images/notifications_tasks.png',
+        image: 'images/list_tasks.png',
         selected: false,
         state: 'tasks.contents'
       },
@@ -54,8 +56,62 @@
         image: 'images/favorites_tasks.png',
         selected: false,
         state: 'tasks.favorites'
+      },
+      {
+        field:'events',
+        name: 'Eventos',
+        image: 'images/events_tasks.png',
+        selected: false,
+        state: 'tasks.events'
       }
     ];
+
+    var tabsEn = [
+      {
+        field:'notes',
+        name: 'Notes',
+        image: 'images/notes_tasks.png',
+        selected: false,
+        state: 'tasks.notes'
+      },
+      {
+        field:'recommendations',
+        name: 'Recommendations',
+        image: 'images/recomendations_tasks.png',
+        selected: false,
+        state: 'tasks.recommendations'
+      },
+      {
+        field:'contents',
+        name: 'Contents',
+        image: 'images/list_tasks.png',
+        selected: false,
+        state: 'tasks.contents'
+      },
+      {
+        field:'notifications',
+        name: 'Notifications',
+        image: 'images/notifications_tasks.png',
+        selected: false,
+        state: 'tasks.notifications'
+      },
+      {
+        field:'favorites',
+        name: 'Favorites',
+        image: 'images/favorites_tasks.png',
+        selected: false,
+        state: 'tasks.favorites'
+      },
+      {
+        field:'events',
+        name: 'Events',
+        image: 'images/events_tasks.png',
+        selected: false,
+        state: 'tasks.events'
+      }
+    ];
+    var language = $auth.user.language;
+    tasksmodel.tabs = language === 'es' ? tabs : tabsEn;
 
     tasksmodel.changeTab = function(field) {
       GAService.track('send', 'event', 'Seleccionar tab ' + field, 'Click');
@@ -71,7 +127,8 @@
 
     initTab();
     tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
-    tasksmodel.totalRecommendationContents = UserNotificationsService.totalRecommendationContents;
+    tasksmodel.totalRecommendations = UserNotificationsService.totalRecommendations;
+    tasksmodel.totalContentEvents = UserNotificationsService.totalContentEvents;
 
     function initTab() {
       var stateField = $state.current.name.replace('tasks.', '');
@@ -80,7 +137,8 @@
 
     $rootScope.$on('notifications.updateCount', function(){
       tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
-      tasksmodel.totalRecommendationContents = UserNotificationsService.totalRecommendationContents;
+      tasksmodel.totalRecommendations = UserNotificationsService.totalRecommendations;
+      tasksmodel.totalContentEvents = UserNotificationsService.totalContentEvents;
     });
   });
 })();

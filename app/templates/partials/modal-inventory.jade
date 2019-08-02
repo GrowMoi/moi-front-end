@@ -1,8 +1,8 @@
 .modal.transparent
   ion-pane.transparent
-    .modal-image-inventory(ng-class="::model.frameColor")
-      .btn-close-modal(ng-class="::model.frameColor" ng-click="::model.closeModal()")
+    .modal-image-inventory(ng-class="model.frameColor")
+      .btn-close-modal(ng-class="model.frameColor" ng-click="model.closeModal()")
       .container-badge
-        .title{{::model.name}}
+        .title{{model.name}}
         img.format-image( ng-src='{{model.badgeFull}}')
-        .description{{::model.description}}
+        .description{{model.description}}

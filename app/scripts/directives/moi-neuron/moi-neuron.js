@@ -62,7 +62,7 @@
 
       vm.neuron = {
         id: options.id || 0,
-        name: options.title || 'neuron',
+        name: options.title_translate || options.title, //jshint ignore:line
         source: options.source || 'images/tree/nodos/nodo-gris.png',
         state: options.state || 'descubierta',
         in_desired_neuron_path: options.in_desired_neuron_path || false, //jshint ignore:line

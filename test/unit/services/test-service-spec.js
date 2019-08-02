@@ -7,6 +7,7 @@
         $auth,
         PopupService,
         ModalService,
+        StorageService,
         ENV,
         testId,
         answers,
@@ -74,7 +75,11 @@
       };
       data = {
         successAnswers: 3,
-        totalQuestions: 4
+        totalQuestions: 4,
+        meta: {
+          current_learnt_contents: 10,
+          total_approved_contents: 20
+        }
       };
     });
 
@@ -130,6 +135,20 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          changeLanguage: function() {
+            return null;
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
@@ -137,6 +156,7 @@
                 _TestService_,
                 _PopupService_,
                 _ModalService_,
+                _StorageService_,
                 _$state_,
                 _$auth_,
                 _ENV_) {
@@ -146,6 +166,7 @@
         ModalService = _ModalService_;
         $state = _$state_;
         $auth = _$auth_;
+        StorageService = _StorageService_;
         ENV = _ENV_;
       })
     );

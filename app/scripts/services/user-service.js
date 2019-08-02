@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('UserService', UserService);
 
-  function UserService($http, ENV, PopupService, $state, ModalService) {
+  function UserService($http, ENV, PopupService, $state, ModalService, $auth) {
     var service = {
       profile: profile,
       updateProfile: updateProfile,
@@ -29,7 +29,9 @@
       saveCertificate: saveCertificate,
       getCertificates: getCertificates,
       deleteCertificate: deleteCertificate,
-      sharingContent: sharingContent
+      sharingContent: sharingContent,
+      getMyEvents: getMyEvents,
+      getDetailsNotifications: getDetailsNotifications
     };
 
     var popupOptions = { title: 'Error'};
@@ -150,6 +152,15 @@
        });
     }
 
+    function getDetailsNotifications(){
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/notifications/details'
+      }).then(function success(res) {
+        return res.data;
+      });
+    }
+
     function respondNotification(res) {
       /*jshint camelcase: false */
       var id = res.id,
@@ -179,12 +190,17 @@
 
     function recommendedNeuron(neuronId) {
       recommendedNeurons().then(function(data) {
+        var languageModal = $auth.user.language;
+        var msgObj = languageModal === 'es' ? {
+          '0': 'Todos los contenidos ya han sido aprendidos.',
+          '1': 'Debes leer y aprobar estos contenidos para recibir una nueva recomendación.'
+        } : {
+          '0': 'All the contents have already been learned.',
+          '1': 'You must read and approve these contents to receive a new recommendation.'
+        };
         var resp = randomRecommendation(data.neurons, neuronId),
             totalRecomendations = resp.totalRecomendations,
-            msg = {
-              '0': 'Todos los contenidos ya han sido aprendidos.',
-              '1': 'Debes leer y aprobar estos contenidos para recibir una nueva recomendación.'
-            };
+            msg = msgObj;
         if (totalRecomendations > 1) {
           goToNeuron(resp.neuron);
         }else{
@@ -223,15 +239,17 @@
     }
 
     function showRecomendationModal(msg) {
+      var languageBtn = $auth.user.language;
+      var btnText = languageBtn === 'es' ? 'Seguir leyendo' : 'Keep reading';
       var dialogOptions = {
         templateUrl: 'templates/partials/modal-alert-content.html',
         model: {
           message: msg,
           callbacks: {
-            btnCenter: function(){dialogOptions.closeModal();}
+            btnCenter: function(){dialogOptions.model.closeModal();}
           },
           labels: {
-            btnCenter: 'Seguir leyendo'
+            btnCenter: btnText
           }
         }
       };
@@ -299,26 +317,28 @@
       });
     }
 
-    function getLeaderboard(id, page, resultsPerPage){
+    function getLeaderboard(entityParams, currentPage, itemsPerPage){
+      var defaultParams = {
+        page: currentPage,
+        per_page: itemsPerPage //jshint ignore:line
+      };
+      //mege default params with entity params
+      Object.assign(defaultParams, entityParams);
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/leaderboard',
-        params: {
-          /*jshint camelcase: false */
-          user_id: id,
-          page: page,
-          per_page: resultsPerPage
-        }
+        params: defaultParams
       }).then(function success(res) {
         return res.data;
       });
     }
 
-    function deleteNotification(notification){
+    function deleteNotification(notification, isSuperEventNotification){
+      var params = isSuperEventNotification ? { data_type: notification.data_type } : {}; //jshint ignore:line
       return $http({
-        method: 'POST',
+        method: 'GET',
         url: ENV.apiHost + '/api/notifications/' + notification.id + '/read_notifications',
-        data: {}
+        params: params
       }).then(function success(res) {
         return res;
       }, function error(err) {
@@ -428,6 +448,20 @@
         data: params
       }).then(function success(res) {
         return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function getMyEvents() {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/events/my_events'
+      }).then(function success(res) {
+        return res.data;
       }, function error(err) {
         if(err.status !== 404){
           popupOptions.content = err.statusText;

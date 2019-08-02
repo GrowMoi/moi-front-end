@@ -9,7 +9,9 @@
                       $ionicPopup,
                       $window,
                       ENV,
+                      $auth,
                       ModalService,
+                      StorageService,
                       PopupService){
 
     var service = {
@@ -28,10 +30,11 @@
       modelData.totalQuestions = data.totalQuestions;
       modelData.onClick = reloadPage;
       modelData.isQuiz = true;
+      var templateModal = 'templates/partials/modal-score-test.html';
       ModalService.showModel(
         {
           parentScope: scope,
-          templateUrl: 'templates/partials/modal-score-test.html',
+          templateUrl: templateModal,
           model: modelData
         }
       );

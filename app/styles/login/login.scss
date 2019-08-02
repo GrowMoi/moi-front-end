@@ -1,5 +1,13 @@
 @import "shared/colors";
 
+.button-login {
+  width: 140px;
+  height: 50px;
+}
+.button-translate {
+  width: 135px;
+  height: 50px;
+}
 .login-view{
   background-image: url(../images/login/bg.png);
   background-size: 1280px 720px;
@@ -26,16 +34,5 @@
     font-size: 20px;
     height: 20px;
     font-weight: bold;
-  }
-  .login-option{
-    span{
-      position: absolute;
-      right: 50px;
-      cursor: pointer;
-      color: #fef9bf;
-      font-size: 15px;
-      font-weight: bold;
-      font-family: FontMoi-Title;
-    }
   }
 }

@@ -1,4 +1,4 @@
-ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | translate}}")
+ion-view.profile.edit-profile-content(view-title="{{ 'profile.edit-profile' | translate}}")
   ion-content
     back-button.arrow.back-arrow
     moi-arrow(on-click="toggleDrawer()" orientation="right")
@@ -7,31 +7,31 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
         .content.edit-profile
           .row.title-content
             .title-edit-profile.col-80
-              {{ ::'profile.my-profile' | translate}}
+              {{ 'profile.my-profile' | translate}}
             .btn-save-changes.col-20(ng-click="vmProfileEdit.editProfile()")
-              {{ ::'buttons.save-changes' | translate }}
+              {{ 'buttons.save-changes' | translate }}
           .row.content-edit-profile
             .section-photo
               .title-photo
-                {{ ::'titles.current-photo' | translate}}
+                {{ 'titles.current-photo' | translate}}
               .content-photo
                 img(ng-src="{{vmProfileEdit.user.image}}" class="img-responsive")
               .description-photo
-                {{ ::'profile.description-photo' | translate }}
+                {{ 'profile.description-photo' | translate }}
               .content-button-photo
                 .upload-image-btn
-                  {{ ::'buttons.choose-photo' | translate }}
+                  {{ 'buttons.choose-photo' | translate }}
                   input(type="file"
                         fileinput="vmProfileEdit.file"
                         filepreview="vmProfileEdit.filepreview"
                         accept=".png,.gif,.jpeg")
                 .btn-upload-photo(ng-click="vmProfileEdit.test()"
                                   class="{{vmProfileEdit.filepreview ? 'active-btn' : 'disabled-btn'}}")
-                  {{ ::'buttons.upload-photo' | translate }}
+                  {{ 'buttons.upload-photo' | translate }}
             .section-form.form-container.form-register
               form(name='editProfileForm', novalidate)
                 .form-group
-                  label.label-register.col-40 {{ ::'register.username' | translate }}:
+                  label.label-register.col-40 {{ 'register.username' | translate }}:
                   input.col-60(
                     type='text',
                     ng-model='vmProfileEdit.user.username'
@@ -40,10 +40,10 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
                     autocomplete='off',
                   )
                   span.error-msg(ng-if='editProfileForm.username.$error.required && editProfileForm.username.$touched')
-                    | {{ :: 'msgs.error.required' | translate}}
+                    | {{  'msgs.error.required' | translate}}
 
                 .form-group
-                  label.label-register.col-40 {{ ::'register.email' | translate }}:
+                  label.label-register.col-40 {{ 'register.email' | translate }}:
                   input.col-60(
                     type='email',
                     ng-model='vmProfileEdit.user.email'
@@ -53,7 +53,7 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
                   )
 
                 .form-group
-                  label.label-register.label-date  {{ ::'register.age' | translate }}:
+                  label.label-register.label-date  {{ 'register.age' | translate }}:
                   input.col-60(
                     type='number',
                     min='1',
@@ -63,7 +63,7 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
                   )
 
                 .form-group
-                  label.label-register.col-40 {{ ::'register.school' | translate }}:
+                  label.label-register.col-40 {{ 'register.school' | translate }}:
                   input.col-60(
                     type='text',
                     ng-model='vmProfileEdit.user.school'
@@ -73,7 +73,7 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
                   )
 
                 .form-group
-                  label.label-register.col-40 {{ ::'register.city' | translate }}:
+                  label.label-register.col-40 {{ 'register.city' | translate }}:
                   input.col-60(
                     type='text',
                     ng-model='vmProfileEdit.user.city'
@@ -83,7 +83,7 @@ ion-view.profile.edit-profile-content(view-title="{{ ::'profile.edit-profile' | 
                   )
 
                 .form-group
-                  label.label-register.col-40 {{ ::'register.country' | translate }}:
+                  label.label-register.col-40 {{ 'register.country' | translate }}:
                   input.col-60(
                     type='text',
                     ng-model='vmProfileEdit.user.country'

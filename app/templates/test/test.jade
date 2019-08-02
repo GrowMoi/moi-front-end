@@ -8,3 +8,6 @@ ion-view#test-frame(view-title='{{vm.neuron.title}}')
             span {{vmTest.percentage}}%
         .question-test(ng-include="'templates/partials/test-questions.html'")
     moi-frame(options="vmTest.frameOptions")
+  .loading.loading-gif.big(
+    ng-if="vmTest.isCheckingResultTest"
+  )

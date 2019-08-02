@@ -1,0 +1,22 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-event-details
+      .btn-close-modal(ng-click="::model.closeModal()")
+      .event-content
+        h2.event-title
+          | {{::model.data.title}}
+        .event-image(style="background-image: url('{{model.data.image}}')")
+        span.event-description
+          | {{::model.data.description}}
+        .neurons-list
+          .container-neuron(ng-repeat='content in model.data.contents'
+                            ng-class="{'last-neuron': $last}")
+            .neuron
+              img.neuron-image(ng-src="{{::content.image}}")
+              span.neuron-title
+                | {{::content.neuron}}
+            .line(ng-if="!$last")
+        .join-event(ng-class="{disabled: !model.data.is_available}"
+                    ng-click="model.joinEvent(model.data)")
+          | {{ ::'tasks.events.join' | translate}}
+

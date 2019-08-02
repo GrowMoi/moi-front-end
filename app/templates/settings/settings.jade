@@ -7,7 +7,7 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
           .panel-left.col-45
             .border-bottom-settings
               span.content-title-settings.left-padding
-                | {{ ::'setting.settings' | translate }}
+                | {{ 'setting.settings' | translate }}
             .title-label Level
             .title-label-1 1
             .title-label-1 2
@@ -16,7 +16,7 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
               .row(ng-repeat="config in vm.preferences")
                 .range-left-border
                 .controll
-                  span.content-subtitle-settings {{ ::'content.kind.' + config.kind | translate }}
+                  span.content-subtitle-settings {{ 'content.kind.' + config.kind | translate }}
                   input(type='range', min='1', max='3', step='1',
                   value="{{config.level}}",
                   ng-model="config.level",
@@ -24,13 +24,17 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
                 .range-right-border
             .advices-toggle
               span.content-subtitle-settings
-                | Encender/Apagar tutorial
+                | {{ 'content.language' | translate }}
+              ion-toggle(ng-model='vm.state' ng-change="vm.changeLanguage()")
+            .advices-toggle
+              span.content-subtitle-settings
+                | {{ 'content.tutorial' | translate }}
               ion-toggle(ng-model='vm.advicesOn' ng-change="vm.updateAdvicesSettings()")
           .panel-right.col-45
             .border-bottom-settings
               span.content-title-settings
-                | {{ ::'setting.interests' | translate }}
-            span.label {{ ::'setting.choose-interest' | translate }}
+                | {{ 'setting.interests' | translate }}
+            span.label {{ 'setting.choose-interest' | translate }}
             .interests-list
               .row(ng-repeat='interest in vm.interests', ng-if='$index %3 === 0')
                 .col.interest(ng-if='$index < vm.interests.length')

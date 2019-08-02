@@ -94,7 +94,7 @@ drawer.left {
     height: 25.375rem;
     .tree{
       width: 16rem;
-      height: 26.4rem;
+      height: 100%;
     }
   }
   .settings-img-background{
@@ -103,19 +103,6 @@ drawer.left {
     border-radius: 30%;
     bottom: 9%;
     height: 37%;
-  }
-
-  .settings-default-tree {
-    bottom: 5.5%;
-    width: 15rem;
-    height: 24.375rem;
-  }
-
-  .default-tree {
-    background-image: url("../images/arbolito_despH.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    z-index: -1;
   }
 }
 
@@ -146,11 +133,6 @@ drawer.left {
 
     .settings-arbol, .settings-img-background {
       bottom: 2.5%;
-    }
-    .view-tree{
-      .tree{
-        height: 28rem;
-      }
     }
   }
 
@@ -187,11 +169,6 @@ drawer.left {
     .settings-arbol, .settings-img-background {
       bottom: 1.5%;
     }
-    .view-tree{
-      .tree{
-        height: 26.8rem;
-      }
-    }
   }
 
   .flecha-sidebar {
@@ -227,11 +204,6 @@ drawer.left {
     .settings-arbol, .settings-img-background {
       bottom: 2%;
     }
-    .view-tree{
-      .tree{
-        height: 26.7rem;
-      }
-    }
   }
 
   .flecha-sidebar {
@@ -265,12 +237,7 @@ drawer.left {
       }
     }
     .settings-arbol, .settings-img-background {
-      bottom: 5.5%;
-    }
-    .view-tree{
-      .tree{
-        height: 28.5rem;
-      }
+      bottom: 3.5%;
     }
   }
 

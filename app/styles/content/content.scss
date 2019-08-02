@@ -3,6 +3,9 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+.test-content {
+  height: 30px;
+}
 .content-view-max {
   color: $titlesColor;
   a, textarea {
@@ -53,6 +56,32 @@
       margin-top: 1%;
       margin-left: 2%;
       margin-right: 1%;
+    }
+  }
+
+  .link-terms {
+    color: #fef9bf;
+    font-family: FontMoi-Title;
+    position: absolute;
+    top: 90%;
+    cursor: pointer;
+    padding-left: 5px;
+  }
+  .advices-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 4%;
+    padding-top: 5px;
+    .content-subtitle-settings {
+      color: $moiDarkGreen;
+    }
+    .item-toggle {
+      background: transparent;
+      border: none;
+      padding-right: 75px;
+      .toggle {
+        top: 0;
+      }
     }
   }
 
@@ -236,7 +265,6 @@
   .row-content-text {
     &.moi_theme {
       color: white;
-      overflow: auto;
       &.moi_amarillo{
         text-shadow: 2px 2px 4px #4C3F02;
       }
@@ -248,43 +276,36 @@
       margin-bottom: 5px;
       font-family: FontMoi-Content;
       line-height: 30px;
-      overflow: auto;
+      overflow: hidden;
       margin-right: -18px;
       padding-right: 20px;
       width: 100%;
       text-align: justify;
       white-space: pre-wrap;
+
       &.moi_theme {
         padding: 15px;
         border-radius: 10px;
-        overflow: unset;
-        height: 100%;
+        overflow: auto;
+        height: 90%;
         margin-right: 1%;
+        background-repeat: no-repeat !important;
+        background-size: 98% 100% !important;
 
         &.moi_violeta {
           background: url(../images/themes/violeta/cont_max_caja.png);
-          background-repeat: no-repeat;
-          background-size: cover;
         }
         &.moi_azul {
           background: url(../images/themes/azul/cont_max_caja.png);
-          background-repeat: no-repeat;
-          background-size: cover;
         }
         &.moi_rojo {
           background: url(../images/themes/rojo/cont_max_caja.png);
-          background-repeat: no-repeat;
-          background-size: cover;
         }
         &.moi_amarillo {
           background: url(../images/themes/amarillo/cont_max_caja.png);
-          background-repeat: no-repeat;
-          background-size: cover;
         }
         &.moi_verde {
           background: url(../images/themes/verde/cont_max_caja.png);
-          background-repeat: no-repeat;
-          background-size: cover;
         }
       }
 
@@ -432,13 +453,6 @@
     }
   }
 
-  .format-image-gallery {
-    height: 60px;
-    width: 100%;
-    box-shadow: 2px 1px 2px 1px;
-    object-fit: cover;
-  }
-
   .content-scroll {
     overflow: auto;
   }
@@ -459,9 +473,11 @@
     }
   }
 
-  .border-third-column{
+  .border-third-column {
     margin-bottom: 20px;
+    margin-top: 20px;
     border-bottom: 1px solid $linesColor;
+
     &.moi_theme {
       border-color: #B5A88F;
     }
@@ -482,9 +498,17 @@
     }
   }
 
+  .slider-gallery-content {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
   @media (max-height: 635px) {
     .border-third-column{
       margin-bottom: 10px;
+      margin-top: 10px;
     }
   }
 

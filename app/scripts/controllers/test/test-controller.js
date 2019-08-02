@@ -8,15 +8,19 @@
               $scope,
               $auth,
               $state,
+              $timeout,
               ModalService,
               MediaAchievements,
-              HoverAnimationService) {
+              HoverAnimationService,
+              UserNotificationsService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
     var currentUser = $auth.user;
+    var countModalsActived = 0;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+    var language = $auth.user.language;
 
     init();
 
@@ -39,6 +43,7 @@
       vmTest.totalQuestions = vmTest.questions.length;
       vmTest.nextQuestion = false;
       vmTest.hideTest = false;
+      vmTest.isCheckingResultTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
@@ -53,7 +58,8 @@
     function selectAnswer(contentId, answer) {
       vmTest.answerBackend = {
         'content_id' : contentId,
-        'answer_id' : answer.id
+        'answer_id' : answer.id,
+        'answer_text': answer.text
       };
       vmTest.selectedAnswer.selected = false;
       vmTest.selectedAnswer = answer;
@@ -99,59 +105,110 @@
 
     function scoreTest() {
       vmTest.hideTest = true;
+      $timeout(function(){vmTest.isCheckingResultTest = true;});
       TestService.evaluateTest(vmTest.testId, vmTest.answers).then(function(res){
+        var questionsData = questionsMapping(res.data.result);
         var data = {
+          questions: questionsData.questions,
           totalQuestions: vmTest.totalQuestions,
-          successAnswers: rigthAnswers(res.data.result)
+          successAnswers: questionsData.rigthAnswers,
+          meta: res.data.meta
         };
         if(data.successAnswers > 1 ){
           $backgroundSound[0].pause();
         }
         localStorage.setItem('successAnswers', data.successAnswers);
+
+        UserNotificationsService.getNewDetailsNotifications();
+
         TestService.scoreTest($scope, data).then(function() {
           var recommendations = res.data.recommendations || [];
           var achievements = res.data.achievements || [];
+
+          if(res.data.super_event && res.data.super_event.completed){//jshint ignore:line
+            var beginningNameSuperEvent = language === 'es' ?  'el super evento: ' : 'the super event: ';
+            var achievementSuperEvent = {
+              name: beginningNameSuperEvent + res.data.super_event.info.event_achievement.title,//jshint ignore:line
+              bagde: res.data.super_event.info.event_achievement.image//jshint ignore:line
+            };
+            showUserAchievement(achievementSuperEvent);
+          }
+
+          if(res.data.event && res.data.event.completed){
+            var beginningNameEvent = language === 'es' ?  'el evento: ' : 'the event: ';
+            var achievementEvent = {
+              name: beginningNameEvent + res.data.event.info.title,
+              bagde: res.data.event.info.image
+            };
+            showUserAchievement(achievementEvent);
+          }
+
           if (recommendations.length > 0) {
             showModalAchievement(recommendations);
           }
           if (achievements.length > 0) {
             showUserAchievement(achievements[0]);
           }else{
-            $state.go('tree', {
-              username: currentUser.username
-            });
+            if(countModalsActived === 0){
+              $state.go('tree', {
+                username: currentUser.username
+              });
+            }
           }
         });
       });
     }
 
-    function rigthAnswers(results) {
-      var count = 0;
-      angular.forEach(results, function(result){
-        if (result.correct) {
-          count += 1;
-        }
+    function questionsMapping(results) {
+      /*jshint camelcase: false */
+      var NEURON_COLOR = {
+        yellow: 'images/tree/nodos/nodo-amarillo.png',
+        blue: 'images/tree/nodos/nodo-azul.png',
+        red: 'images/tree/nodos/nodo-fuccia.png',
+        green: 'images/tree/nodos/nodo-verde.png'
+      };
+      var rigthAnswersCount = 0;
+      var questions = angular.forEach(vmTest.questions, function(question){
+        angular.forEach(results, function(result){
+          if(result.content_id === question.content_id){
+            question.image = NEURON_COLOR[result.neuron_color];
+            question.correct = result.correct;
+            var selectedAnswerByUser = vmTest.answers.find(function(answer){
+              return answer.content_id === result.content_id;
+            });
+            question.selectedAnswer = selectedAnswerByUser && selectedAnswerByUser.answer_text;
+            if(result.correct) {
+              rigthAnswersCount++;
+            }
+          }
+        });
       });
-      return count;
+      return {
+        questions: questions,
+        rigthAnswers: rigthAnswersCount
+      };
     }
 
     function showModalAchievement(recommendations) {
-
       var modelData = extractModelData(recommendations) ;
-
+      var templateModal = 'templates/partials/modal-tutor-achievement';
       ModalService.showModel(
         {
           parentScope: $scope,
-          templateUrl: 'templates/partials/modal-tutor-achievement.html',
+          templateUrl: templateModal,
           model: modelData
         }
       );
     }
 
     function showUserAchievement(achievement){
+      var language = $auth.user.language;
+      var messageModal = language === 'es' ? 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
+      'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi': 'Congratulations ' + currentUser.username +
+      '! You have just completed '+ achievement.name +'. '+ 'Activate this item in the inventory and enjoy your achievements learning with Moi';
+      var btnRightLabel = language === 'es' ? 'Ir al inventario' : 'Go to inventory';
       var dialogContentModel = {
-        message: 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
-                  'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi',
+        message: messageModal,
         callbacks: {
           btnRight: function(){
             dialogContentModel.closeModal();
@@ -159,16 +216,19 @@
           },
           btnLeft: function(){
             dialogContentModel.closeModal();
-            $state.go('tree', {
-              username: currentUser.username
-            });
+            countModalsActived--;
+            if(countModalsActived === 0){
+              $state.go('tree', {
+                username: currentUser.username
+              });
+            }
           }
         },
         labels: {
-          btnRight: 'Ir al inventario',
+          btnRight: btnRightLabel,
           btnLeft: 'Ok'
         },
-        image: MediaAchievements[achievement.number].settings.badge,
+        image: achievement.bagde || MediaAchievements[achievement.number].settings.badge,
         addCongratulations: true
       };
 
@@ -176,6 +236,7 @@
         templateUrl: 'templates/partials/modal-alert-content.html',
         model: dialogContentModel
       };
+      countModalsActived++;
       ModalService.showModel(dialogOptions);
     }
 

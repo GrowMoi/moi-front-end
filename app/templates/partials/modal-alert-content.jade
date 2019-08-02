@@ -6,16 +6,15 @@
                 only-play="true")
     .score-container.row
       .main-image.col
-        img(ng-if="!model.image" src="images/user.png")
         img(ng-if="model.image" ng-src="{{model.image}}")
       .col-50
         .text-container
-          h2#content {{::model.message}}
+          h2#content {{model.message}}
       .pista.col
     .controls-score
       span.btn-score.button.button-right(ng-if="model.labels.btnRight" ng-click="model.callbacks.btnRight()")
-        | {{::model.labels.btnRight}}
+        | {{model.labels.btnRight}}
       span.btn-score.button.button-center(ng-if="model.labels.btnCenter" ng-click="model.callbacks.btnCenter()")
-        | {{::model.labels.btnCenter}}
+        | {{model.labels.btnCenter}}
       span.btn-score.button.button-left(ng-if="model.labels.btnLeft" ng-click="model.callbacks.btnLeft()")
-        | {{::model.labels.btnLeft}}
+        | {{model.labels.btnLeft}}

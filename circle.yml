@@ -1,9 +1,0 @@
-machine:
-  ruby:
-    version: 2.1.4
-  node:
-    version: 0.12.0
-dependencies:
-  post:
-    - ./node_modules/protractor/bin/webdriver-manager update
-    - wget moi-integration.herokuapp.com -o /dev/null

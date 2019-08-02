@@ -5,9 +5,13 @@
     var ctrl,
         $controller,
         $scope,
+        $auth,
         dependencies,
         SettingsService,
+        StorageService,
         dragularService,
+        ENV,
+        $state,
         $rootScope;
 
     beforeEach(module('moi.controllers'));
@@ -24,7 +28,44 @@
           }
         };
       });
+      $provide.factory('StorageService', function(){
+        return {
+          get: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
+          },
+          changeLanguage: function() {
+            return null;
+          }
+        };
+      });
     }));
+
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('ENV', {
+          name:'development',
+          apiHost:'http://localhost:5000'
+        });
+        $provide.constant('$ionicPopup', {
+          alert: sinon.stub()
+        });
+        $provide.provider('$state', function () {
+          return {
+            $get: function () {
+              return {
+                go: function(){
+                  return null;
+                }
+              };
+            }
+          };
+        });
+      });
+    });
 
     beforeEach(angular.mock.module(function($provide){
       $provide.service('dragularService', function(){
@@ -37,18 +78,36 @@
     beforeEach(inject(
       function (_$controller_,
                 _$rootScope_,
+                _ENV_,
+                _StorageService_,
+                _$state_,
                 _SettingsService_,
                 _dragularService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
+        ENV = _ENV_;
+        $state = _$state_;
         SettingsService = _SettingsService_;
         dragularService = _dragularService_;
+        StorageService = _StorageService_;
+        $auth = {
+          user: {
+            id: 1,
+            email: 'admin@example.com',
+            name: 'admin',
+            role: 'admin',
+            content_preferences: {},//jshint ignore:line
+            achievements: []
+          }
+        };
 
         dependencies = {
           SettingsService: SettingsService,
           $scope: $scope,
           dragularService: dragularService,
+          StorageService: StorageService,
+          $auth: $auth,
           user: {id: 1, email: 'admin@example.com', name: 'admin', role: 'admin'}
         };
 

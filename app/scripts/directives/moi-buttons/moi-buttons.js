@@ -28,19 +28,23 @@
                                   $timeout,
                                   $auth,
                                   TestService,
+                                  StorageService,
                                   UserNotificationsService,
                                   GAService) {
       var vm = this;
-
+      var language = $auth.user.language;
+      var messageModal = language === 'es' ? 'Para aprender este concepto, aún debes superar algunos conceptos previos' : 'To learn this concept, you still have to overcome some previous concepts';
+      var lblbtnRight = language === 'es' ? 'Seguir Leyendo' : 'Keep reading';
+      var lblbtnLeft = language === 'es' ? 'Regresar a mi arbol' : 'Back to tree';
       var dialogContentModel = {
-        message: 'Para aprender este concepto, aún debes superar algunos conceptos previos',
+        message: messageModal,
         callbacks: {
           btnRight: function(){dialogContentModel.closeModal();},
           btnLeft: modalCallbak
         },
         labels: {
-          btnRight: 'Seguir leyendo',
-          btnLeft: 'Regresar a mi arbol'
+          btnRight: lblbtnRight,
+          btnLeft: lblbtnLeft
         }
       };
 
@@ -55,6 +59,7 @@
       function init(){
         var options = vm.options || {};
         vm.neuron = options.neuron || {};
+        vm.neuron.neuron_can_read = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : vm.neuron.neuron_can_read;
         vm.content = options.content || {};
         vm.buttons = options.buttons || {};
         vm.readOnly = !!options.readOnly;
@@ -64,12 +69,13 @@
         vm.shareCallback = options.shareCallback;
         vm.externalAnimationIdle = !!vm.options.externalAnimationIdle;
         vm.totalNotifications = UserNotificationsService.totalNotifications +
-                                UserNotificationsService.totalRecommendations;
+                                UserNotificationsService.totalRecommendations +
+                                UserNotificationsService.totalContentEvents;
 
         if (vm.content.read === undefined) {
-          vm.gifLearnActive = false;
+          vm.gifLearnActive = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : false;
         }else{
-          vm.gifLearnActive = !vm.content.read;
+          vm.gifLearnActive = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : !vm.content.read;
         }
 
         if (vm.options.onRegisterApi) {
@@ -270,12 +276,21 @@
           if (data.perform_test) {
             TestService.goTest($scope, data.test);
           }
-          if (page === 'content' && !data.perform_test) {
+
+          if(vm.content.belongs_to_event){
+            updateEventsCounter();
+            $state.go('tasks.events');
+          }else if (page === 'content' && !data.perform_test) {
             $state.go('neuron', {
               neuronId: vm.content.neuron_id
             });
           }
         });
+      }
+
+      function updateEventsCounter(){
+        UserNotificationsService.totalContentEvents--;
+        $rootScope.$broadcast('notifications.updateCount');
       }
 
       function finishedAnimationsaveTasks() {
@@ -331,8 +346,9 @@
       }
 
       function showNotificationModal() {
+        var templateModal = 'templates/partials/modal-notification-join-app.html';
         var dialogOptions = {
-          templateUrl: 'templates/partials/modal-notification-join-app.html',
+          templateUrl: templateModal,
           model: dialogContentModel
         };
         ModalService.showModel(dialogOptions);
@@ -372,7 +388,8 @@
 
       $rootScope.$on('notifications.updateCount', function(){
         vm.totalNotifications = UserNotificationsService.totalNotifications +
-                                UserNotificationsService.totalRecommendationContents;
+                                UserNotificationsService.totalRecommendations +
+                                UserNotificationsService.totalContentEvents;
       });
     }
 

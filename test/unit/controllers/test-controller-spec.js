@@ -15,7 +15,9 @@
         contentId,
         answer,
         MediaAchievements,
-        StorageService;
+        StorageService,
+        NeuronsOptions,
+        UserNotificationsService;
 
     beforeEach(module('moi.controllers'));
 
@@ -80,6 +82,14 @@
             }
           }
         });
+        $provide.constant('NeuronsOptions', {
+          'root': {
+            color: 'yellow'
+          },
+          'second-level-0': {
+            color: 'blue'
+          }
+        });
       });
     });
 
@@ -111,6 +121,16 @@
       });
       $provide.factory('$ionicModal', function () {
         return {};
+      });
+      $provide.service('UserNotificationsService', function() {
+        return {
+          initialize: function() {
+            return null;
+          },
+          totalNotifications: 0,
+          totalRecommendations: 0,
+          totalContentEvents: 0
+        };
       });
     }));
 
@@ -144,7 +164,9 @@
                 _$rootScope_,
                 _$state_,
                 _MediaAchievements_,
-                _StorageService_) {
+                _StorageService_,
+                _NeuronsOptions_,
+                _UserNotificationsService_) {
         $controller = _$controller_;
         $stateParams = _$stateParams_;
         $rootScope = _$rootScope_;
@@ -153,6 +175,8 @@
         TestService = _TestService_;
         MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
+        NeuronsOptions = _NeuronsOptions_;
+        UserNotificationsService = _UserNotificationsService_;
         $auth = {
           user: {
             id: 1,
@@ -170,6 +194,7 @@
           $auth: $auth,
           $state: $state,
           MediaAchievements: MediaAchievements,
+          NeuronsOptions: NeuronsOptions,
           StorageService: StorageService,
           storage: {test: {'advices': ['advice0']}}
         };

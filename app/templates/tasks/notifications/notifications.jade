@@ -1,7 +1,14 @@
-ion-content.content_tasks
+ion-content.content_tasks(ng-show="notificationsModel.notifications.length !== 0 && notificationsModel.loaded")
   .row.note(ng-repeat='notification in notificationsModel.notifications')
-    .remove-task(ng-click='notificationsModel.removeItem(notification, $index)')
+    .remove-task(ng-if="notification.type !== 'event'"
+                ng-click='notificationsModel.removeItem(notification, $index)')
     .row-notification(ng-include="notificationsModel.getNotificationPartial(notification)")
   ion-infinite-scroll(ng-if='!notificationsModel.noMoreItemsAvailable'
                       on-infinite='notificationsModel.loadMoreNotifications()'
                       distance='10%')
+.empty-state(ng-if="notificationsModel.notifications.length === 0 && notificationsModel.loaded")
+  | {{::'tasks.notification_empty_state' | translate}}
+
+.loading.loading-gif(
+  ng-if="!notificationsModel.loaded"
+)

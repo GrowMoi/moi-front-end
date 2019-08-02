@@ -3,13 +3,23 @@
   angular.module('moi.controllers')
     .controller('InventoryController', function($ionicPopup,
                                                 data,
+                                                events,
                                                 UserService,
                                                 MediaAchievements,
+                                                MediaAchievementsEn,
                                                 HoverAnimationService,
                                                 ModalService,
+                                                DesactiveAchievements,
+                                                DesactiveAchievementsEn,
                                                 TestService,
                                                 $auth) {
-      var vmInv = this;
+      var vmInv = this,
+          $backgroundSound,
+          achievements = data.achievements,
+          language = $auth.user.language,
+          allEventItems = {},
+          allAchievements = {};
+
       vmInv.user = $auth.user;
       vmInv.buttonsOptions = {
         neuron: null,
@@ -22,123 +32,83 @@
         }
       };
       vmInv.showInventory = true;
-      vmInv.finishedAnimation = finishedAnimation;
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
-      var achievements = data.achievements;
-      console.log('esss', achievements);
-      var desactiveAchievements = [
-  	      {
-            desactive: true,
-            description: 'Aprende tus primeros 4 contenidos para ganar este item',
-            name: 'Contenidos Aprendidos',
-            number:1,
-            settings:{badge:'images/inventory/badges/item1.png'}
-          },
-          {
-            desactive: true,
-            description: 'Aprende 20 contenidos de color amarillo para ganar este item',
-            name: 'Contenidos color Amarillo',
-            number:2,
-            settings:{badge:'images/inventory/badges/item2.png'}
-          },
-          {
-            desactive: true,
-            description: 'Aprende 20 contenidos de color rojo para ganar este item',
-            name: 'Contenidos color Rojo',
-            number:3,
-            settings:{badge:'images/inventory/badges/item3.png'}
-          },
-          {
-            desactive: true,
-            description: 'Aprende 20 contenidos de color azul',
-            name: 'Contenidos color Azul',
-            number:4,
-            settings:{badge:'images/inventory/badges/item4.png'}
-          },
-          {
-            desactive: true,
-            description: 'Aprende 20 contenidos de color verde para ganar este item',
-            name: 'Contenidos color verde',
-            number:5,
-            settings:{badge:'images/inventory/badges/item9.png'}
-          },
-          {
-            desactive: true,
-            description: 'Despliega 50 pruebas para ganar este item',
-            name: 'Despliega 50 pruebas',
-            number:6,
-            settings:{badge:'images/inventory/badges/item8.png'}
-          },
-          {
-            desactive: true,
-            description: 'Aprende un contenido en cada fruto para ganar este item',
-            name: 'Contenidos de cada fruto',
-            number:7,
-            settings:{badge:'images/inventory/badges/item7.png'}
-          },
-          {
-            desactive: true,
-            description: 'Aprende todos los contenidos para ganar este item',
-            name: 'Aprende todos los contenidos',
-            number:8,
-            settings:{badge:'images/inventory/badges/item5.png'}
-          },
-          {
-            desactive: true,
-            description: 'Completa 4 pruebas sin errores (16 preguntas sin errores) para ganar este item',
-            name: 'Completa 4 pruebas',
-            number:9,
-            settings:{badge:'images/inventory/badges/item6.png'}
-          },
-          {
-            desactive: true,
-            description: 'Alcanzar el nivel 9 para ganar este item',
-            name: 'Final del juego',
-            number:10,
-            settings:{badge:'images/inventory/badges/item10.png'}
-          }
+      vmInv.tabs = [
+        {
+          field: 'achievements',
+          name: '1',
+          selected: true
+        },
+        {
+          field: 'event_items',
+          name: '2',
+          selected: false
+        },
       ];
-      var arr1=[];
-      desactiveAchievements.map(function(obj){
-        var findAchievement = achievements.find(function(acc){
-          return obj.number === acc.number;
-        });
-        if (!findAchievement) {
-          arr1.push(obj);
-        }
-      });
-      arr1.map(function(obj){
-        achievements.push(obj);
-      });
-
-      vmInv.achievements = achievements;
+      vmInv.changeTab = changeTab;
+      allEventItems = formatEventsItems();
+      allAchievements = formatAchievements();
+      vmInv.achievements = allAchievements;
       vmInv.increaseSize = HoverAnimationService.increaseSize;
       vmInv.cssOptions = {
         styles: []
       };
+      $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+      vmInv.finishedAnimation= function(){
+        vmInv.showInventory = true;
+        $backgroundSound[0].play();
+        $backgroundSound[0].autoplay = true;
+      };
+
       vmInv.frameOptions = {
         type: 'content_max',
         showBackButton: true
       };
-      var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
-      setMediaIntoAchievements(vmInv.achievements);
-      console.log('estos son los logros', vmInv.achievements, arr1);
-      function finishedAnimation(){
-        vmInv.showInventory = true;
-        $backgroundSound[0].play();
-        $backgroundSound[0].autoplay = true;
+      function formatAchievements() {
+        var achievementsList = language === 'es' ? DesactiveAchievements : DesactiveAchievementsEn;
+        achievements.map(function(achievement) {
+          var currentAchievement = achievementsList[achievement.number];
+          if(currentAchievement) {
+            achievementsList[achievement.number] =  achievement;
+            if(!achievement.desactive) {
+              achievementsList[achievement.number].settings = MediaAchievements[achievement.number].settings;
+            }
+            if(language === 'en'){
+              achievementsList[achievement.number].name = MediaAchievementsEn[achievement.number].name;
+            }
+          }
+        });
+        return achievementsList;
       }
 
-      function setMediaIntoAchievements(achievements){
-        if(achievements.length > 0){
-          angular.forEach(achievements, function(achievement, index){
-            if(!achievement.desactive) {
-              achievements[index].settings = MediaAchievements[achievement.number].settings;
-            }
+      function formatEventsItems() {
+        var eventsItems = {};
+        if(events) {
+          events.superevents.map(function(event, index){
+            formatEventAchievement(eventsItems, event, index);
+          });
+          events.events.map(function(event, index){
+            formatEventAchievement(eventsItems, event, index+1);
           });
         }
+        return eventsItems;
+      }
+
+      function formatEventAchievement(finalObj, event, index){
+        var eventItem = {
+          desactive: !event.completed,
+          description: event.description,
+          name: event.title,
+          settings: {
+            badge: event.completed ? event.image : event.inactive_image //jshint ignore:line
+          },
+          eventData : {
+            generalImg : event.image
+          }
+        };
+        finalObj[index+1] = eventItem;
       }
 
       function activateAchievement(achievement){
@@ -155,7 +125,8 @@
           TestService.goFinalTest(null, vmInv.user.name);
         }
         if(achievement.desactive) {
-          achievement.badgeFull = achievement.settings.badge .replace('item', 'badge');
+          var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.settings.badge.replace('item', 'badge');
+          achievement.badgeFull = currentImage;
           var dialogContentModel = {
             templateUrl: 'templates/partials/modal-inventory.html',
             model: achievement
@@ -178,6 +149,13 @@
           }else{
             vmInv.achievements[index].active = false;
           }
+        });
+      }
+
+      function changeTab(field) {
+        vmInv.achievements = (field === 'achievements') ? allAchievements : allEventItems;
+        angular.forEach(vmInv.tabs, function(tab) {
+          tab.selected = tab.field === field;
         });
       }
 

@@ -26,6 +26,9 @@
       max-width: unset;
     }
   }
+  .description {
+    display: flex;
+  }
 }
 .profile {
   background-color: transparent;
@@ -44,23 +47,24 @@
 
         .header-wrapper {
           padding-top: 20px;
+          padding-left: 30px;
           border-bottom: 3px solid $moiDarkGreen;
 
-          .user-image {
-            img {
-              width: 80px;
-            }
+          .user-frame {
+            width: 5rem;
+            height: 5rem;
           }
 
           .user-name {
             color: $moiDarkGreen;
             font-size: 45px;
             font-weight: bold;
-            margin-top: 15px;
             font-family: FontMoi-Title;
             line-height: 45px;
             margin-right: 10px;
             margin-left: 10px;
+            display: flex;
+            align-items: center;
           }
 
           .btns {
@@ -87,7 +91,6 @@
           height: 100%;
 
           .more-details {
-            padding-right: 10px;
             overflow: hidden;
             position: relative;
 
@@ -97,6 +100,8 @@
               font-weight: bold;
               height: 25%;
               border: 2px solid #8f9a59;
+              display: flex;
+              justify-content: space-between;
 
               .title {
                 color: $moiDarkGreen;
@@ -124,7 +129,6 @@
 
               .btn-wrapper {
                 display: flex;
-                justify-content: flex-end;
                 align-items: center;
 
                 .btn-add-friend {
@@ -201,7 +205,8 @@
                 border: 2px solid #7fb25b;
                 overflow-y: visible;
                 overflow-y: scroll;
-                height: 100%;
+                height: 85%;
+
                 .partial{
                   width: 100%;
                   height: 100%;
@@ -237,13 +242,18 @@
                       font-size: 15px;
                       font-family: FontMoi-Title;
                       padding: 10px;
+                      margin: 5px;
+                      display: flex;
+                      flex-direction: column;
+                      position: relative;
 
                       .btn-view-table {
                         right: 15px;
+                        bottom: 5px;
                         position: absolute;
                         cursor: pointer;
                       }
-                      .description-content-learned {
+                      .description-item-award {
                         white-space: pre-wrap;
                       }
                     }
@@ -332,13 +342,15 @@
             align-items: flex-end;
             position: relative;
             cursor: pointer;
+            margin-left: 1%;
+            top: 1%;
 
             .tree {
               object-fit: cover;
               width: 100%;
               height: 100%;
               position: absolute;
-              top: 5px;
+              bottom: 0;
               z-index: 2;
             }
 
@@ -351,26 +363,42 @@
           }
         }
       }
+
+      @media (min-height: 900px) {
+        .profile-wrapper{
+          .header-wrapper {
+            .user-frame {
+              width: 6.5rem;
+              height: 6.5rem;
+            }
+          }
+        }
+      }
+
       @media (max-height: 700px) {
         .profile-wrapper{
           height: 70%;
         }
       }
+
       @media (max-height: 620px) {
         .profile-wrapper{
           height: 67%;
         }
       }
+
       @media (max-height: 580px) {
         .profile-wrapper{
           height: 65%;
         }
       }
+
       @media (max-height: 520px) {
         .profile-wrapper{
           height: 63%;
         }
       }
+
       @media (max-height: 500px) {
         .profile-wrapper{
           height: 61%;

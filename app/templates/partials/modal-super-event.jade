@@ -1,0 +1,19 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-event-details
+      .btn-close-modal(ng-click="::model.closeModal()")
+      .event-content
+        h2.event-title
+          | {{::model.data.title}}
+        .event-image(style="background-image: url('{{model.data.image}}')")
+        span.event-description
+          | {{ ::model.data.description}}
+        .achievement-list
+          .container-achievement(ng-repeat='achievement in model.data.achievements'
+                            ng-class="{'last-achievement': $last}")
+            .achievement
+              img.achievement-image(ng-src="{{::achievement.image}}")
+            .line(ng-if="!$last")
+        .join-event(ng-click="model.joinSuperEvent(model.data)")
+          | {{ ::'tasks.events.join' | translate}}
+

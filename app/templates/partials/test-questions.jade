@@ -11,8 +11,9 @@
                 ng-class="{'answer-selected': answer.selected}",
                 ng-style="vmTest.cssOptions.styles[$index+1]"
                 ng-click="vmTest.selectAnswer(question.content_id, answer)"
-                tooltip-moi="Elegir esta alternativa"
-                tooltip-position="up"
+                tooltips
+                tooltip-template="{{ 'tooltip.alternativa' | translate }}"
+                tooltip-side="up"
                 ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, $index+1)"
                 ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, $index+1)")
           h4 {{answer.text}}
@@ -22,7 +23,7 @@ sound-button.controls(
           ng-style="vmTest.cssOptions.styles[0]"
           image-url="images/next-test.png"
           ng-click="vmTest.next()"
-          tooltip-moi="Continuar a la siguiente pregunta"
+          tooltip-moi="{{ 'tooltip.question' | translate }}"
           tooltip-position="up"
           ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, 0)"
           ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, 0)")

@@ -1,11 +1,13 @@
 .modal-certificate {
   width: 100%;
   height: 100%;
-  background-image: url(../images/marco_exterior_H.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
   position: relative;
-  padding: 2.3rem;
+  &.with-frame {
+    background-image: url(../images/marco_exterior_H.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 2.3rem;
+  }
 
   .btn-close-modal {
     position: absolute;
@@ -97,7 +99,7 @@
     }
 
     .report-user {
-      height: 90px;
+      height: 80px;
       width: 100%;
       background-color: white;
       display: flex;
@@ -106,8 +108,8 @@
       font-family: FontMoi-Title;
 
       #chart-area {
-        height: 80px;
-        width: 160px;
+        height: 75px;
+        width: 150px;
       }
 
       .advance {
@@ -154,7 +156,7 @@
     }
 
     .website-info {
-      padding: 8px;
+      padding: 5px;
       color: white;
       font-weight: bold;
       font-family: FontMoi-Title;

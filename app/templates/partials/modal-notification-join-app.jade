@@ -1,12 +1,12 @@
 .modal-notification-join
-  .close-button(ng-click="::model.closeModal()")
+  .close-button(ng-click="model.closeModal()")
   .notification-container
     .logo-app
       img(src="images/moi-logo.png")
-    .options(ng-click="::model.closeModal()")
+    .options(ng-click="model.closeModal()")
       .btn-basic.play
-        a(ui-sref='new_login.first_step')
-          | Jugar!
+        a(ui-sref='login.first_step')
+          | {{ 'modal_join.play' | translate }}
       .btn-basic.parents
         a(ng-href="http://moi-backend.growmoi.com/users/sign_in")
-          | Padres y tutores
+          | {{ 'modal_join.parents' | translate }}
