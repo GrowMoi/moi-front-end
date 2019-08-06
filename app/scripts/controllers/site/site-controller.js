@@ -32,7 +32,8 @@
         images = IMAGES.paths,
         imageSaved = false,
         callApiSaveImage = 0,
-        isShowingPassiveModal = false;
+        isShowingPassiveModal = false,
+        normalSpeed = 0.2; // 200kbs/s
 
     UserNotificationsService.initialize();
 
@@ -52,6 +53,20 @@
     //init pagesViewed for passive messages
     if(!localStorage.getItem('pagesViewed')){
       localStorage.setItem('pagesViewed', JSON.stringify({}));
+    }
+
+    //init control to internet conection
+    site.offline = !navigator.onLine;
+    site.badConnection = false;
+    //add listener to internet conection
+    window.addEventListener('online', conectionStateChanged);
+    window.addEventListener('offline', conectionStateChanged);
+
+    if(navigator && navigator.connection) {
+      site.badConnection = navigator.connection.downlink <= normalSpeed;
+      navigator.connection.onchange = function() {
+        site.badConnection = navigator.connection.downlink <= normalSpeed;
+      };
     }
 
     var videos = VIDEOS.paths;
@@ -279,6 +294,10 @@
         pagesViewed[currentPage] = true;
         localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
       }
+    }
+
+    function conectionStateChanged() {
+      site.offline = !navigator.onLine;
     }
   }
 })();

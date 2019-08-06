@@ -6,6 +6,7 @@
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
 
     $translateProvider.translations('en', {
+      not_internet: 'Not Internet Conection',
       modal_launch_test : {
         'title' : 'You have read ',
         'title_next': ' articles',
@@ -299,6 +300,7 @@
     });
 
     $translateProvider.translations('es', {
+      not_internet: 'Sin conección a Internet',
       modal_launch_test : {
         'title' : 'Has leído ',
         'title_next': ' contenidos',

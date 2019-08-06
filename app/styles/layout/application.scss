@@ -16,6 +16,31 @@ body {
     display: none;
   }
 
+  .offline-panel {
+    width: 100%;
+    height: 100%;
+    background: #0000007d;
+    position: absolute;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    font-family: FontMoi-Title;
+    color: white;
+    cursor: not-allowed;
+  }
+
+  .bad-connection {
+    position: absolute;
+    z-index: 99999;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    width: 10rem;
+    height: 10rem;
+  }
+
   .loading-app {
     @include background-size(cover);
     background-image: url(../images/landscape_a.png);

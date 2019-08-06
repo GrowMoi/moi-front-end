@@ -15,7 +15,8 @@
     var channelsToNotifications = [],
         service = {
           initialize: initialize,
-          notifyOpenNotification: notifyOpenNotification
+          notifyOpenNotification: notifyOpenNotification,
+          getNewDetailsNotifications: getNewDetailsNotifications
         };
     return service;
 
@@ -57,6 +58,15 @@
         service.totalNotifications ++;
         updateNotificationsCount();
       }
+    }
+
+    function getNewDetailsNotifications() {
+      UserService.getDetailsNotifications().then(function(data) {
+        service.totalNotifications = data.notifications;
+        service.totalRecommendations = data.recommendations;
+        service.totalContentEvents = data.events;
+        updateNotificationsCount();
+      });
     }
 
     function updateNotificationsCount(){

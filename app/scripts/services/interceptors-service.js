@@ -22,13 +22,11 @@
         $injector.get('$state').go('login.first_step');
         $injector.get('$ionicLoading').hide();
       } else if (rejection.status === 404) {
-        var PopupService = $injector.get('PopupService'),
-            auth = $injector.get('$auth'),
-            popupOptions = {
-              title: 'Error',
-              content: rejection.statusText
-            };
-        PopupService.showModel('alert', popupOptions, function() {
+        var auth = $injector.get('$auth');
+        var title = 'Error';
+        var content = rejection.statusText;
+
+        showPopup(title, content, function(){
           $injector.get('$state').go('tree', {
             username: auth.user.username
           });
@@ -49,6 +47,15 @@
         $rootScope.$broadcast('loading:finish');
       }
       return resp || $q.when(resp);
+    }
+
+    function showPopup(title, content, callback) {
+      var PopupService = $injector.get('PopupService');
+      var popupOptions = {
+        title: title,
+        content: content
+      };
+      PopupService.showModel('alert', popupOptions, callback);
     }
   }
 

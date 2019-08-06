@@ -50,7 +50,7 @@
 
     <!-- your app's js -->
     <script src="scripts/configuration.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/templates.js"></script>
@@ -147,6 +147,9 @@
 
   </head>
   <body ng-app="moi" ng-controller="SiteController as site">
+    <div ng-if="site.offline || site.badConnection" class="offline-panel">
+      <img class="animated flash" src="images/no_connection_moi.png" alt="no_connection_moi">
+    </div>
     <div ng-if="site.loadedImages" ng-cloak>
       <ion-nav-view class="application" id="screenCapture"></ion-nav-view>
       <audio id="backgroundSound"
