@@ -13,7 +13,7 @@
             | {{::superevent.title}}
           span.event-description
             | {{::superevent.description}}
-        .event(ng-class="{taken: event.taken}"
+        .event(class="event-{{$index}}"
               ng-repeat="event in model.events track by $index"
               ng-if="event.is_available"
               ng-click="model.showEventDetails($index, model.events)")

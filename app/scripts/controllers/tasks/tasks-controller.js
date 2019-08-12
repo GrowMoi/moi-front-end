@@ -4,7 +4,6 @@
   .controller('TasksController', function($state,
                                           $rootScope,
                                           $auth,
-                                          StorageService,
                                           UserNotificationsService,
                                           GAService){
     var tasksmodel = this;
