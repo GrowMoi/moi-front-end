@@ -30,7 +30,7 @@
 
       return service;
 
-      function showLeaderboard(entity, fromEvent){
+      function showLeaderboard(entity, fromEvent, onSuccess, onError){
         if (preventClickEvent) {
           return;
         }
@@ -49,6 +49,13 @@
             ModalService.showModel(dialogOptions);
             preventClickEvent = false;
             currentPage += 1;
+            if (angular.isFunction(onSuccess)) {
+              onSuccess(data);
+            }
+        }, function(err) {
+          if (angular.isFunction(onError)) {
+            onError(err);
+          }
         });
       }
 
