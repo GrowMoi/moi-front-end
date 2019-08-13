@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('UserService', UserService);
 
-  function UserService($http, ENV, PopupService, $state, ModalService, $auth) {
+  function UserService($http, ENV, PopupService, $state, ModalService, $auth, $q) {
     var service = {
       profile: profile,
       updateProfile: updateProfile,
@@ -331,6 +331,8 @@
         params: defaultParams
       }).then(function success(res) {
         return res.data;
+      }, function(err) {
+        return $q.reject(err);
       });
     }
 
