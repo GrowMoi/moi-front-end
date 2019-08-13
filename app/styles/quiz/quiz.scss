@@ -14,6 +14,18 @@
   }
 }
 
+@media (max-height: 625px) {
+  .quiz-score {
+    height: 100%;
+  }
+}
+
+@media (max-height: 725px){
+  .modal-leaderboard {
+    height: 90%;
+  }
+}
+
 .summary-section {
   text-align: center;
 
@@ -24,7 +36,7 @@
 
       .main-content{
         width: 100%;
-        overflow-y: scroll;
+        overflow-y: hidden;
         height: 20rem;
 
         .result {
@@ -52,6 +64,30 @@
 
       .answers {
         color: white;
+      }
+      .content-final-test {
+        height: 50%;
+        width: 95%;
+        overflow-y: auto;
+      }
+      @media (max-height: 725px) {
+        .content-final-test {
+          height: 38%;
+        }
+      }
+      .content-final-test::-webkit-scrollbar-track {
+        border-radius: 10px;
+        border: 1px solid rgba(123, 121, 76, 0.62);
+        width: 5px;
+      }
+      .content-final-test::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+        border-radius: 10px;
+      }
+      .content-final-test::-webkit-scrollbar-thumb {
+        border-radius: 25px;
+        background-color: rgba(123, 121, 76, 0.62);
       }
     }
   }
