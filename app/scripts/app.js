@@ -271,8 +271,32 @@
       templateUrl: 'templates/tasks/tasks.html',
       abstract: true
     })
-    .state('tasks.contents', {
-      url: '/contents',
+    .state('tasks.contentsToLearn', {
+      url: '/contents/learn',
+      templateUrl: 'templates/tasks/contents-list/contents-list.html',
+      controller: 'ContentsListController',
+      controllerAs: 'contentsList',
+      resolve: {
+        currentUser: checkIfIsAuthorized,
+        gridParams: function(UserService, $q) {
+          return {
+            apiCallHandler: function (currentPage) {
+              return $q(function(resolve) {
+                UserService.getContentsToLearn(currentPage).then(function(data) {
+                  resolve({
+                    items: data.contents,
+                    totalItems: data.meta.total_items //jshint ignore:line
+                  });
+                });
+              });
+            },
+            showDeleteIcon: false
+          };
+        }
+      }
+    })
+    .state('tasks.savedContents', {
+      url: '/contents/saved',
       templateUrl: 'templates/tasks/contents-list/contents-list.html',
       controller: 'ContentsListController',
       controllerAs: 'contentsList',
@@ -327,31 +351,6 @@
         }
       }
     })
-    .state('tasks.recommendations', {
-      url: '/recommendations',
-      templateUrl: 'templates/tasks/contents-list/contents-list.html',
-      controller: 'ContentsListController',
-      controllerAs: 'contentsList',
-      resolve: {
-        currentUser: checkIfIsAuthorized,
-        gridParams: function(TutorRecommendationsService, $q) {
-          return {
-            apiCallHandler: function (currentPage) {
-              return $q(function(resolve) {
-                var dataFormat = 'contents';
-                TutorRecommendationsService.getTutorRecommendations(currentPage, dataFormat).then(function(data) {
-                  resolve({
-                    items: data.contents,
-                    totalItems: data.meta.total_items //jshint ignore:line
-                  });
-                });
-              });
-            },
-            showDeleteIcon: false
-          };
-        }
-      }
-    })
     .state('tasks.notes', {
       url: '/notes',
       templateUrl: 'templates/tasks/notes/notes.html',
@@ -368,30 +367,6 @@
       controllerAs: 'notificationsModel',
       resolve: {
         currentUser: checkIfIsAuthorized
-      }
-    })
-    .state('tasks.events', {
-      url: '/events',
-      templateUrl: 'templates/tasks/events/events.html',
-      controller: 'EventsController',
-      controllerAs: 'eventsModel',
-      resolve: {
-        currentUser: checkIfIsAuthorized,
-        gridParams: function(EventsService, $q) {
-          return {
-            apiCallHandler: function (currentPage) {
-              return $q(function(resolve) {
-                EventsService.showContentEvents(currentPage).then(function(contentsData){
-                  resolve({
-                    items: contentsData,
-                    totalItems: contentsData.length
-                  });
-                });
-              });
-            },
-            showDeleteIcon: false
-          };
-        }
       }
     })
     .state('inventory', {

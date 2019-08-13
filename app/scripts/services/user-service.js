@@ -31,7 +31,8 @@
       deleteCertificate: deleteCertificate,
       sharingContent: sharingContent,
       getMyEvents: getMyEvents,
-      getDetailsNotifications: getDetailsNotifications
+      getDetailsNotifications: getDetailsNotifications,
+      getContentsToLearn: getContentsToLearn,
     };
 
     var popupOptions = { title: 'Error'};
@@ -462,6 +463,23 @@
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/users/events/my_events'
+      }).then(function success(res) {
+        return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+      });
+    }
+
+    function getContentsToLearn(page) {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/contents_to_learn',
+        params: {
+          page: page
+        }
       }).then(function success(res) {
         return res.data;
       }, function error(err) {
