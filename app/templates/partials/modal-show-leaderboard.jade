@@ -12,15 +12,15 @@
             .user-description.row.col-90.user-leader(ng-click="model.goToUser(user)")
               .content-center.col-10
                 img.lenin.user-image(ng-src="{{user.user_image || 'images/perfilM.png'}}")
-              .content-center.col-25.user-name-container
+              .content-center.col-40.user-name-container.user-leaderboard
                 span.user-name
                   | {{user.username}}
-              .content-center.col-20
+                span.time
+                  | {{user.time_elapsed | milliseconds}}
+              .content-center.col-25
                 | {{user.contents_learnt}}/{{model.total_contents}}
-              .content-center.time-elapsed-col
-                | {{user.time_elapsed | milliseconds}}
-              .content-center.achievements-col(ng-if="model.fromEvent")
-                  | {{user.super_event_achievements_count}}/{{model.total_super_event_achievements}}
+              .content-center.achievements-col.col-25
+                | {{user.super_event_achievements_count}}/{{model.total_super_event_achievements}}
       .user-item-container(ng-if="!model.hideFooter && model.user")
         .user-item.row
           img(src="images/3puntoM.png")
