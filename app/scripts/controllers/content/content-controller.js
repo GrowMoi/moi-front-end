@@ -197,6 +197,7 @@
       function emptyFuncion() {}
 
       function shareContent() {
+        GAService.track('send', 'event', 'Enviar progreso desde Contenido ' + content.title, 'Click');
         var data = {
           title: content.title,
           media: content.media[0],

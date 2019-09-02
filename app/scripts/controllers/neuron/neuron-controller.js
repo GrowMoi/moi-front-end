@@ -9,7 +9,8 @@
               $auth,
               SocialService,
               MediaAchievements,
-              dataInventory) {
+              dataInventory,
+              GAService) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -104,6 +105,7 @@
     });
 
     function shareNeuron() {
+      GAService.track('send', 'event', 'Enviar progreso desde Neurona ' + vmNeuron.neuron.title, 'Click');
       var data = {
         title: vmNeuron.neuron.contents[0].title,
         media: vmNeuron.neuron.contents[0].media[0],

@@ -143,6 +143,7 @@
     }
 
     function shareProfile() {
+      GAService.track('send', 'event', 'Enviar progreso desde Perfil de Usuario', 'Click');
       var data = language === 'es' ?
       {
         title: 'Mira todos mis avances en mi perfil Moi',
