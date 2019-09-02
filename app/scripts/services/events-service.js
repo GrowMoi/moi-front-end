@@ -13,7 +13,8 @@
                           PopupService,
                           ModalService,
                           UserNotificationsService,
-                          MediaAchievements) {
+                          MediaAchievements,
+                          GAService) {
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
@@ -183,7 +184,7 @@
         modelEvents.model.superevent = superevent;
         modelEvents.model.showSuperEventDetails = showSuperEventDetails;
         modelEvents.model.hasEvents = (currentEvents.length > 0 || hasSuperEventAvailable);
-
+        GAService.track('send', 'event', 'Abrir modal de eventos', 'Modal');
         ModalService.showModel(modelEvents);
         return eventModalPromise.promise;
       }
@@ -191,6 +192,7 @@
       function showEventDetails(index, events){
         modelEvent.model.data = events[index];
         modelEvent.model.data.indexEvent = index;
+        GAService.track('send', 'event', 'Mostrar detalles de Evento ' + modelEvent.model.data.title, 'Click');
         ModalService.showModel(modelEvent);
       }
 
@@ -211,6 +213,7 @@
 
       function joinEvent(event) {
         takeEvent(event.id).then(function(){
+          GAService.track('send', 'event', 'Unirse a Evento ' + event.title, 'Click');
           modelEvent.model.closeModal();
           showEventNotification();
         });

@@ -122,7 +122,7 @@
       modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
       modelData.data.publicUrl = data.publicUrl || $location.absUrl();
-      GAService.track('send', 'event', 'Abrir modal para enviar progreso', 'Click');
+      GAService.track('send', 'event', 'Abrir modal para enviar progreso', 'Modal');
       ModalService.showModel({
         templateUrl: 'templates/partials/modal-share-social.html',
         model: modelData

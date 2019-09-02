@@ -10,7 +10,8 @@
                                                   EventsService,
                                                   MediaAchievements,
                                                   $state,
-                                                  LeaderboardService){
+                                                  LeaderboardService,
+                                                  GAService){
     var notificationsModel = this;
     var notificationSelected,
         requestData = {},
@@ -247,6 +248,7 @@
 
     function showModalEvents(data){
       if(!data.isSuperEvent) {
+        GAService.track('send', 'event', 'Mostrar eventos ' + data.subtitle, 'Click');
         EventsService.showSetEvents(data.events).then(function() {
           var notificationsUpdated = notificationsModel.notifications.filter(function(notification) {
             return notification.type !== 'event' || notification.isSuperEvent;
