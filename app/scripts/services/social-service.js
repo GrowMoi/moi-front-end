@@ -13,7 +13,8 @@
                         ENV,
                         ScreenshotService,
                         UploadImageService,
-                        UserService) {
+                        UserService,
+                        GAService) {
     var service = {
       showModal: showModal
     };
@@ -59,12 +60,14 @@
             if(socialNetwork === 'facebook'){
               defaultAttrs.socialshareVia=  ENV.facebookKey;
               defaultAttrs.socialshareType = 'share';
+              GAService.track('send', 'event', 'Enviar progreso de árbol por Facebook', 'Click');
               Socialshare.share({
                 provider: socialNetwork,
                 attrs: defaultAttrs
               });
             }else if(socialNetwork === 'twitter'){
               defaultAttrs.socialshareText = options.shortDescription;
+              GAService.track('send', 'event', 'Enviar progreso de árbol por Twitter', 'Click');
               Socialshare.share({
                 provider: socialNetwork,
                 attrs: defaultAttrs
@@ -94,6 +97,7 @@
       });
       if(modelData.data.image_url){ //jshint ignore:line
         emailParams.image_url = modelData.data.image_url; //jshint ignore:line
+        GAService.track('send', 'event', 'Enviar progreso de árbol por Email', 'Click');
         UserService.sharedEmailContent(emailParams).then(function() {
           $ionicLoading.hide();
           showConfirmEmail();
@@ -118,6 +122,7 @@
       modelData.showMailForm = showMailForm;
       modelData.data.shortDescription = getShortDescription(data);
       modelData.data.publicUrl = data.publicUrl || $location.absUrl();
+      GAService.track('send', 'event', 'Abrir modal para enviar progreso', 'Click');
       ModalService.showModel({
         templateUrl: 'templates/partials/modal-share-social.html',
         model: modelData
