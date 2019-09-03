@@ -12,7 +12,8 @@
                                                 DesactiveAchievements,
                                                 DesactiveAchievementsEn,
                                                 TestService,
-                                                $auth) {
+                                                $auth,
+                                                GAService) {
       var vmInv = this,
           $backgroundSound,
           achievements = data.achievements,
@@ -112,6 +113,7 @@
       }
 
       function activateAchievement(achievement){
+        GAService.track('send', 'event', 'Activar logro ' + achievement.name, 'Click');
         if(achievement.settings.theme){
           vmInv.achievementSelected = achievement;
           UserService.activeAchievement(achievement.id).then(showpopup);

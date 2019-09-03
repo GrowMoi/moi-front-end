@@ -18,7 +18,7 @@
     };
   }
 
-  function moiInfiniteGridContentsController($scope) {
+  function moiInfiniteGridContentsController($scope, GAService) {
     var vm = this;
     var defaultOptions = {
       apiCallHandler: null,
@@ -109,6 +109,10 @@
       if (angular.isFunction(emitter.onSelectDeleteCb)) {
         emitter.onSelectDeleteCb(item, vm.items);
       }
+    };
+
+    vm.trackAction = function(item) {
+      GAService.track('send', 'event', 'Abrir contenido ' + item.title + ' desde tab Contenidos por Aprender', 'Click');
     };
 
     vm.showDeleteIcon = function(item) {
