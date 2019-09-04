@@ -38,6 +38,13 @@
       $state.go('login.second_step');
     };
 
+    vmLogin.trackRegisterClick = function(){
+      GAService.track('send', 'event', {
+        'eventCategory': 'Seleccionar Botón Registro',
+        'eventAction': 'Click'
+      });
+    };
+
     vmLogin.onSelectImage = function(image){
       /*jshint camelcase: false */
       vmLogin.form.authorization_key = image.key;

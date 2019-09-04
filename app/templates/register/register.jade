@@ -82,4 +82,5 @@ ion-view(
               ng-disabled="!registerForm.$valid && !registerModel.registerForm.authorization_key",
               type='submit',
               value="{{ 'register.enter' | translate }}"
+              ng-click="registerModel.trackRegisterGo()"
             ).button.action-button

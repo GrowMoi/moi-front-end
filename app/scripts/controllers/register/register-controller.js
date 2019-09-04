@@ -12,7 +12,8 @@
                               StorageService,
                               ModalService,
                               ImagesLoginEn,
-                              ImagesLogin) {
+                              ImagesLogin,
+                              GAService) {
     var registerModel = this;
     var lang = navigator.language || navigator.userLanguage;
     var languageBrowser = lang.slice(0,2);
@@ -28,6 +29,13 @@
       $auth.submitRegistration(registerModel.registerForm)
         .then(function() {
           $auth.validateUser().then(function(user){
+
+            GAService.track('send', 'event', {
+              'eventCategory': 'Registro Exitoso de Usuario',
+              'eventAction': 'Click',
+              'eventValue': 1
+            });
+
             var route={
               state:'tree',
               user: user.username
@@ -67,6 +75,13 @@
 
     registerModel.acceptTerms = function(){
       registerModel.closeModal();
+    };
+
+    registerModel.trackRegisterGo = function(){
+      GAService.track('send', 'event', {
+        'eventCategory': 'Seleccionar Botón Entrar',
+        'eventAction': 'Click'
+      });
     };
   }
 })();

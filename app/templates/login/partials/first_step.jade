@@ -13,7 +13,7 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
         )
     .row.button-actions
       .col
-        .button.button-login(ui-sref="register", ng-disabled="!vmLogin.isChrome", )
+        .button.button-login(ui-sref="register", ng-disabled="!vmLogin.isChrome", ng-click="vmLogin.trackRegisterClick()")
           | {{ 'signup' | translate }}
       .col
         input(
