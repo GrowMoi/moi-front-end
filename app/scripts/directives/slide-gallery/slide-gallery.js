@@ -101,7 +101,11 @@
         $backgroundSound[0].pause();
       }
 
-      GAService.track('send', 'event', 'Mostrar media '+ url, 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Abrir Media en Contenido',
+        'eventAction': 'Click',
+        'eventLabel': url
+      });
 
       ModalService.showModel({
         parentScope: $scope,

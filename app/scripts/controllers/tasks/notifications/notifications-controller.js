@@ -248,7 +248,11 @@
 
     function showModalEvents(data){
       if(!data.isSuperEvent) {
-        GAService.track('send', 'event', 'Mostrar eventos ' + data.subtitle, 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Mostrar Eventos',
+          'eventAction': 'Click',
+          'eventLabel':  data.subtitle
+        });
         EventsService.showSetEvents(data.events).then(function() {
           var notificationsUpdated = notificationsModel.notifications.filter(function(notification) {
             return notification.type !== 'event' || notification.isSuperEvent;

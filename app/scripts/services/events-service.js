@@ -184,7 +184,11 @@
         modelEvents.model.superevent = superevent;
         modelEvents.model.showSuperEventDetails = showSuperEventDetails;
         modelEvents.model.hasEvents = (currentEvents.length > 0 || hasSuperEventAvailable);
-        GAService.track('send', 'event', 'Abrir modal de eventos', 'Modal');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Abrir Modal de Eventos',
+          'eventAction': 'Click',
+          'eventLabel':  neuron.name
+        });
         ModalService.showModel(modelEvents);
         return eventModalPromise.promise;
       }
@@ -192,7 +196,11 @@
       function showEventDetails(index, events){
         modelEvent.model.data = events[index];
         modelEvent.model.data.indexEvent = index;
-        GAService.track('send', 'event', 'Mostrar detalles de Evento ' + modelEvent.model.data.title, 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Mostrar Detalles de Evento',
+          'eventAction': 'Click',
+          'eventLabel':  modelEvent.model.data.title
+        });
         ModalService.showModel(modelEvent);
       }
 
@@ -213,7 +221,11 @@
 
       function joinEvent(event) {
         takeEvent(event.id).then(function(){
-          GAService.track('send', 'event', 'Unirse a Evento ' + event.title, 'Click');
+          GAService.track('send', 'event', {
+            'eventCategory': 'Unirse a Evento',
+            'eventAction': 'Click',
+            'eventLabel':  event.title
+          });
           modelEvent.model.closeModal();
           showEventNotification();
         });

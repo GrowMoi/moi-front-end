@@ -300,7 +300,11 @@
     }
 
     function sendContent(content){
-      GAService.track('send', 'event', 'Abrir contenido desde recomendaciones ' + content.title, 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Abrir Contenido desde Recomendaciones',
+        'eventAction': 'Click',
+        'eventLabel':  content.title
+      });
       $state.go('content', {neuronId: content.neuron_id, contentId: content.id});// jshint ignore:line
     }
 

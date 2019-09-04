@@ -105,7 +105,11 @@
     });
 
     function shareNeuron() {
-      GAService.track('send', 'event', 'Enviar progreso desde Neurona ' + vmNeuron.neuron.title, 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Enviar Progreso desde Neurona',
+        'eventAction': 'Click',
+        'eventLabel': vmNeuron.neuron.title
+      });
       var data = {
         title: vmNeuron.neuron.contents[0].title,
         media: vmNeuron.neuron.contents[0].media[0],

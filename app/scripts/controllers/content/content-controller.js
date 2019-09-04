@@ -115,7 +115,11 @@
       }
 
       function showImage(urlImage) {
-        GAService.track('send', 'event', 'Mostrar media '+ urlImage, 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Expandir Media en Contenido',
+          'eventAction': 'Click',
+          'eventLabel': urlImage
+        });
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
@@ -131,7 +135,11 @@
       }
 
       vmContent.registerClick = function (contentTitle) {
-        GAService.track('send', 'event', 'Abrir contenido ' + contentTitle, 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Mostrar Contenido',
+          'eventAction': 'Click',
+          'eventLabel': contentTitle
+        });
       };
 
       function sendNotes() {
@@ -197,7 +205,11 @@
       function emptyFuncion() {}
 
       function shareContent() {
-        GAService.track('send', 'event', 'Enviar progreso desde Contenido ' + content.title, 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Enviar Progreso desde Contenido',
+          'eventAction': 'Click',
+          'eventLabel': content.title
+        });
         var data = {
           title: content.title,
           media: content.media[0],

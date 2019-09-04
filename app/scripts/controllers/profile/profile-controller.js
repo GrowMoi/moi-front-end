@@ -136,7 +136,11 @@
     }
 
     function logout(){
-      GAService.track('send', 'event', 'Logout de usuario', 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Logout de Usuario',
+        'eventAction': 'Click'
+      });
+
       GAService.track('set', 'userId', null);
       GAService.track('set', 'dimension1', user.id);
       $window.localStorage.clear();
@@ -144,7 +148,11 @@
     }
 
     function shareProfile() {
-      GAService.track('send', 'event', 'Enviar progreso desde Perfil de Usuario', 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Enviar Progreso desde Perfil de Usuario',
+        'eventAction': 'Click'
+      });
+
       var data = language === 'es' ?
       {
         title: 'Mira todos mis avances en mi perfil Moi',

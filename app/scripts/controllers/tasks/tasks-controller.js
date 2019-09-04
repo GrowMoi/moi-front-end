@@ -99,7 +99,11 @@
     tasksmodel.tabs = language === 'es' ? tabs : tabsEn;
 
     tasksmodel.changeTab = function(field) {
-      GAService.track('send', 'event', 'Seleccionar tab ' + field, 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Seleccionar Tab',
+        'eventAction': 'Click',
+        'eventLabel':  field
+      });
       angular.forEach(tasksmodel.tabs, function(tab) {
         if(tab.field === field){
           tab.selected = true;

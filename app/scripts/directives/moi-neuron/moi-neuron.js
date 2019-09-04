@@ -98,7 +98,11 @@
     }
 
     vm.registerClick = function(neuron) {
-      GAService.track('send', 'event', 'Abrir neurona ' + neuron.name, 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Abrir Neurona',
+        'eventAction': 'Click',
+        'eventLabel':  neuron.name
+      });
     };
 
     function calculateSize(progress, steps) {

@@ -260,12 +260,20 @@
       //callbacks functions
 
       function finishedAnimationSearch() {
-        GAService.track('send', 'event', 'Ir a sección Buscar', 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Ir a Búsqueda',
+          'eventAction': 'Click',
+          'eventLabel':  content.title
+        });
         $state.go('searches');
       }
 
       function finishedAnimationRead() {
-        GAService.track('send', 'event', 'Aprender contenido '+ vm.content.title, 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Aprender Contenido',
+          'eventAction': 'Click',
+          'eventLabel':  vm.content.title
+        });
         ContentService.readContent(vm.content).then(function(response){
           var data = response.data,
               page = $state.current.name;
@@ -293,7 +301,11 @@
       }
 
       function finishedAnimationsaveTasks() {
-        GAService.track('send', 'event', 'Guardar tarea', 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Guardar Contenido',
+          'eventAction': 'Click',
+          'eventLabel':  vm.content.title
+        });
         UserService.addTasks(vm.content).then(function(response) {
           if(response.data.exist){
             dialogContentModel = {
@@ -315,20 +327,31 @@
       }
 
       function finishedAnimationAddFavorites() {
-        GAService.track('send', 'event', 'Ir a sección Buscar', 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Agregar Contenido a Favoritos',
+          'eventAction': 'Click',
+          'eventLabel':  vm.content.title
+        });
+
         UserService.addFavorites(vm.content).then(function(response) {
           vm.content.favorite = response.data.favorite;
         });
       }
 
       function finishedAnimationRecomendation() {
-        GAService.track('send', 'event', 'Generar recomendación aleatoria', 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Generar Recomendación Aleatoria',
+          'eventAction': 'Click'
+        });
         var id = $state.params.neuronId;
         UserService.recommendedNeuron(id);
       }
 
       function finishedAnimationShowTasks() {
-        GAService.track('send', 'event', 'Mostrar tareas', 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Mostrar Vista de Tareas',
+          'eventAction': 'Click'
+        });
         if(vm.showTasksOptions.totalNotifications){
           $state.go('tasks.notifications');
         }else{

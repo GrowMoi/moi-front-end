@@ -25,7 +25,11 @@
     }
 
     function reloadSearch() {
-      GAService.track('send', 'event', 'Buscar ' + searchesmodel.query, 'Search');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Buscar Término',
+        'eventAction': 'Click',
+        'eventLabel': searchesmodel.query
+      });
       $state.go('searches', { query: searchesmodel.query });
     }
 

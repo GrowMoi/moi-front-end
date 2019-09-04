@@ -112,7 +112,11 @@
     };
 
     vm.trackAction = function(item) {
-      GAService.track('send', 'event', 'Abrir contenido ' + item.title + ' desde tab Contenidos por Aprender', 'Click');
+      GAService.track('send', 'event', {
+        'eventCategory': 'Abrir Contenido desde Tab Contenidos por Aprender',
+        'eventAction': 'Click',
+        'eventLabel':  item.title
+      });
     };
 
     vm.showDeleteIcon = function(item) {

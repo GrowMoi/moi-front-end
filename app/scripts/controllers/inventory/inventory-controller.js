@@ -113,7 +113,11 @@
       }
 
       function activateAchievement(achievement){
-        GAService.track('send', 'event', 'Activar logro ' + achievement.name, 'Click');
+        GAService.track('send', 'event', {
+          'eventCategory': 'Activar Logro',
+          'eventAction': 'Click',
+          'eventLabel': achievement.name
+        });
         if(achievement.settings.theme){
           vmInv.achievementSelected = achievement;
           UserService.activeAchievement(achievement.id).then(showpopup);
