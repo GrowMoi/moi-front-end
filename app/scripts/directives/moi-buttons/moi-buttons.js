@@ -263,7 +263,7 @@
         GAService.track('send', 'event', {
           'eventCategory': 'Ir a Búsqueda',
           'eventAction': 'Click',
-          'eventLabel':  content.title
+          'eventLabel':  vm.content.title
         });
         $state.go('searches');
       }

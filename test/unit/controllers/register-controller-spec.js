@@ -24,6 +24,11 @@
           setLanguage: function(){}
         };
       });
+      $provide.factory('GAService', function(){
+        return {
+          track: function (){}
+        };
+      });
     }));
 
     beforeEach(module('moi.controllers'));

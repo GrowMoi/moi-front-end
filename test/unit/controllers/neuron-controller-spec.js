@@ -48,6 +48,12 @@
           }
         };
       });
+
+      $provide.factory('GAService', function(){
+        return {
+          track: function (){}
+        };
+      });
     }));
     beforeEach(inject(
       function(_$controller_,

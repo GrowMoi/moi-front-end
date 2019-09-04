@@ -28,6 +28,11 @@
           }
         };
       });
+      $provide.factory('GAService', function(){
+        return {
+          track: function (){}
+        };
+      });
       $provide.factory('StorageService', function(){
         return {
           get: function(){

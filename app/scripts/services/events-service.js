@@ -186,8 +186,7 @@
         modelEvents.model.hasEvents = (currentEvents.length > 0 || hasSuperEventAvailable);
         GAService.track('send', 'event', {
           'eventCategory': 'Abrir Modal de Eventos',
-          'eventAction': 'Click',
-          'eventLabel':  neuron.name
+          'eventAction': 'Click'
         });
         ModalService.showModel(modelEvents);
         return eventModalPromise.promise;

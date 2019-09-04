@@ -12,6 +12,12 @@
         $provide.value('translateFilter', function(value) {
           return value;
         });
+
+        $provide.factory('GAService', function(){
+          return {
+            track: function (){}
+          };
+        });
       });
     });
 

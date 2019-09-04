@@ -5,7 +5,7 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
                       on-change="vmLogin.onSelectImage(image)")
     .row.button-actions
       .col
-        .button.button-translate(ui-sref="register", ng-disabled="!vmLogin.isChrome", ng-click="vmLogin.trackRegisterClick())
+        .button.button-translate(ui-sref="register", ng-disabled="!vmLogin.isChrome", ng-click="vmLogin.trackRegisterClick()")
           | {{ 'signup' | translate }}
       .col
         input(
