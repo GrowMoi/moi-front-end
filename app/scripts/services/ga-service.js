@@ -30,7 +30,7 @@
       }
 
       if ($location.host() === 'localhost' || $location.host() === '127.0.0.1') {
-       // ga('set', 'sendHitTask', null);
+        ga('set', 'sendHitTask', null);
       }
 
     }
