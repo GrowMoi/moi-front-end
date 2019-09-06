@@ -29,6 +29,11 @@
       .then(function userAuthorized(user){
         GAService.track('set', 'userId', user.username);
         GAService.track('set', 'dimension1', user.id);
+        GAService.track('send', 'event', {
+          'eventCategory': 'Registro Exitoso de Usuario',
+          'eventAction': 'Click',
+          'eventValue': 1
+        });
       }, function userNotAuthorized(){
         GAService.track('set', 'userId', null);
         GAService.track('set', 'dimension1', null);

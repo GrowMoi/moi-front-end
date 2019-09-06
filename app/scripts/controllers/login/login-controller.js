@@ -83,6 +83,11 @@
         state:successState,
         user: user.username
       };
+      GAService.track('send', 'event', {
+        'eventCategory': 'Registro Exitoso de Usuario',
+        'eventAction': 'Click',
+        'eventValue': 1
+      });
       StorageService.setLanguage(route);
     }
   });

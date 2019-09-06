@@ -33,7 +33,6 @@
             GAService.track('send', 'event', {
               'eventCategory': 'Registro Exitoso de Usuario',
               'eventAction': 'Click',
-              'eventLabel': user.id,
               'eventValue': 1
             });
 
