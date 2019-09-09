@@ -223,6 +223,7 @@
           GAService.track('send', 'event', {
             'eventCategory': 'Unirse a Evento',
             'eventAction': 'Click',
+            'eventValue': 1,
             'eventLabel':  event.title
           });
           modelEvent.model.closeModal();
