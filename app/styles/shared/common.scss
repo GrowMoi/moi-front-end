@@ -13,10 +13,7 @@
   form {
     position: absolute;
     .login-title {
-      @include background-size(contain);
-      background-image: url(../images/login/title.png);
-      background-repeat: no-repeat;
-      color: $darkBrown;
+      color: $primary;
       font-weight: bold;
       height: 50px;
       padding: 15px 5px 0 20px;

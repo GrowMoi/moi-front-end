@@ -6,8 +6,8 @@
 moi-select-images{
   width: 100%;
 }
-.title-grid-images{
-  color: #fef9bf;
+.title-grid-images {
+  color: $secondary;
   font-size: 14px;
   font-weight: bold;
   font-family: FontMoi-Title;
@@ -37,7 +37,7 @@ moi-select-images{
       filter: none;
     }
     span {
-      color: #fef9bf;
+      color: $secondary;
       font-size: 10px;
       font-weight: bold;
       font-family: FontMoi-Title;

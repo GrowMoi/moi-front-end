@@ -5,13 +5,13 @@
   height: 50px;
 }
 .button-translate {
-  width: 135px;
+  width: 140px;
   height: 50px;
 }
 .login-view{
-  background-image: url(../images/login/bg.png);
-  background-size: 1280px 720px;
-  background-position: top right;
+  background-image: url(../images/view-elements/frame-login.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   form{
     right: 200px;
     top: 15%;
@@ -24,7 +24,7 @@
       top: 17%;
     }
   }
-  .legend-browser{
+  .legend-browser {
     color: white;
     text-decoration: none;
     position: relative;

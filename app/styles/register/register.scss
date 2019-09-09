@@ -1,8 +1,9 @@
-.register-view{
-  background-image: url(../images/login/register-bg.png);
-  background-position: center 20%;
-  background-size: 125%;
-  height: 120% !important;
+@import "shared/colors";
+
+.register-view {
+  background-image: url(../images/view-elements/frame-login.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   .form-container{
     display: flex;
   }
@@ -87,7 +88,7 @@
     line-height: 28px;
   }
   .link-terms {
-    color: #fef9bf;
+    color: $secondary;
     font-family: FontMoi-Title;
     position: absolute;
     top: 90%;

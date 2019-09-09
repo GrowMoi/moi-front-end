@@ -13,10 +13,10 @@ form {
   }
 
   input[type='email'], input[type='password'], input[type='text'], input[type='number'] {
-    color: $darkBrown;
+    color: $primary;
     font-size: 18px;
     font-weight: bold;
-    @include placeholder($lightBrown);
+    @include placeholder($secondary);
 
     &::-moz-placeholder {
       text-transform: uppercase;
@@ -52,6 +52,10 @@ form {
     &.activated {
       box-shadow: none;
       background-color: transparent;
+    }
+
+    &:hover {
+      color: $tertiary;
     }
   }
 }
