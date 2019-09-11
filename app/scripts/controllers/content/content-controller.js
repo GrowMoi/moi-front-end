@@ -34,7 +34,7 @@
       };
 
       //set default theme
-      vmContent.theme = 'moi_verde';
+      vmContent.theme = 'moi_azul';
       vmContent.isMoitheme = true;
 
       activate();
