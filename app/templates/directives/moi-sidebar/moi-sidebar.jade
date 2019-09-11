@@ -2,14 +2,10 @@ drawer(side="left")
   .sidebar-menu
     moi-arrow(on-click="toggleDrawer()" orientation="left")
     .settings-btns
-      .settings-amigos
-        animate-sprite(options="vm.profileOptions")
-      .settings-rueda
-        animate-sprite(options="vm.settingOptions")
-      .settings-inventario
-        animate-sprite(options="vm.inventoryOptions")
-      .settings-tutor
-        img(src="images/tutorh.png")
+      .settings-btn(ng-repeat="button in vm.buttonsOptions track by $index" ng-click="vm.goToPage(button.page)")
+        img.icon(ng-src="{{button.icon}}")
+        span.text
+          | {{ button.translation | translate }}
     .settings-arbol.view-tree(ng-if="vm.user.tree_image")
       img.tree(ng-src="{{vm.user.tree_image}}")
     .settings-img-background(ng-if="vm.user.tree_image"

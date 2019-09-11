@@ -21,44 +21,41 @@
       vm.user = $auth.user;
       vm.user.tree_image = vm.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
       vm.goToTree = goToTree;
-
-      vm.settingOptions = AnimationService.getButton({
-        key: 'settings',
-        readOnly: vm.user.id ? false : true,
-        callbacks: {
-          onClickReadOnly: showNotificationModal,
-          finishedAnimation: goToSetting
+      vm.goToPage = goToPage;
+      vm.buttonsOptions = [
+        {
+          page: 'settings',
+          translation: 'buttons.configuration',
+          icon: '../images/sidebar/config_menu.png'
+        },
+        {
+          page: 'profile',
+          translation: 'buttons.profile',
+          icon: '../images/sidebar/perfil_menu.png'
+        },
+        {
+          page: 'inventory',
+          translation: 'buttons.inventory',
+          icon: '../images/sidebar/inventario_menu.png'
         }
-      });
+      ];
 
-      vm.profileOptions = AnimationService.getButton({
-        key: 'profile',
-        readOnly: vm.user.id ? false : true,
-        callbacks: {
-          onClickReadOnly: showNotificationModal,
-          finishedAnimation: goToProfile
+      function goToPage(page) {
+        if (vm.user.id) {
+          switch (page) {
+            case 'settings':
+              $state.go('settings');
+              break;
+            case 'profile':
+              $state.go('profile', {username: vm.user.username});
+              break;
+            case 'inventory':
+              $state.go('inventory');
+              break;
+          }
+        } else {
+          showNotificationModal();
         }
-      });
-
-      vm.inventoryOptions = AnimationService.getButton({
-        key: 'inventory',
-        readOnly: vm.user.id ? false : true,
-        callbacks: {
-          onClickReadOnly: showNotificationModal,
-          finishedAnimation: goToInventory
-        }
-      });
-
-      function goToSetting() {
-        $state.go('settings');
-      }
-
-      function goToProfile() {
-        $state.go('profile', {username: vm.user.username});
-      }
-
-      function goToInventory() {
-        $state.go('inventory');
       }
 
       function goToTree() {
@@ -79,6 +76,7 @@
         };
         ModalService.showModel(dialogOptions);
       }
+
       $scope.$on('scanner-started', function(event, args) {
         vm.user.tree_image = args.any.tree_image.url; //jshint ignore:line
       });

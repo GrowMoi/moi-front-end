@@ -164,6 +164,9 @@
         'upload-photo': 'Upload image',
         'change-password': 'Change password',
         'skip': 'Skip',
+        'configuration': 'Configuration',
+        'profile': 'Profile',
+        'inventory': 'Inventory',
       },
       titles: {
         'personal-descripcion': 'Personal description',
@@ -456,6 +459,9 @@
         'upload-photo': 'Cargar foto',
         'change-password': 'Cambiar contraseña',
         'skip': 'Saltar',
+        'configuration': 'Configuración',
+        'profile': 'Perfil',
+        'inventory': 'Inventario',
       },
       titles: {
         'personal-descripcion': 'Descripción Personal',
