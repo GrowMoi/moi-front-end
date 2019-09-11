@@ -53,7 +53,7 @@
         externalAnimationIdle: true,
         onRegisterApi: onRegisterApiContents,
         //set default theme
-        theme:'moi_verde',
+        theme:'moi_azul',
         isMoitheme: true
       };
     }
