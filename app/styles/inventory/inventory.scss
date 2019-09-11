@@ -31,7 +31,7 @@
         .sign {
           font-size: 25px;
           padding-bottom: 15px;
-          color: $moiDarkGreen;
+          color: $secondary;
           font-weight: bold;
           font-family: FontMoi-Title;
         }
@@ -80,12 +80,12 @@
           margin-bottom: 10px;
           display: flex;
           flex-wrap: wrap;
-          padding: 15px 20px 15px 25px;
 
           .cell {
             display: flex;
             justify-content: center;
             flex: 0 0 16.6%;
+            padding-top: 8px;
             cursor: pointer;
 
             img {
