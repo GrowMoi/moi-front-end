@@ -1,3 +1,5 @@
+@import "shared/colors";
+
 #test-frame {
   background-color: transparent;
 
@@ -8,10 +10,10 @@
     .progress-bar {
       width: 150px;
       height: 20px;
-      border: 1px solid black;
+      border: 1px solid #4b4c4c;
 
       .internal-bar {
-        background: #622A67;
+        background: $secondary;
         height: 100%;
         width: 0;
         position: relative;
@@ -84,7 +86,7 @@
       margin-bottom: 5px;
 
       h1 {
-        color: #622A67;
+        color: $secondary;
         position: absolute;
         text-align: center;
         bottom: 100%;
