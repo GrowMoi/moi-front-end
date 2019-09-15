@@ -1,3 +1,5 @@
+@import "shared/colors";
+
 .friends-container {
   .back-arrow {
     .arrow-img {
@@ -13,7 +15,7 @@
   }
 
   .frame-container {
-    width: 95%;
+    width: 90%;
     height: 84%;
     margin-top: 3%;
     margin-left: 3%;
@@ -22,25 +24,17 @@
 }
 
 .content-searches {
-  .content-title{
+
+  .content-title {
     position: relative;
-    color: #4A4B21;
+    color: $primary;
     font-size: 45px;
     font-weight: bold;
     font-family: FontMoi-Title;
-    left: 115px;
+    left: 15%;
     top: 75px;
   }
-  .divider-line-search{
-    position: absolute;
-    background: url("../images/linea_separacionM.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    width: 87%;
-    height: 5px;
-    top: 120px;
-    left: 110px;
-  }
+
   @media (max-width: 1080px) {
     .divider-line-search{
       width: 80%;
@@ -52,11 +46,13 @@
     border: 1px solid rgba(123, 121, 76, 0.62);
     width: 5px;
   }
+
   .result-searches::-webkit-scrollbar {
     width: 5px;
     background-color: transparent;
     border-radius: 10px;
   }
+
   .result-searches::-webkit-scrollbar-thumb {
     border-radius: 25px;
     background-color: rgba(123, 121, 76, 0.62);

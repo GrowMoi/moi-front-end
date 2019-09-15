@@ -18,7 +18,6 @@ ion-view.friends-container.search-view-max(view-title='Friends')
               ).button
           .content-title
             | {{ 'searches.friends' | translate }}
-          .divider-line-search
           ion-content.result-searches-friends
             .friend-container(ng-repeat='friend in friendsmodel.users track by $index')
               moi-frame-user.friend-frame(options="friend" ui-sref="profile({username: friend.username})")
