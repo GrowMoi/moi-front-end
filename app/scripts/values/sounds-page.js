@@ -4,13 +4,13 @@
   angular.module('moi')
     .value('SoundsPage', {
       login: {
-        sound: 'sounds/principal_sound.mp3',
-        type: 'mp3'
+        sound: 'sounds/intro_sound.wav',
+        type: 'wav'
       },
       /*jshint camelcase: false */
       'login.first_step': {
-        sound: 'sounds/principal_sound.mp3',
-        type: 'mp3'
+        sound: 'sounds/intro_sound.wav',
+        type: 'wav'
       },
       neuron: {
         sound: 'sounds/principal_sound.mp3',
