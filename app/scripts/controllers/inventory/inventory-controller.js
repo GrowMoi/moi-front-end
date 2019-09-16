@@ -24,6 +24,7 @@
       vmInv.buttonsOptions = {
         neuron: null,
         content: null,
+        disabledAnimations: true,
         buttons: {
           learn: true,
           search: true,

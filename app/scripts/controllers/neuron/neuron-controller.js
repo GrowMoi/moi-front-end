@@ -31,6 +31,7 @@
         readOnly: vmNeuron.neuron.read_only,
         onRegisterApi: onRegisterApiMoiButtons,
         externalAnimationIdle: true,
+        disabledAnimations: true,
         buttons: {
           learn: true,
           search: true,

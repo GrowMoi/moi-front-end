@@ -11,6 +11,7 @@
     tasksmodel.buttonsOptions = {
       neuron: {},
       content: {},
+      disabledAnimations: true,
       buttons: {
         search: true,
         recomendation: true,

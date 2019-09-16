@@ -58,6 +58,7 @@
       /*jshint camelcase: false */
       function init(){
         var options = vm.options || {};
+        vm.disabledAnimations = options.disabledAnimations || false;
         vm.neuron = options.neuron || {};
         vm.neuron.neuron_can_read = (vm.neuron.belongs_to_event) ? vm.neuron.belongs_to_event : vm.neuron.neuron_can_read;
         vm.content = options.content || {};
@@ -82,11 +83,15 @@
           vm.options.onRegisterApi(api);
         }
 
-        //idle Animations
-        idleBtns = idleBtnsActive(vm.buttons);
-        vm.activeIdle = false;
+        if(!vm.disabledAnimations){
+          //idle Animations
+          idleBtns = idleBtnsActive(vm.buttons);
+          vm.activeIdle = false;
 
-        getButtons();
+          getButtons();
+        } else {
+          getSimpleButtons();
+        }
       }
 
       init();
@@ -122,6 +127,79 @@
       function contentSelected(content) {
         vm.gifLearnActive = !content.read;
         vm.content = content;
+      }
+
+      function getSimpleButtons() {
+        vm.searchOptions = {
+          src: 'images/simple-buttons/btn-search.png',
+          sound: 'sounds/btn_search.mp3',
+          name: 'Buscar',
+          nameEn: 'Search',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedSound: finishedAnimationSearch
+        };
+
+        vm.recomendationOptions = {
+          src: 'images/simple-buttons/btn-recomendation.png',
+          sound: 'sounds/btn_recomendation.mp3',
+          name: 'Recomendación Aleatoria',
+          nameEn: 'Random',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedSound: finishedAnimationRecomendation
+        };
+
+        vm.learnOptions = {
+          src: 'images/simple-buttons/btn-learn.png',
+          speedSound: 1.5, // NOTE: 1.0 is normal speed, 0.5 is half speed (slower), 2.0 is double speed (faster)
+          sound: 'sounds/btn_read.mp3',
+          name: 'Leer Contenido',
+          nameEn: 'Read Content',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedSound: finishedAnimationRead
+        };
+
+        vm.shareOptions = {
+          src: 'images/simple-buttons/btn-share.png',
+          sound: 'sounds/btn_share.mp3',
+          name: 'Compartir',
+          nameEn: 'Share',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedSound: vm.shareCallback
+        };
+
+        vm.saveTasksOptions = {
+          src: 'images/simple-buttons/btn-save-tasks.png',
+          sound: 'sounds/btn_save_tasks.mp3',
+          name: 'Guardar Tarea',
+          nameEn: 'Save',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedSound: finishedAnimationsaveTasks
+        };
+
+        vm.showTasksOptions = {
+          src: 'images/simple-buttons/btn-show-tasks.png',
+          sound: 'sounds/btn_show_tasks.mp3',
+          name: 'Tareas',
+          nameEn: 'Tasks',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedSound: finishedAnimationShowTasks
+        };
+
+        vm.addFavoritesOptions = {
+          src: 'images/simple-buttons/btn-favorites.png',
+          sound: 'sounds/btn_favorites.mp3',
+          name: 'Marcar como Favorito',
+          nameEn: 'Favorite',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedSound: finishedAnimationAddFavorites
+        };
       }
 
       function getButtons() {

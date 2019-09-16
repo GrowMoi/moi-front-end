@@ -1,0 +1,10 @@
+.simple-button-wrapper(ng-click="vm.onClick()"
+                tooltip-moi="{{vm.tooltip}}"
+                tooltip-position="up")
+  moi-sound(ng-if="vm.options.sound"
+            sound="{{vm.options.sound}}"
+            speed="vm.options.speedSound"
+            callback="vm.endSound()")
+  .img-button(ng-style="vm.css"
+               ng-mouseover="vm.increaseSize(true)"
+               ng-mouseleave="vm.increaseSize(false)")

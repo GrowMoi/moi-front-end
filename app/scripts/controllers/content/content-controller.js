@@ -55,6 +55,7 @@
           neuron: content,
           content: content,
           readOnly: content.read_only,
+          disabledAnimations: true,
           buttons: {
             learn: true,
             search: true,

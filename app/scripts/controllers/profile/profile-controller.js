@@ -47,6 +47,7 @@
       neuron: {},
       content: {},
       readOnly: currentUser.id ? false : true,
+      disabledAnimations: true,
       buttons: {
         search: true,
         share: true,
