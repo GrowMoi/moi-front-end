@@ -1,3 +1,5 @@
+@import "shared/colors";
+
 .transparent {
   background-color: transparent;
   display: flex;
@@ -54,12 +56,16 @@
     }
     .description-panel {
       font-family: FontMoi-Title;
-      color: #4A4B21;
+      color: $primary;
       text-align: justify;
       margin: 15px 30px 15px 30px;
       background: #00000021;
       border-radius: 10px;
       padding: 15px;
+
+      h2 {
+        color: $primary;
+      }
     }
     .email-form {
       display: flex;
