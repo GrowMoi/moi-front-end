@@ -1,5 +1,10 @@
+@import "shared/colors";
+
 .settings-page {
-  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  background: #3b3b3c87;
+
   .back-arrow {
     .arrow-img {
       bottom: 15%;
@@ -24,9 +29,6 @@
   .content-settings {
     top: 20px;
     position: relative;
-    background-repeat: no-repeat;
-    background-image: url("../images/caja_L.png");
-    background-size: 100% 100%;
   }
 
   .settings {
@@ -46,24 +48,10 @@
 
     .panel-left {
       width: 100%;
-      .range-left-border {
-        background-repeat: no-repeat;
-        background-image: url("../images/range-left-border.png");
-        width: 16px;
-        margin-top: -2px;
-      }
-
-      .range-right-border {
-        background-repeat: no-repeat;
-        background-image: url("../images/range-right-border.png");
-        width: 16px;
-        margin-top: 2px;
-        margin-left: -1px;
-      }
 
       .title-label {
-        background-color: rgba(120, 141, 90, 0.68);
-        color: $moiDarkGreen;
+        background-color: rgba(82, 131, 191, 0.52);
+        color: $primary;
         font-size: 16px;
         font-weight: bold;
         border-radius: 5px;
@@ -74,8 +62,8 @@
       }
 
       .title-label-1 {
-        background-color: rgba(120, 141, 90, 0.68);
-        color: $moiDarkGreen;
+        background-color: rgba(82, 131, 191, 0.52);
+        color: $primary;
         font-size: 16px;
         font-weight: bold;
         border-radius: 5px;
@@ -85,11 +73,11 @@
       }
 
       .controll {
-        background: #5B7A2C;
-        border-top: 4px solid #3F3A16;
-        border-bottom: 4px solid #3F3A16;
+        background: url("../images/setting_row.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
         padding: 10px;
-        width: 90%;
+        width: 96%;
         margin-bottom: 10px;
         font-weight: bold;
         margin-left: -1px;
@@ -119,8 +107,8 @@
       width: 100%;
       margin-right: 5%;
       .label {
-        background-color: rgba(120, 141, 90, 0.68);
-        color: $moiDarkGreen;
+        background-color: rgba(82, 131, 191, 0.52);
+        color: $primary;
         font-size: 16px;
         font-weight: bold;
         border-radius: 5px;
@@ -138,7 +126,7 @@
           width: 100%;
           justify-content: space-between;
           .title {
-            color: #d2d583;
+            color: $primary;
             font-size: 18px;
           }
           img {

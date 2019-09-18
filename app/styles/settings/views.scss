@@ -1,5 +1,7 @@
+@import "shared/colors";
+
 .content-title-settings{
-  color: $moiDarkGreen;
+  color: $tertiary;
   font-size: 38px;
   font-weight: bold;
   font-family: FontMoi-Title;
@@ -11,15 +13,15 @@
 }
 
 .content-subtitle-settings{
-  color: #d2d583;
+  color: $primary;
   font-size: 18px;
   font-weight: bold;
   font-family: FontMoi-Title;
-  margin-left: -8px;
+  margin-left: 10px;
 }
 
 .border-bottom-settings{
-  border-bottom: 4px solid $moiDarkGreen;
+  border-bottom: 4px solid $secondary;
   margin-bottom: 20px;
   margin-top: 11px;
   margin-left: 10px;
