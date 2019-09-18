@@ -1,3 +1,5 @@
+@import "shared/colors";
+
 .profile-content {
   .overflow-scroll {
     overflow-y: hidden;
@@ -48,7 +50,6 @@
         .header-wrapper {
           padding-top: 20px;
           padding-left: 30px;
-          border-bottom: 3px solid $moiDarkGreen;
 
           .user-frame {
             width: 5rem;
@@ -56,7 +57,7 @@
           }
 
           .user-name {
-            color: $moiDarkGreen;
+            color: $primary;
             font-size: 45px;
             font-weight: bold;
             font-family: FontMoi-Title;
@@ -75,10 +76,10 @@
             .btn-profile {
               padding: 10px 15px;
               text-align: center;
-              color: $moiDarkGreen;
+              color: $primary;
               font-family: FontMoi-Title;
               font-weight: bold;
-              background-image: url("../images/btn-perfil.png");
+              background-image: url("../images/btn.png");
               background-repeat: no-repeat;
               background-size: 100% 100%;
               cursor: pointer;
@@ -95,25 +96,25 @@
             position: relative;
 
             .user-description {
-              background: #889d66;
+              background-image: url("../images/user-description.png");
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
               padding: 10px 15px;
               font-weight: bold;
               height: 25%;
-              border: 2px solid #8f9a59;
               display: flex;
               justify-content: space-between;
 
               .title {
-                color: $moiDarkGreen;
+                color: $primary;
                 font-family: FontMoi-Title;
                 font-size: 15px;
               }
 
               .info {
-                color: $moiDarkGreen;
+                color: $primary;
                 font-family: FontMoi-Title;
                 font-size: 15px;
-                color: bisque;
                 font-weight: bold;
                 padding-left: 15px;
                 span{
@@ -137,10 +138,10 @@
                   align-items: center;
                   padding: 10px 15px;
                   text-align: center;
-                  color: $moiDarkGreen;
+                  color: $primary;
                   font-family: FontMoi-Title;
                   font-weight: bold;
-                  background-image: url("../images/btn-perfil.png");
+                  background-image: url("../images/btn.png");
                   background-repeat: no-repeat;
                   background-size: 100% 100%;
                   cursor: pointer;
@@ -151,7 +152,7 @@
 
                   .plus-icon {
                     padding: 2px 5px;
-                    border: 1px solid $moiDarkGreen;
+                    border: 1px solid $tertiary;
                   }
                 }
 
@@ -161,10 +162,10 @@
                   align-items: center;
                   padding: 15px;
                   text-align: center;
-                  color: $moiDarkGreen;
+                  color: $primary;
                   font-family: FontMoi-Title;
                   font-weight: bold;
-                  background-image: url("../images/btn-perfil.png");
+                  background-image: url("../images/btn_secondary.png");
                   background-repeat: no-repeat;
                   background-size: 100% 100%;
                   cursor: pointer;
@@ -182,10 +183,8 @@
             }
 
             .user-feedback {
-              background: #889d66;
               margin-top: 15px;
               padding: 5px 10px;
-              border: 2px solid #8f9a59;
               height: 75%;
 
               .tabs-options {
@@ -193,16 +192,20 @@
 
                 .option {
                   padding: 5px;
-                  border: 2px solid #7fb25b;
-                  color: bisque;
+                  background-image: url("../images/tab_perfil.png");
+                  background-repeat: no-repeat;
+                  background-size: 100% 100%;
+                  color: $primary;
                   cursor: pointer;
                 }
                 .tab-selected {
-                  background: rgba(123, 121, 76, 0.62);
+                  background-image: url("../images/tab_selected_perfil.png");
                 }
               }
               .content-panel {
-                border: 2px solid #7fb25b;
+                background-image: url("../images/content_panel_perfil.png");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
                 overflow-y: visible;
                 overflow-y: scroll;
                 height: 85%;
@@ -237,8 +240,8 @@
                     .item-award {
                       background: transparent;
                       border-radius: 5px;
-                      border: 3px solid #888b4a;
-                      color: bisque;
+                      border: 3px solid $tertiary;
+                      color: $primary;
                       font-size: 15px;
                       font-family: FontMoi-Title;
                       padding: 10px;
