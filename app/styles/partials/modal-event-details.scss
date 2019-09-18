@@ -1,5 +1,7 @@
+@import "shared/colors";
+
 .generic-font-event {
-  color: #675225;
+  color: $primary;
   font-family: FontMoi-Title;
 }
 
@@ -130,7 +132,7 @@
 
       .join-event {
         align-items: center;
-        background-image: url(../images/btn_new.png);
+        background-image: url(../images/btn.png);
         background-repeat: no-repeat;
         background-size: 100% 100%;
         cursor: pointer;

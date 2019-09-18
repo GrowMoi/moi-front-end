@@ -1,5 +1,7 @@
+@import "shared/colors";
+
 .generic-font-event {
-  color: #675225;
+  color: $primary;
   font-weight: bold;
   font-family: FontMoi-Title;
 }
@@ -53,10 +55,9 @@
         height: 80%;
         width: 30%;
         padding: 1.5rem;
-        border: 1px solid #e1c498;
-        border-radius: 10%;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        background: #f9dfb6;
+        background-image: url(../images/events/eventMin.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
         cursor: pointer;
         @extend .generic-font-event;
 
