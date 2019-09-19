@@ -1,5 +1,7 @@
+@import "shared/colors";
+
 .score-container{
-  background-image: url(../images/caja-score.png);
+  background-image: url(../images/test-frame.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   margin-top: 5%;
@@ -12,16 +14,16 @@
     }
   }
   #title{
-    color: #EF2874;
+    color: $primary;
     text-align: center;
   }
   .points{
-    background: #E0E838;
+    background: $tertiary;
     margin: 20px;
     padding-top: 20px;
     text-align: center;
     #content{
-      color: #EF2874;
+      color: $primary;
       padding: 10px;
       font-size: 36px;
       font-weight: bold;
@@ -30,19 +32,19 @@
   }
   .text-container{
     padding: 20px;
-    background: #E0E838;
+    background: $tertiary;
     margin: 20px;
     margin-top: 40px;
     height: 220px;
     overflow: auto;
     #title{
       font-size: 30px;
-      color: #EF2874;
+      color: $primary;
       font-weight: bold;
     }
     #content{
       font-size: 27px;
-      color: #EF2874;
+      color: $primary;
       font-weight: bold;
       line-height: 1.2;
     }
@@ -83,7 +85,7 @@
 }
 
 .btn-score{
-  background-image: url(../images/btn.png);
+  background-image: url(../images/btn_secondary.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -92,7 +94,7 @@
   margin-top: 0;
   margin-bottom: 0;
   line-height: 47px;
-  color: #FDF9BF;
+  color: $primary;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 16px
