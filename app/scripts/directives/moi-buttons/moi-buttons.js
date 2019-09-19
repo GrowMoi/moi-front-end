@@ -131,26 +131,29 @@
 
       function getSimpleButtons() {
         vm.searchOptions = {
+          key: 'search',
           src: 'images/simple-buttons/btn-search.png',
           sound: 'sounds/btn_search.mp3',
           name: 'Buscar',
           nameEn: 'Search',
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
-          finishedSound: finishedAnimationSearch
+          finishedAnimation: finishedAnimationSearch
         };
 
         vm.recomendationOptions = {
+          key: 'recomendation',
           src: 'images/simple-buttons/btn-recomendation.png',
           sound: 'sounds/btn_recomendation.mp3',
           name: 'Recomendación Aleatoria',
           nameEn: 'Random',
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
-          finishedSound: finishedAnimationRecomendation
+          finishedAnimation: finishedAnimationRecomendation
         };
 
         vm.learnOptions = {
+          key: 'learn',
           src: 'images/simple-buttons/btn-learn.png',
           speedSound: 1.5, // NOTE: 1.0 is normal speed, 0.5 is half speed (slower), 2.0 is double speed (faster)
           sound: 'sounds/btn_read.mp3',
@@ -158,47 +161,51 @@
           nameEn: 'Read Content',
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
-          finishedSound: finishedAnimationRead
+          finishedAnimation: finishedAnimationRead
         };
 
         vm.shareOptions = {
+          key: 'share',
           src: 'images/simple-buttons/btn-share.png',
           sound: 'sounds/btn_share.mp3',
           name: 'Compartir',
           nameEn: 'Share',
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
-          finishedSound: vm.shareCallback
+          finishedAnimation: vm.shareCallback
         };
 
         vm.saveTasksOptions = {
+          key: 'saveTasks',
           src: 'images/simple-buttons/btn-save-tasks.png',
           sound: 'sounds/btn_save_tasks.mp3',
           name: 'Guardar Tarea',
           nameEn: 'Save',
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
-          finishedSound: finishedAnimationsaveTasks
+          finishedAnimation: finishedAnimationsaveTasks
         };
 
         vm.showTasksOptions = {
+          key: 'showTasks',
           src: 'images/simple-buttons/btn-show-tasks.png',
           sound: 'sounds/btn_show_tasks.mp3',
           name: 'Tareas',
           nameEn: 'Tasks',
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
-          finishedSound: finishedAnimationShowTasks
+          finishedAnimation: finishedAnimationShowTasks
         };
 
         vm.addFavoritesOptions = {
+          key: 'addFavorites',
           src: 'images/simple-buttons/btn-favorites.png',
           sound: 'sounds/btn_favorites.mp3',
           name: 'Marcar como Favorito',
           nameEn: 'Favorite',
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
-          finishedSound: finishedAnimationAddFavorites
+          finishedAnimation: finishedAnimationAddFavorites
         };
       }
 

@@ -4,6 +4,7 @@ drawer(side="left")
     .settings-btns
       .settings-btn(ng-click="vm.onPlayAnimation(button.page)"
           ng-repeat="button in vm.buttonsOptions track by $index"
+          class="btn-{{button.page}}-sidebar"
           ng-style="vm.cssOptions.styles['button_'+$index]"
           ng-mouseover="vm.increaseSize(true, vm.cssOptions, 'button_'+$index)"
           ng-mouseleave="vm.increaseSize(false, vm.cssOptions, 'button_'+$index)")

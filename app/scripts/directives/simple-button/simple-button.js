@@ -20,7 +20,7 @@
     return directive;
   }
 
-  function simpleButtonController($scope, $q, $auth) {
+  function simpleButtonController($scope, $q, $auth, MoiAnimationService) {
 
     var vm = this,
       language = $auth.user.language,
@@ -49,20 +49,19 @@
       };
       vm.increaseSize = increaseSize;
       vm.onClick = onClick;
-      vm.endSound = endSound;
     }
 
-    function onClick() {
+    function onClick(key) {
       if (options.readOnly) {
         vm.options.onClickReadOnly();
         return;
       }else {
         moiSound.play();
+        var $btnSelected = document.querySelector('.simple-btn-'+ key);
+        MoiAnimationService.animateWidget($btnSelected, 'tada').then(function(){
+          vm.options.finishedAnimation();
+        });
       }
-    }
-
-    function endSound() {
-      vm.options.finishedSound();
     }
 
     init();
