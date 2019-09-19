@@ -16,12 +16,16 @@
       bindToController: true,
     };
 
-    function sidebarController($scope, $state, $auth, AnimationService, ModalService) {
+    function sidebarController($scope, $state, $auth, HoverAnimationService, ModalService) {
       var vm = this;
       vm.user = $auth.user;
       vm.user.tree_image = vm.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
       vm.goToTree = goToTree;
-      vm.goToPage = goToPage;
+      vm.onPlayAnimation = onPlayAnimation;
+      vm.increaseSize = HoverAnimationService.increaseSize;
+      vm.cssOptions = {
+        styles: []
+      };
       vm.buttonsOptions = [
         {
           page: 'settings',
@@ -39,6 +43,10 @@
           icon: '../images/sidebar/inventario_menu.png'
         }
       ];
+
+      function onPlayAnimation(page) {
+        goToPage(page);
+      }
 
       function goToPage(page) {
         if (vm.user.id) {

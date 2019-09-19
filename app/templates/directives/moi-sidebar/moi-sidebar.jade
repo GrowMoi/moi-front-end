@@ -2,7 +2,11 @@ drawer(side="left")
   .sidebar-menu
     moi-arrow(on-click="toggleDrawer()" orientation="left")
     .settings-btns
-      .settings-btn(ng-repeat="button in vm.buttonsOptions track by $index" ng-click="vm.goToPage(button.page)")
+      .settings-btn(ng-click="vm.onPlayAnimation(button.page)"
+          ng-repeat="button in vm.buttonsOptions track by $index"
+          ng-style="vm.cssOptions.styles['button_'+$index]"
+          ng-mouseover="vm.increaseSize(true, vm.cssOptions, 'button_'+$index)"
+          ng-mouseleave="vm.increaseSize(false, vm.cssOptions, 'button_'+$index)")
         img.icon(ng-src="{{button.icon}}")
         span.text
           | {{ button.translation | translate }}
