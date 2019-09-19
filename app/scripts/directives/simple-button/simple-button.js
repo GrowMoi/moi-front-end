@@ -56,11 +56,10 @@
         vm.options.onClickReadOnly();
         return;
       }else {
-        moiSound.play();
         var $btnSelected = document.querySelector('.simple-btn-'+ key);
-        MoiAnimationService.animateWidget($btnSelected, 'tada').then(function(){
-          vm.options.finishedAnimation();
-        });
+        MoiAnimationService.animateWidget($btnSelected, 'tada');
+        moiSound.play();
+        vm.options.finishedAnimation();
       }
     }
 
