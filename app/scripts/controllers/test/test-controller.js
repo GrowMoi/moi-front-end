@@ -11,7 +11,7 @@
               $timeout,
               ModalService,
               MediaAchievements,
-              HoverAnimationService,
+              MoiAnimationService,
               UserNotificationsService) {
 
     var vmTest = this;
@@ -49,7 +49,7 @@
       vmTest.frameOptions = {
         type: 'marco_arbol'
       };
-      vmTest.increaseSize = HoverAnimationService.increaseSize;
+      vmTest.increaseSize = MoiAnimationService.increaseSize;
       vmTest.cssOptions = {
         styles: []
       };

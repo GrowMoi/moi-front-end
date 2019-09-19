@@ -25,7 +25,7 @@
   function MoiNeuronController($element,
                               NeuronsOptions,
                               NeuronAnimateService,
-                              HoverAnimationService,
+                              MoiAnimationService,
                               GAService){
 
     var vm = this;
@@ -80,7 +80,7 @@
       changeSizeNeuron(conditional);
       calculateStyles(position);
       vm.percentage = percentageIncrease();
-      vm.increaseSize = HoverAnimationService.increaseSize;
+      vm.increaseSize = MoiAnimationService.increaseSize;
       vm.cssOptions = {
         scale: 1 + '.' + vm.percentage,
         styles: []

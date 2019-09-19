@@ -13,7 +13,8 @@
                           PopupService,
                           ModalService,
                           UserNotificationsService,
-                          MediaAchievements) {
+                          MediaAchievements,
+                          MoiAnimationService) {
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
@@ -239,15 +240,13 @@
       }
 
       function animateEvent(isSuperEvent){
-        var $eventContainer,
-            cssClass = 'animated zoomOutDown',
-            animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        var $eventContainer;
         if(isSuperEvent) {
-          $eventContainer = angular.element(document.querySelector('.event.superevent'));
+          $eventContainer = document.querySelector('.event.superevent');
         } else {
-          $eventContainer = angular.element(document.querySelector('.event-'+modelEvent.model.data.indexEvent));
+          $eventContainer = document.querySelector('.event-'+modelEvent.model.data.indexEvent);
         }
-        $eventContainer.addClass(cssClass).one(animationEnd, function(){
+        MoiAnimationService.animateWidget($eventContainer, 'zoomOutDown').then(function(){
           $eventContainer.remove();
           modelEvents.model.closeModal();
           if(!isSuperEvent){

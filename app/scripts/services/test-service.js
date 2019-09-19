@@ -16,7 +16,7 @@
                       $q,
                       $timeout,
                       TreeAnimateService,
-                      HoverAnimationService){
+                      MoiAnimationService){
 
     var service = {
       goTest: goTest,
@@ -81,7 +81,7 @@
       };
       modelData.increaseSize = function(increase, cssOpts, id){
         cssOpts.scale = (id.includes('answer') || id.includes('btn_ok')) ? '1.3' : null;
-        HoverAnimationService.increaseSize(increase, cssOpts, id);
+        MoiAnimationService.increaseSize(increase, cssOpts, id);
       };
 
       modelData.onClick = function(){
@@ -121,12 +121,12 @@
         var defaultAnimation = 'zoomIn faster';
         if(elements.length <= 1) {
           defaultAnimation = 'pulse faster';
-          TreeAnimateService.animateWidget(element, defaultAnimation);
+          MoiAnimationService.animateWidget(element, defaultAnimation);
           var lastElement = elements.shift();
-          TreeAnimateService.animateWidget(lastElement, defaultAnimation);
+          MoiAnimationService.animateWidget(lastElement, defaultAnimation);
         }else{
           angular.element(element).css('visibility', 'visible');
-          TreeAnimateService.animateWidget(element, defaultAnimation).then(function() {
+          MoiAnimationService.animateWidget(element, defaultAnimation).then(function() {
             animateElements(elements);
           });
         }

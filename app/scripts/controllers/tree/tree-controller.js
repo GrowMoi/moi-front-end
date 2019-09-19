@@ -16,7 +16,8 @@
                                           TestService,
                                           AdvicesPage,
                                           AdvicesPageEn,
-                                          TreeAnimateService) {
+                                          TreeAnimateService,
+                                          MoiAnimationService) {
 
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -173,8 +174,8 @@
           var levelUserWidget = document.querySelector('.level-user');
           var barAnimation = 'pulse';
           animationLevelBadge();
-          TreeAnimateService.animateWidget(levelUserWidget, barAnimation).then(function(){
-            TreeAnimateService.animateWidget(percentageTreeWidget, barAnimation).then(function(){
+          MoiAnimationService.animateWidget(levelUserWidget, barAnimation).then(function(){
+            MoiAnimationService.animateWidget(percentageTreeWidget, barAnimation).then(function(){
               animateNeurons();
             });
           });
@@ -194,7 +195,7 @@
         if(!!oldLevel){
           var levelUserCountWidget = document.querySelector('.counter-container');
           var numberAnimation = 'zoomIn';
-          TreeAnimateService.animateWidget(levelUserCountWidget, numberAnimation);
+          MoiAnimationService.animateWidget(levelUserCountWidget, numberAnimation);
         }
       }
     }

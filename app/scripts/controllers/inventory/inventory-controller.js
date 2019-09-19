@@ -7,7 +7,7 @@
                                                 UserService,
                                                 MediaAchievements,
                                                 MediaAchievementsEn,
-                                                HoverAnimationService,
+                                                MoiAnimationService,
                                                 ModalService,
                                                 DesactiveAchievements,
                                                 DesactiveAchievementsEn,
@@ -51,7 +51,7 @@
       allEventItems = formatEventsItems();
       allAchievements = formatAchievements();
       vmInv.achievements = allAchievements;
-      vmInv.increaseSize = HoverAnimationService.increaseSize;
+      vmInv.increaseSize = MoiAnimationService.increaseSize;
       vmInv.cssOptions = {
         styles: []
       };

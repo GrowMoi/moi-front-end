@@ -5,7 +5,7 @@
       .module('moi.services')
       .factory('NeuronAnimateService', NeuronAnimateService);
 
-    function NeuronAnimateService($timeout) {
+    function NeuronAnimateService($timeout, MoiAnimationService) {
       var discoveredNeurons = [];
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
       var counterAnimation = 4;
@@ -39,10 +39,7 @@
       function addAnimateClass(randomPosition, isTheLastItem) {
         var $neuronElement = discoveredNeurons[randomPosition];
         var $neuronToAnimate = $neuronElement.find('img');
-        var cssClass = 'animated swing';
-        $neuronToAnimate.addClass(cssClass).one(animationEnd, function() {
-          // Do somthing after animation
-          $neuronToAnimate.removeClass(cssClass);
+        MoiAnimationService.animateWidget($neuronToAnimate, 'swing').then(function(){
           if(isTheLastItem){
             $timeout(function() {
               if(!service.stopCallToAction){

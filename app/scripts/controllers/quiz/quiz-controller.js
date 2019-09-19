@@ -8,7 +8,7 @@
               $rootScope,
               quizData,
               $auth,
-              HoverAnimationService) {
+              MoiAnimationService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -53,7 +53,7 @@
       vmTest.hideTest = false;
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
-      vmTest.increaseSize = HoverAnimationService.increaseSize;
+      vmTest.increaseSize = MoiAnimationService.increaseSize;
       vmTest.cssOptions = {
         styles: []
       };

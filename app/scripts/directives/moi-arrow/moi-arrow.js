@@ -21,14 +21,14 @@
       return directive;
     }
 
-    function MoiArrowController(HoverAnimationService, $auth){
+    function MoiArrowController(MoiAnimationService, $auth){
       var arrowVm = this;
       var language = $auth.user.language;
       var arrowEn = arrowVm.orientation === 'right' ? 'Display Menu': 'Collapse Menu';
       var arrowEs = arrowVm.orientation === 'right' ? 'Desplegar Menú': 'Colapsar Menú';
       arrowVm.urlImg = arrowVm.orientation === 'right' ? 'images/flecha_1.png': 'images/flecha_2.png';
       arrowVm.name = language === 'es' ? arrowEs: arrowEn;
-      arrowVm.increaseSize = HoverAnimationService.increaseSize;
+      arrowVm.increaseSize = MoiAnimationService.increaseSize;
       arrowVm.cssOptions = {
         scale: '1.15',
         styles: []

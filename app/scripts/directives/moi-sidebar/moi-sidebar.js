@@ -16,13 +16,13 @@
       bindToController: true,
     };
 
-    function sidebarController($scope, $state, $auth, HoverAnimationService, ModalService) {
+    function sidebarController($scope, $state, $auth, MoiAnimationService, ModalService) {
       var vm = this;
       vm.user = $auth.user;
       vm.user.tree_image = vm.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
       vm.goToTree = goToTree;
       vm.onPlayAnimation = onPlayAnimation;
-      vm.increaseSize = HoverAnimationService.increaseSize;
+      vm.increaseSize = MoiAnimationService.increaseSize;
       vm.cssOptions = {
         styles: []
       };

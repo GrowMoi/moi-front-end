@@ -25,7 +25,7 @@
                           $state,
                           $filter,
                           AnimationService,
-                          HoverAnimationService,
+                          MoiAnimationService,
                           GAService){
 
     var vm = this,
@@ -38,7 +38,7 @@
     vm.selectContent = selectContent;
     vm.sendContent = sendContent;
     vm.activeIdle = false;
-    vm.increaseSize = HoverAnimationService.increaseSize;
+    vm.increaseSize = MoiAnimationService.increaseSize;
     vm.cssOptions = {
       scale: '1.02',
       styles: []
@@ -305,12 +305,10 @@
     }
 
     function animateContentBox(firstRow, secondRow) {
-      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-      var $contentGridElement = angular.element(document.querySelector('.content-selected'));
-      var $contentBorderlement = angular.element($contentGridElement.parent().children()[0]);
-      var cssClass = 'animated zoomOutDown';
-      $contentBorderlement.addClass(cssClass);
-      $contentGridElement.addClass(cssClass).one(animationEnd, function() {
+      var $contentGridElement = document.querySelector('.content-selected');
+      var $contentBorderlement = $contentGridElement.parent().children()[0];
+      MoiAnimationService.animateWidget($contentBorderlement, 'zoomOutDown');
+      MoiAnimationService.animateWidget($contentGridElement, 'zoomOutDown').then(function(){
         initGrid(firstRow, secondRow);
       });
     }
