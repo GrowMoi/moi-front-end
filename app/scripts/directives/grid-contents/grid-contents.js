@@ -285,17 +285,17 @@
 
     function buildGrid(contents, withAnimation){
       var copyContents = angular.copy(contents),
-          firstRow = copyContents.slice(0,2),
-          secondRow = copyContents.slice(2,5);
+          firstColumn = copyContents.slice(0,1),
+          secondColumn = copyContents.slice(1,3);
 
-      if (firstRow.length > 0) {
-        selectContent(firstRow[0]);
+      if (firstColumn.length > 0) {
+        selectContent(firstColumn[0]);
       }
 
       if(withAnimation){
-        animateContentBox(firstRow, secondRow);
+        animateContentBox(firstColumn, secondColumn);
       }else {
-        initGrid(firstRow, secondRow);
+        initGrid(firstColumn, secondColumn);
       }
     }
 
@@ -304,27 +304,27 @@
       $state.go('content', {neuronId: content.neuron_id, contentId: content.id});// jshint ignore:line
     }
 
-    function animateContentBox(firstRow, secondRow) {
+    function animateContentBox(firstColumn, secondColumn) {
       var $contentGridElement = document.querySelector('.content-selected');
       var $contentBorderlement = $contentGridElement.parent().children()[0];
       MoiAnimationService.animateWidget($contentBorderlement, 'zoomOutDown');
       MoiAnimationService.animateWidget($contentGridElement, 'zoomOutDown').then(function(){
-        initGrid(firstRow, secondRow);
+        initGrid(firstColumn, secondColumn);
       });
     }
 
-    function initGrid(firstRow, secondRow) {
+    function initGrid(firstColumn, secondColumn) {
       vm.rowsGrid = {
-        'firstRow': {
+        'firstColumn': {
           'class': 'col-first',
-          'items': firstRow
+          'items': firstColumn
         },
-        'secondRow': {
+        'secondColumn': {
           'class': 'col-second',
-          'items': secondRow
+          'items': secondColumn
         }
       };
-      vm.contentsShown = firstRow.concat(secondRow);
+      vm.contentsShown = firstColumn.concat(secondColumn);
       arrayElements = Array(vm.contentsShown.length);// jshint ignore:line
     }
 
