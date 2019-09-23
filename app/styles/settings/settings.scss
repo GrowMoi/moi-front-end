@@ -98,6 +98,15 @@
           padding-right: 75px;
           .toggle {
             top: 0;
+            .track {
+              .handle {
+                background-color: $secondary;
+              }
+            }
+          }
+          .toggle input:checked + .track {
+            border-color: $primary;
+            background-color: $tertiary;
           }
         }
       }
