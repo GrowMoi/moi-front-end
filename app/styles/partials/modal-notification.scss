@@ -52,7 +52,7 @@
 
   .notification-description::-webkit-scrollbar-track {
     border-radius: 10px;
-    border: 1px solid rgba(123, 121, 76, 0.62);
+    border: 1px solid $scroll-color;
     width: 5px;
   }
 
@@ -64,7 +64,7 @@
 
   .notification-description::-webkit-scrollbar-thumb {
     border-radius: 25px;
-    background-color: rgba(123, 121, 76, 0.62);
+    background-color: $scroll-color;
   }
 }
 @media (max-width: 1080px) {

@@ -272,7 +272,7 @@
                   }
                   .grid-certificates::-webkit-scrollbar-track {
                     border-radius: 10px;
-                    border: 1px solid rgba(123, 121, 76, 0.62);
+                    border: 1px solid $scroll-color;
                     width: 5px;
                   }
                   .grid-certificates::-webkit-scrollbar {
@@ -282,7 +282,7 @@
                   }
                   .grid-certificates::-webkit-scrollbar-thumb {
                     border-radius: 25px;
-                    background-color: rgba(123, 121, 76, 0.62);
+                    background-color: $scroll-color;
                   }
 
                   .grid-certificates {
@@ -324,7 +324,7 @@
               }
               .content-panel::-webkit-scrollbar-track {
                 border-radius: 10px;
-                border: 1px solid rgba(123, 121, 76, 0.62);
+                border: 1px solid $scroll-color;
                 width: 5px;
               }
               .content-panel::-webkit-scrollbar {
@@ -334,7 +334,7 @@
               }
               .content-panel::-webkit-scrollbar-thumb {
                 border-radius: 25px;
-                background-color: rgba(123, 121, 76, 0.62);
+                background-color: $scroll-color;
               }
             }
           }

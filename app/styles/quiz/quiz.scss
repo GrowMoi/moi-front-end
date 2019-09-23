@@ -77,7 +77,7 @@
       }
       .content-final-test::-webkit-scrollbar-track {
         border-radius: 10px;
-        border: 1px solid rgba(123, 121, 76, 0.62);
+        border: 1px solid $scroll-color;
         width: 5px;
       }
       .content-final-test::-webkit-scrollbar {
@@ -87,7 +87,7 @@
       }
       .content-final-test::-webkit-scrollbar-thumb {
         border-radius: 25px;
-        background-color: rgba(123, 121, 76, 0.62);
+        background-color: $scroll-color;
       }
     }
   }
