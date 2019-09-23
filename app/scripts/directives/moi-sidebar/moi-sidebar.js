@@ -46,8 +46,9 @@
 
       function onPlayAnimation(page) {
         var $btnSelected = document.querySelector('.btn-'+ page +'-sidebar');
-        MoiAnimationService.animateWidget($btnSelected, 'tada');
-        goToPage(page);
+        MoiAnimationService.animateWidget($btnSelected, 'tada').then(function(){
+          goToPage(page);
+        });
       }
 
       function goToPage(page) {
