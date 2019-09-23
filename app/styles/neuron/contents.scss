@@ -36,6 +36,8 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
 
 .content-grid-wrapper {
   display: flex;
+  height: 100%;
+  width: 100%;
 }
 
 .content-in-grid {
