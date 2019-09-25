@@ -33,7 +33,7 @@
     width: 43.1rem;
 
     &.without-current-user {
-      height: 21.75rem;
+      height: 75%;
     }
   }
 
@@ -83,7 +83,12 @@
       align-items: center;
       justify-content: center;
     }
-
+    .user-leaderboard {
+      flex-direction: column;
+      .time {
+        font-size: 15px
+      }
+    }
     &.user-selected {
       background: #00b274;
     }

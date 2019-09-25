@@ -44,7 +44,8 @@
               joinSuperEvent: joinSuperEvent
             }
           },
-          currentEvents = [];
+          currentEvents = [],
+          eventModalPromise;
 
       return service;
 
@@ -167,6 +168,7 @@
           green: 'images/tree/nodos/nodo-verde.png'
         };
         currentEvents = events;
+        eventModalPromise = $q.defer();
         var hasSuperEventAvailable = (angular.isArray(superevent) && superevent.length > 0 && !superevent[0].taken);
         //map to get neurons
         angular.forEach(currentEvents, function(event){
@@ -183,10 +185,12 @@
         modelEvents.model.hasEvents = (currentEvents.length > 0 || hasSuperEventAvailable);
 
         ModalService.showModel(modelEvents);
+        return eventModalPromise.promise;
       }
 
       function showEventDetails(index, events){
         modelEvent.model.data = events[index];
+        modelEvent.model.data.indexEvent = index;
         ModalService.showModel(modelEvent);
       }
 
@@ -208,7 +212,6 @@
       function joinEvent(event) {
         takeEvent(event.id).then(function(){
           modelEvent.model.closeModal();
-          modelEvent.model.data.taken = !event.taken; //jshint ignore:line
           showEventNotification();
         });
       }
@@ -236,24 +239,26 @@
       }
 
       function animateEvent(isSuperEvent){
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        var $eventElement = angular.element(document.querySelector('.event.taken'));
-        var $supereventElement = angular.element(document.querySelector('.event.superevent'));
-        var $eventContainer = isSuperEvent ? $supereventElement : $eventElement;
-        var cssClass = 'animated zoomOutDown';
+        var $eventContainer,
+            cssClass = 'animated zoomOutDown',
+            animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        if(isSuperEvent) {
+          $eventContainer = angular.element(document.querySelector('.event.superevent'));
+        } else {
+          $eventContainer = angular.element(document.querySelector('.event-'+modelEvent.model.data.indexEvent));
+        }
         $eventContainer.addClass(cssClass).one(animationEnd, function(){
           $eventContainer.remove();
+          modelEvents.model.closeModal();
           if(!isSuperEvent){
             updateEventsCounter();
-          }
-          if(modelEvents.model.events.length === 1){
-            modelEvents.model.closeModal();
+            eventModalPromise.resolve();
           }
         });
       }
 
       function updateEventsCounter(){
-        UserNotificationsService.totalContentEvents += modelEvent.model.data.contents.length;
+        UserNotificationsService.totalContentsToLearn += modelEvent.model.data.contents.length;
         $rootScope.$broadcast('notifications.updateCount');
       }
 

@@ -10,7 +10,7 @@
           .points.summary
             p Respondiste {{vmTest.successAnswers}} de {{vmTest.totalQuestions}} preguntas correctamente
             p Tu tiempo fue: {{vmTest.timeQuiz}}
-        .answers
+        .answers.content-final-test
           ul
             li(ng-repeat="answer in vmTest.answersQuiz")
               | {{answer.question}} {{answer.correct ? '✓' : 'x'}}

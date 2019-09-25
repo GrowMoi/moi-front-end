@@ -22,6 +22,7 @@
         };
 
     notificationsModel.loaded = false;
+    notificationsModel.showLoadingOverlay = false;
 
     var dialogContentModel = {
       callbacks: {
@@ -246,8 +247,16 @@
 
     function showModalEvents(data){
       if(!data.isSuperEvent) {
-        EventsService.showSetEvents(data.events);
-      }else {
+        EventsService.showSetEvents(data.events).then(function() {
+          var notificationsUpdated = notificationsModel.notifications.filter(function(notification) {
+            return notification.type !== 'event' || notification.isSuperEvent;
+          });
+          var notificationsRemoved = notificationsModel.notifications.length - notificationsUpdated.length;
+          updateNotificationsCounter(notificationsRemoved);
+          notificationsModel.notifications = notificationsUpdated;
+
+        });
+      } else {
         var superEvent = data.events[0];
         if(superEvent.taken) {
           showLeaderboardToSuperEvent(superEvent);
@@ -267,15 +276,25 @@
         event_id: superEvent.id //jshint ignore:line
       };
       var fromEvent = true;
-      LeaderboardService.showLeaderboard(paramsToLeaderboard, fromEvent);
+      notificationsModel.showLoadingOverlay = true;
+      LeaderboardService.showLeaderboard(paramsToLeaderboard, fromEvent, function onSuccess() {
+        notificationsModel.showLoadingOverlay = false;
+      }, function onError() {
+        notificationsModel.showLoadingOverlay = false;
+      });
     }
 
     function joinSuperEvent(superevent) {
       EventsService.takeSuperEvent(superevent.id).then(function(){
         modelSuperEvent.model.closeModal();
-        superevent.taken = true;
         EventsService.showConfirmSuperEvent();
+        notificationsModel.notifications.shift();
       });
+    }
+
+    function updateNotificationsCounter(size) {
+      UserNotificationsService.totalNotifications -= size;
+      $rootScope.$broadcast('notifications.updateCount');
     }
 
   });

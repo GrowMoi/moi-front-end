@@ -15,7 +15,8 @@
     var channelsToNotifications = [],
         service = {
           initialize: initialize,
-          notifyOpenNotification: notifyOpenNotification
+          notifyOpenNotification: notifyOpenNotification,
+          getNewDetailsNotifications: getNewDetailsNotifications
         };
     return service;
 
@@ -31,8 +32,7 @@
 
       UserService.getDetailsNotifications().then(function(data) {
         service.totalNotifications = data.notifications;
-        service.totalRecommendations = data.recommendations;
-        service.totalContentEvents = data.events;
+        service.totalContentsToLearn = data.contents_to_learn; //jshint ignore:line
         updateNotificationsCount();
         return PusherService.load();
       }).then(function(){
@@ -57,6 +57,14 @@
         service.totalNotifications ++;
         updateNotificationsCount();
       }
+    }
+
+    function getNewDetailsNotifications() {
+      UserService.getDetailsNotifications().then(function(data) {
+        service.totalNotifications = data.notifications;
+        service.totalContentsToLearn = data.contents_to_learn; //jshint ignore:line
+        updateNotificationsCount();
+      });
     }
 
     function updateNotificationsCount(){

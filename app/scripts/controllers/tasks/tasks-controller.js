@@ -4,7 +4,6 @@
   .controller('TasksController', function($state,
                                           $rootScope,
                                           $auth,
-                                          StorageService,
                                           UserNotificationsService,
                                           GAService){
     var tasksmodel = this;
@@ -30,18 +29,18 @@
         state: 'tasks.notes'
       },
       {
-        field:'recommendations',
-        name: 'Recomendaciones',
+        field: 'contentsToLearn',
+        name: 'Contenidos por Aprender',
         image: 'images/recomendations_tasks.png',
         selected: false,
-        state: 'tasks.recommendations'
+        state: 'tasks.contentsToLearn'
       },
       {
-        field:'contents',
-        name: 'Tareas',
+        field: 'savedContents',
+        name: 'Contenidos Guardados',
         image: 'images/list_tasks.png',
         selected: false,
-        state: 'tasks.contents'
+        state: 'tasks.savedContents'
       },
       {
         field:'notifications',
@@ -57,13 +56,6 @@
         selected: false,
         state: 'tasks.favorites'
       },
-      {
-        field:'events',
-        name: 'Eventos',
-        image: 'images/events_tasks.png',
-        selected: false,
-        state: 'tasks.events'
-      }
     ];
 
     var tabsEn = [
@@ -75,18 +67,18 @@
         state: 'tasks.notes'
       },
       {
-        field:'recommendations',
-        name: 'Recommendations',
+        field: 'contentsToLearn',
+        name: 'Contents to Learn',
         image: 'images/recomendations_tasks.png',
         selected: false,
-        state: 'tasks.recommendations'
+        state: 'tasks.contentsToLearn'
       },
       {
-        field:'contents',
-        name: 'Contents',
+        field: 'savedContents',
+        name: 'Saved Contents',
         image: 'images/list_tasks.png',
         selected: false,
-        state: 'tasks.contents'
+        state: 'tasks.savedContents'
       },
       {
         field:'notifications',
@@ -102,13 +94,6 @@
         selected: false,
         state: 'tasks.favorites'
       },
-      {
-        field:'events',
-        name: 'Events',
-        image: 'images/events_tasks.png',
-        selected: false,
-        state: 'tasks.events'
-      }
     ];
     var language = $auth.user.language;
     tasksmodel.tabs = language === 'es' ? tabs : tabsEn;
@@ -127,8 +112,7 @@
 
     initTab();
     tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
-    tasksmodel.totalRecommendations = UserNotificationsService.totalRecommendations;
-    tasksmodel.totalContentEvents = UserNotificationsService.totalContentEvents;
+    tasksmodel.totalContentsToLearn = UserNotificationsService.totalContentsToLearn;
 
     function initTab() {
       var stateField = $state.current.name.replace('tasks.', '');
@@ -137,8 +121,7 @@
 
     $rootScope.$on('notifications.updateCount', function(){
       tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
-      tasksmodel.totalRecommendations = UserNotificationsService.totalRecommendations;
-      tasksmodel.totalContentEvents = UserNotificationsService.totalContentEvents;
+      tasksmodel.totalContentsToLearn = UserNotificationsService.totalContentsToLearn;
     });
   });
 })();

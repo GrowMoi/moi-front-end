@@ -13,15 +13,17 @@
             | {{::superevent.title}}
           span.event-description
             | {{::superevent.description}}
-        .event(ng-class="{taken: event.taken}"
+        .event(class="event-{{$index}}"
               ng-repeat="event in model.events track by $index"
               ng-if="event.is_available"
               ng-click="model.showEventDetails($index, model.events)")
-          div.event-image(style="background-image: url('{{event.image}}')")
-          h4.event-title
-            | {{::event.title}}
-          span.event-description
-            | {{::event.description}}
+          .image-container
+            .event-image(style="background-image: url('{{event.image}}')")
+          .data-container
+            h4.event-title
+              | {{::event.title}}
+            span.event-description
+              | {{::event.description}}
       .placeholder(ng-if="!model.hasEvents")
         | {{ ::'tasks.events.hasEvents' | translate}}
 
