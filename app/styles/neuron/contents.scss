@@ -127,18 +127,20 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
   .approved {
     position: absolute;
     right: 2em;
-    top: 1.5em;
+    top: 3.5em;
     width: 6em;
     height: 7em;
     border-radius: 0 !important;
+    mask-image: unset !important;
+    -webkit-mask-image: unset !important;
   }
 
   .favorite {
     position: absolute;
     width: 25px;
     height: 25px;
-    right: 15px;
-    bottom: 15px;
+    right: 3%;
+    bottom: 12%;
   }
 }
 
@@ -159,7 +161,7 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
 }
 
 .leyend-bottom-grid{
-  margin-top: -95px;
+  margin-top: -130px;
   font-size: 35px;
   font-family: FontMoi-Content;
   font-weight: bold;
