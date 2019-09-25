@@ -305,9 +305,7 @@
     }
 
     function animateContentBox(firstColumn, secondColumn) {
-      var $contentGridElement = document.querySelector('.content-selected');
-      var $contentBorderlement = $contentGridElement.parent().children()[0];
-      MoiAnimationService.animateWidget($contentBorderlement, 'zoomOutDown');
+      var $contentGridElement = document.querySelector('.content-selected').parentElement;
       MoiAnimationService.animateWidget($contentGridElement, 'zoomOutDown').then(function(){
         initGrid(firstColumn, secondColumn);
       });
