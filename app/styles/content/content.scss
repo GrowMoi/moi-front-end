@@ -275,9 +275,6 @@
   .row-content-text {
     &.moi_theme {
       color: white;
-      &.moi_amarillo{
-        text-shadow: 2px 2px 4px #4C3F02;
-      }
     }
 
     .content-text {
@@ -302,22 +299,6 @@
         background-repeat: no-repeat !important;
         background-size: 99% 100% !important;
         background: url(../images/themes/azul/cont_max_caja.png);
-      }
-
-      &.violeta {
-        color: $violeta;
-      }
-      &.azul{
-        color: $azul;
-      }
-      &.rojo{
-        color: $rojo;
-      }
-      &.amarillo{
-        color: $amarillo;
-      }
-      &.verde{
-        color: $verde;
       }
     }
     .content-source{
