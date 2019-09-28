@@ -22,6 +22,10 @@ a {
     overflow-y: hidden;
   }
 
+  .moi-frame .container-frame .bottom-frame {
+    z-index: 1;
+  }
+
   .tree-content {
     position: relative;
     display: flex;

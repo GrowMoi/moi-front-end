@@ -1,7 +1,7 @@
 .tree-percentage {
   position: absolute;
   top: 8%;
-  right: 4%;
+  right: 7%;
   -webkit-animation-iteration-count: 4;
 
   .percentage-container {
@@ -27,6 +27,7 @@
         font-family: FontMoi-Title;
         font-weight: bold;
         font-size: 12px;
+        white-space: nowrap;
       }
 
       .percentage-bar {
