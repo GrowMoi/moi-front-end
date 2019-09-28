@@ -17,11 +17,10 @@
   }
 
   .frame-container {
-    width: 95%;
+    width: 90%;
     height: 84%;
-    margin-top: 3%;
-    margin-left: 3%;
-    margin-right: 2%;
+    margin-top: 4%;
+    margin-left: 4%;
   }
   .select-images-edit {
     .col-20 {
@@ -36,6 +35,18 @@
   background-color: transparent;
 
   .profile-user {
+
+    .moi-frame .container-frame {
+
+      .top-frame {
+        z-index: -1;
+      }
+
+      .back-button.top-left {
+        z-index: -1;
+      }
+    }
+
     .frame-container {
       position: relative;
       background-repeat: no-repeat;

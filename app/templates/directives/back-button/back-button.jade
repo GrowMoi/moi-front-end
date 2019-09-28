@@ -1,3 +1,3 @@
 moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="bbVm.finishedSound()")
 .back-button(ng-click="bbVm.goBack()")
-  span.arrow-img
+  span.arrow-img(tooltip-moi="{{ 'tooltip.back' | translate }}" tooltip-position="right")

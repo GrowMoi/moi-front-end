@@ -64,15 +64,12 @@
 
     function onRegisterApiMoiButtons(api) {
       ApiButtons = api;
-      ApiButtons.finishedAnimation(function () {
-        activeAnimation(ApiContent);
-      });
     }
 
     function onRegisterApiContents(api) {
       ApiContent = api;
       ApiContent.finishedAnimation(function () {
-        activeAnimation(ApiButtons);
+        activeAnimation(ApiContent);
       });
     }
 

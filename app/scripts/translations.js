@@ -54,6 +54,7 @@
         alternativa: 'Choose this alternative',
         question: 'Next question',
         continue: 'Next',
+        back: 'Back'
       },
       menu: {
         menu: 'Menu',
@@ -351,6 +352,7 @@
         alternativa: 'Elegir esta alternativa',
         question: 'Continuar con la siguiente pregunta',
         continue: 'Continuar',
+        back: 'Regresar'
       },
       menu: {
         menu: 'Menú',

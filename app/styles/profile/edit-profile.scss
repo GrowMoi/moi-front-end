@@ -3,7 +3,7 @@
 .edit-profile-content {
   .back-arrow {
     .arrow-img {
-      bottom: 45%;
+      bottom: 35%;
       left: 15%;
     }
   }
@@ -25,14 +25,24 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
+
+    .moi-frame .container-frame {
+
+      .top-frame {
+        z-index: -1;
+      }
+
+      .back-button.top-left {
+        z-index: -1;
+      }
+    }
   }
 
   .frame-container {
-    width: 95%;
+    width: 90%;
     height: 84%;
-    margin-top: 3%;
-    margin-left: 3%;
-    margin-right: 2%;
+    margin-top: 4%;
+    margin-left: 4%;
   }
   .select-images-edit {
     .col-20 {

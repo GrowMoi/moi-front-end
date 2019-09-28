@@ -6,6 +6,13 @@
 
     beforeEach(module('moi.directives'));
     beforeEach(module('moi.templates'));
+    beforeEach(function() {
+      module(function($provide) {
+        $provide.value('translateFilter', function(value) {
+          return value;
+        });
+      });
+    });
     beforeEach(module('moi.services', function($provide){
       $provide.factory('SoundService', function(){
         return {
