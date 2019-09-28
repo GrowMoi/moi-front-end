@@ -1,20 +1,18 @@
-ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]" view-title='Content')
+ion-view.content-view-max(view-title='Content')
   ion-content
     back-button.arrow.back-arrow
     .flecha-sidebar(ng-click="toggleDrawer()")
       img(src="images/flecha_1.png")
     .frame
-      .row.frame-container(ng-class="{'moi_theme': vmContent.isMoitheme}")
-        .col.first-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
-          .row.border-bottom.row-content-title(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-            .content-title(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+      .row.frame-container
+        .col.first-col-content
+          .row.border-bottom.row-content-title
+            .content-title
               {{  vmContent.content.title}}
               {{ vmContent.test }}
               img.favorite(ng-if="vmContent.content.favorite" src="images/estrellita.png")
-            .corner.title-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
-          .row.row-content-text(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-            .corner.description-TL(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
-            .content-text(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+          .row.row-content-text
+            .content-text
               {{vmContent.content.description}}
               .content-source
                 {{vmContent.content.source}}
@@ -26,58 +24,51 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                   | {{ 'content.language' | translate }}
                 ion-toggle(ng-model='vmContent.state' ng-change="vmContent.changeLanguage()")
               .test-content
-            .corner.description-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
-        .col.second-col-content.border-right.border-left.middle-column-margin-bottom.col-contents(ng-class="[vmContent.theme,"+
-                                                                                                "{'moi_theme': vmContent.isMoitheme}]")
-          .row.border-bottom(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+        .col.second-col-content.border-right.border-left.middle-column-margin-bottom.col-contents
+          .row.border-bottom
             .col.image-center
               img.format-image(
-                ng-class="[vmContent.currentTransition, {'moi_theme': vmContent.isMoitheme}]"
+                ng-class="vmContent.currentTransition"
                 ng-src='{{vmContent.currentContentImageUrl}}',
                 ng-click='vmContent.showImage(vmContent.currentContent)'
               )
-            .corner.image-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row
             .col
               .row.text-notes
-                .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+                .content-subtitle
                   | {{ 'content.max.coments' | translate }}
               .row.container-comments
-                textarea.content-comments(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]"
-                                          ng-model='vmContent.content.user_notes'
+                textarea.content-comments(ng-model='vmContent.content.user_notes'
                                           ng-blur='vmContent.sendNotes()'
                                           ng-disabled='vmContent.readOnly')
-        .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
+        .col.third-col-content
           .row
             .col.content-max-third
-              .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                .content-subtitle.content-subtitle-gallery(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+              .row.border-third-column
+                .content-subtitle.content-subtitle-gallery
                   | {{ 'content.max.media' | translate }}
               .row
                 slide-gallery.slider-gallery-content(images='vmContent.media'
                                                     options="vmContent.slideGalleryOptions"
                                                     item-per-slide='4')
-            .corner.gallery-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row
             .col.recomended-margin-top.content-max-third
-              .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+              .row.border-third-column
+                .content-subtitle
                   | {{ 'content.max.recommended ' | translate }}
-              .row.recommended-contents(ng-class="{'moi_theme': vmContent.isMoitheme}")
+              .row.recommended-contents
                 .col.col-50(ng-repeat='content in vmContent.content.recommended')
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})"
                     ng-click="vmContent.registerClick(content.title)")
                    img.format-image(ng-src='{{content.media[0]}}')
-            .corner.recomended-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
           .row
             .col.links-margin-top.content-max-third
-              .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+              .row.border-third-column
+                .content-subtitle
                   | {{ 'content.max.links ' | translate }}
               .row(ng-repeat="link in vmContent.content.links")
-                a(ng-click="vmContent.showAlertExternalLink(link)" ng-class="{'moi_theme': vmContent.isMoitheme}")
+                a(ng-click="vmContent.showAlertExternalLink(link)")
                   | {{ link}}
-            .corner.links-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
     moi-frame(options="vmContent.frameOptions")
     moi-buttons(options="vmContent.buttonsOptions")
   moi-sidebar

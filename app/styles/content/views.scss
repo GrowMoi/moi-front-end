@@ -15,70 +15,16 @@
   }
 
   .border-bottom {
-    border-bottom: 1px solid $linesColor;
+    border-bottom: 1px solid #B5A88F;
     margin-bottom: 20px;
-    &.moi_theme {
-      border-color: #B5A88F;
-    }
-    &.violeta {
-      border-color: $violeta;
-    }
-    &.azul{
-      border-color: $azul;
-    }
-    &.rojo{
-      border-color: $rojo;
-    }
-    &.amarillo{
-      border-color: $amarillo;
-    }
-    &.verde{
-      border-color: $verde;
-    }
   }
 
   .border-left {
-    border-left: 1px solid $linesColor;
-    &.moi_theme {
-      border-left: none;
-    }
-    &.violeta {
-      border-color: $violeta;
-    }
-    &.azul{
-      border-color: $azul;
-    }
-    &.rojo{
-      border-color: $rojo;
-    }
-    &.amarillo{
-      border-color: $amarillo;
-    }
-    &.verde{
-      border-color: $verde;
-    }
+    border-left: 1px solid #B5A88F;
   }
 
   .border-right {
-    border-right: 1px solid $linesColor;
-    &.moi_theme {
-      border-right: none;
-    }
-    &.violeta {
-      border-color: $violeta;
-    }
-    &.azul{
-      border-color: $azul;
-    }
-    &.rojo{
-      border-color: $rojo;
-    }
-    &.amarillo{
-      border-color: $amarillo;
-    }
-    &.verde{
-      border-color: $verde;
-    }
+    border-right: 1px solid #B5A88F;
   }
   //image-corner
   .corner {
@@ -86,26 +32,6 @@
     background-repeat: no-repeat;
     width: 38px;
     height: 30px;
-    &.violeta {
-      background: url("../images/themes/violeta/corner.png");
-      background-repeat: no-repeat;
-    }
-    &.azul{
-      background: url("../images/themes/azul/corner.png");
-      background-repeat: no-repeat;
-    }
-    &.rojo{
-      background: url("../images/themes/rojo/corner.png");
-      background-repeat: no-repeat;
-    }
-    &.amarillo{
-      background: url("../images/themes/amarillo/corner.png");
-      background-repeat: no-repeat;
-    }
-    &.verde{
-      background: url("../images/themes/verde/corner.png");
-      background-repeat: no-repeat;
-    }
   }
   //image-corner-circle-position
   //title
@@ -179,23 +105,21 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
 
-      &.moi_theme{
-        .col {
-          .content-kind-contents {
-            background-image: url(../images/img_galeria_max.png);
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
+      .col {
+        .content-kind-contents {
+          background-image: url(../images/img_galeria_max.png);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
 
-            img {
-              -webkit-mask-image: url(../images/img_galeria_max.png);
-              mask-image: url(../images/img_galeria_max.png);
-              -webkit-mask-size: 93% 93%;
-              mask-size: 93% 93%;
-              -webkit-mask-position: center center;
-              mask-position: center center;
-              mask-repeat: no-repeat;
-              -webkit-mask-repeat: no-repeat;
-            }
+          img {
+            -webkit-mask-image: url(../images/img_galeria_max.png);
+            mask-image: url(../images/img_galeria_max.png);
+            -webkit-mask-size: 93% 93%;
+            mask-size: 93% 93%;
+            -webkit-mask-position: center center;
+            mask-position: center center;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
           }
         }
       }
@@ -213,10 +137,8 @@
     a {
       word-break: break-all;
       cursor: pointer;
-      &.moi_theme {
-        font-weight: bold;
-        color: #666665;
-      }
+      font-weight: bold;
+      color: #666665;
     }
   }
 }
