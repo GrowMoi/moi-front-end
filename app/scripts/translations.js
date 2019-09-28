@@ -41,7 +41,8 @@
         progress: ' Moi tree development',
         test: ' Final test score',
         tiempo: ' Average read time',
-        informacion: ' For more, visit growmoi.com'
+        informacion: ' For more, visit growmoi.com',
+        title: 'Summary of performance'
       },
       image : {
         secret: 'Select your secret image:'
@@ -339,7 +340,8 @@
         progress: ' crecimiento arbol',
         test: ' ultimo test',
         tiempo: ' tiempo de lectura promedio',
-        informacion: ' Para más información, visite growmoi.com'
+        informacion: ' Para más información, visite growmoi.com',
+        title: 'Resumen de desempeño'
       },
       image : {
         secret: 'Selecciona tu imagen secreta:'

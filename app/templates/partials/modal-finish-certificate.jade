@@ -7,7 +7,7 @@
                       data-html2canvas-ignore="true")
       .background-certificate(ng-if="!model.certificate")
         .title
-          img(ng-src="{{model.image}}")
+          | {{ 'modal_certificate.title' | translate }}
         .container
           .info-user
             .table
@@ -28,9 +28,8 @@
                   span
                     | {{ 'register.school' | translate }}
             .tree-preview
-              img.marco(src="images/view-elements/marco.png")
+              img.marco(src="images/view-elements/frame-login.png")
               img(ng-src="{{model.user.tree_image}}")
-          img(src="images/diploma/niños.png")
           .report-user
             #canvas-holder
               canvas#chart-area
