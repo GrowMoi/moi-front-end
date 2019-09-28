@@ -28,17 +28,17 @@
   height: 100px;
 
   .row-container-images {
-    height: 85%;
+    height: 95%;
     .col {
       background-image: url(../images/img_galeria_max.png);
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 70px 75px;
 
       img {
         -webkit-mask-image: url(../images/img_galeria_max.png);
         mask-image: url(../images/img_galeria_max.png);
-        -webkit-mask-size: 93% 93%;
-        mask-size: 93% 93%;
+        -webkit-mask-size: 90%;
+        mask-size: 90%;
         -webkit-mask-position: center center;
         mask-position: center center;
         mask-repeat: no-repeat;
@@ -58,8 +58,8 @@
   }
 
   .format-image-gallery {
-    height: 100%;
-    width: 100%;
+    width: 65px;
+    height: 65px;
     object-fit: cover;
   }
 
