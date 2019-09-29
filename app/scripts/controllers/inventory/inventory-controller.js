@@ -113,7 +113,7 @@
       }
 
       function activateAchievement(achievement){
-        if(achievement.settings.theme){
+        if(achievement.settings.avatar){
           vmInv.achievementSelected = achievement;
           UserService.activeAchievement(achievement.id).then(showpopup);
         }

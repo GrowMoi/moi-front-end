@@ -185,15 +185,6 @@
             videos: [],
             recommended: []
           },
-          dataInventory: {
-            achievements: [
-              {
-                id:1,
-                name: '4 contenidos aprendios',
-                number: 5
-              }
-            ]
-          },
           storage: {tree: {'advices': ['advice0']}},
           $scope: $scope,
           $state: $state,

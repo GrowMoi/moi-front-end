@@ -7,9 +7,7 @@
               $scope,
               $timeout,
               $auth,
-              SocialService,
-              MediaAchievements,
-              dataInventory) {
+              SocialService) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -19,7 +17,6 @@
     vmNeuron.frameOptions = {
       type: 'content_max'
     };
-    vmNeuron.userAchievements = dataInventory.achievements;
 
     /*jshint camelcase: false */
     function init(){
@@ -52,15 +49,11 @@
         minLevel: 1,
         onSelect: onSelectItem,
         externalAnimationIdle: true,
-        onRegisterApi: onRegisterApiContents,
-        //set default theme
-        theme:'moi_azul',
-        isMoitheme: true
+        onRegisterApi: onRegisterApiContents
       };
     }
 
     init();
-    setTheme();
 
     function onRegisterApiMoiButtons(api) {
       ApiButtons = api;
@@ -108,18 +101,6 @@
         description: vmNeuron.neuron.contents[0].description
       };
       SocialService.showModal(data);
-    }
-
-    function setTheme() {
-      if(vmNeuron.userAchievements.length > 0){
-        angular.forEach(vmNeuron.userAchievements, function(achievement, index){
-          if(achievement.active){
-            var currentTheme = MediaAchievements[vmNeuron.userAchievements[index].number].settings.theme;
-            vmNeuron.contentsOptions.theme = currentTheme;
-            vmNeuron.contentsOptions.isMoitheme = currentTheme && currentTheme.includes('moi');
-          }
-        });
-      }
     }
   });
 })();

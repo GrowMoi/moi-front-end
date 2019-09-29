@@ -11,8 +11,6 @@
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              MediaAchievements,
-                                              dataInventory,
                                               SocialService,
                                               StorageService,
                                               GAService) {
@@ -22,7 +20,6 @@
       vmContent.sendNotes = sendNotes;
       vmContent.readOnly = !!content.read_only;
       vmContent.showAlertExternalLink = showAlertExternalLink;
-      vmContent.userAchievements = dataInventory.achievements;
       vmContent.changeLanguage = StorageService.changeLanguage;
       var language = $auth.user.language;
       vmContent.state = language === 'es' ? false : true;
@@ -33,12 +30,7 @@
         showBackButton: true
       };
 
-      //set default theme
-      vmContent.theme = 'moi_azul';
-      vmContent.isMoitheme = true;
-
       activate();
-      setTheme();
 
       $scope.$on('$ionicView.afterEnter', startsReading);
       $scope.$on('$ionicView.beforeLeave', stopsReading);
@@ -179,20 +171,6 @@
 
       function isImage(params) {
         return typeof params === 'string';
-      }
-
-      function setTheme() {
-        if(vmContent.userAchievements.length > 0){
-          angular.forEach(vmContent.userAchievements, function(achievement, index){
-            if(achievement.active){
-              var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
-              vmContent.theme = currentTheme;
-              vmContent.isMoitheme = currentTheme && currentTheme.includes('moi');
-              modelData.frameColor = currentTheme && currentTheme.replace('moi_', '');
-              vmContent.slideGalleryOptions.modalFrameColor = modelData.frameColor;
-            }
-          });
-        }
       }
 
       function emptyFuncion() {}

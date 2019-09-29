@@ -76,15 +76,6 @@
               id: 1
             }]
           },
-          dataInventory: {
-            achievements: [
-              {
-                id:1,
-                name: '4 contenidos aprendios',
-                number: 5
-              }
-            ]
-          },
           storage: {neuron: {'advices': ['advice0']}},
           $auth: $auth
         };

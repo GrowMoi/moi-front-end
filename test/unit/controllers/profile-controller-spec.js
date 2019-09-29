@@ -14,9 +14,24 @@
       UserService,
       StorageService,
       ModalService,
-      LeaderboardService;
+      LeaderboardService,
+      MediaAchievements;
 
     beforeEach(module('moi.controllers'));
+    beforeEach(function(){
+      module('config', function ($provide) {
+        $provide.constant('MediaAchievements', {
+          1: {
+            name: 'Contenidos aprendidos',
+            description: 'Han sido aprendidos los primeros 4 contenidos',
+            settings: {
+              badge:'images/inventory/badges/badge1.png',
+              video: 'videos/vineta_1.mp4'
+            }
+          }
+        });
+      });
+    });
     beforeEach(angular.mock.module(function($provide){
       $provide.service('AnimationService', function(){
         return {
@@ -92,7 +107,8 @@
               _StorageService_,
               _UserService_,
               _ModalService_,
-              _LeaderboardService_) {
+              _LeaderboardService_,
+              _MediaAchievements_) {
 
         $state = {
           go: sinon.stub()
@@ -114,6 +130,7 @@
         UserService = _ModalService_;
         StorageService = _StorageService_;
         LeaderboardService = _LeaderboardService_;
+        MediaAchievements = _MediaAchievements_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
@@ -153,13 +170,23 @@
               total_items:4
             }
         },
+          dataInventory: {
+            achievements: [
+              {
+                id:1,
+                name: '4 contenidos aprendios',
+                number: 5
+              }
+            ]
+          },
           achievements: ['premio1', 'premio2'],
           AnimationService: AnimationService,
           UserService: UserService,
           ModalService: ModalService,
           $scope: $scope,
           StorageService: StorageService,
-          LeaderboardService: LeaderboardService
+          LeaderboardService: LeaderboardService,
+          MediaAchievements: MediaAchievements
         };
 
         controller = $controller('ProfileController', dependencies);

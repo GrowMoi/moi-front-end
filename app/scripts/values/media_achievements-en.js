@@ -16,7 +16,7 @@
           description: 'Learned 20 contents of the language branch',
           settings: {
             badge:'images/inventory/badges/badge2.png',
-            theme: 'moi_amarillo'
+            avatar: 'images/avatar/uno.png'
           }
         },
         3: {
@@ -24,7 +24,7 @@
           description: 'Learned 20 contents of the arts branch',
           settings: {
             badge:'images/inventory/badges/badge3.png',
-            theme: 'moi_rojo'
+            avatar: 'images/avatar/dos.png'
           }
         },
         4: {
@@ -32,7 +32,7 @@
           description: 'Learned 20 contents of the learning branch',
           settings: {
             badge:'images/inventory/badges/badge4.png',
-            theme: 'moi_azul'
+            avatar: 'images/avatar/tres.png'
           }
         },
         5: {
@@ -40,7 +40,7 @@
           description: 'Learned 20 contents of the nature branch',
           settings: {
             badge:'images/inventory/badges/badge9.png',
-            theme: 'moi_verde'
+            avatar: 'images/avatar/cuatro.png'
           }
         },
         6: {
@@ -64,7 +64,7 @@
           description: 'Completed 4 tests without making mistakes',
           settings: {
             badge:'images/inventory/badges/badge5.png',
-            theme: 'moi_violeta'
+            avatar: 'images/avatar/cinco.png'
           }
         },
         9: {

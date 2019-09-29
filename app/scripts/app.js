@@ -95,15 +95,6 @@
           return NeuronService.getNeuron(id).then(function(data) {
             return data;
           });
-        },
-        dataInventory: function($auth, UserService) {
-          return $auth.validateUser().then(function userAuthorized(){
-            return UserService.getUserAchievements().then(function(data){
-              return data;
-            });
-          }, function publicUser(){
-            return {};
-          });
         }
       }
     })
@@ -128,15 +119,6 @@
             });
           });
         },
-        dataInventory: function($auth, UserService) {
-          return $auth.validateUser().then(function userAuthorized(){
-            return UserService.getUserAchievements().then(function(data){
-              return data;
-            });
-          }, function publicUser(){
-            return {};
-          });
-        }
       }
     })
     .state('settings', {
@@ -237,7 +219,15 @@
             return data;
           });
         },
-
+        dataInventory: function($auth, UserService) {
+          return $auth.validateUser().then(function userAuthorized(){
+            return UserService.getUserAchievements().then(function(data){
+              return data;
+            });
+          }, function publicUser(){
+            return {};
+          });
+        }
       }
     })
     .state('profileEdit', {
