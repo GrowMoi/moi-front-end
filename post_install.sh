@@ -1,5 +1,5 @@
 #!/bin/bash
-gem install bundler -N
+gem install bundler -N -v '1.17.3'
 bundle install --path vendor/bundle --without development test --deployment --quiet
 ./node_modules/bower/bin/bower install
 
