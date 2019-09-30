@@ -27,7 +27,8 @@
                           AdvicesPageEn,
                           ModalService,
                           TooltipsService,
-                          EventsService) {
+                          EventsService,
+                          MediaAchievements) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
@@ -158,6 +159,9 @@
         } else {
           preloadAssets();
         }
+        UserService.getUserAchievements().then(function(dataInventory) {
+          setBackground(dataInventory.achievements);
+        });
       }
       if (!activePreload && $auth.user.id) {
         event.preventDefault();
@@ -298,6 +302,19 @@
 
     function conectionStateChanged() {
       site.offline = !navigator.onLine;
+    }
+
+    function setBackground(userAchievements) {
+      if(userAchievements.length > 0) {
+        angular.forEach(userAchievements, function(achievement, index){
+          if(achievement.active) {
+            $timeout(function() {
+              var background = MediaAchievements[userAchievements[index].number].settings.background;
+              site.currentBackground = background || 'images/landscape_a.png';
+            });
+          }
+        });
+      }
     }
   }
 })();

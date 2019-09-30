@@ -18,7 +18,8 @@
         deferredUpload,
         SoundsPage,
         AdvicesPage,
-        ModalService;
+        ModalService,
+        MediaAchievements;
 
     beforeEach(module('moi.controllers'));
 
@@ -45,6 +46,16 @@
         $provide.constant('AdvicesPageEn', {
           tree: {
             messages: 'Test'
+          }
+        });
+        $provide.constant('MediaAchievements', {
+          1: {
+            name: 'Contenidos aprendidos',
+            description: 'Han sido aprendidos los primeros 4 contenidos',
+            settings: {
+              badge:'images/inventory/badges/badge1.png',
+              video: 'videos/vineta_1.mp4'
+            }
           }
         });
       });
@@ -153,7 +164,8 @@
                 _TreeService_,
                 _AdvicesPage_,
                 _AdvicesPageEn_,
-                _ModalService_) {
+                _ModalService_,
+                _MediaAchievements_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = _$rootScope_.$new();
@@ -166,6 +178,7 @@
         AdvicesPage = _AdvicesPage_;
         AdvicesPageEn = _AdvicesPageEn_;
         ModalService = _ModalService_;
+        MediaAchievements = _MediaAchievements_;
       })
     );
 
@@ -183,7 +196,8 @@
           $translate: $translate,
           AdvicesPage: AdvicesPage,
           AdvicesPageEn: AdvicesPageEn,
-          ModalService: ModalService
+          ModalService: ModalService,
+          MediaAchievements: MediaAchievements
         };
 
         ctrl = $controller('SiteController', dependencies);

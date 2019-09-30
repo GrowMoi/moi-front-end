@@ -223,7 +223,6 @@
           if(achievement.active){
             var currentAvatar = MediaAchievements[vmProfile.userAchievements[index].number].settings.avatar;
             vmProfile.user.image = currentAvatar;
-            console.log('currentAvatar', currentAvatar);
           }
         });
       }

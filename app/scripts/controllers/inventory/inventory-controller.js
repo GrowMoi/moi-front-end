@@ -14,7 +14,6 @@
                                                 TestService,
                                                 $auth) {
       var vmInv = this,
-          $backgroundSound,
           achievements = data.achievements,
           language = $auth.user.language,
           allEventItems = {},
@@ -32,7 +31,6 @@
           showTasks: true
         }
       };
-      vmInv.showInventory = true;
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
       vmInv.tabs = [
@@ -54,12 +52,6 @@
       vmInv.increaseSize = MoiAnimationService.increaseSize;
       vmInv.cssOptions = {
         styles: []
-      };
-      $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
-      vmInv.finishedAnimation= function(){
-        vmInv.showInventory = true;
-        $backgroundSound[0].play();
-        $backgroundSound[0].autoplay = true;
       };
 
       vmInv.frameOptions = {
@@ -113,14 +105,9 @@
       }
 
       function activateAchievement(achievement){
-        if(achievement.settings.avatar){
+        if(achievement.settings.avatar || achievement.settings.background){
           vmInv.achievementSelected = achievement;
           UserService.activeAchievement(achievement.id).then(showpopup);
-        }
-        if (achievement.settings.video) {
-          $backgroundSound[0].pause();
-          vmInv.showInventory = false;
-          vmInv.urlVideo = achievement.settings.video;
         }
         if (achievement.settings.runFunction === 'openModal') {
           TestService.goFinalTest(null, vmInv.user.name);

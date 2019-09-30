@@ -153,13 +153,13 @@
     <div ng-if="site.offline || site.badConnection" class="offline-panel">
       <img class="animated flash" src="images/no_connection_moi.png" alt="no_connection_moi">
     </div>
-    <div ng-if="site.loadedImages" ng-cloak>
+    <div ng-if="site.loadedImages" class="custom-background" ng-style="{'background-image':'url({{site.currentBackground}})'}" ng-cloak>
       <ion-nav-view class="application" id="screenCapture"></ion-nav-view>
       <audio id="backgroundSound"
             ng-src="{{site.soundPage.sound}}"
             volume="{{site.soundPage.volume}}"
             type="{{site.soundPage.type}}" autoplay loop/>
     </div>
-    <moi-loader loading="!site.loadedImages" progress="site.progress"/>
+    <moi-loader class="loading-background" loading="!site.loadedImages" progress="site.progress"/>
   </body>
 </html>

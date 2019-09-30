@@ -8,7 +8,7 @@
           description: 'Learned the first 4 contents',
           settings: {
             badge:'images/inventory/badges/badge1.png',
-            video: 'videos/vineta_1.mp4'
+            background: 'images/background/dos.png'
           }
         },
         2: {
@@ -48,7 +48,7 @@
           description: 'All contents in the tree have been learned',
           settings: {
             badge:'images/inventory/badges/badge8.png',
-            video: 'videos/vineta_4.mp4'
+            background: 'images/background/dos.png'
           }
         },
         7: {
@@ -56,7 +56,7 @@
           description: 'At least one content was learned in every fruit in the tree',
           settings: {
             badge:'images/inventory/badges/badge7.png',
-            video: 'videos/vineta_3.mp4'
+            background: 'images/background/tres.png'
           }
         },
         8: {
@@ -72,7 +72,7 @@
           description: 'You deployed at least 50 total tests',
           settings: {
             badge:'images/inventory/badges/badge6.png',
-            video: 'videos/vineta_2.mp4'
+            background: 'images/background/cuatro.png'
           }
         },
         10: {
