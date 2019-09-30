@@ -22,6 +22,7 @@ set :slackistrano, {
 
 set :deploy_to, '/home/growmoi/moi-front-end'
 set :nvm_node, 'v0.12.14'
+set :release_stage_name, 'production'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
