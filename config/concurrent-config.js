@@ -32,7 +32,7 @@
         'copy:dist',
         'copy:vendor',
         'copy:fonts',
-        // 'jadengtemplatecache'
+        'jadengtemplatecache'
       ]
     },
     staging: [
