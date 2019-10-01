@@ -21,7 +21,7 @@ set :slackistrano, {
 }
 
 set :deploy_to, '/home/growmoi/moi-front-end'
-set :nvm_node, 'v0.12.14'
+set :nvm_node, 'v4.9.1'
 set :stage, 'production'
 set :release_stage_name, 'production'
 
