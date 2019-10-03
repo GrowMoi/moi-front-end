@@ -8,7 +8,7 @@
           description: 'Learned the first 4 contents',
           settings: {
             badge:'images/inventory/badges/badge1.png',
-            background: 'images/background/dos.png'
+            background: 'images/background/paisaje_amazonia.jpg'
           }
         },
         2: {
@@ -16,7 +16,7 @@
           description: 'Learned 20 contents of the language branch',
           settings: {
             badge:'images/inventory/badges/badge2.png',
-            avatar: 'images/avatar/uno.png'
+            avatar: 'images/avatar/avatar_1.png'
           }
         },
         3: {
@@ -24,7 +24,7 @@
           description: 'Learned 20 contents of the arts branch',
           settings: {
             badge:'images/inventory/badges/badge3.png',
-            avatar: 'images/avatar/dos.png'
+            avatar: 'images/avatar/avatar_2.png'
           }
         },
         4: {
@@ -32,7 +32,7 @@
           description: 'Learned 20 contents of the learning branch',
           settings: {
             badge:'images/inventory/badges/badge4.png',
-            avatar: 'images/avatar/tres.png'
+            avatar: 'images/avatar/avatar_3.png'
           }
         },
         5: {
@@ -40,7 +40,7 @@
           description: 'Learned 20 contents of the nature branch',
           settings: {
             badge:'images/inventory/badges/badge9.png',
-            avatar: 'images/avatar/cuatro.png'
+            avatar: 'images/avatar/avatar_4.png'
           }
         },
         6: {
@@ -48,7 +48,7 @@
           description: 'All contents in the tree have been learned',
           settings: {
             badge:'images/inventory/badges/badge8.png',
-            background: 'images/background/dos.png'
+            background: 'images/background/paisaje_costa.jpg'
           }
         },
         7: {
@@ -56,7 +56,7 @@
           description: 'At least one content was learned in every fruit in the tree',
           settings: {
             badge:'images/inventory/badges/badge7.png',
-            background: 'images/background/tres.png'
+            background: 'images/background/paisaje_insular.jpg'
           }
         },
         8: {
@@ -64,7 +64,7 @@
           description: 'Completed 4 tests without making mistakes',
           settings: {
             badge:'images/inventory/badges/badge5.png',
-            avatar: 'images/avatar/cinco.png'
+            avatar: 'images/avatar/avatar_5.png'
           }
         },
         9: {
@@ -72,7 +72,7 @@
           description: 'You deployed at least 50 total tests',
           settings: {
             badge:'images/inventory/badges/badge6.png',
-            background: 'images/background/cuatro.png'
+            background: 'images/background/paisaje_sierra.jpg'
           }
         },
         10: {
