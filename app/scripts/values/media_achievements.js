@@ -12,32 +12,32 @@
           }
         },
         2: {
-          name: 'Contenidos aprendidos rama Lenguaje',
-          description: 'Han sido aprendidos 20 contenidos de la rama Lenguaje',
+          name: 'Contenidos aprendidos rama El origen del Dinero',
+          description: 'Han sido aprendidos 20 contenidos de la rama El origen del Dinero',
           settings: {
             badge:'images/inventory/badges/badge2.png',
             avatar: 'images/avatar/avatar_1.png'
           }
         },
-        3: {
-          name: 'Contenidos aprendidos rama Arte',
-          description: 'Han sido aprendidos 20 contenidos de la rama Arte',
-          settings: {
-            badge:'images/inventory/badges/badge3.png',
-            avatar: 'images/avatar/avatar_2.png'
-          }
-        },
+        // 3: {
+        //   name: 'Contenidos aprendidos rama Arte',
+        //   description: 'Han sido aprendidos 20 contenidos de la rama Arte',
+        //   settings: {
+        //     badge:'images/inventory/badges/badge3.png',
+        //     avatar: 'images/avatar/avatar_2.png'
+        //   }
+        // },
         4: {
-          name: 'Contenidos aprendidos rama Aprender',
-          description: 'Han sido aprendidos 20 contenidos de la rama Aprender',
+          name: 'Contenidos aprendidos rama La importancia del presupuesto',
+          description: 'Han sido aprendidos 20 contenidos de la rama La importancia del presupuesto',
           settings: {
             badge:'images/inventory/badges/badge4.png',
             avatar: 'images/avatar/avatar_3.png'
           }
         },
         5: {
-          name: 'Contenidos aprendidos rama Naturaleza',
-          description: 'Han sido aprendidos 20 contenidos de la rama Naturaleza',
+          name: 'Contenidos aprendidos rama El verdadero valor del ahorro',
+          description: 'Han sido aprendidos 20 contenidos de la rama El verdadero valor del ahorro',
           settings: {
             badge:'images/inventory/badges/badge9.png',
             avatar: 'images/avatar/avatar_4.png'
@@ -69,7 +69,7 @@
         },
         9: {
           name: 'Tests desplegados',
-          description: 'Han sido desplegados 50 test sin errores',
+          description: 'Han sido desplegados 8 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge6.png',
             background: 'images/background/paisaje_sierra.jpg'

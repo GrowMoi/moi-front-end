@@ -12,32 +12,32 @@
           }
         },
         2: {
-          name: 'Language branch contents learned',
-          description: 'Learned 20 contents of the language branch',
+          name: 'The origin of money branch contents learned',
+          description: 'Learned 20 contents of the origin of money branch',
           settings: {
             badge:'images/inventory/badges/badge2.png',
             avatar: 'images/avatar/avatar_1.png'
           }
         },
-        3: {
-          name: 'Arts branch contents learned',
-          description: 'Learned 20 contents of the arts branch',
-          settings: {
-            badge:'images/inventory/badges/badge3.png',
-            avatar: 'images/avatar/avatar_2.png'
-          }
-        },
+        // 3: {
+        //   name: 'Arts branch contents learned',
+        //   description: 'Learned 20 contents of the arts branch',
+        //   settings: {
+        //     badge:'images/inventory/badges/badge3.png',
+        //     avatar: 'images/avatar/avatar_2.png'
+        //   }
+        // },
         4: {
-          name: 'Learning branch contents learned',
-          description: 'Learned 20 contents of the learning branch',
+          name: 'The importance of the budget branch contents learned',
+          description: 'Learned 20 contents of the The importance of the budget branch',
           settings: {
             badge:'images/inventory/badges/badge4.png',
             avatar: 'images/avatar/avatar_3.png'
           }
         },
         5: {
-          name: 'Nature branch contents learned',
-          description: 'Learned 20 contents of the nature branch',
+          name: 'The true value of saving branch contents learned',
+          description: 'Learned 20 contents of the true value of saving branch',
           settings: {
             badge:'images/inventory/badges/badge9.png',
             avatar: 'images/avatar/avatar_4.png'
