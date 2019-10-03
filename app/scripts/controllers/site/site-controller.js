@@ -72,6 +72,7 @@
 
     var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
+
     function preloadAssets(data, storage) {
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
@@ -159,9 +160,6 @@
         } else {
           preloadAssets();
         }
-        UserService.getUserAchievements().then(function(dataInventory) {
-          setBackground(dataInventory.achievements);
-        });
       }
       if (!activePreload && $auth.user.id) {
         event.preventDefault();
@@ -209,8 +207,12 @@
         var languageBrowser = lang.slice(0,2);
         site.advicePage = languageBrowser === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
         $translate.use(languageBrowser);
+        site.achievementBackgroundCss = {
+          'background-image': 'url(images/landscape_a.png)'
+        };
       }
       else {
+        setBackgroundAccordingAchievement();
         StorageService.get().then(function(value){
           var storage = value.data.storage || {};
           site.advicePage = storage.language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
@@ -304,17 +306,23 @@
       site.offline = !navigator.onLine;
     }
 
-    function setBackground(userAchievements) {
-      if(userAchievements.length > 0) {
-        angular.forEach(userAchievements, function(achievement, index){
-          if(achievement.active) {
-            $timeout(function() {
-              var background = MediaAchievements[userAchievements[index].number].settings.background;
-              site.currentBackground = background || 'images/landscape_a.png';
-            });
-          }
-        });
-      }
+    function setBackgroundAccordingAchievement() {
+      UserService.getUserAchievements().then(function(dataInventory) {
+        var userAchievements = dataInventory.achievements;
+        if(userAchievements.length > 0) {
+          angular.forEach(userAchievements, function(achievement, index){
+            if(achievement.active) {
+              $timeout(function() {
+                var background = MediaAchievements[userAchievements[index].number].settings.background;
+                var achivementCss = {
+                  'background-image': 'url('+background+')'
+                };
+                site.achievementBackgroundCss = background ? achivementCss : null;
+              });
+            }
+          });
+        }
+      });
     }
   }
 })();
