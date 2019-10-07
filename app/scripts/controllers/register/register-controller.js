@@ -14,8 +14,7 @@
                               ImagesLoginEn,
                               ImagesLogin) {
     var registerModel = this;
-    var lang = navigator.language || navigator.userLanguage;
-    var languageBrowser = lang.slice(0,2);
+    var languageBrowser = 'es';
     registerModel.register = register;
     registerModel.registerForm = {};
     registerModel.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;

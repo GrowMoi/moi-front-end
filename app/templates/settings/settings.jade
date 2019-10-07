@@ -22,10 +22,6 @@ ion-view.settings-page(view-title='{{vm.neuron.title}}')
                   ng-change="vm.contentSettings(config)")
             .advices-toggle
               span.content-subtitle-settings
-                | {{ 'content.language' | translate }}
-              ion-toggle(ng-model='vm.state' ng-change="vm.changeLanguage()")
-            .advices-toggle
-              span.content-subtitle-settings
                 | {{ 'content.tutorial' | translate }}
               ion-toggle(ng-model='vm.advicesOn' ng-change="vm.updateAdvicesSettings()")
           .panel-right.col-45

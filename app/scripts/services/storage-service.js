@@ -59,8 +59,7 @@
       }
 
       function setLanguage(route){
-        var lang = navigator.language || navigator.userLanguage;
-        var languageBrowser = lang.slice(0,2);
+        var languageBrowser = 'es';
         get().then(function(value){
           var storage = value.data.storage || {};
           storage.language = languageBrowser;

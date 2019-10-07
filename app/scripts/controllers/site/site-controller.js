@@ -184,8 +184,7 @@
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       handlePagesViewed(toState);
       if(toState.name === 'login.first_step' || toState.name === 'login.second_step' || toState.name === 'register' || toState.name ==='login'){
-        var lang = navigator.language || navigator.userLanguage;
-        var languageBrowser = lang.slice(0,2);
+        var languageBrowser = 'es';
         site.advicePage = languageBrowser === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
         $translate.use(languageBrowser);
         site.achievementBackgroundCss = {

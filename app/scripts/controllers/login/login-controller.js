@@ -16,8 +16,7 @@
               GAService) {
     var vmLogin = this;
     var moiSound;
-    var lang = navigator.language || navigator.userLanguage;
-    var languageBrowser = lang.slice(0,2);
+    var languageBrowser = 'es';
     vmLogin.form = {};
     vmLogin.finishedSound = finishedSound;
 

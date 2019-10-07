@@ -16,9 +16,7 @@
     var vm = this;
     vm.selectInterest = selectInterest;
     vm.contentSettings = contentSettings;
-    vm.changeLanguage = StorageService.changeLanguage;
     var language = $auth.user.language;
-    vm.state = language === 'es' ? false : true;
     vm.listSelected = [];
     vm.advicesOn = (localStorage.getItem('advicesOn') === 'true') || false;
     vm.updateAdvicesSettings = updateAdvicesSettings;

@@ -20,9 +20,6 @@
       vmContent.sendNotes = sendNotes;
       vmContent.readOnly = !!content.read_only;
       vmContent.showAlertExternalLink = showAlertExternalLink;
-      vmContent.changeLanguage = StorageService.changeLanguage;
-      var language = $auth.user.language;
-      vmContent.state = language === 'es' ? false : true;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
