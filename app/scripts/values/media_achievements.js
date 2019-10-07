@@ -8,7 +8,7 @@
           description: 'Han sido aprendidos los primeros 4 contenidos',
           settings: {
             badge:'images/inventory/badges/badge1.png',
-            background: 'images/background/paisaje_amazonia.jpg'
+            avatar: 'images/avatar/avatar_1.png'
           }
         },
         2: {
@@ -16,7 +16,7 @@
           description: 'Han sido aprendidos 20 contenidos de la rama El origen del Dinero',
           settings: {
             badge:'images/inventory/badges/badge2.png',
-            avatar: 'images/avatar/avatar_1.png'
+            background: 'images/background/paisaje_amazonia.jpg'
           }
         },
         // 3: {
@@ -32,7 +32,7 @@
           description: 'Han sido aprendidos 20 contenidos de la rama La importancia del presupuesto',
           settings: {
             badge:'images/inventory/badges/badge4.png',
-            avatar: 'images/avatar/avatar_3.png'
+            background: 'images/background/paisaje_costa.jpg'
           }
         },
         5: {
@@ -40,7 +40,7 @@
           description: 'Han sido aprendidos 20 contenidos de la rama El verdadero valor del ahorro',
           settings: {
             badge:'images/inventory/badges/badge9.png',
-            avatar: 'images/avatar/avatar_4.png'
+            background: 'images/background/paisaje_insular.jpg'
           }
         },
         6: {
@@ -48,7 +48,7 @@
           description: 'Todos los contenidos han sido aprendidos',
           settings: {
             badge:'images/inventory/badges/badge8.png',
-            background: 'images/background/paisaje_costa.jpg'
+            avatar: 'images/avatar/avatar_3.png'
           }
         },
         7: {
@@ -56,7 +56,7 @@
           description: 'Al menos un contenido ha sido aprendido en cada neurona pública',
           settings: {
             badge:'images/inventory/badges/badge7.png',
-            background: 'images/background/paisaje_insular.jpg'
+            avatar: 'images/avatar/avatar_4.png'
           }
         },
         8: {
@@ -64,7 +64,7 @@
           description: 'Han sido completados 4 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge5.png',
-            avatar: 'images/avatar/avatar_5.png'
+            background: 'images/background/paisaje_sierra.jpg'
           }
         },
         9: {
@@ -72,7 +72,7 @@
           description: 'Han sido desplegados 8 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge6.png',
-            background: 'images/background/paisaje_sierra.jpg'
+            avatar: 'images/avatar/avatar_5.png'
           }
         },
         10: {
