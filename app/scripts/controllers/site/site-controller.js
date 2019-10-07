@@ -298,7 +298,6 @@
         8: 'images/background/paisaje_insular.jpg',
         9: 'images/background/paisaje_sierra.jpg'
       };
-      console.log('level', level);
       $timeout(function() {
         var background = backgroundsDepthTree[level];
         var achivementCss = {

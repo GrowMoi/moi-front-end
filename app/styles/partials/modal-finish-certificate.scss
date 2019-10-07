@@ -33,7 +33,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white
+    color: white;
+    font-size: 40px;
+    height: 25%;
   }
 
   .container{
@@ -107,6 +109,7 @@
       justify-content: space-between;
       color: #219fd1;
       font-family: FontMoi-Title;
+      margin-top: 5%;
 
       #chart-area {
         height: 75px;

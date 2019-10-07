@@ -213,10 +213,10 @@
       };
       //Colores por ramas
       var colors = {
-        'Aprender': {value: '#0089b6', color: 'azul'},
-        'Artes': {value: '#b83b67', color: 'rojo'},
-        'Lenguaje': {value: '#f7af1f', color: 'amarillo'},
-        'Naturaleza': {value: '#359b3d', color: 'verde'},
+        'El verdadero valor del ahorro': {value: '#b83b67', color: 'azul'},
+        'La importancia del presupuesto': {value: '#359b3d', color: 'verde'},
+        '¿Cuales son tus sueños? 2': {value: '#0089b6', color: 'amarillo'},
+        // 'Naturaleza': {value: '#359b3d', color: 'verde'},
       };
       //TODO: Cambiar por el valor de total de contenidos aprendidos que retorna el backend
       angular.forEach(data.contents_learnt_by_branch, function(branch) { //jshint ignore:line
