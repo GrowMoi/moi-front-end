@@ -5,6 +5,7 @@
   .controller('TreeController', function ($scope,
                                           $auth,
                                           $timeout,
+                                          $rootScope,
                                           data,
                                           ModalService,
                                           TreeService,
@@ -14,7 +15,10 @@
                                           AdvicesPage,
                                           AdvicesPageEn,
                                           TreeAnimateService,
-                                          MoiAnimationService) {
+                                          MoiAnimationService,
+                                          storage,
+                                          StorageService
+                                          ) {
 
     var treeModel = this;
     treeModel.neurons = data.tree;
@@ -52,12 +56,8 @@
     }
 
     //show only when a user is new
-    if(data.meta.depth === 1){
+    if(!storage.isOldUser) {
       showWelcomeModal();
-    }
-    //show only when a user reach level 9
-    if(data.meta.depth === 9){
-      TestService.goFinalTest(null, currentUser.name);
     }
 
     initAnimations();
@@ -80,6 +80,8 @@
         callbacks: {
           btnCenter: function(){
             dialogContentModel.closeModal();
+            storage.isOldUser = true;
+            StorageService.update(storage);
           }
         },
         labels: {
@@ -197,6 +199,13 @@
       pagesViewed[currentPage] = true;
       localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
     }
+
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState){
+      //show only when a user reach level 9
+      if(toState.name === 'tree' && fromState.name === 'test' && data.meta.depth === 9){
+        TestService.goFinalTest(null, currentUser.name);
+      }
+    });
 
   });
 
