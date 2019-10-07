@@ -16,7 +16,7 @@
           description: 'Han sido aprendidos 20 contenidos de la rama El origen del Dinero',
           settings: {
             badge:'images/inventory/badges/badge2.png',
-            background: 'images/background/paisaje_amazonia.jpg'
+            avatar: 'images/avatar/avatar_5.png'
           }
         },
         // 3: {
@@ -32,7 +32,7 @@
           description: 'Han sido aprendidos 20 contenidos de la rama La importancia del presupuesto',
           settings: {
             badge:'images/inventory/badges/badge4.png',
-            background: 'images/background/paisaje_costa.jpg'
+            avatar: 'images/avatar/avatar_6.png'
           }
         },
         5: {
@@ -40,7 +40,7 @@
           description: 'Han sido aprendidos 20 contenidos de la rama El verdadero valor del ahorro',
           settings: {
             badge:'images/inventory/badges/badge9.png',
-            background: 'images/background/paisaje_insular.jpg'
+            avatar: 'images/avatar/avatar_7.png'
           }
         },
         6: {
@@ -64,7 +64,7 @@
           description: 'Han sido completados 4 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge5.png',
-            background: 'images/background/paisaje_sierra.jpg'
+            avatar: 'images/avatar/avatar_8.png'
           }
         },
         9: {
