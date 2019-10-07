@@ -51,7 +51,7 @@
 
     function init() {
       var options = vm.options || {};
-      options = angular.merge(NeuronsOptions[vm.id], options);
+      options = angular.merge(options, NeuronsOptions[vm.id]);
 
       var size = options.size || {},
           position = options.position || {},

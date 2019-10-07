@@ -289,10 +289,16 @@
     function setBackgroundAccordingLevel(level) {
       var backgroundsDepthTree = {
         1: 'images/background/paisaje_amazonia.jpg',
+        2: 'images/background/paisaje_amazonia.jpg',
+        3: 'images/background/paisaje_amazonia.jpg',
+        4: 'images/background/paisaje_amazonia.jpg',
         5: 'images/background/paisaje_costa.jpg',
+        6: 'images/background/paisaje_costa.jpg',
         7: 'images/background/paisaje_insular.jpg',
+        8: 'images/background/paisaje_insular.jpg',
         9: 'images/background/paisaje_sierra.jpg'
       };
+      console.log('level', level);
       $timeout(function() {
         var background = backgroundsDepthTree[level];
         var achivementCss = {

@@ -56,7 +56,7 @@
     }
 
     //show only when a user is new
-    if(!storage.isOldUser) {
+    if(!storage.isOldUser && data.meta.depth === 1) {
       showWelcomeModal();
     }
 
