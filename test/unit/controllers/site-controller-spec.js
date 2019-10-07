@@ -18,8 +18,7 @@
         deferredUpload,
         SoundsPage,
         AdvicesPage,
-        ModalService,
-        MediaAchievements;
+        ModalService;
 
     beforeEach(module('moi.controllers'));
 
@@ -48,16 +47,6 @@
             messages: 'Test'
           }
         });
-        $provide.constant('MediaAchievements', {
-          1: {
-            name: 'Contenidos aprendidos',
-            description: 'Han sido aprendidos los primeros 4 contenidos',
-            settings: {
-              badge:'images/inventory/badges/badge1.png',
-              video: 'videos/vineta_1.mp4'
-            }
-          }
-        });
       });
     });
 
@@ -65,13 +54,6 @@
       $provide.factory('PreloadAssets', function(){
         return {
           cache: function(){
-            return {
-              then: function(){
-                return null;
-              }
-            };
-          },
-          shouldPreloadVideo: function(){
             return {
               then: function(){
                 return null;
@@ -164,8 +146,7 @@
                 _TreeService_,
                 _AdvicesPage_,
                 _AdvicesPageEn_,
-                _ModalService_,
-                _MediaAchievements_) {
+                _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = _$rootScope_.$new();
@@ -178,7 +159,6 @@
         AdvicesPage = _AdvicesPage_;
         AdvicesPageEn = _AdvicesPageEn_;
         ModalService = _ModalService_;
-        MediaAchievements = _MediaAchievements_;
       })
     );
 
@@ -196,8 +176,7 @@
           $translate: $translate,
           AdvicesPage: AdvicesPage,
           AdvicesPageEn: AdvicesPageEn,
-          ModalService: ModalService,
-          MediaAchievements: MediaAchievements
+          ModalService: ModalService
         };
 
         ctrl = $controller('SiteController', dependencies);

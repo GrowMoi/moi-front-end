@@ -18,17 +18,14 @@
                           $scope,
                           $translate,
                           SoundsPage,
-                          TreeService,
                           $location,
                           GAService,
                           IMAGES,
-                          VIDEOS,
                           AdvicesPage,
                           AdvicesPageEn,
                           ModalService,
                           TooltipsService,
-                          EventsService,
-                          MediaAchievements) {
+                          EventsService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
@@ -70,22 +67,15 @@
       };
     }
 
-    var videos = VIDEOS.paths;
     var updateProfile = 'profileEdit';
 
-    function preloadAssets(data, storage) {
+    function preloadAssets() {
       site.loadedImages = false;
       var validPaths = ['images/view-elements', 'images/sprites'];
       var filterImages = filterImagesByPath(images, validPaths);
       var itemsToPreload = {
         images: filterImages
       };
-      var shouldPreloadVideo = data ? PreloadAssets.shouldPreloadVideo(data, storage) : false;
-      if (shouldPreloadVideo) {
-        itemsToPreload.videos = videos.map(function(vdo) {
-          return vdo.substring(4);
-        });
-      }
       var progressValue = 100 / Object.keys(itemsToPreload)
         .map(function(key) {return itemsToPreload[key].length;})
         .reduce(function(a, b) {return a+b;});
@@ -147,19 +137,10 @@
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
       if (activePreload && !site.preloadCalled && $auth.user.id) {
         site.loadedImages = false;
-        if(toState.name === 'tree'){
-          var username = $auth.user.username;
-          if ($auth && $auth.user.level > 4) {
-            localStorage.setItem('advicesOn', 'false');
-          }
-          TreeService.getNeuronsUser(username).then(function(data) {
-            StorageService.get().then(function(resp) {
-              preloadAssets(data, resp.data.storage);
-            });
-          });
-        } else {
-          preloadAssets();
+        if(toState.name === 'tree' && $auth && $auth.user.level > 4) {
+          localStorage.setItem('advicesOn', 'false');
         }
+        preloadAssets();
       }
       if (!activePreload && $auth.user.id) {
         event.preventDefault();
@@ -212,7 +193,7 @@
         };
       }
       else {
-        setBackgroundAccordingAchievement();
+        setBackgroundAccordingLevel($auth.user.level);
         StorageService.get().then(function(value){
           var storage = value.data.storage || {};
           site.advicePage = storage.language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
@@ -306,22 +287,19 @@
       site.offline = !navigator.onLine;
     }
 
-    function setBackgroundAccordingAchievement() {
-      UserService.getUserAchievements().then(function(dataInventory) {
-        var userAchievements = dataInventory.achievements;
-        if(userAchievements.length > 0) {
-          angular.forEach(userAchievements, function(achievement, index){
-            if(achievement.active) {
-              $timeout(function() {
-                var background = MediaAchievements[userAchievements[index].number].settings.background;
-                var achivementCss = {
-                  'background-image': 'url('+background+')'
-                };
-                site.achievementBackgroundCss = background ? achivementCss : null;
-              });
-            }
-          });
-        }
+    function setBackgroundAccordingLevel(level) {
+      var backgroundsDepthTree = {
+        1: 'images/background/paisaje_amazonia.jpg',
+        5: 'images/background/paisaje_costa.jpg',
+        7: 'images/background/paisaje_insular.jpg',
+        9: 'images/background/paisaje_sierra.jpg'
+      };
+      $timeout(function() {
+        var background = backgroundsDepthTree[level];
+        var achivementCss = {
+          'background-image': 'url('+background+')'
+        };
+        site.achievementBackgroundCss = background ? achivementCss : null;
       });
     }
   }

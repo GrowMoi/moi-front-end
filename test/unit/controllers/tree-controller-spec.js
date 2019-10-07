@@ -40,9 +40,6 @@
                 return null;
               }
             };
-          },
-          shouldPreloadVideo: function(){
-            return false;
           }
         };
       });

@@ -105,7 +105,7 @@
       }
 
       function activateAchievement(achievement){
-        if(achievement.settings.avatar || achievement.settings.background){
+        if(achievement.settings.avatar){
           vmInv.achievementSelected = achievement;
           UserService.activeAchievement(achievement.id).then(showpopup);
         }

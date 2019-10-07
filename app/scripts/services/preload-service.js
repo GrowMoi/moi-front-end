@@ -7,42 +7,11 @@
 
   function PreloadAssets($q) {
 
-    var vinetas = [
-      {
-        depth: 1,
-        video: 'videos/vineta_1.mp4'
-      },
-      {
-        depth: 5,
-        video: 'videos/vineta_2.mp4'
-      },
-      {
-        depth: 7,
-        video: 'videos/vineta_3.mp4'
-      },
-      {
-        depth: 9,
-        video: 'videos/vineta_4.mp4'
-      }
-    ];
-
     var service = {
-      cache: cache,
-      shouldPreloadVideo: shouldPreloadVideo
+      cache: cache
     };
 
     return service;
-
-    function shouldPreloadVideo(data, storage) {
-      var getConfigVineta = storage.tree ? storage.tree.vinetas_animadas : undefined; //jshint ignore:line
-      var isDiferentLevel = getConfigVineta ? getConfigVineta.depth !== data.meta.depth : false;
-      return getVineta(data.meta.depth) !== '' && (!getConfigVineta || isDiferentLevel) ? getVineta(data.meta.depth) : false;
-    }
-
-    function getVineta(depth){
-      var vinetaSelected = vinetas.filter(function(item){return item.depth === depth && item.video;});
-      return vinetaSelected[0] ? vinetaSelected[0].video : '';
-    }
 
     function cache(resources, updateProgress) {
       if (!(resources.images instanceof Array) && !(resources.sounds instanceof Array) && !(resources.videos instanceof Array)){

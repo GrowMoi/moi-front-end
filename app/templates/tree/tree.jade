@@ -1,52 +1,47 @@
 ion-view.tree-view(view-title='TreeMoi')
-  div(ng-if="treeModel.showTree")
-    ion-content
-      .app-content(id="{{site.idsTreeScreen.view}}")
-        back-button.arrow.back-arrow(data-html2canvas-ignore="true")
-        .clouds-container
-          .cloud.animated.slideInLeft(ng-style="treeModel.randomPositionsCss[0]")
-            img(src="images/nube1L.png")
-          .cloud.animated.slideInRight(ng-style="treeModel.randomPositionsCss[1]")
-            img(src="images/nube2L.png")
-          .cloud.animated.slideInLeft(ng-style="treeModel.randomPositionsCss[2]")
-            img(src="images/nube3L.png")
-        .tree-percentage(data-html2canvas-ignore="true")
-          .percentage-container(tooltips
-                                tooltip-template="{{treeModel.percentageTooltip}}"
-                                tooltip-side="left")
-            .percentage-progress-bar
-              .label
-                  | {{treeModel.percentage}} %
-              .percentage-bar(style="width: {{treeModel.percentage}}%")
-            img.widget(src="images/tree-percentage-bar.png")
-        .level-user
-          .level-user-container(data-html2canvas-ignore="true")
-            .level-container(tooltips
-                            tooltip-template="{{treeModel.learnTooltip}}"
-                            tooltip-side="top")
-              .level-progress-bar
-                .level-bar(ng-style="treeModel.cssBar" style="height: {{treeModel.percentageLevel}}%")
-              img.widget(src="images/tree-user-level.png")
-            img.point(ng-style="treeModel.cssPoint"
-                      src="images/tree-point-level.png")
-            .counter-container
-              .counter
-                span
-                  | {{treeModel.userLevel}}
-                img(src= "images/tree-number-level.png")
-        .tree-content(ng-if="treeModel.isBasicLevel")
+  ion-content
+    .app-content(id="{{site.idsTreeScreen.view}}")
+      back-button.arrow.back-arrow(data-html2canvas-ignore="true")
+      .clouds-container
+        .cloud.animated.slideInLeft(ng-style="treeModel.randomPositionsCss[0]")
+          img(src="images/nube1L.png")
+        .cloud.animated.slideInRight(ng-style="treeModel.randomPositionsCss[1]")
+          img(src="images/nube2L.png")
+        .cloud.animated.slideInLeft(ng-style="treeModel.randomPositionsCss[2]")
+          img(src="images/nube3L.png")
+      .tree-percentage(data-html2canvas-ignore="true")
+        .percentage-container(tooltips
+                              tooltip-template="{{treeModel.percentageTooltip}}"
+                              tooltip-side="left")
+          .percentage-progress-bar
+            .label
+                | {{treeModel.percentage}} %
+            .percentage-bar(style="width: {{treeModel.percentage}}%")
+          img.widget(src="images/tree-percentage-bar.png")
+      .level-user
+        .level-user-container(data-html2canvas-ignore="true")
+          .level-container(tooltips
+                          tooltip-template="{{treeModel.learnTooltip}}"
+                          tooltip-side="top")
+            .level-progress-bar
+              .level-bar(ng-style="treeModel.cssBar" style="height: {{treeModel.percentageLevel}}%")
+            img.widget(src="images/tree-user-level.png")
+          img.point(ng-style="treeModel.cssPoint"
+                    src="images/tree-point-level.png")
+          .counter-container
+            .counter
+              span
+                | {{treeModel.userLevel}}
+              img(src= "images/tree-number-level.png")
+      .tree-content(ng-if="treeModel.isBasicLevel")
+        figure.flowerpot
+          img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
+        moi-tree(neurons="treeModel.neurons" meta="treeModel.meta")
+      .tree-section(ng-if="!treeModel.isBasicLevel")
+        .tree-content
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
+        .tree-draw
           moi-tree(neurons="treeModel.neurons" meta="treeModel.meta")
-        .tree-section(ng-if="!treeModel.isBasicLevel")
-          .tree-content
-            figure.flowerpot
-              img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
-          .tree-draw
-            moi-tree(neurons="treeModel.neurons" meta="treeModel.meta")
-        .btn-shared-tree(ng-click="treeModel.sharedTree()" data-html2canvas-ignore="true")
-      moi-frame(options="treeModel.frameOptions")
-  .movies-container(ng-if="!treeModel.showTree")
-    .container-loading
-      .logo-loading
-    moi-videos.vinetas(video-url="{{treeModel.urlVineta}}" video-type="video/mp4" callback="treeModel.finishedAnimation()")
+      .btn-shared-tree(ng-click="treeModel.sharedTree()" data-html2canvas-ignore="true")
+    moi-frame(options="treeModel.frameOptions")

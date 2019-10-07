@@ -6,12 +6,9 @@
                                           $auth,
                                           $timeout,
                                           data,
-                                          storage,
-                                          PreloadAssets,
                                           ModalService,
                                           TreeService,
                                           NeuronAnimateService,
-                                          StorageService,
                                           SocialService,
                                           TestService,
                                           AdvicesPage,
@@ -32,7 +29,6 @@
     var language = $auth.user.language;
     treeModel.percentageTooltip = language === 'es' ? 'Has descubierto el ' +treeModel.percentage+ '% de tu árbol Moi': 'You have discovered the ' +treeModel.percentage+ '% of your tree Moi';
     treeModel.learnTooltip = language === 'es' ? 'Tu nivel de aprendizaje es ' +treeModel.userLevel: 'Your level of learning is ' + treeModel.userLevel;
-    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
     var isShowingPassiveModal = false;
@@ -55,46 +51,16 @@
       localStorage.setItem('successAnswers', 0);
     }
 
-    initVineta();
-
-    treeModel.finishedAnimation = function() {
-      $timeout(function(){treeModel.showTree = true;});
-      $backgroundSound[0].play();
-      $backgroundSound[0].autoplay = true;
-      if(storage.tree){
-        if(storage.tree.vinetas_animadas){ //jshint ignore:line
-          storage.tree.vinetas_animadas.depth = data.meta.depth; //jshint ignore:line
-        }else {
-          storage.tree.vinetas_animadas = {'depth': data.meta.depth}; //jshint ignore:line
-        }
-        StorageService.update(storage);
-      }else if(currentUser.username){
-        storage.tree = {'vinetas_animadas': {'depth': data.meta.depth}};
-        StorageService.update(storage);
-      }
-
-      initAnimations();
-
-      //show only when a user is new
-      if(data.meta.depth === 1){
-        showWelcomeModal();
-      }
-      //show only when a user reach level 9
-      if(data.meta.depth === 9){
-        TestService.goFinalTest(null, currentUser.name);
-      }
-    };
-
-    function initVineta() {
-      treeModel.urlVineta = PreloadAssets.shouldPreloadVideo(data, storage);
-      if(treeModel.urlVineta && currentUser.username) {
-        $backgroundSound[0].autoplay = false;
-        treeModel.showTree = false;
-      }else{
-        treeModel.showTree = true;
-        initAnimations();
-      }
+    //show only when a user is new
+    if(data.meta.depth === 1){
+      showWelcomeModal();
     }
+    //show only when a user reach level 9
+    if(data.meta.depth === 9){
+      TestService.goFinalTest(null, currentUser.name);
+    }
+
+    initAnimations();
 
     function initAnimations() {
       $timeout(animateWidgets, 2000);
