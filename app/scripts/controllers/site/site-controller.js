@@ -288,11 +288,11 @@
 
     function setBackgroundAccordingLevel(level) {
       var backgroundsDepthTree = {
-        1: 'images/background/paisaje_amazonia.jpg',
-        2: 'images/background/paisaje_amazonia.jpg',
-        3: 'images/background/paisaje_amazonia.jpg',
+        1: 'images/background/paisaje_sierra.jpg',
+        2: 'images/background/paisaje_sierra.jpg',
+        3: 'images/background/paisaje_costa.jpg',
         4: 'images/background/paisaje_amazonia.jpg',
-        5: 'images/background/paisaje_costa.jpg',
+        5: 'images/background/paisaje_insular.jpg',
         6: 'images/background/paisaje_costa.jpg',
         7: 'images/background/paisaje_insular.jpg',
         8: 'images/background/paisaje_insular.jpg',

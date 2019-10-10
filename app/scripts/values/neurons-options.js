@@ -4,7 +4,7 @@
   angular.module('moi')
     .value('NeuronsOptions', {
       'root': {
-        color: 'yellow'
+        color: 'blue'
       },
       'second-level-0': {
         color: 'blue'
