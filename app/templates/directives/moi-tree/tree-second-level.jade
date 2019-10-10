@@ -4,7 +4,7 @@
     img.tronco-root(src="images/tree/level-1/tronco.png"
       ng-if="treeVm.neurons.root.state === 'florecida'")
     .tree-branch-root(ng-repeat="child in treeVm.neurons.root.children track by $index")
-      div.branch-level-2(class="second-level-branch-{{$index}} {{child.state}}")
+      div.branch-level-2(class="second-level-branch-{{$index}} {{child.state}}" ng-if="$index !== 2")
   .tree-neuron-root.neuron(class="{{treeVm.neurons.root.state}} neuron")
     moi-neuron(options="treeVm.neurons.root" id='root' level="2")
   .tree-neuron-root(ng-repeat="child in treeVm.neurons.root.children track by $index"

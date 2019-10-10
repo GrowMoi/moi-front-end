@@ -58,6 +58,9 @@
               'userLevel': 10,
               'pointPosition': 9
             };
+          },
+          getMockDataToHidenBranch: function() {
+            return {};
           }
         };
       });
@@ -127,7 +130,7 @@
         };
         dependencies = {
           $scope: $scope,
-          data: {tree: {root: {in_desired_neuron_path: false}}, meta:{depth:4}},
+          data: {tree: {root: {in_desired_neuron_path: false, children:[]}}, meta:{depth:4}},
           storage: {tree: {'vinetas_animadas': {'depth': 1}}},
           $auth: $auth,
           ModalService: ModalService,

@@ -64,7 +64,7 @@
           description: 'Han sido completados 4 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge5.png',
-            avatar: 'images/avatar/avatar_8.png'
+            avatar: 'images/avatar/placegolder_perfil_7.png'
           }
         },
         9: {
@@ -72,7 +72,7 @@
           description: 'Han sido desplegados 8 test sin errores',
           settings: {
             badge:'images/inventory/badges/badge6.png',
-            avatar: 'images/avatar/avatar_7.png'
+            avatar: 'images/avatar/placegolder_perfil_8.png'
           }
         },
         10: {

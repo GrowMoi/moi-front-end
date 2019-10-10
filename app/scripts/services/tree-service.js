@@ -8,7 +8,8 @@
   function TreeService($http, ENV, PopupService) {
     var service = {
       getNeuronsUser: getNeuronsUser,
-      progressTree: progressTree
+      progressTree: progressTree,
+      getMockDataToHidenBranch: getMockDataToHidenBranch
     };
     var popupOptions = { title: 'Error'};
 
@@ -142,6 +143,56 @@
     function percentageLevel(min, diff, percentage) {
       var finalValue = ((percentage-min) * 100)/diff;
       return parseFloat(finalValue.toFixed(1));
+    }
+
+    function getMockDataToHidenBranch() {
+      var mockBranch = {
+        'id': 8,
+        'parent_id': 1,
+        'is_public': true,
+        'active': true,
+        'deleted': false,
+        'state': 'florecida',//second level
+        'children': [
+          {
+            'id': 5,
+            'parent_id': 8,
+            'is_public': true,
+            'active': true,
+            'deleted': false,
+            'state': 'florecida',//third level
+            'children': [
+              {
+                'id': 15,
+                'parent_id': 5,
+                'is_public': true,
+                'active': true,
+                'deleted': false,
+                'state': 'florecida',//fourth level
+                'children': [
+                  {
+                    'id': 121,
+                    'parent_id': 15,
+                    'is_public': true,
+                    'active': true,
+                    'deleted': false,
+                    'state': 'florecida',//fifth level
+                  }
+                ]
+              },
+              {
+                'id': 6,
+                'parent_id': 5,
+                'is_public': true,
+                'active': true,
+                'deleted': false,
+                'state': 'florecida',//fourth level
+              }
+            ]
+          }
+        ]
+      };
+      return mockBranch;
     }
   }
 })();

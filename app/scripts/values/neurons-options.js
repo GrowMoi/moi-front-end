@@ -120,7 +120,7 @@
       'fifth-level-1025': {
         color: 'green'
       },
-      'fifth-level-1023': {
+      'fifth-level-1001': {
         color: 'green'
       },
       'fifth-level-1022': {

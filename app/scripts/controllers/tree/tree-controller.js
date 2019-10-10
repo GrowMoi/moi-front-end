@@ -21,6 +21,10 @@
                                           ) {
 
     var treeModel = this;
+    if(data.meta.depth > 1) {
+      //Add hiden branch
+      data.tree.root.children.splice(2, 0, TreeService.getMockDataToHidenBranch());
+    }
     treeModel.neurons = data.tree;
     treeModel.meta = data.meta;
     var progressTree = TreeService.progressTree(treeModel.meta);

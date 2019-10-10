@@ -38,16 +38,18 @@
 
       function addAnimateClass(randomPosition, isTheLastItem) {
         var $neuronElement = discoveredNeurons[randomPosition];
-        var $neuronToAnimate = $neuronElement.find('img');
-        MoiAnimationService.animateWidget($neuronToAnimate, 'swing').then(function(){
-          if(isTheLastItem){
-            $timeout(function() {
-              if(!service.stopCallToAction){
-                callToAction();
-              }
-            }, 1500);
-          }
-        });
+        if($neuronElement) {
+          var $neuronToAnimate = $neuronElement.find('img');
+          MoiAnimationService.animateWidget($neuronToAnimate, 'swing').then(function(){
+            if(isTheLastItem){
+              $timeout(function() {
+                if(!service.stopCallToAction){
+                  callToAction();
+                }
+              }, 1500);
+            }
+          });
+        }
       }
 
       function specialCallToAction(){
