@@ -15,7 +15,8 @@
     friendsmodel.frameOptions = {
       type: 'marco_arbol',
       withSidebar: true,
-      showBackButton: true
+      showBackButton: true,
+      wholeFrame: true
     };
 
     if(friendsmodel.query !== ''){

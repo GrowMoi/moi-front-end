@@ -15,7 +15,8 @@
         timeoutPromise = null,
         currentUser = $auth.user || {};
     vmNeuron.frameOptions = {
-      type: 'content_max'
+      type: 'content_max',
+      wholeFrame: true
     };
 
     /*jshint camelcase: false */

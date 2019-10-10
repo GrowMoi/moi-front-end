@@ -58,7 +58,8 @@
         styles: []
       };
       vmTest.frameOptions = {
-        type: 'marco_arbol'
+        type: 'marco_arbol',
+        wholeFrame: true
       };
     }
 

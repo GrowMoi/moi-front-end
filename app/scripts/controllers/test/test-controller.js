@@ -47,7 +47,8 @@
       vmTest.selectedAnswer = {};
       vmTest.answerBackend = {};
       vmTest.frameOptions = {
-        type: 'marco_arbol'
+        type: 'marco_arbol',
+        wholeFrame: true
       };
       vmTest.increaseSize = MoiAnimationService.increaseSize;
       vmTest.cssOptions = {

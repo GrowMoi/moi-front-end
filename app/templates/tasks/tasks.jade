@@ -22,7 +22,7 @@ ion-view.tasks(view-title='Tasks')
                     | {{tasksmodel.totalContentsToLearn}}
           .col-50.tasks-view
             ui-view
-    moi-frame(options="{type: 'content_max', showBackButton: true}")
+    moi-frame(options="{type: 'content_max', showBackButton: true, wholeFrame: true}")
     moi-buttons(options="tasksmodel.buttonsOptions")
     .btn-learn
   moi-sidebar

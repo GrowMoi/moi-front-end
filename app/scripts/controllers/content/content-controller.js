@@ -5,14 +5,11 @@
                                               $window,
                                               $timeout,
                                               $interval,
-                                              $state,
-                                              $auth,
                                               content,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
                                               SocialService,
-                                              StorageService,
                                               GAService) {
       /*jshint camelcase: false */
       var vmContent = this;
@@ -24,7 +21,8 @@
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
       vmContent.frameOptions = {
         type: 'content_max',
-        showBackButton: true
+        showBackButton: true,
+        wholeFrame: true
       };
 
       activate();

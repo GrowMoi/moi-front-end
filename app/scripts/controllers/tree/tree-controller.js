@@ -44,7 +44,8 @@
 
     treeModel.frameOptions = {
       type: 'marco_arbol',
-      showBackButton: true
+      showBackButton: true,
+      wholeFrame: true
     };
 
     if(successAnswers > 0){

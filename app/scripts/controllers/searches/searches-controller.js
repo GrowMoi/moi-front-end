@@ -17,7 +17,8 @@
     searchesmodel.frameOptions = {
       type: 'marco_arbol',
       withSidebar: true,
-      showBackButton: true
+      showBackButton: true,
+      wholeFrame: true
     };
 
     if(searchesmodel.query !== ''){

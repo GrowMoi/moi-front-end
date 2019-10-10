@@ -43,7 +43,8 @@
     vmProfile.userAchievements = dataInventory.achievements;
     vmProfile.frameOptions = {
       type: 'content_max',
-      showBackButton: true
+      showBackButton: true,
+      wholeFrame: true
     };
     vmProfile.buttonsOptions = {
       neuron: {},

@@ -42,7 +42,8 @@
     };
     vmProfileEdit.frameOptions = {
       type: 'content_max',
-      showBackButton: true
+      showBackButton: true,
+      wholeFrame: true
     };
     vmProfileEdit.images = ImagesLogin.paths;
 

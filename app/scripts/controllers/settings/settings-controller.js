@@ -25,7 +25,8 @@
     vm.preferences = $filter('orderBy')(vm.preferences, 'order');
     vm.frameOptions = {
       type: 'marco_arbol',
-      showBackButton: true
+      showBackButton: true,
+      wholeFrame: true
     };
 
     dragularService('.drag-panel', {

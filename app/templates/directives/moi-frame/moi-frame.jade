@@ -1,4 +1,4 @@
-.moi-frame
+.moi-frame(ng-if="!frameVm.options.wholeFrame")
   .container-advices(ng-if="frameVm.showAdvices" data-html2canvas-ignore="true")
     .advice(ng-repeat="advice in frameVm.options.advices"
             ng-class="advice.position"
@@ -16,3 +16,5 @@
     img(ng-repeat="piece in frameVm.allPieces track by $index"
         ng-class="frameVm.positions[$index]"
         ng-src="{{piece}}")
+.moi-wrapper-frame(ng-class="frameVm.options.type" ng-if="frameVm.options.wholeFrame")
+  img.back-button(ng-if="frameVm.options.showBackButton" ng-src="{{frameVm.imgBackButton}}")

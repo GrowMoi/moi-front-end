@@ -56,7 +56,8 @@
 
       vmInv.frameOptions = {
         type: 'content_max',
-        showBackButton: true
+        showBackButton: true,
+        wholeFrame: true
       };
 
       function formatAchievements() {
