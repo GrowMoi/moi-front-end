@@ -39,11 +39,11 @@
           name: '1',
           selected: true
         },
-        {
-          field: 'event_items',
-          name: '2',
-          selected: false
-        },
+        // {
+        //   field: 'event_items',
+        //   name: '2',
+        //   selected: false
+        // },
       ];
       vmInv.changeTab = changeTab;
       allEventItems = formatEventsItems();
