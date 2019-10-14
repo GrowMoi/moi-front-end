@@ -12,7 +12,9 @@
   a, textarea {
     color: $tertiary;
   }
-
+  .moi-wrapper-frame {
+    z-index: -1;
+  }
   .frame-container {
     position: absolute;
     width: 100%;
@@ -68,8 +70,14 @@
   }
 
   .arrow {
-    top: 3%;
-    left: 35px;
+    top: 4%;
+    left: 2.5%;
+
+    &.back-arrow {
+      background: url(../images/containers/back_btn.png);
+      background-size: 90% 95%;
+      background-repeat: no-repeat;
+    }
   }
 
   a {
