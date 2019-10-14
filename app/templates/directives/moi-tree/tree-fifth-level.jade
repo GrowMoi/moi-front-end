@@ -1,6 +1,6 @@
 .tree.fifth-level
   .tree-img
-    img(src="images/tree/level-5/arbol-gris-5.png")
+    img(ng-if="treeVm.hideGrayTree" src="images/tree/level-5/arbol-gris-5.png")
     img.tree-root(src="images/tree/tronco.png")
     .tree-neuron-root
       moi-neuron.neuron-root(options="treeVm.neurons.root" id='root' level="5")

@@ -172,6 +172,15 @@
           }, function publicUser(){
             return {};
           });
+        },
+        dataInventory: function($auth, UserService) {
+          return $auth.validateUser().then(function userAuthorized(){
+            return UserService.getUserAchievements().then(function(data){
+              return data;
+            });
+          }, function publicUser(){
+            return {};
+          });
         }
       }
     })

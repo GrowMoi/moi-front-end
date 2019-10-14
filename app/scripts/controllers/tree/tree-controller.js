@@ -17,7 +17,8 @@
                                           TreeAnimateService,
                                           MoiAnimationService,
                                           storage,
-                                          StorageService
+                                          StorageService,
+                                          dataInventory
                                           ) {
 
     var treeModel = this;
@@ -41,6 +42,10 @@
     var successAnswers = localStorage.getItem('successAnswers');
     var isShowingPassiveModal = false;
     var finishedAnimations = false;
+    treeModel.hideGrayTree = dataInventory.achievements
+                              .findIndex(function(achievement) {
+                                return achievement.name === 'Contenidos aprendidos en cada neurona pública';
+                              }) !== -1;
 
     treeModel.frameOptions = {
       type: 'marco_arbol',

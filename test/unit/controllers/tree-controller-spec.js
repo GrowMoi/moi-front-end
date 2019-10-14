@@ -134,7 +134,16 @@
           storage: {tree: {'vinetas_animadas': {'depth': 1}}},
           $auth: $auth,
           ModalService: ModalService,
-          StorageService: StorageService
+          StorageService: StorageService,
+          dataInventory: {
+            achievements: [
+              {
+                id:1,
+                name: '4 contenidos aprendios',
+                number: 5
+              }
+            ]
+          },
         };
 
         ctrl = $controller('TreeController', dependencies);
