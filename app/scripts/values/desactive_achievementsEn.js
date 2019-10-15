@@ -15,12 +15,12 @@
           name: 'Learned yellow contents',
           settings:{badge:'images/inventory/badges/item2.png'}
         },
-        3:{
-          desactive: true,
-          description: 'Learn 20 red contents to win this item,',
-          name: 'Learned red contents',
-          settings:{badge:'images/inventory/badges/item3.png'}
-        },
+        // 3:{
+        //   desactive: true,
+        //   description: 'Learn 20 red contents to win this item,',
+        //   name: 'Learned red contents',
+        //   settings:{badge:'images/inventory/badges/item3.png'}
+        // },
         4:{
           desactive: true,
           description: 'Learn 20 blue contents to win this item',
@@ -29,8 +29,8 @@
         },
         5:{
           desactive: true,
-          description: 'Learn 20 green contents to win this item',
-          name: 'Learned green contents',
+          description: 'Learn 20 red contents to win this item',
+          name: 'Learned red contents',
           settings:{badge:'images/inventory/badges/item9.png'}
         },
         6:{

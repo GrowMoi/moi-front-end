@@ -15,12 +15,12 @@
           name: 'Contenidos color Amarillo',
           settings:{badge:'images/inventory/badges/item2.png'}
         },
-        3:{
-          desactive: true,
-          description: 'Aprende 20 contenidos de color rojo para ganar este item',
-          name: 'Contenidos color Rojo',
-          settings:{badge:'images/inventory/badges/item3.png'}
-        },
+        // 3:{
+        //   desactive: true,
+        //   description: 'Aprende 20 contenidos de color rojo para ganar este item',
+        //   name: 'Contenidos color Rojo',
+        //   settings:{badge:'images/inventory/badges/item3.png'}
+        // },
         4:{
           desactive: true,
           description: 'Aprende 20 contenidos de color azul',
@@ -29,8 +29,8 @@
         },
         5:{
           desactive: true,
-          description: 'Aprende 20 contenidos de color verde para ganar este item',
-          name: 'Contenidos color verde',
+          description: 'Aprende 20 contenidos de color rojo para ganar este item',
+          name: 'Contenidos color Rojo',
           settings:{badge:'images/inventory/badges/item9.png'}
         },
         6:{
