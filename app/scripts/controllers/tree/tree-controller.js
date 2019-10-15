@@ -42,11 +42,9 @@
     var successAnswers = localStorage.getItem('successAnswers');
     var isShowingPassiveModal = false;
     var finishedAnimations = false;
-    treeModel.hideGrayTree = dataInventory.achievements
-                              .findIndex(function(achievement) {
-                                return achievement.name === 'Contenidos aprendidos en cada neurona pública';
-                              }) !== -1;
-
+    dataInventory.achievements.forEach(function(achievement) {
+      treeModel.hideGrayTree = (achievement.name === 'Contenidos aprendidos en cada neurona pública');
+    });
     treeModel.frameOptions = {
       type: 'marco_arbol',
       showBackButton: true,
