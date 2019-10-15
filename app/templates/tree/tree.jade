@@ -36,12 +36,12 @@ ion-view.tree-view(view-title='TreeMoi')
       .tree-content(ng-if="treeModel.isBasicLevel")
         figure.flowerpot
           img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
-        moi-tree(neurons="treeModel.neurons" meta="treeModel.meta")
+        moi-tree(neurons="treeModel.neurons" meta="treeModel.meta" hide-gray-tree="treeModel.hideGrayTree")
       .tree-section(ng-if="!treeModel.isBasicLevel")
         .tree-content
           figure.flowerpot
             img.flowerpot-img(src="images/macetaH.png", alt="maceta - tree moi" id="{{site.idsTreeScreen.baseTree}}")
         .tree-draw
-          moi-tree(neurons="treeModel.neurons" meta="treeModel.meta")
+          moi-tree(neurons="treeModel.neurons" meta="treeModel.meta" hide-gray-tree="treeModel.hideGrayTree")
       .btn-shared-tree(ng-click="treeModel.sharedTree()" data-html2canvas-ignore="true")
     moi-frame(options="treeModel.frameOptions")

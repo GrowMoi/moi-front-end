@@ -209,8 +209,8 @@
     }
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState){
-      //show only when a user reach level 9
-      if(toState.name === 'tree' && fromState.name === 'test' && data.meta.depth === 9){
+      //show only when a user reach level 5
+      if(toState.name === 'tree' && fromState.name === 'test' && data.meta.depth === 5){
         TestService.goFinalTest(null, currentUser.name);
       }
     });

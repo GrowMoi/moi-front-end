@@ -11,7 +11,8 @@
       template: '<div ng-include src="::treeVm.getTemplateUrl()"></div>',
       scope: {
         neurons: '=',
-        meta: '='
+        meta: '=',
+        hideGrayTree: '='
       },
       controller: moiTreeController,
       controllerAs: 'treeVm',
