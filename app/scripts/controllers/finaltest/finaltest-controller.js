@@ -154,11 +154,15 @@
         }
       };
 
-      if(dataReport.resultFinalTest >= 70){
-        vmTest.hideTest = true;
-      }else{
-        $state.go('inventory');
-      }
+      //Dont show the final video(Credits)
+      // if(dataReport.resultFinalTest >= 70){
+      //   vmTest.hideTest = true;
+      // }else{
+      //   $state.go('inventory');
+      // }
+
+      //Show allways the certiciate when user finish the final test
+      finishedCredits();
     }
 
     function finishedCredits() {

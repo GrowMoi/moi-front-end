@@ -11,7 +11,8 @@
       templateUrl: 'templates/directives/sound-button/sound-button.html',
       scope: {
         imageUrl: '@',
-        actionButton: '&'
+        actionButton: '&',
+        label: '@'
       },
       controller: SoundButtonController,
       controllerAs: 'sbVm',

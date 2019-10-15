@@ -1,3 +1,5 @@
 .sound-button(ng-click="sbVm.initSound()")
+  .label(ng-if="sbVm.label")
+    | {{sbVm.label}}
   img(src="{{sbVm.imageUrl}}")
   moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="sbVm.actionButton()")
