@@ -5,13 +5,11 @@
   .controller('TreeController', function ($scope,
                                           $auth,
                                           $timeout,
-                                          $rootScope,
                                           data,
                                           ModalService,
                                           TreeService,
                                           NeuronAnimateService,
                                           SocialService,
-                                          TestService,
                                           AdvicesPage,
                                           AdvicesPageEn,
                                           TreeAnimateService,
@@ -207,13 +205,6 @@
       pagesViewed[currentPage] = true;
       localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
     }
-
-    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState){
-      //show only when a user reach level 5
-      if(toState.name === 'tree' && fromState.name === 'test' && data.meta.depth === 5){
-        TestService.goFinalTest(null, currentUser.name);
-      }
-    });
 
   });
 

@@ -111,7 +111,7 @@
           UserService.activeAchievement(achievement.id).then(showpopup);
         }
         if (achievement.settings.runFunction === 'openModal') {
-          TestService.goFinalTest(null, vmInv.user.name);
+          TestService.goFinalTest(null, vmInv.user.name, null);
         }
         if(achievement.desactive) {
           var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.settings.badge.replace('item', 'badge');

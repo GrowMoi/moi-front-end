@@ -31,12 +31,18 @@
     var popupOptions = { title: 'Error'};
     return service;
 
-    function goFinalTest(scope, name) {
+    function goFinalTest(scope, name, username) {
       var templateModal = 'templates/partials/modal-launch-final-test.html';
       var modelData = {
         name: name,
         createFinalTest: function(){
           $state.go('finaltest');
+          modelData.closeModal();
+        },
+        onCloseModal: function() {
+          if(username) {
+            $state.go('tree', { username: username });
+          }
           modelData.closeModal();
         }
       };
