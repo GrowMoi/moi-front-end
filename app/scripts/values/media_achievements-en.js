@@ -12,8 +12,8 @@
           }
         },
         2: {
-          name: 'The origin of money branch contents learned',
-          description: 'Learned 20 contents of the origin of money branch',
+          name: 'The true value of saving branch contents learned',
+          description: 'Learned 20 contents of the true value of saving branch',
           settings: {
             badge:'images/inventory/badges/badge2.png',
             avatar: 'images/avatar/placegolder_perfil_2.png'
@@ -36,8 +36,8 @@
           }
         },
         5: {
-          name: 'The true value of saving branch contents learned',
-          description: 'Learned 20 contents of the true value of saving branch',
+          name: 'What are your dreams? 2 branch contents learned',
+          description: 'Learned 20 contents of what are your dreams? 2 branch',
           settings: {
             badge:'images/inventory/badges/badge9.png',
             avatar: 'images/avatar/placegolder_perfil_4.png'

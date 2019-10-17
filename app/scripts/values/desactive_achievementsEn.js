@@ -11,9 +11,9 @@
         },
         2:{
           desactive: true,
-          description: 'Learn 20 yellow contents to win this item',
-          name: 'Learned yellow contents',
-          settings:{badge:'images/inventory/badges/item2.png'}
+          description: 'Learn 16 blue contents to win this item',
+          name: 'Learned blue contents',
+          settings:{badge:'images/inventory/badges/default-item.png'}
         },
         // 3:{
         //   desactive: true,
@@ -23,20 +23,20 @@
         // },
         4:{
           desactive: true,
-          description: 'Learn 20 blue contents to win this item',
-          name: 'Learned blue contents',
-          settings:{badge:'images/inventory/badges/item4.png'}
+          description: 'Learn 16 yellow contents to win this item',
+          name: 'Learned yellow contents',
+          settings:{badge:'images/inventory/badges/default-item.png'}
         },
         5:{
           desactive: true,
-          description: 'Learn 20 red contents to win this item',
+          description: 'Learn 16 red contents to win this item',
           name: 'Learned red contents',
-          settings:{badge:'images/inventory/badges/item9.png'}
+          settings:{badge:'images/inventory/badges/default-item.png'}
         },
         6:{
           desactive: true,
-          description: 'Deploy 25 tests to win this item',
-          name: 'Deploy 25 tests',
+          description: 'Learn all contents to win this item',
+          name: 'Learn all contents',
           settings:{badge:'images/inventory/badges/item5.png'}
         },
         7:{

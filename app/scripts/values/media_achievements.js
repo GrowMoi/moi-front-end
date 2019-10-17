@@ -12,8 +12,8 @@
           }
         },
         2: {
-          name: 'Contenidos aprendidos rama El origen del Dinero',
-          description: 'Han sido aprendidos 20 contenidos de la rama El origen del Dinero',
+          name: 'Contenidos aprendidos rama El verdadero valor del ahorro',
+          description: 'Han sido aprendidos 16 contenidos de la rama El verdadero valor del ahorro',
           settings: {
             badge:'images/inventory/badges/badge2.png',
             avatar: 'images/avatar/placegolder_perfil_2.png'
@@ -29,15 +29,15 @@
         // },
         4: {
           name: 'Contenidos aprendidos rama La importancia del presupuesto',
-          description: 'Han sido aprendidos 20 contenidos de la rama La importancia del presupuesto',
+          description: 'Han sido aprendidos 16 contenidos de la rama La importancia del presupuesto',
           settings: {
             badge:'images/inventory/badges/badge4.png',
             avatar: 'images/avatar/placegolder_perfil_3.png'
           }
         },
         5: {
-          name: 'Contenidos aprendidos rama El verdadero valor del ahorro',
-          description: 'Han sido aprendidos 20 contenidos de la rama El verdadero valor del ahorro',
+          name: 'Contenidos aprendidos rama ¿Cuales son tus sueños? 2',
+          description: 'Han sido aprendidos 16 contenidos de la rama ¿Cuales son tus sueños? 2',
           settings: {
             badge:'images/inventory/badges/badge9.png',
             avatar: 'images/avatar/placegolder_perfil_4.png'
