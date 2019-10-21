@@ -55,7 +55,10 @@ ion-view.content-view-max(view-title='Content')
               .row.recommended-contents
                 .col.col-50(ng-repeat='content in vmContent.content.recommended')
                   .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})"
-                    ng-click="vmContent.registerClick(content.title)")
+                    ng-click="vmContent.registerClick(content.title)"
+                    tooltips
+                    tooltip-template="{{content.title}}"
+                    tooltip-side="top")
                    img.format-image(ng-src='{{content.media[0]}}')
           .row
             .col.links-margin-top.content-max-third
