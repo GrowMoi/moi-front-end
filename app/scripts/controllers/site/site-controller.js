@@ -246,7 +246,8 @@
           model: {
             message: site.advicePage.messages[0],
             type: 'passive',
-            cssClass: site.advicePage.position || 'modal-bottomRight'
+            cssClass: site.advicePage.position || 'modal-bottomRight',
+            image: ($state.current.name === 'content') ? 'images/btn-learn.png' : ''
           },
           onHide: function() {
             isShowingPassiveModal = false;

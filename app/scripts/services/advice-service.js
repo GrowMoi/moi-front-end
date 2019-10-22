@@ -30,7 +30,7 @@
         content: [
           {
             position:'bottom-right',
-            description: 'Cuando termines de leer la explicación presiona el botón celeste para enviar esta pregunta al test'
+            description: 'Cuando termines de leer la explicación presiona el botón verde para enviar esta pregunta al test'
           }
         ],
         test: [

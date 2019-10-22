@@ -24,7 +24,7 @@
           },
           content: {
             messages: [
-              'When you finish reading the explanation, clic the light blue button to send this question to the test']
+              'When you finish reading the explanation, clic the light green button to send this question to the test']
           },
           quiz: {
             messages: [

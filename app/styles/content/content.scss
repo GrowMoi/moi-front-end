@@ -369,6 +369,9 @@
     .row {
       flex-grow: 1;
       flex-basis: 0;
+      &.principal-img {
+        flex-grow: 0.6;
+      }
       .col {
         display: flex;
         flex-direction: column;
