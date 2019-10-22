@@ -112,14 +112,15 @@
           .content_tasks::-webkit-scrollbar-track {
             border-radius: 10px;
             border: 1px solid $scroll-color;
-            width: 5px;
+            width: 10px;
           }
           .content_tasks::-webkit-scrollbar {
-            width: 5px;
+            width: 10px;
             background-color: transparent;
             border-radius: 10px;
           }
           .content_tasks::-webkit-scrollbar-thumb {
+            width: 10px;
             border-radius: 25px;
             background-color: $scroll-color;
           }

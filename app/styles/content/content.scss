@@ -247,14 +247,14 @@
     &::-webkit-scrollbar-track {
       border-radius: 10px;
       border: 1px solid $azul;
-      width: 5px;
+      width: 10px;
     }
   }
 
   .content-text::-webkit-scrollbar,
   .content-comments::-webkit-scrollbar,
   .row-content-text::-webkit-scrollbar  {
-    width: 5px;
+    width: 10px;
     background-color: transparent;
     border-radius: 10px;
   }
@@ -262,7 +262,7 @@
   .content-text, .content-comments, .row-content-text {
     &::-webkit-scrollbar-thumb {
       border-radius: 25px;
-      width: 20px;
+      width: 10px;
       background-color: $secondary;
     }
   }
