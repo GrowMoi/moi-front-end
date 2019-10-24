@@ -36,6 +36,9 @@
       var messageModal = language === 'es' ? 'Para aprender este concepto, aún debes superar algunos conceptos previos' : 'To learn this concept, you still have to overcome some previous concepts';
       var lblbtnRight = language === 'es' ? 'Seguir Leyendo' : 'Keep reading';
       var lblbtnLeft = language === 'es' ? 'Regresar a mi arbol' : 'Back to tree';
+      var isActiveSound = localStorage.getItem('soundOn') === 'true';
+      var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+      var activeSoundBtnApi;
       var dialogContentModel = {
         message: messageModal,
         callbacks: {
@@ -206,6 +209,19 @@
           readOnly: vm.readOnly,
           onClickReadOnly: showNotificationModal,
           finishedAnimation: finishedAnimationAddFavorites
+        };
+
+        vm.activeSoundOptions = {
+          key: 'activeSoundApp',
+          src: isActiveSound ? 'images/simple-buttons/volumen.png' : 'images/simple-buttons/mute.png',
+          name: isActiveSound ? 'Desactivar música' : 'Activar música',
+          nameEn: isActiveSound ? 'Disable music' : 'Enable music',
+          readOnly: vm.readOnly,
+          onClickReadOnly: showNotificationModal,
+          finishedAnimation: finishedAnimationSound,
+          onRegisterApi: function(api) {
+            activeSoundBtnApi = api;
+          }
         };
       }
 
@@ -404,6 +420,16 @@
         UserService.addFavorites(vm.content).then(function(response) {
           vm.content.favorite = response.data.favorite;
         });
+      }
+
+      function finishedAnimationSound() {
+        isActiveSound = !isActiveSound;
+        localStorage.setItem('soundOn', JSON.stringify(isActiveSound));
+        $backgroundSound[0].muted = !isActiveSound;
+        vm.activeSoundOptions.src = isActiveSound ? 'images/simple-buttons/volumen.png': 'images/simple-buttons/mute.png' ;
+        vm.activeSoundOptions.name = isActiveSound ? 'Desactivar música' : 'Activar música';
+        vm.activeSoundOptions.nameEn = isActiveSound ? 'Disable music' : 'Enable music';
+        activeSoundBtnApi.updateOptions(vm.activeSoundOptions);
       }
 
       function finishedAnimationRecomendation() {

@@ -19,6 +19,9 @@
         animate-sprite.idle(ng-if="vm.activeIdle && vm.activateBtn === 'recomendation' && !vm.disabledAnimations"
                             options="vm.recomendationIdleOptions")
   .small-btns
+    .btn-sm-gif.btn-sound-gif(ng-if="vm.buttons.activeSound")
+      simple-button(ng-if="vm.disabledAnimations" options="vm.activeSoundOptions")
+
     .btn-sm-gif.btn-save-tasks-gif(ng-if="vm.buttons.saveTask" ng-class="{disabled: vm.emptyContent}")
       simple-button(ng-if="vm.disabledAnimations" options="vm.saveTasksOptions")
       animate-sprite(ng-if="!vm.disabledAnimations" options="vm.saveTasksOptions")

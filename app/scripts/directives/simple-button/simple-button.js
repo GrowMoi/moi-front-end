@@ -20,7 +20,7 @@
     return directive;
   }
 
-  function simpleButtonController($scope, $q, $auth, MoiAnimationService) {
+  function simpleButtonController($scope, $q, $auth, $timeout, MoiAnimationService) {
 
     var vm = this,
       language = $auth.user.language,
@@ -49,6 +49,16 @@
       };
       vm.increaseSize = increaseSize;
       vm.onClick = onClick;
+      if (options.onRegisterApi) {
+        var api = createPublicApi();
+        options.onRegisterApi(api);
+      }
+    }
+
+    function createPublicApi() {
+      return {
+        updateOptions: updateOptions
+      };
     }
 
     function onClick(key) {
@@ -57,7 +67,9 @@
         return;
       }else {
         var $btnSelected = document.querySelector('.simple-btn-'+ key);
-        moiSound.play();
+        if(moiSound) {
+          moiSound.play();
+        }
         MoiAnimationService.animateWidget($btnSelected, 'tada').then(function(){
           vm.options.finishedAnimation();
         });
@@ -74,6 +86,13 @@
       }else{
         delete vm.css.transform;
       }
+    }
+
+    function updateOptions(newOptions) {
+      $timeout(function() {
+        vm.css.background = 'url(' + newOptions.src + ')';
+        vm.tooltip = language === 'es' ? newOptions.name : newOptions.nameEn;
+      });
     }
 
   }

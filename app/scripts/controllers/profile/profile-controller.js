@@ -55,7 +55,8 @@
         search: true,
         share: true,
         recomendation: true,
-        showTasks: true
+        showTasks: true,
+        activeSound: true,
       },
       shareCallback: shareProfile
     };

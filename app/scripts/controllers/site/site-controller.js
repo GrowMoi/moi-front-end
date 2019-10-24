@@ -43,6 +43,7 @@
       view: 'tree-screen',
       baseTree: 'base-tree'
     };
+
     //init nofitications in passive time
     if(!localStorage.getItem('advicesOn')){
       localStorage.setItem('advicesOn', 'true');
@@ -51,6 +52,11 @@
     //init pagesViewed for passive messages
     if(!localStorage.getItem('pagesViewed')){
       localStorage.setItem('pagesViewed', JSON.stringify({}));
+    }
+
+    //init sound pages
+    if(!localStorage.getItem('soundOn')){
+      localStorage.setItem('soundOn', 'true');
     }
 
     //init control to internet conection
@@ -182,6 +188,7 @@
 
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
+      site.soundPage.muted = (localStorage.getItem('soundOn') === 'false');
       handlePagesViewed(toState);
       if(toState.name === 'login.first_step' || toState.name === 'login.second_step' || toState.name === 'register' || toState.name ==='login'){
         var languageBrowser = 'es';

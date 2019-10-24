@@ -37,7 +37,8 @@
           recomendation: true,
           saveTask: true,
           showTasks: true,
-          addFavorites: true
+          addFavorites: true,
+          activeSound: true,
         },
         shareCallback: shareNeuron
       };

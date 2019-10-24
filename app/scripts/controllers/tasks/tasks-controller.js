@@ -15,6 +15,7 @@
       buttons: {
         search: true,
         recomendation: true,
+        activeSound: true,
         showTasks: {
           disabled: true
         }
