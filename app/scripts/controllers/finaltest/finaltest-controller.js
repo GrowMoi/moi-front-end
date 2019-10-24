@@ -10,7 +10,7 @@
               testData,
               ModalService,
               TreeService,
-              StorageService,
+              $window,
               $timeout,
               ScreenshotService,
               UploadImageService,
@@ -20,6 +20,7 @@
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
+    vmTest.exit = exit;
     vmTest.user = $auth.user;
     var dataReport = {};
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
@@ -80,6 +81,10 @@
         vmTest.questions[vmTest.indexShow].showQuestion = true;
         vmTest.nextQuestion = false;
       }
+    }
+
+    function exit() {
+      $window.history.back();
     }
 
     function shuffle(questions) {

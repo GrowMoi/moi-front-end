@@ -9,22 +9,30 @@
         h1 {{question.title}}
         .answer(ng-repeat="answer in question.possible_answers track by $index",
                 ng-class="{'answer-selected': answer.selected}",
-                ng-style="vmTest.cssOptions.styles[$index+1]"
+                ng-style="vmTest.cssOptions.styles[$index+2]"
                 ng-click="vmTest.selectAnswer(question.content_id, answer)"
                 tooltips
                 tooltip-template="{{ 'tooltip.alternativa' | translate }}"
                 tooltip-side="up"
-                ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, $index+1)"
-                ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, $index+1)")
+                ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, $index+2)"
+                ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, $index+2)")
           h4 {{answer.text}}
     .pista.col
       span
-sound-button.controls(
-          ng-style="vmTest.cssOptions.styles[0]"
-          image-url="images/next-test.png"
-          ng-click="vmTest.next()"
-          tooltip-moi="{{ 'tooltip.question' | translate }}"
-          tooltip-position="up"
-          ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, 0)"
-          ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, 0)"
-          label="{{ 'modal_launch_test.next' | translate }}")
+.controls
+  sound-button(ng-style="vmTest.cssOptions.styles[0]"
+            image-url="images/exit-test.png"
+            ng-click="vmTest.exit()"
+            tooltip-moi="{{ 'tooltip.exit-test' | translate }}"
+            tooltip-position="up"
+            ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, 0)"
+            ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, 0)"
+            label="{{ 'modal_launch_test.exit' | translate }}")
+  sound-button(ng-style="vmTest.cssOptions.styles[0]"
+            image-url="images/next-test.png"
+            ng-click="vmTest.next()"
+            tooltip-moi="{{ 'tooltip.question' | translate }}"
+            tooltip-position="up"
+            ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, 1)"
+            ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, 1)"
+            label="{{ 'modal_launch_test.next' | translate }}")

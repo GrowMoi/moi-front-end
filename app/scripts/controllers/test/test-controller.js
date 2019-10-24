@@ -8,6 +8,7 @@
               $scope,
               $auth,
               $state,
+              $window,
               $timeout,
               ModalService,
               MediaAchievements,
@@ -17,6 +18,7 @@
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
     vmTest.next = next;
+    vmTest.exit = exit;
     var currentUser = $auth.user;
     var countModalsActived = 0;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
@@ -82,6 +84,10 @@
         vmTest.questions[vmTest.indexShow].showQuestion = true;
         vmTest.nextQuestion = false;
       }
+    }
+
+    function exit() {
+      $window.history.back();
     }
 
     function shuffle(questions) {

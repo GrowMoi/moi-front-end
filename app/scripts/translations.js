@@ -11,7 +11,8 @@
         'title' : 'You have read ',
         'title_next': ' articles',
         'content': 'Why dont we see if you really learned?',
-        'next': 'Next'
+        'next': 'Next',
+        'exit': 'Exit'
       },
       modal_end_test : {
         'title': 'Congratulations ',
@@ -55,7 +56,8 @@
         alternativa: 'Choose this alternative',
         question: 'Next question',
         continue: 'Next',
-        back: 'Back'
+        back: 'Back',
+        'exit-test': 'Exit of test'
       },
       menu: {
         menu: 'Menu',
@@ -310,7 +312,8 @@
         'title' : 'Has leído ',
         'title_next': ' contenidos',
         'content': '¿Porqué no probamos si de verdad has aprendido?',
-        'next': 'Continuar'
+        'next': 'Continuar',
+        'exit': 'Salir'
       },
       modal_end_test : {
         'title': 'Felicidades ',
@@ -354,7 +357,8 @@
         alternativa: 'Elegir esta alternativa',
         question: 'Continuar con la siguiente pregunta',
         continue: 'Continuar',
-        back: 'Regresar'
+        back: 'Regresar',
+        'exit-test': 'Salir del test'
       },
       menu: {
         menu: 'Menú',

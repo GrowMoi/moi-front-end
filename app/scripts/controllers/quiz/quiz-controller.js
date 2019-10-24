@@ -5,7 +5,7 @@
   .controller('QuizController',
     function (QuizService,
               $scope,
-              $rootScope,
+              $window,
               quizData,
               $auth,
               MoiAnimationService) {
@@ -14,6 +14,7 @@
     vmTest.selectAnswer = selectAnswer;
     vmTest.currentUser = $auth.user;
     vmTest.next = next;
+    vmTest.exit = exit;
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
     init();
 
@@ -88,6 +89,10 @@
         vmTest.questions[vmTest.indexShow].showQuestion = true;
         vmTest.nextQuestion = false;
       }
+    }
+
+    function exit() {
+      $window.history.back();
     }
 
     function shuffle(questions) {
