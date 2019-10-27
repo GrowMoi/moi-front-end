@@ -93,6 +93,9 @@
         'refuse': 'Reject',
         'terms': 'Terms & Conditions'
       },
+      recoverPassword: {
+        'title': 'Recover Password'
+      },
       user: {
         'age': 'Age',
         'city': 'City'
@@ -393,6 +396,13 @@
         'accept': 'Aceptar',
         'refuse': 'Rechazar',
         'terms': 'Términos y Condiciones'
+      },
+      recoverPassword: {
+        'recoverPassword': 'Olvidaste tu contraseña?',
+        'title': 'Recuperar Contraseña',
+        'recover': 'Recuperar',
+        'back': 'Regresar',
+        'questions': 'Por favor selecciona el ultimo contenido que has leido:'
       },
       user: {
         'age': 'Edad',

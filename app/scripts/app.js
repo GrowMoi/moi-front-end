@@ -426,6 +426,13 @@
           });
         }
       }
+    })
+    .state('recoverPassword', {
+      url: '/recover-password',
+      controller: 'RecoverPasswordController',
+      controllerAs: 'recoverVm',
+      templateUrl: 'templates/recover-password/recover.html',
+      cache: false
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login/first_step');

@@ -13,6 +13,9 @@ moi-sound(sound="sounds/btn_next.mp3" auto-play="false" callback="vmLogin.finish
           type='submit',
           value="{{ 'login.login' | translate }}"
         ).button.button-translate
+    .row.label-actions
+      a.recover-password(ui-sref="recoverPassword")
+        | {{ 'recoverPassword' | translate }}
   a.legend-browser(ng-if='!vmLogin.isChrome', href='https://www.google.com/chrome/browser/desktop/index.html')
     | {{ 'browser.chrome' | translate }}
 

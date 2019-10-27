@@ -138,6 +138,7 @@
         /*jshint camelcase: false */
         'login.first_step': false,
         'login.second_step': false,
+        'recoverPassword': false,
       };
       TooltipsService.removeAllTooltips();
       var activePreload = notPreload[toState.name] === undefined ? true : notPreload[toState.name];
@@ -190,7 +191,8 @@
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.soundPage.muted = (localStorage.getItem('soundOn') === 'false');
       handlePagesViewed(toState);
-      if(toState.name === 'login.first_step' || toState.name === 'login.second_step' || toState.name === 'register' || toState.name ==='login'){
+      if(toState.name === 'login.first_step' || toState.name === 'login.second_step' ||
+        toState.name === 'register' || toState.name ==='login' || 'recoverPassword') {
         var languageBrowser = 'es';
         site.advicePage = languageBrowser === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
         $translate.use(languageBrowser);

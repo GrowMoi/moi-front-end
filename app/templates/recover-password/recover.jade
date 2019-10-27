@@ -1,0 +1,56 @@
+ion-view(hide-nav-bar="true" class="register-view")
+  ion-content
+    .row.form-container.form-register.recover-password
+      form(ng-class="{'step-selected': recoverVm.step === 1}",
+          ng-submit='recoverVm.recoverPassword()'
+          name='recoverForm' novalidate)
+        .login-title
+          | {{ 'recoverPassword.title' | translate }}
+        .list.list-inset
+          label.item.item-input
+            input(
+              type='text',
+              ng-model='recoverVm.recoverForm.username',
+              required='required',
+              name='username',
+              placeholder="{{ 'register.username' | translate }}"
+            )
+            span.error-msg(ng-if='recoverForm.username.$error.required && recoverForm.username.$touched')
+              | {{  'msgs.error.required' | translate}}
+          label.item.item-input
+            input(
+              type='email',
+              ng-model='recoverVm.recoverForm.email',
+              required='required',
+              name='email',
+              autocomplete='off',
+              placeholder="{{ 'register.email' | translate }}"
+            )
+            span.error-msg(ng-if='recoverForm.email.$error.email')
+              | {{  'msgs.error.email' | translate}}
+            span.error-msg(ng-if='recoverForm.email.$error.required && recoverForm.email.$touched')
+              | {{  'msgs.error.required' | translate}}
+        .row.button-actions
+          .col.actions-register
+            input(
+              ng-disabled="!recoverForm.$valid",
+              type='submit',
+              value="{{ 'recoverPassword.recover' | translate }}"
+            ).button.action-button
+      .row.recover-questions(ng-class="{'step-selected': recoverVm.step === 2}")
+        .title
+          | {{ 'recoverPassword.questions' | translate }}
+        .container-answers
+          .answer(ng-repeat="answer in recoverVm.contentsRead track by $index",
+                  ng-class="{'answer-selected': answer.selected}",
+                  ng-style="recoverVm.cssOptions.styles[$index+1]"
+                  ng-click="recoverVm.selectAnswer(answer)"
+                  ng-mouseover="recoverVm.increaseSize(true, recoverVm.cssOptions, $index+1)"
+                  ng-mouseleave="recoverVm.increaseSize(false, recoverVm.cssOptions, $index+1)")
+            h4 {{answer.title}}
+        .back-btn-container
+          .btn(ng-click="recoverVm.backStep()"
+              ng-mouseover="recoverVm.increaseSize(true, recoverVm.cssOptions, 0)"
+              ng-mouseleave="recoverVm.increaseSize(false, recoverVm.cssOptions, 0)")
+            | {{ 'recoverPassword.back' | translate }}
+
