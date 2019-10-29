@@ -8,7 +8,7 @@
           description: 'Learned the first 4 contents',
           settings: {
             badge:'images/inventory/badges/badge1.png',
-            avatar: 'images/avatar/placegolder_perfil_1.png'
+            avatar: 'perfil_1.png'
           }
         },
         2: {
@@ -16,7 +16,7 @@
           description: 'Learned 20 contents of the true value of saving branch',
           settings: {
             badge:'images/inventory/badges/badge2.png',
-            avatar: 'images/avatar/placegolder_perfil_2.png'
+            avatar: 'perfil_2.png'
           }
         },
         // 3: {
@@ -32,7 +32,7 @@
           description: 'Learned 20 contents of the The importance of the budget branch',
           settings: {
             badge:'images/inventory/badges/badge4.png',
-            avatar: 'images/avatar/placegolder_perfil_3.png'
+            avatar: 'perfil_3.png'
           }
         },
         5: {
@@ -40,7 +40,7 @@
           description: 'Learned 20 contents of what are your dreams? 2 branch',
           settings: {
             badge:'images/inventory/badges/badge9.png',
-            avatar: 'images/avatar/placegolder_perfil_4.png'
+            avatar: 'perfil_4.png'
           }
         },
         6: {
@@ -48,7 +48,7 @@
           description: 'All contents in the tree have been learned',
           settings: {
             badge:'images/inventory/badges/badge8.png',
-            avatar: 'images/avatar/placegolder_perfil_5.png'
+            avatar: 'perfil_5.png'
           }
         },
         7: {
@@ -56,7 +56,7 @@
           description: 'At least one content was learned in every fruit in the tree',
           settings: {
             badge:'images/inventory/badges/badge7.png',
-            avatar: 'images/avatar/placegolder_perfil_6.png'
+            avatar: 'perfil_6.png'
           }
         },
         8: {
@@ -64,7 +64,7 @@
           description: 'Completed 4 tests without making mistakes',
           settings: {
             badge:'images/inventory/badges/badge5.png',
-            avatar: 'images/avatar/placegolder_perfil_7.png'
+            avatar: 'perfil_7.png'
           }
         },
         9: {
@@ -72,7 +72,7 @@
           description: 'You deployed at least 50 total tests',
           settings: {
             badge:'images/inventory/badges/badge6.png',
-            avatar: 'images/avatar/placegolder_perfil_8.png'
+            avatar: 'perfil_8.png'
           }
         },
         10: {

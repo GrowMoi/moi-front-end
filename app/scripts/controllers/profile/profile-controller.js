@@ -15,9 +15,7 @@
                                             SocialService,
                                             myEvents,
                                             GAService,
-                                            LeaderboardService,
-                                            MediaAchievements,
-                                            dataInventory) {
+                                            LeaderboardService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
@@ -26,6 +24,7 @@
       user_id: user.id //jshint ignore:line
     };
     vmProfile.user = user;
+    vmProfile.user.image = vmProfile.user.avatar || vmProfile.user.image;
     vmProfile.user.tree_image = vmProfile.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
     vmProfile.myEvents = myEvents;
     vmProfile.isCurrentUser = user.id === currentUser.id;
@@ -40,7 +39,6 @@
     vmProfile.page = 1;
     vmProfile.resultsPerPage = 10;
     vmProfile.enableInfiniteScroll = false;
-    vmProfile.userAchievements = dataInventory.achievements;
     vmProfile.frameOptions = {
       type: 'content_max',
       showBackButton: true,
@@ -115,7 +113,6 @@
 
     init();
     initTab();
-    setAvatar();
 
     function init() {
       /*jshint camelcase: false */
@@ -215,17 +212,6 @@
         $ionicPopup.alert({
           title: 'Ups!',
           template: 'Algo fallo'
-        });
-      }
-    }
-
-    function setAvatar() {
-      if(vmProfile.userAchievements.length > 0){
-        angular.forEach(vmProfile.userAchievements, function(achievement, index){
-          if(achievement.active){
-            var currentAvatar = MediaAchievements[vmProfile.userAchievements[index].number].settings.avatar;
-            vmProfile.user.image = currentAvatar;
-          }
         });
       }
     }
