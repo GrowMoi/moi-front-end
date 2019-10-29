@@ -8,6 +8,14 @@ ion-view#test-frame(view-title='{{vm.neuron.title}}')
             span {{vmTest.percentage}}%
           .player
             h3.text-center Jugador: {{vmTest.playerName}}
+          sound-button(ng-style="vmTest.cssOptions.styles[0]"
+              image-url="images/exit-test.png"
+              ng-click="vmTest.exit()"
+              tooltip-moi="{{ 'tooltip.exit-test' | translate }}"
+              tooltip-position="up"
+              ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, 0)"
+              ng-mouseleave="vmTest.increaseSize(false, vmTest.cssOptions, 0)"
+              label="{{ 'modal_launch_test.exit' | translate }}")
         .partial.question-test(ng-if="!vmTest.testComplete" ng-include="'templates/partials/test-questions.html'")
       .complete-test(ng-if="vmTest.testComplete" ng-include="'templates/quiz/quiz-complete.html'")
     moi-frame(options="vmTest.frameOptions")
