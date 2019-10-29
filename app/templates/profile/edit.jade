@@ -91,7 +91,24 @@ ion-view.profile.edit-profile-content(view-title="{{ 'profile.edit-profile' | tr
                     required='required',
                     autocomplete='off',
                   )
-
+                .row.gender-options
+                  span.title
+                    | {{ 'register.gender' | translate }}
+                  .gender-container
+                    label.gender
+                      input(type='radio'
+                            name='gender'
+                            value='M'
+                            ng-model='vmProfileEdit.user.gender')
+                      .name
+                        | {{ 'register.male' | translate }}
+                    label.gender
+                      input(type='radio'
+                            name='gender'
+                            value='F'
+                            ng-model='vmProfileEdit.user.gender')
+                      .name
+                        | {{ 'register.female' | translate }}
                 .row
                   moi-select-images.select-images-edit(images="vmProfileEdit.images"
                                     on-change="vmProfileEdit.onSelectImage(image)")

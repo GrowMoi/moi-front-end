@@ -317,6 +317,47 @@
               }
             }
           }
+
+          .gender-options {
+            display: flex;
+            flex-direction: column;
+
+            .title {
+              color: $primary;
+              font-size: 14px;
+              font-weight: bold;
+              font-family: FontMoi-Title;
+            }
+
+            .gender-container {
+              display: flex;
+
+              .gender {
+                margin: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                input {
+                  cursor: pointer;
+                }
+
+                .name {
+                  margin-left: 5px;
+                  color: $primary;
+                  font-size: 12px;
+                  font-family: FontMoi-Content;
+                }
+              }
+            }
+
+            .error-msg{
+              font-size: 12px;
+              font-style: italic;
+              color: $errorMsg;
+            }
+          }
         }
       }
     }
