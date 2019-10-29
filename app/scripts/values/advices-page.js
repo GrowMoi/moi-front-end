@@ -25,7 +25,7 @@
       },
       content: {
         messages: [
-          'Cuando termines de leer la explicación, presiona el botón verde <img src="images/btn-learn.png"></img> para enviar la pregunta al test'
+          'Da clic en el botón amarillo <img src="images/btn-learn.png"></img> y pon prueba a tus conocimientos'
         ]
       },
       quiz: {
