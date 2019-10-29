@@ -11,17 +11,20 @@
     align-items: center;
     padding: 5%;
     flex-direction: column;
-    h2 {
+    .content {
       color: white;
       font-size: 36px;
       font-family: FontMoi-Grid;
       line-height: 1.2;
       text-align: center;
       text-shadow: 2px 2px 4px rgba(104, 104, 104, 0.76);
-    }
-    img {
-      width: 50px;
-      height: auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      img {
+        width: 50px;
+        height: auto;
+      }
     }
   }
 }
@@ -29,7 +32,7 @@
 @media (min-height: 400px) {
   .transparent {
     .modal-pasive-info {
-      #content{
+      .content{
         font-size: 23px;
       }
     }
@@ -39,7 +42,7 @@
 @media (min-height: 600px) {
   .transparent {
     .modal-pasive-info {
-      #content{
+      .content{
         font-size: 28px;
       }
     }
@@ -49,7 +52,7 @@
 @media (min-height: 700px) {
   .transparent {
     .modal-pasive-info {
-      #content{
+      .content{
         font-size: 32px;
       }
     }
@@ -59,7 +62,7 @@
 @media (min-height: 800px) {
   .transparent {
     .modal-pasive-info {
-      #content{
+      .content{
         font-size: 34px;
       }
     }

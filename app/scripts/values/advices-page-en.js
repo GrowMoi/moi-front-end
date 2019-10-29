@@ -19,7 +19,7 @@
           neuron: {
             messages: [
               'Choose the box that interests you the most and double clic it',
-              'Read 4 contents to activate the test and grow your tree',
+              'Read 3 contents to activate the test and grow your tree',
               'Clic the arrow on the left border to deploy the menu. You can turn these notification off in settings']
           },
           content: {

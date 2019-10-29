@@ -18,14 +18,14 @@
       neuron: {
         messages: [
           'Elige el contenido que más te interese y da doble clic sobre él',
-          'Envía 4 contenidos al test para activar la prueba y hacer crecer tu árbol',
+          'Envía 3 contenidos al test para activar la prueba y hacer crecer tu árbol',
           'Da clic en la flecha en el borde izquierdo para desplegar el menú. Si quieres ' +
           'desactivar estas notificaciones, puedes hacerlo editando tus preferencias.'
         ]
       },
       content: {
         messages: [
-          'Cuando termines de leer la explicación, presiona el botón verde para enviar la pregunta al test'
+          'Cuando termines de leer la explicación, presiona el botón verde <img src="images/btn-learn.png"></img> para enviar la pregunta al test'
         ]
       },
       quiz: {

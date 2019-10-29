@@ -1,6 +1,4 @@
 .modal.transparent
   ion-pane.transparent
     .modal-pasive-info
-      h2
-        | {{model.message}}
-      img(ng-if="model.image" ng-src="{{model.image}}")
+      .content(ng-bind-html="model.message")
