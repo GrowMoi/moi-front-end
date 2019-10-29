@@ -91,7 +91,10 @@
         'username': 'Username',
         'accept': 'Accept',
         'refuse': 'Reject',
-        'terms': 'Terms & Conditions'
+        'terms': 'Terms & Conditions',
+        'gender': 'Please select your gender:',
+        'male': 'Male',
+        'female': 'Female'
       },
       recoverPassword: {
         'recoverPassword': 'Forget your password?',
@@ -133,7 +136,8 @@
         error:{
           'required': 'Empty',
           'email': 'Enter a valid email',
-          'confirm-password': "Passwords don't match"
+          'confirm-password': "Passwords don't match",
+          'gender': 'You have not selected your gender yet'
         }
       },
       signup: {
@@ -400,7 +404,10 @@
         'username': 'Nombre de Usuario',
         'accept': 'Aceptar',
         'refuse': 'Rechazar',
-        'terms': 'Términos y Condiciones'
+        'terms': 'Términos y Condiciones',
+        'gender': 'Por favor seleccione su genero:',
+        'male': 'Masculino',
+        'female': 'Femenino'
       },
       recoverPassword: {
         'recoverPassword': 'Olvidaste tu contraseña?',
@@ -440,7 +447,8 @@
         error:{
           'required': 'Vacío',
           'email': 'Ingrese un correo válido',
-          'confirm-password':'No coincide con la contraseña'
+          'confirm-password':'No coincide con la contraseña',
+          'gender': 'Aun no ha seleccionado su género'
         }
       },
       signup: {

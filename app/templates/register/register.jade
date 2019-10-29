@@ -70,7 +70,26 @@ ion-view(
               autocomplete='off',
               placeholder="{{ 'register.country' | translate }}"
             )
-
+        .row.gender-options
+          span.title
+            | {{ 'register.gender' | translate }}
+          .gender-container
+            label.gender
+              input(type='radio'
+                    name='gender'
+                    value='H'
+                    ng-model='registerModel.registerForm.gender')
+              .name
+                | {{ 'register.male' | translate }}
+            label.gender
+              input(type='radio'
+                    name='gender'
+                    value='M'
+                    ng-model='registerModel.registerForm.gender')
+              .name
+                | {{ 'register.female' | translate }}
+          span.error-msg(ng-if='!registerModel.registerForm.gender')
+            | {{  'msgs.error.gender' | translate}}
         .row
           moi-select-images(images="registerModel.images"
                             on-change="registerModel.onSelectImage(image)")
