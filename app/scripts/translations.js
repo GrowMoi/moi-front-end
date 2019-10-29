@@ -94,7 +94,12 @@
         'terms': 'Terms & Conditions'
       },
       recoverPassword: {
-        'title': 'Recover Password'
+        'recoverPassword': 'Forget your password?',
+        'title': 'Recover Password',
+        'recover': 'Recover',
+        'back': 'Back',
+        'ok': 'OK',
+        'questions': 'Please, select the last content that you have read:'
       },
       user: {
         'age': 'Age',
@@ -402,6 +407,7 @@
         'title': 'Recuperar Contraseña',
         'recover': 'Recuperar',
         'back': 'Regresar',
+        'ok': 'OK',
         'questions': 'Por favor selecciona el ultimo contenido que has leido:'
       },
       user: {

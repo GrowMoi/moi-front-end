@@ -10,7 +10,8 @@
                                     MoiAnimationService,
                                     ImagesLogin,
                                     ModalService) {
-    var recoverVm = this;
+    var recoverVm = this,
+        answerSelected = {};
     recoverVm.recoverForm = {};
     recoverVm.contentsRead = [];
     recoverVm.tempData = {};
@@ -22,13 +23,14 @@
     recoverVm.selectAnswer = selectAnswer;
     recoverVm.increaseSize = MoiAnimationService.increaseSize;
     recoverVm.backStep = backStep;
+    recoverVm.onSubmit = onSubmit;
 
     function recoverPassword() {
       RecoverPasswordService.validate(recoverVm.recoverForm.username, recoverVm.recoverForm.email)
       .then(function(resp) {
         recoverVm.step = 2;
         recoverVm.tempData = resp;
-        recoverVm.contentsRead = resp.contents;
+        recoverVm.contentsRead = shufleItems(resp.contents);
       }, function(error) {
         var popupOptions = {
           title: 'Ups',
@@ -41,14 +43,35 @@
       });
     }
 
+    function shufleItems(items) {
+      var array = items.slice();
+      var counter = array.length;
+      while (counter > 0) {
+          var index = Math.floor(Math.random() * counter);
+          counter--;
+          var temp = array[counter];
+          array[counter] = array[index];
+          array[index] = temp;
+      }
+      return array;
+    }
+
     function selectAnswer(answer) {
       recoverVm.contentsRead.forEach(function(ans) {
         ans.selected = ans.id === answer.id;
       });
+      answerSelected = answer;
+    }
+
+    function backStep() {
+      recoverVm.step = 1;
+    }
+
+    function onSubmit() {
       RecoverPasswordService.recover(
         recoverVm.tempData.user_id,//jshint ignore:line
         recoverVm.tempData.content_reading_id,//jshint ignore:line
-        answer.id
+        answerSelected.id
       ).then(function(resp) {
         var passwordKey = ImagesLogin.paths.find(function(path) {
           return resp.key === path.key;
@@ -57,8 +80,8 @@
           var dialogOptions = {
             templateUrl: 'templates/partials/modal-alert-content.html',
             model: {
-              message: 'En hora buena, para disfruta de moi ahora podras ' +
-                      'iniciar sesión con la siguiente clave <<' + passwordKey.name + '>>',
+              message: 'Para disfrutar de Moi inicia sesión con la siguiente clave\n'+
+                       '<<' + passwordKey.name + '>>',
               image: passwordKey.path,
               callbacks: {
                 btnCenter: function() {
@@ -78,12 +101,10 @@
           title: 'Ups',
           content: error.data.message
         };
+        answerSelected.selected = false;
+        recoverVm.contentsRead = shufleItems(recoverVm.contentsRead);
         PopupService.showModel('alert', popupOptions);
       });
-    }
-
-    function backStep() {
-      recoverVm.step = 1;
     }
   }
 })();

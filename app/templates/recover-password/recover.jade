@@ -43,14 +43,20 @@ ion-view(hide-nav-bar="true" class="register-view")
         .container-answers
           .answer(ng-repeat="answer in recoverVm.contentsRead track by $index",
                   ng-class="{'answer-selected': answer.selected}",
-                  ng-style="recoverVm.cssOptions.styles[$index+1]"
+                  ng-style="recoverVm.cssOptions.styles[$index+2]"
                   ng-click="recoverVm.selectAnswer(answer)"
-                  ng-mouseover="recoverVm.increaseSize(true, recoverVm.cssOptions, $index+1)"
-                  ng-mouseleave="recoverVm.increaseSize(false, recoverVm.cssOptions, $index+1)")
+                  ng-mouseover="recoverVm.increaseSize(true, recoverVm.cssOptions, $index+2)"
+                  ng-mouseleave="recoverVm.increaseSize(false, recoverVm.cssOptions, $index+2)")
             h4 {{answer.title}}
         .back-btn-container
           .btn(ng-click="recoverVm.backStep()"
+              ng-style="recoverVm.cssOptions.styles[0]"
               ng-mouseover="recoverVm.increaseSize(true, recoverVm.cssOptions, 0)"
               ng-mouseleave="recoverVm.increaseSize(false, recoverVm.cssOptions, 0)")
             | {{ 'recoverPassword.back' | translate }}
+          .btn(ng-click="recoverVm.onSubmit()"
+              ng-style="recoverVm.cssOptions.styles[1]"
+              ng-mouseover="recoverVm.increaseSize(true, recoverVm.cssOptions, 1)"
+              ng-mouseleave="recoverVm.increaseSize(false, recoverVm.cssOptions, 1)")
+            | {{ 'recoverPassword.ok' | translate }}
 
