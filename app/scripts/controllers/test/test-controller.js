@@ -86,8 +86,14 @@
       }
     }
 
-    function exit() {
-      $window.history.back();
+    function exit(removeContents) {
+      if(removeContents) {
+        TestService.cancelTest(vmTest.testId).then(function() {
+          $window.history.back();
+        });
+      }else {
+        $window.history.back();
+      }
     }
 
     function shuffle(questions) {

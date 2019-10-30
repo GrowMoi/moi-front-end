@@ -10,12 +10,10 @@
                       ENV,
                       ModalService,
                       PopupService,
-                      StorageService,
                       $state,
                       $auth,
                       $q,
                       $timeout,
-                      TreeAnimateService,
                       MoiAnimationService){
 
     var service = {
@@ -25,7 +23,8 @@
       goFinalTest: goFinalTest,
       createFinalTest: createFinalTest,
       getFinalTest: getFinalTest,
-      evaluateFinalTest: evaluateFinalTest
+      evaluateFinalTest: evaluateFinalTest,
+      cancelTest: cancelTest
     };
 
     var popupOptions = { title: 'Error'};
@@ -200,6 +199,24 @@
         data: {
           id: params.id,
           answers: JSON.stringify(params.answers || [])
+        }
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return $q.reject(err);
+      });
+    }
+
+    function cancelTest(testId) {
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/learn/cancel',
+        data: {
+          test_id: testId //jshint ignore:line
         }
       }).then(function success(res) {
         return res;

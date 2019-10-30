@@ -8,7 +8,7 @@ ion-view#test-frame(view-title='{{vm.neuron.title}}')
             span {{vmTest.percentage}}%
           sound-button.btn-exit(ng-style="vmTest.cssOptions.styles[0]"
             image-url="images/exit-test.png"
-            ng-click="vmTest.exit()"
+            ng-click="vmTest.exit(true)"
             tooltip-moi="{{ 'tooltip.exit-test' | translate }}"
             tooltip-position="up"
             ng-mouseover="vmTest.increaseSize(true, vmTest.cssOptions, 0)"
