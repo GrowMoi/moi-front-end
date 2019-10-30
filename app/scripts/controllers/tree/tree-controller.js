@@ -197,7 +197,7 @@
 
     function handlePagesViewed(){
       var currentPage = 'tree';
-      var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed'));
+      var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed')) || {};
       if(!pagesViewed[currentPage]){
         //show passive model messages when enter for first time into the page
         showPassiveModal();

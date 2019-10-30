@@ -43,6 +43,7 @@
       view: 'tree-screen',
       baseTree: 'base-tree'
     };
+    var languageBrowser = 'es';
 
     //init nofitications in passive time
     if(!localStorage.getItem('advicesOn')){
@@ -191,22 +192,15 @@
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
       site.soundPage.muted = (localStorage.getItem('soundOn') === 'false');
       handlePagesViewed(toState);
+      $translate.use(languageBrowser);
       if(toState.name === 'login.first_step' || toState.name === 'login.second_step' ||
         toState.name === 'register' || toState.name ==='login' || 'recoverPassword') {
-        var languageBrowser = 'es';
-        site.advicePage = languageBrowser === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
-        $translate.use(languageBrowser);
         site.achievementBackgroundCss = {
           'background-image': 'url(images/landscape_a.png)'
         };
       }
       else {
         setBackgroundAccordingLevel($auth.user.level);
-        StorageService.get().then(function(value){
-          var storage = value.data.storage || {};
-          site.advicePage = storage.language === 'es' ? AdvicesPage[toState.name] : AdvicesPageEn[toState.name];
-          $translate.use(storage.language);
-        });
       }
     });
 
@@ -247,27 +241,28 @@
 
     function showPassiveModal() {
       var isActiveMessages = (localStorage.getItem('advicesOn') === 'true');
-      if(site.advicePage && !isShowingPassiveModal && $state.current.name !== 'tree' && isActiveMessages){
+      var advicesPage = languageBrowser === 'es' ? AdvicesPage[$state.current.name] : AdvicesPageEn[$state.current.name];
+      if(advicesPage && !isShowingPassiveModal && $state.current.name !== 'tree' && isActiveMessages){
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-pasive-info.html',
           animation: 'animated flipInX',
           backdropClickToClose: true,
           model: {
-            message: site.advicePage.messages[0],
+            message: advicesPage.messages[0],
             type: 'passive',
-            cssClass: site.advicePage.position || 'modal-bottomRight'
+            cssClass: advicesPage.position || 'modal-bottomRight'
           },
           onHide: function() {
             isShowingPassiveModal = false;
           }
         };
 
-        if(site.advicePage.messages.length > 1){
+        if(advicesPage.messages.length > 1){
           var keyAdvice = $state.current.name + '_advice';
           var lastIndexAdvice = parseInt(localStorage.getItem(keyAdvice)) || 0;
-          dialogOptions.model.message = site.advicePage.messages[lastIndexAdvice];
+          dialogOptions.model.message = advicesPage.messages[lastIndexAdvice];
           dialogOptions.onHide = function() {
-            var nexIndexAdvice = (lastIndexAdvice < site.advicePage.messages.length-1) ? lastIndexAdvice + 1 : 0;
+            var nexIndexAdvice = (lastIndexAdvice < advicesPage.messages.length-1) ? lastIndexAdvice + 1 : 0;
             localStorage.setItem(keyAdvice, nexIndexAdvice);
             isShowingPassiveModal = false;
           };
@@ -281,7 +276,7 @@
     function handlePagesViewed(state) {
       var currentPage = state.name;
       if(currentPage !== 'tree') {
-        var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed'));
+        var pagesViewed = JSON.parse(localStorage.getItem('pagesViewed')) || {};
         if(!pagesViewed[currentPage]){
           //show passive model messages when enter for first time into the page
           $timeout(showPassiveModal);
