@@ -9,10 +9,30 @@
       visibility: hidden;
       opacity: 0;
       transition: visibility 0s, opacity 0.5s linear;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       &.step-selected {
         visibility: visible;
         opacity: 1;
+      }
+
+      .label-input {
+        color: $secondary;
+        font-weight: bold;
+        font-size: 17px;
+        text-align: center;
+        text-shadow: 0 1px rgba(255,255,255,.3);
+        margin-left: 10px;
+        margin-bottom: 5px;
+      }
+
+      .list-inset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
       }
     }
 

@@ -4,7 +4,7 @@ ion-view(hide-nav-bar="true" class="register-view")
       form(ng-class="{'step-selected': recoverVm.step === 1}",
           ng-submit='recoverVm.recoverPassword()'
           name='recoverForm' novalidate)
-        .login-title
+        .label-input
           | {{ 'recoverPassword.title' | translate }}
         .list.list-inset
           label.item.item-input
@@ -16,19 +16,6 @@ ion-view(hide-nav-bar="true" class="register-view")
               placeholder="{{ 'register.username' | translate }}"
             )
             span.error-msg(ng-if='recoverForm.username.$error.required && recoverForm.username.$touched')
-              | {{  'msgs.error.required' | translate}}
-          label.item.item-input
-            input(
-              type='email',
-              ng-model='recoverVm.recoverForm.email',
-              required='required',
-              name='email',
-              autocomplete='off',
-              placeholder="{{ 'register.email' | translate }}"
-            )
-            span.error-msg(ng-if='recoverForm.email.$error.email')
-              | {{  'msgs.error.email' | translate}}
-            span.error-msg(ng-if='recoverForm.email.$error.required && recoverForm.email.$touched')
               | {{  'msgs.error.required' | translate}}
         .row.button-actions
           .col.actions-register

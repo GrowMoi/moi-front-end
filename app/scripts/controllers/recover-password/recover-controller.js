@@ -26,7 +26,7 @@
     recoverVm.onSubmit = onSubmit;
 
     function recoverPassword() {
-      RecoverPasswordService.validate(recoverVm.recoverForm.username, recoverVm.recoverForm.email)
+      RecoverPasswordService.validate(recoverVm.recoverForm.username)
       .then(function(resp) {
         recoverVm.step = 2;
         recoverVm.tempData = resp;

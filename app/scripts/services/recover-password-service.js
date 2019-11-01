@@ -14,13 +14,12 @@
       return service;
 
       /*jshint camelcase: false */
-      function validate(username, email) {
+      function validate(username) {
         return $http({
           method: 'GET',
           url: ENV.apiHost + '/api/users/pacifico_recover_password/validate',
           params: {
-            username: username,
-            email: email
+            username: username
           }
         }).then(function success(res) {
           return res.data;
