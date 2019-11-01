@@ -222,9 +222,9 @@
       };
       //Colores por ramas
       var colors = {
-        'El verdadero valor del ahorro': {value: '#0089b6', color: 'azul'},
-        'La importancia del presupuesto': {value: '#f7af1f', color: 'amarillo'},
-        '¿Cuales son tus sueños? 2': {value: '#b83b67', color: 'rojo'},
+        '¿Cómo haces para alcanzar tus sueños?': {value: '#0089b6', color: 'azul'},
+        '¿Qué herramienta te ayuda para cumplir tus sueños?': {value: '#f7af1f', color: 'amarillo'},
+        '¿Qué necesitas para alcanzar tus sueños?': {value: '#b83b67', color: 'rojo'},
         // 'Naturaleza': {value: '#359b3d', color: 'verde'},
       };
       //TODO: Cambiar por el valor de total de contenidos aprendidos que retorna el backend

@@ -12,8 +12,8 @@
           }
         },
         2: {
-          name: 'Contenidos aprendidos rama El verdadero valor del ahorro',
-          description: 'Han sido aprendidos 16 contenidos de la rama El verdadero valor del ahorro',
+          name: 'Contenidos aprendidos rama ¿Cómo haces para alcanzar tus sueños?',
+          description: 'Han sido aprendidos 16 contenidos de la rama ¿Cómo haces para alcanzar tus sueños?',
           settings: {
             badge:'images/inventory/badges/badge2.png',
             avatar: 'perfil_2.png'
@@ -28,16 +28,16 @@
         //   }
         // },
         4: {
-          name: 'Contenidos aprendidos rama La importancia del presupuesto',
-          description: 'Han sido aprendidos 16 contenidos de la rama La importancia del presupuesto',
+          name: 'Contenidos aprendidos rama ¿Qué herramienta te ayuda para cumplir tus sueños?',
+          description: 'Han sido aprendidos 16 contenidos de la rama ¿Qué herramienta te ayuda para cumplir tus sueños?',
           settings: {
             badge:'images/inventory/badges/badge4.png',
             avatar: 'perfil_3.png'
           }
         },
         5: {
-          name: 'Contenidos aprendidos rama ¿Cuales son tus sueños? 2',
-          description: 'Han sido aprendidos 16 contenidos de la rama ¿Cuales son tus sueños? 2',
+          name: 'Contenidos aprendidos rama ¿Qué necesitas para alcanzar tus sueños?',
+          description: 'Han sido aprendidos 16 contenidos de la rama ¿Qué necesitas para alcanzar tus sueños?',
           settings: {
             badge:'images/inventory/badges/badge9.png',
             avatar: 'perfil_4.png'
