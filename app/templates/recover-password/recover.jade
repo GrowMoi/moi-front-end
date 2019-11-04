@@ -17,6 +17,20 @@ ion-view(hide-nav-bar="true" class="register-view")
             )
             span.error-msg(ng-if='recoverForm.username.$error.required && recoverForm.username.$touched')
               | {{  'msgs.error.required' | translate}}
+          label.item.item-input
+            input(
+              type='number',
+              min='1990',
+              ng-model='recoverVm.recoverForm.birth_year',
+              required='required',
+              name='birth_year',
+              autocomplete='off',
+              placeholder="{{ 'register.birth_year' | translate }}"
+            )
+            span.error-msg(ng-if='recoverForm.email.$error.birth_year')
+              | {{  'msgs.error.email' | translate}}
+            span.error-msg(ng-if='recoverForm.birth_year.$error.required && recoverForm.birth_year.$touched')
+              | {{  'msgs.error.required' | translate}}
         .row.button-actions
           .col.actions-register
             input(

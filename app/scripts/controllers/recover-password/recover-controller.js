@@ -26,7 +26,7 @@
     recoverVm.onSubmit = onSubmit;
 
     function recoverPassword() {
-      RecoverPasswordService.validate(recoverVm.recoverForm.username)
+      RecoverPasswordService.validate(recoverVm.recoverForm.username, recoverVm.recoverForm.birth_year) //jshint ignore:line
       .then(function(resp) {
         recoverVm.step = 2;
         recoverVm.tempData = resp;

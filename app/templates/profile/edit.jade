@@ -53,12 +53,12 @@ ion-view.profile.edit-profile-content(view-title="{{ 'profile.edit-profile' | tr
                   )
 
                 .form-group
-                  label.label-register.label-date  {{ 'register.age' | translate }}:
+                  label.label-register.label-date  {{ 'register.birth_year' | translate }}:
                   input.col-60(
                     type='number',
                     min='1',
                     name='age'
-                    ng-model='vmProfileEdit.user.age'
+                    ng-model='vmProfileEdit.user.birth_year'
                     required='required'
                   )
 

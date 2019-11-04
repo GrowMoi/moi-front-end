@@ -94,7 +94,8 @@
         'terms': 'Terms & Conditions',
         'gender': 'Please select your gender:',
         'male': 'Male',
-        'female': 'Female'
+        'female': 'Female',
+        'birth_day': 'Year of birth'
       },
       recoverPassword: {
         'recoverPassword': 'Forget your password?',
@@ -106,7 +107,8 @@
       },
       user: {
         'age': 'Age',
-        'city': 'City'
+        'city': 'City',
+        'birth_day': 'Año de nacimiento'
       },
       profile: {
         'edit-profile': 'Edit profile',
@@ -407,7 +409,8 @@
         'terms': 'Términos y Condiciones',
         'gender': 'Por favor seleccione su genero:',
         'male': 'Masculino',
-        'female': 'Femenino'
+        'female': 'Femenino',
+        'birth_year': 'Año de nacimiento'
       },
       recoverPassword: {
         'recoverPassword': 'Olvidaste tu contraseña?',
