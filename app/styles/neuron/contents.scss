@@ -145,8 +145,8 @@ $content-unselected-effect: 1px 1px 0px 0px $borderContent,
 }
 
 .leyend-bottom, .leyend-bottom-grid {
-  background-color: #dcdddd;
-  color: #6f7472;
+  background-color: rgba(0, 0, 0, 0.48);
+  color: #ffffff;
   padding: 6px 25px;
   transition: all 0.2s ease 0s;
   vertical-align: middle;

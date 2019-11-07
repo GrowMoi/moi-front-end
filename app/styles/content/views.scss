@@ -54,6 +54,7 @@
 
     .recommended-contents {
       flex-wrap: wrap;
+      height: 180px;
       padding-bottom: 0;
       background-image: url(../images/recomendations-box-content-max.png);
       background-repeat: no-repeat;
@@ -64,6 +65,8 @@
           background-image: url(../images/img_galeria_max.png);
           background-repeat: no-repeat;
           background-size: 100% 100%;
+          width: 130px;
+          height: 80px;
 
           img {
             -webkit-mask-image: url(../images/img_galeria_max.png);
@@ -81,7 +84,7 @@
   }
 
   .links-margin-top {
-    margin-top: -10px;
+    margin-top: -20px;
 
     a {
       word-break: break-all;
