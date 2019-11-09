@@ -204,6 +204,7 @@
 
     function showModalAchievement(recommendations) {
       var modelData = extractModelData(recommendations) ;
+      modelData.user = currentUser;
       var templateModal = 'templates/partials/modal-tutor-achievement';
       ModalService.showModel(
         {
@@ -231,7 +232,7 @@
             dialogContentModel.closeModal();
             countModalsActived--;
             if(achievement.number === 10){
-              TestService.goFinalTest(null, currentUser.name, currentUser.username);
+              TestService.goFinalTest(null, currentUser, currentUser.username);
             }else if(countModalsActived === 0) {
               $state.go('tree', {
                 username: currentUser.username

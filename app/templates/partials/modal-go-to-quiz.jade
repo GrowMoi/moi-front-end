@@ -2,7 +2,7 @@
   ion-pane.transparent
     .score-container.row
       .main-image.col
-        img(src="images/user.png")
+        img(ng-src="{{model.user.avatar || model.user.image || 'images/user.png'}}")
       .col-50
         .text-container
           h2#content

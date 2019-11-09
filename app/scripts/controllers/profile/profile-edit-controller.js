@@ -27,7 +27,7 @@
     };
 
     vmProfileEdit.user = user;
-    vmProfileEdit.user.image = user.image || 'images/edit-profile/userphoto.png';
+    vmProfileEdit.user.image = user.avatar || user.image;
 
     vmProfileEdit.editProfile = editProfile;
     vmProfileEdit.buttonsOptions = {

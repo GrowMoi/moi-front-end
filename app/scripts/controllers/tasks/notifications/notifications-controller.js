@@ -213,6 +213,7 @@
       var dialogQuizModel = {
         header: 'El tutor ' + tutorName + ' ha creado un nuevo test para ti.',
         description: notification.description,
+        user: $auth.user,
         callbacks: {
           openTabQuiz: function() {
             var url = notification.description.match(/(https?:\/\/[^\s]+)/g);

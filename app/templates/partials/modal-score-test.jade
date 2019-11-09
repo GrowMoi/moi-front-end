@@ -6,7 +6,7 @@
               only-play="true")
     .score-container.row
       .main-image.col
-        img(src="images/user.png")
+        img(ng-src="{{model.user.avatar || model.user.image || 'images/user.png'}}")
       .col-50
         h1#title | {{ 'modal_score.title' | translate }}
         .points

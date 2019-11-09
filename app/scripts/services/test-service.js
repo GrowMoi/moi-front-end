@@ -30,10 +30,10 @@
     var popupOptions = { title: 'Error'};
     return service;
 
-    function goFinalTest(scope, name, username) {
+    function goFinalTest(scope, user, username) {
       var templateModal = 'templates/partials/modal-launch-final-test.html';
       var modelData = {
-        name: name,
+        user: user,
         createFinalTest: function(){
           $state.go('finaltest');
           modelData.closeModal();
@@ -60,6 +60,7 @@
       modelData.testId = test.id;
       modelData.testQuestions = test.questions;
       modelData.contentsLearnt = modelData.testQuestions.length;
+      modelData.user = $auth.user;
       ModalService.showModel(
         {
           parentScope: scope,
