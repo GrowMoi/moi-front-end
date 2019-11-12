@@ -15,10 +15,13 @@
                               ImagesLogin) {
     var registerModel = this;
     var languageBrowser = 'es';
+    var startYear = new Date().getFullYear() - 6;
+    var endYear = new Date().getFullYear() - 18;
     registerModel.register = register;
     registerModel.registerForm = {};
     registerModel.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;
     registerModel.term = false;
+    registerModel.bornYears = generateBornYears(startYear, endYear);
 
     function register() {
       $ionicLoading.show({
@@ -67,5 +70,13 @@
     registerModel.acceptTerms = function(){
       registerModel.closeModal();
     };
+
+    function generateBornYears(startYear, endYear) {
+      var years = [];
+      for(var currentYear = startYear; currentYear >= endYear; currentYear--) {
+        years.push(currentYear);
+      }
+      return years;
+    }
   }
 })();
