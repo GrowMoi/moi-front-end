@@ -150,6 +150,9 @@
       'fifth-level-3000': {
         color: 'red'
       },
+      'fifth-level-3001': { //Pacifico
+        color: 'red'
+      },
       'fifth-level-3010': {
         color: 'red'
       },
