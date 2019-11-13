@@ -193,8 +193,8 @@
       site.soundPage.muted = (localStorage.getItem('soundOn') === 'false');
       handlePagesViewed(toState);
       $translate.use(languageBrowser);
-      if(toState.name === 'login.first_step' || toState.name === 'login.second_step' ||
-        toState.name === 'register' || toState.name ==='login' || 'recoverPassword') {
+      var defaultBackground = ['login.first_step', 'login.second_step', 'register', 'login', 'recoverPassword'];
+      if(defaultBackground.indexOf(toState.name) >= 0) {
         site.achievementBackgroundCss = {
           'background-image': 'url(images/landscape_a.png)'
         };
