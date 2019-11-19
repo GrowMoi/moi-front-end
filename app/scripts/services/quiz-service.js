@@ -28,6 +28,7 @@
       var modelData = {};
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
+      modelData.user = $auth.user;
       modelData.onClick = reloadPage;
       modelData.isQuiz = true;
       var templateModal = 'templates/partials/modal-score-test.html';

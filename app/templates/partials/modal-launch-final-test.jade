@@ -2,10 +2,10 @@
   ion-pane.transparent
     .score-container.row
       .main-image.col
-        img(src="images/user.png")
+        img(ng-src="{{model.user.avatar || model.user.image || 'images/user.png'}}")
       .col-50
         .text-container
-          h2#title {{ 'modal_end_test.title' | translate }} {{model.name}}!
+          h2#title {{ 'modal_end_test.title' | translate }} {{model.user.name}}!
           h2#content {{ 'modal_end_test.content' | translate }}
       .pista.col
     .controls-score

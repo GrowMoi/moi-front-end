@@ -30,10 +30,10 @@
     var popupOptions = { title: 'Error'};
     return service;
 
-    function goFinalTest(scope, name, username) {
+    function goFinalTest(scope, user, username) {
       var templateModal = 'templates/partials/modal-launch-final-test.html';
       var modelData = {
-        name: name,
+        user: user,
         createFinalTest: function(){
           $state.go('finaltest');
           modelData.closeModal();
@@ -59,6 +59,7 @@
       var modelData = {};
       modelData.testId = test.id;
       modelData.testQuestions = test.questions;
+      modelData.user = $auth.user;
       modelData.contentsLearnt = test.total_contents; //jshint ignore:line
       ModalService.showModel(
         {
