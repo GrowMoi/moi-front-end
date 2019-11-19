@@ -4,7 +4,7 @@
   angular.module('moi')
     .value('NeuronsOptions', {
       'root': {
-        color: 'blue'
+        color: 'yellow'
       },
       'second-level-0': {
         color: 'blue'
@@ -148,6 +148,9 @@
         color: 'yellow'
       },
       'fifth-level-3000': {
+        color: 'red'
+      },
+      'fifth-level-3001': { //Pacifico
         color: 'red'
       },
       'fifth-level-3010': {

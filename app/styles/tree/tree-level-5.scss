@@ -30,12 +30,12 @@
             left: 37.5%;
           }
           &-2 {
-            bottom: 32%;
+            // bottom: 32%; MOI
+            bottom: 31%;
             left: 42.95%;
           }
           &-3 {
-            // bottom: 32.5%; //MOI
-            bottom: 34.5%;
+            bottom: 32.5%;
             left: 45.8%;
           }
           &-4 {
@@ -54,22 +54,23 @@
 
         &.fourth-level {
           &-0 {
-            bottom: 26%;
+            // bottom: 26%; MOI
+            bottom: 30%;
             left: 31.7%;
           }
           &-1 {
-            bottom: 28.3%;
-            left: 34.47%;
+            // bottom: 28.3%; MOI
+            // left: 34.47%; MOI
+            bottom: 26.3%;
+            left: 29.47%;
           }
           &-2 {
             bottom: 30.5%;
             left: 31.9%;
           }
           &-4 {
-            // bottom: 34.2%; //MOI
-            // left: 41.2%; //MOI
-            bottom: 36.2%;
-            left: 40.2%;
+            bottom: 34.2%;
+            left: 41.2%;
           }
           &-5 {
             bottom: 38.5%;
@@ -96,8 +97,7 @@
             left: 53.5%;
           }
           &-12 {
-            // bottom: 34.9%; //MOI
-            bottom: 36.9%;
+            bottom: 34.9%;
             left: 59%;
           }
           &-13 {
@@ -128,8 +128,10 @@
 
         &.fifth-level {
           &-0000{
+            // bottom: 42.36%; MOI
+            // left: 34.37%; MOI
             bottom: 42.36%;
-            left: 34.37%;
+            left: 32.37%;
           }
           &-0001{
             bottom: 43.75%;
@@ -140,8 +142,10 @@
             left: 36.71%;
           }
           &-0010{
-            bottom: 39.58%;
-            left: 30.07%;
+            // bottom: 39.58%; MOI
+            // left: 30.07%; MOI
+            bottom: 37.5%;
+            left: 30%;
           }
           &-0011{
             bottom: 37.77%;
@@ -176,9 +180,7 @@
             left: 46.87%;
           }
           &-1001{
-            // bottom: 41.25%; //MOI
-            // left: 43.35%; //MOI
-            bottom: 40.25%;
+            bottom: 41.25%;
             left: 43.35%;
           }
           &-1022{
@@ -216,6 +218,10 @@
           &-3000{
             bottom: 46.80%;
             left: 64.68%;
+          }
+          &-3001{//Pacifico copy of 3100
+            bottom: 44.86%;
+            left: 71.25%;
           }
           &-3010{
             bottom: 45.55%;
@@ -331,7 +337,7 @@
         &.fourth-level {
           &-0 {
             &.florecida{
-              background-image: url(../images/tree/branchs/level-4/rama007.png);
+              background-image: url(../images/tree/branchs/level-4/rama006-copy.png);
             }
           }
           &-1 {
@@ -346,7 +352,7 @@
           }
           &-4 {
             &.florecida{
-              background-image: url(../images/tree/branchs/level-4/rama007.png);
+              background-image: url(../images/tree/branchs/level-4/rama007-copy.png);
             }
           }
           &-5 {
@@ -381,7 +387,7 @@
           }
           &-12 {
             &.florecida{
-              background-image: url(../images/tree/branchs/level-4/rama082.png);
+              background-image: url(../images/tree/branchs/level-4/rama082-copy.png);
             }
           }
           &-13 {
@@ -421,7 +427,7 @@
         &.fifth-level {
           &-0000{
             &.florecida{
-              background-image: url(../images/tree/branchs/level-5/rama011-copy.png);
+              background-image: url(../images/tree/branchs/level-5/rama011.png);
             }
           }
           &-0001{
@@ -436,7 +442,7 @@
           }
           &-0010{
             &.florecida{
-              background-image: url(../images/tree/branchs/level-5/rama012.png);
+              background-image: url(../images/tree/branchs/level-5/rama012-copy.png);
             }
           }
           &-0011{
@@ -456,7 +462,7 @@
           }
           &-1100{
             &.florecida{
-              background-image: url(../images/tree/branchs/level-5/rama038-copy.png);
+              background-image: url(../images/tree/branchs/level-5/rama038.png);
             }
           }
           &-1101{
@@ -481,7 +487,7 @@
           }
           &-1001{
             &.florecida{
-              background-image: url(../images/tree/branchs/level-5/rama037-copy.png);
+              background-image: url(../images/tree/branchs/level-5/rama037.png);
             }
           }
           &-1022{
@@ -529,6 +535,14 @@
               background-image: url(../images/tree/branchs/level-5/rama088-copy.png);
             }
           }
+          &-3001{//Pacifico copy of 3100
+            &.florecida{
+              background-image: url(../images/tree/branchs/level-5/rama089-copy.png);
+              position: relative;
+              top: 0;
+              left: -1.5%;
+            }
+          }
           &-3010{
             &.florecida{
               background-image: url(../images/tree/branchs/level-5/rama088.png);
@@ -542,8 +556,7 @@
           }
           &-3100{
             &.florecida{
-              // background-image: url(../images/tree/branchs/level-5/rama089.png); //MOI
-              background-image: url(../images/tree/branchs/level-5/rama089-copy.png);
+              background-image: url(../images/tree/branchs/level-5/rama089.png);
               position: relative;
               top: 0;
               left: -1.5%;

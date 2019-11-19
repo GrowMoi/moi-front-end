@@ -2,14 +2,10 @@
   ion-pane.transparent
     .modal-share-social
       .btn-close-modal(ng-click="model.closeModal()")
-      .social-network-panel
-        a.btn-facebook(ng-click="model.shareWith(model.data, 'facebook')")
-        a.btn-twitter(ng-click="model.shareWith(model.data, 'twitter')")
-        a.btn-mail(ng-click="model.showMailForm()" ng-class="{selected: model.activeEmail}")
       .description-panel
         h2 {{ 'social.title' | translate}}
         | {{ 'social.description' | translate}}
-      form.email-form(ng-submit='model.sendEmail()' ng-if="model.activeEmail")
+      form.email-form(ng-submit='model.sendEmail()')
         input.email(
             type='email',
             ng-model='model.data.email',

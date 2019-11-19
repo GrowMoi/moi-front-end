@@ -31,7 +31,7 @@
           name: 'The importance of the budget branch contents learned',
           description: 'Learned 20 contents of the The importance of the budget branch',
           settings: {
-            badge:'images/inventory/badges/badge4.png',
+            badge:'images/inventory/badges/badge9.png',
             avatar: 'perfil_3.png'
           }
         },
@@ -39,7 +39,7 @@
           name: 'What are your dreams? 2 branch contents learned',
           description: 'Learned 20 contents of what are your dreams? 2 branch',
           settings: {
-            badge:'images/inventory/badges/badge9.png',
+            badge:'images/inventory/badges/badge4.png',
             avatar: 'perfil_4.png'
           }
         },

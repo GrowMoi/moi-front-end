@@ -196,7 +196,7 @@
       },
       social: {
         'title': 'Show your friends',
-        'description': 'Share your progress on Fb, Twitter or via Email',
+        'description': 'Share your progress via Email',
         'send': 'Send'
       },
       tasks: {
@@ -508,8 +508,7 @@
       },
       social: {
         'title': 'Muestrale a tus amigos!',
-        'description': 'Muestra tu progreso en Facebook, Twitter '+
-                        'o vía email. Comparte las buenas noticias!',
+        'description': 'Muestra tu progreso vía email. Comparte las buenas noticias!',
         'send': 'Enviar'
       },
       tasks: {

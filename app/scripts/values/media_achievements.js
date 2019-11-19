@@ -31,7 +31,7 @@
           name: 'Contenidos aprendidos rama ¿Qué herramienta te ayuda para cumplir tus sueños?',
           description: 'Han sido aprendidos 16 contenidos de la rama ¿Qué herramienta te ayuda para cumplir tus sueños?',
           settings: {
-            badge:'images/inventory/badges/badge4.png',
+            badge:'images/inventory/badges/badge9.png',
             avatar: 'perfil_3.png'
           }
         },
@@ -39,7 +39,7 @@
           name: 'Contenidos aprendidos rama ¿Qué necesitas para alcanzar tus sueños?',
           description: 'Han sido aprendidos 16 contenidos de la rama ¿Qué necesitas para alcanzar tus sueños?',
           settings: {
-            badge:'images/inventory/badges/badge9.png',
+            badge:'images/inventory/badges/badge4.png',
             avatar: 'perfil_4.png'
           }
         },

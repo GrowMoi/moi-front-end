@@ -9,7 +9,6 @@
                           $ionicLoading,
                           $auth,
                           PreloadAssets,
-                          StorageService,
                           ScreenshotService,
                           UserService,
                           UserNotificationsService,
@@ -190,17 +189,18 @@
 
       site.soundPage =  SoundsPage[toState.name] || {};
       site.soundPage.volume = site.soundPage.volume ? site.soundPage.volume : 1;
-      site.soundPage.muted = (localStorage.getItem('soundOn') === 'false');
       handlePagesViewed(toState);
       $translate.use(languageBrowser);
-      if(toState.name === 'login.first_step' || toState.name === 'login.second_step' ||
-        toState.name === 'register' || toState.name ==='login' || 'recoverPassword') {
+      var defaultBackground = ['login.first_step', 'login.second_step', 'register', 'login', 'recoverPassword'];
+      if(defaultBackground.indexOf(toState.name) >= 0) {
         site.achievementBackgroundCss = {
           'background-image': 'url(images/landscape_a.png)'
         };
+        startPlaySoundApp();
       }
       else {
         setBackgroundAccordingLevel($auth.user.level);
+        playSoundApp();
       }
     });
 
@@ -309,6 +309,25 @@
         };
         site.achievementBackgroundCss = background ? achivementCss : null;
       });
+    }
+
+    function playSoundApp() {
+      $timeout(function() {
+        var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+        if($backgroundSound[0]) {
+          $backgroundSound[0].muted = (localStorage.getItem('soundOn') === 'false');
+        }
+      }, 1000);
+    }
+
+    function startPlaySoundApp() {
+      $timeout(function() {
+        var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+        if($backgroundSound[0]) {
+          $backgroundSound[0].muted = true;
+          $backgroundSound[0].muted = false;
+        }
+      }, 1000);
     }
   }
 })();

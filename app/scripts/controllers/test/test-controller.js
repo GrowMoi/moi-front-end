@@ -181,23 +181,14 @@
         green: 'images/tree/nodos/nodo-verde.png'
       };
       var rigthAnswersCount = 0;
-      var questions = angular.forEach(vmTest.questions, function(question){
-        angular.forEach(results, function(result){
-          if(result.content_id === question.content_id){
-            question.image = NEURON_COLOR[result.neuron_color];
-            question.correct = result.correct;
-            var selectedAnswerByUser = vmTest.answers.find(function(answer){
-              return answer.content_id === result.content_id;
-            });
-            question.selectedAnswer = selectedAnswerByUser && selectedAnswerByUser.answer_text;
-            if(result.correct) {
-              rigthAnswersCount++;
-            }
-          }
-        });
+      var resultQuestions = angular.forEach(results, function(result){
+        result.image = NEURON_COLOR[result.neuron_color];
+        if(result.correct) {
+          rigthAnswersCount++;
+        }
       });
       return {
-        questions: questions,
+        questions: resultQuestions,
         rigthAnswers: rigthAnswersCount
       };
     }

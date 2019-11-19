@@ -59,8 +59,8 @@
       var modelData = {};
       modelData.testId = test.id;
       modelData.testQuestions = test.questions;
-      modelData.contentsLearnt = modelData.testQuestions.length;
       modelData.user = $auth.user;
+      modelData.contentsLearnt = test.total_contents; //jshint ignore:line
       ModalService.showModel(
         {
           parentScope: scope,

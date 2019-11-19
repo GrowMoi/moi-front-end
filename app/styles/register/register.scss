@@ -63,6 +63,29 @@
       .item-input:last-child{
         margin-left: 50px;
       }
+      .birth_year {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .label {
+          font-size: 12px;
+          color: $secondary;
+          font-weight: bold;
+          font-family: FontMoi-Title;
+          text-transform: uppercase;
+          margin-right: 5px;
+        }
+
+        select {
+          color: white;
+          background-color: $secondary;
+          font-size: 12px;
+          font-weight: bold;
+          font-family: FontMoi-Title;
+          border-color: white;
+        }
+      }
     }
     .button{
       font-size: 20px;
