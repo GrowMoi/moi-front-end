@@ -1,12 +1,11 @@
 .btns-slide {
   height: 100%;
-  width: 100%;
   display: flex;
   align-items: center;
   z-index: 1;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   font-size: 23px;
 
   .btn-next-slide {
