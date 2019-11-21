@@ -69,7 +69,7 @@
         },
         9: {
           name: 'Deployed tests',
-          description: 'You deployed at least 50 total tests',
+          description: 'You deployed at least 8 total tests',
           settings: {
             badge:'images/inventory/badges/badge6.png',
             avatar: 'perfil_8.png'
@@ -77,7 +77,7 @@
         },
         10: {
           name: 'Final test',
-          description: 'You reached level 9',
+          description: 'You reached level 5',
           settings: {
             badge:'images/inventory/badges/badge10.png',
             runFunction: 'openModal'

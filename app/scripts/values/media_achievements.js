@@ -13,7 +13,7 @@
         },
         2: {
           name: 'Contenidos aprendidos rama ¿Cómo haces para alcanzar tus sueños?',
-          description: 'Han sido aprendidos 16 contenidos de la rama ¿Cómo haces para alcanzar tus sueños?',
+          description: 'Han sido aprendidos 9 contenidos de la rama ¿Cómo haces para alcanzar tus sueños?',
           settings: {
             badge:'images/inventory/badges/badge2.png',
             avatar: 'perfil_2.png'
@@ -29,7 +29,7 @@
         // },
         4: {
           name: 'Contenidos aprendidos rama ¿Qué herramienta te ayuda para cumplir tus sueños?',
-          description: 'Han sido aprendidos 16 contenidos de la rama ¿Qué herramienta te ayuda para cumplir tus sueños?',
+          description: 'Han sido aprendidos 9 contenidos de la rama ¿Qué herramienta te ayuda para cumplir tus sueños?',
           settings: {
             badge:'images/inventory/badges/badge9.png',
             avatar: 'perfil_3.png'
@@ -37,7 +37,7 @@
         },
         5: {
           name: 'Contenidos aprendidos rama ¿Qué necesitas para alcanzar tus sueños?',
-          description: 'Han sido aprendidos 16 contenidos de la rama ¿Qué necesitas para alcanzar tus sueños?',
+          description: 'Han sido aprendidos 9 contenidos de la rama ¿Qué necesitas para alcanzar tus sueños?',
           settings: {
             badge:'images/inventory/badges/badge4.png',
             avatar: 'perfil_4.png'
@@ -77,7 +77,7 @@
         },
         10: {
           name: 'Tests Final',
-          description: 'El usuario ha llegado al nivel 9',
+          description: 'El usuario ha llegado al nivel 5',
           settings: {
             badge:'images/inventory/badges/badge10.png',
             runFunction: 'openModal'
