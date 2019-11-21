@@ -129,6 +129,22 @@
       overflow: auto;
       padding-right: 1%;
 
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        border: 1px solid $scroll-color;
+        width: 10px;
+      }
+      &::-webkit-scrollbar {
+        width: 10px;
+        background-color: transparent;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        width: 10px;
+        border-radius: 25px;
+        background-color: $scroll-color;
+      }
+
       .question {
         display: flex;
         height: 100%;
