@@ -67,9 +67,16 @@
     }
 
     initAnimations();
+    animateDiscoveredTree();
 
     function initAnimations() {
       $timeout(animateWidgets, 2000);
+    }
+
+    function animateDiscoveredTree() {
+      if(treeModel.hideGrayTree) {
+        $timeout(NeuronAnimateService.animateColorNeurons, 2000);
+      }
     }
 
     function showWelcomeModal(){

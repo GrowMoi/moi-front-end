@@ -7,15 +7,17 @@
 
     function NeuronAnimateService($timeout, MoiAnimationService) {
       var discoveredNeurons = [];
+      var floweredNeurons = [];
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
       var counterAnimation = 4;
 
       var service = {
         setNeuronElement: setNeuronElement,
+        setNeuronFlowered: setNeuronFlowered,
         callToAction: callToAction,
-        stopCallToAction: false,
         neuronElementUnavailable: null,
-        specialCallToAction: specialCallToAction
+        specialCallToAction: specialCallToAction,
+        animateColorNeurons: animateColorNeurons
       };
 
       return service;
@@ -23,6 +25,28 @@
       function setNeuronElement(element){
         //add elements jquery of neurons with state DESCUBIERTA
         discoveredNeurons.push(element);
+      }
+
+      function setNeuronFlowered(element) {
+        //add elements jquery of neurons with state FLORECIDA
+        floweredNeurons.push(element);
+      }
+
+      function animateColorNeurons() {
+        var limitNeuronGroup = 4;
+        var totalNeuronsToAnimate = Math.floor(Math.random() * limitNeuronGroup);
+        for (var i = 0; i <= totalNeuronsToAnimate; i ++) {
+          var randomPosition = Math.floor(Math.random() * floweredNeurons.length);
+          var isTheLastItem = i === totalNeuronsToAnimate;
+          var $neuronElement = floweredNeurons[randomPosition];
+          if($neuronElement) {
+            var $neuronToAnimate = $neuronElement.find('img');
+            MoiAnimationService.animateWidget($neuronToAnimate, 'swing');
+          }
+          if(isTheLastItem) {
+            $timeout(service.animateColorNeurons, 1500);
+          }
+        }
       }
 
       function callToAction(){
@@ -43,9 +67,7 @@
           MoiAnimationService.animateWidget($neuronToAnimate, 'swing').then(function(){
             if(isTheLastItem){
               $timeout(function() {
-                if(!service.stopCallToAction){
-                  callToAction();
-                }
+                callToAction();
               }, 1500);
             }
           });

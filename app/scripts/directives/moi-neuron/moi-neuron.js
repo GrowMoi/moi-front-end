@@ -94,6 +94,8 @@
         }else {
           NeuronAnimateService.setNeuronElement($neuroImg);
         }
+      } else if(vm.neuron.state === 'florecida') {
+        NeuronAnimateService.setNeuronFlowered($element);
       }
     }
 
