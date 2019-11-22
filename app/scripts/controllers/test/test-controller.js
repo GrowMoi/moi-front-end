@@ -222,9 +222,7 @@
           btnLeft: function(){
             dialogContentModel.closeModal();
             countModalsActived--;
-            if(achievement.number === 10){
-              TestService.goFinalTest(null, currentUser, currentUser.username);
-            }else if(countModalsActived === 0) {
+            if(countModalsActived === 0) {
               $state.go('tree', {
                 username: currentUser.username
               });
