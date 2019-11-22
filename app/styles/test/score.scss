@@ -6,11 +6,13 @@
   background-size: 100% 100%;
   margin-top: 5%;
   height: 300px;
-  .main-image{
-    img{
-      width: 150px;
-      padding-top: 50px;
-      padding-left: 0px;
+  .main-image {
+    display: flex;
+    align-items: center;
+    .user-frame {
+      margin-left: 35px;
+      width: 6rem;
+      height: 6rem;
     }
   }
   #title{

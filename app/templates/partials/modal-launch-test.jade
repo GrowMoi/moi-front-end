@@ -2,7 +2,7 @@
   ion-pane.transparent
     .score-container.row
       .main-image.col
-        img(ng-src="{{model.user.avatar || model.user.image || 'images/user.png'}}")
+        moi-frame-user.user-frame(options="model.user")
       .col-50
         .text-container
           h2#title {{ 'modal_launch_test.title' | translate }} {{model.contentsLearnt}} {{ 'modal_launch_test.title_next' | translate }}.

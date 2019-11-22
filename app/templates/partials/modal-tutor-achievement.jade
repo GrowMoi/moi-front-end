@@ -2,7 +2,7 @@
   ion-pane.transparent
     .score-container.row
       .main-image.col
-        img(ng-src="{{model.user.avatar || model.user.image || 'images/user.png'}}")
+        moi-frame-user.user-frame(options="model.user")
       .col-50.column-details
         h1#title {{ 'modal_tutor.title' | translate }}
         .points
