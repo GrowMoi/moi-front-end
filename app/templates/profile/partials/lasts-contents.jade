@@ -2,6 +2,7 @@
   .col.col-50(ng-repeat='content in vmProfile.user.last_contents_learnt')
     .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
       img.format-image(ng-src='{{content.media[0]}}')
-      .leyend-bottom(ellipsis-title="content.title", height='50', title='{{content.title}}')
+      .leyend-bottom(title='{{content.title}}')
+        | {{content.title}}
 .empty-state(ng-if="vmProfile.user.last_contents_learnt.length === 0")
   | {{'tasks.content_empty_state' | translate}}
