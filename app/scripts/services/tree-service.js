@@ -127,15 +127,21 @@
           'level': 16,
           'percentage': percentageLevel(89, 7, percentage)
         };
-      }else if(percentage >= 96 && percentage < 100){
+      }else if(percentage >= 96 && percentage < 99){
         return {
           'level': 17,
           'percentage': percentageLevel(96, 4, percentage)
         };
-      }else if(percentage >= 99 && percentage === 100){
+      }else if(percentage >= 99 && percentage >= 100){
         return {
           'level': 18,
           'percentage': percentageLevel(99, 1, percentage)
+        };
+      } else {
+        //when there is an error
+        return {
+          'level': 0,
+          'percentage': 0
         };
       }
     }
