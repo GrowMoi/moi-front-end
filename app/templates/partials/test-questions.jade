@@ -1,6 +1,5 @@
 .test-container
-  .row(ng-repeat="question in vmTest.questions",
-      ng-class="question.isClass ? 'big-question' : 'minor-question'"
+  .row.minor-question(ng-repeat="question in vmTest.questions"
       ng-show="question.showQuestion")
     .main-image.col
       img(ng-src="{{question.media_url}}")

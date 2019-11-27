@@ -36,15 +36,6 @@
       vmTest.timeQuiz = testData.time || 0;
       vmTest.successAnswers = rigthAnswers(testData.answers || []);
       vmTest.questions = shuffle(testData.questions.questions || []);
-      vmTest.questions.map( function(obj){
-        obj.possible_answers.map( function(ins){ //jshint ignore:line
-            if(ins.text.length > 100){
-              obj.isClass = true;
-            }
-          }
-        );
-        return obj;
-      });
       vmTest.testId = testData.questions.id;
       vmTest.questions[0].showQuestion = true;
       vmTest.totalQuestions = vmTest.questions.length;

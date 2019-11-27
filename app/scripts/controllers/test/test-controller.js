@@ -31,15 +31,6 @@
       vmTest.indexShow = 0;
       vmTest.percentage = 0;
       vmTest.questions = shuffle($stateParams.testData.testQuestions);
-      vmTest.questions.map( function(obj){
-        obj.possible_answers.map( function(ins){ //jshint ignore:line
-            if(ins.text.length > 100){
-              obj.isClass = true;
-            }
-          }
-        );
-        return obj;
-      });
       vmTest.testId = $stateParams.testData.testId;
       vmTest.questions[0].showQuestion = true;
       vmTest.totalQuestions = vmTest.questions.length;
