@@ -124,7 +124,8 @@
         }
       }
 
-      function showpopup(){
+      function showpopup(resp) {
+        $auth.user.avatar = resp.avatar;
         $ionicPopup.alert({
           title: 'Cambios exitosos de mi perfil',
           template: 'Actualización Exitosa'
