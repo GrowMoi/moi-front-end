@@ -292,15 +292,15 @@
 
     function setBackgroundAccordingLevel(level) {
       var backgroundsDepthTree = {
-        1: 'images/background/paisaje_sierra.jpg',
-        2: 'images/background/paisaje_sierra.jpg',
-        3: 'images/background/paisaje_costa.jpg',
-        4: 'images/background/paisaje_amazonia.jpg',
-        5: 'images/background/paisaje_insular.jpg',
-        6: 'images/background/paisaje_costa.jpg',
-        7: 'images/background/paisaje_insular.jpg',
-        8: 'images/background/paisaje_insular.jpg',
-        9: 'images/background/paisaje_sierra.jpg'
+        1: 'images/background/paisaje_sierra.png',
+        2: 'images/background/paisaje_sierra.png',
+        3: 'images/background/paisaje_costa.png',
+        4: 'images/background/paisaje_amazonia.png',
+        5: 'images/background/paisaje_insular.png',
+        6: 'images/background/paisaje_costa.png',
+        7: 'images/background/paisaje_insular.png',
+        8: 'images/background/paisaje_insular.png',
+        9: 'images/background/paisaje_sierra.png'
       };
       $timeout(function() {
         var background = backgroundsDepthTree[level];
