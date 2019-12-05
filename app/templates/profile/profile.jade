@@ -29,9 +29,9 @@ ion-view.profile-content.profile(view-title='{{vm.neuron.title}}')
                     span.description
                       | {{ 'profile.test' | translate }} {{vmProfile.user.successful_tests}}
                 .btn-wrapper.col-30(ng-if="!vmProfile.buttonsOptions.readOnly")
-                  .btn-add-friend(ng-if="!vmProfile.isCurrentUser")
-                    .title {{ 'buttons.add-friend' | translate }}
-                    .plus-icon +
+                  //- .btn-add-friend(ng-if="!vmProfile.isCurrentUser")
+                  //-   .title {{ 'buttons.add-friend' | translate }}
+                  //-   .plus-icon +
                   .btn-friends(ng-if="vmProfile.isCurrentUser" ui-sref="friends")
                     .title {{ 'buttons.friends' | translate }}
                     img.friend-img(src="images/user.png")
