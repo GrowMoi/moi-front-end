@@ -5,8 +5,9 @@
         moi-frame-user.user-frame(options="model.user")
       .col-50
         .text-container
-          h2#title {{ 'modal_end_test.title' | translate }} {{model.user.name}}!
-          h2#content {{ 'modal_end_test.content' | translate }}
+          h2#title {{ 'modal_end_test.title' | translate }} {{model.user.name || model.user.username}}!
+          h2#content(ng-if="!(!!model.justCompletedAchievement)") {{ 'modal_end_test.content' | translate }}
+          h2#content(ng-if="!!model.justCompletedAchievement") {{ 'modal_end_test.content_just_completed' | translate }}
       .pista.col
     .controls-score
       span.btn-score.button.button-right(ng-click="model.createFinalTest()") {{ 'modal_end_test.ok' | translate }}
