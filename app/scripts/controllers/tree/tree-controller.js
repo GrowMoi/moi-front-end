@@ -5,6 +5,7 @@
   .controller('TreeController', function ($scope,
                                           $auth,
                                           $timeout,
+                                          $rootScope,
                                           data,
                                           ModalService,
                                           TreeService,
@@ -213,7 +214,9 @@
       pagesViewed[currentPage] = true;
       localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
     }
-
+    if (data.meta.depth !== $auth.user.level) {
+      $rootScope.$broadcast('change-user-level', {level: data.meta.depth});
+    }
   });
 
 })();

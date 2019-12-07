@@ -329,5 +329,10 @@
         }
       }, 1000);
     }
+
+    $rootScope.$on('change-user-level', function (ev, data){
+      $auth.user.level = data.level;
+      setBackgroundAccordingLevel(data.level);
+    });
   }
 })();
