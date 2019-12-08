@@ -63,7 +63,7 @@
           name: 'Tests sin errores',
           description: 'Han sido completados 4 test sin errores',
           settings: {
-            badge:'images/inventory/badges/badge5.png',
+            badge:'images/inventory/badges/badge6.png',
             avatar: 'perfil_7.png'
           }
         },
@@ -71,7 +71,7 @@
           name: 'Tests desplegados',
           description: 'Han sido desplegados 8 test sin errores',
           settings: {
-            badge:'images/inventory/badges/badge6.png',
+            badge:'images/inventory/badges/badge5.png',
             avatar: 'perfil_8.png'
           }
         },
