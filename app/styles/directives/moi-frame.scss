@@ -146,7 +146,6 @@
       }
     }
   }
-
 }
 
 .moi-wrapper-frame {
@@ -179,6 +178,15 @@
     .back-button {
       top: 4.5%;
       left: 3.5%;
+    }
+  }
+}
+
+moi-frame {
+  &.content-max-page {
+    background-color: #767b3a;
+    .content_max {
+      background-image: url("../images/containers/contenido_max/marco_pacifico_logo.png");
     }
   }
 }

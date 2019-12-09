@@ -68,6 +68,6 @@ ion-view.content-view-max(view-title='Content')
               .row(ng-repeat="link in vmContent.content.links")
                 a(ng-click="vmContent.showAlertExternalLink(link)")
                   | {{ link}}
-    moi-frame(options="vmContent.frameOptions")
+    moi-frame.content-max-page(options="vmContent.frameOptions")
     moi-buttons(options="vmContent.buttonsOptions")
   moi-sidebar

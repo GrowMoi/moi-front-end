@@ -22,7 +22,7 @@
     registerModel.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;
     registerModel.term = false;
     registerModel.bornYears = generateBornYears(startYear, endYear);
-    registerModel.format = /[ !@#$ñ`~%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    registerModel.format = /[ !@#$ñ`1´~%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 
     function register() {
       $ionicLoading.show({
