@@ -30,11 +30,11 @@
     var popupOptions = { title: 'Error'};
     return service;
 
-    function goFinalTest(scope, user, username, justCompletedAchievement, idTest) {
+    function goFinalTest(scope, user, username, justCompletedTree, idTest) {
       var templateModal = 'templates/partials/modal-launch-final-test.html';
       var modelData = {
         user: user,
-        justCompletedAchievement: justCompletedAchievement,
+        justCompletedTree: justCompletedTree,
         createFinalTest: function(){
           $state.go('finaltest', {id: idTest});
           modelData.closeModal();

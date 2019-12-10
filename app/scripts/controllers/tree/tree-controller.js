@@ -221,9 +221,9 @@
     }
 
     if(!!data.meta.final_test) { //jshint ignore:line
-      var justCompletedAllContents = true;
+      var justCompletedTree = true;
       var idTest = data.meta.final_test.id; //jshint ignore:line
-      TestService.goFinalTest(null, currentUser, currentUser.username, justCompletedAllContents, idTest);
+      TestService.goFinalTest(null, currentUser, currentUser.username, justCompletedTree, idTest);
     }
   });
 

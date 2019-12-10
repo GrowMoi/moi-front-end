@@ -322,7 +322,7 @@
       modal_end_test : {
         'title': 'Felicidades ',
         'content': 'Responderás 21 preguntas y al final recibirás tus resultados y recompensa inmediatamente',
-        'content_just_completed': 'Completaste el árbol! Realiza la prueba final, para comprobar tu aprendizaje.',
+        'content_tree_completed': 'Completaste tu árbol Mi Aula BdP. Responde el test final para recibir tu diploma.',
         'ok': 'OK',
         'cancel': 'Cancelar'
       },

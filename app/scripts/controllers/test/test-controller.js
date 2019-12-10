@@ -198,47 +198,42 @@
     }
 
     function showUserAchievement(achievement){
-      if (achievement && achievement.number === 10) {
-        var justCompletedAchievement = true;
-        TestService.goFinalTest(null, currentUser, currentUser.username, justCompletedAchievement);
-      }else{
-        var language = $auth.user.language;
-        var messageModal = language === 'es' ? 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
-        'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi': 'Congratulations ' + currentUser.username +
-        '! You have just completed '+ achievement.name +'. '+ 'Activate this item in the inventory and enjoy your achievements learning with Moi';
-        var btnRightLabel = language === 'es' ? 'Ir al inventario' : 'Go to inventory';
-        var dialogContentModel = {
-          message: messageModal,
-          callbacks: {
-            btnRight: function(){
-              dialogContentModel.closeModal();
-              $state.go('inventory');
-            },
-            btnLeft: function(){
-              dialogContentModel.closeModal();
-              countModalsActived--;
-              if(countModalsActived === 0) {
-                $state.go('tree', {
-                  username: currentUser.username
-                });
-              }
+      var language = $auth.user.language;
+      var messageModal = language === 'es' ? 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
+      'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi': 'Congratulations ' + currentUser.username +
+      '! You have just completed '+ achievement.name +'. '+ 'Activate this item in the inventory and enjoy your achievements learning with Moi';
+      var btnRightLabel = language === 'es' ? 'Ir al inventario' : 'Go to inventory';
+      var dialogContentModel = {
+        message: messageModal,
+        callbacks: {
+          btnRight: function(){
+            dialogContentModel.closeModal();
+            $state.go('inventory');
+          },
+          btnLeft: function(){
+            dialogContentModel.closeModal();
+            countModalsActived--;
+            if(countModalsActived === 0) {
+              $state.go('tree', {
+                username: currentUser.username
+              });
             }
-          },
-          labels: {
-            btnRight: btnRightLabel,
-            btnLeft: 'Ok'
-          },
-          image: achievement.bagde || MediaAchievements[achievement.number].settings.badge,
-          addCongratulations: true
-        };
+          }
+        },
+        labels: {
+          btnRight: btnRightLabel,
+          btnLeft: 'Ok'
+        },
+        image: achievement.bagde || MediaAchievements[achievement.number].settings.badge,
+        addCongratulations: true
+      };
 
-        var dialogOptions = {
-          templateUrl: 'templates/partials/modal-alert-content.html',
-          model: dialogContentModel
-        };
-        countModalsActived++;
-        ModalService.showModel(dialogOptions);
-      }
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: dialogContentModel
+      };
+      countModalsActived++;
+      ModalService.showModel(dialogOptions);
     }
 
     function extractModelData(recommendations) {
