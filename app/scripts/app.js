@@ -405,16 +405,24 @@
       }
     })
     .state('finaltest', {
-      url: '/finaltest',
+      url: '/finaltest/:id',
       controller: 'FinalTestController',
       controllerAs: 'vmTest',
       templateUrl: 'templates/finaltest/finaltest.html',
       resolve: {
         currentUser: checkIfIsAuthorized,
-        testData: function(TestService) {
-          return TestService.createFinalTest().then(function(data){
-            return data;
-          });
+        testData: function(TestService, $stateParams) {
+          if ($stateParams.id) {
+            return TestService.getFinalTest($stateParams.id).then(function(data){
+              return {
+                questions: data
+              };
+            });
+          }else{
+            return TestService.createFinalTest().then(function(data){
+              return data;
+            });
+          }
         }
       }
     })

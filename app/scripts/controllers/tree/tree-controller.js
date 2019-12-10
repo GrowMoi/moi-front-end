@@ -17,7 +17,8 @@
                                           MoiAnimationService,
                                           storage,
                                           StorageService,
-                                          dataInventory
+                                          dataInventory,
+                                          TestService
                                           ) {
 
     var treeModel = this;
@@ -214,8 +215,15 @@
       pagesViewed[currentPage] = true;
       localStorage.setItem('pagesViewed', JSON.stringify(pagesViewed));
     }
+
     if (data.meta.depth !== $auth.user.level) {
       $rootScope.$broadcast('change-user-level', {level: data.meta.depth});
+    }
+
+    if(!!data.meta.final_test) { //jshint ignore:line
+      var justCompletedAllContents = true;
+      var idTest = data.meta.final_test.id; //jshint ignore:line
+      TestService.goFinalTest(null, currentUser, currentUser.username, justCompletedAllContents, idTest);
     }
   });
 
