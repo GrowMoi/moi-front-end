@@ -382,7 +382,7 @@
       },
       register:{
         'enter':  'Entrar',
-        'register': 'Register',
+        'register': 'Registro',
         'user': 'Nombres y Apellidos',
         'birthday': 'Fecha de Nacimiento',
         'password': 'Contraseña',

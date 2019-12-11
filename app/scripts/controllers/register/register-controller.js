@@ -65,7 +65,7 @@
     };
 
     registerModel.refuse = function(){
-      location.replace('https://www.growmoi.com');
+      location.replace('https://miaulabdp.com');
     };
 
     registerModel.acceptTerms = function(){
