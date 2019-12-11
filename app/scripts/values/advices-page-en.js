@@ -69,7 +69,7 @@
           },
           sidebar: {
             messages: [
-              'Edit your settings, check your profile, inventory or if you prefer, go back to your Moi tree']
+              'Edit your settings, check your profile, inventory or if you prefer, go back to your Mi Aula BdP tree']
           },
           inventory: {
             messages: [

@@ -148,12 +148,12 @@
     function shareProfile() {
       var data = language === 'es' ?
       {
-        title: 'Mira todos mis avances en mi perfil Moi',
-        description: 'Conoce todo mi progreso y empieza a crecer tú también con Moi Aprendizaje Social'
+        title: 'Mira todos mis avances en mi perfil Mi Aula',
+        description: 'Conoce todo mi progreso y empieza a crecer tú también con Mi Aula BdP'
       } :
       {
-        title: 'See all my progress in my profile Moi',
-        description: 'Know all my progress and start to grow you too with Moi Social Learning'
+        title: 'See all my progress in my profile Mi Aula',
+        description: 'Know all my progress and start to grow you too with Mi Aula BdP'
       };
       SocialService.showModal(data);
     }
@@ -189,14 +189,14 @@
     function sharedCertificate(image_url){//jshint ignore:line
       var data = language === 'es' ?
       {
-        title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
-        description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
+        title: 'Mira todo lo que aprendí jugando Mi Aula BdP',
+        description: 'Consigue crédito escolar por tu desempeño con Mi Aula BdP',
         image_url: image_url, //jshint ignore:line
         publicUrl: image_url //jshint ignore:line
       } :
       {
-        title: 'See everything I learned playing Moi Social Learning',
-        description: 'Get school credit for your performance with Moi Social Learning',
+        title: 'See everything I learned playing Mi Aula BdP',
+        description: 'Get school credit for your performance with Mi Aula BdP',
         image_url: image_url, //jshint ignore:line
         publicUrl: image_url //jshint ignore:line
       };

@@ -36,7 +36,7 @@
     treeModel.sharedTree = sharedTree;
     treeModel.randomPositionsCss = getRandomPositionCss();
     var language = $auth.user.language;
-    treeModel.percentageTooltip = language === 'es' ? 'Has descubierto el ' +treeModel.percentage+ '% de tu árbol Moi': 'You have discovered the ' +treeModel.percentage+ '% of your tree Moi';
+    treeModel.percentageTooltip = language === 'es' ? 'Has descubierto el ' +treeModel.percentage+ '% de tu árbol Mi Aula BdP': 'You have discovered the ' +treeModel.percentage+ '% of your tree Mi Aula BdP';
     treeModel.learnTooltip = language === 'es' ? 'Tu nivel de aprendizaje es ' +treeModel.userLevel: 'Your level of learning is ' + treeModel.userLevel;
     var currentUser = $auth.user;
     var successAnswers = localStorage.getItem('successAnswers');
@@ -84,10 +84,10 @@
 
     function showWelcomeModal(){
       var language = $auth.user.language;
-      var messageWelcome = language === 'es' ?'Bienvenido '+currentUser.username+'. Este es tu árbol Moi. '+
+      var messageWelcome = language === 'es' ?'Bienvenido '+currentUser.username+'. Este es tu árbol Mi Aula BdP. '+
       'Contiene grandes conocimientos y solo de ti depende su crecimiento. '+
       'Sigue tu curiosidad y descubre como hacer que se desarrolle hasta su '+
-      'máxima expresión.': 'Welcome '+currentUser.username+ '. This is your Moi tree. '+
+      'máxima expresión.': 'Welcome '+currentUser.username+ '. This is your Mi Aula BdP tree. '+
       'It contains great knowledge and its growth depends on you. '+
       'Follow your curiosity and discover how to make it develop to its '+
       'full expression.';
@@ -116,11 +116,11 @@
       var learntContents = treeModel.meta.current_learnt_contents; //jshint ignore:line
       var language = $auth.user.language;
       var data = language ==='es'? {
-        title: 'Así se ve mi árbol Moi',
-        description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Moi Aprendizaje Social'
+        title: 'Así se ve mi árbol Mi Aula BdP',
+        description: 'Hasta aquí descubrí '+learntContents+' contenidos. Tu también puedes hacer crecer tus conocimientos con Mi Aula BdP'
       }:{
-        title: 'This is how my Moi tree looks',
-        description: 'So far I discovered '+learntContents+' contents. You can also grow your knowledge with Moi Social Learning'
+        title: 'This is how my Mi Aula BdP tree looks',
+        description: 'So far I discovered '+learntContents+' contents. You can also grow your knowledge with Mi Aula BdP'
       };
       SocialService.showModal(data);
     }

@@ -80,7 +80,7 @@
           var dialogOptions = {
             templateUrl: 'templates/partials/modal-alert-content.html',
             model: {
-              message: 'Para disfrutar de Moi inicia sesión con la siguiente clave\n'+
+              message: 'Para disfrutar de Mi Aula BdP inicia sesión con la siguiente clave\n'+
                        '<<' + passwordKey.name + '>>',
               image: passwordKey.path,
               callbacks: {

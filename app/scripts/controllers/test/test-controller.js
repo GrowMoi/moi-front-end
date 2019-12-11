@@ -200,8 +200,8 @@
     function showUserAchievement(achievement){
       var language = $auth.user.language;
       var messageModal = language === 'es' ? 'Felicidades '+currentUser.username+'! Acabas de completar '+achievement.name+'. '+
-      'Activa este item en el inventario y disfruta de tus logros aprendiendo con Moi': 'Congratulations ' + currentUser.username +
-      '! You have just completed '+ achievement.name +'. '+ 'Activate this item in the inventory and enjoy your achievements learning with Moi';
+      'Activa este item en el inventario y disfruta de tus logros aprendiendo con Mi Aula BdP': 'Congratulations ' + currentUser.username +
+      '! You have just completed '+ achievement.name +'. '+ 'Activate this item in the inventory and enjoy your achievements learning with Mi Aula BdP';
       var btnRightLabel = language === 'es' ? 'Ir al inventario' : 'Go to inventory';
       var dialogContentModel = {
         message: messageModal,

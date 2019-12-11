@@ -184,8 +184,8 @@
             $ionicLoading.hide();
             if(actionShared){
               var data = {
-                title: 'Mira todo lo que aprendí jugando Moi Aprendizaje Social',
-                description: 'Consigue crédito escolar por tu desempeño con Moi Aprendizaje Social',
+                title: 'Mira todo lo que aprendí jugando Mi Aula BdP',
+                description: 'Consigue crédito escolar por tu desempeño con Mi Aula BdP',
                 image_url: image_url, //jshint ignore:line
                 publicUrl: image_url //jshint ignore:line
               };

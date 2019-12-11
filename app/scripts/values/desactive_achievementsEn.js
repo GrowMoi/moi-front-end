@@ -35,13 +35,13 @@
         },
         6:{
           desactive: true,
-          description: 'Learn every content in the Moi tree to win a new avatar',
+          description: 'Learn every content in the Mi Aula BdP tree to win a new avatar',
           name: 'Learn every content in the tree',
           settings:{badge:'images/inventory/badges/item8.png'}
         },
         7:{
           desactive: true,
-          description: 'Learn at least one content in each fruit in the Moi tree to win a new avatar',
+          description: 'Learn at least one content in each fruit in the Mi Aula BdP tree to win a new avatar',
           name: 'One content in each fruit',
           settings:{badge:'images/inventory/badges/item7.png'}
         },

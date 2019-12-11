@@ -94,9 +94,9 @@
       notification.description = 'Estimado Usuarix: estamos actualizando nuestro sistema de login para hacer '+
                                     'nuestra plataforma más accesible. Por esta razón necesitamos que actualices '+
                                     'tu perfil con un "Nombre de Usuario" y una "Imagen Secreta". Luego de guardar '+
-                                    'los cambios, deberás ingresar a Moi utilizando tu Nombre de Usuario e Imágen '+
+                                    'los cambios, deberás ingresar a Mi Aula BdP utilizando tu Nombre de Usuario e Imágen '+
                                     'Secreta. Por esta razón, te recomendamos anotar esta información o memorizarla, '+
-                                    'para que puedas usar Moi cuando quieras.';
+                                    'para que puedas usar Mi Aula BdP cuando quieras.';
       var dialogOptions = {
         templateUrl: 'templates/partials/modal-show-notification.html',
         model: notification
