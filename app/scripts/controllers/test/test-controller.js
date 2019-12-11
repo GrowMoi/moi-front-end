@@ -166,7 +166,7 @@
     function questionsMapping(results) {
       /*jshint camelcase: false */
       var NEURON_COLOR = {
-        yellow: 'images/tree/nodos/nodo-amarillo.png',
+        yellow: 'images/tree/nodos/nodo-fuccia.png',
         blue: 'images/tree/nodos/nodo-azul.png',
         red: 'images/tree/nodos/nodo-fuccia.png',
         green: 'images/tree/nodos/nodo-verde.png'
