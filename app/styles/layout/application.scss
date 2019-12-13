@@ -16,7 +16,9 @@ body {
     & > ion-view {
       min-width: 800px;
       min-height: 482px;
-      .overflow-scroll{
+      background: transparent !important;
+
+      .overflow-scroll {
         overflow-y: hidden;
       }
     }
