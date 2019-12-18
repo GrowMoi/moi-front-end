@@ -28,7 +28,8 @@
       src,
       //sounds
       audioLoadDefer = $q.defer(),
-      moiSound;
+      moiSound,
+      animationInProgress = false;
 
     /* sound */
     $scope.$on('audioLoaded', function (e, moiSoundInstance) {
@@ -65,12 +66,14 @@
       if (options.readOnly) {
         vm.options.onClickReadOnly();
         return;
-      }else {
+      } else if(!animationInProgress) {
+        animationInProgress = true;
         var $btnSelected = document.querySelector('.simple-btn-'+ key);
         if(moiSound) {
           moiSound.play();
         }
         MoiAnimationService.animateWidget($btnSelected, 'tada').then(function(){
+          animationInProgress = false;
           vm.options.finishedAnimation();
         });
       }
