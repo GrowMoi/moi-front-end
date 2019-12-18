@@ -24,7 +24,8 @@
       createFinalTest: createFinalTest,
       getFinalTest: getFinalTest,
       evaluateFinalTest: evaluateFinalTest,
-      cancelTest: cancelTest
+      cancelTest: cancelTest,
+      getTest: getTest
     };
 
     var popupOptions = { title: 'Error'};
@@ -228,6 +229,22 @@
           PopupService.showModel('alert', popupOptions);
         }
         return $q.reject(err);
+      });
+    }
+
+    function getTest(id) {
+      /*jshint camelcase: false */
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/users/test/' + id
+      }).then(function success(res) {
+        return res.data;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return err;
       });
     }
   }

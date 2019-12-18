@@ -140,7 +140,17 @@
       templateUrl: 'templates/test/test.html',
       params: {testData: null},
       resolve: {
-        currentUser: checkIfIsAuthorized
+        currentUser: checkIfIsAuthorized,
+        test: function(TestService, $stateParams){
+          var testId = $stateParams.testId;
+          if ($stateParams.testData) {
+            return null;
+          } else {
+            return TestService.getTest(testId).then(function(data){
+              return data;
+            });
+          }
+        }
       }
     })
     .state('tree', {

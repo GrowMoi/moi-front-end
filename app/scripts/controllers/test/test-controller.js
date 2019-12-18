@@ -13,7 +13,8 @@
               ModalService,
               MediaAchievements,
               MoiAnimationService,
-              UserNotificationsService) {
+              UserNotificationsService,
+              test) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -27,26 +28,42 @@
     init();
 
     function init() {
-      vmTest.answers = [];
-      vmTest.indexShow = 0;
-      vmTest.percentage = 0;
-      vmTest.questions = shuffle($stateParams.testData.testQuestions);
-      vmTest.testId = $stateParams.testData.testId;
-      vmTest.questions[0].showQuestion = true;
-      vmTest.totalQuestions = vmTest.questions.length;
-      vmTest.nextQuestion = false;
-      vmTest.hideTest = false;
-      vmTest.isCheckingResultTest = false;
-      vmTest.selectedAnswer = {};
-      vmTest.answerBackend = {};
-      vmTest.frameOptions = {
-        type: 'marco_arbol',
-        wholeFrame: true
+      var passData = $stateParams.testData ? $stateParams.testData : {};
+      var testData = {
+        testQuestions: passData.testQuestions || test.questions,
+        testId: passData.testId || test.id
       };
-      vmTest.increaseSize = MoiAnimationService.increaseSize;
-      vmTest.cssOptions = {
-        styles: []
-      };
+      if (test && test.answers) {
+        var questionsData = questionsMapping(test.answers);
+        var data = {
+          questions: questionsData.questions,
+          totalQuestions: test.questions.length,
+          successAnswers: questionsData.rigthAnswers,
+          meta: {}
+        };
+        showModalResulTest(data);
+      } else {
+        vmTest.answers = [];
+        vmTest.indexShow = 0;
+        vmTest.percentage = 0;
+        vmTest.questions = shuffle(testData.testQuestions);
+        vmTest.testId = testData.testId;
+        vmTest.questions[0].showQuestion = true;
+        vmTest.totalQuestions = vmTest.questions.length;
+        vmTest.nextQuestion = false;
+        vmTest.hideTest = false;
+        vmTest.isCheckingResultTest = false;
+        vmTest.selectedAnswer = {};
+        vmTest.answerBackend = {};
+        vmTest.frameOptions = {
+          type: 'marco_arbol',
+          wholeFrame: true
+        };
+        vmTest.increaseSize = MoiAnimationService.increaseSize;
+        vmTest.cssOptions = {
+          styles: []
+        };
+      }
     }
 
     function selectAnswer(contentId, answer) {
@@ -125,41 +142,46 @@
 
         UserNotificationsService.getNewDetailsNotifications();
 
-        TestService.scoreTest($scope, data).then(function() {
-          var recommendations = res.data.recommendations || [];
-          var achievements = res.data.achievements || [];
+        showModalResulTest(data, res);
+      });
+    }
 
-          if(res.data.super_event && res.data.super_event.completed){//jshint ignore:line
-            var beginningNameSuperEvent = language === 'es' ?  'el super evento: ' : 'the super event: ';
-            var achievementSuperEvent = {
-              name: beginningNameSuperEvent + res.data.super_event.info.event_achievement.title,//jshint ignore:line
-              bagde: res.data.super_event.info.event_achievement.image//jshint ignore:line
-            };
-            showUserAchievement(achievementSuperEvent);
-          }
+    function showModalResulTest (data, res) {
+      res = res || { data: {} };
+      TestService.scoreTest($scope, data).then(function() {
+        var recommendations = res.data.recommendations || [];
+        var achievements = res.data.achievements || [];
 
-          if(res.data.event && res.data.event.completed){
-            var beginningNameEvent = language === 'es' ?  'el evento: ' : 'the event: ';
-            var achievementEvent = {
-              name: beginningNameEvent + res.data.event.info.title,
-              bagde: res.data.event.info.image
-            };
-            showUserAchievement(achievementEvent);
-          }
+        if(res.data.super_event && res.data.super_event.completed){//jshint ignore:line
+          var beginningNameSuperEvent = language === 'es' ?  'el super evento: ' : 'the super event: ';
+          var achievementSuperEvent = {
+            name: beginningNameSuperEvent + res.data.super_event.info.event_achievement.title,//jshint ignore:line
+            bagde: res.data.super_event.info.event_achievement.image//jshint ignore:line
+          };
+          showUserAchievement(achievementSuperEvent);
+        }
 
-          if (recommendations.length > 0) {
-            showModalAchievement(recommendations);
+        if(res.data.event && res.data.event.completed){
+          var beginningNameEvent = language === 'es' ?  'el evento: ' : 'the event: ';
+          var achievementEvent = {
+            name: beginningNameEvent + res.data.event.info.title,
+            bagde: res.data.event.info.image
+          };
+          showUserAchievement(achievementEvent);
+        }
+
+        if (recommendations.length > 0) {
+          showModalAchievement(recommendations);
+        }
+        if (achievements.length > 0) {
+          showUserAchievement(achievements[0]);
+        }else{
+          if(countModalsActived === 0){
+            $state.go('tree', {
+              username: currentUser.username
+            });
           }
-          if (achievements.length > 0) {
-            showUserAchievement(achievements[0]);
-          }else{
-            if(countModalsActived === 0){
-              $state.go('tree', {
-                username: currentUser.username
-              });
-            }
-          }
-        });
+        }
       });
     }
 
