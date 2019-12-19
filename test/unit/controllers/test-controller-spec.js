@@ -102,6 +102,13 @@
                 return null;
               }
             };
+          },
+          scoreTest: function(){
+            return {
+              then: function(){
+                return null;
+              }
+            };
           }
         };
       });
@@ -195,7 +202,8 @@
           MediaAchievements: MediaAchievements,
           NeuronsOptions: NeuronsOptions,
           StorageService: StorageService,
-          storage: {test: {'advices': ['advice0']}}
+          storage: {test: {'advices': ['advice0']}},
+          test: {}
         };
         ctrl = $controller('TestController', dependencies);
       })
