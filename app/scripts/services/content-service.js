@@ -6,10 +6,9 @@
     .factory('ContentService', ContentService);
 
   function ContentService($http,
-                          $ionicPopup,
                           $state,
                           ENV,
-                          PopupService,
+                          ModalService,
                           $q,
                           $auth) {
     var service = {
@@ -19,7 +18,15 @@
       changeImageStatus: changeImageStatus,
       getContent: getContent
     };
-    var popupOptions = { title: 'Error'};
+    var dialogContentModel = {
+      title: 'Error',
+      message: ''
+    };
+
+    var dialogOptions = {
+      templateUrl: 'templates/partials/modal-error.html',
+      model: dialogContentModel
+    };
 
     return service;
 
@@ -35,15 +42,16 @@
       }).then(function success(res) {
         return res;
       }, function error(err) {
-        popupOptions.content = err.statusText;
+        dialogContentModel.message = err.statusText;
         if(err.status === 422){
-          PopupService.showModel('alert', popupOptions, function() {
+          dialogOptions.onHide = function() {
             $state.go('tree', {
               username: $auth.user.username
             });
-          });
+          };
+          ModalService.showModel(dialogOptions);
         }else if(err.status !== 404){
-          PopupService.showModel('alert', popupOptions);
+          ModalService.showModel(dialogOptions);
         }
         return $q.reject(err);
       });
@@ -63,8 +71,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return err;
       });
@@ -82,8 +90,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return err;
       });
@@ -102,8 +110,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return err;
       });
@@ -117,8 +125,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }

@@ -1,0 +1,11 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-share-social.error-panel
+      .btn-close-modal(ng-click="model.closeModal()")
+      h2
+       | {{model.title}}
+      .description-panel
+        {{model.message}}
+      .buttons-container
+        .confirm(ng-click="model.closeModal()")
+          | Ok

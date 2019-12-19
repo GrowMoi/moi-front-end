@@ -2,10 +2,10 @@
   'use strict';
 
   describe('ContentService', function () {
-    var service, $httpBackend, ENV, PopupService, $state, $auth;
+    var service, $httpBackend, ENV, ModalService, $state, $auth;
 
     beforeEach(module('moi.services', function($provide){
-      $provide.factory('PopupService', function(){
+      $provide.factory('ModalService', function(){
         return {
           showModel: function(){
             return null;
@@ -53,14 +53,14 @@
                 _$state_,
                 _ContentService_,
                 _ENV_,
-                _PopupService_,
+                _ModalService_,
                 _$auth_) {
 
         $httpBackend = _$httpBackend_;
         $state = _$state_;
         service = (_ContentService_);
         ENV = _ENV_;
-        PopupService = _PopupService_;
+        ModalService = _ModalService_;
         $auth = _$auth_;
       })
     );
@@ -91,7 +91,7 @@
         $httpBackend.flush();
       });
 
-      it('should call PopupService if it fails. Also should get 500', function(){
+      it('should call ModalService if it fails. Also should get 500', function(){
         var neuronId = 1;
         var contentId = 1;
         /*jshint camelcase: false */
@@ -103,7 +103,7 @@
                         id: 1,
                         neuron_id: 1
                       };
-        var spy = sinon.spy(PopupService, 'showModel');
+        var spy = sinon.spy(ModalService, 'showModel');
 
         service.readContent(content).then(function(response){
           chai.expect(spy.called).to.be.equal(true);
@@ -136,7 +136,7 @@
         $httpBackend.flush();
       });
 
-      it('should call PopupService when cant add a note. Also should get 500', function() {
+      it('should call ModalService when cant add a note. Also should get 500', function() {
         var neuronId = 1;
         var contentId = 1;
 
@@ -150,7 +150,7 @@
                         neuron_id: 1,
                         user_notes: 'note in content-max'
                       };
-        var spy = sinon.spy(PopupService, 'showModel');
+        var spy = sinon.spy(ModalService, 'showModel');
 
         service.addNotesToContent(content).then(function(response){
           chai.expect(spy.called).to.be.equal(true);
@@ -191,7 +191,7 @@
                         neuron_id: 1,
                         kind: 'Que es'
                       };
-        var spy = sinon.spy(PopupService, 'showModel');
+        var spy = sinon.spy(ModalService, 'showModel');
 
         $httpBackend.expectGET(expectedUrl).respond(500);
 
