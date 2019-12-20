@@ -23,10 +23,7 @@
         $injector.get('$ionicLoading').hide();
       } else if (rejection.status === 404 && stateName !== 'recoverPassword') {
         var auth = $injector.get('$auth');
-        var title = 'Error';
-        var content = rejection.statusText;
-
-        showPopup(title, content, function(){
+        showPopup('Error', rejection.statusText, function(){
           $injector.get('$state').go('tree', {
             username: auth.user.username
           });
@@ -50,12 +47,18 @@
     }
 
     function showPopup(title, content, callback) {
-      var PopupService = $injector.get('PopupService');
-      var popupOptions = {
-        title: title,
-        content: content
+      var ModalService = $injector.get('ModalService');
+      var dialogContentModel = {
+        title: title || 'Error',
+        message: content
       };
-      PopupService.showModel('alert', popupOptions, callback);
+
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-error.html',
+        model: dialogContentModel,
+        onHide: callback
+      };
+      ModalService.showModel(dialogOptions);
     }
   }
 
