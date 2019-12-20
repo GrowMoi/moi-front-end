@@ -5,13 +5,21 @@
     .module('moi.services')
     .factory('TreeService', TreeService);
 
-  function TreeService($http, ENV, PopupService) {
+  function TreeService($http, ENV, ModalService) {
     var service = {
       getNeuronsUser: getNeuronsUser,
       progressTree: progressTree,
       getMockDataToHidenBranch: getMockDataToHidenBranch
     };
-    var popupOptions = { title: 'Error'};
+    var dialogContentModel = {
+      title: 'Error',
+      message: ''
+    };
+
+    var dialogOptions = {
+      templateUrl: 'templates/partials/modal-error.html',
+      model: dialogContentModel
+    };
 
     return service;
 
@@ -30,8 +38,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }

@@ -6,10 +6,10 @@
       $httpBackend,
       expectedUrl,
       ENV,
-      PopupService;
+      ModalService;
 
     beforeEach(module('moi.services', function ($provide) {
-      $provide.factory('PopupService', function () {
+      $provide.factory('ModalService', function () {
         return {
           showModel: function () {
             return null;
@@ -30,11 +30,11 @@
       });
     });
 
-    beforeEach(inject(function (_$httpBackend_, _TutorRecommendationsService_, _ENV_, _PopupService_) {
+    beforeEach(inject(function (_$httpBackend_, _TutorRecommendationsService_, _ENV_, _ModalService_) {
         $httpBackend = _$httpBackend_;
         service = _TutorRecommendationsService_;
         ENV = _ENV_;
-        PopupService = _PopupService_;
+        ModalService = _ModalService_;
       }));
 
     afterEach(function () {
@@ -72,8 +72,8 @@
         $httpBackend.flush();
       });
 
-      it('PopupService should be called when the backend responds 400', function () {
-        var spy = sinon.spy(PopupService, 'showModel');
+      it('ModalService should be called when the backend responds 400', function () {
+        var spy = sinon.spy(ModalService, 'showModel');
 
         $httpBackend.whenGET(expectedUrl).respond(400);
         service.getTutorRecommendations();
@@ -102,8 +102,8 @@
         $httpBackend.flush();
       });
 
-      it('PopupService should be called when the backend responds 400', function () {
-        var spy = sinon.spy(PopupService, 'showModel');
+      it('ModalService should be called when the backend responds 400', function () {
+        var spy = sinon.spy(ModalService, 'showModel');
         $httpBackend.whenGET(expectedUrl).respond(400);
         service.getTutorRecommendationsDetails();
         $httpBackend.flush();

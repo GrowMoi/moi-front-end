@@ -5,13 +5,21 @@
       .module('moi.services')
       .factory('TutorRecommendationsService', TutorRecommendationsService);
 
-    function TutorRecommendationsService($http, ENV, PopupService, $q) {
+    function TutorRecommendationsService($http, ENV, ModalService, $q) {
       var service = {
         getTutorRecommendations: getTutorRecommendations,
         getTutorRecommendationsDetails: getTutorRecommendationsDetails
       };
 
-      var popupOptions = { title: 'Error'};
+      var dialogContentModel = {
+        title: 'Error',
+        message: ''
+      };
+
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-error.html',
+        model: dialogContentModel
+      };
 
       return service;
 
@@ -30,8 +38,8 @@
           return res.data;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.statusText;
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
           return $q.reject(err);
         });
@@ -46,8 +54,8 @@
           return res.data;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.statusText;
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
           return $q.reject(err);
         });

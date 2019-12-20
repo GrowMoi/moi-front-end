@@ -2,10 +2,10 @@
   'use strict';
 
   describe('TreeService', function () {
-    var service, $httpBackend, ENV, PopupService;
+    var service, $httpBackend, ENV, ModalService;
 
     beforeEach(module('moi.services', function($provide){
-      $provide.factory('PopupService', function(){
+      $provide.factory('ModalService', function(){
         return {
           showModel: function(){
             return null;
@@ -26,11 +26,11 @@
     });
 
     beforeEach(inject(
-      function (_$httpBackend_, _TreeService_, _ENV_, _PopupService_) {
+      function (_$httpBackend_, _TreeService_, _ENV_, _ModalService_) {
         $httpBackend = _$httpBackend_;
         service = _TreeService_;
         ENV = _ENV_;
-        PopupService = _PopupService_;
+        ModalService = _ModalService_;
       })
     );
 
