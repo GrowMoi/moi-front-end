@@ -5,12 +5,20 @@
     .module('moi.services')
     .factory('NeuronService', NeuronService);
 
-  function NeuronService($http, ENV, PopupService) {
+  function NeuronService($http, ENV, ModalService) {
     var service = {
       getNeuron: getNeuron,
       searchNeurons: searchNeurons
     };
-    var popupOptions = { title: 'Error'};
+    var dialogContentModel = {
+      title: 'Error',
+      message: ''
+    };
+
+    var dialogOptions = {
+      templateUrl: 'templates/partials/modal-error.html',
+      model: dialogContentModel
+    };
 
     return service;
 
@@ -22,8 +30,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -40,8 +48,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }

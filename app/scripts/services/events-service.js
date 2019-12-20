@@ -10,7 +10,6 @@
                           $q,
                           $rootScope,
                           ENV,
-                          PopupService,
                           ModalService,
                           UserNotificationsService,
                           MediaAchievements,
@@ -26,8 +25,7 @@
         showConfirmSuperEvent: showConfirmSuperEvent
       };
 
-      var popupOptions = { title: 'Error' },
-          modelEvent = {
+      var modelEvent = {
             templateUrl: 'templates/partials/modal-event-details.html',
             model: {
               joinEvent: joinEvent
@@ -48,6 +46,16 @@
           currentEvents = [],
           eventModalPromise;
 
+      var dialogContentModel = {
+        title: 'Error',
+        message: ''
+      };
+
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-error.html',
+        model: dialogContentModel
+      };
+
       return service;
 
       function getWeeklyEvents() {
@@ -58,8 +66,8 @@
           return res.data;
         }, function error(err) {
           if (err.status !== 404) {
-            popupOptions.content = err.statusText;
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
         });
       }
@@ -72,8 +80,8 @@
           return res.data;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.statusText;
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
         });
       }
@@ -86,8 +94,8 @@
           return res.data.contents;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.statusText;
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
         });
       }
@@ -101,8 +109,8 @@
           return res;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.data.errors[0];
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
           return $q.reject(err);
         });
@@ -117,8 +125,8 @@
           return res;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.data.errors[0];
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
           return $q.reject(err);
         });
@@ -132,8 +140,8 @@
           return res;
         }, function error(err) {
           if(err.status !== 404){
-            popupOptions.content = err.statusText;
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
         });
       }
@@ -146,8 +154,8 @@
           return res.data;
         }, function error(err) {
           if (err.status !== 404) {
-            popupOptions.content = err.statusText;
-            PopupService.showModel('alert', popupOptions);
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
           }
         });
       }

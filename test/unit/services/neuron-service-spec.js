@@ -2,9 +2,17 @@
   'use strict';
 
   describe('NeuronService', function () {
-    var service, $httpBackend, ENV;
+    var service, $httpBackend, ENV, ModalService;
 
-    beforeEach(module('moi.services'));
+    beforeEach(module('moi.services', function($provide){
+      $provide.factory('ModalService', function(){
+        return {
+          showModel: function(){
+            return null;
+          }
+        };
+      });
+    }));
     beforeEach(function(){
       module('config', function ($provide) {
         $provide.constant('ENV', {
@@ -18,10 +26,11 @@
     });
 
     beforeEach(inject(
-      function (_$httpBackend_, _NeuronService_, _ENV_) {
+      function (_$httpBackend_, _NeuronService_, _ENV_, _ModalService_) {
         $httpBackend = _$httpBackend_;
         service = _NeuronService_;
         ENV = _ENV_;
+        ModalService = _ModalService_;
       })
     );
 
