@@ -296,10 +296,10 @@
         2: 'images/background/paisaje_sierra.png',
         3: 'images/background/paisaje_costa.png',
         4: 'images/background/paisaje_amazonia.png',
-        5: 'images/background/paisaje_insular.png',
+        5: 'images/background/paisaje_insular.jpg',
         6: 'images/background/paisaje_costa.png',
-        7: 'images/background/paisaje_insular.png',
-        8: 'images/background/paisaje_insular.png',
+        7: 'images/background/paisaje_insular.jpg',
+        8: 'images/background/paisaje_insular.jpg',
         9: 'images/background/paisaje_sierra.png'
       };
       $timeout(function() {
