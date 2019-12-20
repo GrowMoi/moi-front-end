@@ -5,7 +5,6 @@
     var service,
         $httpBackend,
         $auth,
-        PopupService,
         ModalService,
         StorageService,
         ENV,
@@ -117,13 +116,6 @@
           }
         };
       });
-      $provide.factory('PopupService', function(){
-        return {
-          showModel: function(){
-            return null;
-          }
-        };
-      });
       $provide.service('$auth', function() {
         return {
           user: {
@@ -154,7 +146,6 @@
     beforeEach(inject(
       function (_$httpBackend_,
                 _TestService_,
-                _PopupService_,
                 _ModalService_,
                 _StorageService_,
                 _$state_,
@@ -162,7 +153,6 @@
                 _ENV_) {
         $httpBackend = _$httpBackend_;
         service = (_TestService_);
-        PopupService = _PopupService_;
         ModalService = _ModalService_;
         $state = _$state_;
         $auth = _$auth_;
@@ -198,7 +188,7 @@
       it('should call ionicPopup if it fails. Also should get 500', function(){
         /*jshint camelcase: false */
         var expectedUrl = ENV.apiHost + '/api/learn';
-        var spy = sinon.spy(PopupService, 'showModel');
+        var spy = sinon.spy(ModalService, 'showModel');
         $httpBackend.expectPOST(expectedUrl,
                                   {
                                     test_id: testId,

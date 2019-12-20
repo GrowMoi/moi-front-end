@@ -9,7 +9,6 @@
                       TreeService,
                       ENV,
                       ModalService,
-                      PopupService,
                       $state,
                       $auth,
                       $q,
@@ -28,7 +27,16 @@
       getTest: getTest
     };
 
-    var popupOptions = { title: 'Error'};
+    var dialogContentModel = {
+      title: 'Error',
+      message: ''
+    };
+
+    var dialogOptions = {
+      templateUrl: 'templates/partials/modal-error.html',
+      model: dialogContentModel
+    };
+
     return service;
 
     function goFinalTest(scope, user, username, justCompletedTree, idTest) {
@@ -154,8 +162,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return $q.reject(err);
       });
@@ -171,8 +179,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return $q.reject(err);
       });
@@ -187,8 +195,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return err;
       });
@@ -207,8 +215,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return $q.reject(err);
       });
@@ -225,8 +233,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return $q.reject(err);
       });
@@ -241,8 +249,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return err;
       });
