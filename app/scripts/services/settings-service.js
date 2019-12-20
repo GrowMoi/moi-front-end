@@ -5,13 +5,21 @@
     .module('moi.services')
     .factory('SettingsService', SettingsService);
 
-  function SettingsService($http, $ionicPopup, ENV, PopupService) {
+  function SettingsService($http, ENV, ModalService) {
 
     var service = {
       saveContentSettings: saveContentSettings,
       orderContentSettings: orderContentSettings
     };
-    var popupOptions = { title: 'Error'};
+    var dialogContentModel = {
+      title: 'Error',
+      message: ''
+    };
+
+    var dialogOptions = {
+      templateUrl: 'templates/partials/modal-error.html',
+      model: dialogContentModel
+    };
 
     return service;
 
@@ -50,8 +58,8 @@
 
     function errorPopup(err) {
       if(err.status !== 404){
-        popupOptions.content = err.statusText;
-        PopupService.showModel('alert', popupOptions);
+        dialogContentModel.message = err.statusText;
+        ModalService.showModel(dialogOptions);
       }
     }
   }

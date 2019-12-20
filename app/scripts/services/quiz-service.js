@@ -6,13 +6,10 @@
     .factory('QuizService', QuizService);
 
   function QuizService($http,
-                      $ionicPopup,
                       $window,
                       ENV,
                       $auth,
-                      ModalService,
-                      StorageService,
-                      PopupService){
+                      ModalService){
 
     var service = {
       getQuiz: getQuiz,
@@ -20,7 +17,15 @@
       evaluateQuiz: evaluateQuiz
     };
 
-    var popupOptions = { title: 'Error'};
+    var dialogContentModel = {
+      title: 'Error',
+      message: ''
+    };
+
+    var dialogOptions = {
+      templateUrl: 'templates/partials/modal-error.html',
+      model: dialogContentModel
+    };
 
     return service;
 
@@ -59,8 +64,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return err;
       });
@@ -75,8 +80,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
         return err;
       });

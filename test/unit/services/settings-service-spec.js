@@ -2,10 +2,10 @@
   'use strict';
 
   describe('SettingsService', function () {
-    var service, $httpBackend, ENV, PopupService;
+    var service, $httpBackend, ENV, ModalService;
 
     beforeEach(module('moi.services', function($provide){
-      $provide.factory('PopupService', function(){
+      $provide.factory('ModalService', function(){
         return {
           showModel: function(){
             return null;
@@ -26,11 +26,11 @@
     });
 
     beforeEach(inject(
-      function (_$httpBackend_, _SettingsService_, _ENV_, _PopupService_) {
+      function (_$httpBackend_, _SettingsService_, _ENV_, _ModalService_) {
         $httpBackend = _$httpBackend_;
         service = (_SettingsService_);
         ENV = _ENV_;
-        PopupService = _PopupService_;
+        ModalService = _ModalService_;
       })
     );
 
@@ -57,12 +57,12 @@
         $httpBackend.flush();
       });
 
-      it('should call PopupService if it fails. Also should get 500', function(){
+      it('should call ModalService if it fails. Also should get 500', function(){
         var setting = {
           kind:'que-es',
           level:2
         };
-        var spy = sinon.spy(PopupService, 'showModel');
+        var spy = sinon.spy(ModalService, 'showModel');
         /*jshint camelcase: false */
         var expectedUrl = ENV.apiHost + '/api/content_preferences/' + setting.kind;
 
