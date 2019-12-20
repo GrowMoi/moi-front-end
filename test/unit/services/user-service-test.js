@@ -7,19 +7,11 @@
       username,
       expectedUrl,
       ENV,
-      PopupService,
       ModalService,
       $state,
       $auth;
 
     beforeEach(module('moi.services', function($provide) {
-      $provide.factory('PopupService', function() {
-        return {
-          showModel: function() {
-            return null;
-          }
-        };
-      });
       $provide.factory('ModalService', function(){
         return {
           showModel: function(){
@@ -66,12 +58,11 @@
     });
 
     beforeEach(inject(
-      function(_$httpBackend_, _UserService_, _ENV_, _PopupService_, _$state_,
+      function(_$httpBackend_, _UserService_, _ENV_, _$state_,
         _ModalService_, _$auth_) {
         $httpBackend = _$httpBackend_;
         service = _UserService_;
         ENV = _ENV_;
-        PopupService = _PopupService_;
         $state = _$state_;
         ModalService = _ModalService_;
         $auth = _$auth_;
@@ -102,8 +93,8 @@
         $httpBackend.flush();
       });
 
-      it('should not call to PopupService when respond with 404', function() {
-        var spy = sinon.spy(PopupService, 'showModel');
+      it('should not call to ModalService when respond with 404', function() {
+        var spy = sinon.spy(ModalService, 'showModel');
         $httpBackend.expectGET(expectedUrl).respond(404);
         service.profile(username).then(function(){
           chai.expect(spy.called).to.not.be.equal(true);

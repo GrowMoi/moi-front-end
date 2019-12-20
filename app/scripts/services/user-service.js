@@ -5,7 +5,7 @@
     .module('moi.services')
     .factory('UserService', UserService);
 
-  function UserService($http, ENV, PopupService, $state, ModalService, $auth, $q) {
+  function UserService($http, ENV, ModalService, $state, $auth, $q) {
     var service = {
       profile: profile,
       updateProfile: updateProfile,
@@ -35,7 +35,15 @@
       getContentsToLearn: getContentsToLearn,
     };
 
-    var popupOptions = { title: 'Error'};
+    var dialogContentModel = {
+      title: 'Error',
+      message: ''
+    };
+
+    var dialogOptions = {
+      templateUrl: 'templates/partials/modal-error.html',
+      model: dialogContentModel
+    };
 
     return service;
 
@@ -50,8 +58,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -76,8 +84,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -93,8 +101,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -111,8 +119,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -174,8 +182,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -269,8 +277,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -287,8 +295,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -346,8 +354,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -360,8 +368,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -375,8 +383,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -390,8 +398,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -408,8 +416,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -438,8 +446,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -453,8 +461,8 @@
         return res;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -467,8 +475,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
@@ -484,8 +492,8 @@
         return res.data;
       }, function error(err) {
         if(err.status !== 404){
-          popupOptions.content = err.statusText;
-          PopupService.showModel('alert', popupOptions);
+          dialogContentModel.message = err.statusText;
+          ModalService.showModel(dialogOptions);
         }
       });
     }
