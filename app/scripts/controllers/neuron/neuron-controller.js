@@ -23,6 +23,11 @@
     function init(){
       vmNeuron.neuron = data;
 
+      //force disabled read button
+      vmNeuron.neuron.belongs_to_event = false;
+      vmNeuron.neuron.neuron_can_read = false;
+      vmNeuron.neuron.forceDisabledRead = true;
+
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
         content: vmNeuron.neuron.contents[0],

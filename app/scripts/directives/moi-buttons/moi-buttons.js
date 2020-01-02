@@ -473,9 +473,9 @@
       }
 
       function showModalAction() {
-        if (vm.readOnly) {
+        if (vm.readOnly && !vm.neuron.forceDisabledRead) {
           showNotificationModal();
-        }else if (!vm.neuron.can_read){
+        }else if (!vm.neuron.can_read && !vm.neuron.forceDisabledRead){
           showModal();
         }
       }
