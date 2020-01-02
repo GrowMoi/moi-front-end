@@ -221,9 +221,9 @@
     }
 
     if(!!data.meta.final_test) { //jshint ignore:line
-      var justCompletedTree = true;
+      var justCompletedAchievement = true;
       var idTest = data.meta.final_test.id; //jshint ignore:line
-      TestService.goFinalTest(null, currentUser, currentUser.username, justCompletedTree, idTest);
+      TestService.goFinalTest(null, currentUser, currentUser.username, justCompletedAchievement, idTest, 'atleast_one_content');
     }
   });
 

@@ -39,13 +39,13 @@
 
     return service;
 
-    function goFinalTest(scope, user, username, justCompletedTree, idTest) {
+    function goFinalTest(scope, user, username, justCompletedTree, idTest, kind) {
       var templateModal = 'templates/partials/modal-launch-final-test.html';
       var modelData = {
         user: user,
         justCompletedTree: justCompletedTree,
         createFinalTest: function(){
-          $state.go('finaltest', {id: idTest});
+          $state.go('finaltest', {id: idTest, kind: kind});
           modelData.closeModal();
         },
         onCloseModal: function() {
@@ -169,12 +169,12 @@
       });
     }
 
-    function createFinalTest() {
+    function createFinalTest(kind) {
       /*jshint camelcase: false */
       return $http({
         method: 'POST',
         url: ENV.apiHost + '/api/users/final_test ',
-        data: {}
+        data: {kind: kind}
       }).then(function success(res) {
         return res.data;
       }, function error(err) {

@@ -415,21 +415,26 @@
       }
     })
     .state('finaltest', {
-      url: '/finaltest/:id',
+      url: '/finaltest/:id/:kind?',
+      params: {
+        id: 'unknow',
+        kind: 'normal'
+      },
       controller: 'FinalTestController',
       controllerAs: 'vmTest',
       templateUrl: 'templates/finaltest/finaltest.html',
       resolve: {
         currentUser: checkIfIsAuthorized,
         testData: function(TestService, $stateParams) {
-          if ($stateParams.id) {
+          if ($stateParams.id && $stateParams.id !== 'unknow') {
             return TestService.getFinalTest($stateParams.id).then(function(data){
               return {
                 questions: data
               };
             });
           }else{
-            return TestService.createFinalTest().then(function(data){
+            var kind = $stateParams.kind;
+            return TestService.createFinalTest(kind).then(function(data){
               return data;
             });
           }
