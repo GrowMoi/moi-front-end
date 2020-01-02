@@ -93,18 +93,26 @@
         align-items: center;
         margin-left: 4%;
         margin-bottom: 4px;
+
+        .content-subtitle-settings {
+          color: $secondary;
+        }
+
         .item-toggle {
           background: transparent;
           border: none;
           padding-right: 75px;
+
           .toggle {
             top: 0;
+
             .track {
               .handle {
                 background-color: $secondary;
               }
             }
           }
+
           .toggle input:checked + .track {
             border-color: $primary;
             background-color: $tertiary;
