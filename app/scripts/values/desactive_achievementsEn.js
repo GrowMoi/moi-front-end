@@ -13,7 +13,7 @@
           desactive: true,
           description: 'Learn 9 blue contents to win a new avatar',
           name: 'Learned blue contents',
-          settings:{badge:'images/inventory/badges/default-item.png'}
+          settings:{badge:'images/inventory/badges/default-badge.png'}
         },
         // 3:{
         //   desactive: true,
@@ -25,13 +25,13 @@
           desactive: true,
           description: 'Learn 9 yellow contents to win a new avatar',
           name: 'Learned yellow contents',
-          settings:{badge:'images/inventory/badges/default-item.png'}
+          settings:{badge:'images/inventory/badges/default-badge.png'}
         },
         5:{
           desactive: true,
           description: 'Learn 9 red contents to win a new avatar',
           name: 'Learned red contents',
-          settings:{badge:'images/inventory/badges/default-item.png'}
+          settings:{badge:'images/inventory/badges/default-badge.png'}
         },
         6:{
           desactive: true,

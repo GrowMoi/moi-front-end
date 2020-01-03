@@ -13,7 +13,7 @@
           desactive: true,
           description: 'Aprende 9 contenidos de color azul para ganar un nuevo avatar',
           name: 'Contenidos color Azul',
-          settings:{badge:'images/inventory/badges/default-item.png'}
+          settings:{badge:'images/inventory/badges/default-badge.png'}
         },
         // 3:{
         //   desactive: true,
@@ -25,13 +25,13 @@
           desactive: true,
           description: 'Aprende 9 contenidos de color amarillo para ganar un nuevo avatar',
           name: 'Contenidos color Amarillo',
-          settings:{badge:'images/inventory/badges/default-item.png'}
+          settings:{badge:'images/inventory/badges/default-badge.png'}
         },
         5:{
           desactive: true,
           description: 'Aprende 9 contenidos de color rojo para ganar un nuevo avatar',
           name: 'Contenidos color Rojo',
-          settings:{badge:'images/inventory/badges/default-item.png'}
+          settings:{badge:'images/inventory/badges/default-badge.png'}
         },
         6:{
           desactive: true,
