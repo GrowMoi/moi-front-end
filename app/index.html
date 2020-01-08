@@ -157,11 +157,10 @@
     </div>
     <div ng-if="site.loadedImages"
       class="custom-background"
-      ng-style="site.achievementBackgroundCss" ng-cloak>
-      <ion-nav-view
-        class="application"
-        id="screenCapture">
-      </ion-nav-view>
+      ng-style="site.achievementBackgroundCss"
+      ng-cloak
+      id="screenCapture">
+      <ion-nav-view class="application"></ion-nav-view>
       <audio id="backgroundSound"
             ng-src="{{site.soundPage.sound}}"
             volume="{{site.soundPage.volume}}"
