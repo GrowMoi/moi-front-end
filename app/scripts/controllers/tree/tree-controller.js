@@ -42,9 +42,9 @@
     var successAnswers = localStorage.getItem('successAnswers');
     var isShowingPassiveModal = false;
     var finishedAnimations = false;
-    var lastAchivement = dataInventory.achievements.filter(function(achievement) {
+    var lastAchivement = (dataInventory && dataInventory.achievements) ? dataInventory.achievements.filter(function(achievement) {
        return achievement.name === 'Contenidos aprendidos en cada neurona pública';
-    });
+    }) : [];
     treeModel.hideGrayTree = lastAchivement.length > 0;
     treeModel.frameOptions = {
       type: 'marco_arbol',
