@@ -456,14 +456,14 @@
       },
       content: {
         kind: {
-          'que-es': 'Qué es?',
-          'por-que-es': 'Por qué es?',
-          'como-funciona': 'Cómo funciona?',
-          'quien-cuando-donde': 'Quién/Cuándo/Dónde?'
+          'que-es': '¿Qué es?',
+          'por-que-es': '¿Por qué es?',
+          'como-funciona': '¿Cómo funciona?',
+          'quien-cuando-donde': '¿Quién/Cuándo/Dónde?'
         },
         max: {
           'coments': 'Comentarios',
-          'media': 'Galeria',
+          'media': 'Galería',
           'recommended': 'Recomendaciones',
           'links': 'Enlaces',
           'update': 'Última Actualización: ',
