@@ -38,6 +38,18 @@
     height: 10%;
   }
 
+  @media (max-width: 1350px) {
+    .title{
+      font-size: 35px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .title{
+      font-size: 25px;
+    }
+  }
+
   .container{
     width: 100%;
     display: flex;
@@ -125,6 +137,7 @@
           font-size: 25px;
           margin-bottom: 10px;
           font-weight: bold;
+          color: #219fd1;
         }
         .subtitle {
           font-size: 18px;
@@ -135,6 +148,8 @@
         justify-content: center;
         display: flex;
         flex-direction: column;
+        width: 35%;
+        padding-left: 15px;
 
         .percentage{
           font-size: 16px;
@@ -167,6 +182,74 @@
       font-family: FontMoi-Title;
       font-size: 16px;
     }
+
+    @media (max-width: 1350px) {
+      .report-user {
+        .advance {
+          .title {
+            font-size: 14px;
+          }
+          .subtitle {
+            font-size: 11px;
+          }
+        }
+
+        .grade {
+          .percentage {
+            font-size: 14px;
+          }
+          .timeContainer {
+            .time {
+              font-size: 13px;
+            }
+            .label {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+
+      .website-info {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .info-user {
+        .table {
+          font-size: 12px;
+        }
+      }
+      .report-user {
+        .advance {
+          .title {
+            font-size: 10px;
+          }
+          .subtitle {
+            font-size: 9px;
+          }
+        }
+
+        .grade {
+          .percentage {
+            font-size: 10px;
+          }
+          .timeContainer {
+            .time {
+              font-size: 12px;
+            }
+            .label {
+              font-size: 9px;
+            }
+          }
+        }
+      }
+
+      .website-info {
+        font-size: 12px;
+      }
+    }
+
   }
 
   .certificate-image {
