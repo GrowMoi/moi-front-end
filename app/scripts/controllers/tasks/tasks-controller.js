@@ -32,14 +32,14 @@
       },
       {
         field: 'contentsToLearn',
-        name: 'Contenidos por Aprender',
+        name: 'Contenidos por aprender',
         image: 'images/recomendations_tasks.png',
         selected: false,
         state: 'tasks.contentsToLearn'
       },
       {
         field: 'savedContents',
-        name: 'Contenidos Guardados',
+        name: 'Contenidos guardados',
         image: 'images/list_tasks.png',
         selected: false,
         state: 'tasks.savedContents'
