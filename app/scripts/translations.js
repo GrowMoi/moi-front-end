@@ -315,7 +315,7 @@
       modal_launch_test : {
         'title' : 'Has leído ',
         'title_next': ' contenidos',
-        'content': '¿Porqué no probamos si de verdad has aprendido?',
+        'content': '¿Por qué no probamos si de verdad has aprendido?',
         'next': 'Continuar',
         'exit': 'Salir'
       },
