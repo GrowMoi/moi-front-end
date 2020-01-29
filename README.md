@@ -70,7 +70,7 @@ if you're running protractor locally, make sure you are also running the [backen
 
 first build for production locally and then deploy (will copy the dist folder to the server)
 
-    $ grunt build
+    $ grunt compress
     $ bundle exec cap abi deploy
 
 ### resources
