@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv');
+
 var path = require('path');
 var promise = require('bluebird');
 var fs = promise.promisifyAll(require('fs'));

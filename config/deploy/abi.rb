@@ -3,26 +3,29 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server "moi.growmoi.com", user: "growmoi", roles: %w{app}
+server "abi.shiriculapo.com", user: "growmoi", roles: %w{app}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-require "capistrano/scm/git"
-install_plugin Capistrano::SCM::Git
+require "capistrano/copy"
 
-require 'capistrano/npm'
-require 'capistrano/nvm'
-require 'capistrano/rbenv'
-require 'capistrano/bundler'
+set :scm, :copy
 
-namespace :deploy do
-  desc 'build'
-  task :build do
-    invoke 'moi:build'
-  end
-
-  after :publishing, :build
-end
+set :include_dir, "."
+set :temp_dir, "/tmp"
+set :exclude_dir, [
+  ".bundle",
+  ".git",
+  ".sass-cache",
+  ".temp",
+  "app",
+  "coverage",
+  "log",
+  "node_modules",
+  "platforms",
+  "plugins",
+  "vendor"
+]
 
 # role-based syntax
 # ==================

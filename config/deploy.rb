@@ -21,7 +21,9 @@ set :slackistrano, {
 }
 
 set :deploy_to, '/home/growmoi/moi-front-end'
-set :nvm_node, 'v0.12.14'
+set :nvm_node, 'v4.9.1'
+set :stage, 'production'
+set :release_stage_name, 'production'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -43,12 +45,3 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-namespace :deploy do
-  desc 'build'
-  task :build do
-    invoke 'moi:build'
-  end
-
-  after :publishing, :build
-end
