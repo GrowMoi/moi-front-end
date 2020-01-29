@@ -6,7 +6,7 @@ namespace :moi do
       nvm_path = fetch(:nvm_node_path).map{|d| "#{d}/bin"}.join(":")
       rbenv_path = fetch(:rbenv_path) + "/shims"
       within npm_path do
-        with node_env: fetch(:stage),
+        with node_env: fetch(:release_stage_name),
              path: "#{nvm_path}:#{rbenv_path}:$PATH" do
           SSHKit.config.command_map[:grunt] = "./node_modules/grunt-cli/bin/grunt"
           execute :grunt, :compress

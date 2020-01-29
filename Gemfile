@@ -11,5 +11,5 @@ group :development do
   gem 'capistrano-nvm', '~> 0.0.6'
   gem 'capistrano-bundler', '~> 1.2'
   gem 'slackistrano', '~> 3.1', require: false
-  gem 'capistrano-rsync'
+  gem "capistrano-scm-tar-copy"
 end

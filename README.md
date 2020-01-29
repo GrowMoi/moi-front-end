@@ -62,9 +62,16 @@ if you're running protractor locally, make sure you are also running the [backen
 
     $ npm install -g ios-sim
 
-### deploying
+### deploy production (moi)
 
     $ bundle exec cap production deploy
+
+### deploy abi (BDP)
+
+first build for production locally and then deploy (will copy the dist folder to the server)
+
+    $ grunt build
+    $ bundle exec cap abi deploy
 
 ### resources
 
