@@ -7,7 +7,25 @@ server "abi.shiriculapo.com", user: "growmoi", roles: %w{app}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+require "capistrano/copy"
 
+set :scm, :copy
+
+set :include_dir, "."
+set :temp_dir, "/tmp"
+set :exclude_dir, [
+  ".bundle",
+  ".git",
+  ".sass-cache",
+  ".temp",
+  "app",
+  "coverage",
+  "log",
+  "node_modules",
+  "platforms",
+  "plugins",
+  "vendor"
+]
 
 # role-based syntax
 # ==================

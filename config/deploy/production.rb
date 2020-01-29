@@ -7,7 +7,22 @@ server "moi.growmoi.com", user: "growmoi", roles: %w{app}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
 
+require 'capistrano/npm'
+require 'capistrano/nvm'
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
+
+namespace :deploy do
+  desc 'build'
+  task :build do
+    invoke 'moi:build'
+  end
+
+  after :publishing, :build
+end
 
 # role-based syntax
 # ==================

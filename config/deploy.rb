@@ -45,12 +45,3 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-namespace :deploy do
-  desc 'build'
-  task :build do
-    invoke 'moi:build'
-  end
-
-  after :publishing, :build
-end
