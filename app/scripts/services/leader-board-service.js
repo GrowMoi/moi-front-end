@@ -48,6 +48,11 @@
                   });
                 }
               },
+              filters: [
+                'Loja',
+                'Quito',
+                'Guayaquil'
+              ],
               goToUser: goToUser,
               close: closeLeadeboardModal
             }

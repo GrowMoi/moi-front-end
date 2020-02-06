@@ -10,6 +10,12 @@
             | {{tab.name}}
         .empty-tab
       .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
+        .filters-container
+          select.filters(ng-model='model.filterSelected')
+            option(ng-repeat='filter in model.filters'
+              ng-selected='filter === model.filterSelected'
+              ng-value='filter')
+              | {{filter}}
         .infinite-scroll(infinite-scroll='model.nextPage()', infinite-scroll-container="'.content-leaderboard'", infinite-scroll-disabled='model.noMoreItemsAvailable')
           .user-item.row(ng-repeat="user in model.leaders track by $index"
                         ng-class="{'user-selected': user.user_id === model.user.user_id}" tooltip-moi="{{ 'tooltip.perfil' | translate }}"
