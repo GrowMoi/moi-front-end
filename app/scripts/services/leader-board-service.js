@@ -19,6 +19,35 @@
           dialogOptions = {
             templateUrl: 'templates/partials/modal-show-leaderboard.html',
             model: {
+              configTabs: {
+                list: [
+                  {
+                    field:'school',
+                    name: 'Escuela',
+                    selected: true
+                  },
+                  {
+                    field: 'city',
+                    name: 'Ciudad',
+                    selected: false
+                  },
+                  {
+                    field: 'age',
+                    name: 'Edad',
+                    selected: false
+                  }
+                ],
+                changeTab: function(field) {
+                  angular.forEach(dialogOptions.model.configTabs.list, function(tab) {
+                    if (tab.field === field) {
+                      tab.selected = true;
+                      dialogOptions.model.configTabs.tabSelected = tab.field;
+                    } else {
+                      tab.selected = false;
+                    }
+                  });
+                }
+              },
               goToUser: goToUser,
               close: closeLeadeboardModal
             }
