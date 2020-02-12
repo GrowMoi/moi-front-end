@@ -11,7 +11,7 @@
         .empty-tab
       .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
         .filters-container
-          select.filters(ng-model='model.filterSelected')
+          select.filters(ng-model='model.filterSelected' ng-change='model.sortByFilter(model.filterSelected)')
             option(ng-repeat='filter in model.filters'
               ng-selected='filter === model.filterSelected'
               ng-value='filter')
