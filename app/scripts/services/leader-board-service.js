@@ -113,6 +113,7 @@
 
       function sortByLeaderboard(filter) {
         resetPagination();
+        preventClickEvent = true;
         delete entityParams[entityParams.sort_by];//jshint ignore:line
         entityParams.sort_by = dialogOptions.model.configTabs.tabSelected;//jshint ignore:line
         if(!filter) {
@@ -128,8 +129,10 @@
           dialogOptions.model.total_super_event_achievements = data.meta.total_super_event_achievements; //jshint ignore:line
           dialogOptions.model.hideFooter = isCurrentUserLeader(data.leaders);
           total_pages = data.meta.total_pages; //jshint ignore:line
+          currentPage += 1;
           dialogOptions.model.noMoreItemsAvailable = currentPage === total_pages;//jshint ignore:line
           dialogOptions.model.filters = data.meta.sort_by_options.values;//jshint ignore:line
+          preventClickEvent = false;
         });
       }
 
