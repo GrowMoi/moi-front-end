@@ -36,7 +36,7 @@
       constants: {
         ENV: {
           name: 'staging',
-          apiHost: 'http://abi.shiriculapo.com',
+          apiHost: 'https://backend.miaulabdp.com',
           imagesProxy: 'https://moi-images-proxy.herokuapp.com',
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
@@ -62,7 +62,7 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost: 'http://abi.shiriculapo.com',
+          apiHost: 'https://backend.miaulabdp.com',
           imagesProxy: 'https://moi-images-proxy.herokuapp.com',
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
