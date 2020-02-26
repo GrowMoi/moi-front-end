@@ -80,9 +80,12 @@
             dialogOptions.model.hideFooter = isCurrentUserLeader(data.leaders);
             dialogOptions.model.nextPage = loadMoreItems;
             dialogOptions.model.fromEvent = fromEvent;
-            total_pages =  data.meta.total_pages; //jshint ignore:line
+            total_pages = data.meta.total_pages; //jshint ignore:line
             dialogOptions.model.noMoreItemsAvailable = currentPage === total_pages;//jshint ignore:line
-            dialogOptions.model.filters = data.meta.sort_by_options.values;//jshint ignore:line
+            var filtersSorted = dialogOptions.model.configTabs.tabSelected === 'age' ?
+                                data.meta.sort_by_options.values.sort(function(a, b){return a-b}) ://jshint ignore:line
+                                data.meta.sort_by_options.values.sort();//jshint ignore:line
+            dialogOptions.model.filters = filtersSorted;
             ModalService.showModel(dialogOptions);
             preventClickEvent = false;
             currentPage += 1;
@@ -131,7 +134,10 @@
           total_pages = data.meta.total_pages; //jshint ignore:line
           currentPage += 1;
           dialogOptions.model.noMoreItemsAvailable = currentPage === total_pages;//jshint ignore:line
-          dialogOptions.model.filters = data.meta.sort_by_options.values;//jshint ignore:line
+          var filtersSorted = dialogOptions.model.configTabs.tabSelected === 'age' ?
+                                data.meta.sort_by_options.values.sort(function(a, b){return a-b}) ://jshint ignore:line
+                                data.meta.sort_by_options.values.sort();//jshint ignore:line
+          dialogOptions.model.filters = filtersSorted;
           preventClickEvent = false;
         });
       }
