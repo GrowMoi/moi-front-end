@@ -15,7 +15,8 @@
               ScreenshotService,
               UploadImageService,
               UserService,
-              SocialService) {
+              SocialService,
+              GAService) {
 
     var vmTest = this;
     vmTest.selectAnswer = selectAnswer;
@@ -115,6 +116,15 @@
 
         // TestService.scoreQuiz($scope, data);
         makeReportToCertificate(data, res);
+        GAService.track(
+          'send',
+          'event',
+          'Examen final del estudiante ' + vmTest.user.username +
+          ', preguntas corretas ' + data.successAnswers +
+          ', preguntas incorrectas ' + (data.totalQuestions - data.successAnswers) ,
+          'Quiz'
+        );
+
       });
     }
 
