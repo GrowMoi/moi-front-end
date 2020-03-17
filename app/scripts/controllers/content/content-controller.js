@@ -104,7 +104,8 @@
       }
 
       function showImage(urlImage) {
-        GAService.track('send', 'event', 'Mostrar media '+ urlImage, 'Click');
+        var mediaInfo = urlImage && urlImage.url ? urlImage.url : urlImage;
+        GAService.track('send', 'event', 'Mostrar media '+ mediaInfo, 'Click');
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
