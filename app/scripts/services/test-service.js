@@ -13,7 +13,8 @@
                       $auth,
                       $q,
                       $timeout,
-                      MoiAnimationService){
+                      MoiAnimationService,
+                      GAService){
 
     var service = {
       goTest: goTest,
@@ -92,6 +93,14 @@
       modelData.userInfo.content_summary = data.meta; //jshint ignore:line
       modelData.successAnswers = data.successAnswers;
       modelData.totalQuestions = data.totalQuestions;
+      GAService.track(
+        'send',
+        'event',
+        'Examen del Estudiante ' + modelData.userInfo.username +
+        ', preguntas corretas ' + data.successAnswers +
+        ', preguntas incorrectas ' + (data.totalQuestions - data.successAnswers) ,
+        'Quiz'
+      );
       modelData.cssOptions = {
         styles: []
       };
