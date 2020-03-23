@@ -34,6 +34,7 @@
     vmProfile.certificates = certificates.certificates;
     vmProfile.showCertificate = showCertificate;
     vmProfile.removeCertificate = UserService.deleteCertificate;
+    vmProfile.initChat = initChat;
     vmProfile.noMoreItemsAvailable = true;
     vmProfile.currentPage = 2;
     vmProfile.page = 1;
@@ -214,6 +215,9 @@
           template: 'Algo fallo'
         });
       }
+    }
+
+    function initChat() {
     }
   });
 })();
