@@ -15,7 +15,8 @@
                                             SocialService,
                                             myEvents,
                                             GAService,
-                                            LeaderboardService) {
+                                            LeaderboardService,
+                                            ChatService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
@@ -218,6 +219,9 @@
     }
 
     function initChat() {
+      var userId = currentUser.id;
+      var receiverId = user.id;
+      ChatService.initChat(userId, receiverId, true);
     }
   });
 })();

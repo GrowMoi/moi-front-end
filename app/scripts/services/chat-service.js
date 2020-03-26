@@ -7,6 +7,8 @@
 
     function ChatService($http,
                         $q,
+                        $state,
+                        $timeout,
                         ENV,
                         ModalService) {
       var dialogContentModel = {
@@ -20,6 +22,7 @@
       };
 
       var service = {
+        initChat: initChat,
         sendMessage: sendMessage,
         getMessages: getMessages
       };
@@ -63,6 +66,32 @@
           }
           return $q.reject(err);
         });
+      }
+
+      function initChat(userId, receiverId, redirectToTasks) {
+        getMessages(userId, receiverId).then(function(messages) {
+          var modelData = {
+            messages: messages,
+            message: '',
+            sendChat: function() {
+              sendMessage(receiverId, modelData.message).then(function(newMessage) {
+                $timeout(function() {
+                  modelData.messages.push(newMessage);
+                  modelData.message = '';
+                });
+              });
+            }
+          };
+
+          ModalService.showModel({
+            templateUrl: 'templates/partials/modal-chat-users.html',
+            model: modelData
+          });
+        });
+
+        if(redirectToTasks) {
+          $state.go('tasks.notifications');
+        }
       }
     }
   })();

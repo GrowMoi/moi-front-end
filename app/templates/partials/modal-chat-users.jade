@@ -1,0 +1,21 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-chat
+      .btn-close-modal(ng-click="model.closeModal()"
+                      tooltip-moi="{{ 'tooltip.close' | translate }}"
+                      tooltip-position="up")
+      .chat-container
+        .preview-chat
+          .message(ng-repeat="message in model.messages" ng-class="message.kind")
+            {{message.message}}
+        .box-chat
+          form(ng-submit='model.sendChat()')
+            label.item.item-input
+              input(type='text',
+                    required='required',
+                    ng-model='model.message',
+                    placeholder="Mensaje...")
+            input(
+                type='submit',
+                value='Enviar'
+              ).button
