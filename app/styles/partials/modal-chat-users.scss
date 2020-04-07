@@ -34,14 +34,54 @@
       padding: 10px;
       background: #00aff1;
       border-radius: 10px;
-
+      overflow: scroll;
       .message {
-        color: white;
-        font-family: FontMoi-Content;
-        font-size: 16px;
+        display: flex;
+        flex-direction: column;
 
-        &.incoming {
-          text-align: end;
+        .separator {
+          display: flex;
+          align-items: center;
+          text-align: center;
+          color: #005faf;
+          font-family: FontMoi-Content;
+          font-size: 14px;
+        }
+
+        .separator::before, .separator::after {
+          content: '';
+          flex: 1;
+          border-bottom: 1px solid #005faf;
+        }
+
+        .separator::before {
+          margin-right: .25em;
+        }
+
+        .separator::after {
+          margin-left: .25em;
+        }
+
+        .message-container {
+          color: white;
+          font-family: FontMoi-Content;
+          font-size: 16px;
+          display: flex;
+          flex-direction: row;
+
+          .date {
+            font-size: 10px;
+            padding-right: 5px;
+            color: #005faf;
+
+            &.incoming {
+              padding-left: 5px;
+            }
+          }
+
+          &.incoming {
+            justify-content: flex-end;
+          }
         }
       }
     }

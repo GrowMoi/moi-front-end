@@ -6,8 +6,16 @@
                       tooltip-position="up")
       .chat-container
         .preview-chat
-          .message(ng-repeat="message in model.messages" ng-class="message.kind")
-            {{message.message}}
+          .message(ng-repeat="message in model.messages track by $index")
+            .separator(ng-if="model.isSameDay(model.messages[$index-1].created_at, message.created_at)")
+              {{message.created_at | date: 'EEEE, MMMM d' }}
+            .message-container(ng-class="message.kind")
+              .date(ng-if="message.kind === 'outgoing'" ng-class="message.kind")
+                {{message.created_at | date: 'h:mm a' }}
+              .text {{message.message}}
+              .date(ng-if="message.kind === 'incoming'" ng-class="message.kind")
+                {{message.created_at | date: 'h:mm a' }}
+
         .box-chat
           form(ng-submit='model.sendChat()')
             label.item.item-input

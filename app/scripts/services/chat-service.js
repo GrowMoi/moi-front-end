@@ -21,10 +21,18 @@
         model: dialogContentModel
       };
 
+      var inProgressChat = false;
+      var modelData = {
+        messages: [],
+        message: '',
+        isSameDay: isSameDay
+      };
+
       var service = {
         initChat: initChat,
         sendMessage: sendMessage,
-        getMessages: getMessages
+        getMessages: getMessages,
+        inProgressChat: inProgressChat,
       };
 
       return service;
@@ -68,30 +76,46 @@
         });
       }
 
-      function initChat(userId, receiverId, redirectToTasks) {
-        getMessages(userId, receiverId).then(function(messages) {
-          var modelData = {
-            messages: messages,
-            message: '',
-            sendChat: function() {
-              sendMessage(receiverId, modelData.message).then(function(newMessage) {
-                $timeout(function() {
-                  modelData.messages.push(newMessage);
-                  modelData.message = '';
-                });
+      function initChat(userId, receiverId, redirectToTasks, newChat) {
+        if (inProgressChat) {
+          $timeout(function() {
+            modelData.messages.push(newChat);
+          });
+        } else {
+          modelData.sendChat = function() {
+            sendMessage(receiverId, modelData.message).then(function(newMessage) {
+              $timeout(function() {
+                modelData.messages.push(newMessage);
+                modelData.message = '';
               });
-            }
+            });
           };
 
-          ModalService.showModel({
-            templateUrl: 'templates/partials/modal-chat-users.html',
-            model: modelData
+          getMessages(userId, receiverId).then(function(messages) {
+            modelData.messages = messages;
+            ModalService.showModel({
+              templateUrl: 'templates/partials/modal-chat-users.html',
+              model: modelData,
+              onHide: onHideChat
+            });
+            inProgressChat = true;
           });
-        });
+        }
 
         if(redirectToTasks) {
           $state.go('tasks.notifications');
         }
+      }
+
+      function onHideChat() {
+        inProgressChat = false;
+      }
+
+      function isSameDay(beforeDate, currentDate) {
+        if(beforeDate){
+          return new Date(beforeDate).getDate() !== new Date(currentDate).getDate();
+        }
+        return true;
       }
     }
   })();
