@@ -305,7 +305,7 @@
 
     function goToChat(notification) {
       var userId = $auth.user.id;
-      var receiverId = notification.chat.receiver_id;//jshint ignore:line
+      var receiverId = notification.chat.sender_id;//jshint ignore:line
       ChatService.initChat(userId, receiverId);
     }
 
