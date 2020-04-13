@@ -219,9 +219,11 @@
     }
 
     function initChat() {
-      var userId = currentUser.id;
-      var receiverId = user.id;
-      ChatService.initChat(userId, receiverId, true);
+      $state.go('tasks.notifications').then(function() {
+        var userId = currentUser.id;
+        var receiverId = user.id;
+        ChatService.initChat(userId, receiverId);
+      });
     }
   });
 })();

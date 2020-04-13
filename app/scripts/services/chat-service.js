@@ -7,7 +7,6 @@
 
     function ChatService($http,
                         $q,
-                        $state,
                         $timeout,
                         ENV,
                         ModalService) {
@@ -33,6 +32,7 @@
         sendMessage: sendMessage,
         getMessages: getMessages,
         inProgressChat: inProgressChat,
+        attachNewMessage: attachNewMessage
       };
 
       return service;
@@ -76,35 +76,25 @@
         });
       }
 
-      function initChat(userId, receiverId, redirectToTasks, newChat) {
-        if (inProgressChat) {
-          $timeout(function() {
-            modelData.messages.push(newChat);
-          });
-        } else {
-          modelData.sendChat = function() {
-            sendMessage(receiverId, modelData.message).then(function(newMessage) {
-              $timeout(function() {
-                modelData.messages.push(newMessage);
-                modelData.message = '';
-              });
+      function initChat(userId, receiverId) {
+        modelData.sendChat = function() {
+          sendMessage(receiverId, modelData.message).then(function(newMessage) {
+            $timeout(function() {
+              modelData.messages.push(newMessage);
+              modelData.message = '';
             });
-          };
-
-          getMessages(userId, receiverId).then(function(messages) {
-            modelData.messages = messages;
-            ModalService.showModel({
-              templateUrl: 'templates/partials/modal-chat-users.html',
-              model: modelData,
-              onHide: onHideChat
-            });
-            inProgressChat = true;
           });
-        }
+        };
 
-        if(redirectToTasks) {
-          $state.go('tasks.notifications');
-        }
+        getMessages(userId, receiverId).then(function(messages) {
+          modelData.messages = messages;
+          ModalService.showModel({
+            templateUrl: 'templates/partials/modal-chat-users.html',
+            model: modelData,
+            onHide: onHideChat
+          });
+          inProgressChat = true;
+        });
       }
 
       function onHideChat() {
@@ -116,6 +106,14 @@
           return new Date(beforeDate).getDate() !== new Date(currentDate).getDate();
         }
         return true;
+      }
+
+      function attachNewMessage(newChat) {
+        if(inProgressChat) {
+          $timeout(function() {
+            modelData.messages.push(newChat);
+          });
+        }
       }
     }
   })();

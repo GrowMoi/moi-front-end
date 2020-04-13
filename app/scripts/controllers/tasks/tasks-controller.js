@@ -5,8 +5,7 @@
                                           $rootScope,
                                           $auth,
                                           UserNotificationsService,
-                                          GAService,
-                                          ChatService){
+                                          GAService){
     var tasksmodel = this;
 
     tasksmodel.buttonsOptions = {
@@ -127,9 +126,8 @@
       tasksmodel.totalContentsToLearn = UserNotificationsService.totalContentsToLearn;
     });
 
-    $rootScope.$on('notifications.userChat', function(event, data) {
+    $rootScope.$on('notifications.userChat', function() {
       tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
-      ChatService.initChat($auth.user.id, data.chat.sender_id, false, data.chat);//jshint ignore:line
     });
   });
 })();
