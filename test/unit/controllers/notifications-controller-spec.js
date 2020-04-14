@@ -12,7 +12,8 @@
       ModalService,
       MediaAchievements,
       $state,
-      LeaderboardService;
+      LeaderboardService,
+      ChatService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
@@ -71,6 +72,16 @@
           }
         };
       });
+      $provide.factory('ChatService', function(){
+        return {
+          initChat: function(){
+            return null;
+          },
+          attachNewMessage: function(){
+            return null;
+          }
+        };
+      });
     }));
     beforeEach(inject(
       function (_$controller_,
@@ -80,7 +91,8 @@
                 _UserNotificationsService_,
                 _$state_,
                 _MediaAchievements_,
-                _LeaderboardService_) {
+                _LeaderboardService_,
+                _ChatService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
@@ -100,6 +112,7 @@
         ModalService = _ModalService_;
         MediaAchievements = _MediaAchievements_;
         LeaderboardService = _LeaderboardService_;
+        ChatService = _ChatService_;
 
         dependencies = {
           $scope: $scope,
@@ -110,7 +123,8 @@
           $state: $state,
           $auth: $auth,
           MediaAchievements: MediaAchievements,
-          LeaderboardService: LeaderboardService
+          LeaderboardService: LeaderboardService,
+          ChatService: ChatService
         };
 
         ctrl = $controller('NotificationsController', dependencies);

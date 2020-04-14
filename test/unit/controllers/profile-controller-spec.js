@@ -15,7 +15,8 @@
       StorageService,
       ModalService,
       LeaderboardService,
-      MediaAchievements;
+      MediaAchievements,
+      ChatService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
@@ -48,6 +49,13 @@
       $provide.factory('ModalService', function(){
         return {
           showModel: function(){
+            return null;
+          }
+        };
+      });
+      $provide.factory('ChatService', function(){
+        return {
+          initChat: function(){
             return null;
           }
         };
@@ -108,7 +116,8 @@
               _UserService_,
               _ModalService_,
               _LeaderboardService_,
-              _MediaAchievements_) {
+              _MediaAchievements_,
+              _ChatService_) {
 
         $state = {
           go: sinon.stub()
@@ -131,6 +140,7 @@
         StorageService = _StorageService_;
         LeaderboardService = _LeaderboardService_;
         MediaAchievements = _MediaAchievements_;
+        ChatService = _ChatService_;
         /*jshint camelcase: false */
         dependencies = {
           $state: $state,
@@ -186,7 +196,8 @@
           $scope: $scope,
           StorageService: StorageService,
           LeaderboardService: LeaderboardService,
-          MediaAchievements: MediaAchievements
+          MediaAchievements: MediaAchievements,
+          ChatService: ChatService
         };
 
         controller = $controller('ProfileController', dependencies);

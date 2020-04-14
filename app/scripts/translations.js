@@ -176,6 +176,7 @@
       buttons: {
         'edit-profile': 'Edit profile',
         'add-friend': 'Add friend',
+        'init-chat': 'Init chat',
         'save-changes': 'Save changes',
         'friends': 'Friends',
         'choose-photo': 'Choose image',
@@ -479,6 +480,7 @@
       buttons: {
         'edit-profile': 'Editar Perfil',
         'add-friend': 'Agregar Amigo',
+        'init-chat': 'Iniciar Chat',
         'save-changes': 'Guardar Cambios',
         'friends': 'Amigos',
         'choose-photo': 'Escoger foto',

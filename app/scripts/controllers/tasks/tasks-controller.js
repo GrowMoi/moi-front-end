@@ -125,5 +125,9 @@
       tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
       tasksmodel.totalContentsToLearn = UserNotificationsService.totalContentsToLearn;
     });
+
+    $rootScope.$on('notifications.userChat', function() {
+      tasksmodel.totalNotifications = UserNotificationsService.totalNotifications;
+    });
   });
 })();

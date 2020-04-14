@@ -17,6 +17,21 @@
           initialize: initialize,
           notifyOpenNotification: notifyOpenNotification,
           getNewDetailsNotifications: getNewDetailsNotifications
+        },
+        userNotificationsChannel = {
+          channelName: 'usernotifications.',
+          eventName: 'new-notification',
+          callback: notificationReceived
+        },
+        userGeneralNotificationsChannel = {
+          channelName: 'usernotifications.general',
+          eventName: 'new-notification',
+          callback: notificationReceived
+        },
+        userChatNotificationChannel = {
+          channelName: 'userchatsnotifications.',
+          eventName: 'newmessage',
+          callback: notificationChatReceived
         };
     return service;
 
@@ -27,9 +42,13 @@
     }
 
     function subscribeUserNotifications(){
-      channelsToNotifications.push('usernotifications.' + $auth.user.id);
-      channelsToNotifications.push('usernotifications.general');
-
+      //update channel names according user
+      userNotificationsChannel.channelName = userNotificationsChannel.channelName.concat($auth.user.id);
+      userChatNotificationChannel.channelName = userChatNotificationChannel.channelName.concat($auth.user.id);
+      //join channels
+      channelsToNotifications.push(userNotificationsChannel);
+      channelsToNotifications.push(userGeneralNotificationsChannel);
+      channelsToNotifications.push(userChatNotificationChannel);
       UserService.getDetailsNotifications().then(function(data) {
         service.totalNotifications = data.notifications;
         service.totalContentsToLearn = data.contents_to_learn; //jshint ignore:line
@@ -38,9 +57,9 @@
       }).then(function(){
         angular.forEach(channelsToNotifications, function (channel) {
           PusherService.listen(
-            channel,
-            'new-notification',
-            notificationReceived
+            channel.channelName,
+            channel.eventName,
+            channel.callback
           );
         });
       });
@@ -48,12 +67,17 @@
 
     function unsubscribeUserNotifications(){
       angular.forEach(channelsToNotifications, function (channel) {
-        PusherService.unlisten(channel);
+        PusherService.unlisten(channel.channelName);
       });
     }
 
+    function notificationChatReceived(data) {
+      service.totalNotifications ++;
+      notifyChatuser(data);
+    }
+
     function notificationReceived(data){
-      if(data && data.label === 'notifications'){
+      if(data && data.label === 'notifications' && data.title !== 'Nuevo chat'){
         service.totalNotifications ++;
         updateNotificationsCount();
       }
@@ -69,6 +93,10 @@
 
     function updateNotificationsCount(){
       $rootScope.$broadcast('notifications.updateCount');
+    }
+
+    function notifyChatuser(chat){
+      $rootScope.$broadcast('notifications.userChat', {chat: chat});
     }
 
     function notifyOpenNotification(notification) {
