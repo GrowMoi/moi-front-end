@@ -305,8 +305,8 @@
 
     function goToChat(notification) {
       var userId = $auth.user.id;
-      var receiverId = notification.chat.sender_id;//jshint ignore:line
-      ChatService.initChat(userId, receiverId);
+      var id = userId == notification.chat.sender_id ? notification.chat.receiver_id : notification.chat.sender_id;
+      ChatService.initChat(userId, id);
     }
 
     $rootScope.$on('notifications.userChat', function(event, data) {
