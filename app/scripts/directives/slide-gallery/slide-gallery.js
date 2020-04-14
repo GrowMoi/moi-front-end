@@ -100,8 +100,9 @@
       if(!modelData.isImage){
         $backgroundSound[0].pause();
       }
-
-      GAService.track('send', 'event', 'Mostrar media '+ url, 'Click');
+      var imageUrl = url;
+      var mediaInfo = (imageUrl && imageUrl.url) ? imageUrl.url : imageUrl;
+      GAService.track('send', 'event', 'Mostrar media '+ mediaInfo, 'Click');
 
       ModalService.showModel({
         parentScope: $scope,

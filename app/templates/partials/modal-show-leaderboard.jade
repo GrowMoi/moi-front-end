@@ -2,11 +2,26 @@
   ion-pane.transparent
     .modal-leaderboard
       .btn-close-modal-leaderboard(ng-click="model.close()")
+      .leaderboard-tabs(ng-if="!model.fromEvent")
+        .empty-tab
+        .tab(ng-repeat="tab in model.configTabs.list"
+            ng-class="{'selected': tab.selected }"
+            ng-click="model.configTabs.changeTab(tab.field)")
+            | {{tab.name}}
+        .empty-tab
       .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
+        .filters-container(ng-if="!model.fromEvent")
+          select.filters(ng-model='model.filterSelected' ng-change='model.sortByFilter(model.filterSelected)')
+            option(ng-repeat='filter in model.filters'
+              ng-selected='filter === model.filterSelected'
+              ng-value='filter')
+              | {{filter}}
         .infinite-scroll(infinite-scroll='model.nextPage()', infinite-scroll-container="'.content-leaderboard'", infinite-scroll-disabled='model.noMoreItemsAvailable')
           .user-item.row(ng-repeat="user in model.leaders track by $index"
-                        ng-class="{'user-selected': user.user_id === model.user.user_id}" tooltip-moi="{{ 'tooltip.perfil' | translate }}"
-                        tooltip-position="up")
+                        ng-class="{'user-selected': user.user_id === model.user.user_id}"
+                        tooltips
+                        tooltip-template="{{ 'tooltip.perfil' | translate }}"
+                        tooltip-side="up")
             .user-position.content-center.col-10
               | {{$index+1}}.
             .user-description.row.col-90.user-leader(ng-click="model.goToUser(user)")

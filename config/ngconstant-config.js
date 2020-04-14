@@ -19,7 +19,7 @@
           pusherKey: '2fd9acbd37b06708983b',
           cloudinaryName: 'test',
           unsignedUploadPreset: '1AxAzA2',
-          gaTrackID: 'UA-101348862-1'
+          gaTrackID: 'UA-160698332-1'
         },
         IMAGES: {
           paths: []

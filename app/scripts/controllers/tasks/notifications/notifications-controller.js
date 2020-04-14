@@ -10,7 +10,8 @@
                                                   EventsService,
                                                   MediaAchievements,
                                                   $state,
-                                                  LeaderboardService){
+                                                  LeaderboardService,
+                                                  ChatService){
     var notificationsModel = this;
     var notificationSelected,
         requestData = {},
@@ -67,6 +68,9 @@
       'event': {
         template: 'templates/tasks/notifications/partials/event.html'
       },
+      'user_chat': {
+        template: 'templates/tasks/notifications/partials/user-chat.html'
+      },
     };
 
     notificationsModel.noMoreItemsAvailable = true;
@@ -76,6 +80,7 @@
     notificationsModel.removeItem = removeItem;
     notificationsModel.getNotificationPartial = getNotificationPartial;
     notificationsModel.goToQuiz = goToQuiz;
+    notificationsModel.goToChat = goToChat;
 
     initData();
 
@@ -297,6 +302,16 @@
       UserNotificationsService.totalNotifications -= size;
       $rootScope.$broadcast('notifications.updateCount');
     }
+
+    function goToChat(notification) {
+      var userId = $auth.user.id;
+      var id = userId == notification.chat.sender_id ? notification.chat.receiver_id : notification.chat.sender_id;
+      ChatService.initChat(userId, id);
+    }
+
+    $rootScope.$on('notifications.userChat', function(event, data) {
+      ChatService.attachNewMessage(data.chat);
+    });
 
   });
 })();

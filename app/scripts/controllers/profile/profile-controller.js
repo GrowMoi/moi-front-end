@@ -15,7 +15,8 @@
                                             SocialService,
                                             myEvents,
                                             GAService,
-                                            LeaderboardService) {
+                                            LeaderboardService,
+                                            ChatService) {
 
     var vmProfile = this,
         currentUser = $auth.user;
@@ -34,6 +35,7 @@
     vmProfile.certificates = certificates.certificates;
     vmProfile.showCertificate = showCertificate;
     vmProfile.removeCertificate = UserService.deleteCertificate;
+    vmProfile.initChat = initChat;
     vmProfile.noMoreItemsAvailable = true;
     vmProfile.currentPage = 2;
     vmProfile.page = 1;
@@ -214,6 +216,14 @@
           template: 'Algo fallo'
         });
       }
+    }
+
+    function initChat() {
+      $state.go('tasks.notifications').then(function() {
+        var userId = currentUser.id;
+        var receiverId = user.id;
+        ChatService.initChat(userId, receiverId);
+      });
     }
   });
 })();

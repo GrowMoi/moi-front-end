@@ -64,8 +64,6 @@
               $state.go('inventory');
               break;
           }
-        } else {
-          showNotificationModal();
         }
       }
 
@@ -74,8 +72,6 @@
           $state.go('tree', {
             username: $auth.user.username
           });
-        }else{
-          showNotificationModal();
         }
       }
 
