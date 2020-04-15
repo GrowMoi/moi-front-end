@@ -16,7 +16,7 @@
       bindToController: true,
     };
 
-    function sidebarController($scope, $state, $auth, MoiAnimationService, ModalService) {
+    function sidebarController($scope, $state, $auth, MoiAnimationService) {
       var vm = this;
       vm.user = $auth.user;
       vm.user.tree_image = vm.user.tree_image || 'images/default-tree.png'; //jshint ignore:line
@@ -73,15 +73,6 @@
             username: $auth.user.username
           });
         }
-      }
-
-      function showNotificationModal() {
-        var templateModal = 'templates/partials/modal-notification-join-app.html';
-        var dialogOptions = {
-          templateUrl: templateModal,
-          model: {}
-        };
-        ModalService.showModel(dialogOptions);
       }
 
       $scope.$on('scanner-started', function(event, args) {
