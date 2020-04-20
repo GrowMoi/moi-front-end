@@ -8,7 +8,7 @@
         .preview-chat
           .message(ng-repeat="message in model.messages track by $index")
             .separator(ng-if="model.isSameDay(model.messages[$index-1].created_at, message.created_at)")
-              {{message.created_at | date: 'EEEE, MMMM d' }}
+              {{message.created_at | date: 'EEEE d, MMMM' }}
             .message-container(ng-class="message.kind")
               .date(ng-if="message.kind === 'outgoing'" ng-class="message.kind")
                 {{message.created_at | date: 'h:mm a' }}
