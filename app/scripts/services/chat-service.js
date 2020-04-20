@@ -76,7 +76,27 @@
         });
       }
 
+      function createChat(user_id, receiver_id) {//jshint ignore:line
+        return $http({
+          method: 'POST',
+          url: ENV.apiHost + '/api/chats/start/'+user_id,//jshint ignore:line
+          data: {
+            receiver_id: receiver_id//jshint ignore:line
+          }
+        }).then(function success(res) {
+          return res.data.user_chat;//jshint ignore:line
+        }, function error(err) {
+          if(err.status !== 404){
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
+          }
+          return $q.reject(err);
+        });
+      }
+
       function initChat(userId, receiverId) {
+        modelData.userId = userId;
+        modelData.receiverId = receiverId;
         modelData.sendChat = function() {
           sendMessage(receiverId, modelData.message).then(function(newMessage) {
             $timeout(function() {
@@ -99,6 +119,9 @@
 
       function onHideChat() {
         inProgressChat = false;
+        if(modelData.messages.length === 0) {
+          createChat(modelData.userId, modelData.receiverId);
+        }
       }
 
       function isSameDay(beforeDate, currentDate) {
