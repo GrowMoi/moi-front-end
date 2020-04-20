@@ -24,7 +24,8 @@
       var modelData = {
         messages: [],
         message: '',
-        isSameDay: isSameDay
+        isSameDay: isSameDay,
+        onCloseChat: onCloseChat
       };
 
       var service = {
@@ -110,14 +111,14 @@
           modelData.messages = messages;
           ModalService.showModel({
             templateUrl: 'templates/partials/modal-chat-users.html',
-            model: modelData,
-            onHide: onHideChat
+            model: modelData
           });
           inProgressChat = true;
         });
       }
 
-      function onHideChat() {
+      function onCloseChat() {
+        modelData.closeModal();
         inProgressChat = false;
         if(modelData.messages.length === 0) {
           createChat(modelData.userId, modelData.receiverId);
