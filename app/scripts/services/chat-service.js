@@ -80,10 +80,8 @@
       function createChat(user_id, receiver_id) {//jshint ignore:line
         return $http({
           method: 'POST',
-          url: ENV.apiHost + '/api/chats/start/'+user_id,//jshint ignore:line
-          data: {
-            receiver_id: receiver_id//jshint ignore:line
-          }
+          url: ENV.apiHost + '/api/chats/start/'+receiver_id,//jshint ignore:line
+          data: {}
         }).then(function success(res) {
           return res.data.user_chat;//jshint ignore:line
         }, function error(err) {
