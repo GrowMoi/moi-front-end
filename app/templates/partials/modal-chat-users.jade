@@ -1,14 +1,14 @@
 .modal.transparent
   ion-pane.transparent
     .modal-chat
-      .btn-close-modal(ng-click="model.closeModal()"
+      .btn-close-modal(ng-click="model.onCloseChat()"
                       tooltip-moi="{{ 'tooltip.close' | translate }}"
                       tooltip-position="up")
       .chat-container
         .preview-chat
-          .message(ng-repeat="message in model.messages track by $index")
+          .message(ng-repeat="message in model.messages track by $index" ng-if="message.type !== 'system'")
             .separator(ng-if="model.isSameDay(model.messages[$index-1].created_at, message.created_at)")
-              {{message.created_at | date: 'EEEE, MMMM d' }}
+              {{message.created_at | date: 'EEEE d, MMMM' }}
             .message-container(ng-class="message.kind")
               .date(ng-if="message.kind === 'outgoing'" ng-class="message.kind")
                 {{message.created_at | date: 'h:mm a' }}
