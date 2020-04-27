@@ -27,6 +27,7 @@
         isSameDay: isSameDay,
         onCloseChat: onCloseChat
       };
+      var initChatDefer;
 
       var service = {
         initChat: initChat,
@@ -112,6 +113,7 @@
       }
 
       function initChat(userId, receiverId, roomId) {
+        initChatDefer = $q.defer();
         modelData.userId = userId;
         modelData.receiverId = receiverId;
         modelData.sendChat = function() {
@@ -131,11 +133,16 @@
           });
           inProgressChat = true;
         });
+        return initChatDefer.promise;
       }
 
       function onCloseChat() {
         modelData.closeModal();
         inProgressChat = false;
+        if(modelData.messages.length !== 0) {
+          var lastMessage = modelData.messages.slice(-1)[0];
+          initChatDefer.resolve(lastMessage);
+        }
       }
 
       function isSameDay(beforeDate, currentDate) {
