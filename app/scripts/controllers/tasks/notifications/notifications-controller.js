@@ -321,7 +321,9 @@
       var userId = $auth.user.id;
       var roomId = notification.chat.room_chat_id; //jshint ignore:line
       var id = userId === notification.chat.sender_id ? notification.chat.receiver_id : notification.chat.sender_id;//jshint ignore:line
-      ChatService.initChat(userId, id, roomId);
+      ChatService.initChat(userId, id, roomId).then(function(chat) {
+        notification.chat = chat;
+      });
     }
 
     $rootScope.$on('notifications.userChat', function(event, data) {
