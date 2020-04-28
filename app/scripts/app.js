@@ -17,7 +17,8 @@
     '720kb.socialshare',
     'ngIdle',
     '720kb.tooltips',
-    'infinite-scroll'
+    'infinite-scroll',
+    'vkEmojiPicker'
   ])
 
   .run(function(Idle, $window, $rootScope, GAService, $auth) {
