@@ -15,7 +15,6 @@
               .text {{message.message}}
               .date(ng-if="message.kind === 'incoming'" ng-class="message.kind")
                 {{message.created_at | date: 'h:mm a' }}
-
         .box-chat
           form(ng-submit='model.sendChat()')
             label.item.item-input
@@ -23,6 +22,9 @@
                     required='required',
                     ng-model='model.message',
                     placeholder="Mensaje...")
+            span(emoji-picker="model.message" placement="right" title="Emoji"
+              recent-limit="10"
+              output-format="unicode")
             input(
                 type='submit',
                 value='Enviar'
