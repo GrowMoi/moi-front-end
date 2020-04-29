@@ -196,16 +196,15 @@
       }
     })
     .state('searches', {
-      url: '/searches/:query',
+      url: '/searches/:queryParams',
       controller: 'SearchesController',
       controllerAs: 'searchesmodel',
       templateUrl: 'templates/searches/searches.html',
       cache: false,
       resolve: {
         currentUser: checkIfIsAuthorized,
-        query: function($stateParams) {
-          var query = $stateParams.query ? $stateParams.query : '';
-          return query;
+        queryParams: function($stateParams) {
+          return $stateParams.queryParams || '';
         }
       }
     })

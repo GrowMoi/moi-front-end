@@ -5,11 +5,12 @@
                                             $ionicLoading,
                                             $state,
                                             NeuronService,
-                                            query,
+                                            queryParams,
                                             GAService)
   {
     var searchesmodel = this;
-    searchesmodel.query = query;
+    var searchParams = queryParams ? queryParams.split('&search_by:') : null;
+    searchesmodel.query = searchParams ? searchParams[0] : '';
     searchesmodel.reloadSearch = reloadSearch;
     searchesmodel.noMoreItemsAvailable = true;
     searchesmodel.contents = [];
@@ -20,14 +21,19 @@
       showBackButton: true,
       wholeFrame: true
     };
+    searchesmodel.searchTerm = searchParams ? searchParams[1] : 'Contenidos';
+    searchesmodel.searchTerms = ['Contenidos', 'Amigos'];
 
     if(searchesmodel.query !== ''){
       search();
     }
 
     function reloadSearch() {
-      GAService.track('send', 'event', 'Buscar ' + searchesmodel.query, 'Search');
-      $state.go('searches', { query: searchesmodel.query });
+      if (searchesmodel.query) {
+        GAService.track('send', 'event', 'Buscar ' + searchesmodel.query, 'Search');
+        var queryParams = searchesmodel.query + '&search_by:' + searchesmodel.searchTerm;
+        $state.go('searches', { queryParams: queryParams });
+      }
     }
 
     function search() {
