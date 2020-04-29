@@ -58,17 +58,37 @@
     position: absolute;
     right: 70px;
     top: 50px;
-    width: 400px;
+    width: 500px;
+    background-image: url("../images/busqueda_bar.png");
+    @include background-size(contain);
+    background-position: left center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    font-family: FontMoi-Title;
+
+    .label-search {
+      color: white;
+      font-size: 20px;
+      margin-right: 10px;
+    }
 
     label.item-input {
-      background-image: url("../images/busqueda_bar.png");
-      @include background-size(contain);
-      background-position: left center;
-      background-repeat: no-repeat;
-      height: 60px;
-      padding-left: 25px;
-      line-height: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 0;
+      background: unset;
+      padding-right: 20px;
+      padding-left: inherit;
+    }
+
+    select {
+      color: white;
+      background-color: transparent;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: FontMoi-Title;
+      border-color: white;
     }
   }
 
@@ -86,7 +106,7 @@
   .button {
     background-image: url("../images/telescopio.png");
     position: absolute;
-    top: 5px;
+    top: 30%;
     z-index: 2;
     right: 15px;
   }
