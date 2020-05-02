@@ -33,17 +33,19 @@
         sendMessage: sendMessage,
         getMessages: getMessages,
         inProgressChat: inProgressChat,
-        attachNewMessage: attachNewMessage
+        attachNewMessage: attachNewMessage,
+        createChat: createChat,
+        leaveChat: leaveChat
       };
 
       return service;
 
-      function sendMessage(receiver_id, message) {//jshint ignore:line
+      function sendMessage(receiver_id, message, room_id) {//jshint ignore:line
         var params = {
           receiver_id: receiver_id,//jshint ignore:line
-          message: message//jshint ignore:line
+          message: message, //jshint ignore:line
+          room_chat_id: room_id//jshint ignore:line
         };
-
         return $http({
           method: 'POST',
           url: ENV.apiHost + '/api/chats',
@@ -83,6 +85,22 @@
           url: ENV.apiHost + '/api/chats/start/'+receiver_id,//jshint ignore:line
           data: {}
         }).then(function success(res) {
+          return res.data;//jshint ignore:line
+        }, function error(err) {
+          if(err.status !== 404){
+            dialogContentModel.message = err.statusText;
+            ModalService.showModel(dialogOptions);
+          }
+          return $q.reject(err);
+        });
+      }
+
+      function leaveChat(user_id, receiver_id) {//jshint ignore:line
+        return $http({
+          method: 'POST',
+          url: ENV.apiHost + '/api/chats/start/'+receiver_id,//jshint ignore:line
+          data: {}
+        }).then(function success(res) {
           return res.data.user_chat;//jshint ignore:line
         }, function error(err) {
           if(err.status !== 404){
@@ -93,11 +111,11 @@
         });
       }
 
-      function initChat(userId, receiverId) {
+      function initChat(userId, receiverId, roomId) {
         modelData.userId = userId;
         modelData.receiverId = receiverId;
         modelData.sendChat = function() {
-          sendMessage(receiverId, modelData.message).then(function(newMessage) {
+          sendMessage(receiverId, modelData.message, roomId).then(function(newMessage) {
             $timeout(function() {
               modelData.messages.push(newMessage);
               modelData.message = '';
@@ -118,9 +136,6 @@
       function onCloseChat() {
         modelData.closeModal();
         inProgressChat = false;
-        if(modelData.messages.length === 0) {
-          createChat(modelData.userId, modelData.receiverId);
-        }
       }
 
       function isSameDay(beforeDate, currentDate) {

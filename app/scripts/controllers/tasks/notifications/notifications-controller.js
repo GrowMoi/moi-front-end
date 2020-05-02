@@ -69,7 +69,8 @@
         template: 'templates/tasks/notifications/partials/event.html'
       },
       'user_chat': {
-        template: 'templates/tasks/notifications/partials/user-chat.html'
+        template: 'templates/tasks/notifications/partials/user-chat.html',
+        actionRemove: leaveChatNotification
       },
     };
 
@@ -78,6 +79,7 @@
     notificationsModel.confirmRequest = confirmRequest;
     notificationsModel.showNotification = showNotification;
     notificationsModel.removeItem = removeItem;
+    notificationsModel.leaveChat = leaveChat;
     notificationsModel.getNotificationPartial = getNotificationPartial;
     notificationsModel.goToQuiz = goToQuiz;
     notificationsModel.goToChat = goToChat;
@@ -177,12 +179,27 @@
       stateSelected.actionRemove(notification, index);
     }
 
+    function leaveChat(notification, index) {
+      var stateSelected = notificationStates[notification.type];
+      stateSelected.actionRemove(notification, index);
+    }
+
     function deleteNotification(notification, index) {
       UserService.deleteNotification(notification).then(function(resp) {
         if(resp.data.deleted){
           updateNotifications(index);
         }
       });
+    }
+
+    function leaveChatNotification(notification, index) {
+      console.log(notification);
+      console.log(index);
+      // UserService.deleteNotification(notification).then(function(resp) {
+      //   if(resp.data.deleted){
+      //     updateNotifications(index);
+      //   }
+      // });
     }
 
     function deleteSupereventNotification(notification, index) {
@@ -305,8 +322,9 @@
 
     function goToChat(notification) {
       var userId = $auth.user.id;
+      var roomId = notification.chat.room_chat_id;
       var id = userId === notification.chat.sender_id ? notification.chat.receiver_id : notification.chat.sender_id;//jshint ignore:line
-      ChatService.initChat(userId, id);
+      ChatService.initChat(userId, id, roomId);
     }
 
     $rootScope.$on('notifications.userChat', function(event, data) {

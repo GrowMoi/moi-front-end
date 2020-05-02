@@ -5,6 +5,8 @@ ion-content.content_tasks(
   .row.note(ng-repeat='notification in notificationsModel.notifications')
     .remove-task(ng-if="notification.type !== 'event' && notification.type !== 'user_chat'"
                 ng-click='notificationsModel.removeItem(notification, $index)')
+    .remove-task(ng-if="notification.type === 'user_chat'"
+                ng-click='notificationsModel.removeItem(notification, $index)')
     .row-notification(ng-include="notificationsModel.getNotificationPartial(notification)")
   ion-infinite-scroll(ng-if='!notificationsModel.noMoreItemsAvailable'
                       on-infinite='notificationsModel.loadMoreNotifications()'
