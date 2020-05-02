@@ -31,5 +31,9 @@ ion-view.searches-container.search-view-max(view-title='Content')
                 img.format-image(ng-src='{{content.media[0]}}')
                 .leyend-bottom(ellipsis-title="content.title", height='50', title="{{content.title}}")
             ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='1%')
+          ion-content.result-searches
+            .friend-container(ng-repeat='friend in searchesmodel.users track by $index')
+              moi-frame-user.friend-frame(options="friend" ui-sref="profile({username: friend.username})")
+            ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='1%')
     moi-frame(options="searchesmodel.frameOptions")
   moi-sidebar
