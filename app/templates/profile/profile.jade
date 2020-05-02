@@ -33,7 +33,7 @@ ion-view.profile-content.profile(view-title='{{vm.neuron.title}}')
                     ng-click="vmProfile.initChat()")
                     .title {{ 'buttons.init-chat' | translate }}
                     .plus-icon +
-                  .btn-friends(ng-if="vmProfile.isCurrentUser" ui-sref="friends")
+                  .btn-friends(ng-if="vmProfile.isCurrentUser" ui-sref="searches({queryParams:'&search_by:Amigos'})")
                     .title {{ 'buttons.friends' | translate }}
                     img.friend-img(src="images/user.png")
               .user-feedback
