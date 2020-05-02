@@ -111,6 +111,23 @@
     right: 15px;
   }
 
+  .result-searches::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid $scroll-color;
+    width: 5px;
+  }
+
+  .result-searches::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  .result-searches::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: $scroll-color;
+  }
+
   .result-searches {
     position: absolute;
     width: 92%;
@@ -155,6 +172,34 @@
         @media (max-width: 850px) {
           .leyend-bottom {
             font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .friend-container {
+      height: 17rem;
+      flex-grow: 1;
+      flex: 0 0 21%;
+      margin: 0 1%;
+
+      .friend-frame {
+        position: relative;
+        width: 180px;
+        height: auto;
+        margin: auto;
+        cursor: pointer;
+
+        .moi-frame-user-image {
+
+          .level {
+            font-size: 20px;
+            right: 12%;
+            top: 12%;
+          }
+          .name {
+            font-size: 24px;
+            bottom: 8%;
           }
         }
       }
