@@ -58,17 +58,37 @@
     position: absolute;
     right: 70px;
     top: 50px;
-    width: 400px;
+    width: 500px;
+    background-image: url("../images/busqueda_bar.png");
+    @include background-size(contain);
+    background-position: left center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    font-family: FontMoi-Title;
+
+    .label-search {
+      color: white;
+      font-size: 20px;
+      margin-right: 10px;
+    }
 
     label.item-input {
-      background-image: url("../images/busqueda_bar.png");
-      @include background-size(contain);
-      background-position: left center;
-      background-repeat: no-repeat;
-      height: 60px;
-      padding-left: 25px;
-      line-height: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 0;
+      background: unset;
+      padding-right: 20px;
+      padding-left: inherit;
+    }
+
+    select {
+      color: white;
+      background-color: transparent;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: FontMoi-Title;
+      border-color: white;
     }
   }
 
@@ -86,9 +106,26 @@
   .button {
     background-image: url("../images/telescopio.png");
     position: absolute;
-    top: 5px;
+    top: 30%;
     z-index: 2;
     right: 15px;
+  }
+
+  .result-searches::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid $scroll-color;
+    width: 5px;
+  }
+
+  .result-searches::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  .result-searches::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: $scroll-color;
   }
 
   .result-searches {
@@ -135,6 +172,34 @@
         @media (max-width: 850px) {
           .leyend-bottom {
             font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .friend-container {
+      height: 17rem;
+      flex-grow: 1;
+      flex: 0 0 21%;
+      margin: 0 1%;
+
+      .friend-frame {
+        position: relative;
+        width: 180px;
+        height: auto;
+        margin: auto;
+        cursor: pointer;
+
+        .moi-frame-user-image {
+
+          .level {
+            font-size: 20px;
+            right: 12%;
+            top: 12%;
+          }
+          .name {
+            font-size: 24px;
+            bottom: 8%;
           }
         }
       }

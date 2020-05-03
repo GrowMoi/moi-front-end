@@ -17,7 +17,8 @@
     '720kb.socialshare',
     'ngIdle',
     '720kb.tooltips',
-    'infinite-scroll'
+    'infinite-scroll',
+    'vkEmojiPicker'
   ])
 
   .run(function(Idle, $window, $rootScope, GAService, $auth) {
@@ -195,16 +196,15 @@
       }
     })
     .state('searches', {
-      url: '/searches/:query',
+      url: '/searches/:queryParams',
       controller: 'SearchesController',
       controllerAs: 'searchesmodel',
       templateUrl: 'templates/searches/searches.html',
       cache: false,
       resolve: {
         currentUser: checkIfIsAuthorized,
-        query: function($stateParams) {
-          var query = $stateParams.query ? $stateParams.query : '';
-          return query;
+        queryParams: function($stateParams) {
+          return $stateParams.queryParams || '';
         }
       }
     })
@@ -250,20 +250,20 @@
         user: checkIfIsAuthorized
       }
     })
-    .state('friends', {
-      url: '/friends/:query',
-      controller: 'FriendsController',
-      controllerAs: 'friendsmodel',
-      templateUrl: 'templates/friends/friends.html',
-      cache: false,
-      resolve: {
-        currentUser: checkIfIsAuthorized,
-        query: function($stateParams) {
-          var query = $stateParams.query ? $stateParams.query : '';
-          return query;
-        }
-      }
-    })
+    // .state('friends', {
+    //   url: '/friends/:query',
+    //   controller: 'FriendsController',
+    //   controllerAs: 'friendsmodel',
+    //   templateUrl: 'templates/friends/friends.html',
+    //   cache: false,
+    //   resolve: {
+    //     currentUser: checkIfIsAuthorized,
+    //     query: function($stateParams) {
+    //       var query = $stateParams.query ? $stateParams.query : '';
+    //       return query;
+    //     }
+    //   }
+    // })
     .state('tasks', {
       url: '/tasks',
       controller: 'TasksController',

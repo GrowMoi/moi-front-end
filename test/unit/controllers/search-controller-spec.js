@@ -11,13 +11,22 @@
         NeuronService,
         dependencies,
         stateMock,
-        deferred;
+        deferred,
+        UserService;
 
     beforeEach(module('moi.controllers'));
     beforeEach(module('moi.services', function($provide){
       $provide.factory('NeuronService', function(){
         return {
           searchNeurons: function(){
+            deferred = $q.defer();
+            return deferred.promise;
+          }
+        };
+      });
+      $provide.factory('UserService', function(){
+        return {
+          searchProfiles: function(){
             deferred = $q.defer();
             return deferred.promise;
           }
@@ -36,7 +45,8 @@
       function (_$controller_,
                 _$rootScope_,
                 _NeuronService_,
-                _$q_) {
+                _$q_,
+                _UserService_) {
 
         $controller = _$controller_;
         $rootScope = _$rootScope_;
@@ -45,13 +55,15 @@
         $q = _$q_;
         NeuronService = _NeuronService_;
         stateMock = { go: sinon.stub() };
+        UserService = _UserService_;
 
         dependencies = {
           $scope: $scope,
           $state: stateMock,
           $ionicLoading: $ionicLoading,
           NeuronService: NeuronService,
-          query: 'neuron'
+          queryParams: 'abc&search_by:Contenidos',
+          UserService: UserService
         };
 
         ctrl = $controller('SearchesController', dependencies);
@@ -111,10 +123,14 @@
 
       it('should controller.searches reload when execute a new query', function(){
         var dataBackend = {search: ['contents'], meta: {total_items: 1}};
+        var searchParams = dependencies.queryParams.split('&search_by:');
+        var searchQuery = searchParams[0];
+        var searchBy = searchParams[1];
         deferred.resolve(dataBackend);
         $scope.$digest();
         ctrl.reloadSearch();
-        chai.expect(ctrl.query).to.deep.equals(dependencies.query);
+        chai.expect(ctrl.query).to.deep.equals(searchQuery);
+        chai.expect(ctrl.searchTerm).to.deep.equals(searchBy);
       });
     });
   });

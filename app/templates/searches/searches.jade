@@ -5,12 +5,18 @@ ion-view.searches-container.search-view-max(view-title='Content')
     .frame
       .frame-container.main-search-view
         .content-searches
-          form(ng-submit='searchesmodel.reloadSearch()')
+          form.form-container(ng-submit='searchesmodel.reloadSearch()')
+            .label-search
+              | {{ 'searches.search' | translate }}
+            select(ng-model='searchesmodel.searchTerm' ng-change="searchesmodel.reloadSearch()")
+              option(ng-repeat='kind in searchesmodel.searchTerms'
+                ng-selected='kind === searchesmodel.searchTerm'
+                ng-value='kind')
+                | {{kind}}
             label.item.item-input
               input(type='text',
                     required='required',
-                    ng-model='searchesmodel.query',
-                    placeholder="{{ 'searches.search' | translate }}")
+                    ng-model='searchesmodel.query')
             input(
                 type='submit',
                 value=''
@@ -24,6 +30,10 @@ ion-view.searches-container.search-view-max(view-title='Content')
               .content-kind-contents(ui-sref="content({neuronId: content.neuron_id, contentId: content.id})")
                 img.format-image(ng-src='{{content.media[0]}}')
                 .leyend-bottom(ellipsis-title="content.title", height='50', title="{{content.title}}")
+            ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='1%')
+          ion-content.result-searches
+            .friend-container(ng-repeat='friend in searchesmodel.users track by $index')
+              moi-frame-user.friend-frame(options="friend" ui-sref="profile({username: friend.username})")
             ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='1%')
     moi-frame(options="searchesmodel.frameOptions")
   moi-sidebar

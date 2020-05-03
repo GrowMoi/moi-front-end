@@ -128,6 +128,16 @@
         .button {
           background-size: 100% 100%
         }
+
+        span .emoji-popover {
+          top: -210px !important;
+          left: 55% !important;
+          .emoji-popover-content {
+            .emoji-container {
+              height: 150px;
+            }
+          }
+        }
       }
     }
   }

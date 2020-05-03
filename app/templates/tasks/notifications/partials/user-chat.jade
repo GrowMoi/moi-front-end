@@ -1,5 +1,8 @@
 .text-notes(ng-click='notificationsModel.goToChat(notification)')
-  .text-title Chat con: {{notification.chat.chat_with}}
+  .text-title Chat con {{notification.chat.chat_with}}
     div(ng-if="notification.chat.type !== 'system'")
-      {{notification.chat.message}}
+      span(ng-if="notification.chat.kind === 'outgoing'")
+        | Yo: {{notification.chat.message}}
+      span(ng-if="notification.chat.kind === 'incoming'")
+        | {{notification.chat.sender_user.username}}: {{notification.chat.message}}
 
