@@ -3,9 +3,7 @@ ion-content.content_tasks(
     ng-class="{'tasks-loading-overlay-content': notificationsModel.showLoadingOverlay}"
   )
   .row.note(ng-repeat='notification in notificationsModel.notifications')
-    .remove-task(ng-if="notification.type !== 'event' && notification.type !== 'user_chat'"
-                ng-click='notificationsModel.removeItem(notification, $index)')
-    .remove-task(ng-if="notification.type === 'user_chat'"
+    .remove-task(ng-if="notification.type !== 'event'"
                 ng-click='notificationsModel.removeItem(notification, $index)')
     .row-notification(ng-include="notificationsModel.getNotificationPartial(notification)")
   ion-infinite-scroll(ng-if='!notificationsModel.noMoreItemsAvailable'
