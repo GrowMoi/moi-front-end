@@ -95,13 +95,13 @@
         });
       }
 
-      function leaveChat(user_id, receiver_id) {//jshint ignore:line
+      function leaveChat(roomId) {//jshint ignore:line
         return $http({
-          method: 'POST',
-          url: ENV.apiHost + '/api/chats/start/'+receiver_id,//jshint ignore:line
+          method: 'PUT',
+          url: ENV.apiHost + '/api/chats/leave/'+roomId,//jshint ignore:line
           data: {}
         }).then(function success(res) {
-          return res.data.user_chat;//jshint ignore:line
+          return res.data;//jshint ignore:line
         }, function error(err) {
           if(err.status !== 404){
             dialogContentModel.message = err.statusText;

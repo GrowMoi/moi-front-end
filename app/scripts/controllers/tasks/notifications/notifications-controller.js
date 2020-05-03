@@ -193,13 +193,10 @@
     }
 
     function leaveChatNotification(notification, index) {
-      console.log(notification);
-      console.log(index);
-      // UserService.deleteNotification(notification).then(function(resp) {
-      //   if(resp.data.deleted){
-      //     updateNotifications(index);
-      //   }
-      // });
+      var roomId = notification.chat.room_chat_id; //jshint ignore:line
+      ChatService.leaveChat(roomId).then(function(){
+        updateNotifications(index);
+      });
     }
 
     function deleteSupereventNotification(notification, index) {
@@ -322,7 +319,7 @@
 
     function goToChat(notification) {
       var userId = $auth.user.id;
-      var roomId = notification.chat.room_chat_id;
+      var roomId = notification.chat.room_chat_id; //jshint ignore:line
       var id = userId === notification.chat.sender_id ? notification.chat.receiver_id : notification.chat.sender_id;//jshint ignore:line
       ChatService.initChat(userId, id, roomId);
     }
