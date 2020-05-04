@@ -19,9 +19,7 @@
         .infinite-scroll(infinite-scroll='model.nextPage()', infinite-scroll-container="'.content-leaderboard'", infinite-scroll-disabled='model.noMoreItemsAvailable')
           .user-item.row(ng-repeat="user in model.leaders track by $index"
                         ng-class="{'user-selected': user.user_id === model.user.user_id}"
-                        tooltips
-                        tooltip-template="{{ 'tooltip.perfil' | translate }}"
-                        tooltip-side="up")
+                        tooltips tooltip-template="{{ 'tooltip.perfil' | translate }}")
             .user-position.content-center.col-10
               | {{$index+1}}.
             .user-description.row.col-90.user-leader(ng-click="model.goToUser(user)")
