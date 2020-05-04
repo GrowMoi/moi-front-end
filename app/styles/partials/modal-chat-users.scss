@@ -80,6 +80,17 @@
           margin-left: .25em;
         }
 
+        .sender {
+          display: flex;
+          color: #005faf;
+          font-family: FontMoi-Content;
+          text-transform: capitalize;
+
+          &.incoming {
+            justify-content: flex-end;
+          }
+        }
+
         .message-container {
           color: white;
           font-family: FontMoi-Content;
@@ -127,6 +138,12 @@
 
         .button {
           background-size: 100% 100%
+        }
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         span .emoji-popover {

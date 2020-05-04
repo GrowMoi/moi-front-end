@@ -9,6 +9,9 @@
           .message(ng-repeat="message in model.messages track by $index" ng-if="message.type !== 'system'")
             .separator(ng-if="model.isSameDay(model.messages[$index-1].created_at, message.created_at)")
               {{message.created_at | date: 'EEEE d, MMMM' }}
+            .sender(ng-if="message.sender_user.username !== model.messages[$index-1].sender_user.username"
+              ng-class="message.kind")
+              {{message.sender_user.username}}
             .message-container(ng-class="message.kind")
               .date(ng-if="message.kind === 'outgoing'" ng-class="message.kind")
                 {{message.created_at | date: 'h:mm a' }}
