@@ -337,12 +337,14 @@
       }
 
       function loopAnimations() {
-        var btn = randomActiveBtn(idleBtns, btnActive);
-        $scope.$apply(function() {
-          vm.activateBtn = btn;
-          btnActive = vm.activateBtn;
-        });
-      }
+        if (idleBtns.length) {
+          var btn = randomActiveBtn(idleBtns, btnActive);
+          $scope.$apply(function() {
+            vm.activateBtn = btn;
+            btnActive = vm.activateBtn;
+          });
+        }
+     }
 
       function randomActiveBtn(elements, btn) {
         var size = elements.length;
@@ -480,7 +482,7 @@
 
       $scope.$on('IdleStart', function() {
         vm.activeIdle = true;
-        if (!vm.externalAnimationIdle) {
+        if (!vm.externalAnimationIdle && idleBtns.length) {
           vm.activateBtn = randomActiveBtn(idleBtns, btnActive);
           btnActive = vm.activateBtn;
         }
