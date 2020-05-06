@@ -16,6 +16,7 @@
           isGettingItems = false,
           preventClickEvent = false,
           entityParams = {},
+          apiDropdown = null,
           dialogOptions = {
             templateUrl: 'templates/partials/modal-show-leaderboard.html',
             model: {
@@ -51,7 +52,6 @@
                 }
               },
               filters: [],
-              sortByFilter: sortByLeaderboard,
               goToUser: goToUser,
               close: closeLeadeboardModal
             }
@@ -85,7 +85,13 @@
             var filtersSorted = dialogOptions.model.configTabs.tabSelected === 'age' ?
                                 data.meta.sort_by_options.values.sort(function(a, b){return a-b}) ://jshint ignore:line
                                 data.meta.sort_by_options.values.sort();//jshint ignore:line
-            dialogOptions.model.filters = filtersSorted;
+            dialogOptions.model.dropdownOpts = {
+              options: filtersSorted,
+              onRegisterApi: onRegisterApi,
+              onChangeOpt: function(option) {
+                sortByLeaderboard(option);
+              }
+            };
             ModalService.showModel(dialogOptions);
             preventClickEvent = false;
             currentPage += 1;
@@ -99,6 +105,9 @@
         });
       }
 
+      function onRegisterApi(api) {
+        apiDropdown = api;
+      }
       /*jshint camelcase: false */
       function loadMoreItems() {
         if (isGettingItems) {
@@ -120,8 +129,8 @@
         delete entityParams[entityParams.sort_by];//jshint ignore:line
         entityParams.sort_by = dialogOptions.model.configTabs.tabSelected;//jshint ignore:line
         if(!filter) {
-          dialogOptions.model.filters = [];
-          dialogOptions.model.filterSelected = null;
+          dialogOptions.model.dropdownOpts.options = [];
+          apiDropdown.initOptions();
         } else {
           entityParams[entityParams.sort_by] = filter;//jshint ignore:line
         }
@@ -137,7 +146,7 @@
           var filtersSorted = dialogOptions.model.configTabs.tabSelected === 'age' ?
                                 data.meta.sort_by_options.values.sort(function(a, b){return a-b}) ://jshint ignore:line
                                 data.meta.sort_by_options.values.sort();//jshint ignore:line
-          dialogOptions.model.filters = filtersSorted;
+          dialogOptions.model.dropdownOpts.options = filtersSorted;
           preventClickEvent = false;
         });
       }

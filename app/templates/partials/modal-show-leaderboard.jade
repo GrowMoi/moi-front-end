@@ -11,11 +11,7 @@
         .empty-tab
       .content-leaderboard(ng-class="{'without-current-user': model.hideFooter}")
         .filters-container(ng-if="!model.fromEvent")
-          select.filters(ng-model='model.filterSelected' ng-change='model.sortByFilter(model.filterSelected)')
-            option(ng-repeat='filter in model.filters'
-              ng-selected='filter === model.filterSelected'
-              ng-value='filter')
-              | {{filter}}
+          moi-dropdown(options="model.dropdownOpts")
         .infinite-scroll(infinite-scroll='model.nextPage()', infinite-scroll-container="'.content-leaderboard'", infinite-scroll-disabled='model.noMoreItemsAvailable')
           .user-item.row(ng-repeat="user in model.leaders track by $index"
                         ng-class="{'user-selected': user.user_id === model.user.user_id}"

@@ -21,14 +21,10 @@ ion-view(
               |  No puede contener caracteres especiales (ñ, tilde, punto, etc)
             span.error-msg(ng-if='registerForm.username.$error.required && registerForm.username.$touched')
               | {{'msgs.error.required' | translate}}
-          label.item.item-input.birth_year
+          .birth_year_option
             span.label
              | {{ 'register.birth_year' | translate }}
-            select(ng-model='registerModel.registerForm.birth_year')
-              option(ng-repeat='year in registerModel.bornYears'
-                ng-selected='year === registerModel.registerForm.birth_year'
-                ng-value='year')
-                | {{year}}
+            moi-dropdown(options="registerModel.dropdownOpts")
 
         .list.list-inset
           label.item.item-input

@@ -1,0 +1,91 @@
+@import "shared/colors";
+.custom-dropdown {
+  cursor: pointer;
+  position: relative;
+  font-family: FontMoi-Title;
+  color: white;
+  border: 1px solid white;
+  width: 120px;
+  height: 24px;
+}
+
+.option-selected {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+.option-selected:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-color: white transparent transparent transparent;
+  position: absolute;
+  top: 9px;
+  right: 6px;
+}
+
+.option-selected:active, .option-selected.active {
+  background-color: #00c4f4;
+}
+
+.options::-webkit-scrollbar-track {
+  border-radius: 10px;
+  border: 1px solid $scroll-color;
+  width: 5px;
+}
+.options::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+  border-radius: 10px;
+}
+.options::-webkit-scrollbar-thumb {
+  width: 5px;
+  border-radius: 25px;
+  background-color: $scroll-color;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0 0;
+  padding: 0 0;
+  list-style: none;
+  border: 1px solid white;
+  background-color: white;
+  color: $secondary;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  max-height: 100px;
+  overflow-y: auto;
+
+  &.show-options {
+    display: block;
+  }
+}
+
+.options li {
+  padding: 0 6px;
+  margin: 0 0;
+  padding: 0 10px;
+
+  &.selected {
+    background-color: $secondary;
+    color: white;
+  }
+}
+.options li:hover {
+  background-color: $tertiary;
+  color: white;
+
+}

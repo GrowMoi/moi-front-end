@@ -8,11 +8,7 @@ ion-view.searches-container.search-view-max(view-title='Content')
           form.form-container(ng-submit='searchesmodel.reloadSearch()')
             .label-search
               | {{ 'searches.search' | translate }}
-            select(ng-model='searchesmodel.searchTerm' ng-change="searchesmodel.reloadSearch()")
-              option(ng-repeat='kind in searchesmodel.searchTerms'
-                ng-selected='kind === searchesmodel.searchTerm'
-                ng-value='kind')
-                | {{kind}}
+            moi-dropdown(options="searchesmodel.dropdownOpts")
             label.item.item-input
               input(type='text',
                     required='required',
@@ -21,7 +17,7 @@ ion-view.searches-container.search-view-max(view-title='Content')
                 type='submit',
                 value=''
               ).button
-          ion-content.result-searches
+          ion-content.result-searches(ng-show="searchesmodel.searchTerm === 'Contenidos'")
             .col.col-25.neuron(ng-repeat='neuron in searchesmodel.neurons track by $index')
               .content-kind-contents(ui-sref="neuron({neuronId: neuron.id})")
                 img.format-image(ng-src='{{neuron.contents[0].media[0]}}')
@@ -31,7 +27,7 @@ ion-view.searches-container.search-view-max(view-title='Content')
                 img.format-image(ng-src='{{content.media[0]}}')
                 .leyend-bottom(ellipsis-title="content.title", height='50', title="{{content.title}}")
             ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='1%')
-          ion-content.result-searches
+          ion-content.result-searches(ng-show="searchesmodel.searchTerm === 'Amigos'")
             .friend-container(ng-repeat='friend in searchesmodel.users track by $index')
               moi-frame-user.friend-frame(options="friend" ui-sref="profile({username: friend.username})")
             ion-infinite-scroll(ng-if='!searchesmodel.noMoreItemsAvailable', on-infinite='searchesmodel.loadMore()', distance='1%')

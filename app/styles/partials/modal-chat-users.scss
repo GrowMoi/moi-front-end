@@ -125,19 +125,23 @@
         width: 89%;
         text-align: center;
         height: 3rem;
+        background-image: url(../images/input.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
 
         label.item-input {
           padding-left: 25px;
           line-height: 20px;
           background-color: transparent;
           border: none;
-          width: 100%;
+          width: 85%;
           height: 3rem;
-          background-size: 100% 100%
+          background-size: 100% 100%;
+          background: none;
         }
 
         .button {
-          background-size: 100% 100%
+          background-size: 90% 65%;
         }
 
         span {

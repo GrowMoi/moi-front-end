@@ -1,0 +1,7 @@
+.custom-dropdown
+  .option-selected(ng-click="vm.onOpenDropdown()" ng-class="{'active': vm.showOptions }")
+    {{vm.optionSelected}}
+  ul.options(ng-class="{'show-options': vm.showOptions }")
+    li(ng-repeat='option in vm.options.options' ng-click="vm.onSelectOption(option)"
+      ng-class="{'selected': vm.optionSelected === option }")
+      | {{option}}

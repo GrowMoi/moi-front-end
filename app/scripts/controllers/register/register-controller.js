@@ -21,8 +21,14 @@
     registerModel.registerForm = {};
     registerModel.images = languageBrowser === 'es' ? ImagesLogin.paths:ImagesLoginEn.paths;
     registerModel.term = false;
-    registerModel.bornYears = generateBornYears(startYear, endYear);
     registerModel.format = /[ !@#$ñ`1´~%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    registerModel.dropdownOpts = {
+      options: generateBornYears(startYear, endYear),
+      onChangeOpt: function(option) {
+        /*jshint camelcase: false */
+        registerModel.registerForm.birth_year = option;
+      }
+    };
 
     function register() {
       $ionicLoading.show({
