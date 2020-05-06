@@ -24,7 +24,13 @@
       wholeFrame: true
     };
     searchesmodel.searchTerm = searchParams ? searchParams[1] : 'Contenidos';
-    searchesmodel.searchTerms = ['Contenidos', 'Amigos'];
+    searchesmodel.dropdownOpts = {
+      options: ['Contenidos', 'Amigos'],
+      onChangeOpt: function(option) {
+        searchesmodel.searchTerm = option;
+        searchesmodel.reloadSearch();
+      }
+    };
 
     if(searchesmodel.query !== ''){
       search();

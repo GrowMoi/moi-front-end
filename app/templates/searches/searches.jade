@@ -8,11 +8,7 @@ ion-view.searches-container.search-view-max(view-title='Content')
           form.form-container(ng-submit='searchesmodel.reloadSearch()')
             .label-search
               | {{ 'searches.search' | translate }}
-            select(ng-model='searchesmodel.searchTerm' ng-change="searchesmodel.reloadSearch()")
-              option(ng-repeat='kind in searchesmodel.searchTerms'
-                ng-selected='kind === searchesmodel.searchTerm'
-                ng-value='kind')
-                | {{kind}}
+            moi-dropdown(options="searchesmodel.dropdownOpts")
             label.item.item-input
               input(type='text',
                     required='required',
