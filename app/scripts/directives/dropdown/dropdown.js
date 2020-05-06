@@ -22,10 +22,14 @@
 
     function MoiDropdownController() {
       var vm = this;
-      vm.optionSelected = vm.options.options[0] || 'Seleccionar...';
+      vm.optionSelected = 'Seleccionar...';
       vm.showOptions = false;
       vm.onOpenDropdown = onOpenDropdown;
       vm.onSelectOption = onSelectOption;
+      if (vm.options.onRegisterApi) {
+        var api = createPublicApi();
+        vm.options.onRegisterApi(api);
+      }
 
       function onOpenDropdown() {
         vm.showOptions = !vm.showOptions;
@@ -35,6 +39,16 @@
         vm.optionSelected = option;
         vm.showOptions = !vm.showOptions;
         vm.options.onChangeOpt(option);
+      }
+
+      function createPublicApi() {
+        return {
+          initOptions: initOptions
+        };
+      }
+
+      function initOptions() {
+        vm.optionSelected = 'Seleccionar...';
       }
     }
   })();
