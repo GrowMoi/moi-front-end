@@ -22,7 +22,8 @@
 
     function MoiDropdownController() {
       var vm = this;
-      vm.optionSelected = 'Seleccionar...';
+      var dropdownPlaceholder = 'Seleccionar...';
+      vm.optionSelected = vm.options && vm.options.optionSelected ? vm.options.optionSelected : dropdownPlaceholder;
       vm.showOptions = false;
       vm.onOpenDropdown = onOpenDropdown;
       vm.onSelectOption = onSelectOption;
@@ -48,7 +49,7 @@
       }
 
       function initOptions() {
-        vm.optionSelected = 'Seleccionar...';
+        vm.optionSelected = dropdownPlaceholder;
       }
     }
   })();

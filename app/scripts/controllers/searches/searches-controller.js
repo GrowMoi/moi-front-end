@@ -26,6 +26,7 @@
     searchesmodel.searchTerm = searchParams ? searchParams[1] : 'Contenidos';
     searchesmodel.dropdownOpts = {
       options: ['Contenidos', 'Amigos'],
+      optionSelected: searchesmodel.searchTerm,
       onChangeOpt: function(option) {
         searchesmodel.searchTerm = option;
         searchesmodel.reloadSearch();
