@@ -20,7 +20,7 @@
       return directive;
     }
 
-    function MoiDropdownController($document) {
+    function MoiDropdownController($document, $timeout) {
       var vm = this;
       var dropdownPlaceholder = 'Seleccionar...';
       vm.optionSelected = vm.options && vm.options.optionSelected ? vm.options.optionSelected : dropdownPlaceholder;
@@ -33,12 +33,12 @@
       }
 
       function onOpenDropdown() {
-        vm.showOptions = !vm.showOptions;
+        vm.showOptions = true;
       }
 
       function onSelectOption(option) {
         vm.optionSelected = option;
-        vm.showOptions = !vm.showOptions;
+        vm.showOptions = false;
         vm.options.onChangeOpt(option);
       }
 
@@ -53,8 +53,8 @@
       }
 
       $document.on('click', function(event){
-        if(!event.target.className.includes('option-selected')) {
-          onOpenDropdown();
+        if(!event.target.className.includes('option-selected') && vm.showOptions) {
+          $timeout(function(){vm.showOptions = false;});
         }
       });
     }
