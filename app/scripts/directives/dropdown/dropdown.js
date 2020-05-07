@@ -20,7 +20,7 @@
       return directive;
     }
 
-    function MoiDropdownController() {
+    function MoiDropdownController($document) {
       var vm = this;
       var dropdownPlaceholder = 'Seleccionar...';
       vm.optionSelected = vm.options && vm.options.optionSelected ? vm.options.optionSelected : dropdownPlaceholder;
@@ -51,5 +51,11 @@
       function initOptions() {
         vm.optionSelected = dropdownPlaceholder;
       }
+
+      $document.on('click', function(event){
+        if(!event.target.className.includes('option-selected')) {
+          onOpenDropdown();
+        }
+      });
     }
   })();
