@@ -75,6 +75,9 @@
         MoiAnimationService.animateWidget($btnSelected, 'tada').then(function(){
           animationInProgress = false;
           vm.options.finishedAnimation();
+        }, function(){
+          animationInProgress = false;
+          vm.options.finishedAnimation();
         });
       }
     }

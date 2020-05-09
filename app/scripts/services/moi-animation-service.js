@@ -37,6 +37,9 @@
         $widgetToAnimate.addClass(cssClass).one(animationEnd, function() {
           $widgetToAnimate.removeClass(cssClass);
           animationDeferred.resolve();
+        }, function(){
+          $widgetToAnimate.removeClass(cssClass);
+          animationDeferred.resolve();
         });
         return animationDeferred.promise;
       }
