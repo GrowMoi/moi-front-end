@@ -65,9 +65,9 @@
           apiHost: 'https://backend.miaulabdp.com',
           imagesProxy: 'https://moi-images-proxy.herokuapp.com',
           facebookKey: process.env.FACEBOOK_KEY,
-          pusherKey: process.env.PUSHER_KEY,
-          cloudinaryName: process.env.CLOUDINARY_NAME,
-          unsignedUploadPreset: process.env.CLOUDINARY_PRESET,
+          pusherKey: 'f43df1534c561963bc67',
+          cloudinaryName: 'miaulabdp-com',
+          unsignedUploadPreset: 'yzu6zuy9',
           gaTrackID: process.env.GA_TRACK_ID
         },
         IMAGES: {
