@@ -165,8 +165,20 @@
 }
 
 .emoji-picker {
-  background-image: transparent url(../images/emojis@2x.png) 0 0 no-repeat;
+  background-image: url(../images/emojis@2x.png);
+  background-repeat: no-repeat;
 }
 .emoji-groups .emoji-group {
-  background-image: transparent url(../images/emoji-groups.png) 0 0 no-repeat;
+  background-image: url(../images/emoji-groups.png);
+  background-repeat: no-repeat;
+}
+
+@media all and (-webkit-min-device-pixel-ratio:1),all and (min--moz-device-pixel-ratio:1),all and (-o-min-device-pixel-ratio:1),all and (min-device-pixel-ratio:1),all and (min-resolution:96dpi) {
+  .emoji-picker { background-image: url(../images/emojis.png); }
+}
+@media all and (-webkit-min-device-pixel-ratio:1.5),all and (-o-min-device-pixel-ratio:3/2),all and (min-device-pixel-ratio:1.5),all and (min-resolution:144dpi) {
+  .emoji-picker {
+    background-image: url(../images/emojis@2x.png);
+    background-size: 27776px 22px;
+  }
 }
