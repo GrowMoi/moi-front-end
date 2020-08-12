@@ -244,6 +244,7 @@
       margin-top: 5px;
     }
   }
+
   @media (max-width: 1175px) {
     .content-subtitle{
       font-size: 30px;
@@ -263,6 +264,20 @@
   }
 
   .row-content-text {
+    height: 69%;
+
+    @media (min-height: 580px) {
+      height: 72%;
+    }
+
+    @media (min-height: 625px) {
+      height: 78%;
+    }
+
+    @media (min-height: 725px) {
+      height: 87%;
+    }
+
     &.moi_theme {
       color: white;
       &.moi_amarillo{
