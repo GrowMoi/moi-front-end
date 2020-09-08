@@ -41,12 +41,14 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
             .col
               .row.text-notes
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                  | {{ 'content.max.coments' | translate }}
-              .row.container-comments
+                  | {{ vmContent.content && vmContent.content.instructions ? 'content.max.instructions': 'content.max.coments' | translate }}
+              .row.container-comments(ng-if="vmContent.content && !vmContent.content.instructions")
                 textarea.content-comments(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]"
                                           ng-model='vmContent.content.user_notes'
                                           ng-blur='vmContent.sendNotes()'
                                           ng-disabled='vmContent.readOnly')
+              .row.container-instructions(ng-if="vmContent.content && vmContent.content.instructions")
+                {{vmContent.content.instructions}}
         .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row
             .col.content-max-third

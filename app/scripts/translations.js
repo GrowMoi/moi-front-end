@@ -142,6 +142,7 @@
         },
         max: {
           'coments': 'Notes',
+          'instructions': 'Instructions',
           'media': 'Media',
           'recommended': 'Recommended',
           'links': 'Links',
@@ -434,6 +435,7 @@
         },
         max: {
           'coments': 'Comentarios',
+          'instructions': 'Instrucciones',
           'media': 'Galeria',
           'recommended': 'Recomendaciones',
           'links': 'Enlaces',
