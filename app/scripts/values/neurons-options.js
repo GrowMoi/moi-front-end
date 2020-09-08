@@ -108,6 +108,9 @@
       'fifth-level-1100': {
         color: 'green'
       },
+      'fifth-level-1110': {
+        color: 'green'
+      },
       'fifth-level-1101': {
         color: 'green'
       },
@@ -230,6 +233,9 @@
         color: 'green'
       },
       'sixth-level-11010': {
+        color: 'green'
+      },
+      'sixth-level-11100': {
         color: 'green'
       },
       'sixth-level-10200': {
@@ -424,6 +430,9 @@
       'seventh-level-110102': { //c de la vida
         color: 'green'
       },
+      'seventh-level-111000': {
+        color: 'green'
+      },
       'seventh-level-102301': { //corteza
         color: 'green'
       },
@@ -536,6 +545,9 @@
         color: 'green'
       },
       'eighth-level-1101303': { //humanos
+        color: 'green'
+      },
+      'eighth-level-1110000': {
         color: 'green'
       },
       'eighth-level-2000011': { //escribir
@@ -656,6 +668,9 @@
         color: 'green'
       },
       'nineth-level-11013011': { //cetaceos
+        color: 'green'
+      },
+      'nineth-level-11100000': {
         color: 'green'
       },
       'nineth-level-20000102': { //internet
