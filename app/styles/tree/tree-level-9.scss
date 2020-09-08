@@ -80,9 +80,9 @@
             bottom: 29.7%;
             left: 47.7%;
           }
-          &-11 {
-            bottom: 239px; //TO DO: Not found this neuron
-            left: 627px; //TO DO: Not found this neuron
+          &-11 {//New 'Yo Siembro' Neuron
+            bottom: 30.2%;
+            left: 39.5%;
           }
           &-8 {
             left: 52.5%;
@@ -125,7 +125,7 @@
         &.fifth-level {
           &-0000{
             bottom: 42.36%;
-            left: 34.37%;
+            left: 33.37%;
           }
           &-0001{
             bottom: 43.75%;
@@ -154,6 +154,10 @@
           &-1101{
             bottom: 47.63%;
             left: 48.82%;
+          }
+          &-1110{
+            bottom: 35.2%;//New 'Yo Siembro' Neuron
+            left: 39%;//New 'Yo Siembro' Neuron
           }
           &-1020{
             bottom: 41.66%;
@@ -317,6 +321,10 @@
           &-11010{
             bottom: 52.36%;
             left: 35.15%;
+          }
+          &-11100{//New 'Yo Siembro' Neuron
+            bottom: 39.5%;
+            left: 39%;
           }
           &-10200{
             bottom: 50%;
@@ -585,6 +593,10 @@
             bottom: 57.77%;
             left: 47.26%;
           }
+          &-111000 {//New 'Yo Siembro' Neuron
+            bottom: 42%;
+            left: 37%;
+          }
           &-102301 { //corteza
             bottom: 57.77%;
             left: 49.60%;
@@ -763,6 +775,12 @@
           &-1101303 { //humanos
             bottom: 75.69%;
             left: 40.62%;
+            width: 25px;
+            height: 25px;
+          }
+          &-1110000 { //New 'Yo Siembro' Neuron
+            bottom: 46.5%;
+            left: 34.5%;
             width: 25px;
             height: 25px;
           }
@@ -972,6 +990,12 @@
           &-11013011 { //cetaceos
             bottom: 81.25%;
             left: 43.75%;
+            width: 25px;
+            height: 25px;
+          }
+          &-11100000 { //New 'Yo Siembro' Neuron
+            bottom: 49%;
+            left: 32.4%;
             width: 25px;
             height: 25px;
           }
