@@ -143,7 +143,7 @@
         max: {
           'coments': 'Notes',
           'instructions': 'Instructions',
-          'uploader': 'Select a file(image/video)',
+          'uploader': 'Choose your image/video',
           'media': 'Media',
           'recommended': 'Recommended',
           'links': 'Links',
@@ -438,7 +438,7 @@
         max: {
           'coments': 'Comentarios',
           'instructions': 'Instrucciones',
-          'uploader': 'Seleccionar archivo(imagen/video)',
+          'uploader': 'Elige tu imágen/video',
           'media': 'Galeria',
           'recommended': 'Recomendaciones',
           'links': 'Enlaces',
@@ -459,7 +459,7 @@
         'friends': 'Amigos',
         'choose-photo': 'Escoger foto',
         'upload-photo': 'Cargar foto',
-        'upload-file': 'Cargar archivo',
+        'upload-file': 'Subir archivo',
         'change-password': 'Cambiar contraseña',
         'skip': 'Saltar',
       },

@@ -506,6 +506,19 @@
         }
       }
     }
+
+    .buttons {
+      display: flex;
+    }
+
+    .file-name {
+      width: 100%;
+      border: 2px solid $verde;
+      border-radius: 5px;
+      padding: 5px;
+      margin-bottom: 5px;
+      height: 35px;
+    }
   }
 
   .format-image {
