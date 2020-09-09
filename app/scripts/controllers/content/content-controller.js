@@ -24,6 +24,7 @@
       vmContent.showAlertExternalLink = showAlertExternalLink;
       vmContent.userAchievements = dataInventory.achievements;
       vmContent.changeLanguage = StorageService.changeLanguage;
+      vmContent.uploadFile = uploadFile;
       var language = $auth.user.language;
       vmContent.state = language === 'es' ? false : true;
       var modelData = {};
@@ -203,6 +204,34 @@
           description: content.description
         };
         SocialService.showModal(data);
+      }
+
+      function uploadFile() {
+        var defaultMB = 1;
+        var maxAllowedSize = defaultMB * 1024 * 1024;
+        var dialogOptions = {
+          templateUrl: 'templates/partials/modal-alert-content.html',
+          model: {
+            callbacks: {
+              btnRight: function() {
+                dialogOptions.model.closeModal();
+              }
+            },
+            labels: {
+              btnRight: 'Aceptar'
+            }
+          }
+        };
+
+        if (vmContent.file.size > maxAllowedSize) {
+          dialogOptions.model.message = 'Archivo muy pesado, el tamaño permitido es de '+defaultMB+'MB';
+          ModalService.showModel(dialogOptions);
+        } else {
+          $timeout(function() {
+            dialogOptions.model.message = 'Archivo subido correctamente';
+            ModalService.showModel(dialogOptions);
+          }, 2000);
+        }
       }
 
     });
