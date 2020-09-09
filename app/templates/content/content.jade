@@ -52,8 +52,18 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
               .row.text-notes
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                   | {{vmContent.content.title_instruction ? vmContent.content.title_instruction :  'content.max.instructions' | translate }}
-              .row.container-instructions
+              .container-instructions
                 {{vmContent.content.instructions}}
+              .row.container-uploader
+                .custom-button.input-file
+                  {{ 'content.max.uploader' | translate }}
+                  input(type="file"
+                        fileinput="vmContent.file"
+                        filepreview="vmContent.filepreview"
+                        accept="video/*,image/*")
+                .custom-button.upload-file(ng-click="vmContent.uploadFile()"
+                                  class="{{vmContent.filepreview ? 'active-btn' : 'disabled-btn'}}")
+                  {{ 'buttons.upload-file' | translate }}
         .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row
             .col.content-max-third
