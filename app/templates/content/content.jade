@@ -37,17 +37,22 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                 ng-click='vmContent.showImage(vmContent.currentContent)'
               )
             .corner.image-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
-          .row
+          .row(ng-if="vmContent.content && !vmContent.content.instructions")
             .col
               .row.text-notes
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                  | {{ vmContent.content && vmContent.content.instructions ? 'content.max.instructions': 'content.max.coments' | translate }}
-              .row.container-comments(ng-if="vmContent.content && !vmContent.content.instructions")
+                  | {{ 'content.max.coments' | translate }}
+              .row.container-comments
                 textarea.content-comments(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]"
                                           ng-model='vmContent.content.user_notes'
                                           ng-blur='vmContent.sendNotes()'
                                           ng-disabled='vmContent.readOnly')
-              .row.container-instructions(ng-if="vmContent.content && vmContent.content.instructions")
+          .row(ng-if="vmContent.content && vmContent.content.instructions")
+            .col
+              .row.text-notes
+                .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+                  | {{vmContent.content.title_instruction ? vmContent.content.title_instruction :  'content.max.instructions' | translate }}
+              .row.container-instructions
                 {{vmContent.content.instructions}}
         .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row
