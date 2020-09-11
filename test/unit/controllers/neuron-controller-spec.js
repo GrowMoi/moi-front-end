@@ -9,7 +9,9 @@
       dependencies,
       $rootScope,
       StorageService,
-      MediaAchievements;
+      MediaAchievements,
+      ModalService,
+      modalSpy;
 
     beforeEach(module('moi.controllers'));
     beforeEach(function(){
@@ -48,17 +50,25 @@
           }
         };
       });
+      $provide.service('ModalService', function() {
+        modalSpy = sinon.spy();
+        return {
+          showModel: modalSpy
+        };
+      });
     }));
     beforeEach(inject(
       function(_$controller_,
         _$rootScope_,
         _StorageService_,
-        _MediaAchievements_) {
+        _MediaAchievements_,
+        _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
+        ModalService = _ModalService_;
         $auth = {
           user: {
             id: 1,

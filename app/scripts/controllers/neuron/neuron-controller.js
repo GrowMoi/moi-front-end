@@ -9,7 +9,8 @@
               $auth,
               SocialService,
               MediaAchievements,
-              dataInventory) {
+              dataInventory,
+              ModalService) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -20,11 +21,15 @@
       type: 'content_max'
     };
     vmNeuron.userAchievements = dataInventory.achievements;
+    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-
+      var showNeuronVideo = (localStorage.getItem('neuronVideo') !== 'true') && vmNeuron.neuron && vmNeuron.neuron.video;
+      if (showNeuronVideo) {
+        showVideoModal(vmNeuron.neuron.video);
+      }
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
         content: vmNeuron.neuron.contents[0],
@@ -122,6 +127,23 @@
           }
         });
       }
+    }
+
+    function showVideoModal(url) {
+      var modelData = {
+        isImage: false,
+        contentSrc: url
+      };
+      $backgroundSound[0].pause();
+      ModalService.showModel({
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-image.html',
+        model: modelData,
+        onHide: function() {
+          $backgroundSound[0].play();
+          localStorage.setItem('neuronVideo', 'true');
+        }
+      });
     }
   });
 })();
