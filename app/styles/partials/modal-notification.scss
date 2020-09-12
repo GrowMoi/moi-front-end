@@ -15,7 +15,7 @@
   .btn-close-modal-notification {
     position: absolute;
     top: 0.2rem;
-    margin-left: 22.5rem;
+    right: 0;
     width: 2.5rem;
     height: 2.5rem;
     background-image: url(../images/boton_salir_H.png);
@@ -70,10 +70,6 @@
 @media (max-width: 1080px) {
   .modal-notification {
     width: 35.375rem;
-    .btn-close-modal-notification {
-      margin-left: 16.5rem;
-      top: 0;
-    }
     .notification-description {
       width: 32.1rem;
     }
