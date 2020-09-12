@@ -1,0 +1,13 @@
+.modal.transparent
+  ion-pane.transparent
+    .modal-notification
+      .btn-close-modal-notification(ng-click="model.closeModal()")
+      .notification-description
+        .title {{ 'titles.title' | translate }}
+        .info La imagen/video que subiste no cumple con los requisitos de tu tutor
+        .title {{ 'titles.description' | translate }}
+        .info {{ model.data.message }}
+        .title.suggestion
+          | Para subir otra, vuelve al tema
+          .link(ng-click="model.callbacks.redirectContent(model.data)")
+            | aqui.

@@ -67,12 +67,16 @@
       'event': {
         template: 'templates/tasks/notifications/partials/event.html'
       },
+      'client_got_validation_content': {
+        template:  'templates/tasks/notifications/partials/error-file.html'
+      }
     };
 
     notificationsModel.noMoreItemsAvailable = true;
     notificationsModel.currentPage = 1;
     notificationsModel.confirmRequest = confirmRequest;
     notificationsModel.showNotification = showNotification;
+    notificationsModel.showErrorFileNotification = showErrorFileNotification;
     notificationsModel.removeItem = removeItem;
     notificationsModel.getNotificationPartial = getNotificationPartial;
     notificationsModel.goToQuiz = goToQuiz;
@@ -85,7 +89,8 @@
       notificationsModel.eventsLikeNotification = [];
       notificationsModel.showSetEvents = showModalEvents;
       EventsService.getWeeklyEvents().then(function(resp){
-        Object.keys(resp).map(function(week){
+        var mapingObj = resp || [];
+        Object.keys(mapingObj).map(function(week){
           if(resp[week].length > 0){
             var isSuperEvent = (week === 'super_event');
             var eventNotification = {
@@ -164,6 +169,27 @@
 
       UserNotificationsService.notifyOpenNotification(notification);
 
+      ModalService.showModel(dialogOptions);
+    }
+
+    function showErrorFileNotification(notification) {
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-show-error-file-notification.html',
+        model: {
+          data: notification.data,
+          callbacks: {
+            redirectContent: function(data) {
+              if(data && data.neuron_id && data.content_id) {//jshint ignore:line
+                dialogOptions.model.closeModal();
+                $state.go('content', {
+                  neuronId: parseInt(data.neuron_id),//jshint ignore:line
+                  contentId: parseInt(data.content_id)//jshint ignore:line
+                });
+              }
+            }
+          }
+        }
+      };
       ModalService.showModel(dialogOptions);
     }
 

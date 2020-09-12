@@ -48,6 +48,18 @@
       width: 42.7rem;
       height: 23.38rem;
     }
+
+    .suggestion {
+      display: flex;
+
+      .link {
+        margin-left: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        color: bisque;
+        text-decoration: underline;
+      }
+    }
   }
 
   .notification-description::-webkit-scrollbar-track {
