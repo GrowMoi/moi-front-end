@@ -56,7 +56,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                 {{vmContent.content.instructions}}
               .row.container-uploader
                 .file-name
-                  | {{vmContent.file.name}}
+                  | {{vmContent.file ? vmContent.file.name : 'Sube tu imagen o video de máximo 10 Mbs'}}
                 .buttons
                   .custom-button.input-file
                     {{ 'content.max.uploader' | translate }}

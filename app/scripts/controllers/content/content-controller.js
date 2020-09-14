@@ -207,7 +207,7 @@
       }
 
       function uploadFile() {
-        var defaultMB = 5;
+        var defaultMB = 10;
         var maxAllowedSize = defaultMB * 1024 * 1024;
         var dialogOptions = {
           templateUrl: 'templates/partials/modal-alert-content.html',
