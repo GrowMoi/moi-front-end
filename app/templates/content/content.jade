@@ -37,7 +37,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                 ng-click='vmContent.showImage(vmContent.currentContent)'
               )
             .corner.image-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
-          .row(ng-if="vmContent.content && !vmContent.content.instructions")
+          .row(ng-if="vmContent.content && !vmContent.content.content_instruction")
             .col
               .row.text-notes
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
@@ -47,14 +47,14 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                                           ng-model='vmContent.content.user_notes'
                                           ng-blur='vmContent.sendNotes()'
                                           ng-disabled='vmContent.readOnly')
-          .row(ng-if="vmContent.content && vmContent.content.instructions")
+          .row(ng-if="vmContent.content && vmContent.content.content_instruction")
             .col
               .row.text-notes
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
-                  | {{vmContent.content.title_instruction ? vmContent.content.title_instruction :  'content.max.instructions' | translate }}
+                  | {{vmContent.content.content_instruction.title || 'content.max.instructions' | translate }}
               .container-instructions
-                {{vmContent.content.instructions}}
-              .row.container-uploader
+                {{vmContent.content.content_instruction.description}}
+              .row.container-uploader(ng-if="vmContent.content.content_instruction.required_media")
                 .file-name
                   | {{vmContent.file ? vmContent.file.name : 'Sube tu imagen o video de máximo 10 Mbs'}}
                 .buttons
@@ -67,6 +67,9 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                   .custom-button.upload-file(ng-click="vmContent.uploadFile()"
                                     class="{{vmContent.filepreview ? 'active-btn' : 'disabled-btn'}}")
                     {{ 'buttons.upload-file' | translate }}
+              .row.container-comments(ng-if="!vmContent.content.content_instruction.required_media")
+                textarea.content-comments(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]"
+                                          ng-disabled='vmContent.readOnly')
         .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row
             .col.content-max-third
