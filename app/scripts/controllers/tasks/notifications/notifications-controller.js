@@ -67,8 +67,9 @@
       'event': {
         template: 'templates/tasks/notifications/partials/event.html'
       },
-      'client_got_validation_content': {
-        template:  'templates/tasks/notifications/partials/error-file.html'
+      'tutor_validated_content': {
+        template:  'templates/tasks/notifications/partials/error-file.html',
+        actionRemove: deleteNotification
       }
     };
 
