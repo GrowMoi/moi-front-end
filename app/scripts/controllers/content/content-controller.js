@@ -29,6 +29,7 @@
       vmContent.state = language === 'es' ? false : true;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+      var placeholderConsigaUploader = 'Sube tu imagen o video de máximo 10 Mbs';
       vmContent.frameOptions = {
         type: 'content_max',
         showBackButton: true
@@ -46,6 +47,9 @@
 
       function activate() {
         vmContent.content = content;
+        vmContent.consignaImageUrl = vmContent.content.consigna && vmContent.content.consigna.last_request_sent &&
+                                    vmContent.content.consigna.last_request_sent.in_review ?
+                                    vmContent.content.consigna.last_request_sent.media : placeholderConsigaUploader;
         vmContent.media = content.videos.concat(content.media);
         vmContent.currentContentImageUrl = getImageUrl(vmContent.media[0]);
         vmContent.currentContent = vmContent.media[0];
