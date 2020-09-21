@@ -6,7 +6,6 @@
     .factory('ContentService', ContentService);
 
   function ContentService($http,
-                          $ionicPopup,
                           $state,
                           ENV,
                           PopupService,
@@ -17,7 +16,8 @@
       addNotesToContent: addNotesToContent,
       recommendedContents: recommendedContents,
       changeImageStatus: changeImageStatus,
-      getContent: getContent
+      getContent: getContent,
+      uploadConsigna: uploadConsigna
     };
     var popupOptions = { title: 'Error'};
 
@@ -120,6 +120,22 @@
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }
+      });
+    }
+
+    function uploadConsigna(paramsData) {
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/content_validations/send_request',
+        data: paramsData
+      }).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return err;
       });
     }
   }

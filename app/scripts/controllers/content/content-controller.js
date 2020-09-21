@@ -5,7 +5,6 @@
                                               $window,
                                               $timeout,
                                               $interval,
-                                              $state,
                                               $auth,
                                               content,
                                               ContentService,
@@ -25,6 +24,7 @@
       vmContent.userAchievements = dataInventory.achievements;
       vmContent.changeLanguage = StorageService.changeLanguage;
       vmContent.uploadFile = uploadFile;
+      vmContent.updateText = updateText;
       var language = $auth.user.language;
       vmContent.state = language === 'es' ? false : true;
       var modelData = {};
@@ -50,6 +50,9 @@
         vmContent.consignaImageUrl = vmContent.content.consigna && vmContent.content.consigna.last_request_sent &&
                                     vmContent.content.consigna.last_request_sent.in_review ?
                                     vmContent.content.consigna.last_request_sent.media : placeholderConsigaUploader;
+        vmContent.consignaText = vmContent.content.consigna && vmContent.content.consigna.last_request_sent &&
+                                vmContent.content.consigna.last_request_sent.in_review ?
+                                vmContent.content.consigna.last_request_sent.text : '';
         vmContent.media = content.videos.concat(content.media);
         vmContent.currentContentImageUrl = getImageUrl(vmContent.media[0]);
         vmContent.currentContent = vmContent.media[0];
@@ -231,12 +234,21 @@
           dialogOptions.model.message = 'Archivo muy pesado, el tamaño permitido es de '+defaultMB+'MB';
           ModalService.showModel(dialogOptions);
         } else {
-          $timeout(function() {
+          var formData = new FormData();
+          formData.append('content_id', vmContent.content.id);
+          formData.append('media', vmContent.file);
+          ContentService.uploadConsigna(formData).then(function() {
             dialogOptions.model.message = 'Archivo subido correctamente';
             ModalService.showModel(dialogOptions);
-          }, 2000);
+          });
         }
       }
-
+      function updateText() {
+        var paramsData = {
+          'content_id': vmContent.content.id,
+          'text': vmContent.consignaText
+        };
+        ContentService.uploadConsigna(paramsData);
+      }
     });
 })();
