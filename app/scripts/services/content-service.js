@@ -126,7 +126,7 @@
     function uploadConsigna(paramsData) {
       return $http({
         method: 'POST',
-        url: ENV.apiHost + '/content_validations/send_request',
+        url: ENV.apiHost + '/api/content_validations/send_request',
         data: paramsData
       }).then(function success(res) {
         return res;
