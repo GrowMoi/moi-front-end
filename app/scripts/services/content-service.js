@@ -124,10 +124,13 @@
     }
 
     function uploadConsigna(paramsData) {
+      var authHeaders = $auth.retrieveData('auth_headers');
+      authHeaders['Content-Type'] = undefined;
       return $http({
         method: 'POST',
         url: ENV.apiHost + '/api/content_validations/send_request',
-        data: paramsData
+        data: paramsData,
+        headers: authHeaders
       }).then(function success(res) {
         return res;
       }, function error(err) {
@@ -135,7 +138,7 @@
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }
-        return err;
+        return $q.reject(err);
       });
     }
   }
