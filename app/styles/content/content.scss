@@ -417,6 +417,7 @@
     font-family: FontMoi-Content;
     font-weight: 700;
     width: 100%;
+    height: 100%;
     padding: 5px 0px;
     resize: vertical;
     font-size: 16px;
@@ -450,24 +451,8 @@
     margin-bottom: 15px;
   }
 
-  .container-instructions {
-    font-size: 22px;
-    font-weight: 400;
-    margin-bottom: 5px;
-    font-family: FontMoi-Content;
-    line-height: 25px;
-    overflow-y: auto;
-    padding-right: 20px;
-    width: 100%;
-    max-height: 35%;
-    text-align: justify;
-    white-space: pre-wrap;
-  }
-
-  .container-uploader {
+  .buttons {
     display: flex;
-    flex-flow: column;
-    align-items: center;
 
     .custom-button {
       padding: 10px 15px;
@@ -496,7 +481,7 @@
       }
 
 
-      &.upload-file{
+      &.upload-file.upload-text{
         &.active-btn {
           opacity: 1;
         }
@@ -506,10 +491,27 @@
         }
       }
     }
+  }
 
-    .buttons {
-      display: flex;
-    }
+  .container-instructions {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    font-family: FontMoi-Content;
+    line-height: 25px;
+    overflow-y: auto;
+    padding-right: 20px;
+    width: 100%;
+    min-height: 1.6rem;
+    max-height: 3rem;
+    text-align: justify;
+    white-space: pre-wrap;
+  }
+
+  .container-uploader {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 
     .file-name {
       width: 100%;
@@ -630,8 +632,9 @@
           flex-basis: 0;
         }
         .container-comments {
-          flex-grow: 1;
-          flex-basis: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
       }
     }

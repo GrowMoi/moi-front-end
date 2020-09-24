@@ -70,8 +70,11 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
               .row.container-comments(ng-if="!vmContent.content.consigna.content_instruction.required_media")
                 textarea.content-comments(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]"
                                           ng-model='vmContent.consignaText'
-                                          ng-blur='vmContent.updateText()'
                                           ng-disabled='vmContent.readOnly')
+                .buttons
+                  .custom-button.upload-text(ng-click="vmContent.updateText()"
+                    class="{{vmContent.readOnly ? 'active-btn' : 'disabled-btn'}}")
+                    {{ 'buttons.send-text' | translate }}
         .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row
             .col.content-max-third

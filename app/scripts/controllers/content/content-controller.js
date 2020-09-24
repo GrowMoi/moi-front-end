@@ -29,7 +29,20 @@
       vmContent.state = language === 'es' ? false : true;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
-      var placeholderConsigaUploader = 'Sube tu imagen o video de máximo 10 Mbs';
+      var placeholderConsigaUploader = 'Sube tu imagen o video de máximo 10 MB';
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: {
+          callbacks: {
+            btnRight: function() {
+              dialogOptions.model.closeModal();
+            }
+          },
+          labels: {
+            btnRight: 'Aceptar'
+          }
+        }
+      };
       vmContent.frameOptions = {
         type: 'content_max',
         showBackButton: true
@@ -161,11 +174,7 @@
             btnLeft: 'Seguir Leyendo'
           }
         };
-
-        var dialogOptions = {
-          templateUrl: 'templates/partials/modal-alert-content.html',
-          model: dialogContentModel
-        };
+        dialogOptions.model = dialogContentModel;
         ModalService.showModel(dialogOptions);
       }
 
@@ -216,20 +225,6 @@
       function uploadFile() {
         var defaultMB = 10;
         var maxAllowedSize = defaultMB * 1024 * 1024;
-        var dialogOptions = {
-          templateUrl: 'templates/partials/modal-alert-content.html',
-          model: {
-            callbacks: {
-              btnRight: function() {
-                dialogOptions.model.closeModal();
-              }
-            },
-            labels: {
-              btnRight: 'Aceptar'
-            }
-          }
-        };
-
         if (vmContent.file.size > maxAllowedSize) {
           dialogOptions.model.message = 'Archivo muy pesado, el tamaño permitido es de '+defaultMB+'MB';
           ModalService.showModel(dialogOptions);
@@ -248,7 +243,10 @@
           'content_id': vmContent.content.id,
           'text': vmContent.consignaText
         };
-        ContentService.uploadConsigna(paramsData);
+        ContentService.uploadConsigna(paramsData).then(function() {
+          dialogOptions.model.message = 'Texto subido correctamente';
+          ModalService.showModel(dialogOptions);
+        });
       }
     });
 })();
