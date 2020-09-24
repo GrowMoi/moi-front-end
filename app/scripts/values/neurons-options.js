@@ -18,22 +18,25 @@
       'second-level-3': {
         color: 'red'
       },
-      'third-level-0': {
+      'third-level-00': {
         color: 'blue'
       },
-      'third-level-2': {
+      'third-level-10': {
         color: 'green'
       },
-      'third-level-3': {
+      'third-level-11': {
         color: 'green'
       },
-      'third-level-4': {
+      'third-level-12': {
+        color: 'green'
+      },
+      'third-level-20': {
         color: 'yellow'
       },
-      'third-level-6': {
+      'third-level-30': {
         color: 'red'
       },
-      'third-level-7': {
+      'third-level-31': {
         color: 'red'
       },
       'fourth-level-0': {
