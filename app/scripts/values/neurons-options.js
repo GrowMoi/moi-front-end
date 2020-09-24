@@ -60,6 +60,9 @@
       'fourth-level-110': {
         color: 'green'
       },
+      'fourth-level-120': {
+        color: 'green'
+      },
       'fourth-level-11': { //Neurona Vacia
         color: 'green'
       },
