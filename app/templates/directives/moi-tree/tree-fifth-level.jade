@@ -12,13 +12,13 @@
 
       .tree-branch(ng-repeat="child1 in child.children track by $index"
                     ng-init="indexLevel3=$index"
-                    class="branch third-level-{{indexLevel2*2 + indexLevel3}} {{child1.state}}")
-        moi-neuron.neuron(options="child1" id='third-level-{{indexLevel2*2 + indexLevel3}}' level="5" class="third-level-{{indexLevel2*2 + indexLevel3}}")
+                    class="branch third-level-{{indexLevel2}}{{indexLevel3}} {{child1.state}}")
+        moi-neuron.neuron(options="child1" id='third-level-{{indexLevel2}}{{indexLevel3}}' level="5" class="third-level-{{indexLevel2}}{{indexLevel3}}")
 
         .tree-branch(ng-repeat="child2 in child1.children track by $index"
                       ng-init="indexLevel4=$index"
-                      class="branch fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}} {{child2.state}}")
-          moi-neuron.neuron(options="child2" id='fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}}' level="5" class="fourth-level-{{$parent.$parent.$index*4 + $parent.$index*6 + $index}}")
+                      class="branch fourth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}} {{child2.state}}")
+          moi-neuron.neuron(options="child2" id='fourth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}' level="5" class="fourth-level-{{indexLevel2}}{{indexLevel3}}{{indexLevel4}}")
 
           .tree-branch(ng-repeat="child3 in child2.children track by $index"
                       ng-init="indexLevel5=$index"
