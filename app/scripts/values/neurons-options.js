@@ -241,10 +241,7 @@
       'sixth-level-11010': {
         color: 'green'
       },
-      'sixth-level-11100': {
-        color: 'green'
-      },
-      'sixth-level-11101': {
+      'sixth-level-12000': {
         color: 'green'
       },
       'sixth-level-10200': {
