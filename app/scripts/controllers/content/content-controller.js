@@ -140,6 +140,7 @@
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
+        modelData.isEmbedVideo = true;
         if(!modelData.isImage){
           $backgroundSound[0].pause();
         }

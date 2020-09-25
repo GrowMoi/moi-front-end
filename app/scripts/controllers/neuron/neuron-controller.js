@@ -132,7 +132,8 @@
     function showVideoModal(url) {
       var modelData = {
         isImage: false,
-        contentSrc: url
+        contentSrc: url,
+        isEmbedVideo: false,
       };
       $backgroundSound[0].pause();
       ModalService.showModel({
