@@ -436,10 +436,7 @@
       'seventh-level-110102': { //c de la vida
         color: 'green'
       },
-      'seventh-level-111010': {
-        color: 'green'
-      },
-      'seventh-level-111011': {
+      'seventh-level-120000': {
         color: 'green'
       },
       'seventh-level-102301': { //corteza
