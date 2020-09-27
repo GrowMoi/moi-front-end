@@ -26,6 +26,7 @@
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
+      vmNeuron.neuron.video = vmNeuron.neuron.title === 'Jugar' ? 'https://backend.miaulabdp.com/videos/banca_digital.mp4': '';
       var showNeuronVideo = (localStorage.getItem('neuronVideo') !== 'true') && vmNeuron.neuron && vmNeuron.neuron.video;
       if (showNeuronVideo) {
         showVideoModal(vmNeuron.neuron.video);

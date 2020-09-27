@@ -68,7 +68,9 @@
       // Allow same origin resource loads.
       'self',
       // Allow loading from our assets domain. **.
-      ENV.apiHost + '/**'
+      ENV.apiHost + '/**',
+      'https://backend.miaulabdp.com/**',
+      'http://moi-backend.growmoi.com/**'
     ]);
 
     $ionicConfigProvider.views.transition('none');
