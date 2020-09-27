@@ -123,15 +123,18 @@
       });
     }
 
-    function uploadConsigna(paramsData) {
+    function uploadConsigna(paramsData, includeImage) {
       var authHeaders = $auth.retrieveData('auth_headers');
-      authHeaders['Content-Type'] = undefined;
-      return $http({
+      var requestConfig = {
         method: 'POST',
         url: ENV.apiHost + '/api/content_validations/send_request',
         data: paramsData,
-        headers: authHeaders
-      }).then(function success(res) {
+      };
+      if (!!includeImage) {
+        authHeaders['Content-Type'] = undefined;
+        requestConfig.headers = authHeaders;
+      }
+      return $http(requestConfig).then(function success(res) {
         return res;
       }, function error(err) {
         if(err.status !== 404){

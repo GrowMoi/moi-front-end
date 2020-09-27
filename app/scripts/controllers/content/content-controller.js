@@ -233,7 +233,7 @@
           var formData = new FormData();
           formData.append('content_id', vmContent.content.id);
           formData.append('media', vmContent.file);
-          ContentService.uploadConsigna(formData).then(function() {
+          ContentService.uploadConsigna(formData, true).then(function() {
             dialogOptions.model.message = 'Archivo subido correctamente';
             ModalService.showModel(dialogOptions);
           });
