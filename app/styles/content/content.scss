@@ -359,7 +359,6 @@
 
   .content-text,
   .content-comments,
-  .container-instructions,
   .row-content-text {
     &::-webkit-scrollbar-track {
       border-radius: 10px;
@@ -386,14 +385,13 @@
 
   .content-text::-webkit-scrollbar,
   .content-comments::-webkit-scrollbar,
-  .container-instructions::-webkit-scrollbar,
   .row-content-text::-webkit-scrollbar  {
     width: 5px;
     background-color: transparent;
     border-radius: 10px;
   }
 
-  .content-text, .content-comments, .container-instructions, .row-content-text {
+  .content-text, .content-comments, .row-content-text {
     &::-webkit-scrollbar-thumb {
       border-radius: 25px;
       background-color: $linesColor;
@@ -502,11 +500,8 @@
     margin-bottom: 5px;
     font-family: FontMoi-Content;
     line-height: 25px;
-    overflow-y: auto;
     padding-right: 20px;
     width: 100%;
-    min-height: 1.6rem;
-    max-height: 5rem;
     text-align: justify;
     white-space: pre-wrap;
   }
