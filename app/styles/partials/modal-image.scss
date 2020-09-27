@@ -74,13 +74,17 @@
       background-size: 2.5rem 2.5rem;
     }
   }
-  embed-video, video {
+  embed-video {
     width: 93%;
     height: 88%;
   }
   .content-image {
     height: 100%;
     width: 100%;
+  }
+  .content-video {
+    width: 100%;
+    height: 90%;
   }
 }
 /* Fix modal backdrop for smaller devices */
