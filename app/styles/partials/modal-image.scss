@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: auto;
   height: 100%;
   background-image: url(../images/marco_modal.png);
   background-repeat: no-repeat;
@@ -74,7 +74,7 @@
       background-size: 2.5rem 2.5rem;
     }
   }
-  embed-video {
+  embed-video, video {
     width: 93%;
     height: 88%;
   }
