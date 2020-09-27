@@ -14,7 +14,8 @@
                                               dataInventory,
                                               SocialService,
                                               StorageService,
-                                              GAService) {
+                                              GAService,
+                                              $state) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
@@ -236,6 +237,7 @@
           ContentService.uploadConsigna(formData, true).then(function() {
             dialogOptions.model.message = 'Archivo subido correctamente';
             ModalService.showModel(dialogOptions);
+            $state.reload();
           });
         }
       }
@@ -247,6 +249,7 @@
         ContentService.uploadConsigna(paramsData).then(function() {
           dialogOptions.model.message = 'Texto subido correctamente';
           ModalService.showModel(dialogOptions);
+          $state.reload();
         });
       }
     });
