@@ -4,7 +4,8 @@
       .btn-close-modal-notification(ng-click="model.closeModal()")
       .notification-description
         .title {{ 'titles.title' | translate }}
-        .info La imagen/video que subiste no cumple con los requisitos de tu tutor
+        .info
+          | Gracias por subir una respuesta. Lamentablemente, no cumplió con los requisitos mínimos para ser aprobada. Por favor vuelve al tema, revisa sus contenidos y la consigna y sube una nueva respuesta.
         .title {{ 'titles.description' | translate }}
         .info {{ model.data.message }}
         .title.suggestion

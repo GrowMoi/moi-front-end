@@ -1,3 +1,7 @@
 .text-notes(ng-click='notificationsModel.showErrorFileNotification(notification)')
-  .text-title Error en el archivo de {{notification.data.content_title}}
-  | Nota: {{notification.data.message}}
+  .text-title(ng-if="notification.data.approved")
+    | ¡Bien hecho! Tu respuesta a {{notification.data.content_title}} fue aprobada por tu tutor
+  .text-title(ng-if="!notification.data.approved")
+    | Gracias por subir una respuesta a {{notification.data.content_title}}. Lamentablemente, no cumplió con los requisitos mínimos para ser aprobada.
+  span(ng-if="!notification.data.approved")
+    | Nota: {{notification.data.message}}

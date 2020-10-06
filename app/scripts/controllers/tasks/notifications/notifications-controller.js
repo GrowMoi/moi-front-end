@@ -191,7 +191,9 @@
           }
         }
       };
-      ModalService.showModel(dialogOptions);
+      if (!notification.data.approved) {
+        ModalService.showModel(dialogOptions);
+      }
     }
 
     function removeItem(notification, index) {
