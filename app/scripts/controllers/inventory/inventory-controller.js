@@ -5,18 +5,12 @@
                                                 data,
                                                 events,
                                                 UserService,
-                                                MediaAchievements,
-                                                MediaAchievementsEn,
                                                 HoverAnimationService,
                                                 ModalService,
-                                                DesactiveAchievements,
-                                                DesactiveAchievementsEn,
                                                 TestService,
                                                 $auth) {
       var vmInv = this,
           $backgroundSound,
-          achievements = data.achievements,
-          language = $auth.user.language,
           allEventItems = {},
           allAchievements = {};
 
@@ -48,7 +42,7 @@
       ];
       vmInv.changeTab = changeTab;
       allEventItems = formatEventsItems();
-      allAchievements = formatAchievements();
+      allAchievements = data.achievements;
       vmInv.achievements = allAchievements;
       vmInv.increaseSize = HoverAnimationService.increaseSize;
       vmInv.cssOptions = {
@@ -65,23 +59,6 @@
         type: 'content_max',
         showBackButton: true
       };
-
-      function formatAchievements() {
-        var achievementsList = language === 'es' ? DesactiveAchievements : DesactiveAchievementsEn;
-        achievements.map(function(achievement) {
-          var currentAchievement = achievementsList[achievement.number];
-          if(currentAchievement) {
-            achievementsList[achievement.number] =  achievement;
-            if(!achievement.desactive) {
-              achievementsList[achievement.number].settings = MediaAchievements[achievement.number].settings;
-            }
-            if(language === 'en'){
-              achievementsList[achievement.number].name = MediaAchievementsEn[achievement.number].name;
-            }
-          }
-        });
-        return achievementsList;
-      }
 
       function formatEventsItems() {
         var eventsItems = {};
@@ -112,20 +89,21 @@
       }
 
       function activateAchievement(achievement){
-        if(achievement.settings.theme){
-          vmInv.achievementSelected = achievement;
-          UserService.activeAchievement(achievement.id).then(showpopup);
-        }
-        if (achievement.settings.video) {
-          $backgroundSound[0].pause();
-          vmInv.showInventory = false;
-          vmInv.urlVideo = achievement.settings.video;
-        }
-        if (achievement.settings.runFunction === 'openModal') {
-          TestService.goFinalTest(null, vmInv.user.name);
-        }
-        if(achievement.desactive) {
-          var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.settings.badge.replace('item', 'badge');
+        if (achievement.is_available && achievement.rewards) { //jshint ignore:line
+          if (achievement.rewards.theme){
+            vmInv.achievementSelected = achievement;
+            UserService.activeAchievement(achievement.id).then(showpopup);
+          }
+          if (achievement.rewards.video) {
+            $backgroundSound[0].pause();
+            vmInv.showInventory = false;
+            vmInv.urlVideo = achievement.rewards.video;
+          }
+          if (achievement.rewards.runFunction === 'openModal') {
+            TestService.goFinalTest(null, vmInv.user.name);
+          }
+        } else {
+          var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.image;
           achievement.badgeFull = currentImage;
           var dialogContentModel = {
             templateUrl: 'templates/partials/modal-inventory.html',

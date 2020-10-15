@@ -25,8 +25,8 @@ ion-view.inventory-section(view-title='Inventario')
                       tooltip-moi="{{achievement.name}}"
                       tooltip-position="up")
                   img(
-                      ng-src="{{achievement.settings.badge}}"
-                      ng-class="{selected: achievement.active, desactive: achievement.desactive}")
+                      ng-src="{{achievement.is_available ? achievement.image : achievement.inactive_image }}"
+                      ng-class="{selected: achievement.active, desactive: !achievement.is_available}")
         moi-frame(options="vmInv.frameOptions")
         moi-buttons(options="vmInv.buttonsOptions")
     moi-sidebar
