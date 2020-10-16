@@ -8,7 +8,6 @@
                                                   ModalService,
                                                   UserNotificationsService,
                                                   EventsService,
-                                                  MediaAchievements,
                                                   $state,
                                                   LeaderboardService){
     var notificationsModel = this;
@@ -291,9 +290,6 @@
           showLeaderboardToSuperEvent(superEvent);
         } else {
           modelSuperEvent.model.data = superEvent;
-          modelSuperEvent.model.data.achievements.forEach(function(achievement) {
-            achievement.image = MediaAchievements[achievement.number].settings.badge;
-          });
           ModalService.showModel(modelSuperEvent);
         }
       }

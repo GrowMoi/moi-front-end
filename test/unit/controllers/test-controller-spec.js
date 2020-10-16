@@ -14,7 +14,6 @@
         dataTest,
         contentId,
         answer,
-        MediaAchievements,
         StorageService,
         NeuronsOptions,
         UserNotificationsService;
@@ -72,16 +71,6 @@
 
     beforeEach(function(){
       module('config', function ($provide) {
-        $provide.constant('MediaAchievements', {
-          1: {
-            name: 'Contenidos aprendidos',
-            description: 'Han sido aprendidos los primeros 4 contenidos',
-            settings: {
-              badge:'images/inventory/badges/badge1.png',
-              video: 'videos/vineta_1.mp4'
-            }
-          }
-        });
         $provide.constant('NeuronsOptions', {
           'root': {
             color: 'yellow'
@@ -162,7 +151,6 @@
                 _TestService_,
                 _$rootScope_,
                 _$state_,
-                _MediaAchievements_,
                 _StorageService_,
                 _NeuronsOptions_,
                 _UserNotificationsService_) {
@@ -172,7 +160,6 @@
         $state = _$state_;
         $scope = $rootScope.$new();
         TestService = _TestService_;
-        MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
         NeuronsOptions = _NeuronsOptions_;
         UserNotificationsService = _UserNotificationsService_;
@@ -192,7 +179,6 @@
           $stateParams: $stateParams,
           $auth: $auth,
           $state: $state,
-          MediaAchievements: MediaAchievements,
           NeuronsOptions: NeuronsOptions,
           StorageService: StorageService,
           storage: {test: {'advices': ['advice0']}}
