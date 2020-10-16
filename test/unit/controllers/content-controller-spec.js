@@ -16,24 +16,9 @@
         SocialService,
         UserService,
         ReadContentTimingService,
-        MediaAchievements,
         StorageService;
 
     beforeEach(module('moi.controllers'));
-    beforeEach(function(){
-      module('config', function ($provide) {
-        $provide.constant('MediaAchievements', {
-          1: {
-            name: 'Contenidos aprendidos',
-            description: 'Han sido aprendidos los primeros 4 contenidos',
-            settings: {
-              badge:'images/inventory/badges/badge1.png',
-              video: 'videos/vineta_1.mp4'
-            }
-          }
-        });
-      });
-    });
     beforeEach(angular.mock.module(function ($provide) {
       $provide.provider('$state', function () {
         return {
@@ -150,7 +135,6 @@
                 _SocialService_,
                 _UserService_,
                 _ReadContentTimingService_,
-                _MediaAchievements_,
                 _StorageService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
@@ -163,7 +147,6 @@
         SocialService = _SocialService_;
         UserService = _UserService_;
         ReadContentTimingService = _ReadContentTimingService_;
-        MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
         $auth = {
           user: {
@@ -190,7 +173,11 @@
               {
                 id:1,
                 name: '4 contenidos aprendios',
-                number: 5
+                number: 5,
+                active: false,
+                rewards: {
+                  theme: 'moi_verde'
+                }
               }
             ]
           },
@@ -203,7 +190,6 @@
           AnimationService: AnimationService,
           UserService: UserService,
           ReadContentTimingService: ReadContentTimingService,
-          MediaAchievements: MediaAchievements,
           StorageService: StorageService
         };
 

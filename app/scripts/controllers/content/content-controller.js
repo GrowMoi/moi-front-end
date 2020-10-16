@@ -10,7 +10,6 @@
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              MediaAchievements,
                                               dataInventory,
                                               SocialService,
                                               StorageService,
@@ -22,7 +21,7 @@
       vmContent.sendNotes = sendNotes;
       vmContent.readOnly = !!content.read_only;
       vmContent.showAlertExternalLink = showAlertExternalLink;
-      vmContent.userAchievements = dataInventory.achievements;
+      vmContent.userAchievements = dataInventory && dataInventory.achievements ? dataInventory.achievements : [];
       vmContent.changeLanguage = StorageService.changeLanguage;
       vmContent.uploadFile = uploadFile;
       vmContent.updateText = updateText;
@@ -200,16 +199,16 @@
       }
 
       function setTheme() {
-        if(vmContent.userAchievements.length > 0){
-          angular.forEach(vmContent.userAchievements, function(achievement, index){
-            if(achievement.active){
-              var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
-              vmContent.theme = currentTheme;
-              vmContent.isMoitheme = currentTheme && currentTheme.includes('moi');
-              modelData.frameColor = currentTheme && currentTheme.replace('moi_', '');
-              vmContent.slideGalleryOptions.modalFrameColor = modelData.frameColor;
-            }
-          });
+        var currentAchievement = vmContent.userAchievements.filter(function(achievement) {
+          return achievement.active && achievement.rewards && achievement.rewards.theme;
+        });
+
+        if (currentAchievement[0]) {
+          var currentTheme = currentAchievement[0].rewards.theme;
+          vmContent.theme = currentTheme;
+          vmContent.isMoitheme = currentTheme && currentTheme.includes('moi');
+          modelData.frameColor = currentTheme && currentTheme.replace('moi_', '');
+          vmContent.slideGalleryOptions.modalFrameColor = modelData.frameColor;
         }
       }
 
