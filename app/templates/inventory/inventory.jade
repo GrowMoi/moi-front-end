@@ -13,12 +13,12 @@ ion-view.inventory-section(view-title='Inventario')
               .tabs-grid
                 .tab.col-20(ng-repeat='tab in vmInv.tabs'
                           ng-class="{'selected': tab.selected }"
-                          ng-click="vmInv.changeTab(tab.field)")
+                          ng-click="vmInv.changeTab(tab)")
                   span
                     | {{tab.name}}
               .gridWrapper
                 .cell(ng-style="vmInv.cssOptions.styles[$index]"
-                      ng-repeat="(key, achievement) in vmInv.achievements track by $index"
+                      ng-repeat="achievement in vmInv.achievements track by $index"
                       ng-click="vmInv.activateAchievement(achievement)"
                       ng-mouseover="vmInv.increaseSize(true, vmInv.cssOptions, $index)"
                       ng-mouseleave="vmInv.increaseSize(false, vmInv.cssOptions, $index)"
