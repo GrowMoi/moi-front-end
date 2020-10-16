@@ -10,7 +10,6 @@
               $state,
               $timeout,
               ModalService,
-              MediaAchievements,
               HoverAnimationService,
               UserNotificationsService) {
 
@@ -228,7 +227,7 @@
           btnRight: btnRightLabel,
           btnLeft: 'Ok'
         },
-        image: achievement.bagde || MediaAchievements[achievement.number].settings.badge,
+        image: achievement.bagde || achievement.image,
         addCongratulations: true
       };
 

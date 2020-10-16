@@ -12,8 +12,7 @@
                           ENV,
                           PopupService,
                           ModalService,
-                          UserNotificationsService,
-                          MediaAchievements) {
+                          UserNotificationsService) {
       var service = {
         getWeeklyEvents: getWeeklyEvents,
         getEventDetails: getEventDetails,
@@ -196,9 +195,6 @@
 
       function showSuperEventDetails(superEvent){
         modelSuperEvent.model.data = superEvent;
-        modelSuperEvent.model.data.achievements.forEach(function(achievement) {
-          achievement.image = MediaAchievements[achievement.number].settings.badge;
-        });
         ModalService.showModel(modelSuperEvent);
       }
 
