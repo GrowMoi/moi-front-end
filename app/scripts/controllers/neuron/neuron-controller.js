@@ -25,7 +25,6 @@
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-      vmNeuron.neuron.video = vmNeuron.neuron.title === 'Naturaleza' ? 'http://moi-backend.growmoi.com/videos/yosiembro1.mp4': '';
       var showNeuronVideo = (localStorage.getItem('neuronVideo') !== 'true') && vmNeuron.neuron && vmNeuron.neuron.video;
       if (showNeuronVideo) {
         showVideoModal(vmNeuron.neuron.video);
