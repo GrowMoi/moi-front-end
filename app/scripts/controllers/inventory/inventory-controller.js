@@ -8,11 +8,14 @@
                                                 HoverAnimationService,
                                                 ModalService,
                                                 TestService,
-                                                $auth) {
+                                                $auth,
+                                                UtilityService) {
       var vmInv = this,
           $backgroundSound,
-          allEventItems = {},
-          allAchievements = {};
+          allEventItems = [],
+          allAchievements = [],
+          splitedAchivements = [],
+          itemsPerTab = 12;
 
       vmInv.user = $auth.user;
       vmInv.buttonsOptions = {
@@ -28,22 +31,12 @@
       vmInv.showInventory = true;
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
-      vmInv.tabs = [
-        {
-          field: 'achievements',
-          name: '1',
-          selected: true
-        },
-        {
-          field: 'event_items',
-          name: '2',
-          selected: false
-        },
-      ];
       vmInv.changeTab = changeTab;
       allEventItems = formatEventsItems();
-      allAchievements = data.achievements;
-      vmInv.achievements = allAchievements;
+      allAchievements = data.achievements.concat(allEventItems);
+      splitedAchivements = UtilityService.splitArrayIntoChunks(allAchievements, itemsPerTab);
+      vmInv.tabs = formatTabs(splitedAchivements.length);
+      vmInv.achievements = splitedAchivements[0];
       vmInv.increaseSize = HoverAnimationService.increaseSize;
       vmInv.cssOptions = {
         styles: []
@@ -61,19 +54,16 @@
       };
 
       function formatEventsItems() {
-        var eventsItems = {};
+        var superEventsMapped = [],
+            eventsMapped = [];
         if(events) {
-          events.superevents.map(function(event, index){
-            formatEventAchievement(eventsItems, event, index);
-          });
-          events.events.map(function(event, index){
-            formatEventAchievement(eventsItems, event, index+1);
-          });
+          superEventsMapped = events.superevents.map(formatEventAchievement);
+          eventsMapped = events.events.map(formatEventAchievement);
         }
-        return eventsItems;
+        return superEventsMapped.concat(eventsMapped);
       }
 
-      function formatEventAchievement(finalObj, event, index){
+      function formatEventAchievement(event){
         var eventItem = {
           desactive: !event.completed,
           description: event.description,
@@ -85,7 +75,7 @@
             generalImg : event.image
           }
         };
-        finalObj[index+1] = eventItem;
+        return eventItem;
       }
 
       function activateAchievement(achievement){
@@ -130,12 +120,26 @@
         });
       }
 
-      function changeTab(field) {
-        vmInv.achievements = (field === 'achievements') ? allAchievements : allEventItems;
+      function changeTab(currentTab) {
+        vmInv.achievements = splitedAchivements[currentTab.page];
         angular.forEach(vmInv.tabs, function(tab) {
-          tab.selected = tab.field === field;
+          tab.selected = tab.field === currentTab.field;
         });
       }
 
+      function formatTabs(pages) {
+        var formatField = 'achievement_pag';
+        var formatedTabs = [];
+        for (var index = 0; index < pages; index++) {
+          var tab = {
+            field: formatField + index,
+            page: index,
+            name: index + 1,
+            selected: index === 0
+          };
+          formatedTabs.push(tab);
+        }
+        return formatedTabs;
+      }
     });
 })();
