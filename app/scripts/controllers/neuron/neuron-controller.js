@@ -8,7 +8,6 @@
               $timeout,
               $auth,
               SocialService,
-              MediaAchievements,
               dataInventory,
               ModalService) {
 
@@ -20,7 +19,7 @@
     vmNeuron.frameOptions = {
       type: 'content_max'
     };
-    vmNeuron.userAchievements = dataInventory.achievements;
+    vmNeuron.userAchievements = dataInventory && dataInventory.achievements ? dataInventory.achievements : [];
     var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
     /*jshint camelcase: false */
@@ -119,14 +118,14 @@
     }
 
     function setTheme() {
-      if(vmNeuron.userAchievements.length > 0){
-        angular.forEach(vmNeuron.userAchievements, function(achievement, index){
-          if(achievement.active){
-            var currentTheme = MediaAchievements[vmNeuron.userAchievements[index].number].settings.theme;
-            vmNeuron.contentsOptions.theme = currentTheme;
-            vmNeuron.contentsOptions.isMoitheme = currentTheme && currentTheme.includes('moi');
-          }
-        });
+      var currentAchievement = vmNeuron.userAchievements.filter(function(achievement) {
+        return achievement.active && achievement.rewards && achievement.rewards.theme;
+      });
+
+      if (currentAchievement[0]) {
+        var currentTheme = currentAchievement[0].rewards.theme;
+        vmNeuron.contentsOptions.theme = currentTheme;
+        vmNeuron.contentsOptions.isMoitheme = currentTheme && currentTheme.includes('moi');
       }
     }
 

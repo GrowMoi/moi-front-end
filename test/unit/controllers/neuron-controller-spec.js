@@ -9,25 +9,10 @@
       dependencies,
       $rootScope,
       StorageService,
-      MediaAchievements,
       ModalService,
       modalSpy;
 
     beforeEach(module('moi.controllers'));
-    beforeEach(function(){
-      module('config', function ($provide) {
-        $provide.constant('MediaAchievements', {
-          1: {
-            name: 'Contenidos aprendidos',
-            description: 'Han sido aprendidos los primeros 4 contenidos',
-            settings: {
-              badge:'images/inventory/badges/badge1.png',
-              video: 'videos/vineta_1.mp4'
-            }
-          }
-        });
-      });
-    });
     beforeEach(angular.mock.module(function ($provide) {
       $provide.factory('StorageService', function(){
         return {
@@ -61,12 +46,10 @@
       function(_$controller_,
         _$rootScope_,
         _StorageService_,
-        _MediaAchievements_,
         _ModalService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
-        MediaAchievements = _MediaAchievements_;
         StorageService = _StorageService_;
         ModalService = _ModalService_;
         $auth = {
@@ -91,7 +74,11 @@
               {
                 id:1,
                 name: '4 contenidos aprendios',
-                number: 5
+                number: 5,
+                active: false,
+                rewards: {
+                  theme: 'moi_verde'
+                }
               }
             ]
           },
