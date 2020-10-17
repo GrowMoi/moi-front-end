@@ -29,8 +29,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
             .corner.description-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
         .col.second-col-content.border-right.border-left.middle-column-margin-bottom.col-contents(ng-class="[vmContent.theme,"+
                                                                                                 "{'moi_theme': vmContent.isMoitheme}]")
-          .row.border-bottom(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme},"+
-            "{'has-consigna': vmContent.content && vmContent.content.consigna && vmContent.content.consigna.content_instruction}]")
+          .row.principal-image-row.border-bottom(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
             .col.image-center
               img.format-image(
                 ng-class="[vmContent.currentTransition, {'moi_theme': vmContent.isMoitheme}]"
@@ -82,7 +81,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
               .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                 .content-subtitle.content-subtitle-gallery(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                   | {{ 'content.max.media' | translate }}
-              .row
+              .row.slide-gallery-container
                 slide-gallery.slider-gallery-content(images='vmContent.media'
                                                     options="vmContent.slideGalleryOptions"
                                                     item-per-slide='4')

@@ -639,9 +639,12 @@
           align-items: center;
         }
       }
-      &.has-consigna {
+      &.principal-image-row {
         height: 15rem;
         flex-grow: 0;
+      }
+      &.slide-gallery-container {
+        height: 8rem;
       }
     }
   }
