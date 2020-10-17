@@ -120,6 +120,9 @@
     .content-max-third {
       width: 33%;
       padding-bottom: 0;
+      .row.slide-gallery-container {
+        height: 8rem;
+      }
     }
     &.moi_theme {
       box-shadow: -8px 0 25px #767673e0;
@@ -642,9 +645,6 @@
       &.principal-image-row {
         height: 15rem;
         flex-grow: 0;
-      }
-      &.slide-gallery-container {
-        height: 8rem;
       }
     }
   }
