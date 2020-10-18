@@ -29,7 +29,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
             .corner.description-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
         .col.second-col-content.border-right.border-left.middle-column-margin-bottom.col-contents(ng-class="[vmContent.theme,"+
                                                                                                 "{'moi_theme': vmContent.isMoitheme}]")
-          .row.border-bottom(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+          .row.principal-image-row.border-bottom(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
             .col.image-center
               img.format-image(
                 ng-class="[vmContent.currentTransition, {'moi_theme': vmContent.isMoitheme}]"
@@ -37,7 +37,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                 ng-click='vmContent.showImage(vmContent.currentContent)'
               )
             .corner.image-TR(ng-if="!vmContent.isMoitheme" ng-class="vmContent.theme")
-          .row
+          .row(ng-if="vmContent.content && !vmContent.content.consigna && !vmContent.content.consigna.content_instruction")
             .col
               .row.text-notes
                 .content-subtitle(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
@@ -47,13 +47,41 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                                           ng-model='vmContent.content.user_notes'
                                           ng-blur='vmContent.sendNotes()'
                                           ng-disabled='vmContent.readOnly')
+          .row(ng-if="vmContent.content && vmContent.content.consigna && vmContent.content.consigna.content_instruction")
+            .col
+              .row.text-notes
+                .content-subtitle.consigna(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
+                  | {{vmContent.content.consigna.content_instruction.title || 'content.max.instructions' | translate }}
+              .container-instructions
+                {{vmContent.content.consigna.content_instruction.description}}
+              .row.container-uploader(ng-if="vmContent.content.consigna.content_instruction.required_media")
+                .file-name
+                  | {{vmContent.file ? vmContent.file.name : vmContent.consignaImageUrl}}
+                .buttons
+                  .custom-button.input-file
+                    {{ 'content.max.uploader' | translate }}
+                    input(type="file"
+                          fileinput="vmContent.file"
+                          filepreview="vmContent.filepreview"
+                          accept="video/*,image/*")
+                  .custom-button.upload-file(ng-click="vmContent.uploadFile()"
+                                    class="{{vmContent.filepreview ? 'active-btn' : 'disabled-btn'}}")
+                    {{ 'buttons.upload-file' | translate }}
+              .row.container-comments(ng-if="!vmContent.content.consigna.content_instruction.required_media")
+                textarea.content-comments(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]"
+                                          ng-model='vmContent.consignaText'
+                                          ng-disabled='vmContent.readOnly')
+                .buttons
+                  .custom-button.upload-text(ng-click="vmContent.updateText()"
+                    class="{{vmContent.readOnly ? 'active-btn' : 'disabled-btn'}}")
+                    {{ 'buttons.send-text' | translate }}
         .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row
             .col.content-max-third
               .row.border-third-column(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                 .content-subtitle.content-subtitle-gallery(ng-class="[vmContent.theme, {'moi_theme': vmContent.isMoitheme}]")
                   | {{ 'content.max.media' | translate }}
-              .row
+              .row.slide-gallery-container
                 slide-gallery.slider-gallery-content(images='vmContent.media'
                                                     options="vmContent.slideGalleryOptions"
                                                     item-per-slide='4')

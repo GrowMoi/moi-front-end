@@ -5,29 +5,44 @@
                                               $window,
                                               $timeout,
                                               $interval,
-                                              $state,
                                               $auth,
                                               content,
                                               ContentService,
                                               ModalService,
                                               ReadContentTimingService,
-                                              MediaAchievements,
                                               dataInventory,
                                               SocialService,
                                               StorageService,
-                                              GAService) {
+                                              GAService,
+                                              $state) {
       /*jshint camelcase: false */
       var vmContent = this;
       vmContent.showImage = showImage;
       vmContent.sendNotes = sendNotes;
       vmContent.readOnly = !!content.read_only;
       vmContent.showAlertExternalLink = showAlertExternalLink;
-      vmContent.userAchievements = dataInventory.achievements;
+      vmContent.userAchievements = dataInventory && dataInventory.achievements ? dataInventory.achievements : [];
       vmContent.changeLanguage = StorageService.changeLanguage;
+      vmContent.uploadFile = uploadFile;
+      vmContent.updateText = updateText;
       var language = $auth.user.language;
       vmContent.state = language === 'es' ? false : true;
       var modelData = {};
       var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+      var placeholderConsigaUploader = 'Sube tu imagen o video de máximo 10 MB';
+      var dialogOptions = {
+        templateUrl: 'templates/partials/modal-alert-content.html',
+        model: {
+          callbacks: {
+            btnRight: function() {
+              dialogOptions.model.closeModal();
+            }
+          },
+          labels: {
+            btnRight: 'Aceptar'
+          }
+        }
+      };
       vmContent.frameOptions = {
         type: 'content_max',
         showBackButton: true
@@ -45,6 +60,12 @@
 
       function activate() {
         vmContent.content = content;
+        vmContent.consignaImageUrl = vmContent.content.consigna && vmContent.content.consigna.last_request_sent &&
+                                    vmContent.content.consigna.last_request_sent.in_review ?
+                                    vmContent.content.consigna.last_request_sent.media : placeholderConsigaUploader;
+        vmContent.consignaText = vmContent.content.consigna && vmContent.content.consigna.last_request_sent &&
+                                vmContent.content.consigna.last_request_sent.in_review ?
+                                vmContent.content.consigna.last_request_sent.text : '';
         vmContent.media = content.videos.concat(content.media);
         vmContent.currentContentImageUrl = getImageUrl(vmContent.media[0]);
         vmContent.currentContent = vmContent.media[0];
@@ -119,6 +140,7 @@
         stopsReading();
         modelData.isImage = isImage(urlImage);
         modelData.contentSrc = urlImage;
+        modelData.isEmbedVideo = true;
         if(!modelData.isImage){
           $backgroundSound[0].pause();
         }
@@ -153,11 +175,7 @@
             btnLeft: 'Seguir Leyendo'
           }
         };
-
-        var dialogOptions = {
-          templateUrl: 'templates/partials/modal-alert-content.html',
-          model: dialogContentModel
-        };
+        dialogOptions.model = dialogContentModel;
         ModalService.showModel(dialogOptions);
       }
 
@@ -181,16 +199,16 @@
       }
 
       function setTheme() {
-        if(vmContent.userAchievements.length > 0){
-          angular.forEach(vmContent.userAchievements, function(achievement, index){
-            if(achievement.active){
-              var currentTheme = MediaAchievements[vmContent.userAchievements[index].number].settings.theme;
-              vmContent.theme = currentTheme;
-              vmContent.isMoitheme = currentTheme && currentTheme.includes('moi');
-              modelData.frameColor = currentTheme && currentTheme.replace('moi_', '');
-              vmContent.slideGalleryOptions.modalFrameColor = modelData.frameColor;
-            }
-          });
+        var currentAchievement = vmContent.userAchievements.filter(function(achievement) {
+          return achievement.active && achievement.rewards && achievement.rewards.theme;
+        });
+
+        if (currentAchievement[0]) {
+          var currentTheme = currentAchievement[0].rewards.theme;
+          vmContent.theme = currentTheme;
+          vmContent.isMoitheme = currentTheme && currentTheme.includes('moi');
+          modelData.frameColor = currentTheme && currentTheme.replace('moi_', '');
+          vmContent.slideGalleryOptions.modalFrameColor = modelData.frameColor;
         }
       }
 
@@ -205,5 +223,33 @@
         SocialService.showModal(data);
       }
 
+      function uploadFile() {
+        var defaultMB = 10;
+        var maxAllowedSize = defaultMB * 1024 * 1024;
+        if (vmContent.file.size > maxAllowedSize) {
+          dialogOptions.model.message = 'Archivo muy pesado, el tamaño permitido es de '+defaultMB+'MB';
+          ModalService.showModel(dialogOptions);
+        } else {
+          var formData = new FormData();
+          formData.append('content_id', vmContent.content.id);
+          formData.append('media', vmContent.file);
+          ContentService.uploadConsigna(formData, true).then(function() {
+            dialogOptions.model.message = 'Archivo subido correctamente';
+            ModalService.showModel(dialogOptions);
+            $state.reload();
+          });
+        }
+      }
+      function updateText() {
+        var paramsData = {
+          'content_id': vmContent.content.id,
+          'text': vmContent.consignaText
+        };
+        ContentService.uploadConsigna(paramsData).then(function() {
+          dialogOptions.model.message = 'Texto subido correctamente';
+          ModalService.showModel(dialogOptions);
+          $state.reload();
+        });
+      }
     });
 })();

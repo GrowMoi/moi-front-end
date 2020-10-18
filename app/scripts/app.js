@@ -42,7 +42,15 @@
    });
   })
 
-  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider, IdleProvider, KeepaliveProvider) {
+  .config(function(
+    $stateProvider,
+    $urlRouterProvider,
+    $httpProvider,
+    $ionicConfigProvider,
+    IdleProvider,
+    KeepaliveProvider,
+    $sceDelegateProvider,
+    ENV) {
     // configure Idle settings
     IdleProvider.idle(12); // in seconds
     IdleProvider.timeout(600); // in seconds
@@ -55,6 +63,15 @@
         response: InterceptorService.response
       };
     });
+
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self',
+      // Allow loading from our assets domain. **.
+      ENV.apiHost + '/**',
+      'https://moi-backend.growmoi.com/**',
+      'https://res.cloudinary.com/moi-images/**'
+    ]);
 
     $ionicConfigProvider.views.transition('none');
     // Ionic uses AngularUI Router which uses the concept of states

@@ -80,7 +80,11 @@
   }
   .content-image {
     height: 100%;
+    width: auto;
+  }
+  .content-video {
     width: 100%;
+    height: 90%;
   }
 }
 /* Fix modal backdrop for smaller devices */

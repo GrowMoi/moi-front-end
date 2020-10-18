@@ -52,98 +52,106 @@
       }
 
       .third-level {
-        &-0 {
+        &-00 {
           bottom: 70px;
           left: -60px;
         }
-        &-2 {
-          bottom: 110px;
-          left: -60px;
+        &-10 {
+          bottom: 109px;
+          left: -49px;
         }
-        &-3 {
-          bottom: 160px;
-          left: 0;
+        &-11 {
+          bottom: 161px;
+          left: 5px;
         }
-        &-4 {
+        &-12 {
+          bottom: 214px;
+          left: -102px;
+        }
+        &-20 {
           bottom: 100px;
           left: 20px;
         }
-        &-6 {
+        &-30 {
           bottom: 120px;
           left: 50px;
         }
-        &-7 {
+        &-31 {
           bottom: 110px;
           left: 110px;
         }
       }
 
       .fourth-level {
-        &-0 {
+        &-000 {
           bottom: 70px;
           left: -50px;
         }
-        &-1 {
+        &-001 {
           bottom: 110px;
           left: -110px;
         }
-        &-2 {
+        &-002 {
           bottom: 195px;
           left: -150px;
         }
-        &-4 {
-          bottom: 95px;
-          left: -50px;
+        &-100 {
+          bottom: 108px;
+          left: 40px;
         }
-        &-5 {
+        &-101 {
           bottom: 200px;
           left: -25px;
         }
-        &-6 {
+        &-102 {
           bottom: 260px;
           left: 30px;
         }
-        &-10 {
+        &-110 {
           bottom: 105px;
           left: 40px;
         }
-        &-11 {
-          bottom: 170px;
-          left: 90px;
+        &-120 {
+          bottom: 110px;
+          left: -15px;
         }
-        &-8 {
+        &-11 { //Neurona Vacia
+          bottom: 155px;
+          left: -80px;
+        }
+        &-200 {
           bottom: 170px;
           left: 60px;
         }
-        &-9 {
+        &-201 {
           bottom: 180px;
           left: 90px;
         }
-        &-12 {
+        &-300 {
           bottom: 120px;
           left: 60px;
         }
-        &-13 {
+        &-301 {
           bottom: 120px;
           left: 60px;
         }
-        &-18 {
+        &-310 {
           bottom: 120px;
           left: 60px;
         }
-        &-19 {
+        &-311 {
           bottom: 120px;
           left: 60px;
         }
-        &-20 {
+        &-312 {
           bottom: 250px;
           left: 120px;
         }
-        &-21 {
+        &-313 {
           bottom: 220px;
           left: 140px;
         }
-        &-22 {
+        &-314 {
           bottom: 300px;
           left: 190px;
         }
@@ -198,33 +206,33 @@
       }
 
       .third-level-branch {
-        &-0 {
+        &-00 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama004.png);
           }
         }
-        &-2 {
+        &-10 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama033.png);
           }
         }
-        &-3 {
+        &-11 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama032.png);
             position: initial;
           }
         }
-        &-4 {
+        &-20 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama060.png);
           }
         }
-        &-6 {
+        &-30 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama080.png);
           }
         }
-        &-7 {
+        &-31 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama081.png);
           }
@@ -232,69 +240,69 @@
       }
 
       .fourth-level-branch {
-        &-0 {
+        &-000 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama007.png);
           }
         }
-        &-1 {
+        &-001 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama006.png);
           }
         }
-        &-2 {
+        &-002 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama005.png);
           }
         }
-        &-4 {
+        &-100 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama007.png);
           }
         }
-        &-5 {
+        &-101 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama034.png);
           }
         }
-        &-6 {
+        &-102 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama034.png);
           }
         }
-        &-10 {
+        &-110 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama031.png);
           }
         }
-        &-11 {
+        &-11 { //Neurona Vacia
           &.florecida{
             background-image: url(../images/tree/level-4/rama061.png);
           }
         }
-        &-8 {
+        &-200 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama061.png);
           }
         }
-        &-9 {
+        &-201 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama082.png);
           }
         }
-        &-12 {
+        &-300 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama082.png);
           }
         }
-        &-13 {
+        &-301 {
           left: -121px;
           bottom: -21px;
           &.florecida{
             background-image: url(../images/tree/level-4/rama083.png);
           }
         }
-        &-18 {
+        &-310 {
           bottom: -52px;
           height: 740px;
           left: -171px;
@@ -302,17 +310,17 @@
             background-image: url(../images/tree/level-4/rama084.png);
           }
         }
-        &-19 {
+        &-311 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama084.png);
           }
         }
-        &-20 {
+        &-312 {
           &.florecida{
             background-image: url(../images/tree/level-4/rama086.png);
           }
         }
-        &-21 {
+        &-313 {
           left: -210px;
           bottom: -67px;
           height: 770px;
@@ -320,7 +328,7 @@
             background-image: url(../images/tree/level-4/rama085.png);
           }
         }
-        &-22 {
+        &-314 {
           bottom: -32px;
           left: -155px;
           height: 725px;

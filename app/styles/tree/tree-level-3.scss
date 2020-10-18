@@ -31,33 +31,33 @@
         }
       }
       .third-level-branch {
-        &-0 {
+        &-00 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama004.png);
           }
         }
-        &-2 {
+        &-10 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama033.png);
           }
         }
-        &-3 {
+        &-11 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama032.png);
             position: initial;
           }
         }
-        &-4 {
+        &-20 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama060.png);
           }
         }
-        &-6 {
+        &-30 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama080.png);
           }
         }
-        &-7 {
+        &-31 {
           &.florecida{
             background-image: url(../images/tree/level-3/rama081.png);
           }
@@ -116,27 +116,31 @@
       }
 
       .third-level {
-        &-0 {
+        &-00 {
           bottom: 45px;
           left: -95px;
         }
-        &-2 {
-          bottom: 140px;
-          left: -60px;
+        &-10 {
+          bottom: 175px;
+          left: -26px;
         }
-        &-3 {
+        &-11 {
           bottom: 200px;
-          left: 0;
+          left: 20px;
         }
-        &-4 {
+        &-12 {
+          bottom: 262px;
+          left: -75px;
+        }
+        &-20 {
           bottom: 130px;
           left: 50px;
         }
-        &-6 {
+        &-30 {
           bottom: 110px;
           left: 150px;
         }
-        &-7 {
+        &-31 {
           bottom: 105px;
           left: 165px;
         }

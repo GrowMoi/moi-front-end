@@ -266,25 +266,40 @@
 
       function finishedAnimationRead() {
         GAService.track('send', 'event', 'Aprender contenido '+ vm.content.title, 'Click');
-        ContentService.readContent(vm.content).then(function(response){
-          var data = response.data,
-              page = $state.current.name;
-          if (page === 'neuron') {
-            $rootScope.$broadcast('neuron:remove-content');
-          }
-          if (data.perform_test) {
-            TestService.goTest($scope, data.test);
-          }
+        if(vm.content.content_can_read) {
+          ContentService.readContent(vm.content).then(function(response){
+            var data = response.data,
+                page = $state.current.name;
+            if (page === 'neuron') {
+              $rootScope.$broadcast('neuron:remove-content');
+            }
+            if (data.perform_test) {
+              TestService.goTest($scope, data.test);
+            }
 
-          if(vm.content.belongs_to_event){
-            updateEventsCounter();
-            $state.go('tasks.contentsToLearn');
-          }else if (page === 'content' && !data.perform_test) {
-            $state.go('neuron', {
-              neuronId: vm.content.neuron_id
-            });
-          }
-        });
+            if(vm.content.belongs_to_event){
+              updateEventsCounter();
+              $state.go('tasks.contentsToLearn');
+            }else if (page === 'content' && !data.perform_test) {
+              $state.go('neuron', {
+                neuronId: vm.content.neuron_id
+              });
+            }
+          });
+        } else {
+          dialogContentModel = {
+            message: 'Aun no has subido el archivo de tu consigna, por favor subelo para poder aprender este contenido.',
+            callbacks: {
+              btnCenter: function() {
+                dialogContentModel.closeModal();
+              }
+            },
+            labels: {
+              btnCenter: 'Aceptar'
+            }
+          };
+          showModal();
+        }
       }
 
       function updateEventsCounter(){

@@ -18,73 +18,79 @@
       'second-level-3': {
         color: 'red'
       },
-      'third-level-0': {
+      'third-level-00': {
         color: 'blue'
       },
-      'third-level-2': {
+      'third-level-10': {
         color: 'green'
       },
-      'third-level-3': {
+      'third-level-11': {
         color: 'green'
       },
-      'third-level-4': {
+      'third-level-12': {
+        color: 'green'
+      },
+      'third-level-20': {
         color: 'yellow'
       },
-      'third-level-6': {
+      'third-level-30': {
         color: 'red'
       },
-      'third-level-7': {
+      'third-level-31': {
         color: 'red'
       },
-      'fourth-level-0': {
+      'fourth-level-000': {
         color: 'blue'
       },
-      'fourth-level-1': {
+      'fourth-level-001': {
         color: 'blue'
       },
-      'fourth-level-2': {
+      'fourth-level-002': {
         color: 'blue'
       },
-      'fourth-level-4': {
+      'fourth-level-100': {
         color: 'green'
       },
-      'fourth-level-5': {
+      'fourth-level-101': {
         color: 'green'
       },
-      'fourth-level-6': {
+      'fourth-level-102': {
         color: 'green'
       },
-      'fourth-level-10': {
+      'fourth-level-110': {
         color: 'green'
       },
-      'fourth-level-11': {
+      'fourth-level-120': {
         color: 'green'
       },
-      'fourth-level-8': {
+      'fourth-level-11': { //Neurona Vacia
+        color: 'green'
+      },
+      'fourth-level-200': {
         color: 'yellow'
       },
-      'fourth-level-9': {
+      'fourth-level-201': {
         color: 'yellow'
       },
-      'fourth-level-12': {
+      'fourth-level-300': {
         color: 'red'
       },
-      'fourth-level-13': {
+      'fourth-level-301': {
         color: 'red'
       },
-      'fourth-level-18': {
+      'fourth-level-310': {
         color: 'red'
       },
-      'fourth-level-19': {
+      'fourth-level-311': {
         color: 'red'
       },
-      'fourth-level-20': {
+      'fourth-level-312': {
         color: 'red'
       },
-      'fourth-level-21': {
+      'fourth-level-313': {
         color: 'red'
       },
-      'fourth-level-22': {
+      'fourth-level-314': {
         color: 'red'
       },
       'fifth-level-0000': {
@@ -106,6 +112,9 @@
         color: 'green'
       },
       'fifth-level-1100': {
+        color: 'green'
+      },
+      'fifth-level-1200': {
         color: 'green'
       },
       'fifth-level-1101': {
@@ -230,6 +239,9 @@
         color: 'green'
       },
       'sixth-level-11010': {
+        color: 'green'
+      },
+      'sixth-level-12000': {
         color: 'green'
       },
       'sixth-level-10200': {
@@ -422,6 +434,9 @@
         color: 'green'
       },
       'seventh-level-110102': { //c de la vida
+        color: 'green'
+      },
+      'seventh-level-120000': {
         color: 'green'
       },
       'seventh-level-102301': { //corteza

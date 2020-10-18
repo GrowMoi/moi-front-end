@@ -5,20 +5,17 @@
                                                 data,
                                                 events,
                                                 UserService,
-                                                MediaAchievements,
-                                                MediaAchievementsEn,
                                                 HoverAnimationService,
                                                 ModalService,
-                                                DesactiveAchievements,
-                                                DesactiveAchievementsEn,
                                                 TestService,
-                                                $auth) {
+                                                $auth,
+                                                UtilityService) {
       var vmInv = this,
           $backgroundSound,
-          achievements = data.achievements,
-          language = $auth.user.language,
-          allEventItems = {},
-          allAchievements = {};
+          allEventItems = [],
+          allAchievements = [],
+          splitedAchivements = [],
+          itemsPerTab = 12;
 
       vmInv.user = $auth.user;
       vmInv.buttonsOptions = {
@@ -34,22 +31,12 @@
       vmInv.showInventory = true;
       vmInv.activateAchievement = activateAchievement;
       vmInv.achievementSelected = {};
-      vmInv.tabs = [
-        {
-          field: 'achievements',
-          name: '1',
-          selected: true
-        },
-        {
-          field: 'event_items',
-          name: '2',
-          selected: false
-        },
-      ];
       vmInv.changeTab = changeTab;
       allEventItems = formatEventsItems();
-      allAchievements = formatAchievements();
-      vmInv.achievements = allAchievements;
+      allAchievements = data.achievements.concat(allEventItems);
+      splitedAchivements = UtilityService.splitArrayIntoChunks(allAchievements, itemsPerTab);
+      vmInv.tabs = formatTabs(splitedAchivements.length);
+      vmInv.achievements = splitedAchivements[0];
       vmInv.increaseSize = HoverAnimationService.increaseSize;
       vmInv.cssOptions = {
         styles: []
@@ -66,37 +53,17 @@
         showBackButton: true
       };
 
-      function formatAchievements() {
-        var achievementsList = language === 'es' ? DesactiveAchievements : DesactiveAchievementsEn;
-        achievements.map(function(achievement) {
-          var currentAchievement = achievementsList[achievement.number];
-          if(currentAchievement) {
-            achievementsList[achievement.number] =  achievement;
-            if(!achievement.desactive) {
-              achievementsList[achievement.number].settings = MediaAchievements[achievement.number].settings;
-            }
-            if(language === 'en'){
-              achievementsList[achievement.number].name = MediaAchievementsEn[achievement.number].name;
-            }
-          }
-        });
-        return achievementsList;
-      }
-
       function formatEventsItems() {
-        var eventsItems = {};
+        var superEventsMapped = [],
+            eventsMapped = [];
         if(events) {
-          events.superevents.map(function(event, index){
-            formatEventAchievement(eventsItems, event, index);
-          });
-          events.events.map(function(event, index){
-            formatEventAchievement(eventsItems, event, index+1);
-          });
+          superEventsMapped = events.superevents.map(formatEventAchievement);
+          eventsMapped = events.events.map(formatEventAchievement);
         }
-        return eventsItems;
+        return superEventsMapped.concat(eventsMapped);
       }
 
-      function formatEventAchievement(finalObj, event, index){
+      function formatEventAchievement(event){
         var eventItem = {
           desactive: !event.completed,
           description: event.description,
@@ -108,24 +75,25 @@
             generalImg : event.image
           }
         };
-        finalObj[index+1] = eventItem;
+        return eventItem;
       }
 
       function activateAchievement(achievement){
-        if(achievement.settings.theme){
-          vmInv.achievementSelected = achievement;
-          UserService.activeAchievement(achievement.id).then(showpopup);
-        }
-        if (achievement.settings.video) {
-          $backgroundSound[0].pause();
-          vmInv.showInventory = false;
-          vmInv.urlVideo = achievement.settings.video;
-        }
-        if (achievement.settings.runFunction === 'openModal') {
-          TestService.goFinalTest(null, vmInv.user.name);
-        }
-        if(achievement.desactive) {
-          var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.settings.badge.replace('item', 'badge');
+        if (achievement.is_available && achievement.rewards) { //jshint ignore:line
+          if (achievement.rewards.theme){
+            vmInv.achievementSelected = achievement;
+            UserService.activeAchievement(achievement.id).then(showpopup);
+          }
+          if (achievement.rewards.video) {
+            $backgroundSound[0].pause();
+            vmInv.showInventory = false;
+            vmInv.urlVideo = achievement.rewards.video;
+          }
+          if (achievement.rewards.runFunction === 'openModal') {
+            TestService.goFinalTest(null, vmInv.user.name);
+          }
+        } else {
+          var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.image;
           achievement.badgeFull = currentImage;
           var dialogContentModel = {
             templateUrl: 'templates/partials/modal-inventory.html',
@@ -152,12 +120,26 @@
         });
       }
 
-      function changeTab(field) {
-        vmInv.achievements = (field === 'achievements') ? allAchievements : allEventItems;
+      function changeTab(currentTab) {
+        vmInv.achievements = splitedAchivements[currentTab.page];
         angular.forEach(vmInv.tabs, function(tab) {
-          tab.selected = tab.field === field;
+          tab.selected = tab.field === currentTab.field;
         });
       }
 
+      function formatTabs(pages) {
+        var formatField = 'achievement_pag';
+        var formatedTabs = [];
+        for (var index = 0; index < pages; index++) {
+          var tab = {
+            field: formatField + index,
+            page: index,
+            name: index + 1,
+            selected: index === 0
+          };
+          formatedTabs.push(tab);
+        }
+        return formatedTabs;
+      }
     });
 })();

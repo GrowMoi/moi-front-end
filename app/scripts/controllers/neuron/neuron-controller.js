@@ -8,8 +8,8 @@
               $timeout,
               $auth,
               SocialService,
-              MediaAchievements,
-              dataInventory) {
+              dataInventory,
+              ModalService) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -19,12 +19,17 @@
     vmNeuron.frameOptions = {
       type: 'content_max'
     };
-    vmNeuron.userAchievements = dataInventory.achievements;
+    vmNeuron.userAchievements = dataInventory && dataInventory.achievements ? dataInventory.achievements : [];
+    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-
+      var showNeuronVideo = (localStorage.getItem('neuronVideo') !== 'true') && vmNeuron.neuron && vmNeuron.neuron.video;
+      if (showNeuronVideo) {
+        vmNeuron.neuron.video = changeLinkProtocol(vmNeuron.neuron.video);
+        showVideoModal(vmNeuron.neuron.video);
+      }
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
         content: vmNeuron.neuron.contents[0],
@@ -113,15 +118,37 @@
     }
 
     function setTheme() {
-      if(vmNeuron.userAchievements.length > 0){
-        angular.forEach(vmNeuron.userAchievements, function(achievement, index){
-          if(achievement.active){
-            var currentTheme = MediaAchievements[vmNeuron.userAchievements[index].number].settings.theme;
-            vmNeuron.contentsOptions.theme = currentTheme;
-            vmNeuron.contentsOptions.isMoitheme = currentTheme && currentTheme.includes('moi');
-          }
-        });
+      var currentAchievement = vmNeuron.userAchievements.filter(function(achievement) {
+        return achievement.active && achievement.rewards && achievement.rewards.theme;
+      });
+
+      if (currentAchievement[0]) {
+        var currentTheme = currentAchievement[0].rewards.theme;
+        vmNeuron.contentsOptions.theme = currentTheme;
+        vmNeuron.contentsOptions.isMoitheme = currentTheme && currentTheme.includes('moi');
       }
+    }
+
+    function showVideoModal(url) {
+      var modelData = {
+        isImage: false,
+        contentSrc: url,
+        isEmbedVideo: false,
+      };
+      $backgroundSound[0].pause();
+      ModalService.showModel({
+        parentScope: $scope,
+        templateUrl: 'templates/partials/modal-image.html',
+        model: modelData,
+        onHide: function() {
+          $backgroundSound[0].play();
+          localStorage.setItem('neuronVideo', 'true');
+        }
+      });
+    }
+
+    function changeLinkProtocol(link) {
+      return link.replace(/^http:\/\//i, 'https://');
     }
   });
 })();

@@ -6,7 +6,6 @@
     .factory('ContentService', ContentService);
 
   function ContentService($http,
-                          $ionicPopup,
                           $state,
                           ENV,
                           PopupService,
@@ -17,7 +16,8 @@
       addNotesToContent: addNotesToContent,
       recommendedContents: recommendedContents,
       changeImageStatus: changeImageStatus,
-      getContent: getContent
+      getContent: getContent,
+      uploadConsigna: uploadConsigna
     };
     var popupOptions = { title: 'Error'};
 
@@ -120,6 +120,28 @@
           popupOptions.content = err.statusText;
           PopupService.showModel('alert', popupOptions);
         }
+      });
+    }
+
+    function uploadConsigna(paramsData, includeImage) {
+      var authHeaders = $auth.retrieveData('auth_headers');
+      var requestConfig = {
+        method: 'POST',
+        url: ENV.apiHost + '/api/content_validations/send_request',
+        data: paramsData,
+      };
+      if (!!includeImage) {
+        authHeaders['Content-Type'] = undefined;
+        requestConfig.headers = authHeaders;
+      }
+      return $http(requestConfig).then(function success(res) {
+        return res;
+      }, function error(err) {
+        if(err.status !== 404){
+          popupOptions.content = err.statusText;
+          PopupService.showModel('alert', popupOptions);
+        }
+        return $q.reject(err);
       });
     }
   }

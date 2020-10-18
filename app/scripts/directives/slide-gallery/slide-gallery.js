@@ -20,12 +20,12 @@
     };
   }
 
-  function slideGalleryController($element, $scope, $ionicSlideBoxDelegate, ModalService, GAService) {
+  function slideGalleryController($scope, $ionicSlideBoxDelegate, ModalService, GAService, UtilityService) {
     var vmSlide = this;
 
     vmSlide.showMedia = showMedia;
     vmSlide.slideChanged = slideChanged;
-    vmSlide.slideImages = createGroupedArray(vmSlide.images, parseInt(vmSlide.itemPerSlide));
+    vmSlide.slideImages = UtilityService.splitArrayIntoChunks(vmSlide.images, parseInt(vmSlide.itemPerSlide));
     vmSlide.next = next;
     vmSlide.previous = previous;
     vmSlide.isImage = isImage;
@@ -61,14 +61,6 @@
       emitters.onImageSelectedCBs.push(cb);
     }
 
-    function createGroupedArray(arr, chunkSize) {
-      var groups = [], i;
-      for (i = 0; i < arr.length; i += chunkSize) {
-          groups.push(arr.slice(i, i + chunkSize));
-      }
-      return groups;
-    }
-
     function next() {
       $ionicSlideBoxDelegate.next();
     }
@@ -84,6 +76,7 @@
       modelData.contentSrc = url;
       modelData.isImage = isImage(url);
       modelData.frameColor = vmSlide.options.modalFrameColor;
+      modelData.isEmbedVideo = true;
 
       emitters.onImageSelectedCBs.forEach(function(cb){
         cb(url);
