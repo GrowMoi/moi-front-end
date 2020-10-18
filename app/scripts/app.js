@@ -70,7 +70,8 @@
       // Allow loading from our assets domain. **.
       ENV.apiHost + '/**',
       'https://backend.miaulabdp.com/**',
-      'http://moi-backend.growmoi.com/**'
+      'http://moi-backend.growmoi.com/**',
+      'http://res.cloudinary.com/moi-images/**'
     ]);
 
     $ionicConfigProvider.views.transition('none');
