@@ -27,6 +27,7 @@
       vmNeuron.neuron = data;
       var showNeuronVideo = (localStorage.getItem('neuronVideo') !== 'true') && vmNeuron.neuron && vmNeuron.neuron.video;
       if (showNeuronVideo) {
+        vmNeuron.neuron.video = changeLinkProtocol(vmNeuron.neuron.video);
         showVideoModal(vmNeuron.neuron.video);
       }
       vmNeuron.buttonsOptions = {
@@ -144,6 +145,10 @@
           localStorage.setItem('neuronVideo', 'true');
         }
       });
+    }
+
+    function changeLinkProtocol(link) {
+      return link.replace(/^http:\/\//i, 'https://');
     }
   });
 })();

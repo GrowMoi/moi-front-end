@@ -8,5 +8,10 @@
                 controls='1'
                 width='100%'
                 height='100%')
-      video.content-video(ng-if='!model.isImage && !model.isEmbedVideo' controls autoplay preload='auto')
-        source(src="{{model.contentSrc}}", type="video/mp4")
+      video.content-video(
+        ng-if='!model.isImage && !model.isEmbedVideo'
+        controls
+        autoplay
+        preload='auto'
+        ng-src="{{model.contentSrc}}"
+        type="video/mp4")
