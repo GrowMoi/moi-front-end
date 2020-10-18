@@ -148,7 +148,8 @@
     }
 
     function changeLinkProtocol(link) {
-      return link.replace(/^http:\/\//i, 'https://');
+      var isVideoFromCloudinary = link.includes('cloudinary.com');
+      return isVideoFromCloudinary ? link.replace(/^http:\/\//i, 'https://') : link;
     }
   });
 })();
