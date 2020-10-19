@@ -146,8 +146,10 @@
             showModalAchievement(recommendations);
           }
           if (achievements.length > 0) {
-            showUserAchievement(achievements[0]);
-          }else{
+            angular.forEach(achievements, function(achievement) {
+              showUserAchievement(achievement);
+            });
+          } else {
             if(countModalsActived === 0){
               $state.go('tree', {
                 username: currentUser.username
