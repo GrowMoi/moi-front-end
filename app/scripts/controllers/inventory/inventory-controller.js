@@ -121,6 +121,7 @@
       }
 
       function changeTab(currentTab) {
+        vmInv.achievements = [];
         vmInv.achievements = splitedAchivements[currentTab.page];
         angular.forEach(vmInv.tabs, function(tab) {
           tab.selected = tab.field === currentTab.field;

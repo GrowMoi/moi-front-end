@@ -18,7 +18,7 @@ ion-view.inventory-section(view-title='Inventario')
                     | {{tab.name}}
               .gridWrapper
                 .cell(ng-style="vmInv.cssOptions.styles[$index]"
-                      ng-repeat="achievement in vmInv.achievements track by $index"
+                      ng-repeat="achievement in vmInv.achievements"
                       ng-click="vmInv.activateAchievement(achievement)"
                       ng-mouseover="vmInv.increaseSize(true, vmInv.cssOptions, $index)"
                       ng-mouseleave="vmInv.increaseSize(false, vmInv.cssOptions, $index)"

@@ -190,7 +190,7 @@
 
     function showModalAchievement(recommendations) {
       var modelData = extractModelData(recommendations) ;
-      var templateModal = 'templates/partials/modal-tutor-achievement';
+      var templateModal = 'templates/partials/modal-tutor-achievement.html';
       ModalService.showModel(
         {
           parentScope: $scope,
