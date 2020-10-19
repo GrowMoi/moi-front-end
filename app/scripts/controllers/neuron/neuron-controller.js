@@ -20,7 +20,6 @@
       type: 'content_max'
     };
     vmNeuron.userAchievements = dataInventory && dataInventory.achievements ? dataInventory.achievements : [];
-    var $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
 
     /*jshint camelcase: false */
     function init(){
@@ -130,12 +129,16 @@
     }
 
     function showVideoModal(url) {
-      var modelData = {
+      var $backgroundSound,
+        modelData = {
         isImage: false,
         contentSrc: url,
         isEmbedVideo: false,
+        shown: function() {
+          $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+          $backgroundSound[0].pause();
+        }
       };
-      $backgroundSound[0].pause();
       ModalService.showModel({
         parentScope: $scope,
         templateUrl: 'templates/partials/modal-image.html',
