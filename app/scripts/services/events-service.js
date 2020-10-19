@@ -151,12 +151,7 @@
       }
 
       function showDailyEvents() {
-        getDailyEvents().then(function(resp){
-          if(resp && (resp.events.length > 0 || resp.superevent.length > 0)){
-            showSetEvents(resp.events, resp.superevent);
-            localStorage.setItem('seenDailyEvents', true);
-          }
-        });
+        return getDailyEvents();
       }
 
       function showSetEvents(events, superevent){

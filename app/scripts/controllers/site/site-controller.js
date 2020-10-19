@@ -26,8 +26,7 @@
                           AdvicesPage,
                           AdvicesPageEn,
                           ModalService,
-                          TooltipsService,
-                          EventsService) {
+                          TooltipsService) {
     var site = this,
         images = IMAGES.paths,
         imageSaved = false,
@@ -190,11 +189,6 @@
 
       if (site.loadedImages) {
         $ionicLoading.hide();
-      }
-
-      //load daily events
-      if(!localStorage.getItem('seenDailyEvents') && toState.name === 'neuron'){
-        EventsService.showDailyEvents();
       }
 
       site.soundPage =  SoundsPage[toState.name] || {};

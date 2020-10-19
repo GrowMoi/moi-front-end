@@ -41,6 +41,16 @@
           showModel: modalSpy
         };
       });
+      $provide.factory('EventsService', function($q){
+        return {
+          showDailyEvents: function(){
+            return $q.defer().promise;
+          },
+          showSetEvents: function(){
+            return $q.defer().promise;
+          },
+        };
+      });
     }));
     beforeEach(inject(
       function(_$controller_,
