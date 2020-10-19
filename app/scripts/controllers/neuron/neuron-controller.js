@@ -9,13 +9,16 @@
               $auth,
               SocialService,
               dataInventory,
-              ModalService) {
+              ModalService,
+              EventsService) {
 
     var vmNeuron = this,
         ApiButtons = null,
         ApiContent = null,
         timeoutPromise = null,
-        currentUser = $auth.user || {};
+        currentUser = $auth.user || {},
+        $backgroundSound = null,
+        isLoadingEvents = false;
     vmNeuron.frameOptions = {
       type: 'content_max'
     };
@@ -129,30 +132,49 @@
     }
 
     function showVideoModal(url) {
-      var $backgroundSound,
-        modelData = {
-        isImage: false,
-        contentSrc: url,
-        isEmbedVideo: false,
-        shown: function() {
-          $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
-          $backgroundSound[0].pause();
-        }
-      };
-      ModalService.showModel({
-        parentScope: $scope,
-        templateUrl: 'templates/partials/modal-image.html',
-        model: modelData,
-        onHide: function() {
-          $backgroundSound[0].play();
-          localStorage.setItem('neuronVideo', 'true');
-        }
-      });
+      var modelData = {
+          isImage: false,
+          contentSrc: url,
+          isEmbedVideo: false,
+          shown: function() {
+            $backgroundSound = angular.element(document.querySelector('#backgroundSound'));
+            $backgroundSound[0].pause();
+          }
+        },
+        modalOptionsConfig = {
+          parentScope: $scope,
+          templateUrl: 'templates/partials/modal-image.html',
+          model: modelData,
+          onHide: onHideModalVideo
+        };
+      ModalService.showModel(modalOptionsConfig);
     }
 
     function changeLinkProtocol(link) {
       var isVideoFromCloudinary = link.includes('cloudinary.com');
       return isVideoFromCloudinary ? link.replace(/^http:\/\//i, 'https://') : link;
+    }
+
+    function onHideModalVideo() {
+      if ($backgroundSound) {
+        $backgroundSound[0].play();
+      }
+      localStorage.setItem('neuronVideo', 'true');
+      //load daily events
+      if(!isLoadingEvents && !localStorage.getItem('seenDailyEvents')){
+        showEventsModal();
+      }
+    }
+
+    function showEventsModal() {
+      isLoadingEvents = true;
+      EventsService.showDailyEvents().then(function(resp){
+        if(resp && (resp.events.length > 0 || resp.superevent.length > 0)){
+          EventsService.showSetEvents(resp.events, resp.superevent);
+          localStorage.setItem('seenDailyEvents', true);
+          isLoadingEvents = false;
+        }
+      });
     }
   });
 })();
