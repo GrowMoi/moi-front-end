@@ -33,7 +33,7 @@
       vmInv.achievementSelected = {};
       vmInv.changeTab = changeTab;
       allEventItems = formatEventsItems();
-      allAchievements = data.achievements.concat(allEventItems);
+      allAchievements = formatAchievementsImage(data.achievements.concat(allEventItems));
       splitedAchivements = UtilityService.splitArrayIntoChunks(allAchievements, itemsPerTab);
       vmInv.tabs = formatTabs(splitedAchivements.length);
       vmInv.achievements = splitedAchivements[0];
@@ -68,12 +68,7 @@
           desactive: !event.completed,
           description: event.description,
           name: event.title,
-          settings: {
-            badge: event.completed ? event.image : event.inactive_image //jshint ignore:line
-          },
-          eventData : {
-            generalImg : event.image
-          }
+          is_available: event.completed //jshint ignore:line
         };
         return eventItem;
       }
@@ -93,8 +88,7 @@
             TestService.goFinalTest(null, vmInv.user.name);
           }
         } else {
-          var currentImage = achievement.eventData ? achievement.eventData.generalImg : achievement.image;
-          achievement.badgeFull = currentImage;
+          achievement.badgeFull = achievement.image;
           var dialogContentModel = {
             templateUrl: 'templates/partials/modal-inventory.html',
             model: achievement
@@ -141,6 +135,14 @@
           formatedTabs.push(tab);
         }
         return formatedTabs;
+      }
+
+      function formatAchievementsImage(achievements) {
+        return achievements.map(function (achievement) {
+          achievement.image = achievement.image || '//:0';//jshint ignore:line
+          achievement.inactive_image = achievement.inactive_image || '//:0';//jshint ignore:line
+          return achievement;
+        });
       }
     });
 })();
