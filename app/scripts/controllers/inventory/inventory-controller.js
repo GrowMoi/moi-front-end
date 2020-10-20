@@ -68,7 +68,10 @@
           desactive: !event.completed,
           description: event.description,
           name: event.title,
-          is_available: event.completed //jshint ignore:line
+          image: event.image,
+          inactive_image: event.inactive_image,//jshint ignore:line
+          requirement: event.description,
+          is_available: event.completed//jshint ignore:line
         };
         return eventItem;
       }
