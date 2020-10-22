@@ -10,7 +10,9 @@
               SocialService,
               dataInventory,
               ModalService,
-              EventsService) {
+              EventsService,
+              StorageService,
+              storage) {
 
     var vmNeuron = this,
         ApiButtons = null,
@@ -18,7 +20,8 @@
         timeoutPromise = null,
         currentUser = $auth.user || {},
         $backgroundSound = null,
-        isLoadingEvents = false;
+        isLoadingEvents = false,
+        isSavingStorageConfig = false;
     vmNeuron.frameOptions = {
       type: 'content_max'
     };
@@ -27,10 +30,21 @@
     /*jshint camelcase: false */
     function init(){
       vmNeuron.neuron = data;
-      var showNeuronVideo = (localStorage.getItem('neuronVideo') !== 'true') && vmNeuron.neuron && vmNeuron.neuron.video;
+      var showNeuronVideo = vmNeuron.neuron && vmNeuron.neuron.video;
       if (showNeuronVideo) {
         vmNeuron.neuron.video = changeLinkProtocol(vmNeuron.neuron.video);
-        showVideoModal(vmNeuron.neuron.video);
+        if(storage && storage.neuron && storage.neuron.video) {
+          if(storage.neuron.video.neuronId !== vmNeuron.neuron.id) {
+            showVideoModal(vmNeuron.neuron.video);
+          } else if(!localStorage.getItem('seenDailyEvents')) {
+            showEventsModal();
+          }
+        } else {
+          storage.neuron = {
+            video: {}
+          };
+          showVideoModal(vmNeuron.neuron.video);
+        }
       }
       vmNeuron.buttonsOptions = {
         neuron: vmNeuron.neuron,
@@ -159,7 +173,17 @@
       if ($backgroundSound) {
         $backgroundSound[0].play();
       }
-      localStorage.setItem('neuronVideo', 'true');
+
+      //persist neuron video in backend
+      if(!isSavingStorageConfig) {
+        isSavingStorageConfig = true;
+        storage.neuron.video.neuronId = vmNeuron.neuron.id;
+        storage.neuron.video.url = vmNeuron.neuron.video;
+        StorageService.update(storage).then(function() {
+          isSavingStorageConfig = false;
+        });
+      }
+
       //load daily events
       if(!isLoadingEvents && !localStorage.getItem('seenDailyEvents')){
         showEventsModal();

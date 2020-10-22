@@ -121,6 +121,15 @@
           }, function publicUser(){
             return {};
           });
+        },
+        storage: function(StorageService, $auth) {
+          return $auth.validateUser().then(function userAuthorized(){
+            return StorageService.get().then(function(resp) {
+              return resp.data.storage;
+            });
+          }, function publicUser(){
+            return {};
+          });
         }
       }
     })
