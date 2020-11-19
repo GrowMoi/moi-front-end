@@ -5,3 +5,8 @@ ion-view(
 )
   ion-content
     ui-view
+    embed-video.tutorial-video(ng-if='vmLogin.embedVideo'
+                data-ng-href='{{vmLogin.embedVideo}}'
+                controls='1'
+                width='100%'
+                height='100%')

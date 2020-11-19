@@ -20,6 +20,7 @@
     var languageBrowser = lang.slice(0,2);
     vmLogin.form = {};
     vmLogin.finishedSound = finishedSound;
+    vmLogin.embedVideo = 'https://youtu.be/hS5CfP8n_js';
 
     var successState = 'tree';
     vmLogin.isChrome = UtilityService.isAgentChrome();
