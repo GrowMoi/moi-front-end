@@ -26,6 +26,7 @@
       vmContent.uploadFile = uploadFile;
       vmContent.updateText = updateText;
       vmContent.isUploadingFile = false;
+      vmContent.isUploadingText = false;
       var language = $auth.user.language;
       vmContent.state = language === 'es' ? false : true;
       var modelData = {};
@@ -250,9 +251,11 @@
           'content_id': vmContent.content.id,
           'text': vmContent.consignaText
         };
+        vmContent.isUploadingText = true;
         ContentService.uploadConsigna(paramsData).then(function() {
           dialogOptions.model.message = 'Texto subido correctamente';
           ModalService.showModel(dialogOptions);
+          vmContent.isUploadingText = false;
           $state.reload();
         });
       }
