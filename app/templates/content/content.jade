@@ -65,7 +65,7 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                           filepreview="vmContent.filepreview"
                           accept="video/*,image/*"
                           ng-disabled="vmContent.isUploadingFile")
-                  .custom-button.upload-file(ng-click="vmContent.uploadFile()"
+                  .custom-button.upload-content(ng-click="vmContent.uploadFile()"
                                     class="{{(!vmContent.filepreview || vmContent.isUploadingFile) ? 'disabled-btn' : 'active-btn'}}")
                     {{ 'buttons.upload-file' | translate }}
               .row.container-comments(ng-if="!vmContent.content.consigna.content_instruction.required_media")
@@ -73,8 +73,8 @@ ion-view.content-view-max(ng-class="[vmContent.theme, {'moi_theme': vmContent.is
                                           ng-model='vmContent.consignaText'
                                           ng-disabled='vmContent.readOnly')
                 .buttons
-                  .custom-button.upload-text(ng-click="vmContent.updateText()"
-                    class="{{vmContent.readOnly ? 'active-btn' : 'disabled-btn'}}")
+                  .custom-button.upload-content(ng-click="vmContent.updateText()"
+                    class="{{(vmContent.readOnly || vmContent.isUploadingText) ? 'disabled-btn' : 'active-btn'}}")
                     {{ 'buttons.send-text' | translate }}
         .col.third-col-content(ng-class="{'moi_theme': vmContent.isMoitheme}")
           .row
