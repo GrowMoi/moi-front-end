@@ -25,6 +25,7 @@
       vmContent.changeLanguage = StorageService.changeLanguage;
       vmContent.uploadFile = uploadFile;
       vmContent.updateText = updateText;
+      vmContent.isUploadingFile = false;
       var language = $auth.user.language;
       vmContent.state = language === 'es' ? false : true;
       var modelData = {};
@@ -224,18 +225,22 @@
       }
 
       function uploadFile() {
-        var defaultMB = 10;
+        var videoSizeMB = 5;
+        var imageSizeMB = 2;
+        var defaultMB =  vmContent.file.type.includes('image') ? imageSizeMB : videoSizeMB;
         var maxAllowedSize = defaultMB * 1024 * 1024;
         if (vmContent.file.size > maxAllowedSize) {
           dialogOptions.model.message = 'Archivo muy pesado, el tamaño permitido es de '+defaultMB+'MB';
           ModalService.showModel(dialogOptions);
         } else {
           var formData = new FormData();
+          vmContent.isUploadingFile = true;
           formData.append('content_id', vmContent.content.id);
           formData.append('media', vmContent.file);
           ContentService.uploadConsigna(formData, true).then(function() {
             dialogOptions.model.message = 'Archivo subido correctamente';
             ModalService.showModel(dialogOptions);
+            vmContent.isUploadingFile = false;
             $state.reload();
           });
         }
