@@ -8,12 +8,12 @@
   function ScreenshotService(ENV, $q) {
 
     var service = {
-      getImage: getImage,
+      getImageBase64: getImageBase64,
       validBase64: validBase64,
       getFileImage: getFileImage
     };
 
-    function getImage(elm) {
+    function getImageBase64(elm) {
       var deferred = $q.defer();
       var html2canvasOpts = {
         backgroundColor: null,
@@ -39,9 +39,9 @@
         canvas.toBlob(function (blob) {
           var timestamp = new Date().valueOf();
           var fileName = 'screenshot_' + timestamp + '.png';
-          var file = new File([blob], fileName, { type: 'image/png' });
+          var file = new File([blob], fileName, { type: 'image/png' });// jshint ignore:line
           deferred.resolve(file);
-        }, 'image/jpeg');
+        }, 'image/png');
       });
       return deferred.promise;
     }
