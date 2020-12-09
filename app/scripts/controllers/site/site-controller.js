@@ -221,7 +221,9 @@
           if (view && baseTree && callApiSaveImage === 0 && imageSaved === false) {
             callApiSaveImage = 1;
             ScreenshotService.getFileImage(view).then(function(file) {
-              UserService.uploadTreeImage(file)
+              var formData = new FormData();
+              formData.append('image', file);
+              UserService.uploadTreeImage(formData)
                 .then(function(resp) {
                   imageSaved = true;
                   callApiSaveImage = 0;

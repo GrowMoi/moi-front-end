@@ -82,9 +82,7 @@
       });
     }
 
-    function uploadTreeImage(file) {
-      var formData = new FormData();
-      formData.append('image', file);
+    function uploadTreeImage(formData) {
       var authHeaders = $auth.retrieveData('auth_headers');
       authHeaders['Content-Type'] = undefined;
 
