@@ -100,7 +100,7 @@
         });
       }else {
         var view = document.querySelector('#screenCapture');
-        ScreenshotService.getImageBase64(view).then(function(imageBase64){
+        ScreenshotService.getBase64Image(view).then(function(imageBase64){
           UploadImageService.uploadFile(imageBase64).then(function(resp) {
             emailParams.image_url = resp.data.url; //jshint ignore:line
             UserService.sharedEmailContent(emailParams).then(function() {
