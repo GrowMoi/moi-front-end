@@ -8,7 +8,7 @@
   function ScreenshotService(ENV, $q) {
 
     var service = {
-      getImageBase64: getImageBase64,
+      getBase64Image: getBase64Image,
       validBase64: validBase64,
       getFileImage: getFileImage
     };
