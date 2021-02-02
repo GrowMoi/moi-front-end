@@ -13,7 +13,7 @@
       getFileImage: getFileImage
     };
 
-    function getImageBase64(elm) {
+    function getBase64Image(elm) {
       var deferred = $q.defer();
       var html2canvasOpts = {
         backgroundColor: null,
