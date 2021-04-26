@@ -220,19 +220,19 @@
               baseTree = document.getElementById(site.idsTreeScreen.baseTree);
           if (view && baseTree && callApiSaveImage === 0 && imageSaved === false) {
             callApiSaveImage = 1;
-            ScreenshotService.getImage(view).then(function(img){
-              if (ScreenshotService.validBase64(img)) {
-                UserService.uploadTreeImage(img)
-                  .then(function(resp) {
-                    imageSaved = true;
-                    callApiSaveImage = 0;
-                    /*jshint camelcase: false */
-                    var response = resp || {},
-                        user = response.user || {};
-                    $auth.user.tree_image = user.tree_image.url;
-                    $rootScope.$broadcast('scanner-started', { any: user });
-                  });
-              }
+            ScreenshotService.getFileImage(view).then(function(file) {
+              var formData = new FormData();
+              formData.append('image', file);
+              UserService.uploadTreeImage(formData)
+                .then(function(resp) {
+                  imageSaved = true;
+                  callApiSaveImage = 0;
+                  /*jshint camelcase: false */
+                  var response = resp || {},
+                      user = response.user || {};
+                  $auth.user.tree_image = user.tree_image.url;
+                  $rootScope.$broadcast('scanner-started', { any: user });
+                });
             });
           }
         }, 700);

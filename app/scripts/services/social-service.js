@@ -46,7 +46,7 @@
       };
 
       var view = document.querySelector('#screenCapture');
-      ScreenshotService.getImage(view).then(function(imageBase64){
+      ScreenshotService.getBase64Image(view).then(function(imageBase64){
         UploadImageService.uploadFile(imageBase64).then(function(resp) {
           paramsToShare.imagen_url = resp.data.url; //jshint ignore:line
           UserService.sharingContent(paramsToShare).then(function(resp) {
@@ -100,7 +100,7 @@
         });
       }else {
         var view = document.querySelector('#screenCapture');
-        ScreenshotService.getImage(view).then(function(imageBase64){
+        ScreenshotService.getBase64Image(view).then(function(imageBase64){
           UploadImageService.uploadFile(imageBase64).then(function(resp) {
             emailParams.image_url = resp.data.url; //jshint ignore:line
             UserService.sharedEmailContent(emailParams).then(function() {

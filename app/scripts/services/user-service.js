@@ -82,14 +82,17 @@
       });
     }
 
-    function uploadTreeImage(dataURL) {
-      return $http({
+    function uploadTreeImage(formData) {
+      var authHeaders = $auth.retrieveData('auth_headers');
+      authHeaders['Content-Type'] = undefined;
+
+      var requestConfig = {
+        headers: authHeaders,
         method: 'PUT',
         url: ENV.apiHost + '/api/users/tree_image',
-        data: {
-          image: dataURL
-        }
-      }).then(function success(res) {
+        data: formData,
+      };
+      return $http(requestConfig).then(function success(res) {
         return res.data;
       }, function error(err) {
         if(err.status !== 404){

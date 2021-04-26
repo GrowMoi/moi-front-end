@@ -8,11 +8,12 @@
   function ScreenshotService(ENV, $q) {
 
     var service = {
-      getImage: getImage,
-      validBase64: validBase64
+      getBase64Image: getBase64Image,
+      validBase64: validBase64,
+      getFileImage: getFileImage
     };
 
-    function getImage(elm) {
+    function getBase64Image(elm) {
       var deferred = $q.defer();
       var html2canvasOpts = {
         backgroundColor: null,
@@ -22,6 +23,25 @@
       };
       html2canvas(elm, html2canvasOpts).then(function(canvas) { // jshint ignore:line
         deferred.resolve(canvas.toDataURL());
+      });
+      return deferred.promise;
+    }
+
+    function getFileImage(elm) {
+      var deferred = $q.defer();
+      var html2canvasOpts = {
+        backgroundColor: null,
+        allowTaint: false,
+        proxy: ENV.imagesProxy,
+        useCORS: true
+      };
+      html2canvas(elm, html2canvasOpts).then(function(canvas) { // jshint ignore:line
+        canvas.toBlob(function (blob) {
+          var timestamp = new Date().valueOf();
+          var fileName = 'screenshot_' + timestamp + '.png';
+          var file = new File([blob], fileName, { type: 'image/png' });// jshint ignore:line
+          deferred.resolve(file);
+        }, 'image/png');
       });
       return deferred.promise;
     }

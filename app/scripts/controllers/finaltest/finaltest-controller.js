@@ -176,7 +176,7 @@
         showBackdrop: true,
         showDelay: 0
       });
-      ScreenshotService.getImage(view).then(function(imageBase64){
+      ScreenshotService.getBase64Image(view).then(function(imageBase64){
         dataReport.closeModal();
         UploadImageService.uploadFile(imageBase64).then(function(resp) {
           image_url = resp.data.url; //jshint ignore:line
