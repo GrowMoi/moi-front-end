@@ -62,7 +62,7 @@
       constants: {
         ENV: {
           name: 'production',
-          apiHost: 'https://moi-backend.growmoi.com',
+          apiHost: 'http://moi-backend.growmoi.com',
           imagesProxy: 'https://moi-images-proxy.herokuapp.com',
           facebookKey: process.env.FACEBOOK_KEY,
           pusherKey: process.env.PUSHER_KEY,
