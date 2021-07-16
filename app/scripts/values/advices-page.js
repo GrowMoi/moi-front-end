@@ -8,7 +8,7 @@
         messages: [
           'Hola! Ingresa tu nombre de usuario y presiona siguiente. Si no tienes uno, da clic en Registrarse'
         ],
-        position: 'modal-topLeft'
+        position: 'modal-bottomLeft'
       },
       tree: {
         messages: [
